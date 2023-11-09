@@ -1,0 +1,25 @@
+{
+  "name": "pro-components",
+  "private": true,
+  "license": "ISC",
+  "scripts": {
+    "dev": "pnpm -C play dev",
+    "vite:build": "pnpm --filter \"@element-plus/pro-components\" vite:build",
+    "typecheck:web": "vue-tsc -p tsconfig.web.json --composite false --noEmit"
+  },
+  "devDependencies": {
+    "@element-plus/pro-components": "workspace:^",
+    "@element-plus/pro-utils": "workspace:^",
+    "@types/node": "^20.8.9",
+    "element-plus": "^2.4.1",
+    "eslint": "^8.52.0",
+    "father": "^4.3.6",
+    "fs-extra": "^11.1.1",
+    "rollup-plugin-copy": "^3.5.0",
+    "tsx": "^3.14.0",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0",
+    "vue": "^3.3.7",
+    "vue-tsc": "^1.8.22"
+  }
+}

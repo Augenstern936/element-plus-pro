@@ -1,0 +1,29 @@
+{
+  "name": "@element-plus/pro-button",
+  "version": "0.0.1",
+  "description": "@element-plus/pro-button",
+  "keywords": [
+    "ui",
+    "vue3", 
+    "element",
+    "component", 
+    "element-plus", 
+    "element-plus-pro"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "bugs": "",
+  "gitpository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "module": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist", "lib", "es"],
+  "author": "@17634393156@163.com"
+}

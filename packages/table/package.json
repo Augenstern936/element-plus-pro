@@ -1,0 +1,29 @@
+{
+  "name": "@element-plus/pro-table",
+  "version": "0.0.1",
+  "description": "@element-plus/pro-table",
+  "keywords": [
+    "ui",
+    "vue3", 
+    "element",
+    "component", 
+    "element-plus", 
+    "element-plus-pro"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "bugs": "",
+  "gitpository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "build": ""
+  },
+  "sideEffects": false,
+  "main": "index.js",
+  "module": "",
+  "types": "",
+  "files": ["dist", "lib", "es"],
+  "author": ""
+}

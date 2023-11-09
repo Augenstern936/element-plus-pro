@@ -1,0 +1,15 @@
+{
+    "extends": "./tsconfig.web.json",
+    "compilerOptions": {
+        "allowJs": true,
+        "lib": ["ES2018", "DOM", "DOM.Iterable"]
+    },
+    "include": [
+        "packages",
+        "typings/components.d.ts",
+        "typings/env.d.ts",
+        "play/main.ts",
+        "play/env.d.ts",
+        "play/src/**/*"
+    ]
+}

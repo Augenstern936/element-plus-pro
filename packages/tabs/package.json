@@ -1,0 +1,29 @@
+{
+  "name": "@element-plus/pro-tabs",
+  "version": "0.0.1",
+  "description": "@element-plus/pro-tabs",
+  "keywords": [
+    "ui",
+    "vue3", 
+    "element",
+    "component", 
+    "element-plus", 
+    "element-plus-pro"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "bugs": "",
+  "gitpository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "build": "father build"
+  },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": ["dist", "lib", "es"],
+  "author": ""
+}
