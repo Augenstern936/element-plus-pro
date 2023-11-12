@@ -1,16 +1,24 @@
 {
   "name": "@element-plus/pro-build",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "dev": "pnpm run stub",
-    "stub": "unbuild --stub"
+    "start": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
-    "unbuild": "^2.0.0"
+    "@esbuild-kit/cjs-loader": "^2.4.4",
+    "@pnpm/types": "^9.4.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@types/gulp": "^4.0.17",
+    "@vitejs/plugin-vue": "^4.4.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
+    "gulp": "^4.0.2",
+    "rollup": "^4.4.0",
+    "rollup-plugin-esbuild": "^6.1.0",
+    "unbuild": "^2.0.0",
+    "unplugin-vue-macros": "^2.6.2"
   }
 }

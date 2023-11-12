@@ -1,8 +1,8 @@
 <template>
-    <!-- <pro-button type="danger" tip="确定要删除吗？">pro-button</pro-button>
-    <pro-radio :option="option" mode="button" direction="column"/> -->
+    <ProButton type="danger" tip="确定要删除吗？">pro-button</ProButton>
+    <!-- <pro-radio :option="option" mode="button" direction="column"/>
 
-    <pro-table :columns="columns" :request="getTableData"></pro-table>
+    <pro-table :columns="columns" :request="getTableData"></pro-table> -->
 </template>
 
 <script setup lang="tsx">

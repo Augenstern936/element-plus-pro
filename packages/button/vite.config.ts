@@ -5,6 +5,14 @@ import dts from "vite-plugin-dts";
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import copy from 'rollup-plugin-copy';
 
+const globals = {
+    vue: "Vue",
+    style: "style",
+    '@vue/shared': '@vue/shared',
+    "@element-plus/icons-vue": "iconsVue",
+    "element-plus": "Element-Plus"
+}
+
 export default defineConfig(async ({mode}) => {
     return {
         build: {
@@ -13,27 +21,19 @@ export default defineConfig(async ({mode}) => {
             outDir: "pro-button",
             //压缩
             minify: false,
-            cssCodeSplit: true,
+            cssCodeSplit: false,
             terserOptions:{
                 compress:{
                     drop_console: true
                 }
             },
             lib: {
-                entry: ["./src/index.tsx", "./src/Button.tsx"],
+                entry: ["./src/index.ts", "./src/Button.tsx"],
                 name: 'pro-button',
             },
             rollupOptions: {
                 //忽略打包vue文件
-                external: ["vue", "@vue/shared", "element-plus", "@element-plus/icons-vue", "@element-plus/pro-utils"],
-                // output: {
-                //     globals: {
-                //         vue: "Vue",
-                //         "@element-plus/icons-vue": "iconsVue",
-                //         "element-plus": "Element-Plus"
-                //     },
-                //     dir: "dist",
-                // }
+                external: ["vue", "@vue/shared", "element-plus", "style.css", "@element-plus/icons-vue", "@element-plus/pro-utils"],
                 output: [
                     {
                         format: "es",
@@ -41,29 +41,26 @@ export default defineConfig(async ({mode}) => {
                         entryFileNames: "[name].mjs",
                         preserveModules: false,
                         exports: "named",
+                        globals
                     },{
                         format: "cjs",
                         dir: "./pro-button/lib",
                         entryFileNames: "[name].js",
                         preserveModules: false,
                         exports: "named",
+                        globals
+                    },{
+                        format: "esm",
+                        dir: "./pro-button/dist",
+                        name: "button",
                     }
-                    // ,{
-                    //     format: "umd",
-                    //     dir: "./pro-button/dist",
-                    //     name: "button",
-                    // }
                 ]
-            },
-            onEnd() {
-                copy('package.json', 'pro-button')
-                copy('README.md', 'pro-button')
             }
         },
         plugins: [
             Vue(),
             VueJsx(),
-            cssInjectedByJsPlugin(),
+            //cssInjectedByJsPlugin(),
             copy({
                 targets: [
                   { src: './package.json', dest: './pro-button' },

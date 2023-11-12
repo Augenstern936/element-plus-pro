@@ -1,6 +1,5 @@
 import { markInstaller } from "./mark-installer";
 import components from "./src/components";
-//import "element-plus/theme-chalk/index.css";
 
 const lib = markInstaller(components);
 

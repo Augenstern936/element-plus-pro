@@ -1,3 +1,4 @@
+import "element-plus/theme-chalk/index.css";
 // export * from "@element-plus/pro-tabs";
 // export * from "@element-plus/pro-form";
 // export * from "@element-plus/pro-table";

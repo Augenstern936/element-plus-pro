@@ -5,11 +5,11 @@
 import ProButton from "@element-plus/pro-button";
 // import ProSearchBar from "@element-plus/pro-search-bar";
 
-export default [
+export default {
     // ProTabs,
     // ProForm,
     // ProTable,
     // ProRadio,
     ProButton,
     // ProSearchBar
-]
+}

@@ -8,6 +8,8 @@
     },
     "include": [
         "scripts/**/*",
+        "internal/**/*",
+        "internal/**/*.json",
         "packages/components/package.json"
     ],
     "exclude": [

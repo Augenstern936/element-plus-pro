@@ -1,3 +1,4 @@
+import "./style.css";
 import ProButton from "./Button";
 import { ProButtonProps } from "./typing";
 

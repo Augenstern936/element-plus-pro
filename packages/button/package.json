@@ -21,9 +21,9 @@
     "build": "vite build"
   },
   "sideEffects": false,
-  "main": "dist/index.js",
-  "module": "dist/index.umd.js",
-  "types": "dist/index.d.ts",
-  "files": ["dist", "lib", "es"],
+  "main": "pro-button/lib/index.js",
+  "module": "pro-button/es/index.mjs",
+  "types": "pro-button/es/index.d.ts",
+  "files": ["lib", "es"],
   "author": "@17634393156@163.com"
 }

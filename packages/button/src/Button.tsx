@@ -5,7 +5,6 @@ import type { ProButtonProps} from "./typing";
 import { withInstall } from "@element-plus/pro-utils";
 import Props from "./typing";
 
-
 const ProButton = defineComponent((props: ProButtonProps, ctx: any) => {
 
     const onClick = (evt: any) => {
