@@ -11,14 +11,15 @@
     "@esbuild-kit/cjs-loader": "^2.4.4",
     "@pnpm/types": "^9.4.0",
     "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-node-resolve": "^13.3.0",
     "@types/gulp": "^4.0.17",
     "@vitejs/plugin-vue": "^4.4.0",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
+    "fast-glob": "^3.3.2",
     "gulp": "^4.0.2",
-    "rollup": "^4.4.0",
+    "rollup": "^2.75.7",
     "rollup-plugin-esbuild": "^6.1.0",
     "unbuild": "^2.0.0",
-    "unplugin-vue-macros": "^2.6.2"
+    "unplugin-vue-macros": "^0.11.2"
   }
 }

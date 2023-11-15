@@ -2,6 +2,8 @@ import { resolve } from "path";
 
 export const rootPath = resolve(__dirname, "..", "..", "..");
 
+export const pkgRoot = resolve(rootPath, 'packages');
+
 export const buildOutput = resolve(rootPath, "dist");
 
 export const epOutput = resolve(buildOutput, "element-plus");
