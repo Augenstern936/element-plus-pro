@@ -12,7 +12,7 @@ const globals = {
     "element-plus": "Element-Plus"
 }
 
-export default defineConfig(async ({mode}) => {
+export default defineConfig(async ({mode}): Promise<Record<string, any>> => {
     return {
         build: {
             target: "es2018",
@@ -21,9 +21,12 @@ export default defineConfig(async ({mode}) => {
             //压缩
             minify: false,
             //cssCodeSplit: true,
+            lib: {
+                entry: "./index.ts",
+            },
             rollupOptions: {
                 //忽略打包vue文件
-                external: ["vue", "element-plus", "@element-plus/icons-vue", "@vue/shared", "css"],
+                external: ["vue", "element-plus", "@element-plus/icons-vue", "@vue/shared"],
                 output: [
                     {
                         format: "es",
@@ -41,15 +44,12 @@ export default defineConfig(async ({mode}) => {
                         globals
                     }
                 ]
-            },
-            lib: {
-                entry: "./index.ts",
             }
         },
         plugins: [
             Vue(),
             VueJsx(),
-            //cssInjectedByJsPlugin(),
+            cssInjectedByJsPlugin(),
             copy({
                 targets: [
                   { src: './package.json', dest: './pro-components' },

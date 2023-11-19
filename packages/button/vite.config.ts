@@ -2,18 +2,17 @@ import { defineConfig } from "vite";
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import dts from "vite-plugin-dts";
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
+//import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import copy from 'rollup-plugin-copy';
 
 const globals = {
     vue: "Vue",
-    style: "style",
     '@vue/shared': '@vue/shared',
     "@element-plus/icons-vue": "iconsVue",
     "element-plus": "Element-Plus"
 }
 
-export default defineConfig(async ({mode}) => {
+export default defineConfig(async ({mode}): Promise<Record<string, any>> => {
     return {
         build: {
             target: "es2018",
@@ -33,7 +32,7 @@ export default defineConfig(async ({mode}) => {
             },
             rollupOptions: {
                 //忽略打包vue文件
-                external: ["vue", "@vue/shared", "element-plus", "style.css", "@element-plus/icons-vue", "@element-plus/pro-utils"],
+                external: ["vue", "@vue/shared", "element-plus", "@element-plus/icons-vue", "@element-plus/pro-utils"],
                 output: [
                     {
                         format: "es",
@@ -49,10 +48,6 @@ export default defineConfig(async ({mode}) => {
                         preserveModules: false,
                         exports: "named",
                         globals
-                    },{
-                        format: "esm",
-                        dir: "./pro-button/dist",
-                        name: "button",
                     }
                 ]
             }
@@ -67,11 +62,18 @@ export default defineConfig(async ({mode}) => {
                   { src: './README.md', dest: './pro-button' }, 
                 ]
             }),
-            dts({
-                entryRoot: "./src",
-                outDir: ["./pro-button/es", "./pro-button/lib"],
-                tsConfigFilePath: "../../tsconfig.json"
-            }),
+            // dts({
+            //     entryRoot: "./src",
+            //     outDir: ["./pro-button/es", "./pro-button/lib"],
+            //     tsConfigFilePath: "../../tsconfig.json"
+            // }),
         ]
     }
 })
+
+// const baseCongfig = require("./test");
+
+// export default defineConfig(async ({mode}) => {
+    
+//     return baseCongfig;
+// });

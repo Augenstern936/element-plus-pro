@@ -1,5 +1,5 @@
 {
-    "extends": "./tsconfig.base.json",
+    "extends": "./base.json",
     "compilerOptions": {
         "composite": true,
         "lib": ["ESNext"],
@@ -7,12 +7,12 @@
         "skipLibCheck": true
     },
     "include": [
-        "scripts/**/*",
-        "internal/**/*",
-        "internal/**/*.json",
-        "packages/components/package.json"
+        "../scripts/**/*",
+        "../internal/**/*",
+        "../internal/**/*.json",
+        "../packages/components/package.json"
     ],
     "exclude": [
         "**/dist"
-    ],
+    ]
 }

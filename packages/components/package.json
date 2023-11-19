@@ -18,8 +18,7 @@
     "url": ""
   },
   "scripts": {
-    "vite:build": "vite build",
-    "father:build": "father build"
+    "build": "vite build"
   },
   "main": "pro-components/lib/index.js",
   "module": "pro-components/es/index.mjs",

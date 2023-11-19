@@ -11,15 +11,15 @@
     "dev": "pnpm -C play dev",
     "clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
     "clean:dist": "rimraf dist",
-    "build": "pnpm -C internal/build start",
-    "vite:build": "pnpm --filter \"@element-plus/pro-components\" vite:build",
+    "build": "pnpm --filter \"@element-plus/pro-components\" build",
     "typecheck:web": "vue-tsc -p tsconfig.web.json --composite false --noEmit"
   },
   "devDependencies": {
-    "@element-plus/pro-build-utils": "workspace:^",
     "@element-plus/pro-components": "workspace:^",
     "@element-plus/pro-utils": "workspace:^",
     "@types/node": "^20.8.9",
+    "@vitejs/plugin-vue": "^4.4.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
     "element-plus": "^2.4.1",
     "eslint": "^8.52.0",
     "father": "^4.3.6",
@@ -30,6 +30,7 @@
     "tsx": "^3.14.0",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
+    "vite-plugin-dts": "^3.6.2",
     "vue": "^3.3.7",
     "vue-tsc": "^1.8.22"
   },

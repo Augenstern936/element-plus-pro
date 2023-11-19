@@ -3,8 +3,8 @@
         "outDir": "dist",
         "target": "ES2018",
         "module": "ESNext",
-        "baseUrl": ".",
-        "rootDir": ".",
+        "baseUrl": "../",
+        "rootDir": "../",
         "sourceMap": false,
         "moduleResolution": "Node",
         "allowJs": false,
@@ -16,7 +16,7 @@
         "removeComments": false,
         "types": [],
         "paths": {
-            "@element-plus/*": ["packages/*"]
+            "@element-plus/*": ["../packages/*"]
         }
     }
 }

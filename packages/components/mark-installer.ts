@@ -1,4 +1,4 @@
-import type { App, Plugin } from '@vue/runtime-core';
+import type { App } from '@vue/runtime-core';
 import pkg from './package.json';
 
 export const markInstaller = (components: Record<string, any>) => {
