@@ -1,0 +1,48 @@
+{
+  "name": "@element-plus/pro-components",
+  "version": "0.0.1",
+  "description": "@element-plus/pro-components",
+  "keywords": [
+    "ui",
+    "vue3",
+    "element",
+    "component",
+    "element-plus",
+    "element-plus-pro"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "bugs": "",
+  "gitpository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "build": "vite build"
+  },
+  "main": "pro-components/lib/index.js",
+  "module": "pro-components/es/index.mjs",
+  "types": "pro-components/es/index.d.ts",
+  "styles": "pro-components/es/style.css",
+  "files": [
+    "dist",
+    "lib",
+    "es"
+  ],
+  "devDependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "@vitejs/plugin-vue": "^4.4.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
+    "vite": "^4.5.0",
+    "vite-plugin-css-injected-by-js": "^3.3.0",
+    "vite-plugin-dts": "^3.6.2"
+  },
+  "dependencies": {
+    "@element-plus/pro-button": "workspace:^",
+    "@element-plus/pro-form": "workspace:^",
+    "@element-plus/pro-radio": "workspace:^",
+    "@element-plus/pro-search-bar": "workspace:^",
+    "@element-plus/pro-table": "workspace:^",
+    "@element-plus/pro-tabs": "workspace:^"
+  }
+}
