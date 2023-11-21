@@ -18,7 +18,7 @@
     "url": ""
   },
   "scripts": {
-    "build": "vite --emptyOutDir build"
+    "build": "vite build"
   },
   "sideEffects": false,
   "main": "pro-button/lib/index.js",

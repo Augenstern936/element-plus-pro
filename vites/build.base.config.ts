@@ -28,20 +28,18 @@ export default function () {
 
     const currPkgDir = resolve(outputRoot, pkgName);
 
-    console.log(resolve(cwd, './package.json'))
-    console.log(currPkgDir)
-
     return {
         build: {
             target: "es2018",
             //打包后文件目录
-            outDir: pkgName,
+            outDir: 'dist',
+            emptyOutDir: true,
             //压缩
             minify: false,
             cssCodeSplit: false,
             lib: {
-                entry: [resolve(cwd, 'src/index.ts')],
-                name: pkgName,
+                entry: ['src/index.ts', `src/${baseDirName[0].toUpperCase() + baseDirName.slice(1)}.tsx`],
+                name: 'dist',
             },
             rollupOptions: {
                 //忽略打包vue文件
@@ -49,14 +47,14 @@ export default function () {
                 output: [
                     {
                         format: "es",
-                        dir: esOutputDir,
+                        dir: './dist/es',
                         entryFileNames: "[name].mjs",
                         preserveModules: false,
                         exports: "named",
                         globals
                     },{
                         format: "cjs",
-                        dir: libOutputDir,
+                        dir: './dist/lib',
                         entryFileNames: "[name].js",
                         preserveModules: false,
                         exports: "named",
@@ -69,17 +67,18 @@ export default function () {
             Vue(),
             VueJsx(),
             cssInjectedByJsPlugin(),
+            dts({
+                entryRoot: './src',
+                outDir: ['dist/es', 'dist/lib'],
+                tsConfigFilePath: "../tsconfig.json"
+            }),
             copy({
                 targets: [
-                  { src: resolve(cwd, './package.json'), dest: currPkgDir },
-                  { src: resolve(cwd, './README.md'), dest: currPkgDir }, 
+                  { src: './dist', dest: resolve(outputRoot, pkgName)},
+                  { src: './package.json', dest: currPkgDir },
+                  { src: './README.md', dest: currPkgDir }, 
                 ]
             }),
-            dts({
-                entryRoot: "./src",
-                outDir: [esOutputDir, libOutputDir],
-                tsConfigFilePath: "../tsconfig.json"
-            })
         ]
     }
 }
