@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperties(exports, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
 const vue = require("vue");
-const elementPlus = require("element-plus");
 const proUtils = require("@element-plus/pro-utils");
+const elementPlus = require("element-plus");
 const Props = {
   type: {
     type: String

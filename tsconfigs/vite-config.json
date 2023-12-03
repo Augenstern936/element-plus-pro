@@ -1,11 +1,8 @@
 {
-    "extends": "./node.json",
-    "compilerOptions": {
-        "composite": true,
-        "types": ["node"]
-    },
-    "include": [
-        "../vites/*.ts",
-        "../**/vite.config.*"
-    ]
+	"extends": "./node.json",
+	"compilerOptions": {
+		"composite": true,
+		"types": ["node"]
+	},
+	"include": ["../vites/**/*.ts", "../**/vite.config.*"]
 }

@@ -1,5 +1,5 @@
 packages:
-  - packages/*
-  - play
-  - cli
-  - internal/*
+    - packages/*
+    - play
+    - cli
+    - internal/*

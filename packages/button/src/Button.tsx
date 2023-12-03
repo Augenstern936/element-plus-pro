@@ -1,8 +1,8 @@
-import { defineComponent } from "vue";
+import { withInstall } from "@element-plus/pro-utils";
 import { ElButton, ElMessageBox } from "element-plus";
 import type { FunctionalComponent } from "vue";
-import type { ProButtonProps} from "./typing";
-import { withInstall } from "@element-plus/pro-utils";
+import { defineComponent } from "vue";
+import type { ProButtonProps } from "./typing";
 import Props from "./typing";
 
 const ProButton = defineComponent((props: ProButtonProps, ctx: any) => {

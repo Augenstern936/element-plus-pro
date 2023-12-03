@@ -1,6 +1,6 @@
 import { defineComponent, createVNode, mergeProps } from "vue";
-import { ElButton, ElMessageBox } from "element-plus";
 import { withInstall } from "@element-plus/pro-utils";
+import { ElButton, ElMessageBox } from "element-plus";
 const Props = {
   type: {
     type: String

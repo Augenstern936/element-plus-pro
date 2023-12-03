@@ -1,27 +1,27 @@
-import { PropType } from "vue";
-import type { ButtonProps, ButtonType } from "element-plus";
+import type { ButtonProps, ButtonType } from 'element-plus';
+import { PropType } from 'vue';
 
 export default {
     type: {
-        type: String as PropType<ButtonType>
+        type: String as PropType<ButtonType>,
     },
     size: {
         type: String as PropType<Size>,
-        default: 'default'
+        default: 'default',
     },
     link: {
         type: Boolean,
-        default: false
+        default: false,
     },
     text: {
         type: Boolean,
-        default: false
+        default: false,
     },
     tip: {
         type: String,
-        default: ''
-    }
-}
+        default: '',
+    },
+};
 
 export type ProButtonProps = {
     tip: string;

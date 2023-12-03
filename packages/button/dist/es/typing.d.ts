@@ -1,5 +1,5 @@
-import { PropType } from "vue";
-import type { ButtonProps } from "element-plus";
+import type { ButtonProps } from 'element-plus';
+import { PropType } from 'vue';
 declare const _default: {
     type: {
         type: PropType<import("element-plus/es/utils").EpPropMergeType<StringConstructor, "" | "text" | "default" | "success" | "warning" | "info" | "primary" | "danger", unknown>>;

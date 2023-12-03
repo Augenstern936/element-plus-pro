@@ -1,29 +1,32 @@
 {
-  "name": "@element-plus/pro-button",
-  "version": "0.0.1",
-  "description": "@element-plus/pro-button",
-  "keywords": [
-    "ui",
-    "vue3", 
-    "element",
-    "component", 
-    "element-plus", 
-    "element-plus-pro"
-  ],
-  "license": "ISC",
-  "homepage": "",
-  "bugs": "",
-  "gitpository": {
-    "type": "git",
-    "url": ""
-  },
-  "scripts": {
-    "build": "vite build"
-  },
-  "sideEffects": false,
-  "main": "pro-button/lib/index.js",
-  "module": "pro-button/es/index.mjs",
-  "types": "pro-button/es/index.d.ts",
-  "files": ["lib", "es"],
-  "author": "@17634393156@163.com"
+	"name": "@element-plus/pro-button",
+	"version": "0.0.1",
+	"description": "@element-plus/pro-button",
+	"keywords": [
+		"ui",
+		"vue3",
+		"element",
+		"component",
+		"element-plus",
+		"element-plus-pro"
+	],
+	"license": "ISC",
+	"homepage": "",
+	"bugs": "",
+	"gitpository": {
+		"type": "git",
+		"url": ""
+	},
+	"scripts": {
+		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
+	},
+	"sideEffects": false,
+	"main": "pro-button/lib/index.js",
+	"module": "pro-button/es/index.mjs",
+	"types": "pro-button/es/index.d.ts",
+	"files": [
+		"lib",
+		"es"
+	],
+	"author": "@17634393156@163.com"
 }
