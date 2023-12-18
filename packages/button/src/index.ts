@@ -1,12 +1,7 @@
-import ProButton from "./Button";
-import { ProButtonProps } from "./typing";
+import ProButton from './Button';
 
-export {
-    ProButton
-}
+export * from './typing';
 
-export type {
-    ProButtonProps
-}
+export { ProButton };
 
 export default ProButton;

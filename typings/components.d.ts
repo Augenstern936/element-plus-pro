@@ -1,5 +1,5 @@
 declare module '@vue/runtime-core' {
-    export interface GlobalComponents {}
+	export interface GlobalComponents {}
 }
 
 export {};

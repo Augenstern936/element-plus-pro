@@ -1,8 +1,8 @@
-import ProButton from "./Button.mjs";
+import t from "./Button.mjs";
 import "vue";
 import "@element-plus/pro-utils";
 import "element-plus";
 export {
-  ProButton,
-  ProButton as default
+  t as ProButton,
+  t as default
 };
