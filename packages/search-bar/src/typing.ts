@@ -5,10 +5,12 @@ export type ProSearchBarProps = {
 	modelValue?: Record<string, string | number | boolean>;
 	items: SearchBarItem[];
 	actions?: SearchBarAction[];
+	searchText?: string;
+	resetText?: string;
 	toolbar?: boolean | SearchBarAction[];
 	inline?: boolean;
 	// 最大显示表单项，溢出隐藏
-	maxShow?: number;
+	span?: number;
 };
 
 export type SearchBarItem = {

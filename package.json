@@ -9,6 +9,7 @@
 	],
 	"scripts": {
 		"dev": "pnpm -C play dev",
+		"docs:dev": "pnpm run -C docs dev",
 		"clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
 		"clean:dist": "rimraf dist",
 		"build": "pnpm --filter \"@element-plus/**\" build",
@@ -39,6 +40,7 @@
 		"vite-plugin-css-injected-by-js": "^3.3.0",
 		"vite-plugin-dts": "^3.6.2",
 		"vue": "^3.3.7",
+		"vue-styled-components": "^1.6.0",
 		"vue-tsc": "^1.8.22"
 	},
 	"dependencies": {

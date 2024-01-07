@@ -1,11 +1,12 @@
 <template>
-	<pro-tabs v-model="active" :panes="panes"></pro-tabs>
+	<pro-tabs v-model="active" :panes="panes" />
 	<pro-table :columns="columns" :request="getTableData" />
 </template>
 
-<script setup lang="tsx">
+<script setup lang="ts">
 	import { ref } from 'vue';
 	import { ProTable, ProTabs } from '@element-plus/pro-components';
+	import Test from './test.vue';
 	import type { TableColumns, TabsPane } from '@element-plus/pro-components';
 
 	const active = ref(1);
@@ -13,12 +14,13 @@
 	const panes: TabsPane[] = [
 		{
 			label: '表格',
-			name: 1,
+			value: 1,
 			badge: 10,
+			empty: Test,
 		},
 		{
 			label: '表单',
-			name: 2,
+			value: 2,
 		},
 	];
 
@@ -28,16 +30,16 @@
 		},
 		{
 			title: '姓名',
-			field: 'name',
+			dataField: 'name',
 			type: 'sortable',
 		},
 		{
 			title: '年龄',
-			field: 'age',
+			dataField: 'age',
 		},
 		{
 			title: '性别',
-			field: 'sex',
+			dataField: 'sex',
 		},
 		{
 			title: '操作',

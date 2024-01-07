@@ -2,10 +2,11 @@ import './style/index.scss';
 import props from './props';
 import { withInstall } from '@element-plus/pro-utils';
 import { defineComponent, KeepAlive, ref, computed, watch } from 'vue';
-import { ElMessage, ElTable, ElTableColumn, ElPagination, ElButton } from 'element-plus';
+import { ElMessage, ElTable, ElTableColumn, ElPagination, ElTooltip, ElButton } from 'element-plus';
 import { Edit, Search, Delete } from '@element-plus/icons-vue';
 import ProSearchBar from '@element-plus/pro-search-bar';
 import ProButton from '@element-plus/pro-button';
+import ToolBar from './components/ToolBar';
 import { ColumnTypeEnum } from './enum';
 import type { FunctionalComponent } from 'vue';
 import type { Ctx, ProTableProps, TableColumns } from './typing';
@@ -38,6 +39,8 @@ const ProTable = defineComponent(
 
 		const multipleTableRef = ref<InstanceType<typeof ElTable>>();
 
+		const searchDisplay = ref<'none' | 'block'>('block');
+
 		const data = ref<{ total: number; data: any[] }>({
 			data: [],
 			total: 0,
@@ -48,7 +51,19 @@ const ProTable = defineComponent(
 			pageSize: propsDefaultSize || 10,
 		});
 
+		const toolbarTitleRender = computed(() => {
+			return ctx.slots.headerTitle || ctx.slots['header-title'];
+		});
+
 		const tableColumns = computed(() => props.columns?.filter((item: TableColumns) => !item.hideInTable));
+
+		const paginationAlignStyle = computed(() => {
+			const align = typeof props?.pagination === 'object' ? props?.pagination?.align : 'right';
+			return {
+				display: 'flex',
+				justifyContent: align || 'right',
+			};
+		});
 
 		/**
 		 * 是否开启省略号
@@ -68,19 +83,19 @@ const ProTable = defineComponent(
 		const searchFormItems = computed(() => {
 			const isShowUndefinedItem = globalSearch || globalSearch == void 0 ? void 0 : true;
 			const items = columns?.map((item: TableColumns) => {
-				// const { type } = item;
+				const { type } = item;
 				// const excludeMeetType =
 				// 	type != ColumnTypeEnum[0] &&
 				// 	type != ColumnTypeEnum[1] &&
 				// 	type != ColumnTypeEnum[2] &&
 				// 	type != ColumnTypeEnum[3];
-				// if (excludeMeetType && (item.search || item.search === isShowUndefinedItem)) {
-				// 	return formatSearchFormItemsConfig(item);
-				// }
-				// const excludeMeetType = type ? ColumnTypeEnum[type] : false;
-				// if (excludeMeetType && (item.search || item.search === isShowUndefinedItem)) {
-				// 	return formatSearchFormItemsConfig(item);
-				// }
+				const excludeMeetType = type != 'index' && type != 'expand' && type != 'selection' && type != 'action';
+				if (excludeMeetType && (item.search || item.search === isShowUndefinedItem)) {
+					return formatSearchFormItemsConfig(item);
+				}
+				if (excludeMeetType && (item.search || item.search === isShowUndefinedItem)) {
+					return formatSearchFormItemsConfig(item);
+				}
 			});
 			return items?.filter((item: any) => item) || [];
 		});
@@ -91,11 +106,11 @@ const ProTable = defineComponent(
 		 * @returns
 		 */
 		const formatSearchFormItemsConfig = (tableColumn: TableColumns) => {
-			const { field = '', title, valueType, valueOption = [] } = tableColumn;
+			const { dataField = '', title, valueType, valueOption = [] } = tableColumn;
 			const columnSearchConfig = typeof tableColumn.search === 'object' ? tableColumn.search : {};
 			const globalSearchConfig = typeof globalSearch === 'object' ? globalSearch : {};
 			return {
-				field,
+				field: dataField,
 				label: title,
 				valueType,
 				valueOption,
@@ -232,6 +247,12 @@ const ProTable = defineComponent(
 			ctx.emit('tools', index);
 		};
 
+		const onSearchDisplay = () => {
+			if (searchFormItems.value.length) {
+				searchDisplay.value = searchDisplay.value === 'block' ? 'none' : 'block';
+			}
+		};
+
 		/**
 		 * 监听分页参数变化
 		 * @param current
@@ -254,14 +275,15 @@ const ProTable = defineComponent(
 				<>
 					{columns.map((column: TableColumns) => (
 						<ElTableColumn
-							prop={column.field}
+							prop={column.dataField}
 							label={column.title}
 							type={column.type}
-							sortable={column.type === 'sortable' ? true : false}
+							sortable={column.sorter}
 							width={column.width || 'auto'}
+							align={column.align || 'left'}
 							filters={formatFiltersOption(column)}
 							show-overflow-tooltip={ellipsis.value(column)}
-							key={column.field}
+							key={column.dataField}
 						>
 							{(e: any) =>
 								column.children && column.children.length
@@ -279,15 +301,15 @@ const ProTable = defineComponent(
 		 */
 		const RenderTable = () => (
 			<div style={{ border: '1px solid transparent' }}>
-				<ElTable ref={multipleTableRef} data={data.value.data}>
+				<ElTable ref={multipleTableRef} data={data.value.data} row-style={{ textAlign: 'center' }}>
 					{renderTableColumn(tableColumns.value)}
 				</ElTable>
 				{propsPagination !== false && data.value.total > 0 && (
-					<div class='pagination-container'>
+					<div class='pagination-container' style={paginationAlignStyle.value}>
 						<ElPagination
 							v-model:current-page={params.value.current}
 							background={true}
-							page-count={data.value.total}
+							total={data.value.total}
 							page-size={params.value.pageSize}
 							page-sizes={[10, 30, 50, 100, 200]}
 							layout='total, sizes, prev, pager, next, jumper'
@@ -301,7 +323,7 @@ const ProTable = defineComponent(
 
 		// 渲染表格列内容
 		const renderTableColumnContent = (e: { [x: string]: any }, column: TableColumns) => {
-			const { field, type, tooltip, ellipsis, render } = column;
+			const { dataField: field, type, tooltip, ellipsis, render } = column;
 
 			if ((field && ctx.slots[field]) || (type && ctx.slots[type])) {
 				const name = field || type;
@@ -315,21 +337,21 @@ const ProTable = defineComponent(
 			} else if (type == 'action') {
 				tdValue = (
 					<>
-						<ElButton type='warning' size='small' icon={Edit} onClick={() => onAction(0, e.row)}>
-							编辑
-						</ElButton>
-						<ElButton type='primary' size='small' icon={Search} onClick={() => onAction(1, e.row)}>
-							查看
-						</ElButton>
-						<ProButton
-							type='danger'
-							size='small'
-							icon={Delete}
-							tip='确定要删除吗?'
-							onClickEvent={() => onAction(2, e.row)}
-						>
-							删除
-						</ProButton>
+						<ElTooltip content='编辑' placement='top' effect='dark'>
+							<ElButton type='warning' size='small' icon={Edit} onClick={() => onAction(0, e.row)} />
+						</ElTooltip>
+						<ElTooltip content='查看' placement='top' effect='dark'>
+							<ElButton type='primary' size='small' icon={Search} onClick={() => onAction(1, e.row)} />
+						</ElTooltip>
+						<ElTooltip content='删除' placement='top' effect='dark'>
+							<ProButton
+								type='danger'
+								size='small'
+								icon={Delete}
+								tip='确定要删除吗?'
+								onClickEvent={() => onAction(2, e.row)}
+							/>
+						</ElTooltip>
 					</>
 				);
 			} else {
@@ -358,7 +380,6 @@ const ProTable = defineComponent(
 		 */
 		const loadData = () => {
 			if (dataSource && typeof dataSource === 'object') {
-				data.value = { ...data.value, ...dataSource };
 			} else {
 				sendRequest();
 			}
@@ -396,6 +417,7 @@ const ProTable = defineComponent(
 		return () => (
 			<div class='pro-table'>
 				<ProSearchBar
+					v-show={searchDisplay.value === 'block'}
 					ref={searchBarRef}
 					v-model={searchForm.value}
 					items={searchFormItems.value}
@@ -410,6 +432,11 @@ const ProTable = defineComponent(
 					onSearch={onSearch}
 					onTools={onTools}
 				/>
+				<ToolBar title={props.headerTitle} options={props.options} onSearchDisplay={onSearchDisplay}>
+					{{
+						title: () => toolbarTitleRender.value?.(),
+					}}
+				</ToolBar>
 				{!keepAlive ? RenderTable() : <KeepAlive>{RenderTable()}</KeepAlive>}
 			</div>
 		);

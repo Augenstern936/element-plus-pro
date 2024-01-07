@@ -30,6 +30,7 @@
 	],
 	"devDependencies": {
 		"@element-plus/pro-button": "workspace:^",
+		"@element-plus/pro-center-container": "workspace:^",
 		"@element-plus/pro-search-bar": "workspace:^",
 		"@element-plus/pro-table": "workspace:^",
 		"@element-plus/pro-tabs": "workspace:^"

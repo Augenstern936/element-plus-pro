@@ -1,9 +1,11 @@
-import { ColumnTypeEnum } from './enum';
+import { ColumnTypeEnum, PaginationAlignEnum } from './enum';
 
 export type ProTableProps = {
 	loading?: boolean;
 	// 是否开启缓存模式
 	keepAlive?: boolean;
+	// 标题
+	headerTitle?: string;
 	// 列
 	columns: TableColumns[];
 	// 为空时，默认显示的标记
@@ -16,6 +18,8 @@ export type ProTableProps = {
 	search?: boolean | GlobalSearchConfig;
 	// 工具栏
 	toolbar?: boolean | ToolbarConfig[];
+	//
+	options?: boolean;
 	// 样式
 	tableStyle?: TableStyle;
 	// 获取数据需要的额外参数
@@ -35,15 +39,17 @@ export type ProTableProps = {
 
 export type TableColumns = {
 	title?: string; // 表格列标题
-	field?: string; // 列字段名称(与数据源中字段对应进行值的映射)
+	dataField?: string; // 列字段名称(与数据源中字段对应进行值的映射)
 	type?: ColumnType; // selection：多选 index：序号 expand：可展开的按钮
 	width?: string | number; // 列宽
 	fixed?: boolean | 'left' | 'right'; // 固定列
+	align?: 'left' | 'right' | 'center';
 	tooltip?: string | ((row: { [x: string]: any }) => string); // 提示文本
 	ellipsis?: boolean; // 是否显示省略号
 	hideInTable?: boolean; // 是否在表格中不显示该列
+	sorter?: boolean; // 排序
 	filters?: boolean | ValueOption; // 是否在表格列标头开启筛选
-	search?: boolean | SearchConfig; // 是否在搜索栏中显示该项
+	search?: boolean | ColumnSearchConfig; // 是否在搜索栏中显示该项
 	valueType?: ValueType; // 当前筛选项输入框类型
 	valueOption?: ValueOption; // 筛选项数据集合
 	children?: TableColumns[]; // 子级
@@ -63,15 +69,16 @@ export type ValueOption = {
  * 全局筛选栏配置
  */
 
-export interface GlobalSearchConfig extends SearchConfig {
+export interface GlobalSearchConfig {
 	maxShow?: number;
 	inline?: boolean;
+	labelWidth?: number | string;
 }
 
 /**
  * 筛选栏配置
  */
-export type SearchConfig = {
+export type ColumnSearchConfig = {
 	order?: number;
 	label?: string;
 	labelWidth?: 'auto' | number | string;
@@ -107,8 +114,11 @@ export type Params = {
 export type PaginationConfig = {
 	current?: number;
 	pageSize?: number;
+	align?: PaginationAlign;
 	[x: string]: any;
 };
+
+type PaginationAlign = keyof typeof PaginationAlignEnum;
 
 /**
  * 表格数据源(最高级别权重)

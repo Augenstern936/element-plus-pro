@@ -1,19 +1,26 @@
+import type { Component } from 'vue';
+
 export type ProTabsProps = {
 	modelValue?: string | number;
 	tabsProps?: Record<string, any>;
 	panes: TabsPane[];
-	empty?: boolean;
+	activeColor?: string;
+	inactiveColor?: string;
+	empty?: Empty;
 	beforeChange?: () => boolean;
 };
 
 export type TabsPane = {
-	name: string | number;
 	label: string;
+	value: string | number;
 	badge?: string | number;
+	empty?: Empty;
+	props?: Record<string, any>;
 	render?: TabsPaneRender;
-	[x: string]: any;
 };
 
-export type TabsPaneRender = RenderResult | (() => RenderResult);
+export type TabsPaneRender = (props?: Record<string, any>) => TabsPaneRenderResult;
 
-type RenderResult = string | number | JSX.Element;
+export type Empty = boolean | string | number | JSX.Element | Component;
+
+export type TabsPaneRenderResult = Exclude<Empty, boolean>;

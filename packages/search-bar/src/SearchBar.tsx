@@ -1,7 +1,7 @@
 import './style/index.scss';
 import props from './props';
 import { withInstall } from '@element-plus/pro-utils';
-import { defineComponent, ref, computed, watch } from 'vue';
+import { defineComponent, ref, computed, watch, onMounted } from 'vue';
 import {
 	ElForm,
 	ElFormItem,
@@ -12,8 +12,11 @@ import {
 	ElCheckbox,
 	ElButton,
 	ElIcon,
+	ElDropdown,
+	ElDropdownMenu,
+	ElDropdownItem,
 } from 'element-plus';
-import { ArrowDown, ArrowUp } from '@element-plus/icons-vue';
+import { ArrowDown, ArrowUp, MoreFilled } from '@element-plus/icons-vue';
 import type { FunctionalComponent } from 'vue';
 import type { ProSearchBarProps, SearchBarItem } from './typing';
 
@@ -22,9 +25,11 @@ import type { ProSearchBarProps, SearchBarItem } from './typing';
  */
 const ProSearchBar = defineComponent(
 	(props: ProSearchBarProps, ctx) => {
-		const { inline, modelValue = {}, items, maxShow = 3, actions, toolbar } = props;
+		const { inline, modelValue = {}, items, span = 3, actions, toolbar } = props;
 
+		const formContainerRef = ref();
 		const searchFormRef = ref();
+		const tools = ref<any[]>([]);
 
 		const values = Object.keys(modelValue).length ? modelValue : {};
 
@@ -59,9 +64,7 @@ const ProSearchBar = defineComponent(
 		 * 工具事件集
 		 * @param index
 		 */
-		const onTools = (index: number) => {
-			ctx.emit('tools', index);
-		};
+		const onTools = (index: number) => ctx.emit('tools', index);
 
 		ctx.expose({ resetFields: onClearSearchForm });
 
@@ -164,9 +167,9 @@ const ProSearchBar = defineComponent(
 			return (
 				<>
 					<ElButton type='primary' onClick={onSearch}>
-						查询
+						{props.searchText}
 					</ElButton>
-					<ElButton onClick={onClearSearchForm}>重置</ElButton>
+					<ElButton onClick={onClearSearchForm}>{props.resetText}</ElButton>
 				</>
 			);
 		};
@@ -177,12 +180,32 @@ const ProSearchBar = defineComponent(
 		 */
 		const RenderToolbar = () => (
 			<>
-				{ctx.slots.toolbar ? (
-					<div class='toolbars'>{ctx.slots.toolbar?.()}</div>
+				{tools.value.length ? (
+					<div class='tools-container'>
+						{tools.value.length > 1 ? (
+							<ElDropdown
+								v-slots={{
+									dropdown: (
+										<ElDropdownMenu>
+											{tools.value.map((el, index) => (
+												<ElDropdownItem key={index}>{[el]}</ElDropdownItem>
+											))}
+										</ElDropdownMenu>
+									),
+								}}
+							>
+								<ElIcon>
+									<MoreFilled />
+								</ElIcon>
+							</ElDropdown>
+						) : (
+							[tools.value[0]]
+						)}
+					</div>
 				) : (
 					Array.isArray(toolbar) &&
 					toolbar.length > 0 && (
-						<div class='toolbars'>
+						<div class='tools-container'>
 							{toolbar.map((btn: { [x: string]: any }, index: number) => {
 								if (!btn.__v_isVNode && Object.keys(btn)?.length) {
 									return (
@@ -203,43 +226,58 @@ const ProSearchBar = defineComponent(
 			</>
 		);
 
+		const resize = (terget: any) => {
+			const tergetResize = new ResizeObserver(() => {
+				console.log(formContainerRef.value.offsetWidth, 'resize');
+			});
+			tergetResize.observe(terget);
+		};
+
+		onMounted(() => {
+			const slotsContents = ctx.slots.toolbar ? ctx.slots.toolbar?.() : [];
+			tools.value = slotsContents.filter(({ type }) => typeof type != 'symbol');
+			resize(formContainerRef.value);
+		});
+
 		return () => (
 			<div
 				class='pro-search-bar'
 				style={{ display: 'flex', justifyContent: 'space-between', flexDirection: inline ? 'row' : 'column' }}
 			>
 				{formItems.value.length > 0 && (
-					<ElForm
-						ref={searchFormRef}
-						model={form.value}
-						inline={inline}
-						class={['search-bar', [isFilterBarExpand.value ? 'expand' : 'inexpand']]}
-					>
-						{formItems.value
-							.slice(0, isFilterBarExpand.value ? formItems.value.length : maxShow)
-							.map((item: SearchBarItem) => {
-								const { field, label, labelWidth } = item;
-								const labelText = item.valueType === 'checkbox' ? '' : label;
-								return (
-									<ElFormItem prop={field} label={labelText} label-width={labelWidth}>
-										{valueTypeComponents.value(item)}
-									</ElFormItem>
-								);
-							})}
-						<ElFormItem>
-							{RenderActions()}
-							{formItems.value.length > maxShow && (
-								<ElButton
-									type='primary'
-									link
-									onClick={() => (isFilterBarExpand.value = !isFilterBarExpand.value)}
-								>
-									<ElIcon>{!isFilterBarExpand.value ? <ArrowDown /> : <ArrowUp />}</ElIcon>
-									<span>{!isFilterBarExpand.value ? '展开' : '收起'}</span>
-								</ElButton>
-							)}
-						</ElFormItem>
-					</ElForm>
+					<div ref={formContainerRef}>
+						<ElForm
+							ref={searchFormRef}
+							model={form.value}
+							inline={inline}
+							class={['search-bar', [isFilterBarExpand.value ? 'expand' : 'inexpand']]}
+						>
+							{formItems.value
+								.slice(0, isFilterBarExpand.value ? formItems.value.length : span)
+								.map((item: SearchBarItem) => {
+									const { field, label, labelWidth } = item;
+									const labelText = item.valueType === 'checkbox' ? '' : label;
+									return (
+										<ElFormItem prop={field} label={labelText} label-width={labelWidth}>
+											{valueTypeComponents.value(item)}
+										</ElFormItem>
+									);
+								})}
+							<ElFormItem>
+								{RenderActions()}
+								{formItems.value.length > span && (
+									<ElButton
+										type='primary'
+										link
+										onClick={() => (isFilterBarExpand.value = !isFilterBarExpand.value)}
+									>
+										<ElIcon>{!isFilterBarExpand.value ? <ArrowDown /> : <ArrowUp />}</ElIcon>
+										<span>{!isFilterBarExpand.value ? '展开' : '收起'}</span>
+									</ElButton>
+								)}
+							</ElFormItem>
+						</ElForm>
+					</div>
 				)}
 				<RenderToolbar />
 			</div>

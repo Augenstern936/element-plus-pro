@@ -28,5 +28,8 @@
 		"lib",
 		"es"
 	],
-	"author": "17634393156@163.com"
+	"author": "17634393156@163.com",
+	"devDependencies": {
+		"@element-plus/pro-center-container": "workspace:^"
+	}
 }

@@ -1,10 +1,11 @@
 import './style/index.scss';
 import props from './props';
-import { withInstall } from '@element-plus/pro-utils';
+import { withInstall, checkValueIsComponent } from '@element-plus/pro-utils';
 import { defineComponent, computed } from 'vue';
 import { ElTabs, ElTabPane, ElEmpty } from 'element-plus';
+import ProCenterContainer from '@element-plus/pro-center-container';
 import type { FunctionalComponent } from 'vue';
-import type { ProTabsProps, TabsPane, TabsPaneRender } from './typing';
+import type { ProTabsProps, TabsPane } from './typing';
 
 const ProTabs = defineComponent(
 	(props: ProTabsProps, ctx) => {
@@ -44,17 +45,57 @@ const ProTabs = defineComponent(
 		 * @param name
 		 * @returns
 		 */
-		const RenderPaneConetnt = (render: TabsPaneRender = '', name: string | number) => {
-			if (render) {
-				return typeof render === 'function' ? render() : render;
+		const RenderPaneConetnt = (pane: Record<string, any>) => {
+			const { value, empty, props: renderContentProps = {}, render } = pane;
+			if (ctx.slots[value]) {
+				return ctx.slots[value]?.();
 			}
-			if (ctx.slots[name]) {
-				return ctx.slots[name]?.();
+			if (render) {
+				if (typeof render !== 'function') {
+					throw new TypeError('render not a function');
+				}
+				const RenderContent = render(renderContentProps);
+				const EmptyContent =
+					empty && empty != true ? (
+						<ProCenterContainer>{empty}</ProCenterContainer>
+					) : props.empty && props.empty != true ? (
+						<ProCenterContainer>{props.empty}</ProCenterContainer>
+					) : (
+						<ElEmpty image-size={100} />
+					);
+				return checkValueIsComponent(RenderContent) ? (
+					<RenderContent {...renderContentProps} />
+				) : (
+					RenderContent || EmptyContent
+				);
 			}
 			if (ctx.slots.default) {
 				return ctx.slots.default?.();
 			}
-			return props.empty ? <ElEmpty image-size={100} /> : '';
+
+			if (empty === false) {
+				return;
+			}
+
+			if (empty && empty != true) {
+				return <ProCenterContainer>{checkValueIsComponent(empty) ? <empty /> : empty}</ProCenterContainer>;
+			}
+
+			const globalEmpty = props.empty;
+
+			if (globalEmpty === false) {
+				return;
+			}
+
+			if (globalEmpty && globalEmpty !== true) {
+				return (
+					<ProCenterContainer>
+						{checkValueIsComponent(globalEmpty) ? <globalEmpty /> : globalEmpty}
+					</ProCenterContainer>
+				);
+			}
+
+			return <ElEmpty image-size={100} />;
 		};
 
 		return () => (
@@ -66,10 +107,10 @@ const ProTabs = defineComponent(
 				onTabChange={onTabChange}
 			>
 				{props.panes?.map((item: TabsPane) => (
-					<ElTabPane name={item.name} key={item.name}>
+					<ElTabPane name={item.value} key={item.value}>
 						{{
 							label: () => <RenderTabLabel {...item} />,
-							default: () => RenderPaneConetnt(item.render, item.name),
+							default: () => RenderPaneConetnt(item),
 						}}
 					</ElTabPane>
 				))}
