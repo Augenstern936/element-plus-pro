@@ -1,0 +1,55 @@
+{
+  "hash": "0980ba8d",
+  "configHash": "91e0f00f",
+  "lockfileHash": "0aba9dea",
+  "browserHash": "7f387bfd",
+  "optimized": {
+    "vue": {
+      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+vue@3.2.37/node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "240811d1",
+      "needsInterop": false
+    },
+    "vitepress > @vue/devtools-api": {
+      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+@vue+devtools-api@6.5.1/node_modules/@vue/devtools-api/lib/esm/index.js",
+      "file": "vitepress___@vue_devtools-api.js",
+      "fileHash": "17b9b93d",
+      "needsInterop": false
+    },
+    "element-plus": {
+      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+element-plus@2.4.1_vue@3.2.37/node_modules/element-plus/es/index.mjs",
+      "file": "element-plus.js",
+      "fileHash": "d1ee6510",
+      "needsInterop": false
+    },
+    "@ruabick/vitepress-demo-block": {
+      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+@ruabick+vitepress-demo-block@0.3.3/node_modules/@ruabick/vitepress-demo-block/dist/vitepress-demo-block.js",
+      "file": "@ruabick_vitepress-demo-block.js",
+      "fileHash": "c512389c",
+      "needsInterop": false
+    },
+    "@element-plus/icons-vue": {
+      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+@element-plus+icons-vue@2.3.1_vue@3.3.7/node_modules/@element-plus/icons-vue/dist/index.js",
+      "file": "@element-plus_icons-vue.js",
+      "fileHash": "3b9b9f47",
+      "needsInterop": false
+    },
+    "@vue/shared": {
+      "src": "../../../../node_modules/.pnpm/@vue+shared@3.3.8/node_modules/@vue/shared/dist/shared.esm-bundler.js",
+      "file": "@vue_shared.js",
+      "fileHash": "97c18566",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-HNOGNKDK": {
+      "file": "chunk-HNOGNKDK.js"
+    },
+    "chunk-JRUPZFX5": {
+      "file": "chunk-JRUPZFX5.js"
+    },
+    "chunk-LQ2VYIYD": {
+      "file": "chunk-LQ2VYIYD.js"
+    }
+  }
+}

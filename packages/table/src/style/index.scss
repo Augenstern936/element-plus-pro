@@ -1,0 +1,76 @@
+@use './base.scss';
+
+.pro-table {
+	// .ellipsis-container{
+	//     width: 80%;
+	//     overflow: hidden;
+	//     white-space: nowrap;
+	//     text-overflow: ellipsis;
+	// }
+	.search-bar.inexpand {
+		height: 50px;
+	}
+	.search-bar.expand {
+		height: fit-content;
+	}
+	.toolbar-container {
+		height: 72px;
+		padding: 16px 0;
+		display: flex;
+		align-items: center;
+		.left {
+			flex: 1;
+			h3 {
+				display: flex;
+				font-weight: 600;
+			}
+		}
+		.right {
+			flex: 1;
+			display: flex;
+			justify-content: flex-end;
+			.actions {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				justify-content: flex-end;
+			}
+			.options {
+				display: flex;
+				align-items: center;
+				.icon {
+					cursor: pointer;
+					margin-left: 20px;
+				}
+			}
+		}
+	}
+	.pagination-container {
+		margin: 20px 0;
+		display: flex;
+		justify-content: flex-end;
+	}
+}
+
+.el-popper {
+	padding: 0 !important;
+	.columns-setting-popover-content {
+		.el-checkbox__input.is-checked + .el-checkbox__label {
+			color: #333333 !important;
+		}
+		.head {
+			padding: 5px 12px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+			.reset-btn {
+				color: var(--el-color-primary);
+				cursor: pointer;
+			}
+		}
+		.body {
+			padding: 6px 12px;
+		}
+	}
+}

@@ -1,0 +1,24 @@
+---
+# https://vitepress.dev/reference/default-theme-home-page
+layout: home
+
+hero:
+    name: 'ProComponents'
+    text: '基于 Element Plus 而开发的Vue3模板组件'
+    tagline: 让中后台开发更简单
+    actions:
+        - theme: brand
+          text: 快速上手
+          link: /guide/pro-form
+        - theme: alt
+          text: 文档预览
+          link: /component/pro-form
+
+features:
+    - title: 简单快捷
+      details: 在 Element Plus 上进行了自己的封装，更加易用
+    - title: Element Plus
+      details: 无缝对接 Element Plus 项目
+    - title: TypeScript
+      details: 使用 TypeScript 开发，提供完整的类型定义文件，无需频繁打开官网
+---
