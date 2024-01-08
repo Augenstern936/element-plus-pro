@@ -194,9 +194,7 @@ const ProSearchBar = defineComponent(
 									),
 								}}
 							>
-								<ElIcon>
-									<MoreFilled />
-								</ElIcon>
+								<ElButton icon={MoreFilled} circle />
 							</ElDropdown>
 						) : (
 							[tools.value[0]]

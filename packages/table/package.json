@@ -31,6 +31,10 @@
 	"author": "17634393156@163.com",
 	"devDependencies": {
 		"@element-plus/pro-button": "workspace:^",
-		"@element-plus/pro-search-bar": "workspace:^"
+		"@element-plus/pro-search-bar": "workspace:^",
+		"@types/uuid": "^9.0.7"
+	},
+	"dependencies": {
+		"uuid": "^9.0.1"
 	}
 }

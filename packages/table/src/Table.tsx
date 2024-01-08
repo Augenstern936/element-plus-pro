@@ -7,6 +7,7 @@ import { Edit, Search, Delete } from '@element-plus/icons-vue';
 import ProSearchBar from '@element-plus/pro-search-bar';
 import ProButton from '@element-plus/pro-button';
 import ToolBar from './components/ToolBar';
+import { v4 as uuidv4 } from 'uuid';
 import { ColumnTypeEnum } from './enum';
 import type { FunctionalComponent } from 'vue';
 import type { Ctx, ProTableProps, TableColumns } from './typing';
@@ -55,7 +56,10 @@ const ProTable = defineComponent(
 			return ctx.slots.headerTitle || ctx.slots['header-title'];
 		});
 
-		const tableColumns = computed(() => props.columns?.filter((item: TableColumns) => !item.hideInTable));
+		const tableColumns = computed(() => {
+			const filterColumns = props.columns?.filter((item: TableColumns) => !item.hideInTable);
+			return filterColumns.map((item) => ({ ...item, id: uuidv4() }));
+		});
 
 		const paginationAlignStyle = computed(() => {
 			const align = typeof props?.pagination === 'object' ? props?.pagination?.align : 'right';
@@ -253,6 +257,8 @@ const ProTable = defineComponent(
 			}
 		};
 
+		const onColumnsSettingChange = (newColumns: TableColumns[]) => {};
+
 		/**
 		 * 监听分页参数变化
 		 * @param current
@@ -340,7 +346,7 @@ const ProTable = defineComponent(
 						<ElTooltip content='编辑' placement='top' effect='dark'>
 							<ElButton type='warning' size='small' icon={Edit} onClick={() => onAction(0, e.row)} />
 						</ElTooltip>
-						<ElTooltip content='查看' placement='top' effect='dark'>
+						<ElTooltip content='详情' placement='top' effect='dark'>
 							<ElButton type='primary' size='small' icon={Search} onClick={() => onAction(1, e.row)} />
 						</ElTooltip>
 						<ElTooltip content='删除' placement='top' effect='dark'>
@@ -432,7 +438,13 @@ const ProTable = defineComponent(
 					onSearch={onSearch}
 					onTools={onTools}
 				/>
-				<ToolBar title={props.headerTitle} options={props.options} onSearchDisplay={onSearchDisplay}>
+				<ToolBar
+					title={props.headerTitle}
+					columns={tableColumns.value}
+					options={props.options}
+					onSearchDisplay={onSearchDisplay}
+					onColumnsSettingChange={onColumnsSettingChange}
+				>
 					{{
 						title: () => toolbarTitleRender.value?.(),
 					}}
