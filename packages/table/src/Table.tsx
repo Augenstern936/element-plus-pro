@@ -1,7 +1,7 @@
 import './style/index.scss';
 import props from './props';
 import { withInstall } from '@element-plus/pro-utils';
-import { defineComponent, KeepAlive, ref, computed, watch } from 'vue';
+import { defineComponent, KeepAlive, ref, provide, computed, watch } from 'vue';
 import { ElMessage, ElTable, ElTableColumn, ElPagination, ElTooltip, ElButton } from 'element-plus';
 import { Edit, Search, Delete } from '@element-plus/icons-vue';
 import ProSearchBar from '@element-plus/pro-search-bar';
@@ -40,6 +40,8 @@ const ProTable = defineComponent(
 
 		const multipleTableRef = ref<InstanceType<typeof ElTable>>();
 
+		const multipleSelection = ref<{ [x: string]: any }[]>([]);
+
 		const searchDisplay = ref<'none' | 'block'>('block');
 
 		const data = ref<{ total: number; data: any[] }>({
@@ -52,8 +54,12 @@ const ProTable = defineComponent(
 			pageSize: propsDefaultSize || 10,
 		});
 
+		const searchBarTools = computed(() => {
+			return typeof props.search === 'object' ? props.search?.rightTools : void 0;
+		});
+
 		const toolbarTitleRender = computed(() => {
-			return ctx.slots.headerTitle || ctx.slots['header-title'];
+			return ctx.slots.title || ctx.slots['title'];
 		});
 
 		const tableColumns = computed(() => {
@@ -103,6 +109,8 @@ const ProTable = defineComponent(
 			});
 			return items?.filter((item: any) => item) || [];
 		});
+
+		const toOrdinaryObj = (proxyObj: any) => Object.fromEntries(Object.entries(proxyObj));
 
 		/**
 		 * 格式化筛选栏组件配置项数据，对全局配置和单项配置进行合并
@@ -259,6 +267,10 @@ const ProTable = defineComponent(
 
 		const onColumnsSettingChange = (newColumns: TableColumns[]) => {};
 
+		const onSelectionChange = (vals: any[]) => {
+			multipleSelection.value = vals;
+		};
+
 		/**
 		 * 监听分页参数变化
 		 * @param current
@@ -286,7 +298,7 @@ const ProTable = defineComponent(
 							type={column.type}
 							sortable={column.sorter}
 							width={column.width || 'auto'}
-							align={column.align || 'left'}
+							align={column.align || props.cellAlign}
 							filters={formatFiltersOption(column)}
 							show-overflow-tooltip={ellipsis.value(column)}
 							key={column.dataField}
@@ -307,7 +319,12 @@ const ProTable = defineComponent(
 		 */
 		const RenderTable = () => (
 			<div style={{ border: '1px solid transparent' }}>
-				<ElTable ref={multipleTableRef} data={data.value.data} row-style={{ textAlign: 'center' }}>
+				<ElTable
+					ref={multipleTableRef}
+					data={data.value.data}
+					header-cell-style={{ background: '#f5f7fa', ...props.headerCellStyle }}
+					onSelection-change={onSelectionChange}
+				>
 					{renderTableColumn(tableColumns.value)}
 				</ElTable>
 				{propsPagination !== false && data.value.total > 0 && (
@@ -391,6 +408,14 @@ const ProTable = defineComponent(
 			}
 		};
 
+		provide('toolbar', {
+			title: props.title,
+			options: props.options,
+			columns: tableColumns.value,
+			showSearchOption: searchFormItems.value.length ? true : false,
+			config: props.toolbar,
+		});
+
 		watch(
 			() => props.loading,
 			(newVal) => {
@@ -427,7 +452,7 @@ const ProTable = defineComponent(
 					ref={searchBarRef}
 					v-model={searchForm.value}
 					items={searchFormItems.value}
-					toolbar={toolbar}
+					rightTools={searchBarTools.value}
 					inline={
 						typeof globalSearch === 'object'
 							? globalSearch?.inline === void 0
@@ -435,20 +460,18 @@ const ProTable = defineComponent(
 								: globalSearch.inline
 							: true
 					}
+					v-slots={{ 'right-tools': () => ctx.slots['search-bar-right-tools']?.({ ...searchForm.value }) }}
 					onSearch={onSearch}
 					onTools={onTools}
 				/>
 				<ToolBar
-					title={props.headerTitle}
-					columns={tableColumns.value}
-					options={props.options}
 					onSearchDisplay={onSearchDisplay}
 					onColumnsSettingChange={onColumnsSettingChange}
-				>
-					{{
-						title: () => toolbarTitleRender.value?.(),
+					v-slots={{
+						title: () => toolbarTitleRender.value?.({ selection: toOrdinaryObj(multipleSelection.value) }),
+						actions: () => ctx.slots.toolbar?.({ selection: toOrdinaryObj(multipleSelection.value) }),
 					}}
-				</ToolBar>
+				/>
 				{!keepAlive ? RenderTable() : <KeepAlive>{RenderTable()}</KeepAlive>}
 			</div>
 		);

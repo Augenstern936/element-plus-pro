@@ -14,10 +14,9 @@
 		height: fit-content;
 	}
 	.toolbar-container {
-		height: 72px;
-		padding: 16px 0;
 		display: flex;
 		align-items: center;
+		margin-bottom: 20px;
 		.left {
 			flex: 1;
 			h3 {
@@ -30,7 +29,8 @@
 			display: flex;
 			justify-content: flex-end;
 			.actions {
-				flex: 1;
+				// flex: 1;
+				margin-left: 12px;
 				display: flex;
 				align-items: center;
 				justify-content: flex-end;
@@ -40,7 +40,7 @@
 				align-items: center;
 				.icon {
 					cursor: pointer;
-					margin-left: 20px;
+					margin-left: 16px;
 				}
 			}
 		}
@@ -52,8 +52,7 @@
 	}
 }
 
-.el-popper {
-	padding: 0 !important;
+.columns-setting-popover {
 	.columns-setting-popover-content {
 		.el-checkbox__input.is-checked + .el-checkbox__label {
 			color: #333333 !important;

@@ -1,5 +1,5 @@
 import { PropType } from 'vue';
-import { SearchBarItem, SearchBarAction } from './typing';
+import { SearchBarItem, SearchBarActions, SearchBarRightTools } from './typing';
 declare const _default: {
     modelValue: {
         type: PropType<{
@@ -20,10 +20,10 @@ declare const _default: {
         default: string;
     };
     actions: {
-        type: PropType<SearchBarAction[]>;
+        type: PropType<SearchBarActions[]>;
     };
-    toolbar: {
-        type: (BooleanConstructor | PropType<SearchBarAction[]>)[];
+    rightTools: {
+        type: PropType<SearchBarRightTools[]>;
         default: any[];
     };
     inline: {

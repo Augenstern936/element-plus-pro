@@ -1,5 +1,5 @@
 import { PropType } from 'vue';
-import { SearchBarItem, SearchBarAction } from './typing';
+import { SearchBarItem, SearchBarActions, SearchBarRightTools } from './typing';
 
 export default {
 	modelValue: {
@@ -19,10 +19,10 @@ export default {
 		default: '重置',
 	},
 	actions: {
-		type: Array as PropType<SearchBarAction[]>,
+		type: Array as PropType<SearchBarActions[]>,
 	},
-	toolbar: {
-		type: [Boolean, Array as PropType<SearchBarAction[]>],
+	rightTools: {
+		type: Array as PropType<SearchBarRightTools[]>,
 		default: [],
 	},
 	inline: {

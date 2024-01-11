@@ -1,5 +1,4 @@
-import { Plus } from '@element-plus/icons-vue';
-import type { PropType } from 'vue';
+import type { PropType, CSSProperties } from 'vue';
 import type {
 	TableColumns,
 	GlobalSearchConfig,
@@ -20,9 +19,17 @@ export default {
 		type: Boolean,
 		default: false,
 	},
-	headerTitle: {
+	title: {
 		type: String,
 		default: '',
+	},
+	cellAlign: {
+		type: String as PropType<'left' | 'right' | 'center'>,
+		default: 'left',
+	},
+	headerCellStyle: {
+		type: Object as PropType<CSSProperties>,
+		default: {},
 	},
 	// 列
 	columns: {
@@ -51,14 +58,12 @@ export default {
 	},
 	// 工具栏
 	toolbar: {
-		type: [Boolean, Array as PropType<ToolbarConfig[]>],
-		default: [
-			{
-				text: '新增',
-				type: 'primary',
-				icon: Plus,
-			},
-		],
+		type: Object as PropType<ToolbarConfig[]>,
+		default: {
+			placeholder: '请输入关键字',
+			showAction: true,
+			actionStyle: {},
+		},
 	},
 	//
 	options: {

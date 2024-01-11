@@ -1,5 +1,5 @@
-import type { PropType } from 'vue';
-import type { TableColumns, GlobalSearchConfig, ToolbarConfig, TableStyle, DataSource, Params, Request } from './typing';
+import type { PropType, CSSProperties } from 'vue';
+import type { TableColumns, GlobalSearchConfig, TableStyle, DataSource, Params, Request } from './typing';
 declare const _default: {
     loading: {
         type: BooleanConstructor;
@@ -9,9 +9,17 @@ declare const _default: {
         type: BooleanConstructor;
         default: boolean;
     };
-    headerTitle: {
+    title: {
         type: StringConstructor;
         default: string;
+    };
+    cellAlign: {
+        type: PropType<"left" | "right" | "center">;
+        default: string;
+    };
+    headerCellStyle: {
+        type: PropType<CSSProperties>;
+        default: {};
     };
     columns: {
         type: PropType<TableColumns[]>;
@@ -34,12 +42,12 @@ declare const _default: {
         default: any;
     };
     toolbar: {
-        type: (BooleanConstructor | PropType<ToolbarConfig[]>)[];
+        type: PropType<ToolbarConfig[]>;
         default: {
-            text: string;
-            type: string;
-            icon: import("vue").DefineComponent<{}, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}, {}>;
-        }[];
+            placeholder: string;
+            showAction: boolean;
+            actionStyle: {};
+        };
     };
     options: {
         type: BooleanConstructor[];

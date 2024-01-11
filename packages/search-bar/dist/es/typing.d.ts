@@ -1,12 +1,12 @@
 import { ValueTypeEnum } from './enum';
-import type { ButtonType } from 'element-plus';
+import type { ButtonProps } from 'element-plus';
 export type ProSearchBarProps = {
     modelValue?: Record<string, string | number | boolean>;
     items: SearchBarItem[];
-    actions?: SearchBarAction[];
+    actions?: SearchBarActions[];
     searchText?: string;
     resetText?: string;
-    toolbar?: boolean | SearchBarAction[];
+    rightTools?: SearchBarRightTools[];
     inline?: boolean;
     span?: number;
 };
@@ -24,9 +24,9 @@ export type SearchBarValueOption = {
     label: string;
     value: string | number | boolean;
 };
-export type SearchBarAction = JSX.Element | ActionConfig;
-type ActionConfig = {
-    text: string;
-    type?: ButtonType;
-};
+export type SearchBarActions = JSX.Element | JSX.Element[] | BottonConfig | BottonConfig[];
+export type SearchBarRightTools = JSX.Element | JSX.Element[] | BottonConfig | BottonConfig[];
+type BottonConfig = Partial<ButtonProps & {
+    content: string;
+}>;
 export {};

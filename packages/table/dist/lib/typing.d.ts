@@ -1,14 +1,18 @@
+import type { CSSProperties } from 'vue';
+import type { ButtonProps } from 'element-plus';
 import { ColumnTypeEnum, PaginationAlignEnum } from './enum';
 export type ProTableProps = {
     loading?: boolean;
     keepAlive?: boolean;
-    headerTitle?: string;
+    title?: string;
+    headerCellStyle?: CSSProperties;
+    cellAlign?: GlobalCellAlign;
     columns: TableColumns[];
     columnEmptyText: boolean | string;
     defaultSize?: number;
     ellipsis?: boolean;
     search?: boolean | GlobalSearchConfig;
-    toolbar?: boolean | ToolbarConfig[];
+    toolbar?: TableToolbarConfig[];
     options?: boolean;
     tableStyle?: TableStyle;
     params?: Params;
@@ -52,6 +56,7 @@ export type ValueOption = {
     label: string;
     value: string | number;
 }[];
+export type GlobalCellAlign = 'left' | 'right' | 'center';
 /**
  * 全局筛选栏配置
  */
@@ -59,6 +64,7 @@ export interface GlobalSearchConfig {
     maxShow?: number;
     inline?: boolean;
     labelWidth?: number | string;
+    rightTools?: ToolbarActions;
 }
 /**
  * 筛选栏配置
@@ -72,11 +78,22 @@ export type ColumnSearchConfig = {
 /**
  * 工具栏配置
  */
-export type ToolbarConfig = Element | {
-    text: string;
-    icon?: JSX.Element;
-    type?: 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger';
+export type TableToolbarConfig = {
+    search?: boolean | ToolbarSearchConfig;
+    actions?: ToolbarActions;
 };
+interface ToolbarSearchConfig {
+    placeholder?: string;
+    showAction?: boolean;
+    actionText?: string;
+    actionStyle?: CSSProperties;
+    onChange?: (keywords: string) => void;
+    onAction?: (keywords: string) => void;
+}
+export type ToolbarActions = JSX.Element | JSX.Element[] | ToolbarActionsConfig | ToolbarActionsConfig[];
+export type ToolbarActionsConfig = Partial<ButtonProps & {
+    content: string;
+}>;
 /**
  * 表格样式
  */

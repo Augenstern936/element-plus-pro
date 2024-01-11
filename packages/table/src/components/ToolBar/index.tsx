@@ -1,22 +1,88 @@
-import props from './props';
-import { defineComponent, ref, computed, watch } from 'vue';
-import { ElTooltip, ElButton, ElPopover, ElCheckboxGroup, ElCheckbox } from 'element-plus';
+import { defineComponent, ref, inject, computed, watch } from 'vue';
+import { ElInput, ElTooltip, ElButton, ElPopover, ElCheckboxGroup, ElCheckbox } from 'element-plus';
 import { RefreshRight, Search, Setting } from '@element-plus/icons-vue';
 import type { FunctionalComponent } from 'vue';
-import type { ToolBarProps } from './typing';
+import type { TableColumns, TableToolbarConfig } from '../../typing';
 
-const ToolBar = defineComponent((props: ToolBarProps, ctx) => {
+const ToolBar = defineComponent((props, ctx) => {
+	const toolbar = inject('toolbar', {}) as {
+		title?: string;
+		columns: (TableColumns & { id: string })[];
+		options?: boolean;
+		showSearchOption?: boolean;
+		config?: TableToolbarConfig;
+	};
+
+	const searchKeywords = ref('');
+
 	const allSelected = ref<boolean>(true);
 
 	const selectedColumns = ref<any[]>([]);
 
 	const title = computed(() => {
 		const content = ctx.slots?.title?.() as any[];
-		return content[0].children ? ctx.slots.title?.() : <h3>{props.title}</h3>;
+		return content[0].children ? content : toolbar.title ? <h3>{toolbar.title}</h3> : '';
+	});
+
+	const searchRender = computed(() => {
+		const search = toolbar.config?.search;
+		const {
+			placeholder = '请输入关键字',
+			showAction = true,
+			actionText = '',
+			actionStyle = {},
+			onChange = null,
+			onAction = null,
+		} = typeof search === 'object' ? search : {};
+		const actionElementRender = () => {
+			return showAction === true ? (
+				<ElButton
+					icon={actionText ? void 0 : Search}
+					style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0, ...actionStyle }}
+					onClick={() => onAction?.(searchKeywords.value)}
+				>
+					{actionText}
+				</ElButton>
+			) : (
+				void 0
+			);
+		};
+
+		const ComElement = (
+			<ElInput
+				v-model={searchKeywords.value}
+				v-slots={{ append: actionElementRender }}
+				placeholder={placeholder}
+				clearable
+				style={{ width: '200px' }}
+				onInput={(v) => onChange?.(v)}
+			/>
+		);
+		return search ? ComElement : '';
+	});
+
+	const actionsRender = computed(() => {
+		const { actions }: any = toolbar.config || {};
+
+		if (typeof actions === 'object' && actions != null) {
+			if (actions?.__v_isVNode) {
+				return actions;
+			}
+
+			if (Array.isArray(actions) && actions.length) {
+				return actions.map((item) => {
+					return item.__v_isVNode ? item : <ElButton {...item}>{item.content}</ElButton>;
+				});
+			}
+
+			return <ElButton {...actions}>{actions.content}</ElButton>;
+		}
+
+		return ctx.slots.actions?.();
 	});
 
 	const columns = computed(() => {
-		return props.columns.filter((item) => item.title);
+		return toolbar.columns.filter(({ title }) => title);
 	});
 
 	const onColumnsSettingChange = (ids: any[]) => {
@@ -41,22 +107,32 @@ const ToolBar = defineComponent((props: ToolBarProps, ctx) => {
 	);
 
 	return () => (
-		<div class='toolbar-container' style={{ height: '50px' }}>
-			<div class='left'>{title.value}</div>
+		<div class='toolbar-container'>
+			<div class='left'>{title.value ? title.value : searchRender.value}</div>
 			<div class='right'>
-				<div class='actions'>操作</div>
-				{props.options && (
+				{title.value && searchRender.value}
+				<div class='actions'>{actionsRender.value}</div>
+				{toolbar.options && (
 					<div class='options'>
 						<ElTooltip content='刷新' placement='top'>
 							<ElButton class={'icon'} icon={RefreshRight} circle onClick={() => ctx.emit('refresh')} />
 						</ElTooltip>
-						<ElTooltip content='搜索栏显隐' placement='top'>
-							<ElButton class={'icon'} icon={Search} circle onClick={() => ctx.emit('searchDisplay')} />
-						</ElTooltip>
+						{toolbar.showSearchOption && (
+							<ElTooltip content='搜索栏显隐' placement='top'>
+								<ElButton
+									class={'icon'}
+									icon={Search}
+									circle
+									onClick={() => ctx.emit('searchDisplay')}
+								/>
+							</ElTooltip>
+						)}
 						<ElPopover
 							placement='bottom'
 							width={200}
 							trigger='click'
+							popper-class='columns-setting-popover'
+							popper-style={{ padding: 0 }}
 							v-slots={{
 								reference: () => (
 									<div class={'icon'} style='display: flex; align-items: center'>
@@ -91,7 +167,5 @@ const ToolBar = defineComponent((props: ToolBarProps, ctx) => {
 		</div>
 	);
 }) as unknown as FunctionalComponent;
-
-ToolBar.props = props;
 
 export default ToolBar;
