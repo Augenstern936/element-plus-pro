@@ -7,8 +7,10 @@
 	//     white-space: nowrap;
 	//     text-overflow: ellipsis;
 	// }
-	.search-bar.inexpand {
-		height: 50px;
+	.card {
+		padding: 20px;
+		border-radius: 3px;
+		background-color: #fff;
 	}
 	.search-bar.expand {
 		height: fit-content;
@@ -20,8 +22,9 @@
 		.left {
 			flex: 1;
 			h3 {
-				display: flex;
-				font-weight: 600;
+				display: flex !important;
+				font-weight: 600 !important;
+				margin: 0 !important;
 			}
 		}
 		.right {
@@ -29,7 +32,6 @@
 			display: flex;
 			justify-content: flex-end;
 			.actions {
-				// flex: 1;
 				margin-left: 12px;
 				display: flex;
 				align-items: center;
@@ -45,8 +47,32 @@
 			}
 		}
 	}
+	.copyable {
+		color: var(--el-color-primary);
+		cursor: pointer;
+		margin-left: 5px;
+	}
+	.el-alert {
+		padding: 10px 14px !important;
+		.alert-count {
+			color: var(--el-color-primary);
+			font-weight: 600;
+		}
+		&__content {
+			padding: 0 !important;
+			display: flex !important;
+			align-items: center !important;
+		}
+		&__close-btn {
+			color: var(--el-color-primary) !important;
+			top: unset !important;
+		}
+		&__close-btn.is-customed {
+			top: unset !important;
+		}
+	}
 	.pagination-container {
-		margin: 20px 0;
+		margin-top: 20px;
 		display: flex;
 		justify-content: flex-end;
 	}

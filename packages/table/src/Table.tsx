@@ -2,11 +2,9 @@ import './style/index.scss';
 import props from './props';
 import { withInstall } from '@element-plus/pro-utils';
 import { defineComponent, KeepAlive, ref, provide, computed, watch } from 'vue';
-import { ElMessage, ElTable, ElTableColumn, ElPagination, ElTooltip, ElButton } from 'element-plus';
-import { Edit, Search, Delete } from '@element-plus/icons-vue';
+import { ElMessage, ElTable, ElPagination, ElAlert } from 'element-plus';
 import ProSearchBar from '@element-plus/pro-search-bar';
-import ProButton from '@element-plus/pro-button';
-import ToolBar from './components/ToolBar';
+import { Card, ToolBar, TableColumn } from './components';
 import { v4 as uuidv4 } from 'uuid';
 import { ColumnTypeEnum } from './enum';
 import type { FunctionalComponent } from 'vue';
@@ -22,9 +20,6 @@ const ProTable = defineComponent(
 			search: globalSearch,
 			keepAlive,
 			columns,
-			toolbar,
-			ellipsis: globalEllipsis,
-			columnEmptyText,
 			params: propsParams,
 			defaultSize: propsDefaultSize,
 			pagination: propsPagination,
@@ -33,6 +28,8 @@ const ProTable = defineComponent(
 		} = props;
 
 		const loading = ref(propsLoading);
+
+		const isFullScreening = ref(false);
 
 		const searchForm = ref<{ [x: string]: any }>({});
 
@@ -54,6 +51,10 @@ const ProTable = defineComponent(
 			pageSize: propsDefaultSize || 10,
 		});
 
+		const settingTableColumns = ref<TableColumns[]>([]);
+
+		const isColumnsSettingChange = ref(false);
+
 		const searchBarTools = computed(() => {
 			return typeof props.search === 'object' ? props.search?.rightTools : void 0;
 		});
@@ -67,23 +68,15 @@ const ProTable = defineComponent(
 			return filterColumns.map((item) => ({ ...item, id: uuidv4() }));
 		});
 
+		const renderTableColumns = computed(() => {
+			return isColumnsSettingChange.value ? settingTableColumns.value : tableColumns.value;
+		});
+
 		const paginationAlignStyle = computed(() => {
 			const align = typeof props?.pagination === 'object' ? props?.pagination?.align : 'right';
 			return {
 				display: 'flex',
 				justifyContent: align || 'right',
-			};
-		});
-
-		/**
-		 * 是否开启省略号
-		 */
-		const ellipsis = computed(() => {
-			return (columns: TableColumns) => {
-				if (columns.ellipsis != void 0) {
-					return columns.ellipsis;
-				}
-				return globalEllipsis;
 			};
 		});
 
@@ -208,24 +201,6 @@ const ProTable = defineComponent(
 		};
 
 		/**
-		 * 格式化表格标头项筛选集合数据格式
-		 * @param column
-		 * @returns
-		 */
-		const formatFiltersOption = (column: TableColumns) => {
-			const { filters, valueOption } = column;
-			if (filters === true) {
-				if (valueOption?.length) {
-					return valueOption.map((item: any) => ({ text: item.label || item.text, value: item.value }));
-				}
-			}
-			if (Array.isArray(filters) && filters?.length) {
-				return filters.map((item: any) => ({ text: item.label || item.text, value: item.value }));
-			}
-			return void 0;
-		};
-
-		/**
 		 * 判断对象及属性值是否为空
 		 * @param obj
 		 * @returns
@@ -251,21 +226,23 @@ const ProTable = defineComponent(
 			sendRequest();
 		};
 
-		const onAction = (index: number, row: any = {}) => {
-			ctx.emit('action', index, { ...row });
-		};
-
-		const onTools = (index: number) => {
-			ctx.emit('tools', index);
-		};
-
 		const onSearchDisplay = () => {
 			if (searchFormItems.value.length) {
 				searchDisplay.value = searchDisplay.value === 'block' ? 'none' : 'block';
 			}
 		};
 
-		const onColumnsSettingChange = (newColumns: TableColumns[]) => {};
+		const onColumnsSettingChange = (ids: string[]) => {
+			settingTableColumns.value = tableColumns.value.filter(
+				(column) => ids.includes(column.id) || column.type == 'selection'
+			);
+			isColumnsSettingChange.value = true;
+		};
+
+		const onColumnsSettingReset = () => {
+			settingTableColumns.value = [];
+			isColumnsSettingChange.value = false;
+		};
 
 		const onSelectionChange = (vals: any[]) => {
 			multipleSelection.value = vals;
@@ -285,35 +262,6 @@ const ProTable = defineComponent(
 
 		const resetSearchFields = () => searchBarRef.value?.resetFields();
 
-		// ref暴露
-		ctx.expose({ refresh, reload, clearSelected, resetSearchFields });
-
-		const renderTableColumn = (columns: TableColumns[]) => {
-			return (
-				<>
-					{columns.map((column: TableColumns) => (
-						<ElTableColumn
-							prop={column.dataField}
-							label={column.title}
-							type={column.type}
-							sortable={column.sorter}
-							width={column.width || 'auto'}
-							align={column.align || props.cellAlign}
-							filters={formatFiltersOption(column)}
-							show-overflow-tooltip={ellipsis.value(column)}
-							key={column.dataField}
-						>
-							{(e: any) =>
-								column.children && column.children.length
-									? renderTableColumn(column.children)
-									: renderTableColumnContent(e, column)
-							}
-						</ElTableColumn>
-					))}
-				</>
-			);
-		};
-
 		/**
 		 * 渲染表格
 		 */
@@ -322,10 +270,15 @@ const ProTable = defineComponent(
 				<ElTable
 					ref={multipleTableRef}
 					data={data.value.data}
-					header-cell-style={{ background: '#f5f7fa', ...props.headerCellStyle }}
+					header-cell-style={{
+						color: '#333',
+						fontWeight: 600,
+						background: '#f5f7fa',
+						...props.headerCellStyle,
+					}}
 					onSelection-change={onSelectionChange}
 				>
-					{renderTableColumn(tableColumns.value)}
+					<TableColumn columns={renderTableColumns.value} />
 				</ElTable>
 				{propsPagination !== false && data.value.total > 0 && (
 					<div class='pagination-container' style={paginationAlignStyle.value}>
@@ -344,60 +297,6 @@ const ProTable = defineComponent(
 			</div>
 		);
 
-		// 渲染表格列内容
-		const renderTableColumnContent = (e: { [x: string]: any }, column: TableColumns) => {
-			const { dataField: field, type, tooltip, ellipsis, render } = column;
-
-			if ((field && ctx.slots[field]) || (type && ctx.slots[type])) {
-				const name = field || type;
-				return ctx.slots[name as string]?.(e.row);
-			}
-
-			let tdValue = field ? e.row[field] : '-';
-
-			if (type === 'index' || type === 'expand' || type === 'selection') {
-				return void 0;
-			} else if (type == 'action') {
-				tdValue = (
-					<>
-						<ElTooltip content='编辑' placement='top' effect='dark'>
-							<ElButton type='warning' size='small' icon={Edit} onClick={() => onAction(0, e.row)} />
-						</ElTooltip>
-						<ElTooltip content='详情' placement='top' effect='dark'>
-							<ElButton type='primary' size='small' icon={Search} onClick={() => onAction(1, e.row)} />
-						</ElTooltip>
-						<ElTooltip content='删除' placement='top' effect='dark'>
-							<ProButton
-								type='danger'
-								size='small'
-								icon={Delete}
-								tip='确定要删除吗?'
-								onClickEvent={() => onAction(2, e.row)}
-							/>
-						</ElTooltip>
-					</>
-				);
-			} else {
-				// TODO 后续调整
-				if (tooltip) {
-					tdValue = typeof tooltip === 'function' ? tooltip(e.row) : tooltip;
-					//tdValue = <el-tooltip placement="top" content={tips}>{ tdValue }</el-tooltip>
-				}
-				// if(ellipsis){
-				//     tdValue = <div class="ellipsis-container">{ tdValue }</div>
-				// }
-			}
-
-			let emptyText = '-';
-			if (typeof columnEmptyText === 'boolean') {
-				emptyText = columnEmptyText ? '-' : '';
-			} else {
-				emptyText = columnEmptyText;
-			}
-
-			return render?.(e.row) ?? tdValue ?? emptyText;
-		};
-
 		/**
 		 * 加载数据(dataSource优先级最高)
 		 */
@@ -407,6 +306,12 @@ const ProTable = defineComponent(
 				sendRequest();
 			}
 		};
+
+		provide('tableProps', {
+			ctx,
+			...props,
+			columns: renderTableColumns.value,
+		});
 
 		provide('toolbar', {
 			title: props.title,
@@ -445,34 +350,70 @@ const ProTable = defineComponent(
 			{ deep: true, immediate: true }
 		);
 
+		// ref暴露
+		ctx.expose({ loading, refresh, reload, clearSelected, resetSearchFields });
+
 		return () => (
-			<div class='pro-table'>
-				<ProSearchBar
+			<div
+				id='pro-table'
+				class='pro-table'
+				style={isFullScreening.value ? { height: '100vh', background: '#fff' } : {}}
+			>
+				<Card
 					v-show={searchDisplay.value === 'block'}
-					ref={searchBarRef}
-					v-model={searchForm.value}
-					items={searchFormItems.value}
-					rightTools={searchBarTools.value}
-					inline={
-						typeof globalSearch === 'object'
-							? globalSearch?.inline === void 0
-								? true
-								: globalSearch.inline
-							: true
-					}
-					v-slots={{ 'right-tools': () => ctx.slots['search-bar-right-tools']?.({ ...searchForm.value }) }}
-					onSearch={onSearch}
-					onTools={onTools}
-				/>
-				<ToolBar
-					onSearchDisplay={onSearchDisplay}
-					onColumnsSettingChange={onColumnsSettingChange}
-					v-slots={{
-						title: () => toolbarTitleRender.value?.({ selection: toOrdinaryObj(multipleSelection.value) }),
-						actions: () => ctx.slots.toolbar?.({ selection: toOrdinaryObj(multipleSelection.value) }),
-					}}
-				/>
-				{!keepAlive ? RenderTable() : <KeepAlive>{RenderTable()}</KeepAlive>}
+					ghost={props.ghost || false}
+					style={{ paddingBottom: 0, marginBottom: '20px' }}
+				>
+					<ProSearchBar
+						ref={searchBarRef}
+						v-model={searchForm.value}
+						items={searchFormItems.value}
+						rightTools={searchBarTools.value}
+						inline={
+							typeof globalSearch === 'object'
+								? globalSearch?.inline === void 0
+									? true
+									: globalSearch.inline
+								: true
+						}
+						v-slots={{
+							'right-tools': () => ctx.slots['search-bar-right-tools']?.({ ...searchForm.value }),
+						}}
+						onSearch={onSearch}
+						onTools={(i: number) => ctx.emit('tools', i)}
+					/>
+				</Card>
+				<Card ghost={props.ghost || false}>
+					<ToolBar
+						onSearchDisplay={onSearchDisplay}
+						onColumnsSettingChange={onColumnsSettingChange}
+						onColumnsSettingReset={onColumnsSettingReset}
+						onFullScreenChange={(v: boolean) => {
+							isFullScreening.value = v;
+						}}
+						v-slots={{
+							title: () =>
+								toolbarTitleRender.value?.({ selection: toOrdinaryObj(multipleSelection.value) }),
+							actions: () => ctx.slots.toolbar?.({ selection: toOrdinaryObj(multipleSelection.value) }),
+						}}
+					/>
+					{multipleSelection.value.length > 0 && (
+						<ElAlert
+							type='info'
+							close-text='取消选择'
+							style={{ marginBottom: '20px', backgroundColor: '#f5f7fa' }}
+							onClose={clearSelected}
+							v-slots={{
+								title: () => (
+									<>
+										已选择 <span class='alert-count'>{multipleSelection.value.length}</span> 项
+									</>
+								),
+							}}
+						/>
+					)}
+					{!keepAlive ? RenderTable() : <KeepAlive>{RenderTable()}</KeepAlive>}
+				</Card>
 			</div>
 		);
 	},

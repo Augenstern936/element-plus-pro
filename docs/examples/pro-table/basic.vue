@@ -3,6 +3,7 @@
 		title="测试"
 		:columns="columns"
 		:header-cell-style="{ color: '#333' }"
+		:ellipsis="false"
 		:search="false"
 		:toolbar="toolbar"
 		:request="getTableData"
@@ -46,6 +47,7 @@
 		{
 			title: '年龄',
 			dataField: 'age',
+			copyable: true,
 			sorter: true,
 		},
 		{
@@ -58,7 +60,7 @@
 		const data = Array.of(1, 2).map((item) => ({
 			id: item,
 			name: '李斯',
-			age: 18 + item,
+			age: '12' + item,
 			sex: item,
 		}));
 

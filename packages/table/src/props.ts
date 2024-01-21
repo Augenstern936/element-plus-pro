@@ -14,6 +14,10 @@ export default {
 		type: Boolean,
 		default: false,
 	},
+	ghost: {
+		type: Boolean,
+		default: false,
+	},
 	// 是否开启缓存模式
 	keepAlive: {
 		type: Boolean,

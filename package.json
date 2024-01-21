@@ -34,14 +34,15 @@
 		"rollup-plugin-copy": "^3.5.0",
 		"rollup-plugin-visualizer": "^5.11.0",
 		"sass": "^1.69.5",
+		"screenfull": "^6.0.2",
 		"tsx": "^3.14.0",
 		"typescript": "^5.2.2",
 		"vite": "^4.5.0",
 		"vite-plugin-css-injected-by-js": "^3.3.0",
 		"vite-plugin-dts": "^3.6.2",
 		"vue": "^3.3.7",
-		"vue-styled-components": "^1.6.0",
-		"vue-tsc": "^1.8.22"
+		"vue-tsc": "^1.8.22",
+		"vue3-styled-components": "^1.2.1"
 	},
 	"dependencies": {
 		"@vue/shared": "^3.3.8"

@@ -1,6 +1,7 @@
 import { defineComponent, ref, inject, computed, watch } from 'vue';
 import { ElInput, ElTooltip, ElButton, ElPopover, ElCheckboxGroup, ElCheckbox } from 'element-plus';
-import { RefreshRight, Search, Setting } from '@element-plus/icons-vue';
+import { RefreshRight, Search, Setting, FullScreen } from '@element-plus/icons-vue';
+import screenfull from 'screenfull';
 import type { FunctionalComponent } from 'vue';
 import type { TableColumns, TableToolbarConfig } from '../../typing';
 
@@ -12,6 +13,8 @@ const ToolBar = defineComponent((props, ctx) => {
 		showSearchOption?: boolean;
 		config?: TableToolbarConfig;
 	};
+
+	const isScreenfull = ref(false);
 
 	const searchKeywords = ref('');
 
@@ -86,20 +89,36 @@ const ToolBar = defineComponent((props, ctx) => {
 	});
 
 	const onColumnsSettingChange = (ids: any[]) => {
-		console.log(ids, 'ids');
+		ctx.emit('columnsSettingChange', ids);
 	};
 
 	const initSelectedStatus = () => {
 		allSelected.value = true;
 		selectedColumns.value = columns.value.map(({ id }) => id);
+		ctx.emit('columnsSettingReset');
+	};
+
+	const onFullScreen = () => {
+		if (screenfull.isEnabled) {
+			const element = document.getElementById('pro-table');
+			if (isScreenfull.value) {
+				screenfull.exit();
+			} else {
+				screenfull.request(element);
+			}
+			isScreenfull.value = isScreenfull.value ? false : true;
+			ctx.emit('fullScreenChange', isScreenfull.value);
+		}
 	};
 
 	watch(
 		() => allSelected.value,
 		(v) => {
 			if (v) {
-				initSelectedStatus();
+				return initSelectedStatus();
 			}
+			selectedColumns.value = [];
+			ctx.emit('columnsSettingChange', []);
 		},
 		{
 			immediate: true,
@@ -161,6 +180,9 @@ const ToolBar = defineComponent((props, ctx) => {
 								</div>
 							</div>
 						</ElPopover>
+						<ElTooltip content={isScreenfull.value ? '退出全屏' : '全屏'} placement='top'>
+							<ElButton class={'icon'} icon={FullScreen} circle onClick={onFullScreen} />
+						</ElTooltip>
 					</div>
 				)}
 			</div>

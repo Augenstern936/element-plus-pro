@@ -3,6 +3,7 @@ import type { ButtonProps } from 'element-plus';
 import { ColumnTypeEnum, PaginationAlignEnum } from './enum';
 export type ProTableProps = {
     loading?: boolean;
+    ghost?: boolean;
     keepAlive?: boolean;
     title?: string;
     headerCellStyle?: CSSProperties;
@@ -14,6 +15,7 @@ export type ProTableProps = {
     search?: boolean | GlobalSearchConfig;
     toolbar?: TableToolbarConfig[];
     options?: boolean;
+    dateFormatter?: string | number;
     tableStyle?: TableStyle;
     params?: Params;
     pagination?: boolean | PaginationConfig;
@@ -29,6 +31,7 @@ export type ProTableProps = {
     }) => void;
 };
 export type TableColumns = {
+    key?: string | number;
     title?: string;
     dataField?: string;
     type?: ColumnType;
@@ -41,6 +44,7 @@ export type TableColumns = {
     ellipsis?: boolean;
     hideInTable?: boolean;
     sorter?: boolean;
+    copyable?: boolean;
     filters?: boolean | ValueOption;
     search?: boolean | ColumnSearchConfig;
     valueType?: ValueType;

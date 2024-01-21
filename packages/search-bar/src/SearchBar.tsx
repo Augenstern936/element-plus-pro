@@ -23,8 +23,8 @@ import type { ProSearchBarProps, SearchBarItem } from './typing';
 /**
  * 搜索栏组件
  */
-const ProSearchBar = defineComponent(
-	(props: ProSearchBarProps, ctx) => {
+const ProSearchBar = defineComponent<ProSearchBarProps>(
+	(props, ctx) => {
 		const { inline, modelValue = {}, items, span = 3, actions } = props;
 
 		const formContainerRef = ref();
@@ -37,8 +37,10 @@ const ProSearchBar = defineComponent(
 		const isFilterBarExpand = ref(false);
 
 		const formItems = computed(() => {
-			return items.sort((a: SearchBarItem, b: SearchBarItem) => {
-				return (a.order ? a.order : (b.order || 0) - 1) - (b.order || 0);
+			console.log(props.items, 'items');
+			return items?.sort((a: SearchBarItem, b: SearchBarItem) => {
+				const bOrder = b?.order ? b.order : 0;
+				return (a?.order ? a.order : bOrder - 1) - bOrder;
 			});
 		});
 

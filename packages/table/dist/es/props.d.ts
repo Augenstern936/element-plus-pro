@@ -5,6 +5,10 @@ declare const _default: {
         type: BooleanConstructor;
         default: boolean;
     };
+    ghost: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     keepAlive: {
         type: BooleanConstructor;
         default: boolean;

@@ -4,6 +4,7 @@ import { ColumnTypeEnum, PaginationAlignEnum } from './enum';
 
 export type ProTableProps = {
 	loading?: boolean;
+	ghost?: boolean;
 	// 是否开启缓存模式
 	keepAlive?: boolean;
 	// 标题
@@ -26,6 +27,8 @@ export type ProTableProps = {
 	toolbar?: TableToolbarConfig[];
 	//
 	options?: boolean;
+	//日期格式化
+	dateFormatter?: string | number;
 	// 样式
 	tableStyle?: TableStyle;
 	// 获取数据需要的额外参数
@@ -44,6 +47,7 @@ export type ProTableProps = {
 };
 
 export type TableColumns = {
+	key?: string | number; //标识
 	title?: string; // 表格列标题
 	dataField?: string; // 列字段名称(与数据源中字段对应进行值的映射)
 	type?: ColumnType; // selection：多选 index：序号 expand：可展开的按钮
@@ -54,6 +58,7 @@ export type TableColumns = {
 	ellipsis?: boolean; // 是否显示省略号
 	hideInTable?: boolean; // 是否在表格中不显示该列
 	sorter?: boolean; // 排序
+	copyable?: boolean; //是否支持复制
 	filters?: boolean | ValueOption; // 是否在表格列标头开启筛选
 	search?: boolean | ColumnSearchConfig; // 是否在搜索栏中显示该项
 	valueType?: ValueType; // 当前筛选项输入框类型

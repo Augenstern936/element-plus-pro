@@ -1,7 +1,7 @@
-import { defineComponent as H, ref as h, computed as b, watch as W, createVNode as e, onMounted as K, Fragment as V, isVNode as q, mergeProps as T } from "vue";
+import { defineComponent as H, ref as h, computed as k, watch as W, createVNode as e, onMounted as K, Fragment as F, isVNode as q, mergeProps as R } from "vue";
 import { withInstall as G } from "@element-plus/pro-utils";
-import { ElInput as J, ElSelect as L, ElOption as Q, ElCheckbox as X, ElDatePicker as k, ElForm as Z, ElFormItem as R, ElButton as p, ElIcon as ee, ElDropdown as x, ElDropdownMenu as D, ElDropdownItem as j } from "element-plus";
-import { ArrowDown as le, ArrowUp as te, MoreFilled as B } from "@element-plus/icons-vue";
+import { ElInput as J, ElSelect as L, ElOption as Q, ElCheckbox as X, ElDatePicker as b, ElForm as Z, ElFormItem as x, ElButton as p, ElIcon as ee, ElDropdown as D, ElDropdownMenu as j, ElDropdownItem as B } from "element-plus";
+import { ArrowDown as le, ArrowUp as te, MoreFilled as O } from "@element-plus/icons-vue";
 const oe = {
   modelValue: {
     type: Object,
@@ -42,88 +42,91 @@ const oe = {
     type: Function
   }
 };
-function F(c) {
+function w(c) {
   return typeof c == "function" || Object.prototype.toString.call(c) === "[object Object]" && !q(c);
 }
 const U = /* @__PURE__ */ H((c, d) => {
   const {
-    inline: w,
-    modelValue: S = {},
-    items: _,
-    span: E = 3,
-    actions: g
-  } = c, f = h(), A = h(), z = Object.keys(S).length ? S : {}, r = h(z), m = h(!1), v = b(() => _.sort((o, l) => (o.order ? o.order : (l.order || 0) - 1) - (l.order || 0))), y = b(() => {
-    var l, s;
-    return (d.slots["right-tools"] ? (s = (l = d.slots)["right-tools"]) == null ? void 0 : s.call(l) : []).filter(({
-      type: t
-    }) => String(t) != "Symbol(Comment)");
-  }), I = () => d.emit("search", {
+    inline: S,
+    modelValue: E = {},
+    items: g,
+    span: A = 3,
+    actions: V
+  } = c, f = h(), C = h(), _ = Object.keys(E).length ? E : {}, r = h(_), m = h(!1), v = k(() => (console.log(c.items, "items"), g == null ? void 0 : g.sort((t, l) => {
+    const a = l != null && l.order ? l.order : 0;
+    return (t != null && t.order ? t.order : a - 1) - a;
+  }))), y = k(() => {
+    var l, a;
+    return (d.slots["right-tools"] ? (a = (l = d.slots)["right-tools"]) == null ? void 0 : a.call(l) : []).filter(({
+      type: o
+    }) => String(o) != "Symbol(Comment)");
+  }), z = () => d.emit("search", {
     ...r.value
-  }), C = () => A.value.resetFields(), O = (o) => d.emit("onActions", o);
+  }), T = () => C.value.resetFields(), I = (t) => d.emit("onActions", t);
   d.expose({
-    resetFields: C
-  }), W(() => r, (o) => {
-    d.emit("update:modelValue", o.value);
+    resetFields: T
+  }), W(() => r, (t) => {
+    d.emit("update:modelValue", t.value);
   }, {
     deep: !0
   });
-  const M = b(() => (o) => {
+  const M = k(() => (t) => {
     const {
       field: l,
-      label: s,
-      placeholder: t,
-      valueType: u = "input",
+      label: a,
+      placeholder: o,
+      valueType: s = "input",
       valueOptions: n = []
-    } = o, i = {
+    } = t, i = {
       width: "200px"
     };
     return {
       input: e(J, {
         modelValue: r.value[l],
-        "onUpdate:modelValue": (a) => r.value[l] = a,
+        "onUpdate:modelValue": (u) => r.value[l] = u,
         type: "text",
-        placeholder: t || `请输入${s}`,
+        placeholder: o || `请输入${a}`,
         clearable: !0,
         style: i
       }, null),
       select: e(L, {
         modelValue: r.value[l],
-        "onUpdate:modelValue": (a) => r.value[l] = a,
-        placeholder: t || `请选择${s}`,
+        "onUpdate:modelValue": (u) => r.value[l] = u,
+        placeholder: o || `请选择${a}`,
         clearable: !0,
         style: i
       }, {
-        default: () => [(n == null ? void 0 : n.length) && n.map((a, $) => e(Q, {
-          label: a.label,
-          value: a.value,
+        default: () => [(n == null ? void 0 : n.length) && n.map((u, $) => e(Q, {
+          label: u.label,
+          value: u.value,
           key: $
         }, null))]
       }),
       checkbox: e(X, {
         modelValue: r.value[l],
-        "onUpdate:modelValue": (a) => r.value[l] = a,
-        label: s,
+        "onUpdate:modelValue": (u) => r.value[l] = u,
+        label: a,
         size: "large"
       }, null),
-      date: e(k, {
+      date: e(b, {
         modelValue: r.value[l],
-        "onUpdate:modelValue": (a) => r.value[l] = a,
+        "onUpdate:modelValue": (u) => r.value[l] = u,
         type: "date",
-        placeholder: t || "请选择日期",
+        placeholder: o || "请选择日期",
         clearable: !0,
         style: i
       }, null),
-      datetime: e(k, {
+      datetime: e(b, {
         modelValue: r.value[l],
-        "onUpdate:modelValue": (a) => r.value[l] = a,
+        "onUpdate:modelValue": (u) => r.value[l] = u,
         type: "datetime",
-        placeholder: t || "请选择时间",
+        placeholder: o || "请选择时间",
         clearable: !0,
         style: i
       }, null),
-      datetimerange: e(k, {
+      datetimerange: e(b, {
         modelValue: r.value[l],
-        "onUpdate:modelValue": (a) => r.value[l] = a,
+        "onUpdate:modelValue": (u) => r.value[l] = u,
         type: "datetimerange",
         "start-placeholder": "开始时间",
         "end-placeholder": "结束时间",
@@ -131,76 +134,76 @@ const U = /* @__PURE__ */ H((c, d) => {
         clearable: !0,
         style: i
       }, null)
-    }[u];
-  }), P = () => Array.isArray(g) && g.length ? e(V, null, [g.map((o, l) => o != null && o.content ? e(p, T(o, {
-    onClick: () => O(l)
+    }[s];
+  }), P = () => Array.isArray(V) && V.length ? e(F, null, [V.map((t, l) => t != null && t.content ? e(p, R(t, {
+    onClick: () => I(l)
   }), {
-    default: () => [o.content]
-  }) : o)]) : e(V, null, [e(p, {
+    default: () => [t.content]
+  }) : t)]) : e(F, null, [e(p, {
     type: "primary",
-    onClick: I
+    onClick: z
   }, {
     default: () => [c.searchText]
   }), e(p, {
-    onClick: C
+    onClick: T
   }, {
     default: () => [c.resetText]
   })]), N = () => {
-    const o = () => {
+    const t = () => {
       if (y.value.length > 1) {
-        let t;
-        return e(x, null, {
+        let o;
+        return e(D, null, {
           default: () => [e(p, {
-            icon: B,
+            icon: O,
             circle: !0
           }, null)],
-          dropdown: e(D, null, F(t = y.value.map((u, n) => e(j, {
+          dropdown: e(j, null, w(o = y.value.map((s, n) => e(B, {
             key: n,
             onClick: () => d.emit("tools", r.value, n)
           }, {
-            default: () => [[u]]
-          }))) ? t : {
-            default: () => [t]
+            default: () => [[s]]
+          }))) ? o : {
+            default: () => [o]
           })
         });
       }
       return [y.value[0]];
     }, l = () => {
-      const t = c.rightTools;
-      if (t)
-        if (Array.isArray(t) && t.length) {
-          let u;
-          return e(x, null, {
+      const o = c.rightTools;
+      if (o)
+        if (Array.isArray(o) && o.length) {
+          let s;
+          return e(D, null, {
             default: () => [e(p, {
-              icon: B,
+              icon: O,
               circle: !0
             }, null)],
-            dropdown: e(D, null, F(u = t.map((n, i) => e(j, {
+            dropdown: e(j, null, w(s = o.map((n, i) => e(B, {
               key: i
             }, {
-              default: () => [s(n) || n]
-            }))) ? u : {
-              default: () => [u]
+              default: () => [a(n) || n]
+            }))) ? s : {
+              default: () => [s]
             })
           });
         } else
-          return Reflect.ownKeys(t).length ? s(t) : t;
-    }, s = (t, u) => {
+          return Reflect.ownKeys(o).length ? a(o) : o;
+    }, a = (o, s) => {
       var n;
-      return !t.__v_isVNode && ((n = Object.keys(t)) != null && n.length) ? e(p, T(t, {
-        key: u || "tool",
-        onClick: () => d.emit("tools", r.value, u)
+      return !o.__v_isVNode && ((n = Object.keys(o)) != null && n.length) ? e(p, R(o, {
+        key: s || "tool",
+        onClick: () => d.emit("tools", r.value, s)
       }), {
-        default: () => [t.content]
+        default: () => [o.content]
       }) : null;
     };
     return e("div", {
       class: "tools-container"
-    }, [y.value.length ? o() : l()]);
-  }, Y = (o) => {
+    }, [y.value.length ? t() : l()]);
+  }, Y = (t) => {
     new ResizeObserver(() => {
       console.log(f.value.offsetWidth, "resize");
-    }).observe(o);
+    }).observe(t);
   };
   return K(() => {
     f.value && Y(f.value);
@@ -209,32 +212,32 @@ const U = /* @__PURE__ */ H((c, d) => {
     style: {
       display: "flex",
       justifyContent: "space-between",
-      flexDirection: w ? "row" : "column"
+      flexDirection: S ? "row" : "column"
     }
-  }, [v.value.length > 0 && e(V, null, [e("div", {
+  }, [v.value.length > 0 && e(F, null, [e("div", {
     ref: f
   }, [e(Z, {
-    ref: A,
+    ref: C,
     model: r.value,
-    inline: w,
+    inline: S,
     class: ["search-bar", [m.value ? "expand" : "inexpand"]]
   }, {
-    default: () => [v.value.slice(0, m.value ? v.value.length : E).map((o) => {
+    default: () => [v.value.slice(0, m.value ? v.value.length : A).map((t) => {
       let l;
       const {
-        field: s,
-        label: t,
-        labelWidth: u
-      } = o, n = o.valueType === "checkbox" ? "" : t;
-      return e(R, {
-        prop: s,
+        field: a,
+        label: o,
+        labelWidth: s
+      } = t, n = t.valueType === "checkbox" ? "" : o;
+      return e(x, {
+        prop: a,
         label: n,
-        "label-width": u
-      }, F(l = M.value(o)) ? l : {
+        "label-width": s
+      }, w(l = M.value(t)) ? l : {
         default: () => [l]
       });
-    }), e(R, null, {
-      default: () => [P(), v.value.length > E && e(p, {
+    }), e(x, null, {
+      default: () => [P(), v.value.length > A && e(p, {
         type: "primary",
         link: !0,
         onClick: () => m.value = !m.value
