@@ -1,5 +1,5 @@
 import type { PropType, CSSProperties } from 'vue';
-import type { TableColumns, GlobalSearchConfig, TableStyle, DataSource, Params, Request } from './typing';
+import type { TableColumns, GlobalSearchConfig, TableToolbarConfig, TableStyle, DataSource, Params, Request } from './typing';
 declare const _default: {
     loading: {
         type: BooleanConstructor;
@@ -46,7 +46,7 @@ declare const _default: {
         default: any;
     };
     toolbar: {
-        type: PropType<ToolbarConfig[]>;
+        type: PropType<TableToolbarConfig[]>;
         default: {
             placeholder: string;
             showAction: boolean;

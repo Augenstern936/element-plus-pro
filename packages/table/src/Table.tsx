@@ -6,7 +6,6 @@ import { ElMessage, ElTable, ElPagination, ElAlert } from 'element-plus';
 import ProSearchBar from '@element-plus/pro-search-bar';
 import { Card, ToolBar, TableColumn } from './components';
 import { v4 as uuidv4 } from 'uuid';
-import { ColumnTypeEnum } from './enum';
 import type { FunctionalComponent } from 'vue';
 import type { Ctx, ProTableProps, TableColumns } from './typing';
 
@@ -65,7 +64,7 @@ const ProTable = defineComponent(
 
 		const tableColumns = computed(() => {
 			const filterColumns = props.columns?.filter((item: TableColumns) => !item.hideInTable);
-			return filterColumns.map((item) => ({ ...item, id: uuidv4() }));
+			return filterColumns.map((item) => ({ ...item, id: uuidv4(), name: item.dataField }));
 		});
 
 		const renderTableColumns = computed(() => {
@@ -84,23 +83,21 @@ const ProTable = defineComponent(
 		 * 筛选表单项集合
 		 */
 		const searchFormItems = computed(() => {
-			const isShowUndefinedItem = globalSearch || globalSearch == void 0 ? void 0 : true;
-			const items = columns?.map((item: TableColumns) => {
-				const { type } = item;
-				// const excludeMeetType =
-				// 	type != ColumnTypeEnum[0] &&
-				// 	type != ColumnTypeEnum[1] &&
-				// 	type != ColumnTypeEnum[2] &&
-				// 	type != ColumnTypeEnum[3];
-				const excludeMeetType = type != 'index' && type != 'expand' && type != 'selection' && type != 'action';
-				if (excludeMeetType && (item.search || item.search === isShowUndefinedItem)) {
-					return formatSearchFormItemsConfig(item);
-				}
-				if (excludeMeetType && (item.search || item.search === isShowUndefinedItem)) {
-					return formatSearchFormItemsConfig(item);
-				}
-			});
-			return items?.filter((item: any) => item) || [];
+			const isShowUndefinedItem = globalSearch || globalSearch === void 0 ? void 0 : true;
+			return columns
+				.map((item: TableColumns) => {
+					const { valueType, search } = item;
+					const exclude =
+						valueType != 'index' &&
+						valueType != 'image' &&
+						valueType != 'avatar' &&
+						valueType != 'tag' &&
+						valueType != 'action';
+					if (exclude && (search || search === isShowUndefinedItem)) {
+						return formatSearchFormItemsConfig(item);
+					}
+				})
+				.filter((item) => item);
 		});
 
 		const toOrdinaryObj = (proxyObj: any) => Object.fromEntries(Object.entries(proxyObj));
@@ -301,7 +298,8 @@ const ProTable = defineComponent(
 		 * 加载数据(dataSource优先级最高)
 		 */
 		const loadData = () => {
-			if (dataSource && typeof dataSource === 'object') {
+			if (dataSource && Array.isArray(dataSource)) {
+				data.value.data = [...dataSource];
 			} else {
 				sendRequest();
 			}

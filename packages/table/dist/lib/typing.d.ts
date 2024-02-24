@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'vue';
 import type { ButtonProps } from 'element-plus';
-import { ColumnTypeEnum, PaginationAlignEnum } from './enum';
+import { ValueTypeEnum, StatusColorEnum, PaginationAlignEnum } from './enum';
 export type ProTableProps = {
     loading?: boolean;
     ghost?: boolean;
@@ -34,7 +34,6 @@ export type TableColumns = {
     key?: string | number;
     title?: string;
     dataField?: string;
-    type?: ColumnType;
     width?: string | number;
     fixed?: boolean | 'left' | 'right';
     align?: 'left' | 'right' | 'center';
@@ -48,18 +47,21 @@ export type TableColumns = {
     filters?: boolean | ValueOption;
     search?: boolean | ColumnSearchConfig;
     valueType?: ValueType;
-    valueOption?: ValueOption;
+    valueEnum?: ValueEnum;
     children?: TableColumns[];
     render?: (row: {
         [x: string]: any;
     }) => string | number | JSX.Element;
 };
-export type ColumnType = keyof typeof ColumnTypeEnum;
-export type ValueType = 'input' | 'select' | 'date' | 'datetime' | 'datetimerange' | 'checkbox';
+export type ValueType = keyof typeof ValueTypeEnum;
 export type ValueOption = {
     label: string;
     value: string | number;
 }[];
+export type ValueEnum = Record<string | number, string | number | {
+    text: string;
+    status?: keyof typeof StatusColorEnum;
+}>;
 export type GlobalCellAlign = 'left' | 'right' | 'center';
 /**
  * 全局筛选栏配置
@@ -78,6 +80,13 @@ export type ColumnSearchConfig = {
     label?: string;
     labelWidth?: 'auto' | number | string;
     placeholder?: string;
+    fieldProps?: {
+        options?: {
+            label: string;
+            value: string | number | boolean;
+        }[];
+        [x: string]: any;
+    };
 };
 /**
  * 工具栏配置

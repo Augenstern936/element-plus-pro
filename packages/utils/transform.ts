@@ -29,3 +29,23 @@ export function toCssUnitValue(val: number | string, unit: keyof typeof CssUnitE
 
 	return newVal;
 }
+
+export function toOptions(valueEnum: Record<string | number, string | number | { text: string; [x: string]: any }>) {
+	const options = Object.keys(valueEnum).map((key) => {
+		const item = valueEnum[key];
+		const type = Object.prototype.toString.call(item);
+		const label = typeof item == 'object' && type === '[object Object]' ? item.text : item;
+		return {
+			label: label,
+			value: key,
+		};
+	});
+	return options;
+}
+
+export function toEnum(options: { label: string; value: string | number | boolean }[]) {
+	return options.reduce((acc: Record<string, any>, cur: any) => {
+		acc[cur.value] = cur.label;
+		return acc;
+	}, {});
+}

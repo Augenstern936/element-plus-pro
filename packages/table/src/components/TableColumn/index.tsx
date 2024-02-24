@@ -1,9 +1,19 @@
-import { defineComponent, inject, computed, PropType } from 'vue';
-import type { TableColumns } from '@element-plus/pro-components';
-import type { ProTableProps } from '../../typing';
-import { ElButton, ElIcon, ElTableColumn, ElTooltip } from 'element-plus';
-import { Edit, Search, Delete, DocumentCopy } from '@element-plus/icons-vue';
+import { defineComponent, inject, computed, PropType, FunctionalComponent } from 'vue';
+import type { ProTableProps, TableColumns, ValueType } from '../../typing';
+import {
+	ElAvatar,
+	ElButton,
+	ElIcon,
+	ElImage,
+	ElProgress,
+	ElRate,
+	ElSpace,
+	ElTableColumn,
+	ElTooltip,
+} from 'element-plus';
+import { Edit, Search, Delete, DocumentCopy, Picture, View } from '@element-plus/icons-vue';
 import ProButton from '@element-plus/pro-button';
+import { StatusColorEnum } from '../../enum';
 
 const TableColumn = defineComponent((props) => {
 	const tableProps = inject('tableProps', {}) as ProTableProps & { ctx: Record<string, any> };
@@ -28,7 +38,7 @@ const TableColumn = defineComponent((props) => {
 	 * @returns
 	 */
 	const formatFiltersOption = (column: TableColumns) => {
-		const { filters, valueOption } = column;
+		const { filters, valueOption = [] } = column;
 		if (filters === true) {
 			if (valueOption?.length) {
 				return valueOption.map((item: any) => ({ text: item.label || item.text, value: item.value }));
@@ -40,7 +50,54 @@ const TableColumn = defineComponent((props) => {
 		return void 0;
 	};
 
-	const actionContent = (e: any) => (
+	const renderElementContent = (type: ValueType, data: any, e: any) => {
+		const valNumber = Number(data);
+		switch (type) {
+			case 'switch':
+				return;
+			case 'image':
+				return (
+					<div class='cell-image'>
+						<ElImage
+							src={data}
+							preview-src-list={[data]}
+							preview-teleported={true}
+							fit='cover'
+							style='height: 100%; display: flex; align-items: center; justify-content: center;'
+						>
+							{{
+								error: () => (
+									<ElIcon size={26}>
+										<Picture />
+									</ElIcon>
+								),
+							}}
+						</ElImage>
+						{/* <div class='mask-view'>
+						<ElIcon color='#fff'>
+							<View />
+						</ElIcon>
+					</div> */}
+					</div>
+				);
+			case 'avatar':
+				return <ElAvatar src={data} size={30} />;
+			case 'rate':
+				const rate = Number.isNaN(valNumber) ? 0 : valNumber > 5 ? 5 : valNumber;
+				return <ElRate modelValue={rate} size='large' disabled-void-color='#c0c4cc' allow-half disabled />;
+			case 'progress':
+				const percentage = Number.isNaN(valNumber) ? 0 : valNumber > 100 ? 100 : valNumber;
+				return <ElProgress percentage={percentage} style='flex: 1' />;
+			case 'tag':
+				return;
+			case 'action':
+				return renderActionContent(e);
+			default:
+				return data;
+		}
+	};
+
+	const renderActionContent = (e: any) => (
 		<>
 			<ElTooltip content='编辑' placement='top' effect='dark'>
 				<ElButton type='warning' size='small' icon={Edit} onClick={() => tableCtx.emit('action', 0, e.row)} />
@@ -62,7 +119,7 @@ const TableColumn = defineComponent((props) => {
 
 	// 渲染表格列内容
 	const renderTableColumnContent = (e: { [x: string]: any }, column: TableColumns) => {
-		const { dataField: field, type, tooltip, ellipsis, render } = column;
+		const { dataField: field, valueType: type, valueEnum, tooltip, ellipsis, render } = column;
 
 		if ((field && tableCtx.slots[field]) || (type && tableCtx.slots[type])) {
 			const name = field || type;
@@ -71,20 +128,37 @@ const TableColumn = defineComponent((props) => {
 
 		let tdValue = field ? e.row[field] : '-';
 
-		if (type === 'index' || type === 'expand' || type === 'selection') {
-			return void 0;
-		} else if (type == 'action') {
-			tdValue = actionContent(e);
-		} else {
-			// TODO 后续调整
-			if (tooltip) {
-				tdValue = typeof tooltip === 'function' ? tooltip(e.row) : tooltip;
-				//tdValue = <el-tooltip placement="top" content={tips}>{ tdValue }</el-tooltip>
+		if (type) {
+			if (type == 'index') {
+				return void 0;
 			}
-			// if(ellipsis){
-			//     tdValue = <div class="ellipsis-container">{ tdValue }</div>
-			// }
+			tdValue = renderElementContent(type, tdValue, e);
 		}
+
+		if (type === void 0 && valueEnum) {
+			const key: string = field ? e.row[field] : '';
+			const item = valueEnum[key];
+			const color = typeof item == 'object' ? (item.status ? 'red' : void 0) : void 0;
+			tdValue =
+				typeof item == 'object' && Object.prototype.toString.call(item) == '[object Object]' ? (
+					<ElSpace size={5}>
+						{color && (
+							<span class={`dot ${item.status}`} style={{ '--status-color': color, background: color }} />
+						)}{' '}
+						{item.text}
+					</ElSpace>
+				) : (
+					item
+				);
+		}
+
+		// if (tooltip) {
+		// 	tdValue = typeof tooltip === 'function' ? tooltip(e.row) : tooltip;
+		// 	//tdValue = <el-tooltip placement="top" content={tips}>{ tdValue }</el-tooltip>
+		// }
+		// if(ellipsis){
+		//     tdValue = <div class="ellipsis-container">{ tdValue }</div>
+		// }
 
 		let emptyText = '-';
 		if (typeof columnEmptyText === 'boolean') {
@@ -115,10 +189,11 @@ const TableColumn = defineComponent((props) => {
 				<ElTableColumn
 					prop={column.dataField}
 					label={column.title}
-					type={column.type}
+					type={column.valueType}
 					sortable={column.sorter}
 					width={column.width || 'auto'}
 					align={column.align || cellAlign}
+					fixed={column.fixed}
 					filters={formatFiltersOption(column)}
 					show-overflow-tooltip={ellipsis.value(column)}
 					key={column.dataField}
@@ -134,7 +209,7 @@ const TableColumn = defineComponent((props) => {
 			))}
 		</>
 	);
-});
+}) as unknown as FunctionalComponent<any>;
 
 TableColumn.props = {
 	columns: {

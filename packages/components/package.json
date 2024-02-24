@@ -1,6 +1,6 @@
 {
 	"name": "@element-plus/pro-components",
-	"version": "0.0.1",
+	"version": "0.0.1-test-01-test-01",
 	"description": "@element-plus/pro-components",
 	"keywords": [
 		"ui",
@@ -34,5 +34,6 @@
 		"@element-plus/pro-search-bar": "workspace:^",
 		"@element-plus/pro-table": "workspace:^",
 		"@element-plus/pro-tabs": "workspace:^"
-	}
+	},
+	"gitHead": "111"
 }

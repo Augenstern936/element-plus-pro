@@ -6,6 +6,6 @@
 		"types": ["node"],
 		"skipLibCheck": true
 	},
-	"include": ["../scripts/**/*", "../packages/components/package.json"],
+	"include": ["../scripts/*", "../configs/*", "../utils/*", "../packages/components/package.json"],
 	"exclude": ["**/dist"]
 }

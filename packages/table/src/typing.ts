@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'vue';
 import type { ButtonProps } from 'element-plus';
-import { ColumnTypeEnum, PaginationAlignEnum } from './enum';
+import { ValueTypeEnum, StatusColorEnum, PaginationAlignEnum } from './enum';
 
 export type ProTableProps = {
 	loading?: boolean;
@@ -50,7 +50,7 @@ export type TableColumns = {
 	key?: string | number; //标识
 	title?: string; // 表格列标题
 	dataField?: string; // 列字段名称(与数据源中字段对应进行值的映射)
-	type?: ColumnType; // selection：多选 index：序号 expand：可展开的按钮
+	//type?: ColumnType; // selection：多选 index：序号 expand：可展开的按钮
 	width?: string | number; // 列宽
 	fixed?: boolean | 'left' | 'right'; // 固定列
 	align?: 'left' | 'right' | 'center';
@@ -62,19 +62,25 @@ export type TableColumns = {
 	filters?: boolean | ValueOption; // 是否在表格列标头开启筛选
 	search?: boolean | ColumnSearchConfig; // 是否在搜索栏中显示该项
 	valueType?: ValueType; // 当前筛选项输入框类型
-	valueOption?: ValueOption; // 筛选项数据集合
+	//valueOption?: ValueOption; // 筛选项数据集合
+	valueEnum?: ValueEnum;
 	children?: TableColumns[]; // 子级
 	render?: (row: { [x: string]: any }) => string | number | JSX.Element; // 渲染该列对应的值
 };
 
-export type ColumnType = keyof typeof ColumnTypeEnum;
+//export type ColumnType = keyof typeof ColumnTypeEnum;
 
-export type ValueType = 'input' | 'select' | 'date' | 'datetime' | 'datetimerange' | 'checkbox';
+export type ValueType = keyof typeof ValueTypeEnum;
 
 export type ValueOption = {
 	label: string;
 	value: string | number;
 }[];
+
+export type ValueEnum = Record<
+	string | number,
+	string | number | { text: string; status?: keyof typeof StatusColorEnum }
+>;
 
 export type GlobalCellAlign = 'left' | 'right' | 'center';
 
@@ -96,6 +102,10 @@ export type ColumnSearchConfig = {
 	label?: string;
 	labelWidth?: 'auto' | number | string;
 	placeholder?: string;
+	fieldProps?: {
+		options?: { label: string; value: string | number | boolean }[];
+		[x: string]: any;
+	};
 };
 
 /**

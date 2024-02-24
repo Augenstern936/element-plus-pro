@@ -2,7 +2,7 @@ import type { PropType, CSSProperties } from 'vue';
 import type {
 	TableColumns,
 	GlobalSearchConfig,
-	ToolbarConfig,
+	TableToolbarConfig,
 	TableStyle,
 	DataSource,
 	Params,
@@ -62,7 +62,7 @@ export default {
 	},
 	// 工具栏
 	toolbar: {
-		type: Object as PropType<ToolbarConfig[]>,
+		type: Object as PropType<TableToolbarConfig[]>,
 		default: {
 			placeholder: '请输入关键字',
 			showAction: true,

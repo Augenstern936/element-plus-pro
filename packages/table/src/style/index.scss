@@ -71,6 +71,68 @@
 			top: unset !important;
 		}
 	}
+	.el-table .cell {
+		display: flex;
+		align-items: center;
+	}
+	.cell-image {
+		position: relative;
+		width: 33px;
+		height: 33px;
+		overflow: hidden;
+		border-radius: 5px;
+		.mask-view {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			line-height: 33px;
+			background: rgba(0, 0, 0, 0.7);
+		}
+		&:hover .mask-view {
+			display: block;
+			cursor: pointer;
+		}
+	}
+	.dot.Success,
+	.dot.Warning,
+	.dot.Default,
+	.dot.Error,
+	.dot.Processing {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 6px;
+		min-height: 6px;
+		border-radius: 50%;
+	}
+	.dot.Processing::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border: 1.5px solid var(--status-color);
+		border-radius: 50%;
+		animation: statusProcessing 1.2s infinite ease-in-out;
+	}
+
+	@keyframes statusProcessing {
+		0% {
+			transform: scale(0.8);
+			opacity: 0.5;
+		}
+		100% {
+			transform: scale(2.6);
+			opacity: 0;
+		}
+	}
+
 	.pagination-container {
 		margin-top: 20px;
 		display: flex;

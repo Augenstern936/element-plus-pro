@@ -3,7 +3,6 @@ import VueJsx from '@vitejs/plugin-vue-jsx';
 import path, { resolve } from 'path';
 import copy from 'rollup-plugin-copy';
 import { build } from 'vite';
-import { tsxResolveTypes } from 'vite-plugin-tsx-resolve-types';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import dts from 'vite-plugin-dts';
 import * as utils from './utils';
@@ -81,15 +80,14 @@ export const buildModules = async () => {
 		plugins: [
 			Vue(),
 			VueJsx(),
-			// tsxResolveTypes(),
 			cssInjectedByJsPlugin({
 				topExecutionPriority: false,
-				jsAssetsFilterFunction: ({ fileName }) => {
-					if (baseDirName === 'components') {
-						return true;
-					}
-					return fileName == `${componentName}.js` || fileName == `${componentName}.mjs`;
-				},
+				// jsAssetsFilterFunction: ({ fileName }) => {
+				// 	if (baseDirName === 'components') {
+				// 		return true;
+				// 	}
+				// 	return fileName == `${componentName}.js` || fileName == `${componentName}.mjs`;
+				// },
 			}),
 			dts({
 				entryRoot: './src',
