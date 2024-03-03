@@ -1,6 +1,6 @@
 <template>
 	<pro-table
-		title="测试"
+		title="标题"
 		:columns="columns"
 		:header-cell-style="{ color: '#333' }"
 		:ellipsis="false"
@@ -8,13 +8,12 @@
 		:toolbar="toolbar"
 		:request="getTableData"
 	>
-		<!-- <template #title>
+		<template #title>
 			<el-button type="danger">删除</el-button>
-		</template> -->
-		<template #search-bar-right-tools> 111 </template>
-		<template #toolbar="{ selection }">
-			<el-button type="success" @click="onAdd(selection)">新增</el-button>
-			<el-button type="success">删除</el-button>
+		</template>
+		<template #search-bar-right-tools>
+			<el-button type="primary">新增</el-button>
+			<el-button type="success">导出</el-button>
 		</template>
 	</pro-table>
 </template>
@@ -27,18 +26,15 @@
 	const toolbar = computed(
 		(): TableToolbarConfig => ({
 			search: {
-				actionText: '查找',
+				actionText: '搜索',
 				actionStyle: { color: '#fff', background: '#409eff' },
 				onAction: onToolbarSearchChange,
 			},
-			actions: { content: '删除', type: 'success' },
+			actions: { content: '导入数据', type: 'primary' },
 		})
 	);
 
 	const columns = ref<TableColumns[]>([
-		{
-			type: 'selection',
-		},
 		{
 			title: '姓名',
 			dataField: 'name',
@@ -51,21 +47,35 @@
 			sorter: true,
 		},
 		{
+			title: '头像',
+			dataField: 'avatar',
+			valueType: 'avatar',
+			sorter: false,
+		},
+		{
+			title: '等级',
+			dataField: 'rate',
+			valueType: 'rate',
+			sorter: false,
+		},
+		{
 			title: '操作',
-			type: 'action',
+			valueType: 'action',
 			width: 160,
 		},
 	]);
 	const getTableData = async () => {
 		const data = Array.of(1, 2).map((item) => ({
 			id: item,
-			name: '李斯',
-			age: '12' + item,
+			name: ['李斯', '岳飞'][item - 1],
+			age: 18 * item,
 			sex: item,
+			rate: item + 2,
+			avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
 		}));
 
 		return {
-			total: 5,
+			total: data.length,
 			data: data,
 		};
 	};

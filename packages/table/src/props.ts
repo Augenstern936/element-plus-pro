@@ -7,6 +7,8 @@ import type {
 	DataSource,
 	Params,
 	Request,
+	PaginationConfig,
+	GlobalCellAlign,
 } from './typing';
 
 export default {
@@ -23,12 +25,9 @@ export default {
 		type: Boolean,
 		default: false,
 	},
-	title: {
-		type: String,
-		default: '',
-	},
+	title: String,
 	cellAlign: {
-		type: String as PropType<'left' | 'right' | 'center'>,
+		type: String as PropType<GlobalCellAlign>,
 		default: 'left',
 	},
 	headerCellStyle: {
@@ -71,7 +70,7 @@ export default {
 	},
 	//
 	options: {
-		type: [Boolean],
+		type: Boolean,
 		default: true,
 	},
 	// 样式
@@ -85,7 +84,7 @@ export default {
 		default: {},
 	},
 	pagination: {
-		type: [Boolean, Object as PropType<{ [x: string]: any }>],
+		type: [Boolean, Object as PropType<PaginationConfig>],
 		default: true,
 	},
 	// 数据源

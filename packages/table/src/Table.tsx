@@ -418,8 +418,8 @@ const ProTable = defineComponent(
 	{
 		name: 'ProTable',
 	}
-) as unknown as FunctionalComponent;
+) as FunctionalComponent<ProTableProps, any>;
 
-ProTable.props = props;
+ProTable.props = props as any;
 
 export default withInstall(ProTable);

@@ -6,10 +6,10 @@ export type ProTableProps = {
     ghost?: boolean;
     keepAlive?: boolean;
     title?: string;
+    columns: TableColumns[];
     headerCellStyle?: CSSProperties;
     cellAlign?: GlobalCellAlign;
-    columns: TableColumns[];
-    columnEmptyText: boolean | string;
+    columnEmptyText?: boolean | string;
     defaultSize?: number;
     ellipsis?: boolean;
     search?: boolean | GlobalSearchConfig;
@@ -58,7 +58,7 @@ export type ValueOption = {
     label: string;
     value: string | number;
 }[];
-export type ValueEnum = Record<string | number, string | number | {
+export type ValueEnum = Record<string, string | number | {
     text: string;
     status?: keyof typeof StatusColorEnum;
 }>;

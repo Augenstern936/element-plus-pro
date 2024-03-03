@@ -1,5 +1,5 @@
 import type { PropType, CSSProperties } from 'vue';
-import type { TableColumns, GlobalSearchConfig, TableToolbarConfig, TableStyle, DataSource, Params, Request } from './typing';
+import type { TableColumns, GlobalSearchConfig, TableToolbarConfig, TableStyle, DataSource, Params, Request, PaginationConfig, GlobalCellAlign } from './typing';
 declare const _default: {
     loading: {
         type: BooleanConstructor;
@@ -13,12 +13,9 @@ declare const _default: {
         type: BooleanConstructor;
         default: boolean;
     };
-    title: {
-        type: StringConstructor;
-        default: string;
-    };
+    title: StringConstructor;
     cellAlign: {
-        type: PropType<"left" | "right" | "center">;
+        type: PropType<GlobalCellAlign>;
         default: string;
     };
     headerCellStyle: {
@@ -54,7 +51,7 @@ declare const _default: {
         };
     };
     options: {
-        type: BooleanConstructor[];
+        type: BooleanConstructor;
         default: boolean;
     };
     tableStyle: {
@@ -66,9 +63,7 @@ declare const _default: {
         default: {};
     };
     pagination: {
-        type: (BooleanConstructor | PropType<{
-            [x: string]: any;
-        }>)[];
+        type: (BooleanConstructor | PropType<PaginationConfig>)[];
         default: boolean;
     };
     dataSource: {

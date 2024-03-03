@@ -18,10 +18,7 @@ const ca = {
     type: Boolean,
     default: !1
   },
-  title: {
-    type: String,
-    default: ""
-  },
+  title: String,
   cellAlign: {
     type: String,
     default: "left"
@@ -66,7 +63,7 @@ const ca = {
   },
   //
   options: {
-    type: [Boolean],
+    type: Boolean,
     default: !0
   },
   // 样式

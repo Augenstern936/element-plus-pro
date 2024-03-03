@@ -9,14 +9,14 @@ export type ProTableProps = {
 	keepAlive?: boolean;
 	// 标题
 	title?: string;
+	// 列
+	columns: TableColumns[];
 	// 头部样式
 	headerCellStyle?: CSSProperties;
 	//
 	cellAlign?: GlobalCellAlign;
-	// 列
-	columns: TableColumns[];
 	// 为空时，默认显示的标记
-	columnEmptyText: boolean | string;
+	columnEmptyText?: boolean | string;
 	// 默认分页大小
 	defaultSize?: number;
 	// 是否开启超出列宽显示省略号
@@ -77,10 +77,7 @@ export type ValueOption = {
 	value: string | number;
 }[];
 
-export type ValueEnum = Record<
-	string | number,
-	string | number | { text: string; status?: keyof typeof StatusColorEnum }
->;
+export type ValueEnum = Record<string, string | number | { text: string; status?: keyof typeof StatusColorEnum }>;
 
 export type GlobalCellAlign = 'left' | 'right' | 'center';
 
