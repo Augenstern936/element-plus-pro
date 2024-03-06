@@ -17,8 +17,9 @@ import {
 	ElDropdownItem,
 } from 'element-plus';
 import { ArrowDown, ArrowUp, MoreFilled } from '@element-plus/icons-vue';
+import Test from './components';
 import type { FunctionalComponent } from 'vue';
-import type { ProSearchBarProps, SearchBarItem } from './typing';
+import type { ProSearchBarProps, SearchBarFormItem } from './typing';
 
 /**
  * 搜索栏组件
@@ -37,10 +38,9 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 		const isFilterBarExpand = ref(false);
 
 		const formItems = computed(() => {
-			console.log(props.items, 'items');
-			return items?.sort((a: SearchBarItem, b: SearchBarItem) => {
+			return items?.sort((a: SearchBarFormItem, b: SearchBarFormItem) => {
 				const bOrder = b?.order ? b.order : 0;
-				return (a?.order ? a.order : bOrder - 1) - bOrder;
+				return (a?.order ? a.order : bOrder + 1) + bOrder;
 			});
 		});
 
@@ -77,71 +77,6 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 				deep: true,
 			}
 		);
-
-		/**
-		 * 表单集合
-		 */
-		const valueTypeComponents = computed(() => {
-			return (item: SearchBarItem) => {
-				const { field, label, placeholder, valueType = 'input', valueOptions = [] } = item;
-				const style = { width: '200px' };
-				const components = {
-					input: (
-						<ElInput
-							v-model={form.value[field]}
-							type='text'
-							placeholder={placeholder || `请输入${label}`}
-							clearable
-							style={style}
-						/>
-					),
-					select: (
-						<ElSelect
-							v-model={form.value[field]}
-							placeholder={placeholder || `请选择${label}`}
-							clearable
-							style={style}
-						>
-							{valueOptions?.length &&
-								valueOptions.map((item, index) => (
-									<ElOption label={item.label} value={item.value} key={index} />
-								))}
-						</ElSelect>
-					),
-					checkbox: <ElCheckbox v-model={form.value[field]} label={label} size='large' />,
-					date: (
-						<ElDatePicker
-							v-model={form.value[field]}
-							type='date'
-							placeholder={placeholder || '请选择日期'}
-							clearable
-							style={style}
-						/>
-					),
-					datetime: (
-						<ElDatePicker
-							v-model={form.value[field]}
-							type='datetime'
-							placeholder={placeholder || '请选择时间'}
-							clearable
-							style={style}
-						/>
-					),
-					datetimerange: (
-						<ElDatePicker
-							v-model={form.value[field]}
-							type='datetimerange'
-							start-placeholder='开始时间'
-							end-placeholder='结束时间'
-							format='YYYY-MM-DD HH:mm:ss'
-							clearable
-							style={style}
-						/>
-					),
-				};
-				return components[valueType];
-			};
-		});
 
 		/**
 		 * 渲染表单操作工具
@@ -283,12 +218,12 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 							>
 								{formItems.value
 									.slice(0, isFilterBarExpand.value ? formItems.value.length : span)
-									.map((item: SearchBarItem) => {
+									.map((item: SearchBarFormItem) => {
 										const { field, label, labelWidth } = item;
 										const labelText = item.valueType === 'checkbox' ? '' : label;
 										return (
 											<ElFormItem prop={field} label={labelText} label-width={labelWidth}>
-												{valueTypeComponents.value(item)}
+												<Test ctx={ctx} form-item={item} />
 											</ElFormItem>
 										);
 									})}
@@ -316,7 +251,7 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 	{
 		name: 'ProSearchBar',
 	}
-) as unknown as FunctionalComponent;
+) as FunctionalComponent<ProSearchBarProps>;
 
 ProSearchBar.props = props;
 

@@ -1,5 +1,5 @@
 import { PropType } from 'vue';
-import { SearchBarItem, SearchBarActions, SearchBarRightTools } from './typing';
+import { SearchBarActions, SearchBarRightTools } from './typing';
 declare const _default: {
     modelValue: {
         type: PropType<{

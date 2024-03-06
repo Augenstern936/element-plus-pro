@@ -6,9 +6,10 @@ import { ElButton, ElMessageBox } from 'element-plus';
 import { ProButtonProps } from './typing';
 import type { FunctionalComponent } from 'vue';
 
-const ProButton = defineComponent(
-	(props: ProButtonProps, ctx: any) => {
-		const onClick = (evt: any) => {
+const ProButton = defineComponent<ProButtonProps>(
+	(props, ctx) => {
+		const onClick = (e: unknown) => {
+			console.log(props, e, 'props');
 			if (props.tip) {
 				return ElMessageBox.confirm(props.tip, '提示', {
 					confirmButtonText: '确定',
@@ -16,11 +17,11 @@ const ProButton = defineComponent(
 					type: 'warning',
 				})
 					.then(() => {
-						ctx.emit('clickEvent', evt);
+						ctx.emit('clickEvent', e);
 					})
 					.catch(() => {});
 			} else {
-				ctx.emit('clickEvent', evt);
+				ctx.emit('clickEvent', e);
 			}
 		};
 
@@ -33,8 +34,8 @@ const ProButton = defineComponent(
 	{
 		name: 'ProButton',
 	}
-) as unknown as FunctionalComponent;
+) as FunctionalComponent<ProButtonProps>;
 
-ProButton.props = props;
+// ProButton.props = props as any;
 
 export default withInstall(ProButton);

@@ -3,6 +3,7 @@ import VueJsx from '@vitejs/plugin-vue-jsx';
 import path, { resolve } from 'path';
 import copy from 'rollup-plugin-copy';
 import { build } from 'vite';
+import { tsxAutoProps } from 'vite-plugin-tsx-auto-props';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import dts from 'vite-plugin-dts';
 import * as utils from './utils';
@@ -79,6 +80,7 @@ export const buildModules = async () => {
 		},
 		plugins: [
 			Vue(),
+			// tsxAutoProps(),
 			VueJsx(),
 			cssInjectedByJsPlugin({
 				topExecutionPriority: false,

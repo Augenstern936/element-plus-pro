@@ -1,30 +1,3 @@
-/**
- * 表格列类型
- */
-export enum ColumnTypeEnum {
-	'index', //编号类型
-	'expand',
-	'selection', //多选类型
-	'action', //操作类型
-}
-
-/**
- * 分页器位置
- */
-export enum PaginationAlignEnum {
-	'left',
-	'right',
-	'center',
-}
-
-export enum StatusColorEnum {
-	'Success' = '#67C23A',
-	'Error' = '#e52848',
-	'Processing' = '#409EFF',
-	'Warning' = '#E6A23C',
-	'Default' = '#dcdcf240',
-}
-
 export enum ValueTypeEnum {
 	'index',
 	'text',
@@ -56,4 +29,24 @@ export enum ValueTypeEnum {
 	'slider',
 	'tag',
 	'action',
+}
+
+/**
+ * 分页器水平位置
+ */
+export enum PaginationAlignEnum {
+	'left',
+	'right',
+	'center',
+}
+
+/**
+ * 状态颜色
+ */
+export enum StatusColorEnum {
+	'Success' = '#67C23A',
+	'Error' = '#e52848',
+	'Processing' = '#409EFF',
+	'Warning' = '#E6A23C',
+	'Default' = '#dcdcf240',
 }

@@ -1,6 +1,6 @@
 <template>
 	<div style="height: calc(100vh - 40px); padding: 20px; background-color: #f5f5f5">
-		<pro-table title="标题" :columns="columns" :dataSource="data" :ghost="false">
+		<pro-table title="标题" :columns="columns" :dataSource="data.data" :ghost="false">
 			<template #search-bar-right-tools>
 				<ElButton type="info">新增</ElButton>
 				<ElButton type="info">删除</ElButton>
@@ -24,10 +24,16 @@
 		{
 			title: '姓名',
 			dataField: 'name',
+			search: {
+				order: 10,
+			},
 		},
 		{
 			title: '性别',
 			dataField: 'sex',
+			search: {
+				order: 8,
+			},
 		},
 		{
 			title: '头像',

@@ -3,7 +3,7 @@ import type { ButtonProps } from 'element-plus';
 
 export type ProSearchBarProps = {
 	modelValue?: Record<string, string | number | boolean>;
-	items: SearchBarItem[];
+	items: SearchBarFormItem[];
 	actions?: SearchBarActions[];
 	searchText?: string;
 	resetText?: string;
@@ -13,7 +13,7 @@ export type ProSearchBarProps = {
 	span?: number;
 };
 
-export type SearchBarItem = {
+export type SearchBarFormItem = {
 	field: string;
 	order?: number;
 	label: string;
