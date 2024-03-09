@@ -31,6 +31,7 @@
 		{
 			title: '性别',
 			dataField: 'sex',
+			valueType: 'password',
 			search: {
 				order: 8,
 			},

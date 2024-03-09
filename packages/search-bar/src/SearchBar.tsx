@@ -18,6 +18,7 @@ import {
 } from 'element-plus';
 import { ArrowDown, ArrowUp, MoreFilled } from '@element-plus/icons-vue';
 import Test from './components';
+import mitt from 'mitt';
 import type { FunctionalComponent } from 'vue';
 import type { ProSearchBarProps, SearchBarFormItem } from './typing';
 
@@ -27,6 +28,8 @@ import type { ProSearchBarProps, SearchBarFormItem } from './typing';
 const ProSearchBar = defineComponent<ProSearchBarProps>(
 	(props, ctx) => {
 		const { inline, modelValue = {}, items, span = 3, actions } = props;
+
+		const emitter = mitt() as any;
 
 		const formContainerRef = ref();
 		const searchFormRef = ref();
@@ -196,6 +199,13 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 			tergetResize.observe(terget);
 		};
 
+		emitter.on('value-change', ({ field, value }: any) => {
+			ctx.emit('update:modelValue', {
+				...form.value,
+				[field]: value,
+			});
+		});
+
 		onMounted(() => {
 			if (formContainerRef.value) {
 				resize(formContainerRef.value);
@@ -219,11 +229,11 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 								{formItems.value
 									.slice(0, isFilterBarExpand.value ? formItems.value.length : span)
 									.map((item: SearchBarFormItem) => {
-										const { field, label, labelWidth } = item;
+										const { dataField, label, labelWidth } = item;
 										const labelText = item.valueType === 'checkbox' ? '' : label;
 										return (
-											<ElFormItem prop={field} label={labelText} label-width={labelWidth}>
-												<Test ctx={ctx} form-item={item} />
+											<ElFormItem prop={dataField} label={labelText} label-width={labelWidth}>
+												<Test emitter={emitter} formItem={item} />
 											</ElFormItem>
 										);
 									})}

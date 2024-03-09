@@ -112,8 +112,8 @@ const ProTable = defineComponent(
 			const columnSearchConfig = typeof tableColumn.search === 'object' ? tableColumn.search : {};
 			const globalSearchConfig = typeof globalSearch === 'object' ? globalSearch : {};
 			return {
-				field: dataField,
 				label: title,
+				dataField,
 				valueType,
 				valueOption,
 				...globalSearchConfig,
@@ -216,6 +216,7 @@ const ProTable = defineComponent(
 		 * 监听搜索
 		 */
 		const onSearch = () => {
+			console.log(searchForm.value, 'searchForm.value');
 			const isEmpty = isEmptyObj(searchForm.value);
 			if (isEmpty) {
 				return ElMessage.warning('筛选栏表单信息为空');

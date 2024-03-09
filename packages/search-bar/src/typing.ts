@@ -14,7 +14,7 @@ export type ProSearchBarProps = {
 };
 
 export type SearchBarFormItem = {
-	field: string;
+	dataField: string;
 	order?: number;
 	label: string;
 	labelWidth?: string | number;

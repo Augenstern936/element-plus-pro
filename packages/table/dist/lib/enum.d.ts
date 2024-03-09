@@ -1,27 +1,3 @@
-/**
- * 表格列类型
- */
-export declare enum ColumnTypeEnum {
-    'index' = 0,
-    'expand' = 1,
-    'selection' = 2,
-    'action' = 3
-}
-/**
- * 分页器位置
- */
-export declare enum PaginationAlignEnum {
-    'left' = 0,
-    'right' = 1,
-    'center' = 2
-}
-export declare enum StatusColorEnum {
-    'Success' = "#67C23A",
-    'Error' = "#e52848",
-    'Processing' = "#409EFF",
-    'Warning' = "#E6A23C",
-    'Default' = "#dcdcf240"
-}
 export declare enum ValueTypeEnum {
     'index' = 0,
     'text' = 1,
@@ -53,4 +29,22 @@ export declare enum ValueTypeEnum {
     'slider' = 27,
     'tag' = 28,
     'action' = 29
+}
+/**
+ * 分页器水平位置
+ */
+export declare enum PaginationAlignEnum {
+    'left' = 0,
+    'right' = 1,
+    'center' = 2
+}
+/**
+ * 状态颜色
+ */
+export declare enum StatusColorEnum {
+    'Success' = "#67C23A",
+    'Error' = "#e52848",
+    'Processing' = "#409EFF",
+    'Warning' = "#E6A23C",
+    'Default' = "#dcdcf240"
 }
