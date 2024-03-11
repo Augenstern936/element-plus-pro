@@ -1,7 +1,7 @@
 import './style/index.scss';
 import props from './props';
 import { withInstall } from '@element-plus/pro-utils';
-import { defineComponent, ref, computed, watch, onMounted } from 'vue';
+import { defineComponent, ref, computed, watch, onMounted, toRaw } from 'vue';
 import {
 	ElForm,
 	ElFormItem,
@@ -200,10 +200,8 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 		};
 
 		emitter.on('value-change', ({ field, value }: any) => {
-			ctx.emit('update:modelValue', {
-				...form.value,
-				[field]: value,
-			});
+			form.value[field] = value;
+			ctx.emit('update:modelValue', toRaw(form.value));
 		});
 
 		onMounted(() => {

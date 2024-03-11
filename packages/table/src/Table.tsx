@@ -419,7 +419,7 @@ const ProTable = defineComponent(
 	{
 		name: 'ProTable',
 	}
-) as FunctionalComponent<ProTableProps, any>;
+) as FunctionalComponent<ProTableProps>;
 
 ProTable.props = props as any;
 

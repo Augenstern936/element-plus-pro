@@ -11,7 +11,7 @@ import {
 	ElTableColumn,
 	ElTooltip,
 } from 'element-plus';
-import { Edit, Search, Delete, DocumentCopy, Picture, View } from '@element-plus/icons-vue';
+import { Edit, Search, Delete, DocumentCopy, Picture, View, UserFilled } from '@element-plus/icons-vue';
 import ProButton from '@element-plus/pro-button';
 import { StatusColorEnum } from '../../enum';
 
@@ -81,7 +81,7 @@ const TableColumn = defineComponent((props) => {
 					</div>
 				);
 			case 'avatar':
-				return <ElAvatar src={data} size={30} />;
+				return <ElAvatar src={data} size={30} icon={UserFilled} />;
 			case 'rate':
 				const rate = Number.isNaN(valNumber) ? 0 : valNumber > 5 ? 5 : valNumber;
 				return <ElRate modelValue={rate} size='large' disabled-void-color='#c0c4cc' allow-half disabled />;

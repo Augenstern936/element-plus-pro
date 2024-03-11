@@ -4,8 +4,6 @@ import { FunctionalComponent, defineComponent, inject, ref } from 'vue';
 const Render = defineComponent(({ type }: { type: 'text' | 'password' | 'textarea' }) => {
 	const props = inject(type, {}) as any;
 
-	console.log(props, 'props');
-
 	const data = ref('');
 
 	return () => (

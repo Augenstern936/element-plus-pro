@@ -9,7 +9,7 @@
 	</div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="tsx">
 	import { reactive, ref } from 'vue';
 	import { ProTable } from '@element-plus/pro-components';
 	import type { TableColumns } from '@element-plus/pro-components';
@@ -50,7 +50,7 @@
 			title: '评价',
 			dataField: 'rate',
 			valueType: 'rate',
-			search: false,
+			search: true,
 		},
 		{
 			title: '状态',
@@ -65,6 +65,21 @@
 					status: 'Success',
 				},
 			},
+		},
+		{
+			title: '会员',
+			dataField: 'slider',
+			valueType: 'slider',
+		},
+		{
+			title: '颜色',
+			dataField: 'color',
+			valueType: 'color',
+		},
+		{
+			title: '生日',
+			dataField: 'date',
+			valueType: 'dateYear',
 		},
 		{
 			title: '操作',

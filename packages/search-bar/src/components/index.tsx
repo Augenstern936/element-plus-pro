@@ -1,4 +1,9 @@
 import Input from './Input';
+import Date from './Date';
+import Rate from './Rate';
+import Switch from './Switch';
+import Slider from './Slider';
+import Color from './Color';
 import { FunctionalComponent, PropType, defineComponent, provide } from 'vue';
 import type { SearchBarFormItem } from '../typing';
 
@@ -6,15 +11,15 @@ const components = {
 	text: Input.Text,
 	password: Input.Password,
 	textarea: Input.Textarea,
-	// 'date',
-	// 'dates',
-	// 'dateTime',
-	// 'dateWeek',
-	// 'dateMonth',
-	// 'dateYear',
-	// 'dateRange',
-	// 'dateTimeRange',
-	// 'dateMonthRange',
+	date: Date.Default,
+	dates: Date.Dates,
+	dateTime: Date.DateTime,
+	dateWeek: Date.DateWeek,
+	dateMonth: Date.DateMonth,
+	dateYear: Date.DateYear,
+	dateRange: Date.DateRange,
+	dateTimeRange: Date.DateTimeRange,
+	dateMonthRange: Date.DateMonthRange,
 	// 'time',
 	// 'timeRange',
 	// 'select',
@@ -22,11 +27,11 @@ const components = {
 	// 'checkbox',
 	// 'radio',
 	// 'radioButton',
-	// 'switch',
-	// 'rate',
-	// 'color',
+	switch: Switch,
+	rate: Rate,
+	color: Color,
 	// 'cascader',
-	// 'slider',
+	slider: Slider,
 };
 
 interface RenderProps {
