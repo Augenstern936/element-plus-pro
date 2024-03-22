@@ -22,7 +22,7 @@
 			search: false,
 		},
 		{
-			title: '姓名',
+			title: '姓名：',
 			dataField: 'name',
 			search: {
 				order: 10,

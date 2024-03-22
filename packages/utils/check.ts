@@ -13,3 +13,7 @@ export function checkValueIsComponent(value: any): boolean {
 	}
 	return false;
 }
+
+export function isOnlySymbols(str: string): boolean {
+	return /[\s~`!@#$%^&*()\-_=+[\]{}|;；:：'",，。、【‘’】<.>/?？]/.test(str);
+}

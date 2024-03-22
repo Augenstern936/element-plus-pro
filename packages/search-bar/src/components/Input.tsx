@@ -1,5 +1,6 @@
 import { ElInput } from 'element-plus';
 import { FunctionalComponent, defineComponent, inject, ref } from 'vue';
+import { formatPlaceholder } from '@element-plus/pro-utils';
 
 const Render = defineComponent(({ type }: { type: 'text' | 'password' | 'textarea' }) => {
 	const props = inject(type, {}) as any;
@@ -9,6 +10,7 @@ const Render = defineComponent(({ type }: { type: 'text' | 'password' | 'textare
 	return () => (
 		<ElInput
 			v-model={data.value}
+			placeholder={formatPlaceholder(props.formItem.label, type) as string}
 			clearable
 			type={type}
 			onInput={(v) => props.emitter.emit('value-change', { field: props.formItem.dataField, value: v })}
