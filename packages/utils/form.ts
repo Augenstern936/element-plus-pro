@@ -7,8 +7,8 @@ import { isOnlySymbols } from './check';
  * @param type
  * @returns
  */
-export function formatPlaceholder(label: string, type: keyof typeof FormValueTypeEnum): string | string[] {
-	const formatLabel = isOnlySymbols(label.slice(-1)) ? label.slice(0, -1) : label;
+export function formatPlaceholder(label: string = '', type: keyof typeof FormValueTypeEnum): string | string[] {
+	const formatLabel = label && isOnlySymbols(label.slice(-1)) ? label.slice(0, -1) : label;
 
 	switch (type) {
 		case 'text':

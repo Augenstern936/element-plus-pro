@@ -13,7 +13,7 @@ export type ProSearchBarProps = {
 export type SearchBarFormItem = {
     dataField: string;
     order?: number;
-    label: string;
+    label?: string;
     labelWidth?: string | number;
     placeholder?: string;
     valueType?: SearchBarValueType;
@@ -25,7 +25,7 @@ export type SearchBarValueOption = {
     value: string | number | boolean;
 };
 export type SearchBarActions = JSX.Element | JSX.Element[] | BottonConfig | BottonConfig[];
-export type SearchBarRightTools = JSX.Element | JSX.Element[] | BottonConfig | BottonConfig[];
+export type SearchBarRightTools = JSX.Element | BottonConfig;
 type BottonConfig = Partial<ButtonProps & {
     content: string;
 }>;

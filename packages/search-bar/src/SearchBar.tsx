@@ -2,20 +2,7 @@ import './style/index.scss';
 import props from './props';
 import { withInstall } from '@element-plus/pro-utils';
 import { defineComponent, ref, computed, watch, onMounted, toRaw } from 'vue';
-import {
-	ElForm,
-	ElFormItem,
-	ElInput,
-	ElSelect,
-	ElOption,
-	ElDatePicker,
-	ElCheckbox,
-	ElButton,
-	ElIcon,
-	ElDropdown,
-	ElDropdownMenu,
-	ElDropdownItem,
-} from 'element-plus';
+import { ElForm, ElFormItem, ElButton, ElIcon, ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus';
 import { ArrowDown, ArrowUp, MoreFilled } from '@element-plus/icons-vue';
 import Test from './components';
 import mitt from 'mitt';
@@ -56,7 +43,7 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 		 * 搜索事件
 		 * @returns
 		 */
-		const onSearch = () => ctx.emit('search', { ...form.value });
+		const onSearch = () => ctx.emit('search', toRaw(form.value));
 
 		/**
 		 * 监听清空筛洗栏表单
@@ -178,7 +165,7 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 						<ElButton
 							{...btnConfig}
 							key={index || 'tool'}
-							onClick={() => ctx.emit('tools', form.value, index)}
+							onClick={() => ctx.emit('tools', toRaw(form.value), index)}
 						>
 							{btnConfig.content}
 						</ElButton>
@@ -228,7 +215,7 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 									.slice(0, isFilterBarExpand.value ? formItems.value.length : span)
 									.map((item: SearchBarFormItem) => {
 										const { dataField, label, labelWidth } = item;
-										const labelText = item.valueType === 'checkbox' ? '' : label;
+										const labelText = item.valueType == 'checkbox' ? '' : label;
 										return (
 											<ElFormItem prop={dataField} label={labelText} label-width={labelWidth}>
 												<Test emitter={emitter} formItem={item} />

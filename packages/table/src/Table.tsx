@@ -1,6 +1,6 @@
 import './style/index.scss';
 import props from './props';
-import { withInstall } from '@element-plus/pro-utils';
+import { withInstall, toOptions } from '@element-plus/pro-utils';
 import { defineComponent, KeepAlive, ref, provide, computed, watch } from 'vue';
 import { ElMessage, ElTable, ElPagination, ElAlert } from 'element-plus';
 import ProSearchBar from '@element-plus/pro-search-bar';
@@ -55,7 +55,7 @@ const ProTable = defineComponent(
 		const isColumnsSettingChange = ref(false);
 
 		const searchBarTools = computed(() => {
-			return typeof props.search === 'object' ? props.search?.rightTools : void 0;
+			return typeof props.search == 'object' ? props.search?.rightTools || [] : void 0;
 		});
 
 		const toolbarTitleRender = computed(() => {
@@ -108,14 +108,14 @@ const ProTable = defineComponent(
 		 * @returns
 		 */
 		const formatSearchFormItemsConfig = (tableColumn: TableColumns) => {
-			const { dataField = '', title, valueType, valueOption = [] } = tableColumn;
+			const { dataField = '', title, valueType, valueEnum } = tableColumn;
 			const columnSearchConfig = typeof tableColumn.search === 'object' ? tableColumn.search : {};
 			const globalSearchConfig = typeof globalSearch === 'object' ? globalSearch : {};
 			return {
 				label: title,
 				dataField,
 				valueType,
-				valueOption,
+				valueOptions: valueEnum ? toOptions(valueEnum) : void 0,
 				...globalSearchConfig,
 				...columnSearchConfig,
 			};

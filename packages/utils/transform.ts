@@ -30,7 +30,7 @@ export function toCssUnitValue(val: number | string, unit: keyof typeof CssUnitE
 	return newVal;
 }
 
-export function toOptions(valueEnum: Record<string | number, string | number | { text: string; [x: string]: any }>) {
+export function toOptions(valueEnum: Record<string, string | number | { text: string; [x: string]: any }>) {
 	const options = Object.keys(valueEnum).map((key) => {
 		const item = valueEnum[key];
 		const type = Object.prototype.toString.call(item);

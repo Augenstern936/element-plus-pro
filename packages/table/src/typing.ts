@@ -122,7 +122,7 @@ interface ToolbarSearchConfig {
 	onAction?: (keywords: string) => void;
 }
 
-export type ToolbarActions = JSX.Element | JSX.Element[] | ToolbarActionsConfig | ToolbarActionsConfig[];
+export type ToolbarActions = (JSX.Element | ToolbarActionsConfig)[];
 
 export type ToolbarActionsConfig = Partial<ButtonProps & { content: string }>;
 

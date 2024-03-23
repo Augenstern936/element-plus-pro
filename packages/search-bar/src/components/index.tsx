@@ -1,5 +1,6 @@
 import Input from './Input';
 import Date from './Date';
+import Select from './Select';
 import Rate from './Rate';
 import Switch from './Switch';
 import Slider from './Slider';
@@ -22,7 +23,7 @@ const components = {
 	dateMonthRange: Date.DateMonthRange,
 	// 'time',
 	// 'timeRange',
-	// 'select',
+	select: Select,
 	// 'treeSelect',
 	// 'checkbox',
 	// 'radio',
@@ -40,9 +41,12 @@ interface RenderProps {
 }
 
 const Render: FunctionalComponent<RenderProps> = defineComponent((props: RenderProps) => {
-	const type = (props.formItem?.valueType as keyof typeof components) || 'text';
+	const valueType = props.formItem?.valueType as keyof typeof components;
+	const isHasComponent = valueType != 'select' && components[valueType];
+	const isSelect = isHasComponent ? false : Array.isArray(props.formItem.valueOptions);
+	const type = isSelect ? 'select' : valueType || 'text';
 
-	provide(type, props);
+	provide(type, { ...props, formItem: { ...props.formItem, valueType: type } });
 
 	const RenderEelement = components[type];
 
