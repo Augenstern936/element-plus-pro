@@ -31,9 +31,13 @@
 		{
 			title: '性别',
 			dataField: 'sex',
-			valueType: 'password',
+			valueType: 'radioButton',
 			search: {
 				order: 8,
+			},
+			valueEnum: {
+				0: '男',
+				1: '女',
 			},
 		},
 		{

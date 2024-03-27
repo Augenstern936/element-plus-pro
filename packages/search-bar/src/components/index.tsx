@@ -1,6 +1,14 @@
+/*
+ * @Description:
+ * @Author: wangbowen936926
+ * @Date: 2024-03-06 21:17:05
+ * @LastEditTime: 2024-03-26 23:44:29
+ * @FilePath: \element-plus-pro\packages\search-bar\src\components\index.tsx
+ */
 import Input from './Input';
 import Date from './Date';
 import Select from './Select';
+import Radio from './Radio';
 import Rate from './Rate';
 import Switch from './Switch';
 import Slider from './Slider';
@@ -26,8 +34,8 @@ const components = {
 	select: Select,
 	// 'treeSelect',
 	// 'checkbox',
-	// 'radio',
-	// 'radioButton',
+	radio: Radio.Default,
+	radioButton: Radio.RadioButton,
 	switch: Switch,
 	rate: Rate,
 	color: Color,
@@ -45,6 +53,12 @@ const Render: FunctionalComponent<RenderProps> = defineComponent((props: RenderP
 	const isHasComponent = valueType != 'select' && components[valueType];
 	const isSelect = isHasComponent ? false : Array.isArray(props.formItem.valueOptions);
 	const type = isSelect ? 'select' : valueType || 'text';
+	console.log(type, 'type');
+
+	console.log(
+		{ ...props, formItem: { ...props.formItem, valueType: type } },
+		'{ ...props, formItem: { ...props.formItem, valueType: type } }'
+	);
 
 	provide(type, { ...props, formItem: { ...props.formItem, valueType: type } });
 

@@ -186,10 +186,10 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 			tergetResize.observe(terget);
 		};
 
-		emitter.on('value-change', ({ field, value }: any) => {
-			form.value[field] = value;
-			ctx.emit('update:modelValue', toRaw(form.value));
-		});
+		// emitter.on('value-change', ({ field, value }: any) => {
+		// 	form.value[field] = value;
+		// 	ctx.emit('update:modelValue', toRaw(form.value));
+		// });
 
 		onMounted(() => {
 			if (formContainerRef.value) {
@@ -218,7 +218,11 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 										const labelText = item.valueType == 'checkbox' ? '' : label;
 										return (
 											<ElFormItem prop={dataField} label={labelText} label-width={labelWidth}>
-												<Test emitter={emitter} formItem={item} />
+												<Test
+													v-model={form.value[dataField]}
+													emitter={emitter}
+													formItem={item}
+												/>
 											</ElFormItem>
 										);
 									})}
