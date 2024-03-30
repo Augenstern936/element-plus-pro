@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:50:46
- * @LastEditTime: 2024-03-27 00:30:30
+ * @LastEditTime: 2024-03-27 00:11:41
  * @FilePath: \element-plus-pro\packages\search-bar\src\components\Radio.tsx
  */
 import { ElRadio, ElRadioButton, ElRadioGroup } from 'element-plus';
@@ -51,6 +51,6 @@ Radio.props = {
 };
 
 export default {
-	Default: (props: Record<string, any>) => <Radio {...props} v-model={props.modelValue} type='radio' />,
+	Default: () => <Radio type='radio' />,
 	RadioButton: () => <Radio type='radioButton' />,
 };

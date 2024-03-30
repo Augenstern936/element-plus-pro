@@ -2,17 +2,16 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-03-27 23:50:33
+ * @LastEditTime: 2024-03-30 23:26:38
  * @FilePath: \element-plus-pro\packages\form\src\components\Input.tsx
  */
-import { ElInput } from 'element-plus';
+import { ElInput, InputProps, inputProps } from 'element-plus';
 import { FunctionalComponent, PropType, defineComponent, computed } from 'vue';
 import { formatPlaceholder } from '@element-plus/pro-utils';
 
-interface ProInputProps {
-	modelValue?: string;
+interface ProInputProps extends InputProps {
 	type: 'text' | 'password' | 'textarea';
-	label: string;
+	label?: string;
 }
 
 const ProInput = defineComponent<ProInputProps>(
@@ -40,10 +39,7 @@ const ProInput = defineComponent<ProInputProps>(
 ) as FunctionalComponent<ProInputProps>;
 
 ProInput.props = {
-	modelValue: {
-		type: String,
-		default: '',
-	},
+	...inputProps,
 	type: {
 		type: String as PropType<'text' | 'password' | 'textarea'>,
 		default: 'text',

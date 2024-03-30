@@ -1,51 +1,46 @@
-import { ElDatePicker } from 'element-plus';
-import type { DatePickType } from 'element-plus';
-import { FunctionalComponent, defineComponent, inject, ref } from 'vue';
+import { datePickerProps, ElDatePicker } from 'element-plus';
+import type { DatePickerProps } from 'element-plus';
+import { FunctionalComponent, computed, defineComponent } from 'vue';
 import { formatPlaceholder } from '@element-plus/pro-utils';
 
-const Render = defineComponent(({ type }: { type: DatePickType }) => {
-	enum TypeEnum {
-		'date' = 'date',
-		'dates' = 'dates',
-		'datetime' = 'dateTime',
-		'week' = 'dateWeek',
-		'month' = 'dateMonth',
-		'year' = 'dateYear',
-		'daterange' = 'dateRange',
-		'datetimerange' = 'dateTimeRange',
-		'monthrange' = 'dateMonthRange',
-	}
+interface ProDateProps extends DatePickerProps {
+	label?: string;
+}
 
-	const props = inject(TypeEnum[type], {}) as any;
+const ProDate = defineComponent<ProDateProps>((props, ctx) => {
+	const state = computed({
+		get: () => {
+			return props.modelValue;
+		},
+		set: (value) => {
+			ctx.emit('update:modelValue', value);
+		},
+	});
 
-	const data = ref('');
+	const placeholder = computed(() => {
+		const value = formatPlaceholder(props.label, props.type) as string | [string, string];
 
-	return () => (
-		<ElDatePicker
-			v-model={data.value}
-			placeholder={formatPlaceholder(props.formItem.label, type) as string}
-			type={type}
-			clearable
-			onChange={(v: unknown) => props.emitter.emit('value-change', { field: props.formItem.dataField, value: v })}
-		/>
-	);
-}) as FunctionalComponent<any>;
+		if (Array.isArray(value)) {
+			return {
+				startPlaceholder: value[0],
+				endPlaceholder: value[1],
+			};
+		}
 
-Render.props = {
-	type: {
+		return {
+			placeholder: value,
+		};
+	});
+
+	return () => <ElDatePicker v-model={state.value} {...placeholder.value} {...props} />;
+}) as FunctionalComponent<ProDateProps>;
+
+ProDate.props = {
+	...datePickerProps,
+	label: {
 		type: String,
-		default: 'text',
+		default: '',
 	},
 };
 
-export default {
-	Default: () => <Render type='date' />,
-	Dates: () => <Render type='dates' />,
-	DateTime: () => <Render type='datetime' />,
-	DateWeek: () => <Render type='week' />,
-	DateMonth: () => <Render type='month' />,
-	DateYear: () => <Render type='year' />,
-	DateRange: () => <Render type='daterange' />,
-	DateTimeRange: () => <Render type='datetimerange' />,
-	DateMonthRange: () => <Render type='monthrange' />,
-};
+export default ProDate;
