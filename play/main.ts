@@ -1,17 +1,14 @@
-import ElementPlusPro from '@element-plus/pro-components';
-// import ElementPlus from 'element-plus';
-// import 'element-plus/theme-chalk/index.css';
-
-import { ProTabs } from '@element-plus/pro-components';
+/*
+ * @Description:
+ * @Author: wangbowen936926
+ * @Date: 2023-11-10 00:34:25
+ * @LastEditTime: 2024-04-06 23:43:35
+ * @FilePath: \element-plus-pro\play\main.ts
+ */
 
 import { createApp } from 'vue';
 import App from './src/App.vue';
 
 const app = createApp(App);
-
-//app.use(ElementPlusPro);
-// app.use(ElementPlus);
-app.use(ProTabs);
-// app.use(ProTable);
 
 app.mount('#play');

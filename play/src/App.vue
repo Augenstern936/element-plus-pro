@@ -6,14 +6,17 @@
 				<ElButton type="info">删除</ElButton>
 			</template>
 		</pro-table>
+		<ProField.Password v-model="test" placeholder="密码" @input="console.log($event)" />
 	</div>
 </template>
 
-<script setup lang="tsx">
+<script setup lang="ts">
 	import { reactive, ref } from 'vue';
-	import { ProTable } from '@element-plus/pro-components';
+	import { ProTable, ProField } from '@element-plus/pro-components';
 	import type { TableColumns } from '@element-plus/pro-components';
 	import { ElButton } from 'element-plus';
+
+	const test = ref('');
 
 	const columns = ref<TableColumns[]>([
 		{

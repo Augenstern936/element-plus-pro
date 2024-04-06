@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Author: wangbowen936926
+ * @Date: 2023-12-14 14:10:39
+ * @LastEditTime: 2024-04-04 21:40:59
+ * @FilePath: \element-plus-pro\packages\table\src\enum.ts
+ */
 export enum ValueTypeEnum {
 	'index',
 	'text',
@@ -14,6 +21,7 @@ export enum ValueTypeEnum {
 	'dateMonthRange',
 	'time',
 	'timeRange',
+	'timeSelect',
 	'select',
 	'treeSelect',
 	'checkbox',

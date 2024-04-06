@@ -2,19 +2,21 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-03-30 23:26:38
+ * @LastEditTime: 2024-04-02 22:55:12
  * @FilePath: \element-plus-pro\packages\form\src\components\Input.tsx
  */
 import { ElInput, InputProps, inputProps } from 'element-plus';
-import { FunctionalComponent, PropType, defineComponent, computed } from 'vue';
+import { FunctionalComponent, PropType, defineComponent, computed, CSSProperties } from 'vue';
 import { formatPlaceholder } from '@element-plus/pro-utils';
+import 'element-plus/theme-chalk/src/input.scss';
 
-interface ProInputProps extends InputProps {
+export interface ProFormInputProps extends InputProps {
 	type: 'text' | 'password' | 'textarea';
 	label?: string;
+	style?: CSSProperties;
 }
 
-const ProInput = defineComponent<ProInputProps>(
+const ProFormInput = defineComponent<ProFormInputProps>(
 	(props, ctx) => {
 		const state = computed({
 			get: () => {
@@ -34,11 +36,11 @@ const ProInput = defineComponent<ProInputProps>(
 		);
 	},
 	{
-		name: 'ProInput',
+		name: 'ProFormInput',
 	}
-) as FunctionalComponent<ProInputProps>;
+) as FunctionalComponent<ProFormInputProps>;
 
-ProInput.props = {
+ProFormInput.props = {
 	...inputProps,
 	type: {
 		type: String as PropType<'text' | 'password' | 'textarea'>,
@@ -50,4 +52,4 @@ ProInput.props = {
 	},
 };
 
-export default ProInput;
+export default ProFormInput;

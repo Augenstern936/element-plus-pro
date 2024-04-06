@@ -1,17 +1,37 @@
-import { ElColorPicker } from 'element-plus';
-import { FunctionalComponent, defineComponent, inject, ref } from 'vue';
+/*
+ * @Description:
+ * @Author: wangbowen936926
+ * @Date: 2024-03-27 22:42:21
+ * @LastEditTime: 2024-04-02 22:49:20
+ * @FilePath: \element-plus-pro\packages\form\src\components\Color.tsx
+ */
+import { colorPickerProps, ElColorPicker } from 'element-plus';
+import type { ColorPickerProps } from 'element-plus';
+import { CSSProperties, FunctionalComponent, computed, defineComponent } from 'vue';
+import 'element-plus/theme-chalk/src/color-picker.scss';
 
-const Color = defineComponent(() => {
-	const props = inject('color', {}) as any;
+export interface ProFormColorProps extends ColorPickerProps {
+	style?: CSSProperties;
+}
 
-	const data = ref('');
+const ProFormColor = defineComponent<ProFormColorProps>(
+	(props, ctx) => {
+		const state = computed({
+			get: () => {
+				return props.modelValue;
+			},
+			set: (value) => {
+				ctx.emit('update:modelValue', value);
+			},
+		});
 
-	return () => (
-		<ElColorPicker
-			v-model={data.value}
-			onChange={(v) => props.emitter.emit('value-change', { field: props.formItem.dataField, value: v })}
-		/>
-	);
-}) as FunctionalComponent<any>;
+		return () => <ElColorPicker v-model={state.value} {...props} />;
+	},
+	{
+		name: 'ProFormColor',
+	}
+) as FunctionalComponent<ProFormColorProps>;
 
-export default Color;
+ProFormColor.props = colorPickerProps;
+
+export default ProFormColor;

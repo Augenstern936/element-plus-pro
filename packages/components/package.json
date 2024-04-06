@@ -28,12 +28,13 @@
 		"lib",
 		"es"
 	],
-	"devDependencies": {
+	"gitHead": "111",
+	"dependencies": {
 		"@element-plus/pro-button": "workspace:^",
 		"@element-plus/pro-center-container": "workspace:^",
+		"@element-plus/pro-field": "workspace:^",
 		"@element-plus/pro-search-bar": "workspace:^",
 		"@element-plus/pro-table": "workspace:^",
 		"@element-plus/pro-tabs": "workspace:^"
-	},
-	"gitHead": "111"
+	}
 }

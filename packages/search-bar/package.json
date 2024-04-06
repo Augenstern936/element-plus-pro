@@ -30,6 +30,7 @@
 	],
 	"author": "17634393156@163.com",
 	"dependencies": {
+		"@element-plus/pro-form": "workspace:^",
 		"mitt": "^3.0.1"
 	}
 }
