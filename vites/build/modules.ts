@@ -28,7 +28,9 @@ export const buildModules = async () => {
 
 	const componentName = utils.toGreatHump(baseDirName);
 
-	const componentsPath = `src/${componentName}.tsx`;
+	const componentSuffix = componentName == 'Button' ? '.vue' : '.tsx';
+
+	const componentsPath = `src/${componentName}${componentSuffix}`;
 
 	const entry = baseDirName === 'components' ? 'src/index.ts' : ['src/index.ts', componentsPath];
 

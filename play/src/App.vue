@@ -1,18 +1,25 @@
 <template>
 	<div style="height: calc(100vh - 40px); padding: 20px; background-color: #f5f5f5">
-		<pro-table title="标题" :columns="columns" :dataSource="data.data" :ghost="false">
+		<pro-table
+			title="标题"
+			:columns="columns"
+			:dataSource="data.data"
+			:ghost="false"
+			@action="console.log($event, 'action')"
+		>
 			<template #search-bar-right-tools>
 				<ElButton type="info">新增</ElButton>
 				<ElButton type="info">删除</ElButton>
 			</template>
 		</pro-table>
 		<ProField.Password v-model="test" placeholder="密码" @input="console.log($event)" />
+		<pro-button render="测试" :tip="{ text: '测试', before: () => true }" />
 	</div>
 </template>
 
 <script setup lang="ts">
 	import { reactive, ref } from 'vue';
-	import { ProTable, ProField } from '@element-plus/pro-components';
+	import { ProTable, ProField, ProButton } from '@element-plus/pro-components';
 	import type { TableColumns } from '@element-plus/pro-components';
 	import { ElButton } from 'element-plus';
 

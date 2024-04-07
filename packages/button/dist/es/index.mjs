@@ -1,8 +1,9 @@
 import t from "./Button.mjs";
+import { withInstall as o } from "@element-plus/pro-utils";
 import "vue";
-import "@element-plus/pro-utils";
 import "element-plus";
+const p = o(t);
 export {
-  t as ProButton,
-  t as default
+  p as ProButton,
+  p as default
 };

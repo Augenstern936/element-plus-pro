@@ -1,4 +1,4 @@
-import { defineComponent, inject, computed, PropType, FunctionalComponent } from 'vue';
+import { defineComponent, inject, computed, PropType, withModifiers, FunctionalComponent } from 'vue';
 import type { ProTableProps, TableColumns, ValueType } from '../../typing';
 import {
 	ElAvatar,
@@ -64,20 +64,19 @@ const TableColumn = defineComponent((props) => {
 							preview-teleported={true}
 							fit='cover'
 							style='height: 100%; display: flex; align-items: center; justify-content: center;'
-						>
-							{{
+							v-slots={{
 								error: () => (
 									<ElIcon size={26}>
 										<Picture />
 									</ElIcon>
 								),
 							}}
-						</ElImage>
-						{/* <div class='mask-view'>
-						<ElIcon color='#fff'>
-							<View />
-						</ElIcon>
-					</div> */}
+						/>
+						<div class='mask-view'>
+							<ElIcon color='#fff'>
+								<View />
+							</ElIcon>
+						</div>
 					</div>
 				);
 			case 'avatar':
@@ -111,7 +110,7 @@ const TableColumn = defineComponent((props) => {
 					size='small'
 					icon={Delete}
 					tip='确定要删除吗?'
-					onClickEvent={() => tableCtx.emit('action', 2, e.row)}
+					onClick={() => tableCtx.emit('action', 2, e.row)}
 				/>
 			</ElTooltip>
 		</>
@@ -164,7 +163,7 @@ const TableColumn = defineComponent((props) => {
 		if (typeof columnEmptyText === 'boolean') {
 			emptyText = columnEmptyText ? '-' : '';
 		} else {
-			emptyText = columnEmptyText;
+			emptyText = columnEmptyText || emptyText;
 		}
 
 		const content = render?.(e.row) ?? tdValue;
