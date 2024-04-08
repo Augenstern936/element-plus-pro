@@ -13,7 +13,7 @@
 			</template>
 		</pro-table>
 		<ProField.Password v-model="test" placeholder="密码" @input="console.log($event)" />
-		<pro-button render="测试" :tip="{ text: '测试', before: () => true }" />
+		<pro-button type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">删除</pro-button>
 	</div>
 </template>
 

@@ -4,7 +4,7 @@ export interface ProButtonProps extends Partial<ButtonProps> {
     render?: string;
 }
 export interface TipConfig {
-    type?: 'message-box' | 'popconfirm';
+    mode?: 'message-box' | 'popconfirm';
     text: string;
     before?: () => boolean;
 }
