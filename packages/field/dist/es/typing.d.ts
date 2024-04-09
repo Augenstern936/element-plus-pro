@@ -14,7 +14,7 @@ export declare const proFieldProps: {
         default: string;
     };
     placeholder: {
-        type: (StringConstructor | PropType<[string, string]>)[];
+        type: (StringConstructor | PropType<[string] | [string, string]>)[];
     };
     fieldProps: {
         type: PropType<Record<string, unknown>>;

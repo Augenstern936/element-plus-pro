@@ -13,7 +13,7 @@ declare const _default: import("@element-plus/pro-utils").SFCWithInstall<Functio
         default: string;
     };
     placeholder: {
-        type: (StringConstructor | import("vue").PropType<[string, string]>)[];
+        type: (StringConstructor | import("vue").PropType<[string] | [string, string]>)[];
     };
     fieldProps: {
         type: import("vue").PropType<Record<string, unknown>>;

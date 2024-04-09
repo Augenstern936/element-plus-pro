@@ -2,11 +2,21 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-04-04 22:55:55
+ * @LastEditTime: 2024-04-10 01:36:17
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
-import Input from './Input';
-import Date from './Date';
+import { ProFieldText, ProFieldPassword, ProFieldTextarea } from './Input';
+import {
+	ProFieldDate,
+	ProFieldDates,
+	ProFieldDateTime,
+	ProFieldDateWeek,
+	ProFieldDateMonth,
+	ProFieldDateYear,
+	ProFieldDateRange,
+	ProFieldDateTimeRange,
+	ProFieldDateMonthRange,
+} from './Date';
 import ProFieldSelect from './Select';
 import Cascader from './Cascader';
 import ProFieldRadio from './Radio';
@@ -22,21 +32,38 @@ import ProFieldTreeSelect from './TreeSelect';
 import TimePicker from './TimePicker';
 import TimeSelect from './TimeSelect';
 
-export { ProFieldRadio, ProFieldCheckbox, ProFieldSelect, ProFieldTreeSelect };
+export {
+	ProFieldText,
+	ProFieldPassword,
+	ProFieldTextarea,
+	ProFieldDate,
+	ProFieldDates,
+	ProFieldDateTime,
+	ProFieldDateWeek,
+	ProFieldDateMonth,
+	ProFieldDateYear,
+	ProFieldDateRange,
+	ProFieldDateTimeRange,
+	ProFieldDateMonthRange,
+	ProFieldRadio,
+	ProFieldCheckbox,
+	ProFieldSelect,
+	ProFieldTreeSelect,
+};
 
 export default {
-	text: Input,
-	password: Input,
-	textarea: Input,
-	date: Date,
-	dates: Date,
-	dateTime: Date,
-	dateWeek: Date,
-	dateMonth: Date,
-	dateYear: Date,
-	dateRange: Date,
-	dateTimeRange: Date,
-	dateMonthRange: Date,
+	text: ProFieldText,
+	password: ProFieldPassword,
+	textarea: ProFieldTextarea,
+	date: ProFieldDate,
+	dates: ProFieldDates,
+	dateTime: ProFieldDateTime,
+	dateWeek: ProFieldDateWeek,
+	dateMonth: ProFieldDateMonth,
+	dateYear: ProFieldDateYear,
+	dateRange: ProFieldDateRange,
+	dateTimeRange: ProFieldDateTimeRange,
+	dateMonthRange: ProFieldDateMonthRange,
 	time: TimePicker,
 	timeRange: TimePicker,
 	timeSelect: TimeSelect,

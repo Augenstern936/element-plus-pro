@@ -1,18 +1,18 @@
-import _ from "@element-plus/pro-tabs";
+import B from "@element-plus/pro-tabs";
 export * from "@element-plus/pro-tabs";
-import { createVNode as a, mergeProps as u, defineComponent as r, computed as n, Fragment as g } from "vue";
-import { withInstall as I, formatPlaceholder as j } from "@element-plus/pro-utils";
-import { inputProps as O, datePickerProps as w, cascaderProps as D, radioProps as y, checkboxProps as N, switchProps as z, avatarProps as G, sliderProps as H, imageProps as M, colorPickerProps as W, progressProps as Y, timePickerDefaultProps as q, ElInput as J, ElDatePicker as K, ElSelect as L, ElOption as Q, ElCascader as X, ElRadioGroup as Z, ElRadio as $, ElRadioButton as ee, ElCheckboxGroup as le, ElCheckbox as te, ElCheckboxButton as oe, ElRate as ae, ElSwitch as re, ElAvatar as ne, ElSlider as ue, ElImage as de, ElColorPicker as pe, ElProgress as se, ElTreeSelect as me, ElTimePicker as ie, useSizeProp as ce, ElTimeSelect as fe } from "element-plus";
-import { Clock as Pe, CircleClose as Ve } from "@element-plus/icons-vue";
-import ge from "@element-plus/pro-table";
+import { createVNode as a, mergeProps as r, defineComponent as s, computed as d, Fragment as g } from "vue";
+import { withInstall as D, formatPlaceholder as V } from "@element-plus/pro-utils";
+import { inputProps as w, datePickerProps as _, cascaderProps as I, radioProps as v, checkboxProps as O, switchProps as j, avatarProps as M, sliderProps as N, imageProps as G, colorPickerProps as z, progressProps as H, timePickerDefaultProps as W, ElInput as Y, ElDatePicker as q, ElSelect as $, ElOption as J, ElCascader as K, ElRadioGroup as L, ElRadio as Q, ElRadioButton as X, ElCheckboxGroup as Z, ElCheckbox as ee, ElCheckboxButton as le, ElRate as te, ElSwitch as ae, ElAvatar as oe, ElSlider as re, ElImage as ne, ElColorPicker as ue, ElProgress as de, ElTreeSelect as se, ElTimePicker as pe, useSizeProp as ie, ElTimeSelect as me } from "element-plus";
+import { Clock as ce, CircleClose as Pe } from "@element-plus/icons-vue";
+import ye from "@element-plus/pro-table";
 export * from "@element-plus/pro-table";
-import ye from "@element-plus/pro-button";
+import fe from "@element-plus/pro-button";
 export * from "@element-plus/pro-button";
-import ve from "@element-plus/pro-search-bar";
+import ge from "@element-plus/pro-search-bar";
 export * from "@element-plus/pro-search-bar";
-import Se from "@element-plus/pro-center-container";
+import Ve from "@element-plus/pro-center-container";
 export * from "@element-plus/pro-center-container";
-const be = {
+const ve = {
   modelValue: {
     type: [String, Number, Boolean, Array],
     default: ""
@@ -32,120 +32,153 @@ const be = {
     type: Object,
     default: {}
   }
-}, v = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("update:modelValue", e);
+}, m = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (l) => {
+      o.emit("update:modelValue", l);
     }
   });
-  return () => a(J, u({
+  return () => a(Y, r({
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
-  }, l), null);
-}, {
-  name: "ProFieldInput"
+    "onUpdate:modelValue": (l) => t.value = l
+  }, e), null);
 });
-v.props = {
-  ...O,
+m.props = {
+  ...w,
   type: {
     type: String,
     default: "text"
   }
 };
-const i = v, S = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("update:modelValue", e);
+const he = (e) => a(m, r(e, {
+  type: "text"
+}), null), Se = (e) => a(m, r(e, {
+  type: "password"
+}), null), Fe = (e) => a(m, r(e, {
+  type: "textarea"
+}), null), p = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (u) => {
+      o.emit("update:modelValue", u);
     }
+  }), l = d(() => {
+    var u;
+    const n = (u = e.placeholder) != null ? u : V("", e.type || "text");
+    return Array.isArray(n) && n.length > 1 ? {
+      startPlaceholder: n[0],
+      endPlaceholder: n[1]
+    } : {
+      placeholder: Array.isArray(n) ? n[0] : n
+    };
   });
-  return () => a(K, u({
+  return () => a(q, r({
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
-  }, l), null);
-}, {
-  name: "ProFieldDate"
+    "onUpdate:modelValue": (u) => t.value = u
+  }, e, l.value), null);
 });
-S.props = {
-  ...w,
+p.props = {
+  ..._,
+  placeholder: {
+    type: [String, Array],
+    default: void 0
+  },
   style: {
     type: Object,
     default: {}
   }
 };
-const s = S, he = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("update:modelValue", e);
+const be = (e) => a(p, r(e, {
+  type: "date"
+}), null), xe = (e) => a(p, r(e, {
+  type: "dates"
+}), null), ke = (e) => a(p, r(e, {
+  type: "datetime"
+}), null), Te = (e) => a(p, r(e, {
+  type: "week"
+}), null), Ee = (e) => a(p, r(e, {
+  type: "month"
+}), null), Ce = (e) => a(p, r(e, {
+  type: "year"
+}), null), Ae = (e) => a(p, r(e, {
+  type: "daterange"
+}), null), Ue = (e) => a(p, r(e, {
+  type: "datetimerange"
+}), null), Re = (e) => a(p, r(e, {
+  type: "monthrange"
+}), null), Be = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (l) => {
+      o.emit("update:modelValue", l);
     }
   });
-  return () => a(L, {
+  return () => a($, {
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
+    "onUpdate:modelValue": (l) => t.value = l
   }, {
     default: () => {
-      var e;
-      return [(e = l.options) == null ? void 0 : e.map((d, p) => a(Q, u(d, {
-        key: p
+      var l;
+      return [(l = e.options) == null ? void 0 : l.map((u, n) => a(J, r(u, {
+        key: n
       }), {
-        default: () => [d.label]
+        default: () => [u.label]
       }))];
     }
   });
 }, {
   name: "ProFieldSelect"
-}), Fe = he, b = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("update:modelValue", e);
+}), De = Be, h = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (l) => {
+      o.emit("update:modelValue", l);
     }
   });
-  return () => a(X, u({
+  return () => a(K, r({
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
-  }, l), null);
+    "onUpdate:modelValue": (l) => t.value = l
+  }, e), null);
 }, {
   name: "ProFieldCascader"
 });
-b.props = {
-  ...D,
+h.props = {
+  ...I,
   modelValue: {
     type: [String, Number]
   }
 };
-const ke = b, h = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("update:modelValue", e);
+const we = h, S = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (l) => {
+      o.emit("update:modelValue", l);
     }
   });
-  return () => a(Z, {
+  return () => a(L, {
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
+    "onUpdate:modelValue": (l) => t.value = l
   }, {
     default: () => {
-      var e;
-      return [(e = l.options) == null ? void 0 : e.map((d, p) => a(g, null, [d.type == "radio" ? a($, u(d, {
-        key: p
+      var l;
+      return [(l = e.options) == null ? void 0 : l.map((u, n) => a(g, null, [u.type == "radio" ? a(Q, r(u, {
+        key: n
       }), {
-        default: () => [d.label]
-      }) : a(ee, {
-        label: d.value,
-        key: p
+        default: () => [u.label]
+      }) : a(X, {
+        label: u.value,
+        key: n
       }, {
-        default: () => [d.label]
+        default: () => [u.label]
       })]))];
     }
   });
 }, {
   name: "ProFieldRadio"
 });
-h.props = {
-  ...y,
+S.props = {
+  ...v,
   type: {
     type: String,
     default: "radio"
@@ -155,25 +188,25 @@ h.props = {
     default: []
   }
 };
-const P = h, F = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("update:modelValue", e);
+const y = S, F = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (l) => {
+      o.emit("update:modelValue", l);
     }
   });
-  return () => a(le, {
+  return () => a(Z, {
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
+    "onUpdate:modelValue": (l) => t.value = l
   }, {
     default: () => {
-      var e;
-      return [(e = l.options) == null ? void 0 : e.map((d, p) => a(g, null, [l.type == "checkbox" ? a(te, u(d, {
-        key: p
-      }), null) : a(oe, u(d, {
-        key: p
+      var l;
+      return [(l = e.options) == null ? void 0 : l.map((u, n) => a(g, null, [e.type == "checkbox" ? a(ee, r(u, {
+        key: n
+      }), null) : a(le, r(u, {
+        key: n
       }), {
-        default: () => [d.label]
+        default: () => [u.label]
       })]))];
     }
   });
@@ -181,7 +214,7 @@ const P = h, F = /* @__PURE__ */ r((l, o) => {
   name: "ProFieldCheckbox"
 });
 F.props = {
-  ...N,
+  ...O,
   type: {
     type: String,
     default: "checkbox"
@@ -191,107 +224,107 @@ F.props = {
     default: []
   }
 };
-const xe = F, k = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("update:modelValue", e);
+const _e = F, b = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (l) => {
+      o.emit("update:modelValue", l);
     }
   });
-  return () => a(ae, u({
+  return () => a(te, r({
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
-  }, l), null);
+    "onUpdate:modelValue": (l) => t.value = l
+  }, e), null);
 }, {
   name: "ProFieldRate"
 });
-k.props = y;
-const Ee = k, x = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("update:modelValue", e);
+b.props = v;
+const Ie = b, x = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (l) => {
+      o.emit("update:modelValue", l);
     }
   });
-  return () => a(re, u({
+  return () => a(ae, r({
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
-  }, l), null);
+    "onUpdate:modelValue": (l) => t.value = l
+  }, e), null);
 }, {
   name: "ProFieldSwitch"
 });
-x.props = z;
-const Te = x, E = /* @__PURE__ */ r((l, o) => () => a(ne, l, null), {
+x.props = j;
+const Oe = x, k = /* @__PURE__ */ s((e, o) => () => a(oe, e, null), {
   name: "ProFieldAvatar"
 });
-E.props = G;
-const Ce = E, T = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("update:modelValue", e);
+k.props = M;
+const je = k, T = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (l) => {
+      o.emit("update:modelValue", l);
     }
   });
-  return () => a(ue, u({
+  return () => a(re, r({
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
-  }, l), null);
+    "onUpdate:modelValue": (l) => t.value = l
+  }, e), null);
 }, {
   name: "ProFieldSlider"
 });
-T.props = H;
-const Ue = T, C = /* @__PURE__ */ r((l, o) => () => a(de, l, null), {
+T.props = N;
+const Me = T, E = /* @__PURE__ */ s((e, o) => () => a(ne, e, null), {
   name: "ProFieldImage"
 });
-C.props = M;
-const Re = C, U = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("update:modelValue", e);
+E.props = G;
+const Ne = E, C = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (l) => {
+      o.emit("update:modelValue", l);
     }
   });
-  return () => a(pe, u({
+  return () => a(ue, r({
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
-  }, l), null);
+    "onUpdate:modelValue": (l) => t.value = l
+  }, e), null);
 }, {
   name: "ProFieldColor"
 });
-U.props = W;
-const Ae = U, R = /* @__PURE__ */ r((l, o) => () => a(se, l, null), {
+C.props = z;
+const Ge = C, A = /* @__PURE__ */ s((e, o) => () => a(de, e, null), {
   name: "ProFieldProgress"
 });
-R.props = Y;
-const Be = R, _e = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("update:modelValue", e);
+A.props = H;
+const ze = A, He = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (l) => {
+      o.emit("update:modelValue", l);
     }
   });
-  return () => a(me, u({
+  return () => a(se, r({
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
-  }, l), null);
+    "onUpdate:modelValue": (l) => t.value = l
+  }, e), null);
 }, {
   name: "ProFieldTreeSelect"
-}), Ie = _e, A = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("upTime:modelValue", e);
+}), We = He, U = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (l) => {
+      o.emit("upTime:modelValue", l);
     }
   });
-  return () => a(ie, u({
+  return () => a(pe, r({
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
-  }, l), null);
+    "onUpdate:modelValue": (l) => t.value = l
+  }, e), null);
 }, {
   name: "ProFieldTime"
 });
-A.props = {
-  ...q,
+U.props = {
+  ...W,
   type: {
     type: String,
     default: "time"
@@ -301,7 +334,7 @@ A.props = {
     default: {}
   }
 };
-const V = A, je = {
+const f = U, Ye = {
   format: {
     type: String,
     default: "HH:mm"
@@ -320,7 +353,7 @@ const V = A, je = {
     type: Boolean,
     default: !0
   },
-  size: ce,
+  size: ie,
   placeholder: String,
   start: {
     type: String,
@@ -339,93 +372,91 @@ const V = A, je = {
   name: String,
   prefixIcon: {
     type: [String, Object],
-    default: () => Pe
+    default: () => ce
   },
   clearIcon: {
     type: [String, Object],
-    default: () => Ve
+    default: () => Pe
   },
   style: {
     type: Object,
     default: {}
   }
-}, B = /* @__PURE__ */ r((l, o) => {
-  const t = n({
-    get: () => l.modelValue,
-    set: (e) => {
-      o.emit("upTime:modelValue", e);
+}, R = /* @__PURE__ */ s((e, o) => {
+  const t = d({
+    get: () => e.modelValue,
+    set: (l) => {
+      o.emit("upTime:modelValue", l);
     }
   });
-  return () => a(fe, u({
+  return () => a(me, r({
     modelValue: t.value,
-    "onUpdate:modelValue": (e) => t.value = e
-  }, l), null);
+    "onUpdate:modelValue": (l) => t.value = l
+  }, e), null);
 }, {
   name: "ProFieldTimeSelect"
 });
-B.props = je;
-const Oe = B, c = {
-  text: i,
-  password: i,
-  textarea: i,
-  date: s,
-  dates: s,
-  dateTime: s,
-  dateWeek: s,
-  dateMonth: s,
-  dateYear: s,
-  dateRange: s,
-  dateTimeRange: s,
-  dateMonthRange: s,
-  time: V,
-  timeRange: V,
-  timeSelect: Oe,
-  select: Fe,
-  treeSelect: Ie,
-  checkbox: xe,
-  radio: P,
-  radioButton: P,
-  switch: Te,
-  avatar: Ce,
-  image: Re,
-  rate: Ee,
-  color: Ae,
-  cascader: ke,
-  slider: Ue,
-  progress: Be
-}, f = /* @__PURE__ */ r((l, o) => {
-  const t = n(() => c[l.valueType || "text"]), e = n({
-    get: () => l.modelValue,
-    set: (p) => {
-      o.emit("update:modelValue", p);
+R.props = Ye;
+const qe = R, c = {
+  text: he,
+  password: Se,
+  textarea: Fe,
+  date: be,
+  dates: xe,
+  dateTime: ke,
+  dateWeek: Te,
+  dateMonth: Ee,
+  dateYear: Ce,
+  dateRange: Ae,
+  dateTimeRange: Ue,
+  dateMonthRange: Re,
+  time: f,
+  timeRange: f,
+  timeSelect: qe,
+  select: De,
+  treeSelect: We,
+  checkbox: _e,
+  radio: y,
+  radioButton: y,
+  switch: Oe,
+  avatar: je,
+  image: Ne,
+  rate: Ie,
+  color: Ge,
+  cascader: we,
+  slider: Me,
+  progress: ze
+}, P = /* @__PURE__ */ s((e, o) => {
+  const t = d(() => c[e.valueType || "text"]), l = d({
+    get: () => e.modelValue,
+    set: (n) => {
+      o.emit("update:modelValue", n);
     }
-  }), d = n(() => {
-    var p;
-    const m = (p = l.placeholder) != null ? p : j("", l.valueType || "text");
-    return Array.isArray(m) ? {
-      startPlaceholder: m[0],
-      endPlaceholder: m[1]
+  }), u = d(() => {
+    var n;
+    const i = (n = e.placeholder) != null ? n : V("", e.valueType || "text");
+    return Array.isArray(i) && i.length > 1 ? {
+      startPlaceholder: i[0],
+      endPlaceholder: i[1]
     } : {
-      placeholder: m
+      placeholder: Array.isArray(i) ? i[0] : i
     };
   });
-  return () => a(t.value, u({
-    modelValue: e.value,
-    "onUpdate:modelValue": (p) => e.value = p
-  }, d.value, l.fieldProps, {
-    type: l.valueType
-  }), null);
+  return () => a(t.value, r({
+    modelValue: l.value,
+    "onUpdate:modelValue": (n) => l.value = n
+  }, e.fieldProps, u.value), null);
 }, {
   name: "ProField"
 });
-f.props = be;
-for (const l in c) {
-  const o = l.charAt(0).toUpperCase() + l.slice(1), t = c[l];
-  f[o] = (e) => a(t, u(e, {
-    type: l
+P.props = ve;
+for (const e in c) {
+  const o = e.charAt(0).toUpperCase() + e.slice(1), t = c[e];
+  P[o] = (l) => a(t, r(l, {
+    type: e
   }), null);
 }
-const we = I(f), De = {
+const $e = D(P), Je = {
   "@element-plus/pro-button": "0.0.1",
   "@element-plus/pro-center-container": "0.0.1",
   "@element-plus/pro-components": "0.0.1-test-01-test-01",
@@ -433,31 +464,43 @@ const we = I(f), De = {
   "@element-plus/pro-table": "0.0.1",
   "@element-plus/pro-tabs": "0.0.1",
   "@element-plus/pro-utils": "1.0.0"
-}, Ne = (l) => {
+}, Ke = (e) => {
   const o = (t) => {
-    for (const e in l)
-      t.component(e, l[e]);
+    for (const l in e)
+      t.component(l, e[l]);
   };
   return {
-    version: De["@element-plus/pro-components"],
+    version: Je["@element-plus/pro-components"],
     install: o
   };
-}, ze = Ne({
-  ProTabs: _,
-  ProField: we,
-  ProTable: ge,
-  ProButton: ye,
-  ProSearchBar: ve,
-  ProCenterContainer: Se
-}), Qe = ze.install;
+}, Le = Ke({
+  ProTabs: B,
+  ProField: $e,
+  ProTable: ye,
+  ProButton: fe,
+  ProSearchBar: ge,
+  ProCenterContainer: Ve
+}), nl = Le.install;
 export {
-  we as ProField,
-  xe as ProFieldCheckbox,
-  P as ProFieldRadio,
-  Fe as ProFieldSelect,
-  Ie as ProFieldTreeSelect,
-  ze as default,
-  Qe as install,
-  be as proFieldProps,
-  De as version
+  $e as ProField,
+  _e as ProFieldCheckbox,
+  be as ProFieldDate,
+  Ee as ProFieldDateMonth,
+  Re as ProFieldDateMonthRange,
+  Ae as ProFieldDateRange,
+  ke as ProFieldDateTime,
+  Ue as ProFieldDateTimeRange,
+  Te as ProFieldDateWeek,
+  Ce as ProFieldDateYear,
+  xe as ProFieldDates,
+  Se as ProFieldPassword,
+  y as ProFieldRadio,
+  De as ProFieldSelect,
+  he as ProFieldText,
+  Fe as ProFieldTextarea,
+  We as ProFieldTreeSelect,
+  Le as default,
+  nl as install,
+  ve as proFieldProps,
+  Je as version
 };

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:59:48
- * @LastEditTime: 2024-04-07 00:17:44
+ * @LastEditTime: 2024-04-10 03:14:12
  * @FilePath: \element-plus-pro\packages\field\src\typing.ts
  */
 import components from './components';
@@ -22,7 +22,7 @@ export const proFieldProps = {
 		default: 'text',
 	},
 	placeholder: {
-		type: [String, Array as unknown as PropType<[string, string]>],
+		type: [String, Array as unknown as PropType<[string] | [string, string]>],
 	},
 	fieldProps: {
 		type: Object as PropType<Record<string, unknown>>,
