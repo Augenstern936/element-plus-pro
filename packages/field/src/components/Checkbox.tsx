@@ -2,18 +2,18 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-04 22:46:28
+ * @LastEditTime: 2024-04-10 18:24:45
  * @FilePath: \element-plus-pro\packages\field\src\components\Checkbox.tsx
  */
-import 'element-plus/theme-chalk/src/checkbox.scss';
-import 'element-plus/theme-chalk/src/checkbox-group.scss';
-import 'element-plus/theme-chalk/src/checkbox-button.scss';
-import { checkboxProps, ElCheckboxGroup, ElCheckbox, ElCheckboxButton } from 'element-plus';
-import type { CheckboxProps } from 'element-plus';
-import { FunctionalComponent, defineComponent, computed, CSSProperties, PropType } from 'vue';
+import type { CheckboxProps } from "element-plus";
+import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup, checkboxProps } from "element-plus";
+import "element-plus/theme-chalk/src/checkbox-button.scss";
+import "element-plus/theme-chalk/src/checkbox-group.scss";
+import "element-plus/theme-chalk/src/checkbox.scss";
+import { CSSProperties, FunctionalComponent, PropType, computed, defineComponent } from "vue";
 
 export interface ProFieldCheckboxProps extends CheckboxProps {
-	type: 'checkbox' | 'checkboxButton';
+	type: "checkbox" | "checkboxButton";
 	options?: { label?: string; value: string | number | boolean; [x: string]: any }[];
 	style?: CSSProperties;
 }
@@ -25,7 +25,7 @@ const ProFieldCheckbox = defineComponent<ProFieldCheckboxProps>(
 				return props.modelValue;
 			},
 			set: (value) => {
-				ctx.emit('update:modelValue', value);
+				ctx.emit("update:modelValue", value);
 			},
 		});
 
@@ -33,7 +33,7 @@ const ProFieldCheckbox = defineComponent<ProFieldCheckboxProps>(
 			<ElCheckboxGroup v-model={state.value}>
 				{props.options?.map((option, i) => (
 					<>
-						{props.type == 'checkbox' ? (
+						{props.type == "checkbox" ? (
 							<ElCheckbox {...option} key={i} />
 						) : (
 							<ElCheckboxButton {...option} key={i}>
@@ -46,15 +46,15 @@ const ProFieldCheckbox = defineComponent<ProFieldCheckboxProps>(
 		);
 	},
 	{
-		name: 'ProFieldCheckbox',
+		name: "ProFieldCheckbox",
 	}
-) as FunctionalComponent<ProFieldCheckboxProps>;
+) as unknown as FunctionalComponent<ProFieldCheckboxProps>;
 
 ProFieldCheckbox.props = {
 	...checkboxProps,
 	type: {
-		type: String as PropType<'checkbox' | 'checkboxButton'>,
-		default: 'checkbox',
+		type: String as PropType<"checkbox" | "checkboxButton">,
+		default: "checkbox",
 	},
 	options: {
 		type: Array,

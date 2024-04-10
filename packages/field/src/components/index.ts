@@ -2,52 +2,55 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-04-10 01:36:17
+ * @LastEditTime: 2024-04-10 18:16:26
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
-import { ProFieldText, ProFieldPassword, ProFieldTextarea } from './Input';
+import Avatar from "./Avatar";
+import Cascader from "./Cascader";
+import ProFieldCheckbox from "./Checkbox";
+import Color from "./Color";
 import {
 	ProFieldDate,
-	ProFieldDates,
-	ProFieldDateTime,
-	ProFieldDateWeek,
 	ProFieldDateMonth,
-	ProFieldDateYear,
-	ProFieldDateRange,
-	ProFieldDateTimeRange,
 	ProFieldDateMonthRange,
-} from './Date';
-import ProFieldSelect from './Select';
-import Cascader from './Cascader';
-import ProFieldRadio from './Radio';
-import ProFieldCheckbox from './Checkbox';
-import Rate from './Rate';
-import Switch from './Switch';
-import Avatar from './Avatar';
-import Slider from './Slider';
-import Image from './Image';
-import Color from './Color';
-import Progress from './Progress';
-import ProFieldTreeSelect from './TreeSelect';
-import TimePicker from './TimePicker';
-import TimeSelect from './TimeSelect';
+	ProFieldDateRange,
+	ProFieldDateTime,
+	ProFieldDateTimeRange,
+	ProFieldDateWeek,
+	ProFieldDateYear,
+	ProFieldDates,
+} from "./Date";
+import Image from "./Image";
+import { ProFieldPassword, ProFieldText, ProFieldTextarea } from "./Input";
+import Progress from "./Progress";
+import ProFieldRadio from "./Radio";
+import Rate from "./Rate";
+import ProFieldSelect from "./Select";
+import Slider from "./Slider";
+import Switch from "./Switch";
+import { ProFieldTime, ProFieldTimeRange } from "./TimePicker";
+import ProFieldTimeSelect from "./TimeSelect";
+import ProFieldTreeSelect from "./TreeSelect";
 
 export {
-	ProFieldText,
-	ProFieldPassword,
-	ProFieldTextarea,
-	ProFieldDate,
-	ProFieldDates,
-	ProFieldDateTime,
-	ProFieldDateWeek,
-	ProFieldDateMonth,
-	ProFieldDateYear,
-	ProFieldDateRange,
-	ProFieldDateTimeRange,
-	ProFieldDateMonthRange,
-	ProFieldRadio,
 	ProFieldCheckbox,
+	ProFieldDate,
+	ProFieldDateMonth,
+	ProFieldDateMonthRange,
+	ProFieldDateRange,
+	ProFieldDateTime,
+	ProFieldDateTimeRange,
+	ProFieldDateWeek,
+	ProFieldDateYear,
+	ProFieldDates,
+	ProFieldPassword,
+	ProFieldRadio,
 	ProFieldSelect,
+	ProFieldText,
+	ProFieldTextarea,
+	ProFieldTime,
+	ProFieldTimeRange,
+	ProFieldTimeSelect,
 	ProFieldTreeSelect,
 };
 
@@ -64,9 +67,9 @@ export default {
 	dateRange: ProFieldDateRange,
 	dateTimeRange: ProFieldDateTimeRange,
 	dateMonthRange: ProFieldDateMonthRange,
-	time: TimePicker,
-	timeRange: TimePicker,
-	timeSelect: TimeSelect,
+	time: ProFieldTime,
+	timeRange: ProFieldTimeRange,
+	timeSelect: ProFieldTimeSelect,
 	select: ProFieldSelect,
 	treeSelect: ProFieldTreeSelect,
 	checkbox: ProFieldCheckbox,

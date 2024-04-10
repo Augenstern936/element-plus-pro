@@ -2,25 +2,25 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-10 03:13:48
+ * @LastEditTime: 2024-04-10 18:22:34
  * @FilePath: \element-plus-pro\packages\field\src\components\Date\index.tsx
  */
-import 'element-plus/theme-chalk/src/date-picker.scss';
-import { datePickerProps, DatePickerProps, ElDatePicker } from 'element-plus';
-import { CSSProperties, FunctionalComponent, PropType, computed, defineComponent } from 'vue';
-import { formatPlaceholder } from '@element-plus/pro-utils';
+import { formatPlaceholder } from "@element-plus/pro-utils";
+import { datePickerProps, DatePickerProps, ElDatePicker } from "element-plus";
+import "element-plus/theme-chalk/src/date-picker.scss";
+import { computed, CSSProperties, defineComponent, FunctionalComponent, PropType } from "vue";
 import {
 	BaseDateProps,
+	ProFieldDateMonthProps,
+	ProFieldDateMonthRangeProps,
 	ProFieldDateProps,
-	ProFieldDatesProps,
 	ProFieldDateRangeProps,
+	ProFieldDatesProps,
 	ProFieldDateTimeProps,
 	ProFieldDateTimeRangeProps,
 	ProFieldDateWeekProps,
-	ProFieldDateMonthProps,
-	ProFieldDateMonthRangeProps,
 	ProFieldDateYearProps,
-} from './typing';
+} from "./typing";
 
 const BaseDate = defineComponent<BaseDateProps>((props, ctx) => {
 	const state = computed({
@@ -28,13 +28,13 @@ const BaseDate = defineComponent<BaseDateProps>((props, ctx) => {
 			return props.modelValue;
 		},
 		set: (value) => {
-			ctx.emit('update:modelValue', value);
+			ctx.emit("update:modelValue", value);
 		},
 	});
 
 	const placeholder = computed(() => {
 		const value =
-			props.placeholder ?? (formatPlaceholder('', (props.type as any) || 'text') as string | [string, string]);
+			props.placeholder ?? (formatPlaceholder("", (props.type as any) || "text") as string | [string, string]);
 
 		if (Array.isArray(value) && value.length > 1) {
 			return {
@@ -49,7 +49,7 @@ const BaseDate = defineComponent<BaseDateProps>((props, ctx) => {
 	});
 
 	return () => <ElDatePicker v-model={state.value} {...(props as DatePickerProps)} {...placeholder.value} />;
-}) as FunctionalComponent<BaseDateProps>;
+}) as unknown as FunctionalComponent<BaseDateProps>;
 
 BaseDate.props = {
 	...datePickerProps,
@@ -64,37 +64,37 @@ BaseDate.props = {
 } as any;
 
 export const ProFieldDate = (props: ProFieldDateProps) => {
-	return <BaseDate {...props} type='date' />;
+	return <BaseDate {...props} type="date" />;
 };
 
 export const ProFieldDates = (props: ProFieldDatesProps) => {
-	return <BaseDate {...props} type='dates' />;
+	return <BaseDate {...props} type="dates" />;
 };
 
 export const ProFieldDateTime = (props: ProFieldDateTimeProps) => {
-	return <BaseDate {...props} type='datetime' />;
+	return <BaseDate {...props} type="datetime" />;
 };
 
 export const ProFieldDateWeek = (props: ProFieldDateWeekProps) => {
-	return <BaseDate {...props} type='week' />;
+	return <BaseDate {...props} type="week" />;
 };
 
 export const ProFieldDateMonth = (props: ProFieldDateMonthProps) => {
-	return <BaseDate {...props} type='month' />;
+	return <BaseDate {...props} type="month" />;
 };
 
 export const ProFieldDateYear = (props: ProFieldDateYearProps) => {
-	return <BaseDate {...props} type='year' />;
+	return <BaseDate {...props} type="year" />;
 };
 
 export const ProFieldDateRange = (props: ProFieldDateRangeProps) => {
-	return <BaseDate {...props} type='daterange' />;
+	return <BaseDate {...props} type="daterange" />;
 };
 
 export const ProFieldDateTimeRange = (props: ProFieldDateTimeRangeProps) => {
-	return <BaseDate {...props} type='datetimerange' />;
+	return <BaseDate {...props} type="datetimerange" />;
 };
 
 export const ProFieldDateMonthRange = (props: ProFieldDateMonthRangeProps) => {
-	return <BaseDate {...props} type='monthrange' />;
+	return <BaseDate {...props} type="monthrange" />;
 };

@@ -2,18 +2,18 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:50:46
- * @LastEditTime: 2024-04-04 14:58:11
+ * @LastEditTime: 2024-04-10 18:26:35
  * @FilePath: \element-plus-pro\packages\field\src\components\Radio.tsx
  */
-import 'element-plus/theme-chalk/src/radio.scss';
-import 'element-plus/theme-chalk/src/radio-button.scss';
-import 'element-plus/theme-chalk/src/radio-group.scss';
-import { radioProps, ElRadio, ElRadioButton, ElRadioGroup } from 'element-plus';
-import type { RadioProps } from 'element-plus';
-import { FunctionalComponent, PropType, defineComponent, computed, CSSProperties } from 'vue';
+import type { RadioProps } from "element-plus";
+import { ElRadio, ElRadioButton, ElRadioGroup, radioProps } from "element-plus";
+import "element-plus/theme-chalk/src/radio-button.scss";
+import "element-plus/theme-chalk/src/radio-group.scss";
+import "element-plus/theme-chalk/src/radio.scss";
+import { CSSProperties, FunctionalComponent, PropType, computed, defineComponent } from "vue";
 
 export interface ProFieldRadioProps extends RadioProps {
-	type: 'radio' | 'radioButton';
+	type: "radio" | "radioButton";
 	options?: { label?: string; value: string | number | boolean; [x: string]: any }[];
 	style?: CSSProperties;
 }
@@ -25,7 +25,7 @@ const ProFieldRadio = defineComponent<ProFieldRadioProps>(
 				return props.modelValue;
 			},
 			set: (value) => {
-				ctx.emit('update:modelValue', value);
+				ctx.emit("update:modelValue", value);
 			},
 		});
 
@@ -33,7 +33,7 @@ const ProFieldRadio = defineComponent<ProFieldRadioProps>(
 			<ElRadioGroup v-model={state.value}>
 				{props.options?.map((option, i) => (
 					<>
-						{option.type == 'radio' ? (
+						{option.type == "radio" ? (
 							<ElRadio {...option} key={i}>
 								{option.label}
 							</ElRadio>
@@ -48,15 +48,15 @@ const ProFieldRadio = defineComponent<ProFieldRadioProps>(
 		);
 	},
 	{
-		name: 'ProFieldRadio',
+		name: "ProFieldRadio",
 	}
-) as FunctionalComponent<ProFieldRadioProps>;
+) as unknown as FunctionalComponent<ProFieldRadioProps>;
 
 ProFieldRadio.props = {
 	...radioProps,
 	type: {
-		type: String as PropType<'radio' | 'radioButton'>,
-		default: 'radio',
+		type: String as PropType<"radio" | "radioButton">,
+		default: "radio",
 	},
 	options: {
 		type: Array,

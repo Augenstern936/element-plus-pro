@@ -5,10 +5,10 @@
  * @LastEditTime: 2024-04-04 23:41:23
  * @FilePath: \element-plus-pro\packages\field\src\components\Cascader.tsx
  */
-import 'element-plus/theme-chalk/src/cascader.scss';
-import { cascaderProps, ElCascader } from 'element-plus';
-import type { CascaderProps } from 'element-plus';
-import { CSSProperties, FunctionalComponent, computed, defineComponent } from 'vue';
+import type { CascaderProps } from "element-plus";
+import { cascaderProps, ElCascader } from "element-plus";
+import "element-plus/theme-chalk/src/cascader.scss";
+import { computed, CSSProperties, defineComponent, FunctionalComponent } from "vue";
 
 export interface ProFieldCascaderProps extends CascaderProps {
 	modelValue?: string | number;
@@ -22,16 +22,16 @@ const ProFieldCascader = defineComponent<ProFieldCascaderProps>(
 				return props.modelValue;
 			},
 			set: (value) => {
-				ctx.emit('update:modelValue', value);
+				ctx.emit("update:modelValue", value);
 			},
 		});
 
 		return () => <ElCascader v-model={state.value} {...props} />;
 	},
 	{
-		name: 'ProFieldCascader',
+		name: "ProFieldCascader",
 	}
-) as FunctionalComponent<ProFieldCascaderProps>;
+) as unknown as FunctionalComponent<ProFieldCascaderProps>;
 
 ProFieldCascader.props = {
 	...cascaderProps,

@@ -2,18 +2,18 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-04-10 03:01:48
+ * @LastEditTime: 2024-04-10 18:27:07
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
-import { FunctionalComponent, defineComponent, computed } from 'vue';
-import { withInstall, formatPlaceholder } from '@element-plus/pro-utils';
-import { proFieldProps, ProFieldProps } from './typing';
-import components from './components';
+import { formatPlaceholder, withInstall } from "@element-plus/pro-utils";
+import { FunctionalComponent, computed, defineComponent } from "vue";
+import components from "./components";
+import { ProFieldProps, proFieldProps } from "./typing";
 
 const ProField = defineComponent<ProFieldProps>(
 	(props, ctx) => {
 		const Field = computed(() => {
-			return components[props.valueType || 'text'] as FunctionalComponent;
+			return components[props.valueType || "text"] as FunctionalComponent;
 		});
 
 		const model = computed({
@@ -21,14 +21,14 @@ const ProField = defineComponent<ProFieldProps>(
 				return props.modelValue;
 			},
 			set: (value) => {
-				ctx.emit('update:modelValue', value);
+				ctx.emit("update:modelValue", value);
 			},
 		});
 
 		const placeholder = computed(() => {
 			const value =
 				props.placeholder ??
-				(formatPlaceholder('', (props.valueType as any) || 'text') as string | [string, string]);
+				(formatPlaceholder("", (props.valueType as any) || "text") as string | [string, string]);
 
 			if (Array.isArray(value) && value.length > 1) {
 				return {
@@ -45,9 +45,9 @@ const ProField = defineComponent<ProFieldProps>(
 		return () => <Field.value v-model={model.value} {...props.fieldProps} {...placeholder.value} />;
 	},
 	{
-		name: 'ProField',
+		name: "ProField",
 	}
-) as FunctionalComponent<ProFieldProps>;
+) as unknown as FunctionalComponent<ProFieldProps>;
 
 ProField.props = proFieldProps as any;
 
