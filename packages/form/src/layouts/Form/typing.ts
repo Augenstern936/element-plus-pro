@@ -2,11 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 23:05:53
- * @LastEditTime: 2024-04-03 12:31:38
- * @FilePath: \element-plus-pro\packages\form\src\typing.ts
+ * @LastEditTime: 2024-04-11 22:56:05
+ * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\typing.ts
  */
 import type { FormProps, FormItemProps, FormItemRule } from 'element-plus';
-import components from './components';
+import components from '../../components';
 
 export interface ProFormProps extends FormProps {
 	// 绑定的数据
