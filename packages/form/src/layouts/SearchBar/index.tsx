@@ -2,14 +2,14 @@
  * @Description:;
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:23:41
- * @LastEditTime: 2024-04-11 22:46:07
+ * @LastEditTime: 2024-04-13 23:22:17
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\index.tsx
  */
 import { FunctionalComponent, defineComponent } from 'vue';
 import { withInstall } from '@element-plus/pro-utils';
 import { proSearchBarProps, ProSearchBarProps } from './typing';
 
-const ProSearchBar = defineComponent<ProSearchBarProps>(
+const SearchBar = defineComponent<ProSearchBarProps>(
 	(props, ctx) => {
 		return () => <div>111</div>;
 	},
@@ -18,8 +18,8 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 	}
 ) as FunctionalComponent<ProSearchBarProps>;
 
-ProSearchBar.props = proSearchBarProps;
+SearchBar.props = proSearchBarProps;
 
 export * from './typing';
 
-export default withInstall(ProSearchBar);
+export const ProSearchBar = withInstall(SearchBar);
