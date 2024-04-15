@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-04-15 17:28:33
+ * @LastEditTime: 2024-04-16 00:01:20
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
-import Avatar from "./Avatart/Avatar";
-import Cascader from "./Cascader/Cascader";
-import ProFieldCheckbox from "./Checkbox";
-import Color from "./Color/Color";
+import ProFieldAvatar from './Avatar';
+import ProFieldCascader from './Cascader';
+import ProFieldCheckbox from './Checkbox';
+import ProFieldColor from './Color';
 import {
 	ProFieldDate,
 	ProFieldDateMonth,
@@ -19,32 +19,32 @@ import {
 	ProFieldDateWeek,
 	ProFieldDateYear,
 	ProFieldDates,
-} from "./Date";
-import Image from "./Image/Image";
-import { ProFieldPassword, ProFieldText, ProFieldTextarea } from "./Input";
-import Progress from "./Progress/Progress";
-import ProFieldRadio from "./Radio/Radio";
-import Rate from "./Rate/Rate";
-import ProFieldSelect from "./Select/Select";
-import Slider from "./Slider/Slider";
-import Switch from "./Switch/Switch";
-import { ProFieldTime, ProFieldTimeRange } from "./TimePicker";
-import ProFieldTimeSelect from "./TimeSelect";
-import ProFieldTreeSelect from "./TreeSelect";
+} from './Date';
+import ProFieldImage from './Image';
+import { ProFieldPassword, ProFieldText, ProFieldTextarea } from './Input';
+import ProFieldProgress from './Progress';
+import ProFieldRadio from './Radio';
+import ProFieldRate from './Rate';
+import ProFieldSelect from './Select';
+import ProFieldSlider from './Slider';
+import ProFieldSwitch from './Switch';
+import { ProFieldTime, ProFieldTimeRange } from './TimePicker';
+import ProFieldTimeSelect from './TimeSelect';
+import ProFieldTreeSelect from './TreeSelect';
 
-export * from "./Avatar";
-export * from "./Cascader";
-export * from "./Checkbox";
-export * from "./Color";
-export * from "./Image";
-export * from "./Progress";
-export * from "./Radio";
-export * from "./Rate";
-// export * from "./Select";
-export * from "./Slider";
-export * from "./Switch";
-export * from "./TimeSelect";
-export * from "./TreeSelect";
+// export * from './Avatar';
+// export * from './Cascader';
+// export * from './Checkbox';
+// export * from './Color';
+// export * from './Image';
+// export * from './Progress';
+// export * from './Radio';
+// export * from './Rate';
+// // export * from './Select';
+// export * from './Slider';
+// export * from './Switch';
+// export * from './TimeSelect';
+// export * from './TreeSelect';
 
 export default {
 	text: ProFieldText,
@@ -67,12 +67,12 @@ export default {
 	checkbox: ProFieldCheckbox,
 	radio: ProFieldRadio,
 	radioButton: ProFieldRadio,
-	switch: Switch,
-	avatar: Avatar,
-	image: Image,
-	rate: Rate,
-	color: Color,
-	cascader: Cascader,
-	slider: Slider,
-	progress: Progress,
+	switch: ProFieldSwitch,
+	avatar: ProFieldAvatar,
+	image: ProFieldImage,
+	rate: ProFieldRate,
+	color: ProFieldColor,
+	cascader: ProFieldCascader,
+	slider: ProFieldSlider,
+	progress: ProFieldProgress,
 };

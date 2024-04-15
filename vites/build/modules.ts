@@ -32,7 +32,9 @@ export const buildModules = async () => {
 
 	const componentsPath = `src/${componentName}${componentSuffix}`;
 
-	const entry = baseDirName === 'components' ? 'src/index.ts' : ['src/index.ts', componentsPath];
+	const components = `src/components`;
+
+	const entry = baseDirName === 'components' ? 'src/index.ts' : ['src/index.ts', componentsPath, components];
 
 	return await build({
 		build: {

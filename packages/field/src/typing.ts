@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:59:48
- * @LastEditTime: 2024-04-14 20:22:52
+ * @LastEditTime: 2024-04-15 23:06:36
  * @FilePath: \element-plus-pro\packages\field\src\typing.ts
  */
 import components from './components';
