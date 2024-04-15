@@ -1,5 +1,6 @@
-import components from './components';
-import type { ExtractPropTypes, PropType } from 'vue';
+import { ExtractPropTypes } from 'vue';
+import { default as components } from './components';
+
 export declare const proFieldProps: {
     modelValue: {
         type: (StringConstructor | NumberConstructor | BooleanConstructor | ArrayConstructor)[];
@@ -10,11 +11,11 @@ export declare const proFieldProps: {
         default: string;
     };
     valueType: {
-        type: PropType<"text" | "password" | "textarea" | "date" | "dates" | "dateTime" | "dateWeek" | "dateMonth" | "dateYear" | "dateRange" | "dateTimeRange" | "dateMonthRange" | "time" | "timeRange" | "timeSelect" | "select" | "treeSelect" | "checkbox" | "radio" | "radioButton" | "switch" | "avatar" | "image" | "rate" | "color" | "cascader" | "slider" | "progress">;
+        type: PropType<string | number | symbol>;
         default: string;
     };
     placeholder: {
-        type: (StringConstructor | PropType<[string] | [string, string]>)[];
+        type: any[];
     };
     fieldProps: {
         type: PropType<Record<string, unknown>>;

@@ -5,12 +5,12 @@
  * @LastEditTime: 2024-04-14 20:52:18
  * @FilePath: \element-plus-pro\packages\field\src\components\Checkbox\index.tsx
  */
-import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup } from 'element-plus';
-import 'element-plus/theme-chalk/src/checkbox-button.scss';
-import 'element-plus/theme-chalk/src/checkbox-group.scss';
-import 'element-plus/theme-chalk/src/checkbox.scss';
-import { FunctionalComponent, computed, defineComponent } from 'vue';
-import { proFieldCheckboxProps, ProFieldCheckboxProps } from './typing';
+import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup } from "element-plus";
+import "element-plus/theme-chalk/src/checkbox-button.scss";
+import "element-plus/theme-chalk/src/checkbox-group.scss";
+import "element-plus/theme-chalk/src/checkbox.scss";
+import { FunctionalComponent, computed, defineComponent } from "vue";
+import { ProFieldCheckboxProps, proFieldCheckboxProps } from "./typing";
 
 const ProFieldCheckbox = defineComponent<ProFieldCheckboxProps>(
 	(props, ctx) => {
@@ -19,7 +19,7 @@ const ProFieldCheckbox = defineComponent<ProFieldCheckboxProps>(
 				return props.modelValue;
 			},
 			set: (value) => {
-				ctx.emit('update:modelValue', value);
+				ctx.emit("update:modelValue", value);
 			},
 		});
 
@@ -27,7 +27,7 @@ const ProFieldCheckbox = defineComponent<ProFieldCheckboxProps>(
 			<ElCheckboxGroup v-model={state.value}>
 				{props.options?.map((option, i) => (
 					<>
-						{props.type == 'checkbox' ? (
+						{props.type == "checkbox" ? (
 							<ElCheckbox {...option} key={i} />
 						) : (
 							<ElCheckboxButton {...option} key={i}>
@@ -40,13 +40,13 @@ const ProFieldCheckbox = defineComponent<ProFieldCheckboxProps>(
 		);
 	},
 	{
-		name: 'ProFieldCheckbox',
+		name: "ProFieldCheckbox",
 	}
 ) as unknown as FunctionalComponent<ProFieldCheckboxProps>;
 
 ProFieldCheckbox.props = proFieldCheckboxProps as any;
 
-export * from './typing';
+export * from "./typing";
 
 export { ProFieldCheckbox };
 

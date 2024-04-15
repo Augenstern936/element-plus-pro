@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-10 18:23:23
+ * @LastEditTime: 2024-04-15 14:41:19
  * @FilePath: \element-plus-pro\packages\field\src\components\TimeSelect.tsx
  */
 import { ElTimeSelect } from "element-plus";
@@ -30,5 +30,9 @@ const ProFieldTimeSelect = defineComponent<ProFieldTimeSelectProps>(
 ) as unknown as FunctionalComponent<ProFieldTimeSelectProps>;
 
 ProFieldTimeSelect.props = proFieldTimeSelectProps as any;
+
+export * from "./typing";
+
+export { ProFieldTimeSelect };
 
 export default ProFieldTimeSelect;

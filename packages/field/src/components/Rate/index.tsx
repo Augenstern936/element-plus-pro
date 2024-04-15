@@ -2,17 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-10 18:26:39
+ * @LastEditTime: 2024-04-15 15:59:46
  * @FilePath: \element-plus-pro\packages\field\src\components\Rate.tsx
  */
-import type { RateProps } from "element-plus";
-import { ElRate, radioProps } from "element-plus";
+import { ElRate } from "element-plus";
 import "element-plus/theme-chalk/src/rate.scss";
-import { CSSProperties, FunctionalComponent, computed, defineComponent } from "vue";
-
-export interface ProFieldRateProps extends RateProps {
-	style?: CSSProperties;
-}
+import { FunctionalComponent, computed, defineComponent } from "vue";
+import { ProFieldRateProps, proFieldRateProps } from "./typing";
 
 const ProFieldRate = defineComponent<ProFieldRateProps>(
 	(props, ctx) => {
@@ -32,6 +28,10 @@ const ProFieldRate = defineComponent<ProFieldRateProps>(
 	}
 ) as unknown as FunctionalComponent<ProFieldRateProps>;
 
-ProFieldRate.props = radioProps as any;
+ProFieldRate.props = proFieldRateProps;
+
+export * from "./typing";
+
+export { ProFieldRate };
 
 export default ProFieldRate;

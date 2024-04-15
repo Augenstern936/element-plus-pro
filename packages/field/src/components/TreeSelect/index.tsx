@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-10 18:23:09
+ * @LastEditTime: 2024-04-15 14:41:32
  * @FilePath: \element-plus-pro\packages\field\src\components\TreeSelect.tsx
  */
 import { ElTreeSelect } from "element-plus";
@@ -27,5 +27,9 @@ const ProFieldTreeSelect = defineComponent<ProFieldTreeSelectProps>(
 		name: "ProFieldTreeSelect",
 	}
 ) as unknown as FunctionalComponent<ProFieldTreeSelectProps>;
+
+export * from "./typing";
+
+export { ProFieldTreeSelect };
 
 export default ProFieldTreeSelect;

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-04-10 18:16:26
+ * @LastEditTime: 2024-04-15 17:28:33
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
 import Avatar from "./Avatar";
@@ -32,27 +32,19 @@ import { ProFieldTime, ProFieldTimeRange } from "./TimePicker";
 import ProFieldTimeSelect from "./TimeSelect";
 import ProFieldTreeSelect from "./TreeSelect";
 
-export {
-	ProFieldCheckbox,
-	ProFieldDate,
-	ProFieldDateMonth,
-	ProFieldDateMonthRange,
-	ProFieldDateRange,
-	ProFieldDateTime,
-	ProFieldDateTimeRange,
-	ProFieldDateWeek,
-	ProFieldDateYear,
-	ProFieldDates,
-	ProFieldPassword,
-	ProFieldRadio,
-	ProFieldSelect,
-	ProFieldText,
-	ProFieldTextarea,
-	ProFieldTime,
-	ProFieldTimeRange,
-	ProFieldTimeSelect,
-	ProFieldTreeSelect,
-};
+export * from "./Avatar";
+export * from "./Cascader";
+export * from "./Checkbox";
+export * from "./Color";
+export * from "./Image";
+export * from "./Progress";
+export * from "./Radio";
+export * from "./Rate";
+// export * from "./Select";
+export * from "./Slider";
+export * from "./Switch";
+export * from "./TimeSelect";
+export * from "./TreeSelect";
 
 export default {
 	text: ProFieldText,

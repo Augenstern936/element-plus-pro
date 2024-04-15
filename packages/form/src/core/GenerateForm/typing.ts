@@ -1,6 +1,6 @@
+import type { ValueType } from '@element-plus/pro-field';
 import { formProps as elFormProps } from 'element-plus';
 import { ExtractPropTypes, PropType } from 'vue';
-import type { ValueType } from '@element-plus/pro-field';
 
 export const formProps = {
 	...elFormProps,
