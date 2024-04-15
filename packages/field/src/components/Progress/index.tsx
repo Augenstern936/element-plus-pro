@@ -2,17 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-10 18:26:31
+ * @LastEditTime: 2024-04-15 15:50:20
  * @FilePath: \element-plus-pro\packages\field\src\components\Progress.tsx
  */
-import type { ProgressProps } from "element-plus";
-import { ElProgress, progressProps } from "element-plus";
+import { ElProgress } from "element-plus";
 import "element-plus/theme-chalk/src/progress.scss";
-import { CSSProperties, FunctionalComponent, defineComponent } from "vue";
-
-export interface ProFieldProgressProps extends ProgressProps {
-	style?: CSSProperties;
-}
+import { FunctionalComponent, defineComponent } from "vue";
+import { ProFieldProgressProps, proFieldProgressProps } from "./typing";
 
 const ProFieldProgress = defineComponent<ProFieldProgressProps>(
 	(props) => {
@@ -23,6 +19,10 @@ const ProFieldProgress = defineComponent<ProFieldProgressProps>(
 	}
 ) as unknown as FunctionalComponent<ProFieldProgressProps>;
 
-ProFieldProgress.props = progressProps;
+ProFieldProgress.props = proFieldProgressProps;
+
+export * from "./typing";
+
+export { ProFieldProgress };
 
 export default ProFieldProgress;

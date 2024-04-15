@@ -2,18 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-04 23:41:23
+ * @LastEditTime: 2024-04-15 14:58:23
  * @FilePath: \element-plus-pro\packages\field\src\components\Cascader.tsx
  */
-import type { CascaderProps } from "element-plus";
-import { cascaderProps, ElCascader } from "element-plus";
+import { ElCascader } from "element-plus";
 import "element-plus/theme-chalk/src/cascader.scss";
-import { computed, CSSProperties, defineComponent, FunctionalComponent } from "vue";
-
-export interface ProFieldCascaderProps extends CascaderProps {
-	modelValue?: string | number;
-	style?: CSSProperties;
-}
+import { computed, defineComponent, FunctionalComponent } from "vue";
+import { proFieldCascaderProps, ProFieldCascaderProps } from "./typing";
 
 const ProFieldCascader = defineComponent<ProFieldCascaderProps>(
 	(props, ctx) => {
@@ -33,11 +28,10 @@ const ProFieldCascader = defineComponent<ProFieldCascaderProps>(
 	}
 ) as unknown as FunctionalComponent<ProFieldCascaderProps>;
 
-ProFieldCascader.props = {
-	...cascaderProps,
-	modelValue: {
-		type: [String, Number],
-	},
-} as any;
+ProFieldCascader.props = proFieldCascaderProps;
+
+export * from "./typing";
+
+export { ProFieldCascader };
 
 export default ProFieldCascader;

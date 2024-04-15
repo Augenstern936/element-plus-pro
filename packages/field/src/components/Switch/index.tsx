@@ -2,17 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-14 19:36:20
+ * @LastEditTime: 2024-04-15 16:10:53
  * @FilePath: \element-plus-pro\packages\field\src\components\Switch.tsx
  */
-import type { SwitchProps } from 'element-plus';
-import { ElSwitch, switchProps } from 'element-plus';
-import 'element-plus/theme-chalk/src/switch.scss';
-import { CSSProperties, FunctionalComponent, computed, defineComponent } from 'vue';
-
-export interface ProFieldSwitchProps extends SwitchProps {
-	style?: CSSProperties;
-}
+import { ElSwitch } from "element-plus";
+import "element-plus/theme-chalk/src/switch.scss";
+import { FunctionalComponent, computed, defineComponent } from "vue";
+import { ProFieldSwitchProps, proFieldSwitchProps } from "./typing";
 
 const ProFieldSwitch = defineComponent<ProFieldSwitchProps>(
 	(props, ctx) => {
@@ -21,17 +17,21 @@ const ProFieldSwitch = defineComponent<ProFieldSwitchProps>(
 				return props.modelValue;
 			},
 			set: (value) => {
-				ctx.emit('update:modelValue', value);
+				ctx.emit("update:modelValue", value);
 			},
 		});
 
 		return () => <ElSwitch v-model={state.value} {...props} />;
 	},
 	{
-		name: 'ProFieldSwitch',
+		name: "ProFieldSwitch",
 	}
 ) as unknown as FunctionalComponent<ProFieldSwitchProps>;
 
-ProFieldSwitch.props = switchProps;
+ProFieldSwitch.props = proFieldSwitchProps;
+
+export * from "./typing";
+
+export { ProFieldSwitch };
 
 export default ProFieldSwitch;

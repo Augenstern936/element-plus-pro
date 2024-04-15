@@ -2,21 +2,15 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:50:46
- * @LastEditTime: 2024-04-10 18:26:35
+ * @LastEditTime: 2024-04-15 15:56:31
  * @FilePath: \element-plus-pro\packages\field\src\components\Radio.tsx
  */
-import type { RadioProps } from "element-plus";
-import { ElRadio, ElRadioButton, ElRadioGroup, radioProps } from "element-plus";
+import { ElRadio, ElRadioButton, ElRadioGroup } from "element-plus";
 import "element-plus/theme-chalk/src/radio-button.scss";
 import "element-plus/theme-chalk/src/radio-group.scss";
 import "element-plus/theme-chalk/src/radio.scss";
-import { CSSProperties, FunctionalComponent, PropType, computed, defineComponent } from "vue";
-
-export interface ProFieldRadioProps extends RadioProps {
-	type: "radio" | "radioButton";
-	options?: { label?: string; value: string | number | boolean; [x: string]: any }[];
-	style?: CSSProperties;
-}
+import { FunctionalComponent, computed, defineComponent } from "vue";
+import { ProFieldRadioProps, proFieldRadioProps } from "./typing";
 
 const ProFieldRadio = defineComponent<ProFieldRadioProps>(
 	(props, ctx) => {
@@ -52,16 +46,10 @@ const ProFieldRadio = defineComponent<ProFieldRadioProps>(
 	}
 ) as unknown as FunctionalComponent<ProFieldRadioProps>;
 
-ProFieldRadio.props = {
-	...radioProps,
-	type: {
-		type: String as PropType<"radio" | "radioButton">,
-		default: "radio",
-	},
-	options: {
-		type: Array,
-		default: [],
-	},
-};
+ProFieldRadio.props = proFieldRadioProps as any;
+
+export * from "./typing";
+
+export { ProFieldRadio };
 
 export default ProFieldRadio;

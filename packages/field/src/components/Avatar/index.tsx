@@ -2,17 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-10 18:24:23
+ * @LastEditTime: 2024-04-15 14:31:57
  * @FilePath: \element-plus-pro\packages\field\src\components\Avatar.tsx
  */
-import type { AvatarProps } from "element-plus";
-import { avatarProps, ElAvatar } from "element-plus";
+import { ElAvatar } from "element-plus";
 import "element-plus/theme-chalk/src/avatar.scss";
-import { CSSProperties, defineComponent, FunctionalComponent } from "vue";
-
-export interface ProFieldAvatarProps extends AvatarProps {
-	style?: CSSProperties;
-}
+import { defineComponent, FunctionalComponent } from "vue";
+import { proFieldAvatar, ProFieldAvatarProps } from "./typing";
 
 const ProFieldAvatar = defineComponent<ProFieldAvatarProps>(
 	(props) => {
@@ -23,6 +19,10 @@ const ProFieldAvatar = defineComponent<ProFieldAvatarProps>(
 	}
 ) as unknown as FunctionalComponent<ProFieldAvatarProps>;
 
-ProFieldAvatar.props = avatarProps;
+ProFieldAvatar.props = proFieldAvatar;
+
+export * from "./typing";
+
+export { ProFieldAvatar };
 
 export default ProFieldAvatar;

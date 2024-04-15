@@ -2,17 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-10 18:24:51
+ * @LastEditTime: 2024-04-15 15:46:48
  * @FilePath: \element-plus-pro\packages\field\src\components\Color.tsx
  */
-import type { ColorPickerProps } from "element-plus";
-import { colorPickerProps, ElColorPicker } from "element-plus";
+import { ElColorPicker } from "element-plus";
 import "element-plus/theme-chalk/src/color-picker.scss";
-import { computed, CSSProperties, defineComponent, FunctionalComponent } from "vue";
-
-export interface ProFieldColorProps extends ColorPickerProps {
-	style?: CSSProperties;
-}
+import { computed, defineComponent, FunctionalComponent } from "vue";
+import { proFieldColor, ProFieldColorProps } from "./typing";
 
 const ProFieldColor = defineComponent<ProFieldColorProps>(
 	(props, ctx) => {
@@ -32,6 +28,10 @@ const ProFieldColor = defineComponent<ProFieldColorProps>(
 	}
 ) as unknown as FunctionalComponent<ProFieldColorProps>;
 
-ProFieldColor.props = colorPickerProps;
+ProFieldColor.props = proFieldColor;
+
+export * from "./typing";
+
+export { ProFieldColor };
 
 export default ProFieldColor;
