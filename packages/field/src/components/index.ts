@@ -5,10 +5,10 @@
  * @LastEditTime: 2024-04-10 18:16:26
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
-import Avatar from "./Avatar";
-import Cascader from "./Cascader";
+import Avatar from "./Avatart/Avatar";
+import Cascader from "./Cascader/Cascader";
 import ProFieldCheckbox from "./Checkbox";
-import Color from "./Color";
+import Color from "./Color/Color";
 import {
 	ProFieldDate,
 	ProFieldDateMonth,
@@ -20,14 +20,14 @@ import {
 	ProFieldDateYear,
 	ProFieldDates,
 } from "./Date";
-import Image from "./Image";
+import Image from "./Image/Image";
 import { ProFieldPassword, ProFieldText, ProFieldTextarea } from "./Input";
-import Progress from "./Progress";
-import ProFieldRadio from "./Radio";
-import Rate from "./Rate";
-import ProFieldSelect from "./Select";
-import Slider from "./Slider";
-import Switch from "./Switch";
+import Progress from "./Progress/Progress";
+import ProFieldRadio from "./Radio/Radio";
+import Rate from "./Rate/Rate";
+import ProFieldSelect from "./Select/Select";
+import Slider from "./Slider/Slider";
+import Switch from "./Switch/Switch";
 import { ProFieldTime, ProFieldTimeRange } from "./TimePicker";
 import ProFieldTimeSelect from "./TimeSelect";
 import ProFieldTreeSelect from "./TreeSelect";
