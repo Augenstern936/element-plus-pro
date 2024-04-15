@@ -2,7 +2,7 @@ import components from './components';
 import type { ExtractPropTypes, PropType } from 'vue';
 export declare const proFieldProps: {
     modelValue: {
-        type: (StringConstructor | NumberConstructor | BooleanConstructor | ArrayConstructor)[];
+        type: (BooleanConstructor | NumberConstructor | StringConstructor | ArrayConstructor)[];
         default: string;
     };
     mode: {

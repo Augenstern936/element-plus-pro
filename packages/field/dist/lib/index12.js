@@ -1,0 +1,1 @@
+"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const o=require("vue"),r=require("element-plus");const t={...r.imageProps,style:{type:Object,default:{}}},e=o.defineComponent(l=>()=>o.createVNode(r.ElImage,l,null),{name:"ProFieldImage"});e.props=t;exports.ProFieldImage=e;exports.default=e;exports.proFieldImageProps=t;

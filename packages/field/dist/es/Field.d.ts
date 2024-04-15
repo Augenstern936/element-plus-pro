@@ -1,7 +1,7 @@
 import { FunctionalComponent } from 'vue';
 declare const _default: import("@element-plus/pro-utils").SFCWithInstall<FunctionalComponent<Partial<import("vue").ExtractPropTypes<{
     modelValue: {
-        type: (StringConstructor | NumberConstructor | BooleanConstructor | ArrayConstructor)[];
+        type: (BooleanConstructor | NumberConstructor | StringConstructor | ArrayConstructor)[];
         default: string;
     };
     mode: {

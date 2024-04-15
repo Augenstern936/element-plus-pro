@@ -1,3 +1,15 @@
+export * from './Avatar';
+export * from './Cascader';
+export * from './Checkbox';
+export * from './Color';
+export * from './Image';
+export * from './Progress';
+export * from './Radio';
+export * from './Rate';
+export * from './Slider';
+export * from './Switch';
+export * from './TimeSelect';
+export * from './TreeSelect';
 declare const _default: {
     text: any;
     password: any;
@@ -20,7 +32,7 @@ declare const _default: {
     radio: any;
     radioButton: any;
     switch: any;
-    avatar: any;
+    avatar: import("vue").FunctionalComponent<import("./Avatar").ProFieldAvatarProps, {}, any>;
     image: any;
     rate: any;
     color: any;

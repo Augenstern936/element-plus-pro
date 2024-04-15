@@ -3,7 +3,9 @@ import VueJsx from '@vitejs/plugin-vue-jsx';
 import path, { resolve } from 'path';
 import copy from 'rollup-plugin-copy';
 import { build } from 'vite';
-import { tsxAutoProps } from 'vite-plugin-tsx-auto-props';
+import { globSync } from 'glob';
+import { fileURLToPath } from 'node:url';
+
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import dts from 'vite-plugin-dts';
 import * as utils from './utils';
@@ -32,9 +34,11 @@ export const buildModules = async () => {
 
 	const componentsPath = `src/${componentName}${componentSuffix}`;
 
-	const components = `src/components`;
+	const components = globSync(['src/components/**/*.ts', 'src/components/**/*.tsx']).map((file) => file);
 
 	const entry = baseDirName === 'components' ? 'src/index.ts' : ['src/index.ts', componentsPath, components];
+
+	console.log(components, 'components');
 
 	return await build({
 		build: {
