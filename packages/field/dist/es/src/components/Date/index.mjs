@@ -1,30 +1,37 @@
-import { createVNode as r, mergeProps as l, defineComponent as c, computed as d } from "vue";
-import { formatPlaceholder as p } from "@element-plus/pro-utils";
-import { datePickerProps as m, ElDatePicker as s } from "element-plus";
-import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21/node_modules/element-plus/theme-chalk/src/date-picker.scss.mjs";
-const a = /* @__PURE__ */ c((e, u) => {
-  const n = d({
-    get: () => e.modelValue,
-    set: (t) => {
-      u.emit("update:modelValue", t);
+import "../../../node_modules/.pnpm/vue@3.4.21_typescript@5.4.4/node_modules/vue/dist/vue.runtime.esm-bundler.mjs";
+import { formatPlaceholder } from "@element-plus/pro-utils";
+import { datePickerProps, ElDatePicker } from "element-plus";
+import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21_typescript@5.4.4_/node_modules/element-plus/theme-chalk/src/date-picker.scss.mjs";
+import { createVNode, mergeProps, defineComponent, computed } from "../../../node_modules/.pnpm/@vue_runtime-core@3.4.21/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.mjs";
+const BaseDate = /* @__PURE__ */ defineComponent((props, ctx) => {
+  const state = computed({
+    get: () => {
+      return props.modelValue;
+    },
+    set: (value) => {
+      ctx.emit("update:modelValue", value);
     }
-  }), i = d(() => {
-    var o;
-    const t = (o = e.placeholder) != null ? o : p("", e.type || "text");
-    return Array.isArray(t) && t.length > 1 ? {
-      startPlaceholder: t[0],
-      endPlaceholder: t[1]
-    } : {
-      placeholder: Array.isArray(t) ? t[0] : t
+  });
+  const placeholder = computed(() => {
+    var _a;
+    const value = (_a = props.placeholder) != null ? _a : formatPlaceholder("", props.type || "text");
+    if (Array.isArray(value) && value.length > 1) {
+      return {
+        startPlaceholder: value[0],
+        endPlaceholder: value[1]
+      };
+    }
+    return {
+      placeholder: Array.isArray(value) ? value[0] : value
     };
   });
-  return () => r(s, l({
-    modelValue: n.value,
-    "onUpdate:modelValue": (t) => n.value = t
-  }, e, i.value), null);
+  return () => createVNode(ElDatePicker, mergeProps({
+    "modelValue": state.value,
+    "onUpdate:modelValue": ($event) => state.value = $event
+  }, props, placeholder.value), null);
 });
-a.props = {
-  ...m,
+BaseDate.props = {
+  ...datePickerProps,
   placeholder: {
     type: [String, Array],
     default: void 0
@@ -34,33 +41,59 @@ a.props = {
     default: {}
   }
 };
-const g = (e) => r(a, l(e, {
-  type: "date"
-}), null), F = (e) => r(a, l(e, {
-  type: "dates"
-}), null), f = (e) => r(a, l(e, {
-  type: "datetime"
-}), null), v = (e) => r(a, l(e, {
-  type: "week"
-}), null), A = (e) => r(a, l(e, {
-  type: "month"
-}), null), V = (e) => r(a, l(e, {
-  type: "year"
-}), null), k = (e) => r(a, l(e, {
-  type: "daterange"
-}), null), R = (e) => r(a, l(e, {
-  type: "datetimerange"
-}), null), x = (e) => r(a, l(e, {
-  type: "monthrange"
-}), null);
+const ProFieldDate = (props) => {
+  return createVNode(BaseDate, mergeProps(props, {
+    "type": "date"
+  }), null);
+};
+const ProFieldDates = (props) => {
+  return createVNode(BaseDate, mergeProps(props, {
+    "type": "dates"
+  }), null);
+};
+const ProFieldDateTime = (props) => {
+  return createVNode(BaseDate, mergeProps(props, {
+    "type": "datetime"
+  }), null);
+};
+const ProFieldDateWeek = (props) => {
+  return createVNode(BaseDate, mergeProps(props, {
+    "type": "week"
+  }), null);
+};
+const ProFieldDateMonth = (props) => {
+  return createVNode(BaseDate, mergeProps(props, {
+    "type": "month"
+  }), null);
+};
+const ProFieldDateYear = (props) => {
+  return createVNode(BaseDate, mergeProps(props, {
+    "type": "year"
+  }), null);
+};
+const ProFieldDateRange = (props) => {
+  return createVNode(BaseDate, mergeProps(props, {
+    "type": "daterange"
+  }), null);
+};
+const ProFieldDateTimeRange = (props) => {
+  return createVNode(BaseDate, mergeProps(props, {
+    "type": "datetimerange"
+  }), null);
+};
+const ProFieldDateMonthRange = (props) => {
+  return createVNode(BaseDate, mergeProps(props, {
+    "type": "monthrange"
+  }), null);
+};
 export {
-  g as ProFieldDate,
-  A as ProFieldDateMonth,
-  x as ProFieldDateMonthRange,
-  k as ProFieldDateRange,
-  f as ProFieldDateTime,
-  R as ProFieldDateTimeRange,
-  v as ProFieldDateWeek,
-  V as ProFieldDateYear,
-  F as ProFieldDates
+  ProFieldDate,
+  ProFieldDateMonth,
+  ProFieldDateMonthRange,
+  ProFieldDateRange,
+  ProFieldDateTime,
+  ProFieldDateTimeRange,
+  ProFieldDateWeek,
+  ProFieldDateYear,
+  ProFieldDates
 };

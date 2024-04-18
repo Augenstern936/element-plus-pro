@@ -6,7 +6,7 @@
 		"baseUrl": "../",
 		"rootDir": "../",
 		"sourceMap": false,
-		"moduleResolution": "Node",
+		"moduleResolution": "node",
 		"allowJs": false,
 		"strict": true,
 		"noUnusedLocals": true,

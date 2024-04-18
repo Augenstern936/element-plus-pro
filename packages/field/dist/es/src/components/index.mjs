@@ -1,73 +1,73 @@
-import r from "./Avatar/index.mjs";
-import { ProFieldAvatar as O } from "./Avatar/index.mjs";
-import o from "./Cascader/index.mjs";
-import { ProFieldCascader as U } from "./Cascader/index.mjs";
-import t from "./Checkbox/index.mjs";
-import { ProFieldCheckbox as X } from "./Checkbox/index.mjs";
-import i from "./Color/index.mjs";
-import { ProFieldColor as _ } from "./Color/index.mjs";
-import { ProFieldDate as d, ProFieldDates as a, ProFieldDateTime as m, ProFieldDateWeek as l, ProFieldDateMonth as P, ProFieldDateYear as F, ProFieldDateRange as p, ProFieldDateTimeRange as f, ProFieldDateMonthRange as c } from "./Date/index.mjs";
-import s from "./Image/index.mjs";
-import { ProFieldImage as ee } from "./Image/index.mjs";
-import { ProFieldText as x, ProFieldPassword as n, ProFieldTextarea as g } from "./Input/index.mjs";
-import R from "./Progress/index.mjs";
-import { ProFieldProgress as oe } from "./Progress/index.mjs";
-import e from "./Radio/index.mjs";
-import { ProFieldRadio as ie } from "./Radio/index.mjs";
-import T from "./Rate/index.mjs";
-import { ProFieldRate as ae } from "./Rate/index.mjs";
-import S from "./Select/index.mjs";
-import h from "./Slider/index.mjs";
-import { ProFieldSlider as le } from "./Slider/index.mjs";
-import D from "./Switch/index.mjs";
-import { ProFieldSwitch as Fe } from "./Switch/index.mjs";
-import { ProFieldTime as C, ProFieldTimeRange as k } from "./TimePicker/index.mjs";
-import w from "./TimeSelect/index.mjs";
-import { ProFieldTimeSelect as fe } from "./TimeSelect/index.mjs";
-import M from "./TreeSelect/index.mjs";
-import { ProFieldTreeSelect as se } from "./TreeSelect/index.mjs";
-const K = {
-  text: x,
-  password: n,
-  textarea: g,
-  date: d,
-  dates: a,
-  dateTime: m,
-  dateWeek: l,
-  dateMonth: P,
-  dateYear: F,
-  dateRange: p,
-  dateTimeRange: f,
-  dateMonthRange: c,
-  time: C,
-  timeRange: k,
-  timeSelect: w,
-  select: S,
-  treeSelect: M,
-  checkbox: t,
-  radio: e,
-  radioButton: e,
-  switch: D,
-  avatar: r,
-  image: s,
-  rate: T,
-  color: i,
-  cascader: o,
-  slider: h,
-  progress: R
+import ProFieldAvatar from "./Avatar/index.mjs";
+import { ProFieldAvatar as ProFieldAvatar2 } from "./Avatar/index.mjs";
+import ProFieldCascader from "./Cascader/index.mjs";
+import { ProFieldCascader as ProFieldCascader2 } from "./Cascader/index.mjs";
+import ProFieldCheckbox from "./Checkbox/index.mjs";
+import { ProFieldCheckbox as ProFieldCheckbox2 } from "./Checkbox/index.mjs";
+import ProFieldColor from "./Color/index.mjs";
+import { ProFieldColor as ProFieldColor2 } from "./Color/index.mjs";
+import { ProFieldDate, ProFieldDates, ProFieldDateTime, ProFieldDateWeek, ProFieldDateMonth, ProFieldDateYear, ProFieldDateRange, ProFieldDateTimeRange, ProFieldDateMonthRange } from "./Date/index.mjs";
+import ProFieldImage from "./Image/index.mjs";
+import { ProFieldImage as ProFieldImage2 } from "./Image/index.mjs";
+import { ProFieldText, ProFieldPassword, ProFieldTextarea } from "./Input/index.mjs";
+import ProFieldProgress from "./Progress/index.mjs";
+import { ProFieldProgress as ProFieldProgress2 } from "./Progress/index.mjs";
+import ProFieldRadio from "./Radio/index.mjs";
+import { ProFieldRadio as ProFieldRadio2 } from "./Radio/index.mjs";
+import ProFieldRate from "./Rate/index.mjs";
+import { ProFieldRate as ProFieldRate2 } from "./Rate/index.mjs";
+import ProFieldSelect from "./Select/index.mjs";
+import ProFieldSlider from "./Slider/index.mjs";
+import { ProFieldSlider as ProFieldSlider2 } from "./Slider/index.mjs";
+import ProFieldSwitch from "./Switch/index.mjs";
+import { ProFieldSwitch as ProFieldSwitch2 } from "./Switch/index.mjs";
+import { ProFieldTime, ProFieldTimeRange } from "./TimePicker/index.mjs";
+import ProFieldTimeSelect from "./TimeSelect/index.mjs";
+import { ProFieldTimeSelect as ProFieldTimeSelect2 } from "./TimeSelect/index.mjs";
+import ProFieldTreeSelect from "./TreeSelect/index.mjs";
+import { ProFieldTreeSelect as ProFieldTreeSelect2 } from "./TreeSelect/index.mjs";
+const components = {
+  text: ProFieldText,
+  password: ProFieldPassword,
+  textarea: ProFieldTextarea,
+  date: ProFieldDate,
+  dates: ProFieldDates,
+  dateTime: ProFieldDateTime,
+  dateWeek: ProFieldDateWeek,
+  dateMonth: ProFieldDateMonth,
+  dateYear: ProFieldDateYear,
+  dateRange: ProFieldDateRange,
+  dateTimeRange: ProFieldDateTimeRange,
+  dateMonthRange: ProFieldDateMonthRange,
+  time: ProFieldTime,
+  timeRange: ProFieldTimeRange,
+  timeSelect: ProFieldTimeSelect,
+  select: ProFieldSelect,
+  treeSelect: ProFieldTreeSelect,
+  checkbox: ProFieldCheckbox,
+  radio: ProFieldRadio,
+  radioButton: ProFieldRadio,
+  switch: ProFieldSwitch,
+  avatar: ProFieldAvatar,
+  image: ProFieldImage,
+  rate: ProFieldRate,
+  color: ProFieldColor,
+  cascader: ProFieldCascader,
+  slider: ProFieldSlider,
+  progress: ProFieldProgress
 };
 export {
-  O as ProFieldAvatar,
-  U as ProFieldCascader,
-  X as ProFieldCheckbox,
-  _ as ProFieldColor,
-  ee as ProFieldImage,
-  oe as ProFieldProgress,
-  ie as ProFieldRadio,
-  ae as ProFieldRate,
-  le as ProFieldSlider,
-  Fe as ProFieldSwitch,
-  fe as ProFieldTimeSelect,
-  se as ProFieldTreeSelect,
-  K as default
+  ProFieldAvatar2 as ProFieldAvatar,
+  ProFieldCascader2 as ProFieldCascader,
+  ProFieldCheckbox2 as ProFieldCheckbox,
+  ProFieldColor2 as ProFieldColor,
+  ProFieldImage2 as ProFieldImage,
+  ProFieldProgress2 as ProFieldProgress,
+  ProFieldRadio2 as ProFieldRadio,
+  ProFieldRate2 as ProFieldRate,
+  ProFieldSlider2 as ProFieldSlider,
+  ProFieldSwitch2 as ProFieldSwitch,
+  ProFieldTimeSelect2 as ProFieldTimeSelect,
+  ProFieldTreeSelect2 as ProFieldTreeSelect,
+  components as default
 };

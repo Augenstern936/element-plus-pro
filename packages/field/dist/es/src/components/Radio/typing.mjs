@@ -1,6 +1,6 @@
-import { radioProps as t } from "element-plus";
-const e = {
-  ...t,
+import { radioProps } from "element-plus";
+const proFieldRadioProps = {
+  ...radioProps,
   type: {
     type: String,
     default: "radio"
@@ -15,5 +15,5 @@ const e = {
   }
 };
 export {
-  e as proFieldRadioProps
+  proFieldRadioProps
 };

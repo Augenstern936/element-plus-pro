@@ -1,6 +1,6 @@
-import { Clock as e, CircleClose as t } from "@element-plus/icons-vue";
-import { useSizeProp as l } from "element-plus";
-const a = {
+import { Clock, CircleClose } from "@element-plus/icons-vue";
+import { useSizeProp } from "element-plus";
+const proFieldTimeSelectProps = {
   format: {
     type: String,
     default: "HH:mm"
@@ -9,7 +9,7 @@ const a = {
   disabled: Boolean,
   editable: {
     type: Boolean,
-    default: !0
+    default: true
   },
   effect: {
     type: String,
@@ -17,9 +17,9 @@ const a = {
   },
   clearable: {
     type: Boolean,
-    default: !0
+    default: true
   },
-  size: l,
+  size: useSizeProp,
   placeholder: String,
   start: {
     type: String,
@@ -38,11 +38,11 @@ const a = {
   name: String,
   prefixIcon: {
     type: [String, Object],
-    default: () => e
+    default: () => Clock
   },
   clearIcon: {
     type: [String, Object],
-    default: () => t
+    default: () => CircleClose
   },
   style: {
     type: Object,
@@ -50,5 +50,5 @@ const a = {
   }
 };
 export {
-  a as proFieldTimeSelectProps
+  proFieldTimeSelectProps
 };

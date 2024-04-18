@@ -1,38 +1,41 @@
-import { defineComponent as c, computed as p, createVNode as o, Fragment as n, mergeProps as a } from "vue";
-import { ElCheckboxGroup as i, ElCheckbox as k, ElCheckboxButton as b } from "element-plus";
-import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21/node_modules/element-plus/theme-chalk/src/checkbox-button.scss.mjs";
-import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21/node_modules/element-plus/theme-chalk/src/checkbox-group.scss.mjs";
-import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21/node_modules/element-plus/theme-chalk/src/checkbox.scss.mjs";
-import { proFieldCheckboxProps as x } from "./typing.mjs";
-const u = /* @__PURE__ */ c((t, d) => {
-  const r = p({
-    get: () => t.modelValue,
-    set: (e) => {
-      d.emit("update:modelValue", e);
+import "../../../node_modules/.pnpm/vue@3.4.21_typescript@5.4.4/node_modules/vue/dist/vue.runtime.esm-bundler.mjs";
+import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup } from "element-plus";
+import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21_typescript@5.4.4_/node_modules/element-plus/theme-chalk/src/checkbox-button.scss.mjs";
+import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21_typescript@5.4.4_/node_modules/element-plus/theme-chalk/src/checkbox-group.scss.mjs";
+import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21_typescript@5.4.4_/node_modules/element-plus/theme-chalk/src/checkbox.scss.mjs";
+import { proFieldCheckboxProps } from "./typing.mjs";
+import { defineComponent, computed, createVNode, Fragment, mergeProps } from "../../../node_modules/.pnpm/@vue_runtime-core@3.4.21/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.mjs";
+const ProFieldCheckbox = /* @__PURE__ */ defineComponent((props, ctx) => {
+  const state = computed({
+    get: () => {
+      return props.modelValue;
+    },
+    set: (value) => {
+      ctx.emit("update:modelValue", value);
     }
   });
-  return () => o(i, {
-    modelValue: r.value,
-    "onUpdate:modelValue": (e) => r.value = e
+  return () => createVNode(ElCheckboxGroup, {
+    "modelValue": state.value,
+    "onUpdate:modelValue": ($event) => state.value = $event
   }, {
     default: () => {
-      var e;
-      return [(e = t.options) == null ? void 0 : e.map((l, m) => o(n, null, [t.type == "checkbox" ? o(k, a(l, {
-        key: m
-      }), null) : o(b, a(l, {
-        key: m
+      var _a;
+      return [(_a = props.options) == null ? void 0 : _a.map((option, i) => createVNode(Fragment, null, [props.type == "checkbox" ? createVNode(ElCheckbox, mergeProps(option, {
+        "key": i
+      }), null) : createVNode(ElCheckboxButton, mergeProps(option, {
+        "key": i
       }), {
-        default: () => [l.label]
+        default: () => [option.label]
       })]))];
     }
   });
 }, {
   name: "ProFieldCheckbox"
 });
-u.props = x;
-const V = u;
+ProFieldCheckbox.props = proFieldCheckboxProps;
+const ProFieldCheckbox$1 = ProFieldCheckbox;
 export {
-  u as ProFieldCheckbox,
-  V as default,
-  x as proFieldCheckboxProps
+  ProFieldCheckbox,
+  ProFieldCheckbox$1 as default,
+  proFieldCheckboxProps
 };

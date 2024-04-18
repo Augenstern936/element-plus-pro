@@ -4,7 +4,6 @@ import path, { resolve } from "path";
 import copy from "rollup-plugin-copy";
 import { build } from "vite";
 
-import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import dts from "vite-plugin-dts";
 import * as utils from "./utils";
 
@@ -40,11 +39,19 @@ export const buildModules = async () => {
 			//打包后文件目录
 			outDir: "dist",
 			emptyOutDir: true,
+			cssCodeSplit: false,
 			//压缩
-			minify: true,
+			minify: "terser",
 			lib: {
 				entry: entry,
 				name: "dist",
+			},
+			terserOptions: {
+				//生产环境不要日志，去掉console,debugger
+				compress: {
+					drop_console: true,
+					drop_debugger: true,
+				},
 			},
 			rollupOptions: {
 				//忽略打包文件
@@ -69,9 +76,13 @@ export const buildModules = async () => {
 						preserveModulesRoot: "",
 						exports: "named",
 						globals,
-						sourcemapIgnoreList: (relativeSourcePath) => {
-							// 将忽略所有路径中含有 node_modules 的文件
-							return relativeSourcePath.includes("node_modules");
+						assetFileNames(assetInfo: any) {
+							//文件名称
+							if (assetInfo.name.endsWith(".css")) {
+								return "src/style/[name].css";
+							}
+							//剩余资源文件
+							return "";
 						},
 					},
 					{
@@ -82,9 +93,13 @@ export const buildModules = async () => {
 						preserveModulesRoot: "",
 						exports: "named",
 						globals,
-						sourcemapIgnoreList: (relativeSourcePath) => {
-							// 将忽略所有路径中含有 node_modules 的文件
-							return relativeSourcePath.includes("node_modules");
+						assetFileNames(assetInfo: any) {
+							//文件名称
+							if (assetInfo.name.endsWith(".css")) {
+								return "src/style/[name].css";
+							}
+							//剩余资源文件
+							return "";
 						},
 					},
 				],
@@ -93,15 +108,15 @@ export const buildModules = async () => {
 		plugins: [
 			Vue(),
 			VueJsx(),
-			cssInjectedByJsPlugin({
-				topExecutionPriority: false,
-				// jsAssetsFilterFunction: ({ fileName }) => {
-				// 	if (baseDirName === "components") {
-				// 		return true;
-				// 	}
-				// 	return fileName == `${componentName}.js` || fileName == `${componentName}.mjs`;
-				// },
-			}),
+			// cssInjectedByJsPlugin({
+			// 	topExecutionPriority: false,
+			// 	// jsAssetsFilterFunction: ({ fileName }) => {
+			// 	// 	if (baseDirName === "components") {
+			// 	// 		return true;
+			// 	// 	}
+			// 	// 	return fileName == `${componentName}.js` || fileName == `${componentName}.mjs`;
+			// 	// },
+			// }),
 			dts({
 				entryRoot: "src/",
 				outDir: ["dist/es/src", "dist/lib/src"],

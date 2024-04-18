@@ -1,50 +1,150 @@
-import type { CSSProperties } from 'vue';
-import type { ButtonProps } from 'element-plus';
-import { ValueTypeEnum, StatusColorEnum, PaginationAlignEnum } from './enum';
+import type { ButtonProps } from "element-plus";
+import type { CSSProperties, ExtractPropTypes, PropType } from "vue";
+import { PaginationAlignEnum, StatusColorEnum, ValueTypeEnum } from "./enum";
 
-export type ProTableProps = {
-	loading?: boolean;
-	ghost?: boolean;
+export const proTableProps = {
+	loading: {
+		type: Boolean,
+		default: false,
+	},
+	ghost: {
+		type: Boolean,
+		default: false,
+	},
 	// 是否开启缓存模式
-	keepAlive?: boolean;
-	// 标题
-	title?: string;
+	keepAlive: {
+		type: Boolean,
+		default: false,
+	},
+	title: String,
+	cellAlign: {
+		type: String as PropType<GlobalCellAlign>,
+		default: "left",
+	},
+	headerCellStyle: {
+		type: Object as PropType<CSSProperties>,
+		default: {},
+	},
 	// 列
-	columns: TableColumns[];
-	// 头部样式
-	headerCellStyle?: CSSProperties;
-	//
-	cellAlign?: GlobalCellAlign;
+	columns: {
+		type: Array as PropType<TableColumns[]>,
+		required: true,
+	},
 	// 为空时，默认显示的标记
-	columnEmptyText?: boolean | string;
+	columnEmptyText: {
+		type: [Boolean, String],
+		default: "-",
+	},
 	// 默认分页大小
-	defaultSize?: number;
+	defaultSize: {
+		type: Number,
+		default: 10,
+	},
 	// 是否开启超出列宽显示省略号
-	ellipsis?: boolean;
+	ellipsis: {
+		type: Boolean,
+		default: void 0,
+	},
 	// 全局搜索栏配置(权限低于单列配置)
-	search?: boolean | GlobalSearchConfig;
+	search: {
+		type: [Boolean, Object as PropType<GlobalSearchConfig>],
+		default: void 0,
+	},
 	// 工具栏
-	toolbar?: TableToolbarConfig[];
+	toolbar: {
+		type: Object as PropType<TableToolbarConfig[]>,
+		default: {
+			placeholder: "请输入关键字",
+			showAction: true,
+			actionStyle: {},
+		},
+	},
 	//
-	options?: boolean;
-	//日期格式化
-	dateFormatter?: string | number;
+	options: {
+		type: Boolean,
+		default: true,
+	},
 	// 样式
-	tableStyle?: TableStyle;
+	tableStyle: {
+		type: Object as PropType<TableStyle>,
+		default: () => {},
+	},
 	// 获取数据需要的额外参数
-	params?: Params;
-	pagination?: boolean | PaginationConfig;
+	params: {
+		type: Object as PropType<Params>,
+		default: {},
+	},
+	pagination: {
+		type: [Boolean, Object as PropType<PaginationConfig>],
+		default: true,
+	},
 	// 数据源
-	dataSource?: DataSource;
+	dataSource: {
+		type: Object as PropType<DataSource>,
+	},
 	// 获取数据的方法
-	request?: Request;
+	request: {
+		type: Function as PropType<Request>,
+	},
 	// 监听查询事件
-	onSearch?: (params: { [x: string]: any }) => void;
+	onSearch: {
+		type: Function as PropType<(params: { [x: string]: any }) => void>,
+	},
 	// 监听重置事件
-	onReset?: () => void;
+	onReset: {
+		type: Function,
+	},
 	// 监听过滤事件
-	onFilter?: (e: { field: string; value: string | number }) => void;
+	onFilter: {
+		type: Function as PropType<(e: { field: string; value: string | number }) => void>,
+	},
 };
+
+export type ProTableProps = ExtractPropTypes<typeof proTableProps>;
+
+// export type ProTableProps = {
+// 	loading?: boolean;
+// 	ghost?: boolean;
+// 	// 是否开启缓存模式
+// 	keepAlive?: boolean;
+// 	// 标题
+// 	title?: string;
+// 	// 列
+// 	columns: TableColumns[];
+// 	// 头部样式
+// 	headerCellStyle?: CSSProperties;
+// 	//
+// 	cellAlign?: GlobalCellAlign;
+// 	// 为空时，默认显示的标记
+// 	columnEmptyText?: boolean | string;
+// 	// 默认分页大小
+// 	defaultSize?: number;
+// 	// 是否开启超出列宽显示省略号
+// 	ellipsis?: boolean;
+// 	// 全局搜索栏配置(权限低于单列配置)
+// 	search?: boolean | GlobalSearchConfig;
+// 	// 工具栏
+// 	toolbar?: TableToolbarConfig[];
+// 	//
+// 	options?: boolean;
+// 	//日期格式化
+// 	dateFormatter?: string | number;
+// 	// 样式
+// 	tableStyle?: TableStyle;
+// 	// 获取数据需要的额外参数
+// 	params?: Params;
+// 	pagination?: boolean | PaginationConfig;
+// 	// 数据源
+// 	dataSource?: DataSource;
+// 	// 获取数据的方法
+// 	request?: Request;
+// 	// 监听查询事件
+// 	onSearch?: (params: { [x: string]: any }) => void;
+// 	// 监听重置事件
+// 	onReset?: () => void;
+// 	// 监听过滤事件
+// 	onFilter?: (e: { field: string; value: string | number }) => void;
+// };
 
 export type TableColumns = {
 	key?: string | number; //标识
@@ -52,8 +152,8 @@ export type TableColumns = {
 	dataField?: string; // 列字段名称(与数据源中字段对应进行值的映射)
 	//type?: ColumnType; // selection：多选 index：序号 expand：可展开的按钮
 	width?: string | number; // 列宽
-	fixed?: boolean | 'left' | 'right'; // 固定列
-	align?: 'left' | 'right' | 'center';
+	fixed?: boolean | "left" | "right"; // 固定列
+	align?: "left" | "right" | "center";
 	tooltip?: string | ((row: { [x: string]: any }) => string); // 提示文本
 	ellipsis?: boolean; // 是否显示省略号
 	hideInTable?: boolean; // 是否在表格中不显示该列
@@ -79,7 +179,7 @@ export type ValueOption = {
 
 export type ValueEnum = Record<string, string | number | { text: string; status?: keyof typeof StatusColorEnum }>;
 
-export type GlobalCellAlign = 'left' | 'right' | 'center';
+export type GlobalCellAlign = "left" | "right" | "center";
 
 /**
  * 全局筛选栏配置
@@ -97,7 +197,7 @@ export interface GlobalSearchConfig {
 export type ColumnSearchConfig = {
 	order?: number;
 	label?: string;
-	labelWidth?: 'auto' | number | string;
+	labelWidth?: "auto" | number | string;
 	placeholder?: string;
 	fieldProps?: {
 		options?: { label: string; value: string | number | boolean }[];

@@ -1,34 +1,45 @@
-import { createVNode as t, mergeProps as r, defineComponent as p, computed as a } from "vue";
-import { inputProps as d, ElInput as m } from "element-plus";
-import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21/node_modules/element-plus/theme-chalk/src/input.scss.mjs";
-const o = /* @__PURE__ */ p((e, u) => {
-  const n = a({
-    get: () => e.modelValue,
-    set: (l) => {
-      u.emit("update:modelValue", l);
+import "../../../node_modules/.pnpm/vue@3.4.21_typescript@5.4.4/node_modules/vue/dist/vue.runtime.esm-bundler.mjs";
+import { inputProps, ElInput } from "element-plus";
+import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21_typescript@5.4.4_/node_modules/element-plus/theme-chalk/src/input.scss.mjs";
+import { createVNode, mergeProps, defineComponent, computed } from "../../../node_modules/.pnpm/@vue_runtime-core@3.4.21/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.mjs";
+const ProFieldInput = /* @__PURE__ */ defineComponent((props, ctx) => {
+  const state = computed({
+    get: () => {
+      return props.modelValue;
+    },
+    set: (value) => {
+      ctx.emit("update:modelValue", value);
     }
   });
-  return () => t(m, r({
-    modelValue: n.value,
-    "onUpdate:modelValue": (l) => n.value = l
-  }, e), null);
+  return () => createVNode(ElInput, mergeProps({
+    "modelValue": state.value,
+    "onUpdate:modelValue": ($event) => state.value = $event
+  }, props), null);
 });
-o.props = {
-  ...d,
+ProFieldInput.props = {
+  ...inputProps,
   type: {
     type: String,
     default: "text"
   }
 };
-const P = (e) => t(o, r(e, {
-  type: "text"
-}), null), x = (e) => t(o, r(e, {
-  type: "password"
-}), null), y = (e) => t(o, r(e, {
-  type: "textarea"
-}), null);
+const ProFieldText = (props) => {
+  return createVNode(ProFieldInput, mergeProps(props, {
+    "type": "text"
+  }), null);
+};
+const ProFieldPassword = (props) => {
+  return createVNode(ProFieldInput, mergeProps(props, {
+    "type": "password"
+  }), null);
+};
+const ProFieldTextarea = (props) => {
+  return createVNode(ProFieldInput, mergeProps(props, {
+    "type": "textarea"
+  }), null);
+};
 export {
-  x as ProFieldPassword,
-  P as ProFieldText,
-  y as ProFieldTextarea
+  ProFieldPassword,
+  ProFieldText,
+  ProFieldTextarea
 };

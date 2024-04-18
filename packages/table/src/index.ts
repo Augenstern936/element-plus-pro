@@ -1,8 +1,8 @@
-import ProTable from './Table';
+import ProTable from "./Table";
 
-export * from './typing';
+export * from "./typing";
 
-export * from './enum';
+export * from "./enum";
 
 export { ProTable };
 

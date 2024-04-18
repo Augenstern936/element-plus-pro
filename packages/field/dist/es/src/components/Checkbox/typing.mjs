@@ -1,6 +1,6 @@
-import { checkboxProps as e } from "element-plus";
-const o = {
-  ...e,
+import { checkboxProps } from "element-plus";
+const proFieldCheckboxProps = {
+  ...checkboxProps,
   type: {
     type: String,
     default: "checkbox"
@@ -15,5 +15,5 @@ const o = {
   }
 };
 export {
-  o as proFieldCheckboxProps
+  proFieldCheckboxProps
 };

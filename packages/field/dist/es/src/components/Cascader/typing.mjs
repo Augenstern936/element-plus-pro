@@ -1,11 +1,11 @@
-import { calendarProps as e } from "element-plus";
-const o = {
-  ...e,
+import { calendarProps } from "element-plus";
+const proFieldCascaderProps = {
+  ...calendarProps,
   style: {
     type: Object,
     default: {}
   }
 };
 export {
-  o as proFieldCascaderProps
+  proFieldCascaderProps
 };

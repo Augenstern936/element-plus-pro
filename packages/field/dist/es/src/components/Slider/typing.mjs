@@ -1,11 +1,11 @@
-import { sliderProps as e } from "element-plus";
-const o = {
-  ...e,
+import { sliderProps } from "element-plus";
+const proFieldSliderProps = {
+  ...sliderProps,
   style: {
     type: Object,
     default: {}
   }
 };
 export {
-  o as proFieldSliderProps
+  proFieldSliderProps
 };

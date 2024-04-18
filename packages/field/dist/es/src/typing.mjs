@@ -1,4 +1,4 @@
-const e = {
+const proFieldProps = {
   modelValue: {
     type: [String, Number, Boolean, Array],
     default: ""
@@ -20,5 +20,5 @@ const e = {
   }
 };
 export {
-  e as proFieldProps
+  proFieldProps
 };

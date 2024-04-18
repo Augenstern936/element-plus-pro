@@ -1,11 +1,11 @@
-import { progressProps as r } from "element-plus";
-const e = {
-  ...r,
+import { progressProps } from "element-plus";
+const proFieldProgressProps = {
+  ...progressProps,
   style: {
     type: Object,
     default: {}
   }
 };
 export {
-  e as proFieldProgressProps
+  proFieldProgressProps
 };

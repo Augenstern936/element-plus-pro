@@ -1,11 +1,11 @@
-import { switchProps as t } from "element-plus";
-const e = {
-  ...t,
+import { switchProps } from "element-plus";
+const proFieldSwitchProps = {
+  ...switchProps,
   style: {
     type: Object,
     default: {}
   }
 };
 export {
-  e as proFieldSwitchProps
+  proFieldSwitchProps
 };

@@ -1,11 +1,11 @@
-import { colorPickerProps as o } from "element-plus";
-const e = {
-  ...o,
+import { colorPickerProps } from "element-plus";
+const proFieldColor = {
+  ...colorPickerProps,
   style: {
     type: Object,
     default: {}
   }
 };
 export {
-  e as proFieldColor
+  proFieldColor
 };

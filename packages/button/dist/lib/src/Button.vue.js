@@ -1,0 +1,1 @@
+"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e=require("./Button.vue2.js");require("./Button.vue3.js");const t=require("../_virtual/_plugin-vue_export-helper.js"),u=t.default(e.default,[["__scopeId","data-v-bc3859bb"]]);exports.default=u;
