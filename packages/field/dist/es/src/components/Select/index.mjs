@@ -1,8 +1,7 @@
-import "../../../node_modules/.pnpm/vue@3.4.21_typescript@5.4.4/node_modules/vue/dist/vue.runtime.esm-bundler.mjs";
-import { ElOption, ElSelect } from "element-plus";
+import { defineComponent, computed, createVNode, mergeProps } from "vue";
+import { ElSelect, ElOption } from "element-plus";
 import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21_typescript@5.4.4_/node_modules/element-plus/theme-chalk/src/option.scss.mjs";
 import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21_typescript@5.4.4_/node_modules/element-plus/theme-chalk/src/select.scss.mjs";
-import { defineComponent, computed, createVNode, mergeProps } from "../../../node_modules/.pnpm/@vue_runtime-core@3.4.21/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.mjs";
 const ProFieldSelect = /* @__PURE__ */ defineComponent((props, ctx) => {
   const state = computed({
     get: () => {

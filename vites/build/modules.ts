@@ -79,10 +79,10 @@ export const buildModules = async () => {
 						assetFileNames(assetInfo: any) {
 							//文件名称
 							if (assetInfo.name.endsWith(".css")) {
-								return "src/style/[name].css";
+								return "src/style/index.css";
 							}
 							//剩余资源文件
-							return "";
+							return assetInfo;
 						},
 					},
 					{
@@ -99,7 +99,7 @@ export const buildModules = async () => {
 								return "src/style/[name].css";
 							}
 							//剩余资源文件
-							return "";
+							return assetInfo;
 						},
 					},
 				],

@@ -18,7 +18,8 @@
 		"url": ""
 	},
 	"scripts": {
-		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
+		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
+		"build:rollup": "rollup -c"
 	},
 	"sideEffects": false,
 	"main": "dist/lib/src/index.js",

@@ -1,8 +1,7 @@
-import "../node_modules/.pnpm/vue@3.4.21_typescript@5.4.4/node_modules/vue/dist/vue.runtime.esm-bundler.mjs";
+import { createVNode, mergeProps, defineComponent, computed } from "vue";
 import { withInstall, formatPlaceholder } from "@element-plus/pro-utils";
 import components from "./components/index.mjs";
 import { proFieldProps } from "./typing.mjs";
-import { createVNode, mergeProps, defineComponent, computed } from "../node_modules/.pnpm/@vue_runtime-core@3.4.21/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.mjs";
 import { proFieldAvatar } from "./components/Avatar/typing.mjs";
 import { ProFieldAvatar } from "./components/Avatar/index.mjs";
 import { proFieldCascaderProps } from "./components/Cascader/typing.mjs";
