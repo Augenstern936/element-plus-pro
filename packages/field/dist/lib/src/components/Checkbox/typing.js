@@ -1,1 +1,0 @@
-"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e={...require("element-plus").checkboxProps,type:{type:String,default:"checkbox"},options:{type:Array,default:[]},style:{type:Object,default:{}}};exports.proFieldCheckboxProps=e;

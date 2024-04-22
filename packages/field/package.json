@@ -19,7 +19,9 @@
 	},
 	"scripts": {
 		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
-		"build:rollup": "rollup -c"
+		"build:esbuild": "node ./esbuild.config.js",
+		"build:rollup": "rollup -c",
+		"build:tsup": "tsup"
 	},
 	"sideEffects": false,
 	"main": "dist/lib/src/index.js",
