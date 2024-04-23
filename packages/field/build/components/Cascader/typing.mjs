@@ -1,12 +1,6 @@
-import { calendarProps } from "element-plus";
-const proFieldCascaderProps = {
-  ...calendarProps,
-  style: {
-    type: Object,
-    default: {}
-  }
-};
+import {
+  proFieldCascaderProps
+} from "../../chunk-GFUWFRO6.mjs";
 export {
   proFieldCascaderProps
 };
-//# sourceMappingURL=typing.mjs.map

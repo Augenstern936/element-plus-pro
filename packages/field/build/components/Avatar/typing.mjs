@@ -1,12 +1,6 @@
-import { avatarProps } from "element-plus";
-const proFieldAvatar = {
-  ...avatarProps,
-  style: {
-    type: Object,
-    default: {}
-  }
-};
+import {
+  proFieldAvatar
+} from "../../chunk-QFTBJY57.mjs";
 export {
   proFieldAvatar
 };
-//# sourceMappingURL=typing.mjs.map

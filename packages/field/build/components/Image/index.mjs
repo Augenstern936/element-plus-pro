@@ -1,20 +1,12 @@
-import { ElImage } from "element-plus";
-import "element-plus/theme-chalk/src/image.scss";
-import { defineComponent } from "vue";
-import { proFieldImageProps } from "./typing";
-const ProFieldImage = defineComponent(
-  (props) => {
-    return () => /* @__PURE__ */ React.createElement(ElImage, { ...props });
-  },
-  {
-    name: "ProFieldImage"
-  }
-);
-ProFieldImage.props = proFieldImageProps;
-export * from "./typing";
-var Image_default = ProFieldImage;
+import {
+  Image_default,
+  ProFieldImage
+} from "../../chunk-GH62QCHF.mjs";
+import {
+  proFieldImageProps
+} from "../../chunk-AUC5DCCA.mjs";
 export {
   ProFieldImage,
-  Image_default as default
+  Image_default as default,
+  proFieldImageProps
 };
-//# sourceMappingURL=index.mjs.map

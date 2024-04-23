@@ -1,12 +1,6 @@
-import { rateProps } from "element-plus";
-const proFieldRateProps = {
-  ...rateProps,
-  style: {
-    type: Object,
-    default: {}
-  }
-};
+import {
+  proFieldRateProps
+} from "../../chunk-VH2UIX5B.mjs";
 export {
   proFieldRateProps
 };
-//# sourceMappingURL=typing.mjs.map

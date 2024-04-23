@@ -31,5 +31,9 @@
 		"lib",
 		"es"
 	],
-	"author": "17634393156@163.com"
+	"author": "17634393156@163.com",
+	"dependencies": {
+		"element-plus": "^2.4.1",
+		"vue": "^3.4.24"
+	}
 }

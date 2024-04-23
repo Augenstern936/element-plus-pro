@@ -1,12 +1,6 @@
-import { progressProps } from "element-plus";
-const proFieldProgressProps = {
-  ...progressProps,
-  style: {
-    type: Object,
-    default: {}
-  }
-};
+import {
+  proFieldProgressProps
+} from "../../chunk-NHDHGFX5.mjs";
 export {
   proFieldProgressProps
 };
-//# sourceMappingURL=typing.mjs.map

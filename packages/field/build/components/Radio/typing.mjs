@@ -1,20 +1,6 @@
-import { radioProps } from "element-plus";
-const proFieldRadioProps = {
-  ...radioProps,
-  type: {
-    type: String,
-    default: "radio"
-  },
-  options: {
-    type: Array,
-    default: []
-  },
-  style: {
-    type: Object,
-    default: {}
-  }
-};
+import {
+  proFieldRadioProps
+} from "../../chunk-QCZD5M7U.mjs";
 export {
   proFieldRadioProps
 };
-//# sourceMappingURL=typing.mjs.map

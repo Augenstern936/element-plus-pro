@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-22 14:15:12
- * @LastEditTime: 2024-04-22 17:03:29
+ * @LastEditTime: 2024-04-23 11:07:21
  */
 import mime from "mime";
 import fs from "node:fs";
@@ -15,14 +15,33 @@ export default defineConfig({
 	entry: ["src/**/*.ts", "src/**/*.tsx"],
 	format: ["esm"],
 	target: "es2018",
-	bundle: false,
+	bundle: true,
 	outDir: "./build",
 	clean: true,
-	sourcemap: true,
-	dts: true,
+	sourcemap: false,
+	dts: {
+		//resolve: true,
+		compilerOptions: {
+			//outDir: "dist",
+			target: "ES2018",
+			module: "ESNext",
+			// sourceMap: false,
+			moduleResolution: "node",
+			// allowJs: false,
+			// strict: true,
+			// noUnusedLocals: true,
+			resolveJsonModule: true,
+			// allowSyntheticDefaultImports: true,
+			esModuleInterop: true,
+			removeComments: false,
+			// composite: true,
+			lib: ["ES2018"],
+			jsx: "preserve",
+		},
+	},
 	// jsxFactory: "",
 	// jsxFragment: "h",
-	external: ["@element-plus/pro-utils", "element-plus", "vue"],
+	external: ["@element-plus/pro-utils", "vue"],
 	async onSuccess() {
 		const server = http.createServer((req, res) => {
 			console.log(pc.green(`${req.method} ${req.url}`));

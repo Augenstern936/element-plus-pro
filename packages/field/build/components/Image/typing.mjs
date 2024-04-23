@@ -1,12 +1,6 @@
-import { imageProps } from "element-plus";
-const proFieldImageProps = {
-  ...imageProps,
-  style: {
-    type: Object,
-    default: {}
-  }
-};
+import {
+  proFieldImageProps
+} from "../../chunk-AUC5DCCA.mjs";
 export {
   proFieldImageProps
 };
-//# sourceMappingURL=typing.mjs.map

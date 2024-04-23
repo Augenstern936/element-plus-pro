@@ -1,20 +1,6 @@
-import { checkboxProps } from "element-plus";
-const proFieldCheckboxProps = {
-  ...checkboxProps,
-  type: {
-    type: String,
-    default: "checkbox"
-  },
-  options: {
-    type: Array,
-    default: []
-  },
-  style: {
-    type: Object,
-    default: {}
-  }
-};
+import {
+  proFieldCheckboxProps
+} from "../../chunk-XRF645SO.mjs";
 export {
   proFieldCheckboxProps
 };
-//# sourceMappingURL=typing.mjs.map

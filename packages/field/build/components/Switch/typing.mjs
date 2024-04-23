@@ -1,12 +1,6 @@
-import { switchProps } from "element-plus";
-const proFieldSwitchProps = {
-  ...switchProps,
-  style: {
-    type: Object,
-    default: {}
-  }
-};
+import {
+  proFieldSwitchProps
+} from "../../chunk-XQ573ZYF.mjs";
 export {
   proFieldSwitchProps
 };
-//# sourceMappingURL=typing.mjs.map

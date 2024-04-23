@@ -1,20 +1,12 @@
-import { ElAvatar } from "element-plus";
-import "element-plus/theme-chalk/src/avatar.scss";
-import { defineComponent } from "vue";
-import { proFieldAvatar } from "./typing";
-const ProFieldAvatar = defineComponent(
-  (props) => {
-    return () => /* @__PURE__ */ React.createElement(ElAvatar, { ...props });
-  },
-  {
-    name: "ProFieldAvatar"
-  }
-);
-ProFieldAvatar.props = proFieldAvatar;
-export * from "./typing";
-var Avatar_default = ProFieldAvatar;
+import {
+  Avatar_default,
+  ProFieldAvatar
+} from "../../chunk-4YS3SBRT.mjs";
+import {
+  proFieldAvatar
+} from "../../chunk-QFTBJY57.mjs";
 export {
   ProFieldAvatar,
-  Avatar_default as default
+  Avatar_default as default,
+  proFieldAvatar
 };
-//# sourceMappingURL=index.mjs.map

@@ -1,25 +1,6 @@
-const proFieldProps = {
-  modelValue: {
-    type: [String, Number, Boolean, Array],
-    default: ""
-  },
-  mode: {
-    type: String,
-    default: "edit"
-  },
-  valueType: {
-    type: String,
-    default: "text"
-  },
-  placeholder: {
-    type: [String, Array]
-  },
-  fieldProps: {
-    type: Object,
-    default: {}
-  }
-};
+import {
+  proFieldProps
+} from "./chunk-VXJQWXSV.mjs";
 export {
   proFieldProps
 };
-//# sourceMappingURL=typing.mjs.map
