@@ -4,7 +4,6 @@ import path, { resolve } from "path";
 import copy from "rollup-plugin-copy";
 import { build } from "vite";
 
-import dts from "vite-plugin-dts";
 import * as utils from "./utils";
 
 const globals = {
@@ -117,11 +116,11 @@ export const buildModules = async () => {
 			// 	// 	return fileName == `${componentName}.js` || fileName == `${componentName}.mjs`;
 			// 	// },
 			// }),
-			dts({
-				entryRoot: "src/",
-				outDir: ["dist/es/src", "dist/lib/src"],
-				tsconfigPath: "../../tsconfig.json",
-			}),
+			// dts({
+			// 	entryRoot: "src/",
+			// 	outDir: ["dist/es/src", "dist/lib/src"],
+			// 	tsconfigPath: "../../tsconfig.json",
+			// }),
 			copy({
 				targets: [
 					{ src: "./dist/*", dest: resolve(outputRoot, pkgName) },

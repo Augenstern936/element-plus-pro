@@ -1,6 +1,6 @@
 <template>
 	<div style="height: calc(100vh - 40px); padding: 20px; background-color: #f5f5f5">
-		<pro-table
+		<!-- <pro-table
 			title="标题"
 			:columns="columns"
 			:dataSource="data.data"
@@ -11,95 +11,95 @@
 				<ElButton type="info">新增</ElButton>
 				<ElButton type="info">删除</ElButton>
 			</template>
-		</pro-table>
+		</pro-table> -->
 		<ProField.DateYear v-model="test" @input="console.log($event)" />
-		<pro-button type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">删除</pro-button>
+		<!-- <pro-button type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">删除</pro-button> -->
 	</div>
 </template>
 
 <script setup lang="ts">
-	import { reactive, ref } from 'vue';
-	import { ProTable, ProField, ProButton } from '@element-plus/pro-components';
-	import type { TableColumns } from '@element-plus/pro-components';
-	import { ElButton } from 'element-plus';
+	import { reactive, ref } from "vue";
+	import { ProField } from "@element-plus/pro-components";
+	// import type { TableColumns } from "@element-plus/pro-components";
+	// import { ElButton } from "element-plus";
 
-	const test = ref('');
+	const test = ref("");
 
-	const columns = ref<TableColumns[]>([
+	const columns = ref<any[]>([
 		{
-			title: 'ID',
-			dataField: 'id',
+			title: "ID",
+			dataField: "id",
 			search: false,
 		},
 		{
-			title: '姓名',
-			dataField: 'name',
+			title: "姓名",
+			dataField: "name",
 			search: {
 				order: 10,
 			},
 		},
 		{
-			title: '性别',
-			dataField: 'sex',
-			valueType: 'radioButton',
+			title: "性别",
+			dataField: "sex",
+			valueType: "radioButton",
 			search: {
 				order: 8,
 			},
 			valueEnum: {
-				0: '男',
-				1: '女',
+				0: "男",
+				1: "女",
 			},
 		},
 		{
-			title: '头像',
-			dataField: 'avatar',
-			valueType: 'avatar',
+			title: "头像",
+			dataField: "avatar",
+			valueType: "avatar",
 		},
 		{
-			title: '图片',
-			dataField: 'avatar',
-			valueType: 'image',
+			title: "图片",
+			dataField: "avatar",
+			valueType: "image",
 		},
 		{
-			title: '评价',
-			dataField: 'rate',
-			valueType: 'rate',
+			title: "评价",
+			dataField: "rate",
+			valueType: "rate",
 			search: true,
 		},
 		{
-			title: '状态',
-			dataField: 'age',
+			title: "状态",
+			dataField: "age",
 			valueEnum: {
 				0: {
-					text: '进行中',
-					status: 'Processing',
+					text: "进行中",
+					status: "Processing",
 				},
 				1: {
-					text: '已完成',
-					status: 'Success',
+					text: "已完成",
+					status: "Success",
 				},
 			},
 		},
 		{
-			title: '会员',
-			dataField: 'slider',
-			valueType: 'slider',
+			title: "会员",
+			dataField: "slider",
+			valueType: "slider",
 		},
 		{
-			title: '颜色',
-			dataField: 'color',
-			valueType: 'color',
+			title: "颜色",
+			dataField: "color",
+			valueType: "color",
 		},
 		{
-			title: '生日',
-			dataField: 'date',
-			valueType: 'dateYear',
+			title: "生日",
+			dataField: "date",
+			valueType: "dateYear",
 		},
 		{
-			title: '操作',
-			valueType: 'action',
+			title: "操作",
+			valueType: "action",
 			width: 300,
-			fixed: 'right',
+			fixed: "right",
 		},
 	]);
 
@@ -108,25 +108,25 @@
 		data: [
 			{
 				id: 1,
-				name: '张三',
+				name: "张三",
 				age: 0,
-				sex: '男',
+				sex: "男",
 				rate: 0,
-				avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+				avatar: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
 			},
 			{
 				id: 2,
-				name: '李斯',
+				name: "李斯",
 				age: 30,
-				sex: '女',
-				avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+				sex: "女",
+				avatar: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
 				rate: 5,
 			},
 			{
 				id: 3,
-				name: '王五',
+				name: "王五",
 				age: 15,
-				sex: '男',
+				sex: "男",
 				rate: 3,
 			},
 		],

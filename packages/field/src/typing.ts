@@ -2,11 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:59:48
- * @LastEditTime: 2024-04-16 17:00:18
+ * @LastEditTime: 2024-04-24 11:14:49
  * @FilePath: \element-plus-pro\packages\field\src\typing.ts
  */
 import type { ExtractPropTypes, PropType } from "vue";
-import components from "./components";
+import { components } from "./components";
 
 export const proFieldProps = {
 	modelValue: {

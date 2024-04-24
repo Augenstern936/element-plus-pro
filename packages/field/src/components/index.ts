@@ -2,13 +2,9 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-04-16 16:52:49
+ * @LastEditTime: 2024-04-24 11:24:36
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
-import ProFieldAvatar from "./Avatar";
-import ProFieldCascader from "./Cascader";
-import ProFieldCheckbox from "./Checkbox";
-import ProFieldColor from "./Color";
 import {
 	ProFieldDate,
 	ProFieldDateMonth,
@@ -20,16 +16,20 @@ import {
 	ProFieldDateYear,
 	ProFieldDates,
 } from "./Date";
-import ProFieldImage from "./Image";
 import { ProFieldPassword, ProFieldText, ProFieldTextarea } from "./Input";
+import { ProFieldTime, ProFieldTimeRange } from "./TimePicker";
+// import ProFieldTimeSelect from "./TimeSelect";
+import ProFieldAvatar from "./Avatar";
+import ProFieldCascader from "./Cascader";
+import ProFieldCheckbox from "./Checkbox";
+import ProFieldColor from "./Color";
+import ProFieldImage from "./Image";
 import ProFieldProgress from "./Progress";
 import ProFieldRadio from "./Radio";
 import ProFieldRate from "./Rate";
 import ProFieldSelect from "./Select";
 import ProFieldSlider from "./Slider";
 import ProFieldSwitch from "./Switch";
-import { ProFieldTime, ProFieldTimeRange } from "./TimePicker";
-import ProFieldTimeSelect from "./TimeSelect";
 import ProFieldTreeSelect from "./TreeSelect";
 
 export * from "./Avatar";
@@ -43,10 +43,10 @@ export * from "./Rate";
 // export * from './Select';
 export * from "./Slider";
 export * from "./Switch";
-export * from "./TimeSelect";
 export * from "./TreeSelect";
+// export * from "./TimeSelect";
 
-export default {
+export const components = {
 	text: ProFieldText,
 	password: ProFieldPassword,
 	textarea: ProFieldTextarea,
@@ -61,7 +61,7 @@ export default {
 	dateMonthRange: ProFieldDateMonthRange,
 	time: ProFieldTime,
 	timeRange: ProFieldTimeRange,
-	timeSelect: ProFieldTimeSelect,
+	// timeSelect: ProFieldTimeSelect,
 	select: ProFieldSelect,
 	treeSelect: ProFieldTreeSelect,
 	checkbox: ProFieldCheckbox,

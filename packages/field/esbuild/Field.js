@@ -1,6 +1,6 @@
 import { formatPlaceholder, withInstall } from "@element-plus/pro-utils";
 import { computed, defineComponent } from "vue";
-import components from "./components";
+import { components } from "./components";
 import { proFieldProps } from "./typing";
 const ProField = defineComponent(
   (props, ctx) => {

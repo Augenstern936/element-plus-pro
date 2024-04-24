@@ -2,12 +2,12 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-04-16 17:04:36
+ * @LastEditTime: 2024-04-24 11:14:38
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import { formatPlaceholder, withInstall } from "@element-plus/pro-utils";
 import { FunctionalComponent, computed, defineComponent } from "vue";
-import components from "./components";
+import { components } from "./components";
 import { ProFieldProps, proFieldProps } from "./typing";
 
 const ProField = defineComponent<ProFieldProps>(

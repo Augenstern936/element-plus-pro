@@ -1,7 +1,3 @@
-import ProFieldAvatar from "./Avatar";
-import ProFieldCascader from "./Cascader";
-import ProFieldCheckbox from "./Checkbox";
-import ProFieldColor from "./Color";
 import {
   ProFieldDate,
   ProFieldDateMonth,
@@ -13,16 +9,19 @@ import {
   ProFieldDateYear,
   ProFieldDates
 } from "./Date";
-import ProFieldImage from "./Image";
 import { ProFieldPassword, ProFieldText, ProFieldTextarea } from "./Input";
+import { ProFieldTime, ProFieldTimeRange } from "./TimePicker";
+import ProFieldAvatar from "./Avatar";
+import ProFieldCascader from "./Cascader";
+import ProFieldCheckbox from "./Checkbox";
+import ProFieldColor from "./Color";
+import ProFieldImage from "./Image";
 import ProFieldProgress from "./Progress";
 import ProFieldRadio from "./Radio";
 import ProFieldRate from "./Rate";
 import ProFieldSelect from "./Select";
 import ProFieldSlider from "./Slider";
 import ProFieldSwitch from "./Switch";
-import { ProFieldTime, ProFieldTimeRange } from "./TimePicker";
-import ProFieldTimeSelect from "./TimeSelect";
 import ProFieldTreeSelect from "./TreeSelect";
 export * from "./Avatar";
 export * from "./Cascader";
@@ -34,9 +33,8 @@ export * from "./Radio";
 export * from "./Rate";
 export * from "./Slider";
 export * from "./Switch";
-export * from "./TimeSelect";
 export * from "./TreeSelect";
-var components_default = {
+const components = {
   text: ProFieldText,
   password: ProFieldPassword,
   textarea: ProFieldTextarea,
@@ -51,7 +49,7 @@ var components_default = {
   dateMonthRange: ProFieldDateMonthRange,
   time: ProFieldTime,
   timeRange: ProFieldTimeRange,
-  timeSelect: ProFieldTimeSelect,
+  // timeSelect: ProFieldTimeSelect,
   select: ProFieldSelect,
   treeSelect: ProFieldTreeSelect,
   checkbox: ProFieldCheckbox,
@@ -67,5 +65,5 @@ var components_default = {
   progress: ProFieldProgress
 };
 export {
-  components_default as default
+  components
 };
