@@ -1,3 +1,8 @@
+/*
+ * @Description:
+ * @Date: 2024-04-24 17:52:21
+ * @LastEditTime: 2024-04-24 18:38:33
+ */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import path from "path";
@@ -11,6 +16,27 @@ const globals = {
 	"@element-plus/icons-vue": "iconsVue",
 	"element-plus": "Element-Plus",
 };
+
+function getOutputConfig(format: "es" | "cjs"): Record<string, any> {
+	const assetFileNames = (assetInfo: any) => {
+		//文件名称
+		if (assetInfo.name.endsWith(".css")) {
+			return "src/style/[name].css";
+		}
+		//剩余资源文件
+		return assetInfo;
+	};
+
+	return {
+		format,
+		dir: `./dist/${format == "es" ? "es" : "lib"}`,
+		preserveModules: true,
+		preserveModulesRoot: "",
+		exports: "named",
+		globals,
+		assetFileNames,
+	};
+}
 
 export const buildModules = async () => {
 	const cwd = process.cwd();
@@ -59,42 +85,7 @@ export const buildModules = async () => {
 					"@element-plus/pro-search-bar",
 					"@element-plus/pro-center-container",
 				],
-				output: [
-					{
-						format: "es",
-						dir: "./dist/es",
-						entryFileNames: "[name].mjs",
-						preserveModules: true,
-						preserveModulesRoot: "",
-						exports: "named",
-						globals,
-						assetFileNames(assetInfo: any) {
-							//文件名称
-							if (assetInfo.name.endsWith(".css")) {
-								return "src/style/index.css";
-							}
-							//剩余资源文件
-							return assetInfo;
-						},
-					},
-					{
-						format: "cjs",
-						dir: "./dist/lib",
-						entryFileNames: "[name].js",
-						preserveModules: true,
-						preserveModulesRoot: "",
-						exports: "named",
-						globals,
-						assetFileNames(assetInfo: any) {
-							//文件名称
-							if (assetInfo.name.endsWith(".css")) {
-								return "src/style/[name].css";
-							}
-							//剩余资源文件
-							return assetInfo;
-						},
-					},
-				],
+				output: [getOutputConfig("es"), getOutputConfig("cjs")],
 			},
 		},
 		plugins: [Vue(), VueJsx()],
