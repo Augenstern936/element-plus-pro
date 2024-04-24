@@ -1,11 +1,11 @@
-import { imageProps } from "element-plus";
-const proFieldImageProps = {
-  ...imageProps,
+import { imageProps as e } from "element-plus";
+const t = {
+  ...e,
   style: {
     type: Object,
     default: {}
   }
 };
 export {
-  proFieldImageProps
+  t as proFieldImageProps
 };

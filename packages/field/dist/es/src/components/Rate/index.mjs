@@ -1,26 +1,24 @@
-import { defineComponent, computed, createVNode, mergeProps } from "vue";
-import { ElRate } from "element-plus";
-import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21_typescript@5.4.4_/node_modules/element-plus/theme-chalk/src/rate.scss.mjs";
-import { proFieldRateProps } from "./typing.mjs";
-const ProFieldRate = /* @__PURE__ */ defineComponent((props, ctx) => {
-  const state = computed({
-    get: () => {
-      return props.modelValue;
-    },
-    set: (value) => {
-      ctx.emit("update:modelValue", value);
+import { defineComponent as a, computed as l, createVNode as m, mergeProps as d } from "vue";
+import { ElRate as p } from "element-plus";
+import "../../../node_modules/.pnpm/registry.npmmirror.com_element-plus@2.4.1_vue@3.3.7/node_modules/element-plus/theme-chalk/src/rate.scss.mjs";
+import { proFieldRateProps as u } from "./typing.mjs";
+const n = /* @__PURE__ */ a((o, r) => {
+  const t = l({
+    get: () => o.modelValue,
+    set: (e) => {
+      r.emit("update:modelValue", e);
     }
   });
-  return () => createVNode(ElRate, mergeProps({
-    "modelValue": state.value,
-    "onUpdate:modelValue": ($event) => state.value = $event
-  }, props), null);
+  return () => m(p, d({
+    modelValue: t.value,
+    "onUpdate:modelValue": (e) => t.value = e
+  }, o), null);
 }, {
   name: "ProFieldRate"
 });
-ProFieldRate.props = proFieldRateProps;
+n.props = u;
 export {
-  ProFieldRate,
-  ProFieldRate as default,
-  proFieldRateProps
+  n as ProFieldRate,
+  n as default,
+  u as proFieldRateProps
 };

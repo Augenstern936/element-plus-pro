@@ -1,11 +1,11 @@
-import { rateProps } from "element-plus";
-const proFieldRateProps = {
-  ...rateProps,
+import { rateProps as t } from "element-plus";
+const o = {
+  ...t,
   style: {
     type: Object,
     default: {}
   }
 };
 export {
-  proFieldRateProps
+  o as proFieldRateProps
 };

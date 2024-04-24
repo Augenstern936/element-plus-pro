@@ -1,11 +1,11 @@
-import { avatarProps } from "element-plus";
-const proFieldAvatar = {
-  ...avatarProps,
+import { avatarProps as t } from "element-plus";
+const a = {
+  ...t,
   style: {
     type: Object,
     default: {}
   }
 };
 export {
-  proFieldAvatar
+  a as proFieldAvatar
 };

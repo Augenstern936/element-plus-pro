@@ -1,1 +1,1 @@
-"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e={...require("element-plus").avatarProps,style:{type:Object,default:{}}};exports.proFieldAvatar=e;
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const e=require("element-plus"),t={...e.avatarProps,style:{type:Object,default:{}}};exports.proFieldAvatar=t;

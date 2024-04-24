@@ -1,34 +1,31 @@
-import { defineComponent, computed, createVNode, mergeProps } from "vue";
-import { ElSelect, ElOption } from "element-plus";
-import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21_typescript@5.4.4_/node_modules/element-plus/theme-chalk/src/option.scss.mjs";
-import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21_typescript@5.4.4_/node_modules/element-plus/theme-chalk/src/select.scss.mjs";
-const ProFieldSelect = /* @__PURE__ */ defineComponent((props, ctx) => {
-  const state = computed({
-    get: () => {
-      return props.modelValue;
-    },
-    set: (value) => {
-      ctx.emit("update:modelValue", value);
+import { defineComponent as d, computed as u, createVNode as a, mergeProps as n } from "vue";
+import { ElSelect as i, ElOption as p } from "element-plus";
+import "../../../node_modules/.pnpm/registry.npmmirror.com_element-plus@2.4.1_vue@3.3.7/node_modules/element-plus/theme-chalk/src/option.scss.mjs";
+import "../../../node_modules/.pnpm/registry.npmmirror.com_element-plus@2.4.1_vue@3.3.7/node_modules/element-plus/theme-chalk/src/select.scss.mjs";
+const c = /* @__PURE__ */ d((t, m) => {
+  const l = u({
+    get: () => t.modelValue,
+    set: (e) => {
+      m.emit("update:modelValue", e);
     }
   });
-  return () => createVNode(ElSelect, {
-    "modelValue": state.value,
-    "onUpdate:modelValue": ($event) => state.value = $event
+  return () => a(i, {
+    modelValue: l.value,
+    "onUpdate:modelValue": (e) => l.value = e
   }, {
     default: () => {
-      var _a;
-      return [(_a = props.options) == null ? void 0 : _a.map((option, index) => createVNode(ElOption, mergeProps(option, {
-        "key": index
+      var e;
+      return [(e = t.options) == null ? void 0 : e.map((o, r) => a(p, n(o, {
+        key: r
       }), {
-        default: () => [option.label]
+        default: () => [o.label]
       }))];
     }
   });
 }, {
   name: "ProFieldSelect"
-});
-const ProFieldSelect$1 = ProFieldSelect;
+}), S = c;
 export {
-  ProFieldSelect,
-  ProFieldSelect$1 as default
+  c as ProFieldSelect,
+  S as default
 };

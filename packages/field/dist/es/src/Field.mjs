@@ -1,91 +1,81 @@
-import { createVNode, mergeProps, defineComponent, computed } from "vue";
-import { withInstall, formatPlaceholder } from "@element-plus/pro-utils";
-import { components } from "./components/index.mjs";
-import { proFieldProps } from "./typing.mjs";
-import { proFieldAvatar } from "./components/Avatar/typing.mjs";
-import { ProFieldAvatar } from "./components/Avatar/index.mjs";
-import { proFieldCascaderProps } from "./components/Cascader/typing.mjs";
-import { ProFieldCascader } from "./components/Cascader/index.mjs";
-import { proFieldCheckboxProps } from "./components/Checkbox/typing.mjs";
-import { ProFieldCheckbox } from "./components/Checkbox/index.mjs";
-import { proFieldColor } from "./components/Color/typing.mjs";
-import { ProFieldColor } from "./components/Color/index.mjs";
-import { proFieldImageProps } from "./components/Image/typing.mjs";
-import { ProFieldImage } from "./components/Image/index.mjs";
-import { proFieldProgressProps } from "./components/Progress/typing.mjs";
-import { ProFieldProgress } from "./components/Progress/index.mjs";
-import { proFieldRadioProps } from "./components/Radio/typing.mjs";
-import { ProFieldRadio } from "./components/Radio/index.mjs";
-import { proFieldRateProps } from "./components/Rate/typing.mjs";
-import { ProFieldRate } from "./components/Rate/index.mjs";
-import { proFieldSliderProps } from "./components/Slider/typing.mjs";
-import { ProFieldSlider } from "./components/Slider/index.mjs";
-import { proFieldSwitchProps } from "./components/Switch/typing.mjs";
-import { ProFieldSwitch } from "./components/Switch/index.mjs";
-import { ProFieldTreeSelect } from "./components/TreeSelect/index.mjs";
-const ProField = /* @__PURE__ */ defineComponent((props, ctx) => {
-  const Field = computed(() => {
-    return components[props.valueType || "text"];
-  });
-  const model = computed({
-    get: () => {
-      return props.modelValue;
-    },
-    set: (value) => {
-      ctx.emit("update:modelValue", value);
+import { createVNode as m, mergeProps as s, defineComponent as P, computed as p } from "vue";
+import { withInstall as n, formatPlaceholder as c } from "@element-plus/pro-utils";
+import { components as d } from "./components/index.mjs";
+import { proFieldProps as F } from "./typing.mjs";
+import { proFieldAvatar as A } from "./components/Avatar/typing.mjs";
+import { ProFieldAvatar as V } from "./components/Avatar/index.mjs";
+import { proFieldCascaderProps as k } from "./components/Cascader/typing.mjs";
+import { ProFieldCascader as I } from "./components/Cascader/index.mjs";
+import { proFieldCheckboxProps as b } from "./components/Checkbox/typing.mjs";
+import { ProFieldCheckbox as U } from "./components/Checkbox/index.mjs";
+import { proFieldColor as j } from "./components/Color/typing.mjs";
+import { ProFieldColor as z } from "./components/Color/index.mjs";
+import { proFieldImageProps as D } from "./components/Image/typing.mjs";
+import { ProFieldImage as G } from "./components/Image/index.mjs";
+import { proFieldProgressProps as J } from "./components/Progress/typing.mjs";
+import { ProFieldProgress as L } from "./components/Progress/index.mjs";
+import { proFieldRadioProps as O } from "./components/Radio/typing.mjs";
+import { ProFieldRadio as W } from "./components/Radio/index.mjs";
+import { proFieldRateProps as Y } from "./components/Rate/typing.mjs";
+import { ProFieldRate as _ } from "./components/Rate/index.mjs";
+import { proFieldSliderProps as re } from "./components/Slider/typing.mjs";
+import { ProFieldSlider as te } from "./components/Slider/index.mjs";
+import { proFieldSwitchProps as pe } from "./components/Switch/typing.mjs";
+import { ProFieldSwitch as ae } from "./components/Switch/index.mjs";
+import { ProFieldTreeSelect as me } from "./components/TreeSelect/index.mjs";
+const a = /* @__PURE__ */ P((r, t) => {
+  const l = p(() => d[r.valueType || "text"]), o = p({
+    get: () => r.modelValue,
+    set: (e) => {
+      t.emit("update:modelValue", e);
     }
-  });
-  const placeholder = computed(() => {
-    var _a;
-    const value = (_a = props.placeholder) != null ? _a : formatPlaceholder("", props.valueType || "text");
-    if (Array.isArray(value) && value.length > 1) {
-      return {
-        startPlaceholder: value[0],
-        endPlaceholder: value[1]
-      };
-    }
-    return {
-      placeholder: Array.isArray(value) ? value[0] : value
+  }), f = p(() => {
+    var i;
+    const e = (i = r.placeholder) != null ? i : c("", r.valueType || "text");
+    return Array.isArray(e) && e.length > 1 ? {
+      startPlaceholder: e[0],
+      endPlaceholder: e[1]
+    } : {
+      placeholder: Array.isArray(e) ? e[0] : e
     };
   });
-  return () => createVNode(Field.value, mergeProps({
-    "modelValue": model.value,
-    "onUpdate:modelValue": ($event) => model.value = $event
-  }, props.fieldProps, placeholder.value), null);
+  return () => m(l.value, s({
+    modelValue: o.value,
+    "onUpdate:modelValue": (e) => o.value = e
+  }, r.fieldProps, f.value), null);
 }, {
   name: "ProField"
 });
-ProField.props = proFieldProps;
-for (const key in components) {
-  const ComName = key.charAt(0).toUpperCase() + key.slice(1);
-  const FieldComponent = components[key];
-  ProField[ComName] = (props) => createVNode(FieldComponent, mergeProps(props, {
-    "type": key
+a.props = F;
+for (const r in d) {
+  const t = r.charAt(0).toUpperCase() + r.slice(1), l = d[r];
+  a[t] = (o) => m(l, s(o, {
+    type: r
   }), null);
 }
-const ProField$1 = withInstall(ProField);
+const v = n(a);
 export {
-  ProFieldAvatar,
-  ProFieldCascader,
-  ProFieldCheckbox,
-  ProFieldColor,
-  ProFieldImage,
-  ProFieldProgress,
-  ProFieldRadio,
-  ProFieldRate,
-  ProFieldSlider,
-  ProFieldSwitch,
-  ProFieldTreeSelect,
-  components,
-  ProField$1 as default,
-  proFieldAvatar,
-  proFieldCascaderProps,
-  proFieldCheckboxProps,
-  proFieldColor,
-  proFieldImageProps,
-  proFieldProgressProps,
-  proFieldRadioProps,
-  proFieldRateProps,
-  proFieldSliderProps,
-  proFieldSwitchProps
+  V as ProFieldAvatar,
+  I as ProFieldCascader,
+  U as ProFieldCheckbox,
+  z as ProFieldColor,
+  G as ProFieldImage,
+  L as ProFieldProgress,
+  W as ProFieldRadio,
+  _ as ProFieldRate,
+  te as ProFieldSlider,
+  ae as ProFieldSwitch,
+  me as ProFieldTreeSelect,
+  d as components,
+  v as default,
+  A as proFieldAvatar,
+  k as proFieldCascaderProps,
+  b as proFieldCheckboxProps,
+  j as proFieldColor,
+  D as proFieldImageProps,
+  J as proFieldProgressProps,
+  O as proFieldRadioProps,
+  Y as proFieldRateProps,
+  re as proFieldSliderProps,
+  pe as proFieldSwitchProps
 };

@@ -1,26 +1,24 @@
-import { defineComponent, computed, createVNode, mergeProps } from "vue";
-import { ElCascader } from "element-plus";
-import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21_typescript@5.4.4_/node_modules/element-plus/theme-chalk/src/cascader.scss.mjs";
-import { proFieldCascaderProps } from "./typing.mjs";
-const ProFieldCascader = /* @__PURE__ */ defineComponent((props, ctx) => {
-  const state = computed({
-    get: () => {
-      return props.modelValue;
-    },
-    set: (value) => {
-      ctx.emit("update:modelValue", value);
+import { defineComponent as t, computed as d, createVNode as l, mergeProps as m } from "vue";
+import { ElCascader as p } from "element-plus";
+import "../../../node_modules/.pnpm/registry.npmmirror.com_element-plus@2.4.1_vue@3.3.7/node_modules/element-plus/theme-chalk/src/cascader.scss.mjs";
+import { proFieldCascaderProps as u } from "./typing.mjs";
+const s = /* @__PURE__ */ t((o, a) => {
+  const r = d({
+    get: () => o.modelValue,
+    set: (e) => {
+      a.emit("update:modelValue", e);
     }
   });
-  return () => createVNode(ElCascader, mergeProps({
-    "modelValue": state.value,
-    "onUpdate:modelValue": ($event) => state.value = $event
-  }, props), null);
+  return () => l(p, m({
+    modelValue: r.value,
+    "onUpdate:modelValue": (e) => r.value = e
+  }, o), null);
 }, {
   name: "ProFieldCascader"
 });
-ProFieldCascader.props = proFieldCascaderProps;
+s.props = u;
 export {
-  ProFieldCascader,
-  ProFieldCascader as default,
-  proFieldCascaderProps
+  s as ProFieldCascader,
+  s as default,
+  u as proFieldCascaderProps
 };

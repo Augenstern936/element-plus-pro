@@ -1,15 +1,13 @@
-import { defineComponent, createVNode } from "vue";
-import { ElProgress } from "element-plus";
-import "../../../node_modules/.pnpm/element-plus@2.6.3_vue@3.4.21_typescript@5.4.4_/node_modules/element-plus/theme-chalk/src/progress.scss.mjs";
-import { proFieldProgressProps } from "./typing.mjs";
-const ProFieldProgress = /* @__PURE__ */ defineComponent((props) => {
-  return () => createVNode(ElProgress, props, null);
-}, {
+import { defineComponent as o, createVNode as e } from "vue";
+import { ElProgress as s } from "element-plus";
+import "../../../node_modules/.pnpm/registry.npmmirror.com_element-plus@2.4.1_vue@3.3.7/node_modules/element-plus/theme-chalk/src/progress.scss.mjs";
+import { proFieldProgressProps as p } from "./typing.mjs";
+const t = /* @__PURE__ */ o((r) => () => e(s, r, null), {
   name: "ProFieldProgress"
 });
-ProFieldProgress.props = proFieldProgressProps;
+t.props = p;
 export {
-  ProFieldProgress,
-  ProFieldProgress as default,
-  proFieldProgressProps
+  t as ProFieldProgress,
+  t as default,
+  p as proFieldProgressProps
 };
