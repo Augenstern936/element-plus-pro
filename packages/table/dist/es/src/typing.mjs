@@ -1,16 +1,16 @@
-const proTableProps = {
+const e = {
   loading: {
     type: Boolean,
-    default: false
+    default: !1
   },
   ghost: {
     type: Boolean,
-    default: false
+    default: !1
   },
   // 是否开启缓存模式
   keepAlive: {
     type: Boolean,
-    default: false
+    default: !1
   },
   title: String,
   cellAlign: {
@@ -24,7 +24,7 @@ const proTableProps = {
   // 列
   columns: {
     type: Array,
-    required: true
+    required: !0
   },
   // 为空时，默认显示的标记
   columnEmptyText: {
@@ -51,14 +51,14 @@ const proTableProps = {
     type: Object,
     default: {
       placeholder: "请输入关键字",
-      showAction: true,
+      showAction: !0,
       actionStyle: {}
     }
   },
   //
   options: {
     type: Boolean,
-    default: true
+    default: !0
   },
   // 样式
   tableStyle: {
@@ -73,7 +73,7 @@ const proTableProps = {
   },
   pagination: {
     type: [Boolean, Object],
-    default: true
+    default: !0
   },
   // 数据源
   dataSource: {
@@ -97,5 +97,5 @@ const proTableProps = {
   }
 };
 export {
-  proTableProps
+  e as proTableProps
 };

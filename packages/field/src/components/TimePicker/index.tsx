@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-10 18:23:57
+ * @LastEditTime: 2024-04-25 14:23:49
  * @FilePath: \element-plus-pro\packages\field\src\components\TimePicker.tsx
  */
 import { ElTimePicker, timePickerDefaultProps } from "element-plus";
 import "element-plus/theme-chalk/src/time-picker.scss";
 import { CSSProperties, FunctionalComponent, PropType, computed, defineComponent } from "vue";
-import { BaseTimePickerProps, ProFieldTimeProps, ProFieldTimeRangeProps } from "./typing";
+import { BaseTimePickerProps, ProFieldTimeProps, ProFieldTimeRangeProps } from "./props";
 
 const BaseTimePicker = defineComponent<BaseTimePickerProps>((props, ctx) => {
 	const state = computed({

@@ -1,40 +1,31 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-04-25 00:51:45
+ * @LastEditTime: 2024-04-25 10:35:33
  */
-import Vue from '@vitejs/plugin-vue';
-import VueJsx from '@vitejs/plugin-vue-jsx';
-import path from 'path';
-import { build } from 'vite';
+import Vue from "@vitejs/plugin-vue";
+import VueJsx from "@vitejs/plugin-vue-jsx";
+import path from "path";
+import { build } from "vite";
 
-import * as utils from '../utils';
+import * as utils from "../utils";
 
-function getOutputConfig(format: 'es' | 'cjs'): Record<string, any> {
-	const globals = {
-		vue: 'Vue',
-		'@vue/shared': '@vue/shared',
-		'@element-plus/icons-vue': 'iconsVue',
-		'element-plus': 'Element-Plus',
-	};
-
-	const assetFileNames = (assetInfo: Record<string, any>) => {
-		//文件名称
-		if (assetInfo.name.endsWith('.css')) {
-			return 'src/style/[name].css';
-		}
-		//剩余资源文件
-		return assetInfo;
-	};
-
+function getOutputConfig(format: "es" | "cjs"): Record<string, any> {
 	return {
 		format,
-		dir: `./dist/${format == 'es' ? 'es' : 'lib'}`,
+		dir: `./dist/${format == "es" ? "es" : "lib"}`,
 		preserveModules: true,
-		preserveModulesRoot: '',
-		exports: 'named',
-		globals,
-		assetFileNames,
+		preserveModulesRoot: "",
+		exports: "named",
+		globals: {
+			vue: "Vue",
+			"@vue/shared": "@vue/shared",
+			"@element-plus/icons-vue": "iconsVue",
+			"element-plus": "Element-Plus",
+		},
+		assetFileNames: ({ name }: { name: string }) => {
+			return name.endsWith(".css") ? "src/[name].css" : "";
+		},
 	};
 }
 
@@ -45,44 +36,40 @@ export const buildModules = async () => {
 
 	const componentName = utils.toGreatHump(baseDirName);
 
-	const componentSuffix = componentName == 'Button' ? '.vue' : '.tsx';
+	const componentSuffix = componentName == "Button" ? ".vue" : ".tsx";
 
 	const componentsPath = `src/${componentName}${componentSuffix}`;
 
-	const entry = baseDirName === 'components' ? 'src/index.ts' : ['src/index.ts', componentsPath];
+	const entry = baseDirName === "components" ? "src/index.ts" : ["src/index.ts", componentsPath];
 
 	return await build({
+		esbuild: {
+			pure: ["console.log", "debugger"],
+		},
 		build: {
-			target: 'es2018',
-			outDir: 'dist',
+			target: "es2018",
+			outDir: "dist",
 			emptyOutDir: true,
-			cssCodeSplit: false,
-			minify: true,
+			minify: "esbuild",
 			lib: {
 				entry: entry,
-				name: 'dist',
-			},
-			terserOptions: {
-				compress: {
-					drop_console: true,
-					drop_debugger: true,
-				},
+				name: "dist",
 			},
 			rollupOptions: {
 				//忽略打包文件
 				external: [
-					'vue',
-					'@vue/shared',
-					'element-plus',
-					'@element-plus/icons-vue',
-					'@element-plus/pro-utils',
-					'@element-plus/pro-tabs',
-					'@element-plus/pro-button',
-					'@element-plus/pro-table',
-					'@element-plus/pro-search-bar',
-					'@element-plus/pro-center-container',
+					"vue",
+					"@vue/shared",
+					"element-plus",
+					"@element-plus/icons-vue",
+					"@element-plus/pro-utils",
+					"@element-plus/pro-tabs",
+					"@element-plus/pro-button",
+					"@element-plus/pro-table",
+					"@element-plus/pro-search-bar",
+					"@element-plus/pro-center-container",
 				],
-				output: [getOutputConfig('es'), getOutputConfig('cjs')],
+				output: [getOutputConfig("es"), getOutputConfig("cjs")],
 			},
 		},
 		plugins: [Vue(), VueJsx()],

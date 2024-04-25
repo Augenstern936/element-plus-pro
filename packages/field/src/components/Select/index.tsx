@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-15 16:15:26
+ * @LastEditTime: 2024-04-25 14:09:18
  * @FilePath: \element-plus-pro\packages\field\src\components\Select.tsx
  */
 import type { ISelectProps } from "element-plus";
@@ -42,7 +42,7 @@ const ProFieldSelect = defineComponent<ProSelectProps>(
 	}
 ) as unknown as FunctionalComponent<ProSelectProps>;
 
-export * from "./typing";
+export * from "./props";
 
 export { ProFieldSelect };
 

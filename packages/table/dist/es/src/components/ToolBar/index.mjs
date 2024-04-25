@@ -1,211 +1,170 @@
-import { defineComponent, inject, ref, computed, createVNode, watch, createTextVNode, isVNode } from "vue";
-import { ElInput, ElButton, ElTooltip, ElPopover, ElCheckbox, ElCheckboxGroup } from "element-plus";
-import { RefreshRight, Search, Setting, FullScreen } from "@element-plus/icons-vue";
-import screenfull from "../../../node_modules/.pnpm/screenfull@6.0.2/node_modules/screenfull/index.mjs";
-function _isSlot(s) {
-  return typeof s === "function" || Object.prototype.toString.call(s) === "[object Object]" && !isVNode(s);
+import { defineComponent as I, inject as O, ref as p, computed as m, createVNode as t, watch as U, createTextVNode as B, isVNode as L } from "vue";
+import { RefreshRight as q, Search as R, Setting as x, FullScreen as G } from "@element-plus/icons-vue";
+import { ElInput as K, ElButton as u, ElTooltip as f, ElPopover as P, ElCheckbox as _, ElCheckboxGroup as $ } from "element-plus";
+import y from "../../../node_modules/.pnpm/screenfull@6.0.2/node_modules/screenfull/index.mjs";
+function j(s) {
+  return typeof s == "function" || Object.prototype.toString.call(s) === "[object Object]" && !L(s);
 }
-const ToolBar = /* @__PURE__ */ defineComponent((props, ctx) => {
-  const toolbar = inject("toolbar", {});
-  const isScreenfull = ref(false);
-  const searchKeywords = ref("");
-  const allSelected = ref(true);
-  const selectedColumns = ref([]);
-  const title = computed(() => {
-    var _a, _b;
-    const content = (_b = (_a = ctx.slots) == null ? void 0 : _a.title) == null ? void 0 : _b.call(_a);
-    return content[0].children ? content : toolbar.title ? createVNode("h3", null, [toolbar.title]) : "";
-  });
-  const searchRender = computed(() => {
-    var _a;
-    const search = (_a = toolbar.config) == null ? void 0 : _a.search;
-    const {
-      placeholder = "请输入关键字",
-      showAction = true,
-      actionText = "",
-      actionStyle = {},
-      onChange = null,
-      onAction = null
-    } = typeof search === "object" ? search : {};
-    const actionElementRender = () => {
-      return showAction === true ? createVNode(ElButton, {
-        "icon": actionText ? void 0 : Search,
-        "style": {
-          borderTopLeftRadius: 0,
-          borderBottomLeftRadius: 0,
-          ...actionStyle
-        },
-        "onClick": () => onAction == null ? void 0 : onAction(searchKeywords.value)
-      }, _isSlot(actionText) ? actionText : {
-        default: () => [actionText]
-      }) : void 0;
-    };
-    const ComElement = createVNode(ElInput, {
-      "modelValue": searchKeywords.value,
-      "onUpdate:modelValue": ($event) => searchKeywords.value = $event,
-      "placeholder": placeholder,
-      "clearable": true,
-      "style": {
+const z = /* @__PURE__ */ I((s, a) => {
+  const c = O("toolbar", {}), r = p(!1), v = p(""), i = p(!0), d = p([]), h = m(() => {
+    var l, o;
+    const e = (o = (l = a.slots) == null ? void 0 : l.title) == null ? void 0 : o.call(l);
+    return e[0].children ? e : c.title ? t("h3", null, [c.title]) : "";
+  }), S = m(() => {
+    var k;
+    const e = (k = c.config) == null ? void 0 : k.search, {
+      placeholder: l = "请输入关键字",
+      showAction: o = !0,
+      actionText: n = "",
+      actionStyle: N = {},
+      onChange: g = null,
+      onAction: b = null
+    } = typeof e == "object" ? e : {}, A = () => o === !0 ? t(u, {
+      icon: n ? void 0 : R,
+      style: {
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+        ...N
+      },
+      onClick: () => b == null ? void 0 : b(v.value)
+    }, j(n) ? n : {
+      default: () => [n]
+    }) : void 0, D = t(K, {
+      modelValue: v.value,
+      "onUpdate:modelValue": (C) => v.value = C,
+      placeholder: l,
+      clearable: !0,
+      style: {
         width: "200px"
       },
-      "onInput": (v) => onChange == null ? void 0 : onChange(v)
+      onInput: (C) => g == null ? void 0 : g(C)
     }, {
-      append: actionElementRender
+      append: A
     });
-    return search ? ComElement : "";
-  });
-  const actionsRender = computed(() => {
-    var _a, _b;
+    return e ? D : "";
+  }), w = m(() => {
+    var l, o;
     const {
-      actions
-    } = toolbar.config || {};
-    if (typeof actions === "object" && actions != null) {
-      if (actions == null ? void 0 : actions.__v_isVNode) {
-        return actions;
-      }
-      if (Array.isArray(actions) && actions.length) {
-        return actions.map((item) => {
-          return item.__v_isVNode ? item : createVNode(ElButton, item, {
-            default: () => [item.content]
-          });
-        });
-      }
-      return createVNode(ElButton, actions, {
-        default: () => [actions.content]
-      });
-    }
-    return (_b = (_a = ctx.slots).actions) == null ? void 0 : _b.call(_a);
-  });
-  const columns = computed(() => {
-    return toolbar.columns.filter(({
-      title: title2
-    }) => title2);
-  });
-  const onColumnsSettingChange = (ids) => {
-    ctx.emit("columnsSettingChange", ids);
-  };
-  const initSelectedStatus = () => {
-    allSelected.value = true;
-    selectedColumns.value = columns.value.map(({
-      id
-    }) => id);
-    ctx.emit("columnsSettingReset");
-  };
-  const onFullScreen = () => {
-    if (screenfull.isEnabled) {
-      const element = document.getElementById("pro-table");
-      if (isScreenfull.value) {
-        screenfull.exit();
-      } else {
-        screenfull.request(element);
-      }
-      isScreenfull.value = isScreenfull.value ? false : true;
-      ctx.emit("fullScreenChange", isScreenfull.value);
+      actions: e
+    } = c.config || {};
+    return typeof e == "object" && e != null ? e != null && e.__v_isVNode ? e : Array.isArray(e) && e.length ? e.map((n) => n.__v_isVNode ? n : t(u, n, {
+      default: () => [n.content]
+    })) : t(u, e, {
+      default: () => [e.content]
+    }) : (o = (l = a.slots).actions) == null ? void 0 : o.call(l);
+  }), E = m(() => c.columns.filter(({
+    title: e
+  }) => e)), T = (e) => {
+    a.emit("columnsSettingChange", e);
+  }, V = () => {
+    i.value = !0, d.value = E.value.map(({
+      id: e
+    }) => e), a.emit("columnsSettingReset");
+  }, F = () => {
+    if (y.isEnabled) {
+      const e = document.getElementById("pro-table");
+      r.value ? y.exit() : y.request(e), r.value = !r.value, a.emit("fullScreenChange", r.value);
     }
   };
-  watch(() => allSelected.value, (v) => {
-    if (v) {
-      return initSelectedStatus();
-    }
-    selectedColumns.value = [];
-    ctx.emit("columnsSettingChange", []);
+  return U(() => i.value, (e) => {
+    if (e)
+      return V();
+    d.value = [], a.emit("columnsSettingChange", []);
   }, {
-    immediate: true
-  });
-  return () => {
-    let _slot;
-    return createVNode("div", {
-      "class": "toolbar-container"
-    }, [createVNode("div", {
-      "class": "left"
-    }, [title.value ? title.value : searchRender.value]), createVNode("div", {
-      "class": "right"
-    }, [title.value && searchRender.value, createVNode("div", {
-      "class": "actions"
-    }, [actionsRender.value]), toolbar.options && createVNode("div", {
-      "class": "options"
-    }, [createVNode(ElTooltip, {
-      "content": "刷新",
-      "placement": "top"
+    immediate: !0
+  }), () => {
+    let e;
+    return t("div", {
+      class: "toolbar-container"
+    }, [t("div", {
+      class: "left"
+    }, [h.value ? h.value : S.value]), t("div", {
+      class: "right"
+    }, [h.value && S.value, t("div", {
+      class: "actions"
+    }, [w.value]), c.options && t("div", {
+      class: "options"
+    }, [t(f, {
+      content: "刷新",
+      placement: "top"
     }, {
-      default: () => [createVNode(ElButton, {
-        "class": "icon",
-        "icon": RefreshRight,
-        "circle": true,
-        "onClick": () => ctx.emit("refresh")
+      default: () => [t(u, {
+        class: "icon",
+        icon: q,
+        circle: !0,
+        onClick: () => a.emit("refresh")
       }, null)]
-    }), toolbar.showSearchOption && createVNode(ElTooltip, {
-      "content": "搜索栏显隐",
-      "placement": "top"
+    }), c.showSearchOption && t(f, {
+      content: "搜索栏显隐",
+      placement: "top"
     }, {
-      default: () => [createVNode(ElButton, {
-        "class": "icon",
-        "icon": Search,
-        "circle": true,
-        "onClick": () => ctx.emit("searchDisplay")
+      default: () => [t(u, {
+        class: "icon",
+        icon: R,
+        circle: !0,
+        onClick: () => a.emit("searchDisplay")
       }, null)]
-    }), createVNode(ElPopover, {
-      "placement": "bottom",
-      "width": 200,
-      "trigger": "click",
+    }), t(P, {
+      placement: "bottom",
+      width: 200,
+      trigger: "click",
       "popper-class": "columns-setting-popover",
       "popper-style": {
         padding: 0
       }
     }, {
-      default: () => [createVNode("div", {
-        "class": "columns-setting-popover-content"
-      }, [createVNode("div", {
-        "class": "head"
-      }, [createVNode(ElCheckbox, {
-        "modelValue": allSelected.value,
-        "onUpdate:modelValue": ($event) => allSelected.value = $event
+      default: () => [t("div", {
+        class: "columns-setting-popover-content"
+      }, [t("div", {
+        class: "head"
+      }, [t(_, {
+        modelValue: i.value,
+        "onUpdate:modelValue": (l) => i.value = l
       }, {
-        default: () => [createTextVNode("列展示")]
-      }), createVNode("span", {
-        "class": "reset-btn",
-        "onClick": initSelectedStatus
-      }, [createTextVNode("重置")])]), createVNode("div", {
-        "class": "body"
-      }, [createVNode(ElCheckboxGroup, {
-        "modelValue": selectedColumns.value,
-        "onUpdate:modelValue": ($event) => selectedColumns.value = $event,
-        "onChange": onColumnsSettingChange
-      }, _isSlot(_slot = columns.value.map((item, index) => createVNode("p", {
-        "key": index
-      }, [createVNode(ElCheckbox, {
-        "label": item.id
+        default: () => [B("列展示")]
+      }), t("span", {
+        class: "reset-btn",
+        onClick: V
+      }, [B("重置")])]), t("div", {
+        class: "body"
+      }, [t($, {
+        modelValue: d.value,
+        "onUpdate:modelValue": (l) => d.value = l,
+        onChange: T
+      }, j(e = E.value.map((l, o) => t("p", {
+        key: o
+      }, [t(_, {
+        label: l.id
       }, {
-        default: () => [item.title]
-      })]))) ? _slot : {
-        default: () => [_slot]
+        default: () => [l.title]
+      })]))) ? e : {
+        default: () => [e]
       })])])],
-      reference: () => createVNode("div", {
-        "class": "icon",
-        "style": "display: flex; align-items: center"
-      }, [createVNode(ElTooltip, {
-        "content": "列设置",
-        "placement": "top"
+      reference: () => t("div", {
+        class: "icon",
+        style: "display: flex; align-items: center"
+      }, [t(f, {
+        content: "列设置",
+        placement: "top"
       }, {
-        default: () => [createVNode(ElButton, {
-          "icon": Setting,
-          "circle": true
+        default: () => [t(u, {
+          icon: x,
+          circle: !0
         }, null)]
       })])
-    }), createVNode(ElTooltip, {
-      "content": isScreenfull.value ? "退出全屏" : "全屏",
-      "placement": "top"
+    }), t(f, {
+      content: r.value ? "退出全屏" : "全屏",
+      placement: "top"
     }, {
-      default: () => [createVNode(ElButton, {
-        "class": "icon",
-        "icon": FullScreen,
-        "circle": true,
-        "onClick": onFullScreen
+      default: () => [t(u, {
+        class: "icon",
+        icon: G,
+        circle: !0,
+        onClick: F
       }, null)]
     })])])]);
   };
-});
-const ToolBar$1 = ToolBar;
+}), W = z;
 export {
-  ToolBar$1 as default
+  W as default
 };

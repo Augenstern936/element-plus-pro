@@ -2,20 +2,44 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-04-24 11:14:38
+ * @LastEditTime: 2024-04-25 14:15:46
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import { formatPlaceholder, withInstall } from "@element-plus/pro-utils";
-import { FunctionalComponent, computed, defineComponent } from "vue";
+import { ExtractPropTypes, FunctionalComponent, PropType, computed, defineComponent } from "vue";
 import { components } from "./components";
-import { ProFieldProps, proFieldProps } from "./typing";
+
+export const proFieldProps = {
+	modelValue: {
+		type: [String, Number, Boolean, Array],
+		default: "",
+	},
+	mode: {
+		type: String as PropType<"read" | "edit">,
+		default: "edit",
+	},
+	valueType: {
+		type: String as PropType<ValueType>,
+		default: "text",
+	},
+	placeholder: {
+		type: [String, Array as unknown as PropType<[string] | [string, string]>],
+	},
+	fieldProps: {
+		type: Object as PropType<Record<string, unknown>>,
+		default: {},
+	},
+};
+
+export type ValueType = keyof typeof components;
+
+export type ProFieldProps = Partial<ExtractPropTypes<typeof proFieldProps>>;
 
 const ProField = defineComponent<ProFieldProps>(
 	(props, ctx) => {
 		const Field = computed(() => {
 			return components[props.valueType || "text"] as FunctionalComponent;
 		});
-
 		const model = computed({
 			get: () => {
 				return props.modelValue;
@@ -56,7 +80,5 @@ for (const key in components) {
 	const FieldComponent = components[key as keyof typeof components];
 	(ProField as { [x: string]: any })[ComName] = (props: any) => <FieldComponent {...props} type={key} />;
 }
-
-export * from "./components";
 
 export default withInstall(ProField);

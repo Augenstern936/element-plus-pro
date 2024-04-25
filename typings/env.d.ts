@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-10 17:30:49
- * @LastEditTime: 2024-04-17 11:41:15
+ * @LastEditTime: 2024-04-25 17:15:26
  */
 import { INSTALLED_KEY } from "element-plus";
 import type { Component, vShow } from "vue";
@@ -14,12 +14,12 @@ declare global {
 		};
 	};
 
-	export namespace JSX {
-		export interface Element extends VueJsx.ElementClass {}
-		export interface ElementClass extends VueJsx.ElementClass {}
-		export interface IntrinsicElements extends VueJsx.IntrinsicElements {}
-		export interface IntrinsicAttributes extends VueJsx.IntrinsicAttributes {}
-		export interface ElementAttributesProperty extends VueJsx.ElementAttributesProperty {}
+	namespace JSX {
+		interface Element extends VueJsx.Element {}
+		interface ElementClass extends VueJsx.ElementClass {}
+		interface IntrinsicElements extends VueJsx.IntrinsicElements {}
+		interface IntrinsicAttributes extends VueJsx.IntrinsicAttributes {}
+		interface ElementAttributesProperty extends VueJsx.ElementAttributesProperty {}
 	}
 }
 

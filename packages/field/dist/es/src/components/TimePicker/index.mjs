@@ -1,6 +1,6 @@
 import { createVNode as r, mergeProps as l, defineComponent as n, computed as u } from "vue";
 import { timePickerDefaultProps as a, ElTimePicker as s } from "element-plus";
-import "../../../node_modules/.pnpm/registry.npmmirror.com_element-plus@2.4.1_vue@3.3.7/node_modules/element-plus/theme-chalk/src/time-picker.scss.mjs";
+import "../../../node_modules/.pnpm/element-plus@2.7.1_vue@3.4.25_typescript@5.4.5_/node_modules/element-plus/theme-chalk/src/time-picker.scss.mjs";
 const o = /* @__PURE__ */ n((e, i) => {
   const m = u({
     get: () => e.modelValue,

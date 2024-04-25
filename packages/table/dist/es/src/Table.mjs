@@ -1,358 +1,278 @@
-import { defineComponent, ref, computed, provide, watch, createVNode, withDirectives, vShow, Fragment, createTextVNode, KeepAlive } from "vue";
-import ProSearchBar from "@element-plus/pro-search-bar";
-import { withInstall, toOptions } from "@element-plus/pro-utils";
-import { ElAlert, ElMessage, ElTable, ElPagination } from "element-plus";
+import { defineComponent as re, ref as i, computed as c, provide as R, watch as j, createVNode as r, withDirectives as ie, vShow as se, Fragment as ue, createTextVNode as U, KeepAlive as ce } from "vue";
+import ge from "@element-plus/pro-search-bar";
+import { withInstall as fe, toOptions as ve } from "@element-plus/pro-utils";
+import { ElAlert as de, ElMessage as me, ElTable as he, ElPagination as pe } from "element-plus";
 import "./style/index.scss.mjs";
-import { proTableProps } from "./typing.mjs";
-import v4 from "../node_modules/.pnpm/uuid@9.0.1/node_modules/uuid/dist/esm-browser/v4.mjs";
-import Card from "./components/Card/index.mjs";
-import ToolBar from "./components/ToolBar/index.mjs";
-import TableColumn from "./components/TableColumn/index.mjs";
-const ProTable = /* @__PURE__ */ defineComponent((props, ctx) => {
+import { proTableProps as Se } from "./typing.mjs";
+import be from "../node_modules/.pnpm/uuid@9.0.1/node_modules/uuid/dist/esm-browser/v4.mjs";
+import q from "./components/Card/index.mjs";
+import ye from "./components/ToolBar/index.mjs";
+import Ce from "./components/TableColumn/index.mjs";
+const N = /* @__PURE__ */ re((l, s) => {
   const {
-    loading: propsLoading,
-    search: globalSearch,
-    keepAlive,
-    columns,
-    params: propsParams,
-    defaultSize: propsDefaultSize,
-    pagination: propsPagination,
-    dataSource,
-    request: getDataSource
-  } = props;
-  const loading = ref(propsLoading);
-  const isFullScreening = ref(false);
-  const searchForm = ref({});
-  const searchBarRef = ref();
-  const multipleTableRef = ref();
-  const multipleSelection = ref([]);
-  const searchDisplay = ref("block");
-  const data = ref({
+    loading: V,
+    search: u,
+    keepAlive: K,
+    columns: L,
+    params: M,
+    defaultSize: W,
+    pagination: k,
+    dataSource: g,
+    request: S
+  } = l, f = i(V), F = i(!1), v = i({}), D = i(), O = i(), d = i([]), b = i("block"), m = i({
     data: [],
     total: 0
-  });
-  const params = ref({
+  }), n = i({
     current: 1,
-    pageSize: propsDefaultSize || 10
-  });
-  const settingTableColumns = ref([]);
-  const isColumnsSettingChange = ref(false);
-  const searchBarTools = computed(() => {
-    var _a;
-    return typeof props.search == "object" ? ((_a = props.search) == null ? void 0 : _a.rightTools) || [] : void 0;
-  });
-  const toolbarTitleRender = computed(() => {
-    return ctx.slots.title || ctx.slots["title"];
-  });
-  const tableColumns = computed(() => {
-    var _a;
-    const filterColumns = (_a = props.columns) == null ? void 0 : _a.filter((item) => !item.hideInTable);
-    return filterColumns.map((item) => ({
-      ...item,
-      id: v4(),
-      name: item.dataField
+    pageSize: W || 10
+  }), y = i([]), C = i(!1), $ = c(() => {
+    var e;
+    return typeof l.search == "object" ? (e = l.search.rightTools) != null ? e : [] : void 0;
+  }), z = c(() => s.slots.title || s.slots.title), T = c(() => {
+    var t, a;
+    return ((a = (t = l.columns) == null ? void 0 : t.filter((o) => !o.hideInTable)) != null ? a : []).map((o) => ({
+      ...o,
+      id: be(),
+      name: o.dataField
     }));
-  });
-  const renderTableColumns = computed(() => {
-    return isColumnsSettingChange.value ? settingTableColumns.value : tableColumns.value;
-  });
-  const paginationAlignStyle = computed(() => {
-    var _a;
-    const align = typeof (props == null ? void 0 : props.pagination) === "object" ? (_a = props == null ? void 0 : props.pagination) == null ? void 0 : _a.align : "right";
-    return {
-      display: "flex",
-      justifyContent: align || "right"
-    };
-  });
-  const searchFormItems = computed(() => {
-    const isShowUndefinedItem = globalSearch || globalSearch === void 0 ? void 0 : true;
-    return columns.map((item) => {
+  }), w = c(() => C.value ? y.value : T.value), G = c(() => ({
+    display: "flex",
+    justifyContent: (typeof (l == null ? void 0 : l.pagination) == "object" ? l.pagination.align : "right") || "right"
+  })), P = c(() => {
+    const e = u || u === void 0 ? void 0 : !0;
+    return L.map((t) => {
       const {
-        valueType,
-        search
-      } = item;
-      const exclude = valueType != "index" && valueType != "image" && valueType != "avatar" && valueType != "tag" && valueType != "action";
-      if (exclude && (search || search === isShowUndefinedItem)) {
-        return formatSearchFormItemsConfig(item);
-      }
-    }).filter((item) => item);
-  });
-  const toOrdinaryObj = (proxyObj) => Object.fromEntries(Object.entries(proxyObj));
-  const formatSearchFormItemsConfig = (tableColumn) => {
+        valueType: a,
+        search: o
+      } = t;
+      if (a != "index" && a != "image" && a != "avatar" && a != "tag" && a != "action" && (o || o === e))
+        return H(t);
+    }).filter((t) => t);
+  }), B = (e) => Object.fromEntries(Object.entries(e)), H = (e) => {
     const {
-      dataField = "",
-      title,
-      valueType,
-      valueEnum
-    } = tableColumn;
-    const columnSearchConfig = typeof tableColumn.search === "object" ? tableColumn.search : {};
-    const globalSearchConfig = typeof globalSearch === "object" ? globalSearch : {};
+      dataField: t = "",
+      title: a,
+      valueType: o,
+      valueEnum: E
+    } = e, oe = typeof e.search == "object" ? e.search : {}, ne = typeof u == "object" ? u : {};
     return {
-      label: title,
-      dataField,
-      valueType,
-      valueOptions: valueEnum ? toOptions(valueEnum) : void 0,
-      ...globalSearchConfig,
-      ...columnSearchConfig
+      label: a,
+      dataField: t,
+      valueType: o,
+      valueOptions: E ? ve(E) : void 0,
+      ...ne,
+      ...oe
     };
-  };
-  const mergePaginationParams = (defaultPage, ...pages) => {
-    let params2 = {
-      ...defaultPage
+  }, h = (e, ...t) => {
+    let a = {
+      ...e
     };
-    if (pages.length) {
-      pages.forEach((item) => {
-        if (typeof item === "object" && (item.current || item.pageSize)) {
-          params2 = {
-            ...params2,
-            ...item
-          };
-        }
+    return t.length && t.forEach((o) => {
+      typeof o == "object" && (o.current || o.pageSize) && (a = {
+        ...a,
+        ...o
       });
-    }
-    return {
-      current: params2.current,
-      pageSize: params2.pageSize
+    }), {
+      current: a.current,
+      pageSize: a.pageSize
     };
-  };
-  const sendRequest = async (otherFilterParams = {}) => {
-    if (getDataSource && typeof getDataSource === "function" && !loading.value) {
+  }, p = async (e = {}) => {
+    if (S && typeof S == "function" && !f.value)
       try {
-        loading.value = true;
-        const pageParams = mergePaginationParams(params.value);
-        const filterParams = {
-          ...params.value
+        f.value = !0;
+        const t = h(n.value), a = {
+          ...n.value
         };
-        delete filterParams.current;
-        delete filterParams.pageSize;
-        data.value = await getDataSource(pageParams, {
-          ...searchForm.value,
-          ...filterParams,
-          ...otherFilterParams
+        delete a.current, delete a.pageSize, m.value = await S(t, {
+          ...v.value,
+          ...a,
+          ...e
         });
-      } catch (err) {
-        console.warn(err);
+      } catch (t) {
+        console.warn(t);
       } finally {
-        loading.value = false;
+        f.value = !1;
       }
-    }
-  };
-  const refresh = (otherParams = {}) => {
+  }, J = (e = {}) => {
     const {
-      current,
-      pageSize
-    } = mergePaginationParams(params.value, propsParams, propsPagination);
-    if (current == params.value.current && params.value.pageSize == pageSize) {
-      return sendRequest(otherParams);
-    }
-    params.value.current = current;
-    params.value.pageSize = pageSize;
-  };
-  const reload = (otherParams = {}) => {
-    if (!dataSource) {
-      sendRequest(otherParams);
-    }
-  };
-  const clearSelected = () => {
-    multipleTableRef.value.clearSelection();
-  };
-  const isEmptyObj = (obj = {}) => {
-    const keys = Object.keys(obj);
-    if (!keys.length)
-      return true;
-    let count = 0;
-    keys.forEach((key) => {
-      if (!obj[key])
-        ++count;
-    });
-    return keys.length === count;
-  };
-  const onSearch = () => {
-    console.log(searchForm.value, "searchForm.value");
-    const isEmpty = isEmptyObj(searchForm.value);
-    if (isEmpty) {
-      return ElMessage.warning("筛选栏表单信息为空");
-    }
-    sendRequest();
-  };
-  const onSearchDisplay = () => {
-    if (searchFormItems.value.length) {
-      searchDisplay.value = searchDisplay.value === "block" ? "none" : "block";
-    }
-  };
-  const onColumnsSettingChange = (ids) => {
-    settingTableColumns.value = tableColumns.value.filter((column) => ids.includes(column.id) || column.type == "selection");
-    isColumnsSettingChange.value = true;
-  };
-  const onColumnsSettingReset = () => {
-    settingTableColumns.value = [];
-    isColumnsSettingChange.value = false;
-  };
-  const onSelectionChange = (vals) => {
-    multipleSelection.value = vals;
-  };
-  const onPageChange = (name, value) => {
-    const pageParams = mergePaginationParams(params.value);
-    if (dataSource) {
-      return ctx.emit("pageChange", {
-        ...pageParams,
-        [name]: value
+      current: t,
+      pageSize: a
+    } = h(n.value, M, k);
+    if (t == n.value.current && n.value.pageSize == a)
+      return p(e);
+    n.value.current = t, n.value.pageSize = a;
+  }, Q = (e = {}) => {
+    g || p(e);
+  }, A = () => {
+    O.value.clearSelection();
+  }, X = (e = {}) => {
+    const t = Object.keys(e);
+    if (!t.length)
+      return !0;
+    let a = 0;
+    return t.forEach((o) => {
+      e[o] || ++a;
+    }), t.length === a;
+  }, Y = () => {
+    if (X(v.value))
+      return me.warning("筛选栏表单信息为空");
+    p();
+  }, Z = () => {
+    P.value.length && (b.value = b.value === "block" ? "none" : "block");
+  }, _ = (e) => {
+    y.value = T.value.filter((t) => e.includes(t.id) || (t == null ? void 0 : t.type) == "selection"), C.value = !0;
+  }, ee = () => {
+    y.value = [], C.value = !1;
+  }, te = (e) => {
+    d.value = e;
+  }, x = (e, t) => {
+    const a = h(n.value);
+    if (g)
+      return s.emit("pageChange", {
+        ...a,
+        [e]: t
       });
-    }
-    params.value[name] = value;
-  };
-  const resetSearchFields = () => {
-    var _a;
-    return (_a = searchBarRef.value) == null ? void 0 : _a.resetFields();
-  };
-  const RenderTable = () => createVNode("div", {
-    "style": {
+    n.value[e] = t;
+  }, ae = () => {
+    var e;
+    return (e = D.value) == null ? void 0 : e.resetFields();
+  }, I = () => r("div", {
+    style: {
       border: "1px solid transparent"
     }
-  }, [createVNode(ElTable, {
-    "ref": multipleTableRef,
-    "data": data.value.data,
+  }, [r(he, {
+    ref: O,
+    data: m.value.data,
     "header-cell-style": {
       color: "#333",
       fontWeight: 600,
       background: "#f5f7fa",
-      ...props.headerCellStyle
+      ...l.headerCellStyle
     },
-    "onSelection-change": onSelectionChange
+    "onSelection-change": te
   }, {
-    default: () => [createVNode(TableColumn, {
-      "columns": renderTableColumns.value
+    default: () => [r(Ce, {
+      columns: w.value
     }, null)]
-  }), propsPagination !== false && data.value.total > 0 && createVNode("div", {
-    "class": "pagination-container",
-    "style": paginationAlignStyle.value
-  }, [createVNode(ElPagination, {
-    "current-page": params.value.current,
-    "onUpdate:current-page": [($event) => params.value.current = $event, (e) => onPageChange("current", e)],
-    "background": true,
-    "total": data.value.total,
-    "page-size": params.value.pageSize,
+  }), k !== !1 && m.value.total > 0 && r("div", {
+    class: "pagination-container",
+    style: G.value
+  }, [r(pe, {
+    "current-page": n.value.current,
+    "onUpdate:current-page": [(e) => n.value.current = e, (e) => x("current", e)],
+    background: !0,
+    total: m.value.total,
+    "page-size": n.value.pageSize,
     "page-sizes": [10, 30, 50, 100, 200],
-    "layout": "total, sizes, prev, pager, next, jumper",
-    "onUpdate:page-size": (e) => onPageChange("pageSize", e)
-  }, null)])]);
-  const loadData = () => {
-    if (dataSource && Array.isArray(dataSource)) {
-      data.value.data = [...dataSource];
-    } else {
-      sendRequest();
-    }
+    layout: "total, sizes, prev, pager, next, jumper",
+    "onUpdate:page-size": (e) => x("pageSize", e)
+  }, null)])]), le = () => {
+    g && Array.isArray(g) ? m.value.data = [...g] : p();
   };
-  provide("tableProps", {
-    ctx,
-    ...props,
-    columns: renderTableColumns.value
-  });
-  provide("toolbar", {
-    title: props.title,
-    options: props.options,
-    columns: tableColumns.value,
-    showSearchOption: searchFormItems.value.length ? true : false,
-    config: props.toolbar
-  });
-  watch(() => props.loading, (newVal) => {
-    loading.value = newVal;
-  });
-  watch(() => [props.defaultSize, props.params, props.pagination], (newVals) => {
-    params.value = mergePaginationParams({
-      ...params.value,
-      pageSize: newVals[0]
-    }, newVals[1], newVals[2]);
+  return R("tableProps", {
+    ctx: s,
+    ...l,
+    columns: w.value
+  }), R("toolbar", {
+    title: l.title,
+    options: l.options,
+    columns: T.value,
+    showSearchOption: !!P.value.length,
+    config: l.toolbar
+  }), j(() => l.loading, (e) => {
+    f.value = e;
+  }), j(() => [l.defaultSize, l.params, l.pagination], (e) => {
+    n.value = h({
+      ...n.value,
+      pageSize: e[0]
+    }, e[1], e[2]);
   }, {
-    deep: true,
-    immediate: true
-  });
-  watch(() => [params.value, props.dataSource], () => {
-    loadData();
+    deep: !0,
+    immediate: !0
+  }), j(() => [n.value, l.dataSource], () => {
+    le();
   }, {
-    deep: true,
-    immediate: true
-  });
-  ctx.expose({
-    loading,
-    refresh,
-    reload,
-    clearSelected,
-    resetSearchFields
-  });
-  return () => createVNode("div", {
-    "id": "pro-table",
-    "class": "pro-table",
-    "style": isFullScreening.value ? {
+    deep: !0,
+    immediate: !0
+  }), s.expose({
+    loading: f,
+    refresh: J,
+    reload: Q,
+    clearSelected: A,
+    resetSearchFields: ae
+  }), () => r("div", {
+    id: "pro-table",
+    class: "pro-table",
+    style: F.value ? {
       height: "100vh",
       background: "#fff"
     } : {}
-  }, [withDirectives(createVNode(Card, {
-    "ghost": props.ghost || false,
-    "style": {
+  }, [ie(r(q, {
+    ghost: l.ghost || !1,
+    style: {
       paddingBottom: 0,
       marginBottom: "20px"
     }
   }, {
-    default: () => [createVNode(ProSearchBar, {
-      "ref": searchBarRef,
-      "modelValue": searchForm.value,
-      "onUpdate:modelValue": ($event) => searchForm.value = $event,
-      "items": searchFormItems.value,
-      "rightTools": searchBarTools.value,
-      "inline": typeof globalSearch === "object" ? (globalSearch == null ? void 0 : globalSearch.inline) === void 0 ? true : globalSearch.inline : true,
-      "onSearch": onSearch,
-      "onTools": (i) => ctx.emit("tools", i)
+    default: () => [r(ge, {
+      ref: D,
+      modelValue: v.value,
+      "onUpdate:modelValue": (e) => v.value = e,
+      items: P.value,
+      rightTools: $.value,
+      inline: typeof u == "object" ? u.inline === void 0 ? !0 : u.inline : !0,
+      onSearch: Y,
+      onTools: (e) => s.emit("tools", e)
     }, {
       "right-tools": () => {
-        var _a, _b;
-        return (_b = (_a = ctx.slots)["search-bar-right-tools"]) == null ? void 0 : _b.call(_a, {
-          ...searchForm.value
+        var e, t;
+        return (t = (e = s.slots)["search-bar-right-tools"]) == null ? void 0 : t.call(e, {
+          ...v.value
         });
       }
     })]
-  }), [[vShow, searchDisplay.value === "block"]]), createVNode(Card, {
-    "ghost": props.ghost || false
+  }), [[se, b.value === "block"]]), r(q, {
+    ghost: l.ghost || !1
   }, {
-    default: () => [createVNode(ToolBar, {
-      "onSearchDisplay": onSearchDisplay,
-      "onColumnsSettingChange": onColumnsSettingChange,
-      "onColumnsSettingReset": onColumnsSettingReset,
-      "onFullScreenChange": (v) => {
-        isFullScreening.value = v;
+    default: () => [r(ye, {
+      onSearchDisplay: Z,
+      onColumnsSettingChange: _,
+      onColumnsSettingReset: ee,
+      onFullScreenChange: (e) => {
+        F.value = e;
       }
     }, {
       title: () => {
-        var _a;
-        return (_a = toolbarTitleRender.value) == null ? void 0 : _a.call(toolbarTitleRender, {
-          selection: toOrdinaryObj(multipleSelection.value)
+        var e;
+        return (e = z.value) == null ? void 0 : e.call(z, {
+          selection: B(d.value)
         });
       },
       actions: () => {
-        var _a, _b;
-        return (_b = (_a = ctx.slots).toolbar) == null ? void 0 : _b.call(_a, {
-          selection: toOrdinaryObj(multipleSelection.value)
+        var e, t;
+        return (t = (e = s.slots).toolbar) == null ? void 0 : t.call(e, {
+          selection: B(d.value)
         });
       }
-    }), multipleSelection.value.length > 0 && createVNode(ElAlert, {
-      "type": "info",
+    }), d.value.length > 0 && r(de, {
+      type: "info",
       "close-text": "取消选择",
-      "style": {
+      style: {
         marginBottom: "20px",
         backgroundColor: "#f5f7fa"
       },
-      "onClose": clearSelected
+      onClose: A
     }, {
-      title: () => createVNode(Fragment, null, [createTextVNode("已选择 "), createVNode("span", {
-        "class": "alert-count"
-      }, [multipleSelection.value.length]), createTextVNode(" 项")])
-    }), !keepAlive ? RenderTable() : createVNode(KeepAlive, null, [RenderTable()])]
+      title: () => r(ue, null, [U("已选择 "), r("span", {
+        class: "alert-count"
+      }, [d.value.length]), U(" 项")])
+    }), K ? r(ce, null, [I()]) : I()]
   })]);
 }, {
   name: "ProTable"
 });
-ProTable.props = proTableProps;
-const ProTable$1 = withInstall(ProTable);
+N.props = Se;
+const Be = fe(N);
 export {
-  ProTable$1 as default
+  Be as default
 };

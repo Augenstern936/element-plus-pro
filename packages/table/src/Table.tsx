@@ -54,7 +54,7 @@ const ProTable = defineComponent<ProTableProps>(
 		const isColumnsSettingChange = ref(false);
 
 		const searchBarTools = computed(() => {
-			return typeof props.search == "object" ? props.search?.rightTools || [] : void 0;
+			return typeof props.search == "object" ? props.search["rightTools"] ?? [] : void 0;
 		});
 
 		const toolbarTitleRender = computed(() => {
@@ -62,7 +62,7 @@ const ProTable = defineComponent<ProTableProps>(
 		});
 
 		const tableColumns = computed(() => {
-			const filterColumns = props.columns?.filter((item: TableColumns) => !item.hideInTable);
+			const filterColumns = props.columns?.filter((item: TableColumns) => !item.hideInTable) ?? [];
 			return filterColumns.map((item) => ({ ...item, id: uuidv4(), name: item.dataField }));
 		});
 
@@ -71,7 +71,7 @@ const ProTable = defineComponent<ProTableProps>(
 		});
 
 		const paginationAlignStyle = computed(() => {
-			const align = typeof props?.pagination === "object" ? props?.pagination?.align : "right";
+			const align = typeof props?.pagination == "object" ? props.pagination["align"] : "right";
 			return {
 				display: "flex",
 				justifyContent: align || "right",
@@ -215,7 +215,6 @@ const ProTable = defineComponent<ProTableProps>(
 		 * 监听搜索
 		 */
 		const onSearch = () => {
-			console.log(searchForm.value, "searchForm.value");
 			const isEmpty = isEmptyObj(searchForm.value);
 			if (isEmpty) {
 				return ElMessage.warning("筛选栏表单信息为空");
@@ -231,7 +230,7 @@ const ProTable = defineComponent<ProTableProps>(
 
 		const onColumnsSettingChange = (ids: string[]) => {
 			settingTableColumns.value = tableColumns.value.filter(
-				(column) => ids.includes(column.id) || column.type == "selection"
+				(column: any) => ids.includes(column.id) || column?.type == "selection"
 			);
 			isColumnsSettingChange.value = true;
 		};
@@ -365,13 +364,13 @@ const ProTable = defineComponent<ProTableProps>(
 					<ProSearchBar
 						ref={searchBarRef}
 						v-model={searchForm.value}
-						items={searchFormItems.value}
+						items={searchFormItems.value as any}
 						rightTools={searchBarTools.value}
 						inline={
-							typeof globalSearch === "object"
-								? globalSearch?.inline === void 0
+							typeof globalSearch == "object"
+								? globalSearch["inline"] === void 0
 									? true
-									: globalSearch.inline
+									: globalSearch["inline"]
 								: true
 						}
 						v-slots={{

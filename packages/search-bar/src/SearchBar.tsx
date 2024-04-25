@@ -1,13 +1,13 @@
-import './style/index.scss';
-import props from './props';
-import { withInstall } from '@element-plus/pro-utils';
-import { defineComponent, ref, computed, watch, onMounted, toRaw } from 'vue';
-import { ElForm, ElFormItem, ElButton, ElIcon, ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus';
-import { ArrowDown, ArrowUp, MoreFilled } from '@element-plus/icons-vue';
-import Test from './components';
-import mitt from 'mitt';
-import type { FunctionalComponent } from 'vue';
-import type { ProSearchBarProps, SearchBarFormItem } from './typing';
+import { ArrowDown, ArrowUp, MoreFilled } from "@element-plus/icons-vue";
+import { withInstall } from "@element-plus/pro-utils";
+import { ElButton, ElDropdown, ElDropdownItem, ElDropdownMenu, ElForm, ElFormItem, ElIcon } from "element-plus";
+import mitt from "mitt";
+import type { FunctionalComponent } from "vue";
+import { computed, defineComponent, onMounted, ref, toRaw, watch } from "vue";
+import Test from "./components";
+import props from "./props";
+import "./style/index.scss";
+import type { ProSearchBarProps, SearchBarFormItem } from "./typing";
 
 /**
  * 搜索栏组件
@@ -35,15 +35,15 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 		});
 
 		const toolsSlots = computed(() => {
-			const contents = ctx.slots['right-tools'] ? ctx.slots['right-tools']?.() : [];
-			return contents.filter(({ type }) => String(type) != 'Symbol(Comment)');
+			const contents = ctx.slots["right-tools"] ? ctx.slots["right-tools"]?.() : [];
+			return contents.filter(({ type }) => String(type) != "Symbol(Comment)");
 		});
 
 		/**
 		 * 搜索事件
 		 * @returns
 		 */
-		const onSearch = () => ctx.emit('search', toRaw(form.value));
+		const onSearch = () => ctx.emit("search", toRaw(form.value));
 
 		/**
 		 * 监听清空筛洗栏表单
@@ -54,14 +54,14 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 		 * 表单操作事件集
 		 * @param index
 		 */
-		const onActions = (index: number) => ctx.emit('onActions', index);
+		const onActions = (index: number) => ctx.emit("onActions", index);
 
 		ctx.expose({ resetFields: onClearSearchForm });
 
 		watch(
 			() => form,
 			(newVal) => {
-				ctx.emit('update:modelValue', newVal.value);
+				ctx.emit("update:modelValue", newVal.value);
 			},
 			{
 				deep: true,
@@ -91,7 +91,7 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 			}
 			return (
 				<>
-					<ElButton type='primary' onClick={onSearch}>
+					<ElButton type="primary" onClick={onSearch}>
 						{props.searchText}
 					</ElButton>
 					<ElButton onClick={onClearSearchForm}>{props.resetText}</ElButton>
@@ -114,7 +114,7 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 										{toolsSlots.value.map((el, index) => (
 											<ElDropdownItem
 												key={index}
-												onClick={() => ctx.emit('tools', form.value, index)}
+												onClick={() => ctx.emit("tools", form.value, index)}
 											>
 												{[el]}
 											</ElDropdownItem>
@@ -164,8 +164,8 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 					return (
 						<ElButton
 							{...btnConfig}
-							key={index || 'tool'}
-							onClick={() => ctx.emit('tools', toRaw(form.value), index)}
+							key={index || "tool"}
+							onClick={() => ctx.emit("tools", toRaw(form.value), index)}
 						>
 							{btnConfig.content}
 						</ElButton>
@@ -175,13 +175,13 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 			};
 
 			return (
-				<div class='tools-container'>{toolsSlots.value.length ? toolsSlotsRender() : toolsConfigRender()}</div>
+				<div class="tools-container">{toolsSlots.value.length ? toolsSlotsRender() : toolsConfigRender()}</div>
 			);
 		};
 
 		const resize = (terget: any) => {
 			const tergetResize = new ResizeObserver(() => {
-				console.log(formContainerRef.value.offsetWidth, 'resize');
+				console.log(formContainerRef.value.offsetWidth, "resize");
 			});
 			tergetResize.observe(terget);
 		};
@@ -199,8 +199,8 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 
 		return () => (
 			<div
-				class='pro-search-bar'
-				style={{ display: 'flex', justifyContent: 'space-between', flexDirection: inline ? 'row' : 'column' }}
+				class="pro-search-bar"
+				style={{ display: "flex", justifyContent: "space-between", flexDirection: inline ? "row" : "column" }}
 			>
 				{formItems.value.length > 0 && (
 					<>
@@ -209,13 +209,13 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 								ref={searchFormRef}
 								model={form.value}
 								inline={inline}
-								class={['search-bar', [isFilterBarExpand.value ? 'expand' : 'inexpand']]}
+								class={["search-bar", [isFilterBarExpand.value ? "expand" : "inexpand"]]}
 							>
 								{formItems.value
 									.slice(0, isFilterBarExpand.value ? formItems.value.length : span)
 									.map((item: SearchBarFormItem) => {
 										const { dataField, label, labelWidth } = item;
-										const labelText = item.valueType == 'checkbox' ? '' : label;
+										const labelText = item.valueType == "checkbox" ? "" : label;
 										return (
 											<ElFormItem prop={dataField} label={labelText} label-width={labelWidth}>
 												<Test
@@ -230,12 +230,12 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 									{ActionsRender()}
 									{formItems.value.length > span && (
 										<ElButton
-											type='primary'
+											type="primary"
 											link
 											onClick={() => (isFilterBarExpand.value = !isFilterBarExpand.value)}
 										>
 											<ElIcon>{!isFilterBarExpand.value ? <ArrowDown /> : <ArrowUp />}</ElIcon>
-											<span>{!isFilterBarExpand.value ? '展开' : '收起'}</span>
+											<span>{!isFilterBarExpand.value ? "展开" : "收起"}</span>
 										</ElButton>
 									)}
 								</ElFormItem>
@@ -248,10 +248,10 @@ const ProSearchBar = defineComponent<ProSearchBarProps>(
 		);
 	},
 	{
-		name: 'ProSearchBar',
+		name: "ProSearchBar",
 	}
-) as FunctionalComponent<ProSearchBarProps>;
+) as unknown as FunctionalComponent<ProSearchBarProps & { [x: string]: any }>;
 
-ProSearchBar.props = props;
+ProSearchBar.props = props as any;
 
 export default withInstall(ProSearchBar);

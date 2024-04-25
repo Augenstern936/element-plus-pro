@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-15 14:41:32
+ * @LastEditTime: 2024-04-25 14:10:47
  * @FilePath: \element-plus-pro\packages\field\src\components\TreeSelect.tsx
  */
 import { ElTreeSelect } from "element-plus";
 import "element-plus/theme-chalk/src/tree-select.scss";
 import { FunctionalComponent, computed, defineComponent } from "vue";
-import { ProFieldTreeSelectProps } from "./typing";
+import { ProFieldTreeSelectProps } from "./props";
 
 const ProFieldTreeSelect = defineComponent<ProFieldTreeSelectProps>(
 	(props, ctx) => {
@@ -28,7 +28,7 @@ const ProFieldTreeSelect = defineComponent<ProFieldTreeSelectProps>(
 	}
 ) as unknown as FunctionalComponent<ProFieldTreeSelectProps>;
 
-export * from "./typing";
+export * from "./props";
 
 export { ProFieldTreeSelect };
 

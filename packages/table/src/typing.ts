@@ -1,5 +1,6 @@
 import type { ButtonProps } from "element-plus";
 import type { CSSProperties, ExtractPropTypes, PropType } from "vue";
+import { JSX } from "vue/jsx-runtime";
 import { PaginationAlignEnum, StatusColorEnum, ValueTypeEnum } from "./enum";
 
 export const proTableProps = {

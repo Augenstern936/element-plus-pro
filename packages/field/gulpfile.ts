@@ -2,9 +2,9 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-22 22:07:38
- * @LastEditTime: 2024-04-24 23:19:03
+ * @LastEditTime: 2024-04-25 15:27:35
  * @FilePath: \element-plus-pro\packages\field\gulpfile.ts
  */
-import task from '../../build';
+import tasks from "../../build";
 
-export default task;
+export default tasks;

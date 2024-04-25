@@ -1,7 +1,7 @@
 import { defineComponent as t, computed as d, createVNode as l, mergeProps as m } from "vue";
 import { ElCascader as p } from "element-plus";
-import "../../../node_modules/.pnpm/registry.npmmirror.com_element-plus@2.4.1_vue@3.3.7/node_modules/element-plus/theme-chalk/src/cascader.scss.mjs";
-import { proFieldCascaderProps as u } from "./typing.mjs";
+import "../../../node_modules/.pnpm/element-plus@2.7.1_vue@3.4.25_typescript@5.4.5_/node_modules/element-plus/theme-chalk/src/cascader.scss.mjs";
+import { proFieldCascaderProps as u } from "./props.mjs";
 const s = /* @__PURE__ */ t((o, a) => {
   const r = d({
     get: () => o.modelValue,

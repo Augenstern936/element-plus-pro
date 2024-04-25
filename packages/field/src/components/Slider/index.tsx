@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-15 16:04:06
+ * @LastEditTime: 2024-04-25 14:09:34
  * @FilePath: \element-plus-pro\packages\field\src\components\Slider.tsx
  */
 import { ElSlider } from "element-plus";
 import "element-plus/theme-chalk/src/slider.scss";
 import { FunctionalComponent, computed, defineComponent } from "vue";
-import { ProFieldSliderProps, proFieldSliderProps } from "./typing";
+import { ProFieldSliderProps, proFieldSliderProps } from "./props";
 
 const ProFieldSlider = defineComponent<ProFieldSliderProps>(
 	(props, ctx) => {
@@ -30,7 +30,7 @@ const ProFieldSlider = defineComponent<ProFieldSliderProps>(
 
 ProFieldSlider.props = proFieldSliderProps;
 
-export * from "./typing";
+export * from "./props";
 
 export { ProFieldSlider };
 

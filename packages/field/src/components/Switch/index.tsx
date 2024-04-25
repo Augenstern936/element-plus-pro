@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-15 16:10:53
+ * @LastEditTime: 2024-04-25 14:09:48
  * @FilePath: \element-plus-pro\packages\field\src\components\Switch.tsx
  */
 import { ElSwitch } from "element-plus";
 import "element-plus/theme-chalk/src/switch.scss";
 import { FunctionalComponent, computed, defineComponent } from "vue";
-import { ProFieldSwitchProps, proFieldSwitchProps } from "./typing";
+import { ProFieldSwitchProps, proFieldSwitchProps } from "./props";
 
 const ProFieldSwitch = defineComponent<ProFieldSwitchProps>(
 	(props, ctx) => {
@@ -30,7 +30,7 @@ const ProFieldSwitch = defineComponent<ProFieldSwitchProps>(
 
 ProFieldSwitch.props = proFieldSwitchProps;
 
-export * from "./typing";
+export * from "./props";
 
 export { ProFieldSwitch };
 

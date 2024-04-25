@@ -1,34 +1,32 @@
-import { createVNode as t, mergeProps as r, defineComponent as p, computed as a } from "vue";
-import { inputProps as d, ElInput as m } from "element-plus";
-import "../../../node_modules/.pnpm/registry.npmmirror.com_element-plus@2.4.1_vue@3.3.7/node_modules/element-plus/theme-chalk/src/input.scss.mjs";
-const o = /* @__PURE__ */ p((e, u) => {
+import { createVNode as t, mergeProps as o, defineComponent as u, computed as a } from "vue";
+import { ElInput as d } from "element-plus";
+import "../../../node_modules/.pnpm/element-plus@2.7.1_vue@3.4.25_typescript@5.4.5_/node_modules/element-plus/theme-chalk/src/input.scss.mjs";
+import { proInputProps as m } from "./props.mjs";
+const r = /* @__PURE__ */ u((e, p) => {
   const n = a({
     get: () => e.modelValue,
     set: (l) => {
-      u.emit("update:modelValue", l);
+      p.emit("update:modelValue", l);
     }
   });
-  return () => t(m, r({
+  return () => t(d, o({
     modelValue: n.value,
     "onUpdate:modelValue": (l) => n.value = l
   }, e), null);
+}, {
+  name: "ProFieldInput"
 });
-o.props = {
-  ...d,
-  type: {
-    type: String,
-    default: "text"
-  }
-};
-const P = (e) => t(o, r(e, {
+r.props = m;
+const x = (e) => t(r, o(e, {
   type: "text"
-}), null), x = (e) => t(o, r(e, {
+}), null), F = (e) => t(r, o(e, {
   type: "password"
-}), null), y = (e) => t(o, r(e, {
+}), null), V = (e) => t(r, o(e, {
   type: "textarea"
 }), null);
 export {
-  x as ProFieldPassword,
-  P as ProFieldText,
-  y as ProFieldTextarea
+  F as ProFieldPassword,
+  x as ProFieldText,
+  V as ProFieldTextarea,
+  m as proInputProps
 };

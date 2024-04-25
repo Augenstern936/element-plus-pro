@@ -2,14 +2,14 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-15 14:41:19
+ * @LastEditTime: 2024-04-25 14:23:45
  * @FilePath: \element-plus-pro\packages\field\src\components\TimeSelect.tsx
  */
 import { ElTimeSelect } from "element-plus";
 import "element-plus/theme-chalk/src/time-select.scss";
 import type { FunctionalComponent } from "vue";
 import { computed, defineComponent } from "vue";
-import { ProFieldTimeSelectProps, proFieldTimeSelectProps } from "./typing";
+import { ProFieldTimeSelectProps, proFieldTimeSelectProps } from "./props";
 
 const ProFieldTimeSelect = defineComponent<ProFieldTimeSelectProps>(
 	(props, ctx) => {
@@ -31,7 +31,7 @@ const ProFieldTimeSelect = defineComponent<ProFieldTimeSelectProps>(
 
 ProFieldTimeSelect.props = proFieldTimeSelectProps as any;
 
-export * from "./typing";
+export * from "./props";
 
 export { ProFieldTimeSelect };
 

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:50:46
- * @LastEditTime: 2024-04-15 15:56:31
+ * @LastEditTime: 2024-04-25 14:08:27
  * @FilePath: \element-plus-pro\packages\field\src\components\Radio.tsx
  */
 import { ElRadio, ElRadioButton, ElRadioGroup } from "element-plus";
@@ -10,7 +10,7 @@ import "element-plus/theme-chalk/src/radio-button.scss";
 import "element-plus/theme-chalk/src/radio-group.scss";
 import "element-plus/theme-chalk/src/radio.scss";
 import { FunctionalComponent, computed, defineComponent } from "vue";
-import { ProFieldRadioProps, proFieldRadioProps } from "./typing";
+import { ProFieldRadioProps, proFieldRadioProps } from "./props";
 
 const ProFieldRadio = defineComponent<ProFieldRadioProps>(
 	(props, ctx) => {
@@ -48,7 +48,7 @@ const ProFieldRadio = defineComponent<ProFieldRadioProps>(
 
 ProFieldRadio.props = proFieldRadioProps as any;
 
-export * from "./typing";
+export * from "./props";
 
 export { ProFieldRadio };
 

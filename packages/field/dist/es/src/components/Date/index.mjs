@@ -1,16 +1,17 @@
-import { createVNode as r, mergeProps as l, defineComponent as c, computed as d } from "vue";
-import { formatPlaceholder as p } from "@element-plus/pro-utils";
-import { datePickerProps as m, ElDatePicker as s } from "element-plus";
-import "../../../node_modules/.pnpm/registry.npmmirror.com_element-plus@2.4.1_vue@3.3.7/node_modules/element-plus/theme-chalk/src/date-picker.scss.mjs";
-const a = /* @__PURE__ */ c((e, u) => {
-  const n = d({
+import { createVNode as l, mergeProps as o, defineComponent as u, computed as d } from "vue";
+import { formatPlaceholder as c } from "@element-plus/pro-utils";
+import { ElDatePicker as p } from "element-plus";
+import "../../../node_modules/.pnpm/element-plus@2.7.1_vue@3.4.25_typescript@5.4.5_/node_modules/element-plus/theme-chalk/src/date-picker.scss.mjs";
+import { proDatePickerProps as s } from "./props.mjs";
+const r = /* @__PURE__ */ u((e, i) => {
+  const a = d({
     get: () => e.modelValue,
     set: (t) => {
-      u.emit("update:modelValue", t);
+      i.emit("update:modelValue", t);
     }
-  }), i = d(() => {
-    var o;
-    const t = (o = e.placeholder) != null ? o : p("", e.type || "text");
+  }), m = d(() => {
+    var n;
+    const t = (n = e.placeholder) != null ? n : c("", e.type || "text");
     return Array.isArray(t) && t.length > 1 ? {
       startPlaceholder: t[0],
       endPlaceholder: t[1]
@@ -18,49 +19,40 @@ const a = /* @__PURE__ */ c((e, u) => {
       placeholder: Array.isArray(t) ? t[0] : t
     };
   });
-  return () => r(s, l({
-    modelValue: n.value,
-    "onUpdate:modelValue": (t) => n.value = t
-  }, e, i.value), null);
+  return () => l(p, o({
+    modelValue: a.value,
+    "onUpdate:modelValue": (t) => a.value = t
+  }, e, m.value), null);
 });
-a.props = {
-  ...m,
-  placeholder: {
-    type: [String, Array],
-    default: void 0
-  },
-  style: {
-    type: Object,
-    default: {}
-  }
-};
-const g = (e) => r(a, l(e, {
+r.props = s;
+const F = (e) => l(r, o(e, {
   type: "date"
-}), null), F = (e) => r(a, l(e, {
+}), null), f = (e) => l(r, o(e, {
   type: "dates"
-}), null), f = (e) => r(a, l(e, {
+}), null), V = (e) => l(r, o(e, {
   type: "datetime"
-}), null), v = (e) => r(a, l(e, {
+}), null), k = (e) => l(r, o(e, {
   type: "week"
-}), null), A = (e) => r(a, l(e, {
+}), null), v = (e) => l(r, o(e, {
   type: "month"
-}), null), V = (e) => r(a, l(e, {
+}), null), A = (e) => l(r, o(e, {
   type: "year"
-}), null), k = (e) => r(a, l(e, {
+}), null), R = (e) => l(r, o(e, {
   type: "daterange"
-}), null), R = (e) => r(a, l(e, {
+}), null), x = (e) => l(r, o(e, {
   type: "datetimerange"
-}), null), x = (e) => r(a, l(e, {
+}), null), M = (e) => l(r, o(e, {
   type: "monthrange"
 }), null);
 export {
-  g as ProFieldDate,
-  A as ProFieldDateMonth,
-  x as ProFieldDateMonthRange,
-  k as ProFieldDateRange,
-  f as ProFieldDateTime,
-  R as ProFieldDateTimeRange,
-  v as ProFieldDateWeek,
-  V as ProFieldDateYear,
-  F as ProFieldDates
+  F as ProFieldDate,
+  v as ProFieldDateMonth,
+  M as ProFieldDateMonthRange,
+  R as ProFieldDateRange,
+  V as ProFieldDateTime,
+  x as ProFieldDateTimeRange,
+  k as ProFieldDateWeek,
+  A as ProFieldDateYear,
+  f as ProFieldDates,
+  s as proDatePickerProps
 };
