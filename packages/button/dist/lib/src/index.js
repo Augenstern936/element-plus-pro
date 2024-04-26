@@ -1,1 +1,1 @@
-"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});require("./styles/index.scss.js");const e=require("./Button.vue.js"),o=require("@element-plus/pro-utils"),t=o.withInstall(e.default);exports.ProButton=t;exports.default=t;
+"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e=require("@element-plus/pro-utils"),o=require("./Button.vue.js");require("./styles/index.scss.js");const t=e.withInstall(o.default);exports.ProButton=t;exports.default=t;

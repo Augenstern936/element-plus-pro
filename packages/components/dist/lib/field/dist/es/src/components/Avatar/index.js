@@ -1,1 +1,0 @@
-"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e=require("vue"),r=require("element-plus"),t=require("./typing.js"),o=e.defineComponent((t=>()=>e.createVNode(r.ElAvatar,t,null)),{name:"ProFieldAvatar"});o.props=t.proFieldAvatar,exports.proFieldAvatar=t.proFieldAvatar,exports.ProFieldAvatar=o,exports.default=o;

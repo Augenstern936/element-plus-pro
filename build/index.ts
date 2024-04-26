@@ -1,35 +1,27 @@
 /*
  * @Description:
  * @Date: 2024-04-25 09:53:37
- * @LastEditTime: 2024-04-25 18:47:15
+ * @LastEditTime: 2024-04-26 15:19:06
  */
 import { copyFile } from "fs/promises";
 import gulp from "gulp";
-import path from "path";
+import { resolve } from "path";
 import { projRoot } from "../configs";
 import dts from "./dts";
-import { buildModules } from "./modules";
+// import { buildModules } from "./modules";
 
-const copyFiles = (target: "es" | "lib") => {
+const copyFiles = () => {
 	const dirname = process.cwd();
-	return () => {
-		return Promise.all([
-			copyFile(
-				path.resolve(dirname, "README.md"),
-				path.resolve(dirname, `${dirname}/dist/${target}`, "README.md")
-			),
-			copyFile(
-				path.resolve(dirname, "package.json"),
-				path.resolve(dirname, `${dirname}/dist/${target}`, "package.json")
-			),
-		]);
-	};
+	return Promise.all([
+		copyFile(resolve(dirname, "README.md"), resolve(dirname, `${dirname}/dist`, "README.md")),
+		copyFile(resolve(dirname, "package.json"), resolve(dirname, `${dirname}/dist`, "package.json")),
+	]);
 };
 
 const copyProject = () => {
 	const dirname = process.cwd();
 	const filename = dirname.split("\\").pop();
-	return gulp.src("./dist/*/**").pipe(gulp.dest(path.resolve(projRoot, `dist/pro-${filename}`)));
+	return gulp.src("./dist/**").pipe(gulp.dest(resolve(projRoot, `dist/pro-${filename}`)));
 };
 
-export default gulp.series(buildModules, dts, gulp.parallel(copyFiles("es"), copyFiles("lib")), copyProject) as unknown;
+export default gulp.series(dts, gulp.parallel(copyFiles), copyProject) as unknown;

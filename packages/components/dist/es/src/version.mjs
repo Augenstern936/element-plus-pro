@@ -1,4 +1,8 @@
-const version = {
+// ../../build/jsxFactory.ts
+import { Fragment, h } from "vue";
+
+// src/version.ts
+var version = {
   "@element-plus/pro-button": "0.0.1",
   "@element-plus/pro-center-container": "0.0.1",
   "@element-plus/pro-components": "0.0.1-test-01-test-01",

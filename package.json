@@ -14,8 +14,7 @@
 		"update:version": "tsx scripts/update-version.ts",
 		"clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
 		"clean:dist": "rimraf dist",
-		"build": "pnpm --filter \"@element-plus/**\" build",
-		"typecheck:web": "vue-tsc -p tsconfig.web.json --composite false --noEmit"
+		"build": "pnpm --filter \"@element-plus/**\" build"
 	},
 	"devDependencies": {
 		"@element-plus/icons-vue": "^2.3.1",
@@ -29,7 +28,9 @@
 		"@vitejs/plugin-vue": "^4.4.0",
 		"@vitejs/plugin-vue-jsx": "^3.0.2",
 		"element-plus": "^2.4.1",
-		"esbuild": "^0.20.2",
+		"esbuild-plugin-sass": "^1.0.1",
+		"esbuild-plugin-vue3": "^0.4.2",
+		"esbuild-sass-plugin": "^3.2.0",
 		"eslint": "^8.52.0",
 		"fs-extra": "^11.1.1",
 		"glob": "^10.3.12",
@@ -47,7 +48,6 @@
 		"vite": "^4.5.0",
 		"vue": "^3.3.7",
 		"vue-draggable-plus": "^0.3.5",
-		"vue-tsc": "^1.8.27",
 		"vue3-styled-components": "^1.2.1"
 	},
 	"dependencies": {

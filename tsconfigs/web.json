@@ -5,6 +5,6 @@
 		"lib": ["ES2018"],
 		"jsx": "preserve"
 	},
-	"include": ["../packages", "../typings/*.d.ts", "../utils/*.ts", "../build/*.ts"],
+	"include": ["../packages", "../typings/*.d.ts", "../utils/*.ts", "../configs/*.ts", "../build/*.ts"],
 	"exclude": ["node_modules", "**/dist", "**/*.md"]
 }

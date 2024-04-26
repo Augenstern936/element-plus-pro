@@ -2,14 +2,14 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2023-12-13 21:22:31
- * @LastEditTime: 2024-04-08 02:02:48
+ * @LastEditTime: 2024-04-26 15:14:06
  * @FilePath: \element-plus-pro\packages\button\src\index.ts
  */
-import './styles/index.scss';
-import Button from './Button.vue';
-import { withInstall } from '@element-plus/pro-utils';
+import { withInstall } from "@element-plus/pro-utils";
+import Button from "./Button.vue";
+import "./styles/index.scss";
 
-export * from './typing';
+export * from "./typing";
 
 const ProButton = withInstall(Button);
 
