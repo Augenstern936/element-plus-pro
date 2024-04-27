@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-04-26 11:03:54
+ * @LastEditTime: 2024-04-27 17:15:20
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
@@ -23,13 +23,13 @@ function getOutputConfig(format: "es" | "cjs"): Record<string, any> {
 			"@element-plus/icons-vue": "iconsVue",
 			"element-plus": "Element-Plus",
 		},
-		assetFileNames: ({ name }: { name: string }) => {
-			return name.endsWith(".css") ? "src/[name].css" : "";
+		assetFileNames: (asset: { name: string }) => {
+			return asset.name.endsWith(".css") ? "src/[name].css" : asset;
 		},
 	};
 }
 
-export const buildModules = async () => {
+export default async () => {
 	const cwd = process.cwd();
 
 	const baseDirName = path.basename(cwd);
@@ -40,7 +40,7 @@ export const buildModules = async () => {
 
 	const componentsPath = `src/${componentName}${componentSuffix}`;
 
-	const entry = baseDirName === "components" ? "src/index.ts" : ["src/index.ts", componentsPath];
+	const entry = baseDirName === "components" ? "src/index.ts" : ["src/index.ts"];
 
 	return await build({
 		esbuild: {

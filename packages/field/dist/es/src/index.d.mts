@@ -43,6 +43,7 @@ declare const proFieldSliderProps: {
         type: PropType<CSSProperties>;
         default: {};
     };
+    ariaLabel: StringConstructor;
     modelValue: element_plus_es_utils.EpPropFinalized<(new (...args: any[]) => number | number[]) | (() => element_plus_es_utils.Arrayable<number>) | ((new (...args: any[]) => number | number[]) | (() => element_plus_es_utils.Arrayable<number>))[], unknown, unknown, 0, boolean>;
     id: element_plus_es_utils.EpPropFinalized<StringConstructor, unknown, unknown, undefined, boolean>;
     min: element_plus_es_utils.EpPropFinalized<NumberConstructor, unknown, unknown, 0, boolean>;
@@ -187,6 +188,7 @@ declare const proFieldColor: {
         type: PropType<CSSProperties>;
         default: {};
     };
+    ariaLabel: StringConstructor;
     modelValue: StringConstructor;
     id: StringConstructor;
     showAlpha: BooleanConstructor;
@@ -201,6 +203,7 @@ declare const proFieldColor: {
     popperClass: element_plus_es_utils.EpPropFinalized<StringConstructor, unknown, unknown, "", boolean>;
     label: element_plus_es_utils.EpPropFinalized<StringConstructor, unknown, unknown, undefined, boolean>;
     tabindex: element_plus_es_utils.EpPropFinalized<readonly [StringConstructor, NumberConstructor], unknown, unknown, 0, boolean>;
+    teleported: element_plus_es_utils.EpPropFinalized<BooleanConstructor, unknown, unknown, true, boolean>;
     predefine: {
         readonly type: PropType<string[]>;
         readonly required: false;
@@ -218,6 +221,7 @@ declare const proFieldRateProps: {
         type: PropType<CSSProperties>;
         default: {};
     };
+    ariaLabel: StringConstructor;
     modelValue: element_plus_es_utils.EpPropFinalized<NumberConstructor, unknown, unknown, 0, boolean>;
     id: element_plus_es_utils.EpPropFinalized<StringConstructor, unknown, unknown, undefined, boolean>;
     lowThreshold: element_plus_es_utils.EpPropFinalized<NumberConstructor, unknown, unknown, 2, boolean>;
@@ -322,6 +326,7 @@ declare const proFieldSwitchProps: {
         type: PropType<CSSProperties>;
         default: {};
     };
+    ariaLabel: StringConstructor;
     modelValue: element_plus_es_utils.EpPropFinalized<readonly [BooleanConstructor, StringConstructor, NumberConstructor], unknown, unknown, false, boolean>;
     disabled: element_plus_es_utils.EpPropFinalized<BooleanConstructor, unknown, unknown, false, boolean>;
     loading: element_plus_es_utils.EpPropFinalized<BooleanConstructor, unknown, unknown, false, boolean>;
@@ -431,6 +436,7 @@ declare const proFieldCheckboxProps: {
         type: PropType<CSSProperties>;
         default: {};
     };
+    ariaControls: StringConstructor;
     modelValue: {
         type: (BooleanConstructor | StringConstructor | NumberConstructor)[];
         default: undefined;

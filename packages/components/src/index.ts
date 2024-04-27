@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2023-12-13 21:26:11
- * @LastEditTime: 2024-04-26 13:04:17
+ * @LastEditTime: 2024-04-27 17:51:03
  * @FilePath: \element-plus-pro\packages\components\src\index.ts
  */
 import installer from "./default";

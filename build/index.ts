@@ -1,14 +1,14 @@
 /*
  * @Description:
  * @Date: 2024-04-25 09:53:37
- * @LastEditTime: 2024-04-26 15:19:06
+ * @LastEditTime: 2024-04-27 17:36:12
  */
 import { copyFile } from "fs/promises";
 import gulp from "gulp";
 import { resolve } from "path";
 import { projRoot } from "../configs";
-import dts from "./dts";
-// import { buildModules } from "./modules";
+import buildDts from "./dts";
+import buildModules from "./modules";
 
 const copyFiles = () => {
 	const dirname = process.cwd();
@@ -24,4 +24,4 @@ const copyProject = () => {
 	return gulp.src("./dist/**").pipe(gulp.dest(resolve(projRoot, `dist/pro-${filename}`)));
 };
 
-export default gulp.series(dts, gulp.parallel(copyFiles), copyProject) as unknown;
+export default gulp.series(buildModules, buildDts, gulp.parallel(copyFiles), copyProject) as unknown;
