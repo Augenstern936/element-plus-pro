@@ -1,1 +1,0 @@
-"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const r=require("./pro-components3.js"),s=e=>{const n=o=>{for(const t in e)o.component(t,e[t])};return{version:r.version["@element-plus/pro-components"],install:n}};exports.default=s;
