@@ -1,6 +1,6 @@
-import ProTabs from './Tabs';
+import ProTabs from "./Tabs";
 
-export * from './typing';
+export * from "./typing";
 
 export { ProTabs };
 

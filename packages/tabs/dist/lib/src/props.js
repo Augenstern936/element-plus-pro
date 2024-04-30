@@ -1,0 +1,1 @@
+"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e={modelValue:{type:[String,Number]},tabsProps:{type:Object},panes:{type:Array,default:[]},empty:{type:[Boolean,String,Number,Object],default:!0},beforeChange:{type:Function,default:()=>!0}};exports.default=e;

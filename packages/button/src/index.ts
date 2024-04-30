@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2023-12-13 21:22:31
- * @LastEditTime: 2024-04-26 15:14:06
+ * @LastEditTime: 2024-04-29 16:31:22
  * @FilePath: \element-plus-pro\packages\button\src\index.ts
  */
 import { withInstall } from "@element-plus/pro-utils";
