@@ -1,6 +1,9 @@
 node_modules
 /dist
 
+*/es
+*/lib
+
 pnpm-lock.yaml
 
 # Editor directories and files
