@@ -1,10 +1,9 @@
 /*
  * @Description:
  * @Date: 2024-04-24 11:32:17
- * @LastEditTime: 2024-04-30 13:46:18
+ * @LastEditTime: 2024-05-13 18:53:45
  */
-import Css from "esbuild-sass-plugin";
-import { basename, resolve } from "path";
+import { basename } from "path";
 import { build } from "tsup";
 
 export default () => {
@@ -12,19 +11,16 @@ export default () => {
 
 	return build({
 		entry: ["src/**/*.ts", "src/**/*.tsx"],
-		outDir: `./dist/es${baseDirName != "components" ? "/src" : ""}`,
-		jsxFactory: "h",
-		jsxFragment: "Fragment",
-		inject: [resolve(__dirname, "jsxFactory.ts")],
+		outDir: `./es${baseDirName != "components" ? "/src" : ""}`,
 		dts: {
 			entry: "src/index.ts",
-			only: false,
+			only: true,
+			resolve: true,
 			compilerOptions: {
 				moduleResolution: "node",
 				jsx: "preserve",
 			},
 		},
-		esbuildPlugins: [Css()],
 		//忽略打包文件
 		external: [
 			"vue",

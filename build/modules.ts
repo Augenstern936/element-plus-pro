@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-04-30 11:43:02
+ * @LastEditTime: 2024-05-13 17:23:27
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
@@ -14,19 +14,10 @@ import * as utils from "../utils";
 function getOutputConfig(format: "es" | "cjs", preserveModules: boolean): Record<string, any> {
 	return {
 		format,
-		dir: `./dist/${format == "es" ? "es" : "lib"}`,
+		dir: `./${format == "es" ? "es" : "lib"}`,
 		preserveModules,
 		preserveModulesRoot: "",
 		exports: "named",
-		globals: {
-			vue: "Vue",
-			"@vue/shared": "@vue/shared",
-			"@element-plus/icons-vue": "iconsVue",
-			"element-plus": "Element-Plus",
-		},
-		// assetFileNames: (asset: { name: string }) => {
-		// 	return asset.name.endsWith(".css") ? "src/[name].css" : asset;
-		// },
 	};
 }
 

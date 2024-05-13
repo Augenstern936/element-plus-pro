@@ -31,5 +31,9 @@
 	"author": "17634393156@163.com",
 	"devDependencies": {
 		"@element-plus/pro-center-container": "workspace:^"
+	},
+	"peerDependencies": {
+		"vue": "^3.4.27",
+		"element-plus": "^2.7.2"
 	}
 }
