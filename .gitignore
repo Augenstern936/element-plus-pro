@@ -1,8 +1,8 @@
 node_modules
 /dist
 
-*/es
-*/lib
+*/**/es
+*/**/lib
 
 pnpm-lock.yaml
 
