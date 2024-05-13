@@ -20,7 +20,7 @@
 	"scripts": {
 		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
 	},
-	"main": "dist/lib/pro-components.js",
+	"main": "lib/pro-components.js",
 	"module": "dist/es/pro-components.mjs",
 	"types": "dist/es/index.d.ts",
 	"files": [

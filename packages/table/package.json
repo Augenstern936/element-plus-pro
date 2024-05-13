@@ -21,20 +21,18 @@
 		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
 	},
 	"sideEffects": false,
-	"main": "dist/lib/src/index.js",
-	"module": "dist/es/src/index.mjs",
-	"types": "dist/es/src/index.d.ts",
+	"main": "lib/index.js",
+	"module": "es/index.mjs",
+	"types": "es/index.d.ts",
 	"files": [
 		"lib",
 		"es"
 	],
 	"author": "17634393156@163.com",
-	"devDependencies": {
+	"dependencies": {
 		"@element-plus/pro-button": "workspace:^",
 		"@element-plus/pro-search-bar": "workspace:^",
-		"@types/uuid": "^9.0.7"
-	},
-	"dependencies": {
+		"@types/uuid": "^9.0.7",
 		"@vueuse/core": "^10.7.0",
 		"uuid": "^9.0.1"
 	},

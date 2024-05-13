@@ -1,3 +1,8 @@
+<!--
+ * @Description: 
+ * @Date: 2024-04-27 16:16:26
+ * @LastEditTime: 2024-05-13 19:32:22
+-->
 <template>
 	<el-popconfirm
 		v-if="tipType == 'popconfirm' && (tip as TipConfig).text"
@@ -36,7 +41,7 @@
 		return typeof props.tip == "string" ? "message-box" : props.tip?.mode ?? "message-box";
 	});
 
-	const onClick = (e: Event) => {
+	const onClick = () => {
 		if (!props.tip) {
 			return emits("click");
 		}

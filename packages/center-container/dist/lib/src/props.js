@@ -1,1 +1,0 @@
-"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e={width:{type:[Number,String],default:"100%"},height:{type:[Number,String],default:"100%"}};exports.default=e;

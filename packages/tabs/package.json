@@ -21,15 +21,15 @@
 		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
 	},
 	"sideEffects": false,
-	"main": "dist/lib/src/index.js",
-	"module": "dist/es/src/index.mjs",
-	"types": "dist/es/src/index.d.mts",
+	"main": "lib/index.js",
+	"module": "es/index.mjs",
+	"types": "es/index.d.mts",
 	"files": [
 		"lib",
 		"es"
 	],
 	"author": "17634393156@163.com",
-	"devDependencies": {
+	"dependencies": {
 		"@element-plus/pro-center-container": "workspace:^"
 	},
 	"peerDependencies": {
