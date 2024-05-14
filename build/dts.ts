@@ -1,19 +1,24 @@
 /*
  * @Description:
  * @Date: 2024-04-24 11:32:17
- * @LastEditTime: 2024-05-13 18:53:45
+ * @LastEditTime: 2024-05-14 13:48:03
  */
+import { glob } from "glob";
 import { basename } from "path";
 import { build } from "tsup";
 
-export default () => {
+export default async () => {
 	const baseDirName = basename(process.cwd());
 
-	return build({
+	const entrys = await glob("src/**/*.{ts,tsx}");
+
+	console.log(entrys);
+
+	return await build({
 		entry: ["src/**/*.ts", "src/**/*.tsx"],
 		outDir: `./es${baseDirName != "components" ? "/src" : ""}`,
 		dts: {
-			entry: "src/index.ts",
+			entry: entrys.filter((_, index) => index < 3).map((url) => url.replace("\\", "/")),
 			only: true,
 			resolve: true,
 			compilerOptions: {
