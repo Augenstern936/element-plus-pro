@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-24 11:32:17
- * @LastEditTime: 2024-05-14 13:48:03
+ * @LastEditTime: 2024-05-15 10:25:58
  */
 import { glob } from "glob";
 import { basename } from "path";
@@ -18,7 +18,7 @@ export default async () => {
 		entry: ["src/**/*.ts", "src/**/*.tsx"],
 		outDir: `./es${baseDirName != "components" ? "/src" : ""}`,
 		dts: {
-			entry: entrys.filter((_, index) => index < 3).map((url) => url.replace("\\", "/")),
+			entry: entrys.filter((_, index) => index < 6).map((url) => url.replace("\\", "/")),
 			only: true,
 			resolve: true,
 			compilerOptions: {

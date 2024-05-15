@@ -2,4 +2,3 @@ packages:
     - packages/*
     - play
     - docs
-    - cli

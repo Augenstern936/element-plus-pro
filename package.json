@@ -2,6 +2,7 @@
 	"name": "element-plus-pro",
 	"private": true,
 	"license": "ISC",
+	"packageManager": "pnpm@8.10.2",
 	"workspaces": [
 		"packages/*",
 		"play",
@@ -36,7 +37,6 @@
 		"rollup-plugin-postcss": "^4.0.2",
 		"rollup-plugin-visualizer": "^5.11.0",
 		"sass": "^1.69.5",
-		"screenfull": "^6.0.2",
 		"tsup": "^8.0.2",
 		"tsx": "^3.14.0",
 		"typescript": "^5.2.2",
