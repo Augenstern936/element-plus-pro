@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-04-25 14:20:19
+ * @LastEditTime: 2024-05-16 15:52:54
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
 import {
@@ -37,6 +37,7 @@ export * from "./Cascader";
 export * from "./Checkbox";
 export * from "./Color";
 export * from "./Image";
+export * from "./Input";
 export * from "./Progress";
 export * from "./Radio";
 export * from "./Rate";

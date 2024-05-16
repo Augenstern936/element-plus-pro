@@ -1,6 +1,6 @@
 {
 	"name": "@element-plus/pro-components",
-	"version": "0.0.1-test-01-test-01",
+	"version": "0.0.1-test",
 	"description": "@element-plus/pro-components",
 	"keywords": [
 		"ui",
@@ -21,10 +21,9 @@
 		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
 	},
 	"main": "lib/pro-components.js",
-	"module": "dist/es/pro-components.mjs",
-	"types": "dist/es/index.d.ts",
+	"module": "es/pro-components.mjs",
+	"types": "es/index.d.ts",
 	"files": [
-		"dist",
 		"lib",
 		"es"
 	],

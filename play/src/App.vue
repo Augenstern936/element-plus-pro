@@ -12,7 +12,8 @@
 				<ElButton type="info">删除</ElButton>
 			</template>
 		</pro-table> -->
-		<ProField.DateYear v-model="test" />
+		<ProField v-model="test" value-type="password" />
+		<ProField.Password />
 		<!-- <pro-button type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">删除</pro-button> -->
 	</div>
 </template>

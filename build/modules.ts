@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-05-13 17:23:27
+ * @LastEditTime: 2024-05-16 10:39:25
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
@@ -17,6 +17,7 @@ function getOutputConfig(format: "es" | "cjs", preserveModules: boolean): Record
 		dir: `./${format == "es" ? "es" : "lib"}`,
 		preserveModules,
 		preserveModulesRoot: "",
+		sourcemap: true,
 		exports: "named",
 	};
 }
@@ -66,6 +67,6 @@ export default async () => {
 				output: [getOutputConfig("es", preserveModules), getOutputConfig("cjs", preserveModules)],
 			},
 		},
-		plugins: [Vue(), VueJsx(), CssInjectedByJsPlugin({ topExecutionPriority: false, relativeCSSInjection: true })],
+		plugins: [Vue(), VueJsx(), CssInjectedByJsPlugin({ topExecutionPriority: true, relativeCSSInjection: true })],
 	});
 };

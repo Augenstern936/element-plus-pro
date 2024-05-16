@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2023-12-13 21:26:11
- * @LastEditTime: 2024-04-28 11:32:58
+ * @LastEditTime: 2024-05-16 10:40:26
  * @FilePath: \element-plus-pro\packages\components\src\index.ts
  */
 import installer from "./default";
 
 export * from "@element-plus/pro-field";
-export * from "@element-plus/pro-tabs";
+// export * from "@element-plus/pro-tabs";
 // export * from '@element-plus/pro-table';
 // export * from '@element-plus/pro-button';
 // export * from "@element-plus/pro-center-container";
