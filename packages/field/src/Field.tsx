@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-05-16 16:32:14
+ * @LastEditTime: 2024-05-17 16:22:01
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import { formatPlaceholder, withInstall } from "@element-plus/pro-utils";
@@ -74,10 +74,8 @@ interface Test extends FunctionalComponent<ProFieldProps> {
 	Progress: FunctionalComponent<any>;
 }
 
-const getPlaceholder = (placeholder: string | [string] | [string, string], type: ValueType) => {
+function getPlaceholder(placeholder: string | [string] | [string, string] | undefined, type: ValueType) {
 	const value = placeholder ?? (formatPlaceholder("", (type as any) || "text") as string | [string, string]);
-
-	console.log(value, "value");
 
 	if (Array.isArray(value) && value.length > 1) {
 		return {
@@ -89,7 +87,7 @@ const getPlaceholder = (placeholder: string | [string] | [string, string], type:
 	return {
 		placeholder: Array.isArray(value) ? value[0] : value,
 	};
-};
+}
 
 const ProField = defineComponent<ProFieldProps>(
 	(props, ctx) => {
@@ -105,30 +103,13 @@ const ProField = defineComponent<ProFieldProps>(
 			},
 		});
 
-		const placeholder = computed(() => {
-			// const value =
-			// 	props.placeholder ??
-			// 	(formatPlaceholder("", (props.valueType as any) || "text") as string | [string, string]);
-
-			// if (Array.isArray(value) && value.length > 1) {
-			// 	return {
-			// 		startPlaceholder: value[0],
-			// 		endPlaceholder: value[1],
-			// 	};
-			// }
-
-			// return {
-			// 	placeholder: Array.isArray(value) ? value[0] : value,
-			// };
-
-			const placeholder = getPlaceholder(props.placeholder ?? "", props.valueType as ValueType);
-
-			console.log(placeholder, "placeholder");
-
-			return { ...placeholder };
-		});
-
-		return () => <Field.value v-model={model.value} {...props.fieldProps} {...placeholder.value} />;
+		return () => (
+			<Field.value
+				v-model={model.value}
+				{...props.fieldProps}
+				{...getPlaceholder(props.placeholder, props.valueType as ValueType)}
+			/>
+		);
 	},
 	{
 		name: "ProField",
@@ -142,9 +123,8 @@ type ToUppercaseFirst<S extends string> = S extends `${infer First}${infer Rest}
 for (const key in components) {
 	const ComName = (key.charAt(0).toUpperCase() + key.slice(1)) as ToUppercaseFirst<ValueType>;
 	const FieldComponent = components[key as ValueType];
-	ProField[ComName] = (props: any) => {
-		const placeholder = getPlaceholder(props.placeholder, key as ValueType);
-		return <FieldComponent {...props} {...placeholder} type={key} />;
+	ProField[ComName] = (props) => {
+		return <FieldComponent {...props} {...getPlaceholder(props.placeholder, key as ValueType)} type={key} />;
 	};
 }
 

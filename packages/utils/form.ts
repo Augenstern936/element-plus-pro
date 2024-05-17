@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-22 22:45:28
- * @LastEditTime: 2024-05-16 15:48:49
+ * @LastEditTime: 2024-05-17 16:02:01
  * @FilePath: \element-plus-pro\packages\utils\form.ts
  */
 import { isOnlySymbols } from "./check";
@@ -16,11 +16,11 @@ import { FormValueTypeEnum } from "./types";
  */
 export function formatPlaceholder(label: string = "", type: keyof typeof FormValueTypeEnum): string | string[] {
 	const formatLabel = label && isOnlySymbols(label.slice(-1)) ? label.slice(0, -1) : label;
-	console.log(type, "formatPlaceholder");
 	switch (type) {
 		case "text":
 			return `请输入${formatLabel || "内容"}`;
 		case "password":
+			console.log("password");
 			return `请输入${formatLabel || "密码"}`;
 		case "textarea":
 			return `请输入${formatLabel || "内容"}`;
