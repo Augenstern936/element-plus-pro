@@ -35,5 +35,9 @@
 		"@element-plus/pro-search-bar": "workspace:^",
 		"@element-plus/pro-table": "workspace:^",
 		"@element-plus/pro-tabs": "workspace:^"
+	},
+	"peerDependencies": {
+		"vue": "^3.3.7",
+		"element-plus": "^2.4.1"
 	}
 }

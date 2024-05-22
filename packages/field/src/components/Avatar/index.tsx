@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-05-14 11:35:40
+ * @LastEditTime: 2024-05-20 17:38:48
  * @FilePath: \element-plus-pro\packages\field\src\components\Avatar.tsx
  */
 import { ElAvatar } from "element-plus";

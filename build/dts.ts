@@ -1,14 +1,13 @@
 /*
  * @Description:
  * @Date: 2024-04-24 11:32:17
- * @LastEditTime: 2024-05-16 11:36:29
+ * @LastEditTime: 2024-05-22 13:32:36
  */
 import { glob } from "glob";
 import { build } from "tsup";
+import { generateExternal } from "./utils";
 
 export default async () => {
-	//const baseDirName = basename(process.cwd());
-
 	const entrys = await glob("src/**/*.{ts,tsx}");
 
 	return await build({
@@ -24,18 +23,6 @@ export default async () => {
 			},
 		},
 		//忽略打包文件
-		external: [
-			"vue",
-			"@vue/shared",
-			"element-plus",
-			"@element-plus/icons-vue",
-			"@element-plus/pro-utils",
-			"@element-plus/pro-tabs",
-			"@element-plus/pro-field",
-			"@element-plus/pro-button",
-			"@element-plus/pro-table",
-			"@element-plus/pro-search-bar",
-			"@element-plus/pro-center-container",
-		],
+		external: generateExternal({ full: true }),
 	});
 };

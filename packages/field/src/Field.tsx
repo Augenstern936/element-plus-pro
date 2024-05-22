@@ -2,10 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-05-17 16:22:01
+ * @LastEditTime: 2024-05-21 12:46:44
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import { formatPlaceholder, withInstall } from "@element-plus/pro-utils";
+import "element-plus/theme-chalk/src/base.scss";
 import { ExtractPropTypes, FunctionalComponent, PropType, computed, defineComponent } from "vue";
 import type {
 	ProFieldAvatarProps,
