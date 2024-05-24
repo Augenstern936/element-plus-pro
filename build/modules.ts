@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-05-22 13:38:17
+ * @LastEditTime: 2024-05-24 11:49:03
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
@@ -23,6 +23,8 @@ export default async () => {
 
 	const preserveModules = baseDirName == "components" ? false : true;
 
+	console.log(generateExternal({ full: false }), "componentName");
+
 	return await build({
 		esbuild: {
 			pure: ["console.log", "debugger"],
@@ -34,12 +36,11 @@ export default async () => {
 			minify: "esbuild",
 			cssCodeSplit: true,
 			lib: {
-				entry: entry,
-				name: "dist",
+				entry,
 			},
 			rollupOptions: {
 				//忽略打包文件
-				external: generateExternal({ full: true }),
+				external: generateExternal({ full: false }),
 				output: [getOutputConfig("es", preserveModules), getOutputConfig("cjs", preserveModules)],
 			},
 		},

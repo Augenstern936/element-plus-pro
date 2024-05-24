@@ -18,7 +18,8 @@
 		"url": ""
 	},
 	"scripts": {
-		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
+		"build": "pnpm fix-memory-limit & gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
+		"fix-memory-limit": "cross-env LIMIT=4096 increase-memory-limit"
 	},
 	"sideEffects": false,
 	"main": "lib/index.js",
@@ -30,7 +31,10 @@
 	],
 	"author": "17634393156@163.com",
 	"peerDependencies": {
-		"vue": "^3.3.7",
-		"element-plus": "^2.4.1"
+		"element-plus": "^2.4.1",
+		"vue": "^3.3.7"
+	},
+	"dependencies": {
+		"@element-plus/icons-vue": "^2.3.1"
 	}
 }

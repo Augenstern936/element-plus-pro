@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-05-21 14:03:12
- * @LastEditTime: 2024-05-22 13:52:57
+ * @LastEditTime: 2024-05-23 11:21:17
  */
 export * from "./pkg";
 export * from "./rollup";
@@ -10,6 +10,7 @@ export function getOutputConfig(format: "es" | "cjs", preserveModules: boolean):
 	return {
 		format,
 		dir: `./${format == "es" ? "es" : "lib"}`,
+		name: `[name].${format == "es" ? "mjs" : "js"}`,
 		preserveModules,
 		preserveModulesRoot: "",
 		sourcemap: true,

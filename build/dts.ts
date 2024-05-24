@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-24 11:32:17
- * @LastEditTime: 2024-05-22 13:32:36
+ * @LastEditTime: 2024-05-23 11:34:28
  */
 import { glob } from "glob";
 import { build } from "tsup";
@@ -13,8 +13,9 @@ export default async () => {
 	return await build({
 		entry: ["src/**/*.ts", "src/**/*.tsx"],
 		outDir: "./es/src",
+		treeshake: true,
 		dts: {
-			entry: entrys.filter((_, index) => index < 6),
+			entry: entrys.filter((_, i) => i < 5),
 			only: true,
 			resolve: true,
 			compilerOptions: {
