@@ -7,7 +7,6 @@ import { glob } from "glob";
 import { build } from "tsup";
 
 export default async () => {
-	//const baseDirName = basename(process.cwd());
 
 	const entrys = await glob("src/**/*.{ts,tsx}");
 
@@ -15,7 +14,7 @@ export default async () => {
 		entry: ["src/**/*.ts", "src/**/*.tsx"],
 		outDir: "./es/src",
 		dts: {
-			entry: entrys.filter((_, index) => index < 6),
+			entry: entrys.filter((_, index) => index < 3),
 			only: true,
 			resolve: true,
 			compilerOptions: {

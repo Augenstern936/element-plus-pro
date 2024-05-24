@@ -2,11 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-05-17 16:22:01
+ * @LastEditTime: 2024-05-17 20:09:10
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
-import { formatPlaceholder, withInstall } from "@element-plus/pro-utils";
-import { ExtractPropTypes, FunctionalComponent, PropType, computed, defineComponent } from "vue";
+import { formatPlaceholder, withInstall } from '@element-plus/pro-utils';
+import { ExtractPropTypes, FunctionalComponent, PropType, computed, defineComponent } from 'vue';
 import type {
 	ProFieldAvatarProps,
 	ProFieldCheckboxProps,
@@ -14,21 +14,21 @@ import type {
 	ProFieldPasswordProps,
 	ProFieldTextProps,
 	ProFieldTextareaProps,
-} from "./components";
-import { components } from "./components";
+} from './components';
+import { components } from './components';
 
 export const proFieldProps = {
 	modelValue: {
 		type: [String, Number, Boolean, Array],
-		default: "",
+		default: '',
 	},
 	mode: {
-		type: String as PropType<"read" | "edit">,
-		default: "edit",
+		type: String as PropType<'read' | 'edit'>,
+		default: 'edit',
 	},
 	valueType: {
 		type: String as PropType<ValueType>,
-		default: "text",
+		default: 'text',
 	},
 	placeholder: {
 		type: [String, Array as unknown as PropType<[string] | [string, string]>],
@@ -75,7 +75,7 @@ interface Test extends FunctionalComponent<ProFieldProps> {
 }
 
 function getPlaceholder(placeholder: string | [string] | [string, string] | undefined, type: ValueType) {
-	const value = placeholder ?? (formatPlaceholder("", (type as any) || "text") as string | [string, string]);
+	const value = placeholder ?? (formatPlaceholder('', (type as any) || 'text') as string | [string, string]);
 
 	if (Array.isArray(value) && value.length > 1) {
 		return {
@@ -92,27 +92,27 @@ function getPlaceholder(placeholder: string | [string] | [string, string] | unde
 const ProField = defineComponent<ProFieldProps>(
 	(props, ctx) => {
 		const Field = computed(() => {
-			return components[props.valueType || "text"] as FunctionalComponent;
+			return components[props.valueType || 'text'] as FunctionalComponent;
 		});
 		const model = computed({
 			get: () => {
 				return props.modelValue;
 			},
 			set: (value) => {
-				ctx.emit("update:modelValue", value);
+				ctx.emit('update:modelValue', value);
 			},
 		});
 
 		return () => (
 			<Field.value
-				v-model={model.value}
+				v-model={model.value as any}
 				{...props.fieldProps}
 				{...getPlaceholder(props.placeholder, props.valueType as ValueType)}
 			/>
 		);
 	},
 	{
-		name: "ProField",
+		name: 'ProField',
 	}
 ) as unknown as Test;
 
