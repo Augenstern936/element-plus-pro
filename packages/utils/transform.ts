@@ -1,4 +1,11 @@
-import { CssUnitEnum } from "./types";
+/*
+ * @Description:
+ * @Author: wangbowen936926
+ * @Date: 2024-05-17 19:46:42
+ * @LastEditTime: 2024-05-26 20:34:22
+ * @FilePath: \element-plus-pro\packages\utils\transform.ts
+ */
+import { CssUnitEnum } from '@element-plus/pro-types';
 
 /**
  *
@@ -6,10 +13,10 @@ import { CssUnitEnum } from "./types";
  * @param cssUnit
  * @returns
  */
-export function toCssUnitValue(val: number | string, unit: keyof typeof CssUnitEnum = "px"): string {
+export function toCssUnitValue(val: number | string, unit: keyof typeof CssUnitEnum = 'px'): string {
 	const strVal = String(val || 0);
-	const newVal = strVal[0] == "0" ? "0" : strVal.slice(0, 2) == "-0" ? "-0" : strVal;
-	const typeErrorTip = "The first parameter type of the function toCssUnitValue is not a string number";
+	const newVal = strVal[0] == '0' ? '0' : strVal.slice(0, 2) == '-0' ? '-0' : strVal;
+	const typeErrorTip = 'The first parameter type of the function toCssUnitValue is not a string number';
 	const isHasUnit = Object.keys(CssUnitEnum)
 		.filter((v) => Number.isNaN(Number(v)))
 		.some((cssUnit) => {
@@ -34,7 +41,7 @@ export function toOptions(valueEnum: Record<string, string | number | { text: st
 	const options = Object.keys(valueEnum).map((key) => {
 		const item = valueEnum[key];
 		const type = Object.prototype.toString.call(item);
-		const label = typeof item == "object" && type === "[object Object]" ? item.text : item;
+		const label = typeof item == 'object' && type === '[object Object]' ? item.text : item;
 		return {
 			label: label,
 			value: key,

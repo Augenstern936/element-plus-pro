@@ -2,40 +2,29 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-29 16:27:16
+ * @LastEditTime: 2024-05-26 22:31:42
  * @FilePath: \element-plus-pro\packages\field\src\components\Date\index.tsx
  */
-import { formatPlaceholder } from "@element-plus/pro-utils";
-import { DatePickerProps, ElDatePicker } from "element-plus";
-import "element-plus/theme-chalk/src/date-picker.scss";
-import { FunctionalComponent, computed, defineComponent } from "vue";
-import {
-	BaseDateProps,
-	ProFieldDateMonthProps,
-	ProFieldDateMonthRangeProps,
-	ProFieldDateProps,
-	ProFieldDateRangeProps,
-	ProFieldDateTimeProps,
-	ProFieldDateTimeRangeProps,
-	ProFieldDateWeekProps,
-	ProFieldDateYearProps,
-	ProFieldDatesProps,
-	proDatePickerProps,
-} from "./props";
+import 'element-plus/theme-chalk/src/button.scss';
+import 'element-plus/theme-chalk/src/date-picker.scss';
+import { formatPlaceholder } from '@element-plus/pro-utils';
+import { DatePickerProps, ElDatePicker } from 'element-plus';
+import { FunctionalComponent, computed, defineComponent } from 'vue';
+import { ProDatePickerProps, proDatePickerProps, ProDatePickerPropsMap } from './props';
 
-const BaseDate = defineComponent<BaseDateProps>((props, ctx) => {
+const ProDatePicker = defineComponent<ProDatePickerProps>((props, ctx) => {
 	const state = computed({
 		get: () => {
 			return props.modelValue;
 		},
 		set: (value) => {
-			ctx.emit("update:modelValue", value);
+			ctx.emit('update:modelValue', value);
 		},
 	});
 
 	const placeholder = computed(() => {
 		const value =
-			props.placeholder ?? (formatPlaceholder("", (props.type as any) || "text") as string | [string, string]);
+			props.placeholder ?? (formatPlaceholder('', (props.type as any) || 'text') as string | [string, string]);
 
 		if (Array.isArray(value) && value.length > 1) {
 			return {
@@ -49,29 +38,45 @@ const BaseDate = defineComponent<BaseDateProps>((props, ctx) => {
 		};
 	});
 
-	return () => <ElDatePicker v-model={state.value} {...(props as DatePickerProps)} {...placeholder.value} />;
-}) as unknown as FunctionalComponent<BaseDateProps>;
+	return () => <ElDatePicker {...(props as DatePickerProps)} {...placeholder.value} v-model={state.value} />;
+}) as unknown as FunctionalComponent<ProDatePickerProps>;
 
-BaseDate.props = proDatePickerProps as any;
+ProDatePicker.props = proDatePickerProps as any;
 
-export * from "./props";
+export * from './props';
 
-export const ProFieldDate = (props: ProFieldDateProps) => <BaseDate {...props} type="date" />;
-
-export const ProFieldDates = (props: ProFieldDatesProps) => <BaseDate {...props} type="dates" />;
-
-export const ProFieldDateTime = (props: ProFieldDateTimeProps) => <BaseDate {...props} type="datetime" />;
-
-export const ProFieldDateWeek = (props: ProFieldDateWeekProps) => <BaseDate {...props} type="week" />;
-
-export const ProFieldDateMonth = (props: ProFieldDateMonthProps) => <BaseDate {...props} type="month" />;
-
-export const ProFieldDateYear = (props: ProFieldDateYearProps) => <BaseDate {...props} type="year" />;
-
-export const ProFieldDateRange = (props: ProFieldDateRangeProps) => <BaseDate {...props} type="daterange" />;
-
-export const ProFieldDateTimeRange = (props: ProFieldDateTimeRangeProps) => (
-	<BaseDate {...props} type="datetimerange" />
+export const ProFieldDate = (props: ProDatePickerPropsMap.ProFieldDateProps) => (
+	<ProDatePicker {...props} type='date' />
 );
 
-export const ProFieldDateMonthRange = (props: ProFieldDateMonthRangeProps) => <BaseDate {...props} type="monthrange" />;
+export const ProFieldDates = (props: ProDatePickerPropsMap.ProFieldDatesProps) => (
+	<ProDatePicker {...props} type='dates' />
+);
+
+export const ProFieldDateTime = (props: ProDatePickerPropsMap.ProFieldDateTimeProps) => (
+	<ProDatePicker {...props} type='datetime' />
+);
+
+export const ProFieldDateWeek = (props: ProDatePickerPropsMap.ProFieldDateWeekProps) => (
+	<ProDatePicker {...props} type='week' />
+);
+
+export const ProFieldDateMonth = (props: ProDatePickerPropsMap.ProFieldDateMonthProps) => (
+	<ProDatePicker {...props} type='month' />
+);
+
+export const ProFieldDateYear = (props: ProDatePickerPropsMap.ProFieldDateYearProps) => (
+	<ProDatePicker {...props} type='year' />
+);
+
+export const ProFieldDateRange = (props: ProDatePickerPropsMap.ProFieldDateRangeProps) => (
+	<ProDatePicker {...props} type='daterange' />
+);
+
+export const ProFieldDateTimeRange = (props: ProDatePickerPropsMap.ProFieldDateTimeRangeProps) => (
+	<ProDatePicker {...props} type='datetimerange' />
+);
+
+export const ProFieldDateMonthRange = (props: ProDatePickerPropsMap.ProFieldDateMonthRangeProps) => (
+	<ProDatePicker {...props} type='monthrange' />
+);

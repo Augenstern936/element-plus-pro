@@ -1,16 +1,16 @@
 /*
  * @Description:
  * @Date: 2024-04-10 17:50:45
- * @LastEditTime: 2024-04-10 17:53:12
+ * @LastEditTime: 2024-05-26 21:48:57
  */
-import { CircleClose, Clock } from "@element-plus/icons-vue";
-import { useSizeProp } from "element-plus";
-import type { CSSProperties, Component, ExtractPropTypes, PropType } from "vue";
+import { CircleClose, Clock } from '@element-plus/icons-vue';
+import { useSizeProp } from 'element-plus';
+import type { CSSProperties, Component, ExtractPropTypes, PropType } from 'vue';
 
 export const proFieldTimeSelectProps = {
 	format: {
 		type: String,
-		default: "HH:mm",
+		default: 'HH:mm',
 	},
 	modelValue: String,
 	disabled: Boolean,
@@ -19,8 +19,8 @@ export const proFieldTimeSelectProps = {
 		default: true,
 	},
 	effect: {
-		type: String as PropType<"light" | "dark" | string>,
-		default: "light",
+		type: String as PropType<'light' | 'dark' | string>,
+		default: 'light',
 	},
 	clearable: {
 		type: Boolean,
@@ -30,15 +30,15 @@ export const proFieldTimeSelectProps = {
 	placeholder: String,
 	start: {
 		type: String,
-		default: "09:00",
+		default: '09:00',
 	},
 	end: {
 		type: String,
-		default: "18:00",
+		default: '18:00',
 	},
 	step: {
 		type: String,
-		default: "00:30",
+		default: '00:30',
 	},
 	minTime: String,
 	maxTime: String,
@@ -57,4 +57,4 @@ export const proFieldTimeSelectProps = {
 	},
 };
 
-export type ProFieldTimeSelectProps = Partial<ExtractPropTypes<typeof proFieldTimeSelectProps>>;
+export type ProFieldTimeSelectProps = ExtractPropTypes<typeof proFieldTimeSelectProps>;

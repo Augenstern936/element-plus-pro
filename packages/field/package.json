@@ -30,7 +30,7 @@
 	],
 	"author": "17634393156@163.com",
 	"peerDependencies": {
-		"vue": "^3.3.7",
-		"element-plus": "^2.4.1"
+		"element-plus": "^2.4.1",
+		"vue": "^3.3.7"
 	}
 }

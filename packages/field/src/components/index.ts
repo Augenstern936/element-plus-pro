@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-05-16 15:52:54
+ * @LastEditTime: 2024-05-26 21:47:56
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
 import {
@@ -15,37 +15,38 @@ import {
 	ProFieldDateWeek,
 	ProFieldDateYear,
 	ProFieldDates,
-} from "./Date";
-import { ProFieldPassword, ProFieldText, ProFieldTextarea } from "./Input";
-import { ProFieldTime, ProFieldTimeRange } from "./TimePicker";
+} from './Date';
+import { ProFieldPassword, ProFieldText, ProFieldTextarea } from './Input';
+import { ProFieldTime, ProFieldTimeRange } from './TimePicker';
 // import ProFieldTimeSelect from "./TimeSelect";
-import ProFieldAvatar from "./Avatar";
-import ProFieldCascader from "./Cascader";
-import ProFieldCheckbox from "./Checkbox";
-import ProFieldColor from "./Color";
-import ProFieldImage from "./Image";
-import ProFieldProgress from "./Progress";
-import ProFieldRadio from "./Radio";
-import ProFieldRate from "./Rate";
-import ProFieldSelect from "./Select";
-import ProFieldSlider from "./Slider";
-import ProFieldSwitch from "./Switch";
-import ProFieldTreeSelect from "./TreeSelect";
+import ProFieldAvatar from './Avatar';
+import ProFieldCascader from './Cascader';
+import ProFieldCheckbox from './Checkbox';
+import ProFieldColor from './Color';
+import ProFieldImage from './Image';
+import ProFieldProgress from './Progress';
+import ProFieldRadio from './Radio';
+import ProFieldRate from './Rate';
+import ProFieldSelect from './Select';
+import ProFieldSlider from './Slider';
+import ProFieldSwitch from './Switch';
+import ProFieldTreeSelect from './TreeSelect';
 
-export * from "./Avatar";
-export * from "./Cascader";
-export * from "./Checkbox";
-export * from "./Color";
-export * from "./Image";
-export * from "./Input";
-export * from "./Progress";
-export * from "./Radio";
-export * from "./Rate";
+export * from './Date';
+export * from './Avatar';
+export * from './Cascader';
+export * from './Checkbox';
+export * from './Color';
+export * from './Image';
+export * from './Input';
+export * from './Progress';
+export * from './Radio';
+export * from './Rate';
 // export * from './Select';
-export * from "./Slider";
-export * from "./Switch";
-export * from "./TreeSelect";
-// export * from "./TimeSelect";
+export * from './Slider';
+export * from './Switch';
+export * from './TreeSelect';
+export * from './TimeSelect';
 
 export const components = {
 	text: ProFieldText,

@@ -3,11 +3,11 @@
  * @param value
  * @returns
  */
-export function checkValueIsComponent(value: any): boolean {
+export function checkValueIsComponent(v: Record<string, Function>): boolean {
 	if (
-		typeof value === 'object' &&
-		typeof value != null &&
-		(typeof value.render === 'function' || typeof value.setup === 'function')
+		typeof v === 'object' &&
+		typeof v != null &&
+		(typeof v.render === 'function' || typeof v.setup === 'function')
 	) {
 		return true;
 	}
