@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-05-26 21:49:43
+ * @LastEditTime: 2024-05-28 00:39:48
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import 'element-plus/theme-chalk/src/base.scss';
@@ -53,7 +53,19 @@ export const proFieldProps = {
 
 export type ProFieldType = keyof typeof components;
 
-export type ProFieldProps = GeneratePropTypes<typeof proFieldProps>;
+type TextFieldProps = {
+	type: 'text';
+	fieldProps: Partial<ProFieldTextProps>;
+};
+
+type DateFieldProps = {
+	type: 'date';
+	fieldProps: Partial<ProDatePickerPropsMap.ProFieldDateProps>;
+};
+
+type FieldProps = TextFieldProps | DateFieldProps;
+
+export type ProFieldProps = Omit<GeneratePropTypes<typeof proFieldProps>, 'type' | 'fieldProps'> & FieldProps;
 
 function getPlaceholder(type: ProFieldType, placeholder: string | [string] | [string, string]) {
 	const value = placeholder ?? (formatPlaceholder('', (type as any) || 'text') as string | [string, string]);

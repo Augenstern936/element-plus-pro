@@ -12,19 +12,19 @@
 				<ElButton type="info">删除</ElButton>
 			</template>
 		</pro-table> -->
-		<ProField v-model="test" type="dateTime" />
+		<ProField mode="read" type="date" :field-props="{ format: '' }" />
 		<!-- <pro-button type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">删除</pro-button> -->
 	</div>
 </template>
 
 <script setup lang="ts">
 	import { reactive, ref } from 'vue';
-	// import { ProField } from "@element-plus/pro-components";
+	// import { ProField } from '@element-plus/pro-components';
+	import { ProField } from '@element-plus/pro-field';
 	// import type { TableColumns } from "@element-plus/pro-components";
 	// import { ElButton } from "element-plus";
-	import { ProField } from '@element-plus/pro-field';
 
-	const test = ref('');
+	//const test = ref('');
 
 	const columns = ref<any[]>([
 		{
