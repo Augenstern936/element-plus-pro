@@ -2,33 +2,16 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-05-26 21:49:43
+ * @LastEditTime: 2024-05-28 17:14:48
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
-import 'element-plus/theme-chalk/src/base.scss';
-import { formatPlaceholder } from '@element-plus/pro-utils';
-import { computed, defineComponent, ref } from 'vue';
-import { components } from './components';
-import type { FunctionalComponent, PropType } from 'vue';
-import type { GeneratePropTypes, ToUppercaseFirst } from '@element-plus/pro-types';
-import type {
-	ProDatePickerPropsMap,
-	ProFieldTimeSelectProps,
-	ProFieldAvatarProps,
-	ProFieldCheckboxProps,
-	ProFieldColorProps,
-	ProFieldPasswordProps,
-	ProFieldTextProps,
-	ProFieldTextareaProps,
-	ProFieldProgressProps,
-	ProFieldCascaderProps,
-	ProFieldImageProps,
-	ProFieldRadioProps,
-	ProFieldRateProps,
-	ProFieldSliderProps,
-	ProFieldSwitchProps,
-	ProFieldTreeSelectProps,
-} from './components';
+import type { GeneratePropTypes, ToUppercaseFirst } from "@element-plus/pro-types";
+import { formatPlaceholder } from "@element-plus/pro-utils";
+import "element-plus/theme-chalk/src/base.scss";
+import type { FunctionalComponent, PropType } from "vue";
+import { computed, defineComponent, ref } from "vue";
+import { components } from "./components";
+import type { FieldProps, ProFieldSuperProps, ProFieldType } from "./typing";
 
 export const proFieldProps = {
 	modelValue: {
@@ -36,8 +19,8 @@ export const proFieldProps = {
 		default: void 0,
 	},
 	mode: {
-		type: String as PropType<'read' | 'edit'>,
-		default: 'edit',
+		type: String as PropType<"read" | "edit">,
+		default: "edit",
 	},
 	type: {
 		type: String as PropType<ProFieldType>,
@@ -51,12 +34,10 @@ export const proFieldProps = {
 	},
 } as const;
 
-export type ProFieldType = keyof typeof components;
-
-export type ProFieldProps = GeneratePropTypes<typeof proFieldProps>;
+export type ProFieldProps = Omit<GeneratePropTypes<typeof proFieldProps>, "type" | "fieldProps"> & FieldProps;
 
 function getPlaceholder(type: ProFieldType, placeholder: string | [string] | [string, string]) {
-	const value = placeholder ?? (formatPlaceholder('', (type as any) || 'text') as string | [string, string]);
+	const value = placeholder ?? (formatPlaceholder("", (type as any) || "text") as string | [string, string]);
 
 	if (Array.isArray(value) && value.length > 1) {
 		return {
@@ -72,10 +53,10 @@ function getPlaceholder(type: ProFieldType, placeholder: string | [string] | [st
 
 const ProField = defineComponent<ProFieldProps>(
 	(props, ctx) => {
-		const state = ref<any>('');
+		const state = ref<any>("");
 
 		const Field = computed(() => {
-			return components[props.type || 'text'] as FunctionalComponent;
+			return components[props.type || "text"] as FunctionalComponent;
 		});
 		const model = computed({
 			get: () => {
@@ -83,7 +64,7 @@ const ProField = defineComponent<ProFieldProps>(
 			},
 			set: (value) => {
 				if (props.modelValue !== void 0) {
-					return ctx.emit('update:modelValue', value);
+					return ctx.emit("update:modelValue", value);
 				}
 				state.value = value;
 			},
@@ -98,38 +79,9 @@ const ProField = defineComponent<ProFieldProps>(
 		);
 	},
 	{
-		name: 'ProField',
+		name: "ProField",
 	}
-) as unknown as FunctionalComponent<ProFieldProps> & {
-	Text: FunctionalComponent<ProFieldTextProps>;
-	Password: FunctionalComponent<ProFieldPasswordProps>;
-	Textarea: FunctionalComponent<ProFieldTextareaProps>;
-	Date: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateProps>;
-	Dates: FunctionalComponent<ProDatePickerPropsMap.ProFieldDatesProps>;
-	DateTime: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateTimeProps>;
-	DateWeek: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateWeekProps>;
-	DateMonth: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateMonthProps>;
-	DateYear: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateYearProps>;
-	DateRange: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateRangeProps>;
-	DateTimeRange: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateTimeRangeProps>;
-	DateMonthRange: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateMonthRangeProps>;
-	Time: FunctionalComponent<any>;
-	TimeRange: FunctionalComponent<any>;
-	TimeSelect: FunctionalComponent<ProFieldTimeSelectProps>;
-	Select: FunctionalComponent<any>;
-	TreeSelect: FunctionalComponent<ProFieldTreeSelectProps>;
-	Checkbox: FunctionalComponent<ProFieldCheckboxProps>;
-	Radio: FunctionalComponent<ProFieldRadioProps>;
-	RadioButton: FunctionalComponent<ProFieldRadioProps>;
-	Switch: FunctionalComponent<ProFieldSwitchProps>;
-	Avatar: FunctionalComponent<ProFieldAvatarProps>;
-	Image: FunctionalComponent<ProFieldImageProps>;
-	Rate: FunctionalComponent<ProFieldRateProps>;
-	Color: FunctionalComponent<ProFieldColorProps>;
-	Cascader: FunctionalComponent<ProFieldCascaderProps>;
-	Slider: FunctionalComponent<ProFieldSliderProps>;
-	Progress: FunctionalComponent<ProFieldProgressProps>;
-};
+) as unknown as ProFieldSuperProps<ProFieldProps>;
 
 ProField.props = proFieldProps as any;
 
