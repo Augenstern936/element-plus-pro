@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-25 13:46:50
+ * @LastEditTime: 2024-05-29 15:23:54
  * @FilePath: \element-plus-pro\packages\field\src\components\Color.tsx
  */
 import { ElColorPicker } from "element-plus";
@@ -28,7 +28,7 @@ const ProFieldColor = defineComponent<ProFieldColorProps>(
 	}
 ) as unknown as FunctionalComponent<ProFieldColorProps>;
 
-ProFieldColor.props = proFieldColor;
+ProFieldColor.props = proFieldColor as any;
 
 export * from "./props";
 

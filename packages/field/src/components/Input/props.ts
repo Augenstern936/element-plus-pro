@@ -2,12 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-10 00:07:29
- * @LastEditTime: 2024-04-25 14:06:04
+ * @LastEditTime: 2024-05-29 15:02:44
  * @FilePath: \element-plus-pro\packages\field\src\components\Input\typing.ts
  */
-import type { InputProps } from "element-plus";
 import { inputProps } from "element-plus";
-import type { CSSProperties, PropType } from "vue";
+import type { CSSProperties, ExtractPropTypes, PropType } from "vue";
 
 export const proInputProps = {
 	...inputProps,
@@ -15,12 +14,17 @@ export const proInputProps = {
 		type: String as PropType<"text" | "password" | "textarea">,
 		default: "text",
 	},
+	mode: {
+		type: String as PropType<"read" | "edit">,
+		default: "edit",
+	},
+	style: {
+		type: Object as PropType<CSSProperties>,
+		default: {},
+	},
 };
 
-export interface ProFieldInputProps extends InputProps {
-	type: "text" | "password" | "textarea";
-	style?: CSSProperties;
-}
+export type ProFieldInputProps = Partial<ExtractPropTypes<typeof proInputProps>>;
 
 export type ProFieldTextProps = Omit<ProFieldInputProps, "type">;
 

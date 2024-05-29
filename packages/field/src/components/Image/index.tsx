@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-25 14:01:39
+ * @LastEditTime: 2024-05-29 15:24:34
  * @FilePath: \element-plus-pro\packages\field\src\components\Avatar.tsx
  */
 import { ElImage } from "element-plus";
@@ -19,7 +19,7 @@ const ProFieldImage = defineComponent<ProFieldImageProps>(
 	}
 ) as unknown as FunctionalComponent<ProFieldImageProps>;
 
-ProFieldImage.props = proFieldImageProps;
+ProFieldImage.props = proFieldImageProps as any;
 
 export * from "./props";
 

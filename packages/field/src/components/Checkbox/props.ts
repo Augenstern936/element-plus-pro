@@ -1,17 +1,21 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-05-25 14:33:29
+ * @LastEditTime: 2024-05-29 14:39:12
  */
-import { checkboxProps } from 'element-plus';
-import { CSSProperties, ExtractPropTypes, PropType } from 'vue';
-import type { Option } from '@element-plus/pro-types';
+import type { Option } from "@element-plus/pro-types";
+import { checkboxProps } from "element-plus";
+import { CSSProperties, ExtractPropTypes, PropType } from "vue";
 
 export const proFieldCheckboxProps = {
 	...checkboxProps,
 	type: {
-		type: String as PropType<'checkbox' | 'checkboxButton'>,
-		default: 'checkbox',
+		type: String as PropType<"checkbox" | "checkboxButton">,
+		default: "checkbox",
+	},
+	mode: {
+		type: String as PropType<"read" | "edit">,
+		default: "edit",
 	},
 	options: {
 		type: Array as PropType<Option[]>,
@@ -23,4 +27,4 @@ export const proFieldCheckboxProps = {
 	},
 };
 
-export type ProFieldCheckboxProps = ExtractPropTypes<typeof proFieldCheckboxProps>;
+export type ProFieldCheckboxProps = Partial<ExtractPropTypes<typeof proFieldCheckboxProps>>;

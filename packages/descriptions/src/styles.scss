@@ -1,0 +1,18 @@
+.pro-descriptions {
+  .el-descriptions__title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 14px;
+    color: var(--el-color-primary);
+    &::before {
+      position: absolute;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      content: "";
+      background-color: var(--el-color-primary);
+    }
+  }
+}

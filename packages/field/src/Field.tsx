@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-05-28 17:14:48
+ * @LastEditTime: 2024-05-29 10:48:23
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import type { GeneratePropTypes, ToUppercaseFirst } from "@element-plus/pro-types";
@@ -24,7 +24,7 @@ export const proFieldProps = {
 	},
 	type: {
 		type: String as PropType<ProFieldType>,
-		required: true,
+		default: "text",
 	},
 	placeholder: {
 		type: [String, Array as unknown as PropType<[string] | [string, string]>],
@@ -37,7 +37,7 @@ export const proFieldProps = {
 export type ProFieldProps = Omit<GeneratePropTypes<typeof proFieldProps>, "type" | "fieldProps"> & FieldProps;
 
 function getPlaceholder(type: ProFieldType, placeholder: string | [string] | [string, string]) {
-	const value = placeholder ?? (formatPlaceholder("", (type as any) || "text") as string | [string, string]);
+	const value = placeholder ?? (formatPlaceholder("", type) as string | [string, string]);
 
 	if (Array.isArray(value) && value.length > 1) {
 		return {

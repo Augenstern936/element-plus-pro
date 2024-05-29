@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-25 14:06:48
+ * @LastEditTime: 2024-05-29 15:22:53
  * @FilePath: \element-plus-pro\packages\field\src\components\Progress.tsx
  */
 import { ElProgress } from "element-plus";
@@ -19,7 +19,7 @@ const ProFieldProgress = defineComponent<ProFieldProgressProps>(
 	}
 ) as unknown as FunctionalComponent<ProFieldProgressProps>;
 
-ProFieldProgress.props = proFieldProgressProps;
+ProFieldProgress.props = proFieldProgressProps as any;
 
 export * from "./props";
 

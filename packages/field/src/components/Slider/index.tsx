@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-25 14:09:34
+ * @LastEditTime: 2024-05-29 15:25:15
  * @FilePath: \element-plus-pro\packages\field\src\components\Slider.tsx
  */
 import { ElSlider } from "element-plus";
@@ -28,7 +28,7 @@ const ProFieldSlider = defineComponent<ProFieldSliderProps>(
 	}
 ) as unknown as FunctionalComponent<ProFieldSliderProps>;
 
-ProFieldSlider.props = proFieldSliderProps;
+ProFieldSlider.props = proFieldSliderProps as any;
 
 export * from "./props";
 

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-25 14:09:48
+ * @LastEditTime: 2024-05-29 15:23:07
  * @FilePath: \element-plus-pro\packages\field\src\components\Switch.tsx
  */
 import { ElSwitch } from "element-plus";
@@ -28,7 +28,7 @@ const ProFieldSwitch = defineComponent<ProFieldSwitchProps>(
 	}
 ) as unknown as FunctionalComponent<ProFieldSwitchProps>;
 
-ProFieldSwitch.props = proFieldSwitchProps;
+ProFieldSwitch.props = proFieldSwitchProps as any;
 
 export * from "./props";
 

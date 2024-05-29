@@ -1,12 +1,13 @@
 /*
  * @Description:
  * @Date: 2024-04-10 17:57:47
- * @LastEditTime: 2024-04-10 18:18:13
+ * @LastEditTime: 2024-05-29 15:05:12
  */
 import type { TimePickerDefaultProps } from "element-plus";
 import type { CSSProperties } from "vue";
 
-export interface BaseTimePickerProps extends TimePickerDefaultProps {
+export interface BaseTimePickerProps extends Partial<TimePickerDefaultProps> {
+	mode?: "read" | "edit";
 	style?: CSSProperties;
 }
 

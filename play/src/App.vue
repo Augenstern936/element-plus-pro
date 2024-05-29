@@ -12,9 +12,8 @@
 				<ElButton type="info">删除</ElButton>
 			</template>
 		</pro-table> -->
-		<ProField mode="read" type="date" :field-props="{ 11: '' }" />
 		<!-- <pro-button type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">删除</pro-button> -->
-		<ProField />
+		<ProField.Password mode="read" v-model="test" />
 	</div>
 </template>
 
@@ -25,7 +24,7 @@
 	// import type { TableColumns } from "@element-plus/pro-components";
 	// import { ElButton } from "element-plus";
 
-	//const test = ref('');
+	const test = ref("123456");
 
 	const columns = ref<any[]>([
 		{

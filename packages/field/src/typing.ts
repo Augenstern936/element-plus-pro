@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-05-28 16:49:08
- * @LastEditTime: 2024-05-28 17:16:02
+ * @LastEditTime: 2024-05-29 11:41:29
  */
 import { FunctionalComponent } from "vue";
 import type {
@@ -26,77 +26,77 @@ import type {
 
 type TextFieldProps = {
 	type: "text";
-	fieldProps: Partial<ProFieldTextProps>;
+	fieldProps?: ProFieldTextProps;
 };
 
 type PasswordFieldProps = {
-	type: "password";
-	fieldProps: Partial<ProFieldPasswordProps>;
+	type?: "password";
+	fieldProps?: ProFieldPasswordProps;
 };
 
 type TextareaFieldProps = {
-	type: "textarea";
-	fieldProps: Partial<ProFieldTextareaProps>;
+	type?: "textarea";
+	fieldProps?: ProFieldTextareaProps;
 };
 
 type DateFieldProps = {
 	type: "date";
-	fieldProps: Partial<ProDatePickerPropsMap.ProFieldDateProps>;
+	fieldProps?: ProDatePickerPropsMap.ProFieldDateProps;
 };
 
 type AvatarFieldProps = {
-	type: "avatar";
-	fieldProps: Partial<ProFieldAvatarProps>;
+	type?: "avatar";
+	fieldProps?: ProFieldAvatarProps;
 };
 
 type CascaderFieldProps = {
-	type: "cascader";
-	fieldProps: Partial<ProFieldCascaderProps>;
+	type?: "cascader";
+	fieldProps?: ProFieldCascaderProps;
 };
 
 type CheckboxFieldProps = {
-	type: "checkbox";
-	fieldProps: Partial<ProFieldCheckboxProps>;
+	type?: "checkbox";
+	fieldProps?: ProFieldCheckboxProps;
 };
 
 type ColorFieldProps = {
-	type: "color";
-	fieldProps: Partial<ProFieldColorProps>;
+	type?: "color";
+	fieldProps?: ProFieldColorProps;
 };
 
 type ImageFieldProps = {
-	type: "image";
-	fieldProps: Partial<ProFieldImageProps>;
+	type?: "image";
+	fieldProps?: ProFieldImageProps;
 };
 
 type ProgressFieldProps = {
-	type: "progress";
-	fieldProps: Partial<ProFieldProgressProps>;
+	type?: "progress";
+	fieldProps?: ProFieldProgressProps;
 };
 
 type RateFieldProps = {
-	type: "rate";
-	fieldProps: Partial<ProFieldRateProps>;
+	type?: "rate";
+	fieldProps?: ProFieldRateProps;
 };
 
 type RadioFieldProps = {
-	type: "radio";
-	fieldProps: Partial<ProFieldRadioProps>;
+	type?: "radio";
+	fieldProps?: ProFieldRadioProps;
 };
 
 type SliderFieldProps = {
-	type: "slider";
-	fieldProps: Partial<ProFieldSliderProps>;
+	type?: "slider";
+	fieldProps?: ProFieldSliderProps;
 };
 
 type TimeSelectFieldProps = {
-	type: "timeSelect";
-	fieldProps: Partial<ProFieldTimeSelectProps>;
+	type?: "timeSelect";
+	fieldProps?: ProFieldTimeSelectProps;
 };
 
 type TreeSelectFieldProps = {
-	type: "treeSelect";
-	fieldProps: Partial<ProFieldTreeSelectProps>;
+	type?: "treeSelect";
+	fieldProps?: ProFieldTreeSelectProps;
 };
 
 export type ProFieldType = keyof typeof components;
