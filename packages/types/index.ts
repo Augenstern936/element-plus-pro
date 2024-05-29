@@ -6,7 +6,7 @@ export type ToUppercaseFirst<S extends string> = S extends `${infer First}${infe
 	: S;
 
 export type Option = {
-	label?: string;
+	key?: string | number;
+	label: string;
 	value: string | number | boolean;
-	[x: string]: any;
 };

@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-05-26 20:41:53
+ * @LastEditTime: 2024-05-29 23:05:49
  */
 import Vue from '@vitejs/plugin-vue';
 import VueJsx from '@vitejs/plugin-vue-jsx';
@@ -36,8 +36,5 @@ export default async () => {
 			},
 		},
 		plugins: [Vue(), VueJsx(), cssInjectedByJsPlugin({ topExecutionPriority: false, relativeCSSInjection: true })],
-	}).then((res) => {
-		//console.log(JSON.stringify(res), 'res');
-		return;
 	});
 };

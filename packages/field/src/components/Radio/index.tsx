@@ -2,15 +2,15 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:50:46
- * @LastEditTime: 2024-04-25 14:08:27
- * @FilePath: \element-plus-pro\packages\field\src\components\Radio.tsx
+ * @LastEditTime: 2024-05-29 23:38:23
+ * @FilePath: \element-plus-pro\packages\field\src\components\Radio\index.tsx
  */
-import { ElRadio, ElRadioButton, ElRadioGroup } from "element-plus";
-import "element-plus/theme-chalk/src/radio-button.scss";
-import "element-plus/theme-chalk/src/radio-group.scss";
-import "element-plus/theme-chalk/src/radio.scss";
-import { FunctionalComponent, computed, defineComponent } from "vue";
-import { ProFieldRadioProps, proFieldRadioProps } from "./props";
+import { ElRadio, ElRadioButton, ElRadioGroup } from 'element-plus';
+import 'element-plus/theme-chalk/src/radio-button.scss';
+import 'element-plus/theme-chalk/src/radio-group.scss';
+import 'element-plus/theme-chalk/src/radio.scss';
+import { FunctionalComponent, computed, defineComponent } from 'vue';
+import { ProFieldRadioProps, proFieldRadioProps } from './props';
 
 const ProFieldRadio = defineComponent<ProFieldRadioProps>(
 	(props, ctx) => {
@@ -19,7 +19,7 @@ const ProFieldRadio = defineComponent<ProFieldRadioProps>(
 				return props.modelValue;
 			},
 			set: (value) => {
-				ctx.emit("update:modelValue", value);
+				ctx.emit('update:modelValue', value);
 			},
 		});
 
@@ -27,14 +27,10 @@ const ProFieldRadio = defineComponent<ProFieldRadioProps>(
 			<ElRadioGroup v-model={state.value}>
 				{props.options?.map((option, i) => (
 					<>
-						{option.type == "radio" ? (
-							<ElRadio {...option} key={i}>
-								{option.label}
-							</ElRadio>
+						{props.type == 'radio' ? (
+							<ElRadio key={i} {...option} />
 						) : (
-							<ElRadioButton label={option.value} key={i}>
-								{option.label}
-							</ElRadioButton>
+							<ElRadioButton key={i} {...option} />
 						)}
 					</>
 				))}
@@ -42,13 +38,13 @@ const ProFieldRadio = defineComponent<ProFieldRadioProps>(
 		);
 	},
 	{
-		name: "ProFieldRadio",
+		name: 'ProFieldRadio',
 	}
 ) as unknown as FunctionalComponent<ProFieldRadioProps>;
 
 ProFieldRadio.props = proFieldRadioProps as any;
 
-export * from "./props";
+export * from './props';
 
 export { ProFieldRadio };
 
