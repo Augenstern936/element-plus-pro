@@ -1,6 +1,6 @@
 {
 	"name": "@element-plus/pro-components",
-	"version": "0.0.1-test",
+	"version": "0.0.1",
 	"description": "@element-plus/pro-components",
 	"keywords": [
 		"ui",
@@ -20,8 +20,8 @@
 	"scripts": {
 		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
 	},
-	"main": "lib/pro-components.js",
-	"module": "es/pro-components.mjs",
+	"main": "lib/index.js",
+	"module": "es/index.mjs",
 	"types": "es/index.d.ts",
 	"files": [
 		"lib",
@@ -31,13 +31,14 @@
 	"dependencies": {
 		"@element-plus/pro-button": "workspace:^",
 		"@element-plus/pro-center-container": "workspace:^",
+		"@element-plus/pro-copyable": "workspace:^",
 		"@element-plus/pro-field": "workspace:^",
 		"@element-plus/pro-search-bar": "workspace:^",
 		"@element-plus/pro-table": "workspace:^",
 		"@element-plus/pro-tabs": "workspace:^"
 	},
 	"peerDependencies": {
-		"vue": "^3.3.7",
-		"element-plus": "^2.4.1"
+		"element-plus": "^2.4.1",
+		"vue": "^3.3.7"
 	}
 }

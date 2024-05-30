@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-04-27 16:16:26
- * @LastEditTime: 2024-05-13 19:32:22
+ * @LastEditTime: 2024-05-31 00:06:10
 -->
 <template>
 	<el-popconfirm
@@ -26,55 +26,55 @@
 </template>
 
 <script setup name="ProButton" lang="ts">
-	import { ElButton, ElMessageBox, ElPopconfirm } from "element-plus";
-	import { WarningFilled } from "@element-plus/icons-vue";
-	import { ProButtonProps, TipConfig } from "./typing";
-	import { ref, computed } from "vue";
+	import { ElButton, ElMessageBox, ElPopconfirm } from 'element-plus';
+	import { WarningFilled } from '@element-plus/icons-vue';
+	import { ProButtonProps, TipConfig } from './typing';
+	import { ref, computed } from 'vue';
 
-	const emits = defineEmits(["click"]);
+	const emits = defineEmits(['click']);
 
 	const props = defineProps<ProButtonProps>();
 
 	const popconfirmVisible = ref(false);
 
 	const tipType = computed(() => {
-		return typeof props.tip == "string" ? "message-box" : props.tip?.mode ?? "message-box";
+		return typeof props.tip == 'string' ? 'message-box' : props.tip?.mode ?? 'message-box';
 	});
 
 	const onClick = () => {
 		if (!props.tip) {
-			return emits("click");
+			return emits('click');
 		}
 
 		let isContinue = true;
 
-		if (typeof props.tip == "object" && typeof props.tip.before == "function") {
+		if (typeof props.tip == 'object' && typeof props.tip.before == 'function') {
 			isContinue = props.tip.before();
 		}
 
-		const tipText = typeof props.tip == "string" ? props.tip : props.tip.text;
+		const tipText = typeof props.tip == 'string' ? props.tip : props.tip.text;
 
 		if (!tipText) {
-			return emits("click");
+			return emits('click');
 		}
 
 		if (isContinue === true) {
-			if (tipType.value == "popconfirm") {
+			if (tipType.value == 'popconfirm') {
 				popconfirmVisible.value = true;
 				return;
 			}
 
-			ElMessageBox.confirm(tipText, "提示", {
-				confirmButtonText: "确定",
-				cancelButtonText: "取消",
-				type: "warning",
+			ElMessageBox.confirm(tipText, '提示', {
+				confirmButtonText: '确定',
+				cancelButtonText: '取消',
+				type: 'warning',
 			}).then(() => {
-				emits("click");
+				emits('click');
 			});
 		}
 	};
 </script>
 
 <style scoped lang="scss">
-	@import "./styles/index.scss";
+	@import './style.scss';
 </style>

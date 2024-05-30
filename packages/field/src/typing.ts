@@ -1,9 +1,9 @@
 /*
  * @Description:
  * @Date: 2024-05-28 16:49:08
- * @LastEditTime: 2024-05-29 11:41:29
+ * @LastEditTime: 2024-05-30 22:11:38
  */
-import { FunctionalComponent } from "vue";
+import { FunctionalComponent } from 'vue';
 import type {
 	ProDatePickerPropsMap,
 	ProFieldAvatarProps,
@@ -22,80 +22,80 @@ import type {
 	ProFieldTimeSelectProps,
 	ProFieldTreeSelectProps,
 	components,
-} from "./components";
+} from './components';
 
 type TextFieldProps = {
-	type: "text";
+	type: 'text';
 	fieldProps?: ProFieldTextProps;
 };
 
 type PasswordFieldProps = {
-	type?: "password";
+	type?: 'password';
 	fieldProps?: ProFieldPasswordProps;
 };
 
 type TextareaFieldProps = {
-	type?: "textarea";
+	type?: 'textarea';
 	fieldProps?: ProFieldTextareaProps;
 };
 
 type DateFieldProps = {
-	type: "date";
+	type: 'date';
 	fieldProps?: ProDatePickerPropsMap.ProFieldDateProps;
 };
 
 type AvatarFieldProps = {
-	type?: "avatar";
+	type?: 'avatar';
 	fieldProps?: ProFieldAvatarProps;
 };
 
 type CascaderFieldProps = {
-	type?: "cascader";
+	type?: 'cascader';
 	fieldProps?: ProFieldCascaderProps;
 };
 
 type CheckboxFieldProps = {
-	type?: "checkbox";
+	type?: 'checkbox';
 	fieldProps?: ProFieldCheckboxProps;
 };
 
 type ColorFieldProps = {
-	type?: "color";
+	type?: 'color';
 	fieldProps?: ProFieldColorProps;
 };
 
 type ImageFieldProps = {
-	type?: "image";
+	type?: 'image';
 	fieldProps?: ProFieldImageProps;
 };
 
 type ProgressFieldProps = {
-	type?: "progress";
+	type?: 'progress';
 	fieldProps?: ProFieldProgressProps;
 };
 
 type RateFieldProps = {
-	type?: "rate";
+	type?: 'rate';
 	fieldProps?: ProFieldRateProps;
 };
 
 type RadioFieldProps = {
-	type?: "radio";
+	type?: 'radio';
 	fieldProps?: ProFieldRadioProps;
 };
 
 type SliderFieldProps = {
-	type?: "slider";
+	type?: 'slider';
 	fieldProps?: ProFieldSliderProps;
 };
 
 type TimeSelectFieldProps = {
-	type?: "timeSelect";
+	type?: 'timeSelect';
 	fieldProps?: ProFieldTimeSelectProps;
 };
 
 type TreeSelectFieldProps = {
-	type?: "treeSelect";
+	type?: 'treeSelect';
 	fieldProps?: ProFieldTreeSelectProps;
 };
 
@@ -137,6 +137,7 @@ export type ProFieldSuperProps<T> = FunctionalComponent<T> & {
 	Select: FunctionalComponent<any>;
 	TreeSelect: FunctionalComponent<ProFieldTreeSelectProps>;
 	Checkbox: FunctionalComponent<ProFieldCheckboxProps>;
+	CheckboxButton: FunctionalComponent<ProFieldCheckboxProps>;
 	Radio: FunctionalComponent<ProFieldRadioProps>;
 	RadioButton: FunctionalComponent<ProFieldRadioProps>;
 	Switch: FunctionalComponent<ProFieldSwitchProps>;

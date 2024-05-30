@@ -2,27 +2,27 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-05-29 15:21:50
- * @FilePath: \element-plus-pro\packages\field\src\components\Avatar.tsx
+ * @LastEditTime: 2024-05-30 22:48:17
+ * @FilePath: \element-plus-pro\packages\field\src\components\Avatar\index.tsx
  */
-import { UserFilled } from "@element-plus/icons-vue";
-import { ElAvatar } from "element-plus";
-import "element-plus/theme-chalk/src/avatar.scss";
-import { defineComponent, FunctionalComponent } from "vue";
-import { proFieldAvatar, ProFieldAvatarProps } from "./props";
+import { UserFilled } from '@element-plus/icons-vue';
+import { ElAvatar, ElIcon } from 'element-plus';
+import 'element-plus/theme-chalk/src/avatar.scss';
+import { ProFieldAvatarProps } from './props';
 
-const ProFieldAvatar = defineComponent<ProFieldAvatarProps>(
-	(props) => {
-		return () => <ElAvatar {...props} icon={props.icon ?? UserFilled} />;
-	},
-	{
-		name: "ProFieldAvatar",
-	}
-) as unknown as FunctionalComponent<ProFieldAvatarProps>;
+const ProFieldAvatar = (props: ProFieldAvatarProps) => {
+	const iconSize = props.size && !Number.isNaN(props.size) ? +props.size / 2 : void 0;
 
-ProFieldAvatar.props = proFieldAvatar as any;
+	return (
+		<ElAvatar {...props}>
+			<ElIcon size={iconSize}>
+				<UserFilled />
+			</ElIcon>
+		</ElAvatar>
+	);
+};
 
-export * from "./props";
+export * from './props';
 
 export { ProFieldAvatar };
 

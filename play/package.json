@@ -16,6 +16,7 @@
 		"vite": "^4.5.0"
 	},
 	"dependencies": {
+		"@element-plus/pro-components": "workspace:^",
 		"@element-plus/pro-field": "workspace:^",
 		"vue": "^3.3.7"
 	}

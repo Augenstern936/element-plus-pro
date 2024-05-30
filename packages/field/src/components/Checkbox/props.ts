@@ -1,19 +1,15 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-05-29 22:28:44
+ * @LastEditTime: 2024-05-30 22:26:25
  */
-import type { Option } from '@element-plus/pro-types';
+import type { Option, Enum } from '@element-plus/pro-types';
 import { checkboxGroupProps } from 'element-plus';
 import type { CheckboxProps } from 'element-plus';
 import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
 
 export const proFieldCheckboxProps = {
 	...checkboxGroupProps,
-	type: {
-		type: String as PropType<'checkbox' | 'checkboxButton'>,
-		default: 'checkbox',
-	},
 	mode: {
 		type: String as PropType<'read' | 'edit'>,
 		default: 'edit',
@@ -21,6 +17,9 @@ export const proFieldCheckboxProps = {
 	options: {
 		type: Array as PropType<ProFieldCheckboxOption[]>,
 		default: [],
+	},
+	enum: {
+		type: Object as PropType<Enum>,
 	},
 	style: {
 		type: Object as PropType<CSSProperties>,
