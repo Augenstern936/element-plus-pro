@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-05-29 10:48:23
+ * @LastEditTime: 2024-05-30 13:59:48
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import type { GeneratePropTypes, ToUppercaseFirst } from "@element-plus/pro-types";
@@ -33,6 +33,8 @@ export const proFieldProps = {
 		type: Object as PropType<Record<string, unknown>>,
 	},
 } as const;
+
+export * from "./typing";
 
 export type ProFieldProps = Omit<GeneratePropTypes<typeof proFieldProps>, "type" | "fieldProps"> & FieldProps;
 
