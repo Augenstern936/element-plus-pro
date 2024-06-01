@@ -1,0 +1,36 @@
+@use 'element-plus/theme-chalk/src/text.scss';
+@use 'element-plus/theme-chalk/src/tag.scss';
+@use 'element-plus/theme-chalk/src/space.scss';
+
+.read-options {
+	.el-space > .el-space__item:not(:last-of-type()) {
+		margin-right: 0 !important;
+	}
+
+	ul {
+		display: flex;
+	}
+
+	ul > li:not(:last-child) {
+		margin-right: 30px !important;
+	}
+
+	ul > li::marker {
+		color: var(--dot-color);
+	}
+
+	ul > .processing::marker {
+		animation: statusProcessing 1.2s infinite ease-in-out;
+	}
+
+	@keyframes statusProcessing {
+		0% {
+			transform: scale(0.8);
+			opacity: 0.8;
+		}
+		100% {
+			transform: scale(2.3);
+			opacity: 0;
+		}
+	}
+}

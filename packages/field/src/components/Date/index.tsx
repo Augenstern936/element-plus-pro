@@ -2,25 +2,19 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-05-26 22:31:42
+ * @LastEditTime: 2024-06-01 00:35:40
  * @FilePath: \element-plus-pro\packages\field\src\components\Date\index.tsx
  */
 import 'element-plus/theme-chalk/src/button.scss';
 import 'element-plus/theme-chalk/src/date-picker.scss';
 import { formatPlaceholder } from '@element-plus/pro-utils';
+import { useVModel } from '@vueuse/core';
 import { DatePickerProps, ElDatePicker } from 'element-plus';
 import { FunctionalComponent, computed, defineComponent } from 'vue';
 import { ProDatePickerProps, proDatePickerProps, ProDatePickerPropsMap } from './props';
 
 const ProDatePicker = defineComponent<ProDatePickerProps>((props, ctx) => {
-	const state = computed({
-		get: () => {
-			return props.modelValue;
-		},
-		set: (value) => {
-			ctx.emit('update:modelValue', value);
-		},
-	});
+	const model = useVModel(props, 'modelValue', ctx.emit);
 
 	const placeholder = computed(() => {
 		const value =
@@ -38,7 +32,7 @@ const ProDatePicker = defineComponent<ProDatePickerProps>((props, ctx) => {
 		};
 	});
 
-	return () => <ElDatePicker {...(props as DatePickerProps)} {...placeholder.value} v-model={state.value} />;
+	return () => <ElDatePicker {...(props as DatePickerProps)} {...placeholder.value} v-model={model.value} />;
 }) as unknown as FunctionalComponent<ProDatePickerProps>;
 
 ProDatePicker.props = proDatePickerProps as any;

@@ -2,10 +2,10 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-05-17 19:46:42
- * @LastEditTime: 2024-05-26 20:34:22
+ * @LastEditTime: 2024-06-01 12:58:44
  * @FilePath: \element-plus-pro\packages\utils\transform.ts
  */
-import { CssUnitEnum } from '@element-plus/pro-types';
+import { CssUnitEnum, ValueEnum } from '@element-plus/pro-types';
 
 /**
  *
@@ -37,17 +37,17 @@ export function toCssUnitValue(val: number | string, unit: keyof typeof CssUnitE
 	return newVal;
 }
 
-export function toOptions(valueEnum: Record<string, string | number | { text: string; [x: string]: any }>) {
+export function enumTransformOptions(valueEnum: ValueEnum<{ [x: string]: any }>) {
 	const options = Object.keys(valueEnum).map((key) => {
 		const item = valueEnum[key];
-		const type = Object.prototype.toString.call(item);
-		const label = typeof item == 'object' && type === '[object Object]' ? item.text : item;
-		return {
-			label: label,
+		const isObj = Object.prototype.toString.call(item) === '[object Object]';
+		const baseOption = {
+			label: isObj ? (item as Record<string, any>).label : item,
 			value: key,
 		};
+		return !isObj ? baseOption : { ...(item as any), ...baseOption };
 	});
-	return options;
+	return options ?? [];
 }
 
 export function toEnum(options: { label: string; value: string | number | boolean }[]) {

@@ -2,35 +2,29 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-05-29 15:23:07
- * @FilePath: \element-plus-pro\packages\field\src\components\Switch.tsx
+ * @LastEditTime: 2024-06-01 00:42:17
+ * @FilePath: \element-plus-pro\packages\field\src\components\Switch\index.tsx
  */
-import { ElSwitch } from "element-plus";
-import "element-plus/theme-chalk/src/switch.scss";
-import { FunctionalComponent, computed, defineComponent } from "vue";
-import { ProFieldSwitchProps, proFieldSwitchProps } from "./props";
+import { ElSwitch } from 'element-plus';
+import 'element-plus/theme-chalk/src/switch.scss';
+import { FunctionalComponent, defineComponent } from 'vue';
+import { ProFieldSwitchProps, proFieldSwitchProps } from './props';
+import { useVModel } from '@vueuse/core';
 
 const ProFieldSwitch = defineComponent<ProFieldSwitchProps>(
 	(props, ctx) => {
-		const state = computed({
-			get: () => {
-				return props.modelValue;
-			},
-			set: (value) => {
-				ctx.emit("update:modelValue", value);
-			},
-		});
+		const model = useVModel(props, 'modelValue', ctx.emit);
 
-		return () => <ElSwitch v-model={state.value} {...props} />;
+		return () => <ElSwitch {...props} v-model={model.value} />;
 	},
 	{
-		name: "ProFieldSwitch",
+		name: 'ProFieldSwitch',
 	}
 ) as unknown as FunctionalComponent<ProFieldSwitchProps>;
 
 ProFieldSwitch.props = proFieldSwitchProps as any;
 
-export * from "./props";
+export * from './props';
 
 export { ProFieldSwitch };
 

@@ -2,13 +2,9 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-05-30 22:08:31
+ * @LastEditTime: 2024-06-01 00:45:19
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
-import ProFieldAvatar from './Avatar';
-import ProFieldCascader from './Cascader';
-import { ProFieldCheckbox, ProFieldCheckboxButton } from './Checkbox';
-import ProFieldColor from './Color';
 import {
 	ProFieldDate,
 	ProFieldDateMonth,
@@ -20,17 +16,21 @@ import {
 	ProFieldDateYear,
 	ProFieldDates,
 } from './Date';
+import ProFieldColor from './Color';
 import ProFieldImage from './Image';
-import { ProFieldPassword, ProFieldText, ProFieldTextarea } from './Input';
 import ProFieldProgress from './Progress';
-import ProFieldRadio from './Radio';
 import ProFieldRate from './Rate';
 import ProFieldSelect from './Select';
 import ProFieldSlider from './Slider';
 import ProFieldSwitch from './Switch';
-import { ProFieldTime, ProFieldTimeRange } from './TimePicker';
+import ProFieldAvatar from './Avatar';
+import ProFieldCascader from './Cascader';
 import ProFieldTimeSelect from './TimeSelect';
 import ProFieldTreeSelect from './TreeSelect';
+import { ProFieldPassword, ProFieldText, ProFieldTextarea } from './Input';
+import { ProFieldTime, ProFieldTimeRange } from './TimePicker';
+import { ProFieldRadio, ProFieldRadioButton } from './Radio';
+import { ProFieldCheckbox, ProFieldCheckboxButton } from './Checkbox';
 
 export * from './Avatar';
 export * from './Cascader';
@@ -69,7 +69,7 @@ export const components = {
 	checkbox: ProFieldCheckbox,
 	checkboxButton: ProFieldCheckboxButton,
 	radio: ProFieldRadio,
-	radioButton: ProFieldRadio,
+	radioButton: ProFieldRadioButton,
 	switch: ProFieldSwitch,
 	avatar: ProFieldAvatar,
 	image: ProFieldImage,

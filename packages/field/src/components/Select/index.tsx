@@ -2,47 +2,47 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-25 14:09:18
- * @FilePath: \element-plus-pro\packages\field\src\components\Select.tsx
+ * @LastEditTime: 2024-06-02 01:00:21
+ * @FilePath: \element-plus-pro\packages\field\src\components\Select\index.tsx
  */
-import type { ISelectProps } from "element-plus";
-import { ElOption, ElSelect } from "element-plus";
-import "element-plus/theme-chalk/src/option.scss";
-import "element-plus/theme-chalk/src/select.scss";
-import { CSSProperties, FunctionalComponent, computed, defineComponent } from "vue";
+import { useVModel } from '@vueuse/core';
+import { ElOption, ElSelect } from 'element-plus';
+import 'element-plus/theme-chalk/src/option.scss';
+import 'element-plus/theme-chalk/src/select.scss';
+import { FunctionalComponent, defineComponent, computed } from 'vue';
+import { proFieldSelectProps, ProFieldSelectProps } from './props';
+import { enumTransformOptions, getValueOptionConfigs } from '@element-plus/pro-utils';
+import { ReadOptions } from '../widgets';
 
-export interface ProSelectProps extends Omit<ISelectProps, "options"> {
-	options?: { label?: string; value: string | number | boolean | Record<string, any>; [x: string]: any }[];
-	style?: CSSProperties;
-}
-
-const ProFieldSelect = defineComponent<ProSelectProps>(
+const ProFieldSelect = defineComponent<ProFieldSelectProps>(
 	(props, ctx) => {
-		const state = computed({
-			get: () => {
-				return props.modelValue;
-			},
-			set: (value) => {
-				ctx.emit("update:modelValue", value);
-			},
+		const model = useVModel(props, 'modelValue', ctx.emit);
+		const options = computed(() => {
+			return props?.valueOptions?.length ? props.valueOptions : enumTransformOptions(props.valueEnum ?? {});
 		});
-
 		return () => (
-			<ElSelect v-model={state.value}>
-				{props.options?.map((option, index) => (
-					<ElOption {...option} key={index}>
-						{option.label}
-					</ElOption>
-				))}
-			</ElSelect>
+			<>
+				{props.mode === 'read' ? (
+					<ReadOptions
+						markShape={props.markShape}
+						value={getValueOptionConfigs(props.modelValue ?? [], options.value)}
+					/>
+				) : (
+					<ElSelect v-model={model.value}>
+						{options.value?.map((option) => <ElOption key={option.label} {...option} />)}
+					</ElSelect>
+				)}
+			</>
 		);
 	},
 	{
-		name: "ProFieldSelect",
+		name: 'ProFieldSelect',
 	}
-) as unknown as FunctionalComponent<ProSelectProps>;
+) as unknown as FunctionalComponent<ProFieldSelectProps>;
 
-export * from "./props";
+ProFieldSelect.props = proFieldSelectProps as any;
+
+export * from './props';
 
 export { ProFieldSelect };
 

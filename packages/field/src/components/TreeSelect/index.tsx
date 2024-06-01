@@ -2,33 +2,27 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-25 14:10:47
- * @FilePath: \element-plus-pro\packages\field\src\components\TreeSelect.tsx
+ * @LastEditTime: 2024-06-01 00:44:30
+ * @FilePath: \element-plus-pro\packages\field\src\components\TreeSelect\index.tsx
  */
-import { ElTreeSelect } from "element-plus";
-import "element-plus/theme-chalk/src/tree-select.scss";
-import { FunctionalComponent, computed, defineComponent } from "vue";
-import { ProFieldTreeSelectProps } from "./props";
+import { ElTreeSelect } from 'element-plus';
+import 'element-plus/theme-chalk/src/tree-select.scss';
+import { FunctionalComponent, defineComponent } from 'vue';
+import { ProFieldTreeSelectProps } from './props';
+import { useVModel } from '@vueuse/core';
 
 const ProFieldTreeSelect = defineComponent<ProFieldTreeSelectProps>(
 	(props, ctx) => {
-		const state = computed({
-			get: () => {
-				return props.modelValue;
-			},
-			set: (value) => {
-				ctx.emit("update:modelValue", value);
-			},
-		});
+		const model = useVModel(props, 'modelValue', ctx.emit);
 
-		return () => <ElTreeSelect v-model={state.value} {...props} />;
+		return () => <ElTreeSelect {...props} v-model={model.value} />;
 	},
 	{
-		name: "ProFieldTreeSelect",
+		name: 'ProFieldTreeSelect',
 	}
 ) as unknown as FunctionalComponent<ProFieldTreeSelectProps>;
 
-export * from "./props";
+export * from './props';
 
 export { ProFieldTreeSelect };
 

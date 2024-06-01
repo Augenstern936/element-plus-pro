@@ -16,19 +16,26 @@
 		<el-space>
 			<ProButton type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">测试</ProButton>
 			<ProCopyable value="17634393156" @success="() => console.log('成功')" />
-			<ProField.CheckboxButton
-				:options="[
-					{
-						label: '拔都',
-						value: 1,
-					},
-					{
-						label: '蒙哥',
-						value: 2,
-					},
-				]"
-			/>
 		</el-space>
+		<ProField
+			v-model="test"
+			:mode="'edit'"
+			:mark-shape="'tag'"
+			:value-enum="{
+				1: {
+					label: '拔都',
+					status: 'success',
+				},
+				2: {
+					label: '海都',
+					color: 'red',
+				},
+				3: {
+					label: '蒙哥',
+					status: 'warning',
+				},
+			}"
+		/>
 	</div>
 </template>
 
@@ -38,7 +45,7 @@
 	// import type { TableColumns } from "@element-plus/pro-components";
 	// import { ElButton } from "element-plus";
 
-	const test = ref([]);
+	const test = ref(2);
 
 	const columns = ref<any[]>([
 		{

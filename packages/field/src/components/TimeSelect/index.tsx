@@ -2,27 +2,21 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-04-25 14:23:45
- * @FilePath: \element-plus-pro\packages\field\src\components\TimeSelect.tsx
+ * @LastEditTime: 2024-06-01 00:43:46
+ * @FilePath: \element-plus-pro\packages\field\src\components\TimeSelect\index.tsx
  */
 import { ElTimeSelect } from 'element-plus';
 import 'element-plus/theme-chalk/src/time-select.scss';
 import type { FunctionalComponent } from 'vue';
-import { computed, defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 import { ProFieldTimeSelectProps, proFieldTimeSelectProps } from './props';
+import { useVModel } from '@vueuse/core';
 
 const ProFieldTimeSelect = defineComponent<ProFieldTimeSelectProps>(
 	(props, ctx) => {
-		const state = computed({
-			get: () => {
-				return props.modelValue;
-			},
-			set: (value) => {
-				ctx.emit('upTime:modelValue', value);
-			},
-		});
+		const model = useVModel(props, 'modelValue', ctx.emit);
 
-		return () => <ElTimeSelect v-model={state.value} {...props} />;
+		return () => <ElTimeSelect {...props} v-model={model.value} />;
 	},
 	{
 		name: 'ProFieldTimeSelect',

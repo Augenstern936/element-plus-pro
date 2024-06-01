@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-05-28 16:49:08
- * @LastEditTime: 2024-05-30 22:11:38
+ * @LastEditTime: 2024-06-02 00:56:01
  */
 import { FunctionalComponent } from 'vue';
 import type {
@@ -15,6 +15,7 @@ import type {
 	ProFieldProgressProps,
 	ProFieldRadioProps,
 	ProFieldRateProps,
+	ProFieldSelectProps,
 	ProFieldSliderProps,
 	ProFieldSwitchProps,
 	ProFieldTextProps,
@@ -55,7 +56,7 @@ type CascaderFieldProps = {
 };
 
 type CheckboxFieldProps = {
-	type?: 'checkbox';
+	type?: 'checkbox' | 'checkboxButton';
 	fieldProps?: ProFieldCheckboxProps;
 };
 
@@ -80,7 +81,7 @@ type RateFieldProps = {
 };
 
 type RadioFieldProps = {
-	type?: 'radio';
+	type?: 'radio' | 'radioButton';
 	fieldProps?: ProFieldRadioProps;
 };
 
@@ -98,6 +99,8 @@ type TreeSelectFieldProps = {
 	type?: 'treeSelect';
 	fieldProps?: ProFieldTreeSelectProps;
 };
+
+export type ProFieldMode = 'read' | 'edit';
 
 export type ProFieldType = keyof typeof components;
 
@@ -134,7 +137,7 @@ export type ProFieldSuperProps<T> = FunctionalComponent<T> & {
 	Time: FunctionalComponent<any>;
 	TimeRange: FunctionalComponent<any>;
 	TimeSelect: FunctionalComponent<ProFieldTimeSelectProps>;
-	Select: FunctionalComponent<any>;
+	Select: FunctionalComponent<ProFieldSelectProps>;
 	TreeSelect: FunctionalComponent<ProFieldTreeSelectProps>;
 	Checkbox: FunctionalComponent<ProFieldCheckboxProps>;
 	CheckboxButton: FunctionalComponent<ProFieldCheckboxProps>;

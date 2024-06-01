@@ -2,14 +2,15 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-05-30 21:47:47
+ * @LastEditTime: 2024-05-31 23:05:47
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import type { GeneratePropTypes, ToUppercaseFirst } from '@element-plus/pro-types';
 import { formatPlaceholder } from '@element-plus/pro-utils';
 import 'element-plus/theme-chalk/src/base.scss';
 import type { FunctionalComponent, PropType } from 'vue';
-import { computed, defineComponent, ref } from 'vue';
+import { computed, defineComponent } from 'vue';
+import { useVModel } from '@vueuse/core';
 import { components } from './components';
 import type { FieldProps, ProFieldSuperProps, ProFieldType } from './typing';
 
@@ -55,21 +56,10 @@ function getPlaceholder(type: ProFieldType, placeholder: string | [string] | [st
 
 const ProField = defineComponent<ProFieldProps>(
 	(props, ctx) => {
-		const state = ref<any>('');
+		const model = useVModel(props, 'modelValue', ctx.emit);
 
 		const Field = computed(() => {
 			return components[props.type || 'text'] as FunctionalComponent;
-		});
-		const model = computed({
-			get: () => {
-				return props.modelValue ?? state.value;
-			},
-			set: (value) => {
-				if (props.modelValue !== void 0) {
-					return ctx.emit('update:modelValue', value);
-				}
-				state.value = value;
-			},
 		});
 
 		return () => (

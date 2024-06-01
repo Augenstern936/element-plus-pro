@@ -2,26 +2,20 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-05-17 20:31:48
+ * @LastEditTime: 2024-06-01 00:39:39
  * @FilePath: \element-plus-pro\packages\field\src\components\Rate\index.tsx
  */
 import { ElRate } from 'element-plus';
 import 'element-plus/theme-chalk/src/rate.scss';
-import { FunctionalComponent, computed, defineComponent } from 'vue';
+import { FunctionalComponent, defineComponent } from 'vue';
 import { ProFieldRateProps, proFieldRateProps } from './props';
+import { useVModel } from '@vueuse/core';
 
 const ProFieldRate = defineComponent<ProFieldRateProps>(
 	(props, ctx) => {
-		const state = computed({
-			get: () => {
-				return props.modelValue;
-			},
-			set: (value) => {
-				ctx.emit('update:modelValue', value);
-			},
-		});
+		const model = useVModel(props, 'modelValue', ctx.emit);
 
-		return () => <ElRate v-model={state.value} {...props} />;
+		return () => <ElRate {...props} v-model={model.value} />;
 	},
 	{
 		name: 'ProFieldRate',

@@ -2,55 +2,57 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-05-30 22:31:42
+ * @LastEditTime: 2024-06-01 21:21:46
  * @FilePath: \element-plus-pro\packages\field\src\components\Checkbox\index.tsx
  */
 import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup } from 'element-plus';
+import { ReadOptions } from '../widgets';
 import 'element-plus/theme-chalk/src/checkbox-button.scss';
 import 'element-plus/theme-chalk/src/checkbox-group.scss';
 import 'element-plus/theme-chalk/src/checkbox.scss';
-import { computed, ref } from 'vue';
-import { ProFieldCheckboxProps } from './props';
+import { ProFieldCheckboxProps, proFieldCheckboxProps } from './props';
+import { useVModel } from '@vueuse/core';
+import { FunctionalComponent, PropType, computed, defineComponent } from 'vue';
+import { enumTransformOptions, getValueOptionConfigs } from '@element-plus/pro-utils';
 
 type RenderCheckboxProps = ProFieldCheckboxProps & {
 	type: 'checkbox' | 'checkbox-button';
 };
 
-const RenderCheckbox = (props: RenderCheckboxProps, ctx: any) => {
-	const state = ref<(string | number)[]>([]);
-
-	const model = computed({
-		get: () => {
-			return props.modelValue ?? state.value;
-		},
-		set: (value) => {
-			if (props.modelValue !== void 0) {
-				return ctx.emit('update:modelValue', value);
-			}
-			state.value = value;
-		},
+const RenderCheckbox = defineComponent<RenderCheckboxProps>((props, ctx) => {
+	const model = useVModel(props, 'modelValue', ctx.emit);
+	const options = computed(() => {
+		return props?.valueOptions?.length ? props.valueOptions : enumTransformOptions(props.valueEnum ?? {});
 	});
-
-	return (
-		<ElCheckboxGroup v-model={model.value}>
-			{props.options?.map((option, i) => {
-				return (
-					<>
-						{props.type === 'checkbox' ? (
-							<ElCheckbox key={i} {...option} label={option.value}>
+	return () => (
+		<div>
+			{props.mode === 'read' ? (
+				<ReadOptions
+					markShape={props.markShape}
+					value={getValueOptionConfigs(props.modelValue ?? [], options.value)}
+				/>
+			) : (
+				<ElCheckboxGroup v-model={model.value}>
+					{options.value?.map((option, i) => {
+						const Render = props.type === 'checkbox' ? ElCheckbox : ElCheckboxButton;
+						return (
+							<Render key={i} {...option} label={option.value}>
 								{option.label}
-							</ElCheckbox>
-						) : (
-							<ElCheckboxButton key={i} {...option} label={option.value}>
-								{option.label}
-							</ElCheckboxButton>
-						)}
-					</>
-				);
-			})}
-		</ElCheckboxGroup>
+							</Render>
+						);
+					})}
+				</ElCheckboxGroup>
+			)}
+		</div>
 	);
-};
+}) as unknown as FunctionalComponent<RenderCheckboxProps>;
+
+RenderCheckbox.props = {
+	...proFieldCheckboxProps,
+	type: {
+		type: String as PropType<'checkbox' | 'checkbox-button'>,
+	},
+} as any;
 
 export * from './props';
 
