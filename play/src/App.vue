@@ -17,7 +17,8 @@
 			<ProButton type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">测试</ProButton>
 			<ProCopyable value="17634393156" @success="() => console.log('成功')" />
 		</el-space>
-		<ProField
+		<ProField mode="read" :type="'color'" />
+		<ProField.CheckboxButton
 			v-model="test"
 			:mode="'edit'"
 			:mark-shape="'tag'"
@@ -36,16 +37,25 @@
 				},
 			}"
 		/>
+		<ProDescriptions
+			:title="['个人简介', '工作经验']"
+			:title-mark="true"
+			:gap="100"
+			:items="[
+				[{ label: '姓名' }, { label: '年龄' }, { label: '爱好' }],
+				[{ label: '姓名' }, { label: '年龄' }, { label: '爱好' }],
+			]"
+		/>
 	</div>
 </template>
 
 <script setup lang="ts">
 	import { reactive, ref } from 'vue';
-	import { ProField, ProButton, ProCopyable } from '@element-plus/pro-components';
+	import { ProField, ProButton, ProCopyable, ProDescriptions } from '@element-plus/pro-components';
 	// import type { TableColumns } from "@element-plus/pro-components";
 	// import { ElButton } from "element-plus";
 
-	const test = ref(2);
+	const test = ref([1, 2, 3]);
 
 	const columns = ref<any[]>([
 		{

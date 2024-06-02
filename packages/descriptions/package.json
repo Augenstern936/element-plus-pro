@@ -22,7 +22,7 @@
 	},
 	"sideEffects": false,
 	"main": "lib/index.js",
-	"module": "es/index.mjs",
+	"module": "src/index.ts",
 	"types": "es/index.d.ts",
 	"files": [
 		"lib",
@@ -32,5 +32,8 @@
 	"peerDependencies": {
 		"element-plus": "^2.4.1",
 		"vue": "^3.3.7"
+	},
+	"dependencies": {
+		"@element-plus/pro-copyable": "workspace:^"
 	}
 }

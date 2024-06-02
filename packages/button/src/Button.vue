@@ -1,16 +1,15 @@
 <!--
  * @Description: 
  * @Date: 2024-04-27 16:16:26
- * @LastEditTime: 2024-05-31 00:06:10
+ * @LastEditTime: 2024-06-02 13:08:14
 -->
 <template>
 	<el-popconfirm
 		v-if="tipType == 'popconfirm' && (tip as TipConfig).text"
+		:icon="WarningFilled"
+		v-bind="tipConfig.popconfirm"
 		v-model:visible="popconfirmVisible"
 		:title="(tip as TipConfig).text"
-		:icon="WarningFilled"
-		cancel-button-text="取消"
-		confirm-button-text="确定"
 		trigger=""
 		@confirm="emits('click')"
 	>
@@ -28,14 +27,25 @@
 <script setup name="ProButton" lang="ts">
 	import { ElButton, ElMessageBox, ElPopconfirm } from 'element-plus';
 	import { WarningFilled } from '@element-plus/icons-vue';
-	import { ProButtonProps, TipConfig } from './typing';
+	import { MessageBoxConfig, PopconfirmConfig, ProButtonProps, TipConfig } from './typing';
 	import { ref, computed } from 'vue';
+	import { isObject } from '@vueuse/core';
 
 	const emits = defineEmits(['click']);
 
 	const props = defineProps<ProButtonProps>();
 
 	const popconfirmVisible = ref(false);
+
+	const tipConfig = computed<{
+		messageBox: MessageBoxConfig | { [x: any]: any };
+		popconfirm: PopconfirmConfig | { [x: any]: any };
+	}>(() => {
+		return {
+			messageBox: isObject(props.tip) && props.tip.mode === 'message-box' ? props.tip : {},
+			popconfirm: isObject(props.tip) && props.tip.mode === 'popconfirm' ? props.tip : {},
+		};
+	});
 
 	const tipType = computed(() => {
 		return typeof props.tip == 'string' ? 'message-box' : props.tip?.mode ?? 'message-box';
@@ -64,17 +74,14 @@
 				return;
 			}
 
-			ElMessageBox.confirm(tipText, '提示', {
+			ElMessageBox.confirm(tipText, tipConfig.value.messageBox?.title ?? '提示', {
 				confirmButtonText: '确定',
 				cancelButtonText: '取消',
 				type: 'warning',
+				...tipConfig.value.messageBox,
 			}).then(() => {
 				emits('click');
 			});
 		}
 	};
 </script>
-
-<style scoped lang="scss">
-	@import './style.scss';
-</style>

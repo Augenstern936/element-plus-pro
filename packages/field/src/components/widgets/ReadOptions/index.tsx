@@ -7,12 +7,12 @@ import './style.scss';
  * @Description: 阅读模式下选项值展示的形式
  * @Author: wangbowen936926
  * @Date: 2024-06-01 14:12:33
- * @LastEditTime: 2024-06-01 23:41:45
+ * @LastEditTime: 2024-06-03 00:34:35
  * @FilePath: \element-plus-pro\packages\field\src\components\widgets\ReadOptions\index.tsx
  */
 interface ReadOptionsProps {
 	value: ValueOption[];
-	markShape?: MarkShape;
+	markShape?: 'tag' | MarkShape;
 	split?: string;
 }
 

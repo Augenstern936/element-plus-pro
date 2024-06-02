@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-05-31 23:05:47
+ * @LastEditTime: 2024-06-02 13:41:01
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import type { GeneratePropTypes, ToUppercaseFirst } from '@element-plus/pro-types';
@@ -64,6 +64,7 @@ const ProField = defineComponent<ProFieldProps>(
 
 		return () => (
 			<Field.value
+				{...props}
 				{...(props.fieldProps || {})}
 				{...getPlaceholder(props.type as ProFieldType, props.placeholder as any)}
 				v-model={model.value}

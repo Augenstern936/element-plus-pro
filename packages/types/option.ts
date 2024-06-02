@@ -1,4 +1,4 @@
-export type MarkShape = 'tag' | 'disc' | 'circle' | 'square' | 'disclosure-open' | 'disclosure-closed';
+export type MarkShape = 'disc' | 'circle' | 'square' | 'disclosure-open' | 'disclosure-closed';
 
 export type VModelOptionValue = string | number | boolean | (string | number | boolean)[];
 

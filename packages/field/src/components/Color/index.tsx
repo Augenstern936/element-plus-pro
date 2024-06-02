@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-06-01 00:38:30
+ * @LastEditTime: 2024-06-02 13:33:52
  * @FilePath: \element-plus-pro\packages\field\src\components\Color\index.tsx
  */
 import { ElColorPicker } from 'element-plus';
@@ -15,7 +15,9 @@ const ProFieldColor = defineComponent<ProFieldColorProps>(
 	(props, ctx) => {
 		const model = useVModel(props, 'modelValue', ctx.emit);
 
-		return () => <ElColorPicker {...props} v-model={model.value} />;
+		return () => (
+			<ElColorPicker {...props} disabled={props.mode === 'read' ? true : props.disabled} v-model={model.value} />
+		);
 	},
 	{
 		name: 'ProFieldColor',

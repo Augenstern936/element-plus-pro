@@ -2,10 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-05-17 19:46:42
- * @LastEditTime: 2024-06-01 12:58:44
+ * @LastEditTime: 2024-06-02 12:25:39
  * @FilePath: \element-plus-pro\packages\utils\transform.ts
  */
 import { CssUnitEnum, ValueEnum } from '@element-plus/pro-types';
+import { isObject } from '@vueuse/core';
 
 /**
  *
@@ -40,12 +41,11 @@ export function toCssUnitValue(val: number | string, unit: keyof typeof CssUnitE
 export function enumTransformOptions(valueEnum: ValueEnum<{ [x: string]: any }>) {
 	const options = Object.keys(valueEnum).map((key) => {
 		const item = valueEnum[key];
-		const isObj = Object.prototype.toString.call(item) === '[object Object]';
 		const baseOption = {
-			label: isObj ? (item as Record<string, any>).label : item,
+			label: isObject(item) ? (item as Record<string, any>).label : item,
 			value: key,
 		};
-		return !isObj ? baseOption : { ...(item as any), ...baseOption };
+		return !isObject(item) ? baseOption : { ...(item as any), ...baseOption };
 	});
 	return options ?? [];
 }

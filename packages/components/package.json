@@ -32,6 +32,7 @@
 		"@element-plus/pro-button": "workspace:^",
 		"@element-plus/pro-center-container": "workspace:^",
 		"@element-plus/pro-copyable": "workspace:^",
+		"@element-plus/pro-descriptions": "workspace:^",
 		"@element-plus/pro-field": "workspace:^",
 		"@element-plus/pro-search-bar": "workspace:^",
 		"@element-plus/pro-table": "workspace:^",
