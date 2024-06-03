@@ -7,7 +7,7 @@ import './style.scss';
  * @Description: 阅读模式下选项值展示的形式
  * @Author: wangbowen936926
  * @Date: 2024-06-01 14:12:33
- * @LastEditTime: 2024-06-03 00:34:35
+ * @LastEditTime: 2024-06-04 00:24:17
  * @FilePath: \element-plus-pro\packages\field\src\components\widgets\ReadOptions\index.tsx
  */
 interface ReadOptionsProps {
@@ -73,7 +73,6 @@ export const ReadOptions = (props: ReadOptionsProps) => {
 								class={`${option.status ?? ''}`}
 								style={{
 									'--dot-color': color || 'default',
-									marginLeft: i == 0 ? 0 : color && props.markShape ? '-10px' : '-26px',
 									listStyleType: color ? props.markShape : 'none',
 								}}
 							>

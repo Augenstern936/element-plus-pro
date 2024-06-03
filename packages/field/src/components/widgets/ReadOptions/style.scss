@@ -11,8 +11,8 @@
 		display: flex;
 	}
 
-	ul > li:not(:last-child) {
-		margin-right: 30px !important;
+	ul > li {
+		list-style-position: inside;
 	}
 
 	ul > li::marker {

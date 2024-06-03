@@ -20,8 +20,8 @@
 		<ProField mode="read" :type="'color'" />
 		<ProField.CheckboxButton
 			v-model="test"
-			:mode="'edit'"
-			:mark-shape="'tag'"
+			:mode="'read'"
+			:mark-shape="'disclosure-closed'"
 			:value-enum="{
 				1: {
 					label: '拔都',
@@ -38,8 +38,12 @@
 			}"
 		/>
 		<ProDescriptions
-			:title="['个人简介', '工作经验']"
-			:title-mark="true"
+			:title="{
+				text: ['个人简介'],
+				mark: {
+					shape: 'disclosure-closed',
+				},
+			}"
 			:gap="100"
 			:items="[
 				[{ label: '姓名' }, { label: '年龄' }, { label: '爱好' }],

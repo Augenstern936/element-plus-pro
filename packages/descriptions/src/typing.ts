@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:42:23
- * @LastEditTime: 2024-06-03 00:55:55
+ * @LastEditTime: 2024-06-03 23:31:19
  */
 import { descriptionProps } from 'element-plus';
 import { GeneratePropTypes, MarkShape } from '@element-plus/pro-types';
@@ -15,15 +15,11 @@ export const proDescriptionProps = {
 		type: Number,
 	},
 	title: {
-		type: [String, Object, Array] as PropType<ProDescriptionsTitle>,
-	},
-	titleMark: {
-		type: Object as PropType<TitleMark>,
+		type: [String, Object, Array] as PropType<string | TitleJsonConfig | Array<string>>,
 	},
 	items: {
 		type: Array as PropType<ProDescriptionsItems>,
 		required: true,
-		default: [[{}]],
 	},
 	data: {
 		type: Object as PropType<{ [x: string]: any }>,
@@ -40,19 +36,17 @@ export const proDescriptionProps = {
 } as const;
 
 export type TitleJsonConfig = {
-	text?: string;
+	text: string | string[];
 	textStyle?: CSSProperties;
-	mark?: TitleMark;
+	mark?: boolean | TitleMark;
 };
 
-type TitleMark =
-	| boolean
-	| {
-			color?: string;
-			shape?: 'bar' | MarkShape;
-	  };
+export type TitleMark = {
+	color?: string;
+	shape?: 'bar' | MarkShape;
+};
 
-export type ProDescriptionsTitle = string | TitleJsonConfig | (string | TitleJsonConfig)[];
+export type ProDescriptionsTitle = string | TitleJsonConfig | Array<string>;
 
 export type ProDescriptionsItems = ProDescriptionsItem[] | ProDescriptionsItem[][];
 
