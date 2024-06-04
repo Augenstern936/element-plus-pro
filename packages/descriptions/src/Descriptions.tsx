@@ -1,10 +1,10 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:41:09
- * @LastEditTime: 2024-06-04 00:19:00
+ * @LastEditTime: 2024-06-04 23:15:45
  */
 import ProCopyable from '@element-plus/pro-copyable';
-import './styles.scss';
+import './style.scss';
 import {
 	ProDescriptionsItem,
 	ProDescriptionsItems,
@@ -14,7 +14,7 @@ import {
 	TitleJsonConfig,
 } from './typing';
 import { FunctionalComponent, computed, defineComponent } from 'vue';
-import { ElSpace } from 'element-plus';
+import { ElDescriptions, ElDescriptionsItem, ElSpace } from 'element-plus';
 import { isObject } from '@vueuse/core';
 
 enum ShapeEnum {
@@ -81,11 +81,15 @@ const ProDescriptions = defineComponent<ProDescriptionsProps>(
 			<ElSpace fill size={props.gap} direction='vertical' style='width: 100%'>
 				{itemsFormat(props.items).map((descItems, index) => {
 					return (
-						<el-descriptions
+						<ElDescriptions
 							class='pro-descriptions'
-							{...props}
+							{...(props as any)}
+							title={''}
 							v-slots={{
 								title: () => {
+									if (ctx.slots.title) {
+										return ctx.slots.title();
+									}
 									const titleText = title.value.text[index];
 									const { mark = {}, textStyle = {} } = title.value;
 									const { shape = '', color = 'default' } = isObject(mark) ? mark : {};
@@ -127,11 +131,11 @@ const ProDescriptions = defineComponent<ProDescriptionsProps>(
 								return (
 									<>
 										{ctx.slots.default ? (
-											<el-descriptions-item style={props.bodyStyle ?? {}}>
+											<ElDescriptionsItem style={props.bodyStyle ?? {}}>
 												{ctx.slots.default()}
-											</el-descriptions-item>
+											</ElDescriptionsItem>
 										) : (
-											<el-descriptions-item
+											<ElDescriptionsItem
 												{...item}
 												key={index}
 												v-slots={{
@@ -146,12 +150,12 @@ const ProDescriptions = defineComponent<ProDescriptionsProps>(
 													) : (
 														data[dataField] || props.emptyText || '--'
 													))}
-											</el-descriptions-item>
+											</ElDescriptionsItem>
 										)}
 									</>
 								);
 							})}
-						</el-descriptions>
+						</ElDescriptions>
 					);
 				})}
 			</ElSpace>

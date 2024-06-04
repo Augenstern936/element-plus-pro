@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:42:23
- * @LastEditTime: 2024-06-03 23:31:19
+ * @LastEditTime: 2024-06-04 23:13:44
  */
 import { descriptionProps } from 'element-plus';
 import { GeneratePropTypes, MarkShape } from '@element-plus/pro-types';
@@ -15,7 +15,7 @@ export const proDescriptionProps = {
 		type: Number,
 	},
 	title: {
-		type: [String, Object, Array] as PropType<string | TitleJsonConfig | Array<string>>,
+		type: [String, Object, Array] as PropType<ProDescriptionsTitle>,
 	},
 	items: {
 		type: Array as PropType<ProDescriptionsItems>,
