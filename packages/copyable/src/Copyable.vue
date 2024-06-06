@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-05-22 10:21:00
- * @LastEditTime: 2024-05-31 00:13:11
+ * @LastEditTime: 2024-06-06 22:04:08
 -->
 <template>
 	<template v-if="value">
@@ -56,22 +56,5 @@
 		display: inline-flex !important;
 		flex-direction: row !important;
 		align-items: center !important;
-	}
-</style>
-
-<style scoped lang="scss">
-	@use 'element-plus/theme-chalk/src/message.scss';
-
-	.copyable-value {
-		display: inline-block;
-		width: fit-content;
-		max-width: calc(100% - 20px);
-		padding-right: 5px;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
-	.copy-icon {
-		cursor: pointer;
 	}
 </style>

@@ -1,0 +1,14 @@
+@use 'element-plus/theme-chalk/src/message.scss';
+
+.copyable-value {
+	display: inline-block;
+	width: fit-content;
+	max-width: calc(100% - 20px);
+	padding-right: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.copy-icon {
+	cursor: pointer;
+}

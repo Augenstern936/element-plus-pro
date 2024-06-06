@@ -1,0 +1,28 @@
+@use 'element-plus/theme-chalk/src/image.scss';
+@use 'element-plus/theme-chalk/src/image-viewer.scss';
+
+.pro-field-image {
+	&__box {
+		position: relative;
+		width: 33px;
+		height: 33px;
+		overflow: hidden;
+		border-radius: 5px;
+	}
+	&__box:hover > &__hover-mask {
+		display: block;
+		cursor: pointer;
+	}
+	&__hover-mask {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		line-height: 33px;
+		pointer-events: none;
+		background: rgba(0, 0, 0, 0.7);
+	}
+}
