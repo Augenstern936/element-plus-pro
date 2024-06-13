@@ -1,9 +1,9 @@
-@use 'element-plus/theme-chalk/src/text.scss';
-@use 'element-plus/theme-chalk/src/tag.scss';
-@use 'element-plus/theme-chalk/src/space.scss';
+@use "element-plus/theme-chalk/src/text.scss";
+@use "element-plus/theme-chalk/src/tag.scss";
+@use "element-plus/theme-chalk/src/space.scss";
 
 .read-options {
-	.el-space > .el-space__item:not(:last-of-type()) {
+	.el-space > .el-space__item:not(:last-of-type) {
 		margin-right: 0 !important;
 	}
 

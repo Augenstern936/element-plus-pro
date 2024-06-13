@@ -2,17 +2,31 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-05-29 15:22:53
+ * @LastEditTime: 2024-06-13 15:07:46
  * @FilePath: \element-plus-pro\packages\field\src\components\Progress.tsx
  */
-import { ElProgress } from "element-plus";
+import { ElProgress, ElText } from "element-plus";
 import "element-plus/theme-chalk/src/progress.scss";
-import { FunctionalComponent, defineComponent } from "vue";
+import { FunctionalComponent, computed, defineComponent } from "vue";
 import { ProFieldProgressProps, proFieldProgressProps } from "./props";
 
 const ProFieldProgress = defineComponent<ProFieldProgressProps>(
 	(props) => {
-		return () => <ElProgress {...props} />;
+		const textColor = computed(() => {
+			enum Color {
+				"success" = "var(--el-color-success)",
+				"warning" = "var(--el-color-warning)",
+				"exception" = "var(--el-color-danger)",
+			}
+			return props.status ? Color[props.status] ?? "var(--el-color-primary)" : "var(--el-color-primary)";
+		});
+
+		return () =>
+			props.mode === "edit" ? (
+				<ElProgress {...props} />
+			) : (
+				<ElText style={{ ...props.style, color: props.color || textColor.value }}>{props.percentage}%</ElText>
+			);
 	},
 	{
 		name: "ProFieldProgress",
