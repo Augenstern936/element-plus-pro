@@ -9,3 +9,8 @@ pnpm-lock.yaml
 # Editor directories and files
 .idea
 .vscode
+
+
+
+.nx/cache
+.nx/workspace-data

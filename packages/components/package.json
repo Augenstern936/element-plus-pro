@@ -36,7 +36,8 @@
 		"@element-plus/pro-field": "workspace:^",
 		"@element-plus/pro-search-bar": "workspace:^",
 		"@element-plus/pro-table": "workspace:^",
-		"@element-plus/pro-tabs": "workspace:^"
+		"@element-plus/pro-tabs": "workspace:^",
+		"@element-plus/pro-text": "workspace:^"
 	},
 	"peerDependencies": {
 		"element-plus": "^2.4.1",

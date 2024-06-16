@@ -8,6 +8,17 @@
 		height: 33px;
 		overflow: hidden;
 		border-radius: 5px;
+		.loading-icon {
+			animation: loading 1.3s linear infinite;
+		}
+		@keyframes loading {
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
 	}
 	&__box:hover > &__hover-mask {
 		display: block;

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-06-02 01:00:21
+ * @LastEditTime: 2024-06-15 23:20:37
  * @FilePath: \element-plus-pro\packages\field\src\components\Select\index.tsx
  */
 import { useVModel } from '@vueuse/core';
@@ -25,7 +25,7 @@ const ProFieldSelect = defineComponent<ProFieldSelectProps>(
 				{props.mode === 'read' ? (
 					<ReadOptions
 						markShape={props.markShape}
-						value={getValueOptionConfigs(props.modelValue ?? [], options.value)}
+						value={getValueOptionConfigs(model.value ?? [], options.value)}
 					/>
 				) : (
 					<ElSelect v-model={model.value}>

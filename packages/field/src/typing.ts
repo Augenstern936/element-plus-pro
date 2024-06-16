@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-05-28 16:49:08
- * @LastEditTime: 2024-06-02 00:56:01
+ * @LastEditTime: 2024-06-16 23:44:54
  */
 import { FunctionalComponent } from 'vue';
 import type {
@@ -26,7 +26,7 @@ import type {
 } from './components';
 
 type TextFieldProps = {
-	type: 'text';
+	type?: 'text';
 	fieldProps?: ProFieldTextProps;
 };
 
@@ -48,6 +48,11 @@ type DateFieldProps = {
 type AvatarFieldProps = {
 	type?: 'avatar';
 	fieldProps?: ProFieldAvatarProps;
+};
+
+type SwitchFieldProps = {
+	type?: 'switch';
+	fieldProps?: ProFieldSwitchProps;
 };
 
 type CascaderFieldProps = {
@@ -110,6 +115,7 @@ export type FieldProps =
 	| TextFieldProps
 	| DateFieldProps
 	| AvatarFieldProps
+	| SwitchFieldProps
 	| CascaderFieldProps
 	| CheckboxFieldProps
 	| ColorFieldProps
