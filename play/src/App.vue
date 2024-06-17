@@ -39,7 +39,7 @@
 			/>
 			<ProText>11</ProText>
 		</el-space>
-		<ProField mode="read" type="switch" :field-props="{}" />
+		<ProField mode="read" type="switch" :field-props="{ac}" />
 		<ProField.CheckboxButton
 			v-model="test"
 			:mode="'read'"
