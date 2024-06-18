@@ -1,2 +1,9 @@
-@use "element-plus/theme-chalk/src/form.scss";
-@use "element-plus/theme-chalk/src/form-item.scss";
+@use 'element-plus/theme-chalk/src/space.scss';
+@use 'element-plus/theme-chalk/src/button.scss';
+@use 'element-plus/theme-chalk/src/form.scss';
+@use 'element-plus/theme-chalk/src/form-item.scss';
+
+.actions-box {
+	flex: 1;
+	margin-top: 18px;
+}

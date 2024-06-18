@@ -39,7 +39,7 @@
 			/>
 			<ProText>11</ProText>
 		</el-space>
-		<ProField mode="read" type="switch" :field-props="{ac}" />
+		<ProField mode="read" type="switch" />
 		<ProField.CheckboxButton
 			v-model="test"
 			:mode="'read'"
@@ -72,11 +72,23 @@
 				[{ label: '姓名' }, { label: '年龄' }, { label: '爱好' }],
 			]"
 		/>
+		<ProForm
+			:items="[
+				{
+					label: '姓名',
+					dataField: 'name',
+				},
+				{
+					label: '年龄',
+					dataField: 'age',
+				},
+			]"
+		/>
 	</div>
 </template>
 
 <script setup lang="ts">
-	import { ProButton, ProCopyable, ProDescriptions, ProField, ProText } from '@element-plus/pro-components';
+	import { ProButton, ProCopyable, ProDescriptions, ProField, ProText, ProForm } from '@element-plus/pro-components';
 	import { reactive, ref } from 'vue';
 	// import type { TableColumns } from "@element-plus/pro-components";
 	// import { ElButton } from "element-plus";

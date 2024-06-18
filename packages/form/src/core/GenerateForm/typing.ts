@@ -1,13 +1,13 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-06-18 17:23:31
+ * @LastEditTime: 2024-06-18 22:15:35
  */
-import type { ProFieldType } from "@element-plus/pro-field";
-import { ValueEnum, ValueOption } from "@element-plus/pro-types";
-import { formProps as elFormProps } from "element-plus";
-import { ExtractPropTypes, PropType } from "vue";
-import { ActionsProps } from "./Actions";
+import type { ProFieldType } from '@element-plus/pro-field';
+import { ValueEnum, ValueOption } from '@element-plus/pro-types';
+import { formProps as elFormProps } from 'element-plus';
+import { ExtractPropTypes, PropType } from 'vue';
+import { ActionsProps } from './Actions';
 
 const commonFormProps = {
 	items: {
@@ -25,6 +25,7 @@ const commonFormProps = {
 	},
 	actions: {
 		type: [Boolean, Object] as PropType<Actions>,
+		default: true,
 	},
 };
 
@@ -32,7 +33,7 @@ export const generateFormProps = {
 	...elFormProps,
 	...commonFormProps,
 	type: {
-		type: String as PropType<"dialog-form" | "drawer-form" | "search-form">,
+		type: String as PropType<'dialog-form' | 'drawer-form' | 'search-form'>,
 	},
 };
 
@@ -48,6 +49,6 @@ export interface FormColumn {
 
 export type Actions = boolean | ActionsProps;
 
-export type CommonFormProps = ExtractPropTypes<typeof commonFormProps>;
+export type CommonFormProps = Partial<ExtractPropTypes<typeof commonFormProps>>;
 
-export type GenerateFormProps = ExtractPropTypes<typeof generateFormProps>;
+export type GenerateFormProps = Partial<ExtractPropTypes<typeof generateFormProps>>;

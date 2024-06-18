@@ -1,19 +1,10 @@
 /*
  * @Description:
  * @Author: wangbowen936926
- * @Date: 2024-04-14 17:03:21
- * @LastEditTime: 2024-06-15 23:27:48
+ * @Date: 2024-05-17 19:46:42
+ * @LastEditTime: 2024-06-18 20:45:26
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\index.tsx
  */
-import { FunctionalComponent, defineComponent } from 'vue';
-import { formProps, FormProps } from './typing';
-
-const GenerateForm = defineComponent((props, ctx) => {
-	return () => <div>111</div>;
-}) as unknown as FunctionalComponent<FormProps>;
+export * from './GenerateForm';
 
 export * from './typing';
-
-GenerateForm.props = formProps;
-
-export { GenerateForm };

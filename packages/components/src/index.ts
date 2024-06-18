@@ -2,12 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2023-12-13 21:26:11
- * @LastEditTime: 2024-06-16 00:06:33
+ * @LastEditTime: 2024-06-18 21:00:20
  * @FilePath: \element-plus-pro\packages\components\src\index.ts
  */
 import installer from './default';
 
 export * from '@element-plus/pro-text';
+export * from '@element-plus/pro-form';
 export * from '@element-plus/pro-field';
 export * from '@element-plus/pro-button';
 export * from '@element-plus/pro-copyable';
