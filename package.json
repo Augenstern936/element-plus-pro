@@ -16,6 +16,7 @@
 		"clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
 		"clean:dist": "rimraf dist",
 		"build": "pnpm --filter \"@element-plus/**\" build",
+		"graph": "npx nx graph",
 		"nx:build": "npx nx run-many -t build --projects=@element-plus/**",
 		"lint": "eslint --cache --ext .vue,.js,.jsx,.ts,.tsx  --fix --format=pretty ./ && npm run tsc",
 		"lint:fix": "pnpm run lint --fix"
