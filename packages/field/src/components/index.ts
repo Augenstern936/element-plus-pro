@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-06-01 00:45:19
+ * @LastEditTime: 2024-06-20 22:50:35
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
 import {
@@ -45,6 +45,7 @@ export * from './Rate';
 export * from './Select';
 export * from './Slider';
 export * from './Switch';
+export * from './TimePicker';
 export * from './TimeSelect';
 export * from './TreeSelect';
 
@@ -54,13 +55,13 @@ export const components = {
 	textarea: ProFieldTextarea,
 	date: ProFieldDate,
 	dates: ProFieldDates,
-	dateTime: ProFieldDateTime,
-	dateWeek: ProFieldDateWeek,
-	dateMonth: ProFieldDateMonth,
-	dateYear: ProFieldDateYear,
 	dateRange: ProFieldDateRange,
-	dateTimeRange: ProFieldDateTimeRange,
+	dateYear: ProFieldDateYear,
+	dateMonth: ProFieldDateMonth,
 	dateMonthRange: ProFieldDateMonthRange,
+	dateWeek: ProFieldDateWeek,
+	dateTime: ProFieldDateTime,
+	dateTimeRange: ProFieldDateTimeRange,
 	time: ProFieldTime,
 	timeRange: ProFieldTimeRange,
 	timeSelect: ProFieldTimeSelect,

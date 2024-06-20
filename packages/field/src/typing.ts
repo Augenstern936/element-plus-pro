@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-05-28 16:49:08
- * @LastEditTime: 2024-06-16 23:44:54
+ * @LastEditTime: 2024-06-20 23:11:42
  */
 import { FunctionalComponent } from 'vue';
 import type {
@@ -20,6 +20,8 @@ import type {
 	ProFieldSwitchProps,
 	ProFieldTextProps,
 	ProFieldTextareaProps,
+	ProFieldTimeProps,
+	ProFieldTimeRangeProps,
 	ProFieldTimeSelectProps,
 	ProFieldTreeSelectProps,
 	components,
@@ -43,6 +45,66 @@ type TextareaFieldProps = {
 type DateFieldProps = {
 	type: 'date';
 	fieldProps?: ProDatePickerPropsMap.ProFieldDateProps;
+};
+
+type DateRangeFieldProps = {
+	type: 'dateRange';
+	fieldProps?: ProDatePickerPropsMap.ProFieldDateRangeProps;
+};
+
+type DatesFieldProps = {
+	type: 'dates';
+	fieldProps?: ProDatePickerPropsMap.ProFieldDatesProps;
+};
+
+type DateYearFieldProps = {
+	type: 'dateYear';
+	fieldProps?: ProDatePickerPropsMap.ProFieldDateYearProps;
+};
+
+type DateMonthFieldProps = {
+	type: 'dateMonth';
+	fieldProps?: ProDatePickerPropsMap.ProFieldDateMonthProps;
+};
+
+type DateMonthRangeFieldProps = {
+	type: 'dateMonthRange';
+	fieldProps?: ProDatePickerPropsMap.ProFieldDateMonthRangeProps;
+};
+
+type DateTimeWeekFieldProps = {
+	type: 'dateWeek';
+	fieldProps?: ProDatePickerPropsMap.ProFieldDateWeekProps;
+};
+
+type DateTimeFieldProps = {
+	type: 'dateTime';
+	fieldProps?: ProDatePickerPropsMap.ProFieldDateTimeProps;
+};
+
+type DateTimeRangeFieldProps = {
+	type: 'dateTimeRange';
+	fieldProps?: ProDatePickerPropsMap.ProFieldDateTimeRangeProps;
+};
+
+type TimeFieldProps = {
+	type: 'time';
+	fieldProps?: ProFieldTimeProps;
+};
+
+type TimeRangeFieldProps = {
+	type: 'timeRange';
+	fieldProps?: ProFieldTimeRangeProps;
+};
+
+type TimeSelectFieldProps = {
+	type: 'timeSelect';
+	fieldProps?: ProFieldTimeSelectProps;
+};
+
+type SelectFieldProps = {
+	type: 'select';
+	fieldProps?: ProFieldSelectProps;
 };
 
 type AvatarFieldProps = {
@@ -95,11 +157,6 @@ type SliderFieldProps = {
 	fieldProps?: ProFieldSliderProps;
 };
 
-type TimeSelectFieldProps = {
-	type?: 'timeSelect';
-	fieldProps?: ProFieldTimeSelectProps;
-};
-
 type TreeSelectFieldProps = {
 	type?: 'treeSelect';
 	fieldProps?: ProFieldTreeSelectProps;
@@ -110,10 +167,22 @@ export type ProFieldMode = 'read' | 'edit';
 export type ProFieldType = keyof typeof components;
 
 export type FieldProps =
+	| TextFieldProps
 	| PasswordFieldProps
 	| TextareaFieldProps
-	| TextFieldProps
 	| DateFieldProps
+	| DateRangeFieldProps
+	| DatesFieldProps
+	| DateYearFieldProps
+	| DateMonthFieldProps
+	| DateMonthRangeFieldProps
+	| DateTimeWeekFieldProps
+	| DateTimeFieldProps
+	| DateTimeRangeFieldProps
+	| TimeFieldProps
+	| TimeRangeFieldProps
+	| TimeSelectFieldProps
+	| SelectFieldProps
 	| AvatarFieldProps
 	| SwitchFieldProps
 	| CascaderFieldProps
@@ -124,7 +193,6 @@ export type FieldProps =
 	| RadioFieldProps
 	| RateFieldProps
 	| SliderFieldProps
-	| TimeSelectFieldProps
 	| TreeSelectFieldProps;
 
 export type ProFieldSuperProps<T> = FunctionalComponent<T> & {
@@ -140,8 +208,8 @@ export type ProFieldSuperProps<T> = FunctionalComponent<T> & {
 	DateRange: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateRangeProps>;
 	DateTimeRange: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateTimeRangeProps>;
 	DateMonthRange: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateMonthRangeProps>;
-	Time: FunctionalComponent<any>;
-	TimeRange: FunctionalComponent<any>;
+	Time: FunctionalComponent<ProFieldTimeProps>;
+	TimeRange: FunctionalComponent<ProFieldTimeRangeProps>;
 	TimeSelect: FunctionalComponent<ProFieldTimeSelectProps>;
 	Select: FunctionalComponent<ProFieldSelectProps>;
 	TreeSelect: FunctionalComponent<ProFieldTreeSelectProps>;

@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-06-18 22:15:35
+ * @LastEditTime: 2024-06-20 22:34:31
  */
 import type { ProFieldType } from '@element-plus/pro-field';
 import { ValueEnum, ValueOption } from '@element-plus/pro-types';
@@ -41,11 +41,17 @@ export interface FormColumn {
 	label?: string;
 	dataField?: string;
 	readonly?: boolean;
-	valueType?: ProFieldType;
+	required?: boolean;
+	valueType?: ProFormValueType;
 	valueEnum?: ValueEnum;
 	valueOptions?: ValueOption[];
 	fieldProps?: any;
+	rules: {
+		message?: string;
+	};
 }
+
+export type ProFormValueType = ProFieldType;
 
 export type Actions = boolean | ActionsProps;
 

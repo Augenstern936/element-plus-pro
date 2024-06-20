@@ -40,6 +40,7 @@
 			<ProText>11</ProText>
 		</el-space>
 		<ProField mode="read" type="switch" />
+		<ProField mode="read" type="radioButton" />
 		<ProField.CheckboxButton
 			v-model="test"
 			:mode="'read'"
@@ -75,11 +76,39 @@
 		<ProForm
 			:items="[
 				{
-					label: '姓名',
+					label: '姓名:',
 					dataField: 'name',
 				},
 				{
-					label: '年龄',
+					label: '年龄:',
+					dataField: 'age',
+					valueType: 'text',
+					fieldProps: {
+						type: 'number',
+					},
+				},
+				{
+					label: '头像:',
+					dataField: 'avatar',
+					valueType: 'avatar',
+				},
+				{
+					label: '爱好:',
+					dataField: 'test',
+					valueType: 'radio',
+					valueEnum: {
+						1: '钓鱼',
+						2: '王者',
+						3: '台球',
+						4: '阅读',
+					},
+				},
+				{
+					label: '年龄:',
+					dataField: 'age',
+				},
+				{
+					label: '年龄:',
 					dataField: 'age',
 				},
 			]"
@@ -89,6 +118,7 @@
 
 <script setup lang="ts">
 	import { ProButton, ProCopyable, ProDescriptions, ProField, ProText, ProForm } from '@element-plus/pro-components';
+	import { fa } from 'element-plus/es/locale';
 	import { reactive, ref } from 'vue';
 	// import type { TableColumns } from "@element-plus/pro-components";
 	// import { ElButton } from "element-plus";
