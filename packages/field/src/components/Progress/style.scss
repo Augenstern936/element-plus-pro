@@ -1,0 +1,7 @@
+@use 'element-plus/theme-chalk/src/progress.scss';
+
+.field-progress {
+	& > .el-progress__text {
+		min-width: unset;
+	}
+}

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-14 17:03:21
- * @LastEditTime: 2024-06-20 23:35:58
+ * @LastEditTime: 2024-06-23 21:21:04
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\GenerateForm.tsx
  */
 import './style.scss';
@@ -18,22 +18,52 @@ const GenerateForm = defineComponent<GenerateFormProps>((props) => {
 		return Array.isArray(props.items) ? props.items : [];
 	});
 
+	const actionProps = computed(() => {
+		return typeof props?.actions === 'boolean' ? {} : props.actions;
+	});
+
 	return () => (
-		<ElForm>
+		<ElForm
+			{...props}
+			labelPosition={props.layout === 'vertical' ? 'top' : 'right'}
+			inline={props.layout === 'inline'}
+			class={'generate-form'}
+		>
 			{items.value?.map((item, index) => {
-				const { label, dataField, valueType = 'text' } = item;
+				const { key, label, dataField, valueType = 'text', readonly } = item;
+				const mode = readonly === true || props.readonly === true ? 'read' : 'edit';
 				return (
-					<ElFormItem label={label} prop={dataField} key={dataField}>
-						<ProField {...item} type={valueType} placeholder={formatPlaceholder(label ?? '', valueType)} />
-						{props.actions !== false && index + 1 === items.value.length && <Actions />}
+					<ElFormItem
+						prop={dataField}
+						key={key || dataField || index}
+						v-slots={{
+							label: () => {
+								return typeof label === 'function' ? (
+									label()
+								) : (
+									<span style={props.labelStyle}>{label}</span>
+								);
+							},
+						}}
+					>
+						<ProField
+							{...item}
+							{...item.fieldProps}
+							mode={mode}
+							type={valueType}
+							placeholder={formatPlaceholder(label ?? '', valueType)}
+						/>
 					</ElFormItem>
 				);
 			})}
+			<ElFormItem label=' '>
+				<Actions {...actionProps.value} />
+			</ElFormItem>
 		</ElForm>
 	);
 }) as unknown as FunctionalComponent<GenerateFormProps>;
 
-GenerateForm.props = generateFormProps;
+GenerateForm.props = generateFormProps as any;
 
 export * from './typing';
 

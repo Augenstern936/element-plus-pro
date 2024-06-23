@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-05-28 16:49:08
- * @LastEditTime: 2024-06-20 23:11:42
+ * @LastEditTime: 2024-06-22 19:42:28
  */
 import { FunctionalComponent } from 'vue';
 import type {
@@ -11,6 +11,7 @@ import type {
 	ProFieldCheckboxProps,
 	ProFieldColorProps,
 	ProFieldImageProps,
+	ProFieldNumberProps,
 	ProFieldPasswordProps,
 	ProFieldProgressProps,
 	ProFieldRadioProps,
@@ -30,6 +31,11 @@ import type {
 type TextFieldProps = {
 	type?: 'text';
 	fieldProps?: ProFieldTextProps;
+};
+
+type NumberFieldProps = {
+	type?: 'number';
+	fieldProps?: ProFieldNumberProps;
 };
 
 type PasswordFieldProps = {
@@ -168,6 +174,7 @@ export type ProFieldType = keyof typeof components;
 
 export type FieldProps =
 	| TextFieldProps
+	| NumberFieldProps
 	| PasswordFieldProps
 	| TextareaFieldProps
 	| DateFieldProps
@@ -197,6 +204,7 @@ export type FieldProps =
 
 export type ProFieldSuperProps<T> = FunctionalComponent<T> & {
 	Text: FunctionalComponent<ProFieldTextProps>;
+	Number: FunctionalComponent<ProFieldNumberProps>;
 	Password: FunctionalComponent<ProFieldPasswordProps>;
 	Textarea: FunctionalComponent<ProFieldTextareaProps>;
 	Date: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateProps>;

@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-06-20 23:16:52
+ * @LastEditTime: 2024-06-23 20:24:52
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
+import 'element-plus/theme-chalk/src/base.scss';
 import type { GeneratePropTypes, ToUppercaseFirst } from '@element-plus/pro-types';
 import { formatPlaceholder } from '@element-plus/pro-utils';
 import { useVModel } from '@vueuse/core';
-import 'element-plus/theme-chalk/src/base.scss';
 import type { FunctionalComponent, PropType } from 'vue';
 import { computed, defineComponent } from 'vue';
 import { components } from './components';
@@ -26,6 +26,10 @@ export const proFieldProps = {
 	type: {
 		type: String as PropType<ProFieldType>,
 		default: 'text',
+	},
+	emptyText: {
+		type: String,
+		default: '--',
 	},
 	placeholder: {
 		type: [String, Array] as PropType<string | [string] | [string, string]>,
@@ -56,11 +60,19 @@ function getPlaceholder(type: ProFieldType, placeholder?: string | [string] | [s
 
 const ProField = defineComponent<ProFieldProps>(
 	(props, ctx) => {
-		const model = useVModel(props, 'modelValue', ctx.emit);
-
 		const Field = computed(() => {
 			return components[props.type || 'text'] as FunctionalComponent;
 		});
+
+		const empty = computed(() => {
+			const types = ['slider', 'number', 'rate', 'switch'];
+			if (!props.modelValue && !types.includes(props.type ?? '')) {
+				return props.emptyText;
+			}
+			return props.modelValue;
+		});
+
+		const model = props.mode === 'read' ? empty : useVModel(props, 'modelValue', ctx.emit);
 
 		return () => (
 			<Field.value
@@ -81,7 +93,7 @@ ProField.props = proFieldProps as any;
 for (const key in components) {
 	const ComName = (key.charAt(0).toUpperCase() + key.slice(1)) as ToUppercaseFirst<ProFieldType>;
 	const FieldComponent = components[key as ProFieldType];
-	ProField[ComName] = (props) => {
+	ProField[ComName] = (props: any) => {
 		return <FieldComponent {...props} {...getPlaceholder(key as ProFieldType, props.placeholder)} />;
 	};
 }

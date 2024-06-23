@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-06-01 21:21:46
+ * @LastEditTime: 2024-06-23 15:49:44
  * @FilePath: \element-plus-pro\packages\field\src\components\Checkbox\index.tsx
  */
 import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup } from 'element-plus';
@@ -24,14 +24,18 @@ const RenderCheckbox = defineComponent<RenderCheckboxProps>((props, ctx) => {
 	const options = computed(() => {
 		return props?.valueOptions?.length ? props.valueOptions : enumTransformOptions(props.valueEnum ?? {});
 	});
-	return () => (
-		<div>
-			{props.mode === 'read' ? (
+
+	return () => {
+		if (props.mode === 'read') {
+			return (
 				<ReadOptions
 					markShape={props.markShape}
 					value={getValueOptionConfigs(props.modelValue ?? [], options.value)}
 				/>
-			) : (
+			);
+		}
+		if (props.mode === 'edit') {
+			return (
 				<ElCheckboxGroup v-model={model.value}>
 					{options.value?.map((option, i) => {
 						const Render = props.type === 'checkbox' ? ElCheckbox : ElCheckboxButton;
@@ -42,9 +46,10 @@ const RenderCheckbox = defineComponent<RenderCheckboxProps>((props, ctx) => {
 						);
 					})}
 				</ElCheckboxGroup>
-			)}
-		</div>
-	);
+			);
+		}
+		return '';
+	};
 }) as unknown as FunctionalComponent<RenderCheckboxProps>;
 
 RenderCheckbox.props = {

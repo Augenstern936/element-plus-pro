@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-06-01 00:35:40
+ * @LastEditTime: 2024-06-23 15:21:34
  * @FilePath: \element-plus-pro\packages\field\src\components\Date\index.tsx
  */
 import 'element-plus/theme-chalk/src/button.scss';
@@ -32,7 +32,16 @@ const ProDatePicker = defineComponent<ProDatePickerProps>((props, ctx) => {
 		};
 	});
 
-	return () => <ElDatePicker {...(props as DatePickerProps)} {...placeholder.value} v-model={model.value} />;
+	return () => {
+		if (props.mode === 'read') {
+			console.log(model.value, 'model.value');
+			return model.value;
+		}
+		if (props.mode === 'edit') {
+			return <ElDatePicker {...(props as DatePickerProps)} {...placeholder.value} v-model={model.value} />;
+		}
+		return <></>;
+	};
 }) as unknown as FunctionalComponent<ProDatePickerProps>;
 
 ProDatePicker.props = proDatePickerProps as any;

@@ -2,11 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-06-15 22:23:17
+ * @LastEditTime: 2024-06-22 23:28:48
  * @FilePath: \element-plus-pro\packages\field\src\components\Progress\index.tsx
  */
+import './style.scss';
 import { ElProgress, ElText } from 'element-plus';
-import 'element-plus/theme-chalk/src/progress.scss';
 import { FunctionalComponent, computed, defineComponent } from 'vue';
 import { ProFieldProgressProps, proFieldProgressProps } from './props';
 
@@ -23,7 +23,12 @@ const ProFieldProgress = defineComponent<ProFieldProgressProps>(
 
 		return () =>
 			props.mode === 'edit' ? (
-				<ElProgress {...props} />
+				<ElProgress
+					{...props}
+					class={'field-progress'}
+					type='line'
+					style={{ width: '100%', ...props?.style }}
+				/>
 			) : (
 				<ElText style={{ ...props.style, color: props.color || textColor.value }}>{props.percentage}%</ElText>
 			);

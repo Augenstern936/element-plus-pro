@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-06-20 22:50:35
+ * @LastEditTime: 2024-06-22 19:40:45
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
 import {
@@ -27,7 +27,7 @@ import ProFieldAvatar from './Avatar';
 import ProFieldCascader from './Cascader';
 import ProFieldTimeSelect from './TimeSelect';
 import ProFieldTreeSelect from './TreeSelect';
-import { ProFieldPassword, ProFieldText, ProFieldTextarea } from './Input';
+import { ProFieldNumber, ProFieldPassword, ProFieldText, ProFieldTextarea } from './Input';
 import { ProFieldTime, ProFieldTimeRange } from './TimePicker';
 import { ProFieldRadio, ProFieldRadioButton } from './Radio';
 import { ProFieldCheckbox, ProFieldCheckboxButton } from './Checkbox';
@@ -51,6 +51,7 @@ export * from './TreeSelect';
 
 export const components = {
 	text: ProFieldText,
+	number: ProFieldNumber,
 	password: ProFieldPassword,
 	textarea: ProFieldTextarea,
 	date: ProFieldDate,

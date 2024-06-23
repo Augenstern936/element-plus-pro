@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:50:46
- * @LastEditTime: 2024-06-01 21:21:19
+ * @LastEditTime: 2024-06-23 16:12:53
  * @FilePath: \element-plus-pro\packages\field\src\components\Radio\index.tsx
  */
 import { ElRadio, ElRadioButton, ElRadioGroup } from 'element-plus';
@@ -24,14 +24,14 @@ const RenderRadio = defineComponent<RenderRadioProps>((props, ctx) => {
 	const options = computed(() => {
 		return props?.valueOptions?.length ? props.valueOptions : enumTransformOptions(props.valueEnum ?? {});
 	});
-	return () => (
-		<>
-			{props.mode === 'read' ? (
-				<ReadOptions
-					markShape={props.markShape}
-					value={getValueOptionConfigs(props.modelValue ?? [], options.value)}
-				/>
-			) : (
+
+	return () => {
+		if (props.mode === 'read') {
+			const value = getValueOptionConfigs(model.value ?? [], options.value);
+			return !value?.length ? model.value : <ReadOptions markShape={props.markShape} value={value} />;
+		}
+		if (props.mode === 'edit') {
+			return (
 				<ElRadioGroup v-model={model.value}>
 					{options.value?.map((option, i) => {
 						const Render = props.type === 'radio' ? ElRadio : ElRadioButton;
@@ -42,17 +42,13 @@ const RenderRadio = defineComponent<RenderRadioProps>((props, ctx) => {
 						);
 					})}
 				</ElRadioGroup>
-			)}
-		</>
-	);
+			);
+		}
+		return '';
+	};
 }) as unknown as FunctionalComponent<RenderRadioProps>;
 
-RenderRadio.props = {
-	...proFieldRadioProps,
-	type: {
-		type: String as PropType<'radio' | 'radio-button'>,
-	},
-} as any;
+RenderRadio.props = proFieldRadioProps as any;
 
 export * from './props';
 

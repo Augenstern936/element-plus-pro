@@ -2,14 +2,14 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-06-15 23:15:44
+ * @LastEditTime: 2024-06-23 21:53:43
  * @FilePath: \element-plus-pro\packages\field\src\components\Image\index.tsx
  */
 import './style.scss';
 import { ElIcon, ElImage, ElSpace } from 'element-plus';
 import { FunctionalComponent, computed, defineComponent, reactive } from 'vue';
 import { ProFieldImageProps, proFieldImageProps } from './props';
-import { View } from '@element-plus/icons-vue';
+import { CloseBold, View } from '@element-plus/icons-vue';
 
 const ProFieldImage = defineComponent<ProFieldImageProps>(
 	(props, ctx) => {
@@ -28,7 +28,7 @@ const ProFieldImage = defineComponent<ProFieldImageProps>(
 					<div class={'pro-field-image__box'} key={url}>
 						<ElImage
 							src={url || '#'}
-							preview-src-list={props.mode === 'edit' ? src.value.filter((_, i) => !isError[i]) : []}
+							preview-src-list={src.value.filter((_, i) => !isError[i])}
 							preview-teleported={true}
 							initial-index={index}
 							fit='cover'
@@ -88,6 +88,13 @@ const ProFieldImage = defineComponent<ProFieldImageProps>(
 							}}
 						/>
 						{props.mode === 'edit' && !isError[index] && (
+							<span class={'pro-field-image__del-mark'}>
+								<ElIcon size={12} color='#fff'>
+									<CloseBold />
+								</ElIcon>
+							</span>
+						)}
+						{!isError[index] && (
 							<div class='pro-field-image__hover-mask'>
 								<ElIcon color='#fff'>
 									<View />
