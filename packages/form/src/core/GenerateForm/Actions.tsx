@@ -2,10 +2,10 @@
  * @Description:表单操作器
  * @Author: wangbowen936926
  * @Date: 2024-06-16 20:02:37
- * @LastEditTime: 2024-06-22 00:31:44
+ * @LastEditTime: 2024-06-24 21:46:31
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\Actions.tsx
  */
-import { ButtonProps, ElButton, ElSpace } from 'element-plus';
+import { ButtonProps, ElButton } from 'element-plus';
 import { CSSProperties, SetupContext } from 'vue';
 
 export interface ActionsProps {
@@ -13,8 +13,8 @@ export interface ActionsProps {
 	resetButtonProps?: ButtonProps & { style?: CSSProperties };
 	submitButtonText?: String;
 	resetButtonText?: String;
-	buttonWidthMode?: 'aequilate' | 'full' | 'auto';
-	render?: (props: ActionsProps, dom: JSX.Element[]) => void;
+	buttonFillMode?: 'aequilate' | 'full' | 'auto';
+	render?: (props: ActionsProps, doms: JSX.Element[]) => JSX.Element | JSX.Element[];
 	onSubmit?: (entity: Record<string, any>) => void;
 	onReset?: (entity: Record<string, any>) => void;
 }
@@ -26,7 +26,7 @@ const Actions = (props: ActionsProps, ctx: SetupContext) => {
 			full: 'repeat(1, 1fr)',
 			aequilate: 'repeat(2, 1fr)',
 		};
-		return width[props.buttonWidthMode || 'auto'];
+		return width[props.buttonFillMode || 'auto'];
 	};
 
 	return (

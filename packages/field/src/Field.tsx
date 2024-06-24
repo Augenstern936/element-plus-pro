@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-06-23 20:24:52
+ * @LastEditTime: 2024-06-24 21:34:44
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import 'element-plus/theme-chalk/src/base.scss';
@@ -93,9 +93,10 @@ ProField.props = proFieldProps as any;
 for (const key in components) {
 	const ComName = (key.charAt(0).toUpperCase() + key.slice(1)) as ToUppercaseFirst<ProFieldType>;
 	const FieldComponent = components[key as ProFieldType];
-	ProField[ComName] = (props: any) => {
-		return <FieldComponent {...props} {...getPlaceholder(key as ProFieldType, props.placeholder)} />;
-	};
+	ProField[ComName] = FieldComponent as any;
+	// ProField[ComName] = (props: any) => {
+	// 	return <FieldComponent {...props} {...getPlaceholder(key as ProFieldType, props.placeholder)} />;
+	// };
 }
 
 export default ProField;
