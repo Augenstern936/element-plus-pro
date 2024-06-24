@@ -1,19 +1,18 @@
 /*
  * @Description:
  * @Date: 2024-04-10 17:30:49
- * @LastEditTime: 2024-06-18 20:59:59
+ * @LastEditTime: 2024-06-24 09:51:26
  */
-import ProButton from '@element-plus/pro-button';
+import ProButton from "@element-plus/pro-button";
 // import ProCenterContainer from "@element-plus/pro-center-container";
-import ProText from '@element-plus/pro-text';
-import ProField from '@element-plus/pro-field';
-import ProForm from '@element-plus/pro-form';
-import ProCopyable from '@element-plus/pro-copyable';
-import ProDescriptions from '@element-plus/pro-descriptions';
-//import ProSearchBar from "@element-plus/pro-search-bar";
+import ProCopyable from "@element-plus/pro-copyable";
+import ProDescriptions from "@element-plus/pro-descriptions";
+import ProField from "@element-plus/pro-field";
+import ProForm from "@element-plus/pro-form";
+import ProText from "@element-plus/pro-text";
 // import ProTable from "@element-plus/pro-table";
 // import ProTabs from "@element-plus/pro-tabs";
-import markInstaller from './mark-installer';
+import markInstaller from "./mark-installer";
 
 export default markInstaller({
 	//ProTabs,
