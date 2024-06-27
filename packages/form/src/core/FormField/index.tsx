@@ -7,8 +7,10 @@
  */
 import { FunctionalComponent, defineComponent } from 'vue';
 import { ProField } from '@element-plus/pro-field';
+import createField from '../HOC/createField';
 
 export const ProFormField = defineComponent((props, ctx) => {
+	console.log(createField, 'createField');
 	return () => <ProField />;
 }) as unknown as FunctionalComponent;
 

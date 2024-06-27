@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-14 17:03:21
- * @LastEditTime: 2024-06-26 23:20:19
+ * @LastEditTime: 2024-06-27 20:26:18
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\GenerateForm.tsx
  */
 import { ProField } from '@element-plus/pro-field';
@@ -53,7 +53,7 @@ const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
 					<ElFormItem
 						key={key || dataField || index}
 						prop={dataField}
-						required={required}
+						required={props.readonly ? false : required}
 						rules={{
 							...globalRulesItem,
 							...rules,
@@ -77,9 +77,11 @@ const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
 				);
 			})}
 			{ctx.slots?.default?.()}
-			<ElFormItem label=' '>
-				<Actions {...actionProps.value} />
-			</ElFormItem>
+			{props.readonly !== true && (
+				<ElFormItem label=' '>
+					<Actions {...actionProps.value} />
+				</ElFormItem>
+			)}
 		</ElForm>
 	);
 }) as unknown as FunctionalComponent<GenerateFormProps>;

@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-06-26 21:46:45
+ * @LastEditTime: 2024-06-27 21:11:44
  */
 import type { ProFieldType } from '@element-plus/pro-field';
 import { ValueEnum, ValueOption } from '@element-plus/pro-types';
@@ -15,7 +15,7 @@ const commonFormProps = {
 		type: Object as PropType<{ [x: string]: any }>,
 	},
 	items: {
-		type: Array as PropType<ProFormItem[]>,
+		type: Array as PropType<ProFormItemProps[]>,
 		default: [],
 	},
 	layout: {
@@ -62,7 +62,7 @@ export const generateFormProps = {
 	},
 };
 
-export type ProFormItem = Omit<FormItemProps, 'prop' | 'label'> & {
+export type ProFormItemProps = Omit<FormItemProps, 'prop' | 'label'> & {
 	key?: string;
 	label?: string | (() => JSX.Element);
 	dataField?: string;
@@ -79,7 +79,7 @@ export type ProFormItem = Omit<FormItemProps, 'prop' | 'label'> & {
 /**
  * 通用函数类型
  */
-type FormItemPropertyFunction<T> = (entity: Record<string, any>, items: ProFormItem[]) => T;
+type FormItemPropertyFunction<T> = (entity: Record<string, any>, items: ProFormItemProps[]) => T;
 
 export type ProFormValueType = ProFieldType;
 

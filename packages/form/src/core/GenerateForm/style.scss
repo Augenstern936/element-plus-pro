@@ -7,13 +7,13 @@
 	.el-input,
 	.el-input-number {
 		flex: 1;
-		.actions-box {
-			flex: 1;
-			display: grid;
-			gap: 10px;
-			& > * {
-				margin: 0 !important;
-			}
+	}
+	.actions-box {
+		flex: 1;
+		display: grid;
+		gap: 10px;
+		& > * {
+			margin: 0 !important;
 		}
 	}
 }
