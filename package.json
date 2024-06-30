@@ -25,6 +25,7 @@
 	},
 	"devDependencies": {
 		"@element-plus/icons-vue": "^2.3.1",
+		"@element-plus/pro-hooks": "workspace:^",
 		"@element-plus/pro-types": "workspace:^",
 		"@element-plus/pro-utils": "workspace:^",
 		"@esbuild-kit/cjs-loader": "^2.4.4",

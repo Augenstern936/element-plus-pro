@@ -1,8 +1,6 @@
 {
 	"name": "@element-plus/pro-utils",
 	"private": true,
-	"version": "1.0.0",
-	"description": "",
 	"main": "index.ts",
 	"license": "ISC",
 	"peerDependencies": {

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-14 17:03:21
- * @LastEditTime: 2024-06-27 20:26:18
+ * @LastEditTime: 2024-06-30 13:42:09
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\GenerateForm.tsx
  */
 import { ProField } from '@element-plus/pro-field';
@@ -11,20 +11,26 @@ import { ElForm, ElFormItem } from 'element-plus';
 import { FunctionalComponent, computed, defineComponent, ref } from 'vue';
 import Actions from './Actions';
 import './style.scss';
-import { GenerateFormProps, ProFormItem, generateFormProps } from './typing';
+import { GenerateFormProps, ProFormItemProps, generateFormProps } from './typing';
 import useFormProps from './useFormProps';
 import { useVModel } from '@vueuse/core';
+import { useFetchData } from '@element-plus/pro-hooks';
 
 const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
 	const model = props.modelValue ? useVModel(props, 'modelValue', ctx.emit) : ref({});
 
 	const { items } = useFormProps(props);
 
+	const { data } = useFetchData({
+		params: props.params,
+		request: props.request,
+	});
+
 	const actionProps = computed(() => {
 		return typeof props?.actions === 'boolean' ? {} : props.actions;
 	});
 
-	const getFieldProps = (item: ProFormItem) => {
+	const getFieldProps = (item: ProFormItemProps) => {
 		const { label, valueType = 'text', readonly } = item;
 		return {
 			...item,

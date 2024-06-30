@@ -10,7 +10,7 @@ import type { ButtonProps, MessageOptions, PopconfirmProps } from 'element-plus'
 export interface ProButtonProps extends Partial<ButtonProps> {
 	// 二次确认提示语
 	tip?: string | TipConfig;
-	render?: string;
+	title?: string;
 }
 
 export type TipConfig = (MessageBoxConfig | PopconfirmConfig) & {

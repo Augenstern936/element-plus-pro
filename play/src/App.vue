@@ -14,7 +14,9 @@
 		</pro-table> -->
 		<!-- <pro-button type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">删除</pro-button> -->
 		<el-space fill>
-			<ProButton type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">测试</ProButton>
+			<ProButton type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }" @click="reset"
+				>刷新</ProButton
+			>
 			<ProCopyable value="17634393156" @success="() => console.log('成功')" />
 			<!-- <ProField.Rate mode="read" />
 			<ProField.Slider />
@@ -76,6 +78,8 @@
 			:readonly="true"
 			:required="true"
 			:items="formItems"
+			:request="getFormData"
+			:params="requestParams"
 			:actions="{
 				buttonFillMode: 'aequilate',
 			}"
@@ -93,6 +97,23 @@
 	const test = ref([1, 2, 3]);
 
 	const switchs = ref('22');
+
+	const requestParams = ref({
+		id: '1001',
+	});
+
+	const getFormData = async (params: Record<string, any>, props) => {
+		console.log('请求参数', params, props);
+		return {
+			name: '拔都',
+			age: 50,
+		};
+	};
+
+	const reset = () => {
+		requestParams.value.id = '1002';
+		console.log(requestParams.value, '重置');
+	};
 
 	const formItems = ref([
 		{

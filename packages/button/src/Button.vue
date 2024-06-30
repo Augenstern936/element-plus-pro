@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-04-27 16:16:26
- * @LastEditTime: 2024-06-02 13:08:14
+ * @LastEditTime: 2024-06-30 13:41:49
 -->
 <template>
 	<el-popconfirm
@@ -15,12 +15,12 @@
 	>
 		<template #reference>
 			<el-button v-bind="props" @click.stop="onClick">
-				<slot>{{ render }}</slot>
+				<slot>{{ title }}</slot>
 			</el-button>
 		</template>
 	</el-popconfirm>
 	<el-button v-else v-bind="props" @click.stop="onClick">
-		<slot>{{ render }}</slot>
+		<slot>{{ title }}</slot>
 	</el-button>
 </template>
 
@@ -38,8 +38,8 @@
 	const popconfirmVisible = ref(false);
 
 	const tipConfig = computed<{
-		messageBox: MessageBoxConfig | { [x: any]: any };
-		popconfirm: PopconfirmConfig | { [x: any]: any };
+		messageBox: MessageBoxConfig | {};
+		popconfirm: PopconfirmConfig | {};
 	}>(() => {
 		return {
 			messageBox: isObject(props.tip) && props.tip.mode === 'message-box' ? props.tip : {},

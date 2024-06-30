@@ -1,0 +1,9 @@
+{
+	"name": "@element-plus/pro-hooks",
+	"private": true,
+	"main": "index.ts",
+	"license": "ISC",
+	"dependencies": {
+		"vue-request": "^2.0.4"
+	}
+}
