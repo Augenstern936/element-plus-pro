@@ -2,18 +2,19 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-27 20:57:53
- * @LastEditTime: 2024-06-30 18:23:21
+ * @LastEditTime: 2024-07-02 17:03:27
  * @FilePath: \element-plus-pro\packages\form\src\core\HOC\createField.tsx
  */
-import { FunctionalComponent } from 'vue';
-import { ProFormItem } from '../FormItem';
+import { ProFieldProps } from "@element-plus/pro-field";
+import { FunctionalComponent, defineComponent } from "vue";
+import { ProFormItem } from "../FormItem";
 
-function createField(Field: FunctionalComponent, config?: Record<string, any>) {
-	return (
+function createField<T>(FieldComponent: FunctionalComponent<T>, config?: Record<string, any>) {
+	return defineComponent<ProFieldProps>((props) => () => (
 		<ProFormItem {...config}>
-			<Field />
+			<FieldComponent {...props} />
 		</ProFormItem>
-	);
+	)) as unknown as FunctionalComponent<ProFieldProps>;
 }
 
 export default createField;

@@ -1,10 +1,11 @@
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
+import { ProFormField } from "../../core";
 
 export const ProFormCheckbox = defineComponent(
 	(props, ctx) => {
-		return () => <div>222</div>;
+		return () => <ProFormField type={"cascader"} fieldProps={props} />;
 	},
 	{
-		name: 'ProFormCheckbox',
+		name: "ProFormCheckbox",
 	}
 );
