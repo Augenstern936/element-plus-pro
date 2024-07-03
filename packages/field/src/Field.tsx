@@ -2,17 +2,17 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-06-24 21:34:44
+ * @LastEditTime: 2024-07-03 17:54:32
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
-import 'element-plus/theme-chalk/src/base.scss';
-import type { GeneratePropTypes, ToUppercaseFirst } from '@element-plus/pro-types';
-import { formatPlaceholder } from '@element-plus/pro-utils';
-import { useVModel } from '@vueuse/core';
-import type { FunctionalComponent, PropType } from 'vue';
-import { computed, defineComponent } from 'vue';
-import { components } from './components';
-import type { FieldProps, ProFieldSuperProps, ProFieldType } from './typing';
+import type { GeneratePropTypes, ToUppercaseFirst } from "@element-plus/pro-types";
+import { formatPlaceholder } from "@element-plus/pro-utils";
+import { useVModel } from "@vueuse/core";
+import "element-plus/theme-chalk/src/base.scss";
+import type { FunctionalComponent, PropType } from "vue";
+import { computed, defineComponent } from "vue";
+import components from "./components";
+import type { FieldProps, ProFieldSuperProps, ProFieldType } from "./typing";
 
 export const proFieldProps = {
 	modelValue: {
@@ -20,16 +20,16 @@ export const proFieldProps = {
 		default: void 0,
 	},
 	mode: {
-		type: String as PropType<'read' | 'edit'>,
-		default: 'edit',
+		type: String as PropType<"read" | "edit">,
+		default: "edit",
 	},
 	type: {
 		type: String as PropType<ProFieldType>,
-		default: 'text',
+		default: "text",
 	},
 	emptyText: {
 		type: String,
-		default: '--',
+		default: "--",
 	},
 	placeholder: {
 		type: [String, Array] as PropType<string | [string] | [string, string]>,
@@ -39,12 +39,12 @@ export const proFieldProps = {
 	},
 } as const;
 
-export * from './typing';
+export * from "./typing";
 
-export type ProFieldProps = Omit<GeneratePropTypes<typeof proFieldProps>, 'type' | 'fieldProps'> & FieldProps;
+export type ProFieldProps = Omit<GeneratePropTypes<typeof proFieldProps>, "type" | "fieldProps"> & FieldProps;
 
 function getPlaceholder(type: ProFieldType, placeholder?: string | [string] | [string, string]) {
-	const value = placeholder ?? (formatPlaceholder('', type) as string | [string, string]);
+	const value = placeholder ?? (formatPlaceholder("", type) as string | [string, string]);
 
 	if (Array.isArray(value) && value.length > 1) {
 		return {
@@ -61,18 +61,18 @@ function getPlaceholder(type: ProFieldType, placeholder?: string | [string] | [s
 const ProField = defineComponent<ProFieldProps>(
 	(props, ctx) => {
 		const Field = computed(() => {
-			return components[props.type || 'text'] as FunctionalComponent;
+			return components[props.type || "text"] as FunctionalComponent;
 		});
 
 		const empty = computed(() => {
-			const types = ['slider', 'number', 'rate', 'switch'];
-			if (!props.modelValue && !types.includes(props.type ?? '')) {
+			const types = ["slider", "number", "rate", "switch"];
+			if (!props.modelValue && !types.includes(props.type ?? "")) {
 				return props.emptyText;
 			}
 			return props.modelValue;
 		});
 
-		const model = props.mode === 'read' ? empty : useVModel(props, 'modelValue', ctx.emit);
+		const model = props.mode === "read" ? empty : useVModel(props, "modelValue", ctx.emit);
 
 		return () => (
 			<Field.value
@@ -84,7 +84,7 @@ const ProField = defineComponent<ProFieldProps>(
 		);
 	},
 	{
-		name: 'ProField',
+		name: "ProField",
 	}
 ) as unknown as ProFieldSuperProps<ProFieldProps>;
 
