@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-07-03 17:51:19
+ * @LastEditTime: 2024-07-04 17:47:43
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
 import ProFieldAvatar from "./Avatar";
 import ProFieldCascader from "./Cascader";
 import { ProFieldCheckbox, ProFieldCheckboxButton } from "./Checkbox";
-import ProFieldColor from "./Color";
+import ProFieldColor from "./ColorPicker";
 import {
 	ProFieldDate,
 	ProFieldDateMonth,
@@ -19,7 +19,7 @@ import {
 	ProFieldDateWeek,
 	ProFieldDateYear,
 	ProFieldDates,
-} from "./Date";
+} from "./DatePicker";
 import ProFieldImage from "./Image";
 import { ProFieldNumber, ProFieldPassword, ProFieldText, ProFieldTextarea } from "./Input";
 import ProFieldProgress from "./Progress";
@@ -35,8 +35,8 @@ import ProFieldTreeSelect from "./TreeSelect";
 export * from "./Avatar";
 export * from "./Cascader";
 export * from "./Checkbox";
-export * from "./Color";
-export * from "./Date";
+export * from "./ColorPicker";
+export * from "./DatePicker";
 export * from "./Image";
 export * from "./Input";
 export * from "./Progress";
