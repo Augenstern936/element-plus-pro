@@ -2,76 +2,68 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-07-04 17:47:43
+ * @LastEditTime: 2024-07-04 22:34:09
  * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
  */
-import ProFieldAvatar from "./Avatar";
-import ProFieldCascader from "./Cascader";
-import { ProFieldCheckbox, ProFieldCheckboxButton } from "./Checkbox";
-import ProFieldColor from "./ColorPicker";
-import {
-	ProFieldDate,
-	ProFieldDateMonth,
-	ProFieldDateMonthRange,
-	ProFieldDateRange,
-	ProFieldDateTime,
-	ProFieldDateTimeRange,
-	ProFieldDateWeek,
-	ProFieldDateYear,
-	ProFieldDates,
-} from "./DatePicker";
-import ProFieldImage from "./Image";
-import { ProFieldNumber, ProFieldPassword, ProFieldText, ProFieldTextarea } from "./Input";
-import ProFieldProgress from "./Progress";
-import { ProFieldRadio, ProFieldRadioButton } from "./Radio";
-import ProFieldRate from "./Rate";
-import ProFieldSelect from "./Select";
-import ProFieldSlider from "./Slider";
-import ProFieldSwitch from "./Switch";
-import { ProFieldTime, ProFieldTimeRange } from "./TimePicker";
-import ProFieldTimeSelect from "./TimeSelect";
-import ProFieldTreeSelect from "./TreeSelect";
+import ProFormVirtualizedSelect from './VirtualizedSelect';
+import ProFieldAvatar from './Avatar';
+import ProFieldCascader from './Cascader';
+import * as Checkbox from './Checkbox';
+import ProFieldColor from './ColorPicker';
+import * as DatePicker from './DatePicker';
+import ProFieldImage from './Image';
+import * as Input from './Input';
+import ProFieldProgress from './Progress';
+import * as Radio from './Radio';
+import ProFieldRate from './Rate';
+import ProFieldSelect from './Select';
+import ProFieldSlider from './Slider';
+import ProFieldSwitch from './Switch';
+import * as TimePicker from './TimePicker';
+import ProFieldTimeSelect from './TimeSelect';
+import ProFieldTreeSelect from './TreeSelect';
 
-export * from "./Avatar";
-export * from "./Cascader";
-export * from "./Checkbox";
-export * from "./ColorPicker";
-export * from "./DatePicker";
-export * from "./Image";
-export * from "./Input";
-export * from "./Progress";
-export * from "./Radio";
-export * from "./Rate";
-export * from "./Select";
-export * from "./Slider";
-export * from "./Switch";
-export * from "./TimePicker";
-export * from "./TimeSelect";
-export * from "./TreeSelect";
+export * from './Avatar';
+export * from './Cascader';
+export * from './Checkbox';
+export * from './ColorPicker';
+export * from './DatePicker';
+export * from './Image';
+export * from './Input';
+export * from './Progress';
+export * from './Radio';
+export * from './Rate';
+export * from './Select';
+export * from './Slider';
+export * from './Switch';
+export * from './TimePicker';
+export * from './TimeSelect';
+export * from './TreeSelect';
 
 export default {
-	text: ProFieldText,
-	number: ProFieldNumber,
-	password: ProFieldPassword,
-	textarea: ProFieldTextarea,
-	date: ProFieldDate,
-	dates: ProFieldDates,
-	dateRange: ProFieldDateRange,
-	dateYear: ProFieldDateYear,
-	dateMonth: ProFieldDateMonth,
-	dateMonthRange: ProFieldDateMonthRange,
-	dateWeek: ProFieldDateWeek,
-	dateTime: ProFieldDateTime,
-	dateTimeRange: ProFieldDateTimeRange,
-	time: ProFieldTime,
-	timeRange: ProFieldTimeRange,
+	text: Input.ProFieldText,
+	number: Input.ProFieldNumber,
+	password: Input.ProFieldPassword,
+	textarea: Input.ProFieldTextarea,
+	date: DatePicker.ProFieldDate,
+	dates: DatePicker.ProFieldDates,
+	dateRange: DatePicker.ProFieldDateRange,
+	dateYear: DatePicker.ProFieldDateYear,
+	dateMonth: DatePicker.ProFieldDateMonth,
+	dateMonthRange: DatePicker.ProFieldDateMonthRange,
+	dateWeek: DatePicker.ProFieldDateWeek,
+	dateTime: DatePicker.ProFieldDateTime,
+	dateTimeRange: DatePicker.ProFieldDateTimeRange,
+	time: TimePicker.ProFieldTime,
+	timeRange: TimePicker.ProFieldTimeRange,
 	timeSelect: ProFieldTimeSelect,
 	select: ProFieldSelect,
 	treeSelect: ProFieldTreeSelect,
-	checkbox: ProFieldCheckbox,
-	checkboxButton: ProFieldCheckboxButton,
-	radio: ProFieldRadio,
-	radioButton: ProFieldRadioButton,
+	virtualizedSelect: ProFormVirtualizedSelect,
+	checkbox: Checkbox.ProFieldCheckbox,
+	checkboxButton: Checkbox.ProFieldCheckboxButton,
+	radio: Radio.ProFieldRadio,
+	radioButton: Radio.ProFieldRadioButton,
 	switch: ProFieldSwitch,
 	avatar: ProFieldAvatar,
 	image: ProFieldImage,

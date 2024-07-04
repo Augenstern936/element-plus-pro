@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:40:06
- * @LastEditTime: 2024-07-03 22:57:28
+ * @LastEditTime: 2024-07-04 22:55:20
  * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\index.tsx
  */
 import { withInstall } from '@element-plus/pro-utils';
@@ -12,6 +12,7 @@ import { useVModel } from '@vueuse/core';
 import components from '../../components';
 import { ToUppercaseFirst } from '@element-plus/pro-types';
 import { ProFormFieldType } from '../../typing';
+import { ProFormSuperProps } from './typing';
 
 const Form = defineComponent<GenerateFormProps>(
 	(props, ctx) => {
@@ -24,7 +25,7 @@ const Form = defineComponent<GenerateFormProps>(
 	{
 		name: 'ProForm',
 	}
-) as unknown as FunctionalComponent<GenerateFormProps>;
+) as unknown as ProFormSuperProps<GenerateFormProps>;
 
 Form.props = generateFormProps as any;
 

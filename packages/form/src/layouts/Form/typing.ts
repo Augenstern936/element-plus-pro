@@ -2,11 +2,12 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 23:05:53
- * @LastEditTime: 2024-04-11 22:56:05
+ * @LastEditTime: 2024-07-04 22:53:06
  * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\typing.ts
  */
 import type { FormProps, FormItemProps, FormItemRule } from 'element-plus';
 import components from '../../components';
+import { FunctionalComponent } from 'vue';
 
 export interface ProFormProps extends FormProps {
 	// 绑定的数据
@@ -59,3 +60,36 @@ export type Type = keyof typeof components;
 export type ProFormItemRule = Omit<FormItemRule, 'required'>;
 
 type ProFormItemFunction<T> = (entity: Record<string, unknown>) => T;
+
+export type ProFormSuperProps<T> = FunctionalComponent<T> & {
+	Text: FunctionalComponent;
+	Number: FunctionalComponent;
+	Password: FunctionalComponent;
+	Textarea: FunctionalComponent;
+	Date: FunctionalComponent;
+	Dates: FunctionalComponent;
+	DateTime: FunctionalComponent;
+	DateWeek: FunctionalComponent;
+	DateMonth: FunctionalComponent;
+	DateYear: FunctionalComponent;
+	DateRange: FunctionalComponent;
+	DateTimeRange: FunctionalComponent;
+	DateMonthRange: FunctionalComponent;
+	Time: FunctionalComponent;
+	TimeRange: FunctionalComponent;
+	TimeSelect: FunctionalComponent;
+	Select: FunctionalComponent;
+	TreeSelect: FunctionalComponent;
+	Checkbox: FunctionalComponent;
+	CheckboxButton: FunctionalComponent;
+	Radio: FunctionalComponent;
+	RadioButton: FunctionalComponent;
+	Switch: FunctionalComponent;
+	Avatar: FunctionalComponent;
+	Image: FunctionalComponent;
+	Rate: FunctionalComponent;
+	Color: FunctionalComponent;
+	Cascader: FunctionalComponent;
+	Slider: FunctionalComponent;
+	Progress: FunctionalComponent;
+};
