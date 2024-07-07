@@ -7,7 +7,7 @@
  */
 import './style.scss';
 import { ElProgress, ElText } from 'element-plus';
-import { FunctionalComponent, computed, defineComponent } from 'vue';
+import { DefineComponent, computed, defineComponent } from 'vue';
 import { ProFieldProgressProps, proFieldProgressProps } from './props';
 
 const ProFieldProgress = defineComponent<ProFieldProgressProps>(
@@ -36,7 +36,7 @@ const ProFieldProgress = defineComponent<ProFieldProgressProps>(
 	{
 		name: 'ProFieldProgress',
 	}
-) as unknown as FunctionalComponent<ProFieldProgressProps>;
+) as DefineComponent<ProFieldProgressProps>;
 
 ProFieldProgress.props = proFieldProgressProps as any;
 

@@ -2,12 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 23:05:53
- * @LastEditTime: 2024-07-04 22:53:06
+ * @LastEditTime: 2024-07-06 17:49:10
  * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\typing.ts
  */
+import components, * as Types from '../../components';
 import type { FormProps, FormItemProps, FormItemRule } from 'element-plus';
-import components from '../../components';
-import { FunctionalComponent } from 'vue';
+import type { DefineComponent } from 'vue';
+import type { JSX } from 'vue/jsx-runtime';
 
 export interface ProFormProps extends FormProps {
 	// 绑定的数据
@@ -61,35 +62,34 @@ export type ProFormItemRule = Omit<FormItemRule, 'required'>;
 
 type ProFormItemFunction<T> = (entity: Record<string, unknown>) => T;
 
-export type ProFormSuperProps<T> = FunctionalComponent<T> & {
-	Text: FunctionalComponent;
-	Number: FunctionalComponent;
-	Password: FunctionalComponent;
-	Textarea: FunctionalComponent;
-	Date: FunctionalComponent;
-	Dates: FunctionalComponent;
-	DateTime: FunctionalComponent;
-	DateWeek: FunctionalComponent;
-	DateMonth: FunctionalComponent;
-	DateYear: FunctionalComponent;
-	DateRange: FunctionalComponent;
-	DateTimeRange: FunctionalComponent;
-	DateMonthRange: FunctionalComponent;
-	Time: FunctionalComponent;
-	TimeRange: FunctionalComponent;
-	TimeSelect: FunctionalComponent;
-	Select: FunctionalComponent;
-	TreeSelect: FunctionalComponent;
-	Checkbox: FunctionalComponent;
-	CheckboxButton: FunctionalComponent;
-	Radio: FunctionalComponent;
-	RadioButton: FunctionalComponent;
-	Switch: FunctionalComponent;
-	Avatar: FunctionalComponent;
-	Image: FunctionalComponent;
-	Rate: FunctionalComponent;
-	Color: FunctionalComponent;
-	Cascader: FunctionalComponent;
-	Slider: FunctionalComponent;
-	Progress: FunctionalComponent;
+export type ProFormSuperProps<T> = DefineComponent<T> & {
+	Text: DefineComponent<Types.ProFormTextProps>;
+	Number: DefineComponent<Types.ProFormNumberProps>;
+	Password: DefineComponent<Types.ProFormPaaswordProps>;
+	Textarea: DefineComponent<Types.ProFormTextareaProps>;
+	Date: DefineComponent<Types.ProFormDateProps>;
+	Dates: DefineComponent<Types.ProFormDatesProps>;
+	DateTime: DefineComponent<Types.ProFormDateTimeProps>;
+	DateWeek: DefineComponent<Types.ProFormDateWeekProps>;
+	DateMonth: DefineComponent<Types.ProFormDateMonthProps>;
+	DateYear: DefineComponent<Types.ProFormDateYearProps>;
+	DateRange: DefineComponent<Types.ProFormDateRangeProps>;
+	DateTimeRange: DefineComponent<Types.ProFormDateTimeRangeProps>;
+	DateMonthRange: DefineComponent<Types.ProFormDateMonthRangeProps>;
+	Time: DefineComponent<Types.ProFormTimeProps>;
+	TimeRange: DefineComponent<Types.ProFormTimeRangeProps>;
+	TimeSelect: DefineComponent<Types.ProFormTimeSelectProps>;
+	Select: DefineComponent<Types.ProFormSelectProps>;
+	TreeSelect: DefineComponent<Types.ProFormTreeSelectProps>;
+	Checkbox: DefineComponent<Types.ProFormCheckboxProps>;
+	CheckboxButton: DefineComponent<Types.ProFormCheckboxButtonProps>;
+	Radio: DefineComponent<Types.ProFormRadioProps>;
+	RadioButton: DefineComponent<Types.ProFormRadioButtonProps>;
+	Switch: DefineComponent<Types.ProFormSwitchProps>;
+	Avatar: DefineComponent<Types.ProFormAavtarProps>;
+	Image: DefineComponent<Types.ProFormImageProps>;
+	Rate: DefineComponent<Types.ProFormRateProps>;
+	Color: DefineComponent<Types.ProFormColorProps>;
+	Cascader: DefineComponent<Types.ProFormCascaderProps>;
+	Slider: DefineComponent<Types.ProFormSliderProps>;
 };

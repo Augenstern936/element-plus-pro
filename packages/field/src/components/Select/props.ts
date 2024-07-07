@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-05-29 21:05:37
- * @LastEditTime: 2024-06-02 00:46:56
+ * @LastEditTime: 2024-07-07 14:01:07
  * @FilePath: \element-plus-pro\packages\field\src\components\Select\props.ts
  */
 import { ValueOption, ValueEnum, MarkShape } from '@element-plus/pro-types';
@@ -119,11 +119,11 @@ export const proFieldSelectProps = {
 		type: String as PropType<MarkShape>,
 	},
 	valueOptions: {
-		type: Array as PropType<ProFieldSelectOption[]>,
+		type: Array as PropType<ProFieldSelectValueOption[]>,
 		default: [],
 	},
 	valueEnum: {
-		type: Object as PropType<ProFieldSelectEnum>,
+		type: Object as PropType<ProFieldSelectValueEnum>,
 	},
 	style: {
 		type: Object as PropType<CSSProperties>,
@@ -131,10 +131,10 @@ export const proFieldSelectProps = {
 	},
 };
 
-export type ProFieldSelectOption = ValueOption & {
+export type ProFieldSelectValueOption = ValueOption<{
 	disabled?: boolean;
-};
+}>;
 
-export type ProFieldSelectEnum = ValueEnum<Omit<ProFieldSelectOption, 'value'>>;
+export type ProFieldSelectValueEnum = ValueEnum<Omit<ProFieldSelectValueOption, 'value'>>;
 
 export type ProFieldSelectProps = Partial<ExtractPropTypes<typeof proFieldSelectProps>>;

@@ -9,7 +9,7 @@ import { useVModel } from '@vueuse/core';
 import { ElRate, ElText } from 'element-plus';
 import 'element-plus/theme-chalk/src/rate.scss';
 import 'element-plus/theme-chalk/src/text.scss';
-import { FunctionalComponent, defineComponent } from 'vue';
+import { DefineComponent, defineComponent } from 'vue';
 import { ProFieldRateProps, proFieldRateProps } from './props';
 
 const ProFieldRate = defineComponent<ProFieldRateProps>(
@@ -34,7 +34,7 @@ const ProFieldRate = defineComponent<ProFieldRateProps>(
 	{
 		name: 'ProFieldRate',
 	}
-) as unknown as FunctionalComponent<ProFieldRateProps>;
+) as DefineComponent<ProFieldRateProps>;
 
 ProFieldRate.props = proFieldRateProps as any;
 

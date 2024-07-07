@@ -2,14 +2,14 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-06-15 23:20:37
+ * @LastEditTime: 2024-07-07 11:43:44
  * @FilePath: \element-plus-pro\packages\field\src\components\Select\index.tsx
  */
 import { useVModel } from '@vueuse/core';
 import { ElOption, ElSelect } from 'element-plus';
 import 'element-plus/theme-chalk/src/option.scss';
 import 'element-plus/theme-chalk/src/select.scss';
-import { FunctionalComponent, defineComponent, computed } from 'vue';
+import { DefineComponent, defineComponent, computed } from 'vue';
 import { proFieldSelectProps, ProFieldSelectProps } from './props';
 import { enumTransformOptions, getValueOptionConfigs } from '@element-plus/pro-utils';
 import { ReadOptions } from '../widgets';
@@ -29,7 +29,7 @@ const ProFieldSelect = defineComponent<ProFieldSelectProps>(
 					/>
 				) : (
 					<ElSelect v-model={model.value}>
-						{options.value?.map((option) => <ElOption key={option.label} {...option} />)}
+						{options.value?.map((option) => <ElOption {...option} key={option.label} />)}
 					</ElSelect>
 				)}
 			</>
@@ -38,7 +38,7 @@ const ProFieldSelect = defineComponent<ProFieldSelectProps>(
 	{
 		name: 'ProFieldSelect',
 	}
-) as unknown as FunctionalComponent<ProFieldSelectProps>;
+) as DefineComponent<ProFieldSelectProps>;
 
 ProFieldSelect.props = proFieldSelectProps as any;
 

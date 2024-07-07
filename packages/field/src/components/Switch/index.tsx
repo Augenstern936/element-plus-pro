@@ -7,7 +7,7 @@
  */
 import { ElSwitch, ElText } from 'element-plus';
 import 'element-plus/theme-chalk/src/switch.scss';
-import { FunctionalComponent, computed, defineComponent } from 'vue';
+import { DefineComponent, computed, defineComponent } from 'vue';
 import { ProFieldSwitchProps, proFieldSwitchProps } from './props';
 import { useVModel } from '@vueuse/core';
 
@@ -43,7 +43,7 @@ const ProFieldSwitch = defineComponent<ProFieldSwitchProps>(
 	{
 		name: 'ProFieldSwitch',
 	}
-) as unknown as FunctionalComponent<ProFieldSwitchProps>;
+) as DefineComponent<ProFieldSwitchProps>;
 
 ProFieldSwitch.props = proFieldSwitchProps as any;
 

@@ -1,25 +1,44 @@
 /*
  * @Description:
  * @Date: 2024-06-25 09:54:28
- * @LastEditTime: 2024-06-26 14:44:21
+ * @LastEditTime: 2024-07-06 22:58:08
  */
-import { computed } from "vue";
-import { GenerateFormProps, ProFormItem } from "./typing";
+import { computed } from 'vue';
+import * as components from '../../components';
+import { GenerateFormProps } from './typing';
+import { isObject } from '@vueuse/core';
 
-const useFormProps = (props: GenerateFormProps) => {
-	const items = computed(() => {
-		if (!props.items || !Array.isArray(props.items)) {
-			return [];
-		}
-
-		return props.items?.filter((item) => {
-			const hide = typeof item.hide === "function" ? item.hide({}, props.items as ProFormItem[]) : item.hide;
-			return hide !== false;
+const useFormProps = (
+	props: GenerateFormProps,
+	slots: { type: string | { name: string }; props: Record<string, any> }[]
+) => {
+	const columns = computed(() => {
+		const proFormFieldSlots = slots.filter((slot) => {
+			return isObject(slot.type) && components[slot.type.name as keyof typeof components];
 		});
+
+		let data: any[] =
+			props?.columns?.filter((item) => {
+				const hide = typeof item.hide === 'function' ? item.hide({}, props.columns as any[]) : item.hide;
+				return hide !== false;
+			}) ?? [];
+
+		proFormFieldSlots.forEach((slot) => {
+			const order = slot?.props?.order;
+			if (typeof order === 'number') {
+				data = data.toSpliced(order, order, { ...slot, is: 'slot' });
+			} else {
+				data.push({ ...slot, is: 'slot' });
+			}
+		});
+
+		console.log(data, 'data');
+
+		return data;
 	});
 
 	return {
-		items: items.value,
+		columns: columns.value,
 	};
 };
 

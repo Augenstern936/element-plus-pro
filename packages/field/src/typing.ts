@@ -1,173 +1,153 @@
 /*
  * @Description:
  * @Date: 2024-05-28 16:49:08
- * @LastEditTime: 2024-07-03 17:54:15
+ * @LastEditTime: 2024-07-07 12:03:09
  */
-import { FunctionalComponent } from "vue";
-import components, {
-	ProDatePickerPropsMap,
-	ProFieldAvatarProps,
-	ProFieldCascaderProps,
-	ProFieldCheckboxProps,
-	ProFieldColorProps,
-	ProFieldImageProps,
-	ProFieldNumberProps,
-	ProFieldPasswordProps,
-	ProFieldProgressProps,
-	ProFieldRadioProps,
-	ProFieldRateProps,
-	ProFieldSelectProps,
-	ProFieldSliderProps,
-	ProFieldSwitchProps,
-	ProFieldTextProps,
-	ProFieldTextareaProps,
-	ProFieldTimeProps,
-	ProFieldTimeRangeProps,
-	ProFieldTimeSelectProps,
-	ProFieldTreeSelectProps,
-} from "./components";
+import { DefineComponent } from 'vue';
+import components, * as Types from './components';
+import type { ValueEnum, ValueOption } from '@element-plus/pro-types';
 
 type TextFieldProps = {
-	type?: "text";
-	fieldProps?: ProFieldTextProps;
+	type?: 'text';
+	fieldProps?: Types.ProFieldTextProps;
 };
 
 type NumberFieldProps = {
-	type?: "number";
-	fieldProps?: ProFieldNumberProps;
+	type?: 'number';
+	fieldProps?: Types.ProFieldNumberProps;
 };
 
 type PasswordFieldProps = {
-	type?: "password";
-	fieldProps?: ProFieldPasswordProps;
+	type?: 'password';
+	fieldProps?: Types.ProFieldPasswordProps;
 };
 
 type TextareaFieldProps = {
-	type?: "textarea";
-	fieldProps?: ProFieldTextareaProps;
+	type?: 'textarea';
+	fieldProps?: Types.ProFieldTextareaProps;
 };
 
 type DateFieldProps = {
-	type: "date";
-	fieldProps?: ProDatePickerPropsMap.ProFieldDateProps;
+	type: 'date';
+	fieldProps?: Types.ProFieldDateProps;
 };
 
 type DateRangeFieldProps = {
-	type: "dateRange";
-	fieldProps?: ProDatePickerPropsMap.ProFieldDateRangeProps;
+	type: 'dateRange';
+	fieldProps?: Types.ProFieldDateRangeProps;
 };
 
 type DatesFieldProps = {
-	type: "dates";
-	fieldProps?: ProDatePickerPropsMap.ProFieldDatesProps;
+	type: 'dates';
+	fieldProps?: Types.ProFieldDatesProps;
 };
 
 type DateYearFieldProps = {
-	type: "dateYear";
-	fieldProps?: ProDatePickerPropsMap.ProFieldDateYearProps;
+	type: 'dateYear';
+	fieldProps?: Types.ProFieldDateYearProps;
 };
 
 type DateMonthFieldProps = {
-	type: "dateMonth";
-	fieldProps?: ProDatePickerPropsMap.ProFieldDateMonthProps;
+	type: 'dateMonth';
+	fieldProps?: Types.ProFieldDateMonthProps;
 };
 
 type DateMonthRangeFieldProps = {
-	type: "dateMonthRange";
-	fieldProps?: ProDatePickerPropsMap.ProFieldDateMonthRangeProps;
+	type: 'dateMonthRange';
+	fieldProps?: Types.ProFieldDateMonthRangeProps;
 };
 
 type DateTimeWeekFieldProps = {
-	type: "dateWeek";
-	fieldProps?: ProDatePickerPropsMap.ProFieldDateWeekProps;
+	type: 'dateWeek';
+	fieldProps?: Types.ProFieldDateWeekProps;
 };
 
 type DateTimeFieldProps = {
-	type: "dateTime";
-	fieldProps?: ProDatePickerPropsMap.ProFieldDateTimeProps;
+	type: 'dateTime';
+	fieldProps?: Types.ProFieldDateTimeProps;
 };
 
 type DateTimeRangeFieldProps = {
-	type: "dateTimeRange";
-	fieldProps?: ProDatePickerPropsMap.ProFieldDateTimeRangeProps;
+	type: 'dateTimeRange';
+	fieldProps?: Types.ProFieldDateTimeRangeProps;
 };
 
 type TimeFieldProps = {
-	type: "time";
-	fieldProps?: ProFieldTimeProps;
+	type: 'time';
+	fieldProps?: Types.ProFieldTimeProps;
 };
 
 type TimeRangeFieldProps = {
-	type: "timeRange";
-	fieldProps?: ProFieldTimeRangeProps;
+	type: 'timeRange';
+	fieldProps?: Types.ProFieldTimeRangeProps;
 };
 
 type TimeSelectFieldProps = {
-	type: "timeSelect";
-	fieldProps?: ProFieldTimeSelectProps;
+	type: 'timeSelect';
+	fieldProps?: Types.ProFieldTimeSelectProps;
 };
 
 type SelectFieldProps = {
-	type: "select";
-	fieldProps?: ProFieldSelectProps;
+	type: 'select';
+	fieldProps?: Types.ProFieldSelectProps;
 };
 
 type AvatarFieldProps = {
-	type?: "avatar";
-	fieldProps?: ProFieldAvatarProps;
+	type?: 'avatar';
+	fieldProps?: Types.ProFieldAvatarProps;
 };
 
 type SwitchFieldProps = {
-	type?: "switch";
-	fieldProps?: ProFieldSwitchProps;
+	type?: 'switch';
+	fieldProps?: Types.ProFieldSwitchProps;
 };
 
 type CascaderFieldProps = {
-	type?: "cascader";
-	fieldProps?: ProFieldCascaderProps;
+	type?: 'cascader';
+	fieldProps?: Types.ProFieldCascaderProps;
 };
 
 type CheckboxFieldProps = {
-	type?: "checkbox" | "checkboxButton";
-	fieldProps?: ProFieldCheckboxProps;
+	type?: 'checkbox' | 'checkboxButton';
+	fieldProps?: Types.ProFieldCheckboxProps;
 };
 
 type ColorFieldProps = {
-	type?: "color";
-	fieldProps?: ProFieldColorProps;
+	type?: 'color';
+	fieldProps?: Types.ProFieldColorProps;
 };
 
 type ImageFieldProps = {
-	type?: "image";
-	fieldProps?: ProFieldImageProps;
+	type?: 'image';
+	fieldProps?: Types.ProFieldImageProps;
 };
 
 type ProgressFieldProps = {
-	type?: "progress";
-	fieldProps?: ProFieldProgressProps;
+	type?: 'progress';
+	fieldProps?: Types.ProFieldProgressProps;
 };
 
 type RateFieldProps = {
-	type?: "rate";
-	fieldProps?: ProFieldRateProps;
+	type?: 'rate';
+	fieldProps?: Types.ProFieldRateProps;
 };
 
 type RadioFieldProps = {
-	type?: "radio" | "radioButton";
-	fieldProps?: ProFieldRadioProps;
+	type?: 'radio' | 'radioButton';
+	fieldProps?: Types.ProFieldRadioProps;
 };
 
 type SliderFieldProps = {
-	type?: "slider";
-	fieldProps?: ProFieldSliderProps;
+	type?: 'slider';
+	fieldProps?: Types.ProFieldSliderProps;
 };
 
 type TreeSelectFieldProps = {
-	type?: "treeSelect";
-	fieldProps?: ProFieldTreeSelectProps;
+	type?: 'treeSelect';
+	fieldProps?: Types.ProFieldTreeSelectProps;
 };
 
-export type ProFieldMode = "read" | "edit";
+export type ProFieldMode = 'read' | 'edit';
 
 export type ProFieldType = keyof typeof components;
 
@@ -201,35 +181,35 @@ export type FieldProps =
 	| SliderFieldProps
 	| TreeSelectFieldProps;
 
-export type ProFieldSuperProps<T> = FunctionalComponent<T> & {
-	Text: FunctionalComponent<ProFieldTextProps>;
-	Number: FunctionalComponent<ProFieldNumberProps>;
-	Password: FunctionalComponent<ProFieldPasswordProps>;
-	Textarea: FunctionalComponent<ProFieldTextareaProps>;
-	Date: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateProps>;
-	Dates: FunctionalComponent<ProDatePickerPropsMap.ProFieldDatesProps>;
-	DateTime: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateTimeProps>;
-	DateWeek: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateWeekProps>;
-	DateMonth: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateMonthProps>;
-	DateYear: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateYearProps>;
-	DateRange: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateRangeProps>;
-	DateTimeRange: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateTimeRangeProps>;
-	DateMonthRange: FunctionalComponent<ProDatePickerPropsMap.ProFieldDateMonthRangeProps>;
-	Time: FunctionalComponent<ProFieldTimeProps>;
-	TimeRange: FunctionalComponent<ProFieldTimeRangeProps>;
-	TimeSelect: FunctionalComponent<ProFieldTimeSelectProps>;
-	Select: FunctionalComponent<ProFieldSelectProps>;
-	TreeSelect: FunctionalComponent<ProFieldTreeSelectProps>;
-	Checkbox: FunctionalComponent<ProFieldCheckboxProps>;
-	CheckboxButton: FunctionalComponent<ProFieldCheckboxProps>;
-	Radio: FunctionalComponent<ProFieldRadioProps>;
-	RadioButton: FunctionalComponent<ProFieldRadioProps>;
-	Switch: FunctionalComponent<ProFieldSwitchProps>;
-	Avatar: FunctionalComponent<ProFieldAvatarProps>;
-	Image: FunctionalComponent<ProFieldImageProps>;
-	Rate: FunctionalComponent<ProFieldRateProps>;
-	Color: FunctionalComponent<ProFieldColorProps>;
-	Cascader: FunctionalComponent<ProFieldCascaderProps>;
-	Slider: FunctionalComponent<ProFieldSliderProps>;
-	Progress: FunctionalComponent<ProFieldProgressProps>;
+export type ProFieldSuperProps<T> = DefineComponent<T> & {
+	Text: DefineComponent<Types.ProFieldTextProps>;
+	Number: DefineComponent<Types.ProFieldNumberProps>;
+	Password: DefineComponent<Types.ProFieldPasswordProps>;
+	Textarea: DefineComponent<Types.ProFieldTextareaProps>;
+	Date: DefineComponent<Types.ProFieldDateProps>;
+	Dates: DefineComponent<Types.ProFieldDatesProps>;
+	DateTime: DefineComponent<Types.ProFieldDateTimeProps>;
+	DateWeek: DefineComponent<Types.ProFieldDateWeekProps>;
+	DateMonth: DefineComponent<Types.ProFieldDateMonthProps>;
+	DateYear: DefineComponent<Types.ProFieldDateYearProps>;
+	DateRange: DefineComponent<Types.ProFieldDateRangeProps>;
+	DateTimeRange: DefineComponent<Types.ProFieldDateTimeRangeProps>;
+	DateMonthRange: DefineComponent<Types.ProFieldDateMonthRangeProps>;
+	Time: DefineComponent<Types.ProFieldTimeProps>;
+	TimeRange: DefineComponent<Types.ProFieldTimeRangeProps>;
+	TimeSelect: DefineComponent<Types.ProFieldTimeSelectProps>;
+	Select: DefineComponent<Types.ProFieldSelectProps>;
+	TreeSelect: DefineComponent<Types.ProFieldTreeSelectProps>;
+	Checkbox: DefineComponent<Types.ProFieldCheckboxProps>;
+	CheckboxButton: DefineComponent<Types.ProFieldCheckboxProps>;
+	Radio: DefineComponent<Types.ProFieldRadioProps>;
+	RadioButton: DefineComponent<Types.ProFieldRadioProps>;
+	Switch: DefineComponent<Types.ProFieldSwitchProps>;
+	Avatar: DefineComponent<Types.ProFieldAvatarProps>;
+	Image: DefineComponent<Types.ProFieldImageProps>;
+	Rate: DefineComponent<Types.ProFieldRateProps>;
+	Color: DefineComponent<Types.ProFieldColorProps>;
+	Cascader: DefineComponent<Types.ProFieldCascaderProps>;
+	Slider: DefineComponent<Types.ProFieldSliderProps>;
+	Progress: DefineComponent<Types.ProFieldProgressProps>;
 };

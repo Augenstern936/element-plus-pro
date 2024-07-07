@@ -6,7 +6,7 @@
  * @FilePath: \element-plus-pro\packages\field\src\components\Input\BaseInput.tsx
  */
 import { ElInput } from 'element-plus';
-import { FunctionalComponent, defineComponent } from 'vue';
+import { DefineComponent, defineComponent } from 'vue';
 import { BaseInputProps, baseInputProps } from './props';
 import { useVModel } from '@vueuse/core';
 
@@ -22,7 +22,7 @@ const BaseInput = defineComponent<BaseInputProps>((props, ctx) => {
 		}
 		return '';
 	};
-}) as unknown as FunctionalComponent<BaseInputProps>;
+}) as DefineComponent<BaseInputProps>;
 
 BaseInput.props = baseInputProps as any;
 

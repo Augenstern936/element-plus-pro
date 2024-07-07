@@ -2,11 +2,12 @@
  * @Description:表单操作器
  * @Author: wangbowen936926
  * @Date: 2024-06-16 20:02:37
- * @LastEditTime: 2024-06-24 21:46:31
+ * @LastEditTime: 2024-07-06 16:37:28
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\Actions.tsx
  */
 import { ButtonProps, ElButton } from 'element-plus';
-import { CSSProperties, SetupContext } from 'vue';
+import { CSSProperties, FunctionalComponent } from 'vue';
+import type { JSX } from 'vue/jsx-runtime';
 
 export interface ActionsProps {
 	submitButtonProps?: ButtonProps & { style?: CSSProperties };
@@ -19,7 +20,7 @@ export interface ActionsProps {
 	onReset?: (entity: Record<string, any>) => void;
 }
 
-const Actions = (props: ActionsProps, ctx: SetupContext) => {
+const Actions: FunctionalComponent<ActionsProps> = (props: ActionsProps) => {
 	const getGridTemplateColumns = () => {
 		const width = {
 			auto: 'repeat(2, 0fr)',

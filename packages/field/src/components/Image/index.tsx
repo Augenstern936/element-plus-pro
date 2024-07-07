@@ -2,12 +2,12 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-06-23 21:53:43
+ * @LastEditTime: 2024-07-06 15:56:36
  * @FilePath: \element-plus-pro\packages\field\src\components\Image\index.tsx
  */
 import './style.scss';
 import { ElIcon, ElImage, ElSpace } from 'element-plus';
-import { FunctionalComponent, computed, defineComponent, reactive } from 'vue';
+import { DefineComponent, computed, defineComponent, reactive } from 'vue';
 import { ProFieldImageProps, proFieldImageProps } from './props';
 import { CloseBold, View } from '@element-plus/icons-vue';
 
@@ -109,7 +109,7 @@ const ProFieldImage = defineComponent<ProFieldImageProps>(
 	{
 		name: 'ProFieldImage',
 	}
-) as unknown as FunctionalComponent<ProFieldImageProps>;
+) as DefineComponent<ProFieldImageProps>;
 
 ProFieldImage.props = proFieldImageProps as any;
 

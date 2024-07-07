@@ -2,16 +2,16 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-22 19:11:22
- * @LastEditTime: 2024-06-22 19:28:59
+ * @LastEditTime: 2024-07-06 15:57:51
  * @FilePath: \element-plus-pro\packages\field\src\components\Input\ProFieldPassword.tsx
  */
-import { ref } from 'vue';
+import { FunctionalComponent, ref } from 'vue';
 import { ElIcon, ElSpace, ElText } from 'element-plus';
 import { ProFieldPasswordProps } from './props';
 import { View, Hide } from '@element-plus/icons-vue';
 import BaseInput from './BaseInput';
 
-export const ProFieldPassword = (props: ProFieldPasswordProps) => {
+export const ProFieldPassword: FunctionalComponent<ProFieldPasswordProps> = (props: ProFieldPasswordProps) => {
 	const isView = ref(false);
 
 	return props.mode === 'read' && props.modelValue ? (

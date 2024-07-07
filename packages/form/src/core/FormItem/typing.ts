@@ -2,13 +2,15 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-27 21:16:50
- * @LastEditTime: 2024-06-27 21:30:46
+ * @LastEditTime: 2024-07-06 16:37:06
  * @FilePath: \element-plus-pro\packages\form\src\core\FormItem\typing.ts
  */
 import { FormItemProps } from 'element-plus';
+import type { JSX } from 'vue/jsx-runtime';
 import type { ProFieldType } from '@element-plus/pro-field';
+import { ValueEnum, ValueOption } from '@element-plus/pro-types';
 
-export type ProFormItemProps = Omit<FormItemProps, 'prop' | 'label'> & {
+export type ProFormColumns = Omit<FormItemProps, 'prop' | 'label'> & {
 	key?: string;
 	label?: string | (() => JSX.Element);
 	dataField?: string;
@@ -21,3 +23,8 @@ export type ProFormItemProps = Omit<FormItemProps, 'prop' | 'label'> & {
 	hide?: boolean | FormItemPropertyFunction<boolean>;
 	render?: () => JSX.Element;
 };
+
+/**
+ * 通用函数类型
+ */
+type FormItemPropertyFunction<T> = (entity: Record<string, any>, items: ProFormColumns[]) => T;

@@ -18,6 +18,7 @@
 				>刷新</ProButton
 			>
 			<ProCopyable value="17634393156" @success="() => console.log('成功')" />
+			<ProField :type="'switch'" />
 			<!-- <ProField.Rate mode="read" />
 			<ProField.Slider />
 			<ProField.Image
@@ -74,27 +75,39 @@
 			]"
 		/>
 		<ProForm
+			v-model="requestParams"
 			:label-style="{ fontWeight: 600 }"
-			:readonly="true"
+			:readonly="false"
 			:required="true"
-			:items="formItems"
+			:columns="formItems"
 			:request="getFormData"
 			:params="requestParams"
 			:actions="{
 				buttonFillMode: 'aequilate',
 			}"
 		>
+			33
+			<div>222</div>
+			<ProFormAvatar :order="-2" />
+			<ProForm.Switch v-model="test" :order="1" label="开关测试:" activeText="已打开" inactive-text="测试" />
 		</ProForm>
 	</div>
 </template>
 
 <script setup lang="ts">
-	import { ProButton, ProCopyable, ProDescriptions, ProField, ProForm } from '@element-plus/pro-components';
+	import {
+		ProButton,
+		ProCopyable,
+		ProDescriptions,
+		ProField,
+		ProForm,
+		ProFormAvatar,
+	} from '@element-plus/pro-components';
 	import { reactive, ref } from 'vue';
 	// import type { TableColumns } from "@element-plus/pro-components";
 	// import { ProFieldCascader } from "@element-plus/pro-field";
 
-	const test = ref([1, 2, 3]);
+	const test = ref(false);
 
 	const switchs = ref('22');
 

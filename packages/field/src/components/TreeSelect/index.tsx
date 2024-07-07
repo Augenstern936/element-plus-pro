@@ -7,7 +7,7 @@
  */
 import { ElTreeSelect } from 'element-plus';
 import 'element-plus/theme-chalk/src/tree-select.scss';
-import { FunctionalComponent, defineComponent } from 'vue';
+import { DefineComponent, defineComponent } from 'vue';
 import { ProFieldTreeSelectProps } from './props';
 import { useVModel } from '@vueuse/core';
 
@@ -20,7 +20,7 @@ const ProFieldTreeSelect = defineComponent<ProFieldTreeSelectProps>(
 	{
 		name: 'ProFieldTreeSelect',
 	}
-) as unknown as FunctionalComponent<ProFieldTreeSelectProps>;
+) as DefineComponent<ProFieldTreeSelectProps>;
 
 export * from './props';
 

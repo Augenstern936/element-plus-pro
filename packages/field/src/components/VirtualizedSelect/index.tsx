@@ -2,14 +2,14 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-07-04 22:32:55
+ * @LastEditTime: 2024-07-06 16:02:55
  * @FilePath: \element-plus-pro\packages\field\src\components\VirtualizedSelect\index.tsx
  */
 import { useVModel } from '@vueuse/core';
 import { ElOption, ElSelect } from 'element-plus';
 import 'element-plus/theme-chalk/src/option.scss';
 import 'element-plus/theme-chalk/src/select.scss';
-import { FunctionalComponent, defineComponent, computed } from 'vue';
+import { DefineComponent, defineComponent, computed } from 'vue';
 import { proFieldSelectProps, ProFieldSelectProps } from './props';
 import { enumTransformOptions, getValueOptionConfigs } from '@element-plus/pro-utils';
 import { ReadOptions } from '../widgets';
@@ -38,7 +38,7 @@ const ProFieldVirtualizedSelect = defineComponent<ProFieldSelectProps>(
 	{
 		name: 'ProFieldVirtualizedSelect',
 	}
-) as unknown as FunctionalComponent<ProFieldSelectProps>;
+) as DefineComponent<ProFieldSelectProps>;
 
 ProFieldVirtualizedSelect.props = proFieldSelectProps as any;
 

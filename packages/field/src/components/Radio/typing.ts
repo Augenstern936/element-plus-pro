@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-15 10:48:08
- * @LastEditTime: 2024-06-01 21:20:00
+ * @LastEditTime: 2024-07-07 13:57:18
  */
 import type { ValueOption, ValueEnum, MarkShape } from '@element-plus/pro-types';
 import { radioGroupProps } from 'element-plus';
@@ -9,7 +9,7 @@ import type { RadioProps, RadioButtonProps } from 'element-plus';
 import { CSSProperties, ExtractPropTypes, PropType } from 'vue';
 import { ProFieldMode } from '../../typing';
 
-const commomRadioProps = {
+const commomProps = {
 	...radioGroupProps,
 	mode: {
 		type: String as PropType<ProFieldMode>,
@@ -25,34 +25,38 @@ const commomRadioProps = {
 };
 
 export const proFieldRadioProps = {
-	...commomRadioProps,
+	...commomProps,
 	valueOptions: {
-		type: Array as PropType<ProFieldRadioOption[]>,
+		type: Array as PropType<ProFieldRadioValueOption[]>,
 		default: [],
 	},
 	valueEnum: {
-		type: Object as PropType<ProFieldRadioEnum>,
+		type: Object as PropType<ProFieldRadioValueEnum>,
 	},
 };
 
 export const proFieldRadioButtonProps = {
-	...commomRadioProps,
+	...commomProps,
 	valueOptions: {
-		type: Array as PropType<ProFieldRadioButtonOption[]>,
+		type: Array as PropType<ProFieldRadioButtonValueOption[]>,
 		default: [],
 	},
 	valueEnum: {
-		type: Object as PropType<ProFieldRadioButtonEnum>,
+		type: Object as PropType<ProFieldRadioButtonValueEnum>,
 	},
 };
 
-export type ProFieldRadioOption = ValueOption & Partial<Omit<RadioProps, 'label' | 'modelValue'>>;
+type BaseRadioProps = Partial<Omit<RadioProps, 'label' | 'value' | 'modelValue'>>;
 
-export type ProFieldRadioEnum = ValueEnum<Omit<ProFieldRadioOption, 'value'>>;
+type BaseRadioButtonProps = Partial<Omit<RadioButtonProps, 'label' | 'value'>>;
 
-export type ProFieldRadioButtonOption = ValueOption & Partial<Omit<RadioButtonProps, 'label' | 'modelValue'>>;
+export type ProFieldRadioValueOption = ValueOption<BaseRadioProps>;
 
-export type ProFieldRadioButtonEnum = ValueEnum<Omit<ProFieldRadioButtonOption, 'value'>>;
+export type ProFieldRadioValueEnum = ValueEnum<BaseRadioProps>;
+
+export type ProFieldRadioButtonValueOption = ValueOption<BaseRadioButtonProps>;
+
+export type ProFieldRadioButtonValueEnum = ValueEnum<BaseRadioButtonProps>;
 
 export type ProFieldRadioProps = Partial<ExtractPropTypes<typeof proFieldRadioProps>>;
 

@@ -2,16 +2,16 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-14 17:03:21
- * @LastEditTime: 2024-06-30 13:42:09
+ * @LastEditTime: 2024-07-06 22:55:13
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\GenerateForm.tsx
  */
 import { ProField } from '@element-plus/pro-field';
 import { formatPlaceholder } from '@element-plus/pro-utils';
 import { ElForm, ElFormItem } from 'element-plus';
-import { FunctionalComponent, computed, defineComponent, ref } from 'vue';
+import { DefineComponent, computed, defineComponent, ref } from 'vue';
 import Actions from './Actions';
 import './style.scss';
-import { GenerateFormProps, ProFormItemProps, generateFormProps } from './typing';
+import { GenerateFormProps, ProFormColumns, generateFormProps } from './typing';
 import useFormProps from './useFormProps';
 import { useVModel } from '@vueuse/core';
 import { useFetchData } from '@element-plus/pro-hooks';
@@ -19,7 +19,9 @@ import { useFetchData } from '@element-plus/pro-hooks';
 const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
 	const model = props.modelValue ? useVModel(props, 'modelValue', ctx.emit) : ref({});
 
-	const { items } = useFormProps(props);
+	const { columns } = useFormProps(props, ctx.slots.default?.() as []);
+
+	console.log(ctx.slots.default?.(), '插槽');
 
 	const { data } = useFetchData({
 		params: props.params,
@@ -30,7 +32,7 @@ const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
 		return typeof props?.actions === 'boolean' ? {} : props.actions;
 	});
 
-	const getFieldProps = (item: ProFormItemProps) => {
+	const getFieldProps = (item: ProFormColumns) => {
 		const { label, valueType = 'text', readonly } = item;
 		return {
 			...item,
@@ -49,7 +51,10 @@ const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
 			inline={props.layout === 'inline'}
 			class={'generate-form'}
 		>
-			{items?.map((item, index) => {
+			{columns?.map((item, index) => {
+				if (item.is === 'slot') {
+					return item;
+				}
 				const { key, dataField, rules = {} } = item;
 				const globalRulesItem = dataField && props.rules ? props.rules[dataField] ?? {} : {};
 				const required = item.required ?? rules.required ?? props.required ?? globalRulesItem.required;
@@ -82,7 +87,6 @@ const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
 					</ElFormItem>
 				);
 			})}
-			{ctx.slots?.default?.()}
 			{props.readonly !== true && (
 				<ElFormItem label=' '>
 					<Actions {...actionProps.value} />
@@ -90,7 +94,7 @@ const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
 			)}
 		</ElForm>
 	);
-}) as unknown as FunctionalComponent<GenerateFormProps>;
+}) as DefineComponent<GenerateFormProps>;
 
 GenerateForm.props = generateFormProps as any;
 
