@@ -15,7 +15,7 @@ export const ProFormItem = defineComponent<ProFormColumns>((props, ctx) => {
 	});
 
 	return () => (
-		<ElFormItem {...props} v-slots={{ label: () => label.value }}>
+		<ElFormItem v-slots={{ label: () => label.value }}>
 			{ctx.slots.default?.()}
 		</ElFormItem>
 	);

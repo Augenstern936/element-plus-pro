@@ -19,7 +19,8 @@
 		"graph": "npx nx graph",
 		"lint": "eslint --cache --ext .vue,.js,.jsx,.ts,.tsx  --fix --format=pretty ./ && npm run tsc",
 		"lint:fix": "pnpm run lint --fix",
-		"release": "release-it --workspaces"
+		"release": "release-it --workspaces",
+		"nx:release": "npx nx release --dry-run --first-release"
 	},
 	"dependencies": {
 		"@vue/shared": "^3.3.8"
@@ -87,5 +88,6 @@
 		"hooks": {
 			"pre-commit": "pretty-quick --staged && npm run lint && npm test"
 		}
-	}
+	},
+	"version": "0.0.1"
 }

@@ -42,7 +42,7 @@
 			/>
 			<ProText>11</ProText> -->
 		</el-space>
-		<ProField.CheckboxButton
+		<!-- <ProField.CheckboxButton
 			v-model="test"
 			:mode="'read'"
 			:mark-shape="'disclosure-closed'"
@@ -60,7 +60,7 @@
 					status: 'warning',
 				},
 			}"
-		/>
+		/> -->
 		<ProDescriptions
 			:title="{
 				text: ['个人简介'],
@@ -107,7 +107,7 @@
 	// import type { TableColumns } from "@element-plus/pro-components";
 	// import { ProFieldCascader } from "@element-plus/pro-field";
 
-	const test = ref(false);
+	const test = ref(true);
 
 	const switchs = ref('22');
 

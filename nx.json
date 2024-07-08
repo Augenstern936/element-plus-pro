@@ -8,6 +8,26 @@
 		}
 	},
 	"release": {
-		"projects": ["*", "!ignore-me"]
+		"projects": ["@element-plus/pro-search-bar", "!ignore-me"],
+		"version": {
+			"conventionalCommits": true
+		},
+		"changelog": {
+			"projectChangelogs": {
+				"renderOptions": {
+					"authors": true,
+					"mapAuthorsToGitHubUsernames": true,
+					"commitReferences": true,
+					"versionTitleDate": true
+				}
+			},
+			"workspaceChangelog": {
+				"renderOptions": {
+					"authors": true,
+					"commitReferences": true,
+					"versionTitleDate": true
+				}
+			}
+		}
 	}
 }
