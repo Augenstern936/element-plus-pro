@@ -1,6 +1,6 @@
 {
 	"name": "@element-plus/pro-button",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "@element-plus/pro-button",
 	"keywords": [
 		"ui",
@@ -12,7 +12,7 @@
 	],
 	"license": "ISC",
 	"homepage": "",
-	"bugs": "",
+	"bugs": "https://gitee.com/bo-wen-wang936926/element-plus-pro/issues",
 	"gitpository": {
 		"type": "git",
 		"url": ""

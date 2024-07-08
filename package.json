@@ -20,7 +20,7 @@
 		"lint": "eslint --cache --ext .vue,.js,.jsx,.ts,.tsx  --fix --format=pretty ./ && npm run tsc",
 		"lint:fix": "pnpm run lint --fix",
 		"release": "release-it --workspaces",
-		"nx:release": "npx nx release --dry-run --first-release"
+		"dry-run": "npx nx release --dry-run --first-release --verbose"
 	},
 	"dependencies": {
 		"@vue/shared": "^3.3.8"
@@ -35,6 +35,8 @@
 		"@pnpm/find-workspace-packages": "^6.0.9",
 		"@pnpm/types": "^10.0.0",
 		"@popperjs/core": "^2.11.8",
+		"@swc-node/register": "^1.10.3",
+		"@swc/core": "^1.6.13",
 		"@types/gulp": "^4.0.17",
 		"@types/node": "^20.8.9",
 		"@vitejs/plugin-vue": "^4.4.0",
