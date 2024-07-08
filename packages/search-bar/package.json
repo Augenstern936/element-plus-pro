@@ -1,36 +1,36 @@
 {
-	"name": "@element-plus/pro-search-bar",
-	"version": "0.0.1",
-	"description": "@element-plus/pro-search-bar",
-	"keywords": [
-		"ui",
-		"vue3",
-		"element",
-		"component",
-		"element-plus",
-		"element-plus-pro"
-	],
-	"license": "ISC",
-	"homepage": "",
-	"bugs": "",
-	"gitpository": {
-		"type": "git",
-		"url": ""
-	},
-	"scripts": {
-		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
-	},
-	"sideEffects": false,
-	"main": "lib/index.js",
-	"module": "es/index.mjs",
-	"types": "es/index.d.ts",
-	"files": [
-		"lib",
-		"es"
-	],
-	"author": "17634393156@163.com",
-	"dependencies": {
-		"@element-plus/pro-form": "workspace:^",
-		"mitt": "^3.0.1"
-	}
+  "name": "@element-plus/pro-search-bar",
+  "version": "0.0.6-1",
+  "description": "@element-plus/pro-search-bar",
+  "keywords": [
+    "ui",
+    "vue3",
+    "element",
+    "component",
+    "element-plus",
+    "element-plus-pro"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "bugs": "",
+  "gitpository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
+  },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "es/index.mjs",
+  "types": "es/index.d.ts",
+  "files": [
+    "lib",
+    "es"
+  ],
+  "author": "17634393156@163.com",
+  "dependencies": {
+    "@element-plus/pro-form": "workspace:^",
+    "mitt": "^3.0.1"
+  }
 }
