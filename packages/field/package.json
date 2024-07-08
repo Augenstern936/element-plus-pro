@@ -18,7 +18,8 @@
 		"url": ""
 	},
 	"scripts": {
-		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
+		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
+		"release": "release-it"
 	},
 	"sideEffects": false,
 	"main": "lib/index.js",
@@ -32,5 +33,8 @@
 	"peerDependencies": {
 		"element-plus": "^2.4.1",
 		"vue": "^3.3.7"
+	},
+	"release-it": {
+		"git": false
 	}
 }

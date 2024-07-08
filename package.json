@@ -18,7 +18,8 @@
 		"clean:dist": "rimraf dist",
 		"graph": "npx nx graph",
 		"lint": "eslint --cache --ext .vue,.js,.jsx,.ts,.tsx  --fix --format=pretty ./ && npm run tsc",
-		"lint:fix": "pnpm run lint --fix"
+		"lint:fix": "pnpm run lint --fix",
+		"release": "release-it --workspaces"
 	},
 	"dependencies": {
 		"@vue/shared": "^3.3.8"
@@ -29,6 +30,7 @@
 		"@element-plus/pro-types": "workspace:^",
 		"@element-plus/pro-utils": "workspace:^",
 		"@esbuild-kit/cjs-loader": "^2.4.4",
+		"@nx/js": "^19.4.1",
 		"@pnpm/find-workspace-packages": "^6.0.9",
 		"@pnpm/types": "^10.0.0",
 		"@popperjs/core": "^2.11.8",
@@ -48,6 +50,7 @@
 		"prettier-plugin-organize-imports": "^3.2.4",
 		"prettier-plugin-packagejson": "^2.5.0",
 		"pretty-quick": "^4.0.0",
+		"release-it": "^17.4.1",
 		"rimraf": "^5.0.5",
 		"rollup-plugin-visualizer": "^5.11.0",
 		"sass": "^1.69.5",
@@ -61,6 +64,24 @@
 		"vue": "^3.3.7",
 		"vue-draggable-plus": "^0.3.5",
 		"vue3-styled-components": "^1.2.1"
+	},
+	"release-it": {
+		"git": {
+			"commitMessage": "chore(release): v${version}",
+			"push": true,
+			"commit": true,
+			"tag": true,
+			"requireCommits": false,
+			"requireCleanWorkingDir": false
+		},
+		"github": {
+			"release": true,
+			"draft": true
+		},
+		"npm": {
+			"publish": false,
+			"ignoreVersion": false
+		}
 	},
 	"husky": {
 		"hooks": {

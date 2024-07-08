@@ -6,5 +6,8 @@
 		"build": {
 			"dependsOn": ["^build"]
 		}
+	},
+	"release": {
+		"projects": ["*", "!ignore-me"]
 	}
 }

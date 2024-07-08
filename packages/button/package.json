@@ -18,7 +18,8 @@
 		"url": ""
 	},
 	"scripts": {
-		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
+		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
+		"release": "release-it"
 	},
 	"sideEffects": false,
 	"main": "lib/index.js",
@@ -35,5 +36,8 @@
 	},
 	"dependencies": {
 		"@element-plus/icons-vue": "^2.3.1"
+	},
+	"release-it": {
+		"git": false
 	}
 }
