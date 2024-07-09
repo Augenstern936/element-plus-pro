@@ -1,0 +1,309 @@
+<template>
+	<div style="height: calc(100vh - 40px); padding: 20px">
+		<!-- <pro-table
+			title="标题"
+			:columns="columns"
+			:dataSource="data.data"
+			:ghost="false"
+			@action="console.log($event, 'action')"
+		>
+			<template #search-bar-right-tools>
+				<ElButton type="info">新增</ElButton>
+				<ElButton type="info">删除</ElButton>
+			</template>
+		</pro-table> -->
+		<!-- <pro-button type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">删除</pro-button> -->
+		<el-space fill>
+			<ProButton type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }" @click="reset"
+				>刷新</ProButton
+			>
+			<ProCopyable value="17634393156" @success="() => console.log('成功')" />
+			<ProField :type="'switch'" />
+			<!-- <ProField.Rate mode="read" />
+			<ProField.Slider />
+			<ProField.Image
+				:src="[
+					'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg1',
+					'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
+					'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
+					'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
+					'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
+					'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
+					'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',
+				]"
+			/>
+			<ProField.Progress :percentage="50" />
+			<ProField.Switch
+				v-model="switchs"
+				mode="edit"
+				active-value="22"
+				active-text="已打开"
+				inactive-text="测试"
+			/>
+			<ProText>11</ProText> -->
+		</el-space>
+		<!-- <ProField.CheckboxButton
+			v-model="test"
+			:mode="'read'"
+			:mark-shape="'disclosure-closed'"
+			:value-enum="{
+				1: {
+					label: '拔都',
+					status: 'success',
+				},
+				2: {
+					label: '海都',
+					color: 'red',
+				},
+				3: {
+					label: '蒙哥',
+					status: 'warning',
+				},
+			}"
+		/> -->
+		<ProDescriptions
+			:title="{
+				text: ['个人简介'],
+				mark: {
+					shape: 'disclosure-closed',
+				},
+			}"
+			:gap="20"
+			:items="[
+				[{ label: '姓名' }, { label: '年龄' }, { label: '爱好' }],
+				[{ label: '姓名' }, { label: '年龄' }, { label: '爱好' }],
+			]"
+		/>
+		<ProForm
+			v-model="requestParams"
+			:label-style="{ fontWeight: 600 }"
+			:readonly="false"
+			:required="true"
+			:columns="formItems"
+			:request="getFormData"
+			:params="requestParams"
+			:actions="{
+				buttonFillMode: 'aequilate',
+			}"
+		>
+			33
+			<div>222</div>
+			<ProFormAvatar :order="-2" />
+			<ProForm.Switch v-model="test" :order="1" label="开关测试:" activeText="已打开" inactive-text="测试" />
+		</ProForm>
+	</div>
+</template>
+
+<script setup lang="ts">
+	import {
+		ProButton,
+		ProCopyable,
+		ProDescriptions,
+		ProField,
+		ProForm,
+		ProFormAvatar,
+	} from '@element-plus/pro-components';
+	import { reactive, ref } from 'vue';
+	// import type { TableColumns } from "@element-plus/pro-components";
+	// import { ProFieldCascader } from "@element-plus/pro-field";
+
+	const test = ref(true);
+
+	const switchs = ref('22');
+
+	const requestParams = ref({
+		id: '1001',
+	});
+
+	const getFormData = async (params: Record<string, any>, props) => {
+		console.log('请求参数', params, props);
+		return {
+			name: '拔都',
+			age: 50,
+		};
+	};
+
+	const reset = () => {
+		requestParams.value.id = '1002';
+		console.log(requestParams.value, '重置');
+	};
+
+	const formItems = ref([
+		{
+			label: '姓名:',
+			dataField: 'name',
+			required: true,
+		},
+		{
+			label: '年龄:',
+			dataField: 'age',
+			valueType: 'number',
+		},
+		{
+			label: '出生日期:',
+			valueType: 'date',
+		},
+		{
+			label: '头像:',
+			dataField: 'avatar',
+			valueType: 'avatar',
+		},
+		{
+			label: '爱好:',
+			dataField: 'test',
+			valueType: 'radio',
+			valueEnum: {
+				1: '钓鱼',
+				2: '王者',
+				3: '台球',
+				4: '阅读',
+			},
+		},
+		{
+			label: '星级:',
+			valueType: 'rate',
+			fieldProps: {
+				scoreTemplate: '{value} 级',
+			},
+		},
+		{
+			label: '进度:',
+			valueType: 'slider',
+		},
+		{
+			label: '相册:',
+			valueType: 'image',
+			fieldProps: {
+				src: [
+					'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg1',
+					'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
+					'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
+					'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg2',
+					'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
+					'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
+					'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',
+				],
+			},
+		},
+		{
+			label: '开关:',
+			dataField: 'switch',
+			valueType: 'switch',
+		},
+		{
+			label: '百分比:',
+			dataField: 'progress',
+			valueType: 'progress',
+			fieldProps: {
+				percentage: 50,
+			},
+		},
+	]);
+
+	const columns = ref<any[]>([
+		{
+			title: 'ID',
+			dataField: 'id',
+			search: false,
+		},
+		{
+			title: '姓名',
+			dataField: 'name',
+			search: {
+				order: 10,
+			},
+		},
+		{
+			title: '性别',
+			dataField: 'sex',
+			valueType: 'radioButton',
+			search: {
+				order: 8,
+			},
+			valueEnum: {
+				0: '男',
+				1: '女',
+			},
+		},
+		{
+			title: '头像',
+			dataField: 'avatar',
+			valueType: 'avatar',
+		},
+		{
+			title: '图片',
+			dataField: 'avatar',
+			valueType: 'image',
+		},
+		{
+			title: '评价',
+			dataField: 'rate',
+			valueType: 'rate',
+			search: true,
+		},
+		{
+			title: '状态',
+			dataField: 'age',
+			valueEnum: {
+				0: {
+					text: '进行中',
+					status: 'Processing',
+				},
+				1: {
+					text: '已完成',
+					status: 'Success',
+				},
+			},
+		},
+		{
+			title: '会员',
+			dataField: 'slider',
+			valueType: 'slider',
+		},
+		{
+			title: '颜色',
+			dataField: 'color',
+			valueType: 'color',
+		},
+		{
+			title: '生日',
+			dataField: 'date',
+			valueType: 'dateYear',
+		},
+		{
+			title: '操作',
+			valueType: 'action',
+			width: 300,
+			fixed: 'right',
+		},
+	]);
+
+	const data = reactive({
+		total: 5,
+		data: [
+			{
+				id: 1,
+				name: '张三',
+				age: 0,
+				sex: '男',
+				rate: 0,
+				avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+			},
+			{
+				id: 2,
+				name: '李斯',
+				age: 30,
+				sex: '女',
+				avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+				rate: 5,
+			},
+			{
+				id: 3,
+				name: '王五',
+				age: 15,
+				sex: '男',
+				rate: 3,
+			},
+		],
+	});
+</script>

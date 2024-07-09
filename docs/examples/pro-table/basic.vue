@@ -1,3 +1,8 @@
+<!--
+ * @Description: 
+ * @Date: 2024-06-17 10:01:37
+ * @LastEditTime: 2024-07-09 16:57:19
+-->
 <template>
 	<pro-table
 		title="标题"
@@ -19,59 +24,59 @@
 </template>
 
 <script setup lang="tsx">
-	import { ref, computed } from 'vue';
+	import { computed, ref } from "vue-demi";
 
-	import type { TableColumns, TableToolbarConfig } from '@element-plus/pro-components';
+	import type { TableColumns, TableToolbarConfig } from "@element-plus/pro-components";
 
 	const toolbar = computed(
 		(): TableToolbarConfig => ({
 			search: {
-				actionText: '搜索',
-				actionStyle: { color: '#fff', background: '#409eff' },
+				actionText: "搜索",
+				actionStyle: { color: "#fff", background: "#409eff" },
 				onAction: onToolbarSearchChange,
 			},
-			actions: { content: '导入数据', type: 'primary' },
+			actions: { content: "导入数据", type: "primary" },
 		})
 	);
 
 	const columns = ref<TableColumns[]>([
 		{
-			title: '姓名',
-			dataField: 'name',
+			title: "姓名",
+			dataField: "name",
 			search: true,
 		},
 		{
-			title: '年龄',
-			dataField: 'age',
+			title: "年龄",
+			dataField: "age",
 			copyable: true,
 			sorter: true,
 		},
 		{
-			title: '头像',
-			dataField: 'avatar',
-			valueType: 'avatar',
+			title: "头像",
+			dataField: "avatar",
+			valueType: "avatar",
 			sorter: false,
 		},
 		{
-			title: '等级',
-			dataField: 'rate',
-			valueType: 'rate',
+			title: "等级",
+			dataField: "rate",
+			valueType: "rate",
 			sorter: false,
 		},
 		{
-			title: '操作',
-			valueType: 'action',
+			title: "操作",
+			valueType: "action",
 			width: 160,
 		},
 	]);
 	const getTableData = async () => {
 		const data = Array.of(1, 2).map((item) => ({
 			id: item,
-			name: ['李斯', '岳飞'][item - 1],
+			name: ["李斯", "岳飞"][item - 1],
 			age: 18 * item,
 			sex: item,
 			rate: item + 2,
-			avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+			avatar: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
 		}));
 
 		return {
@@ -81,10 +86,10 @@
 	};
 
 	const onToolbarSearchChange = (v) => {
-		console.log(v, 'v');
+		console.log(v, "v");
 	};
 
 	const onAdd = (selection) => {
-		console.log(selection, 'onAdd');
+		console.log(selection, "onAdd");
 	};
 </script>

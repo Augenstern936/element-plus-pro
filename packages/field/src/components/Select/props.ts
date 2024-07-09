@@ -2,15 +2,15 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-05-29 21:05:37
- * @LastEditTime: 2024-07-07 14:01:07
+ * @LastEditTime: 2024-07-09 17:02:28
  * @FilePath: \element-plus-pro\packages\field\src\components\Select\props.ts
  */
-import { ValueOption, ValueEnum, MarkShape } from '@element-plus/pro-types';
-import type { CSSProperties, Component, ExtractPropTypes, PropType } from 'vue';
-import { ComponentSize, Options, tagProps, useTooltipContentProps } from 'element-plus';
-import { ArrowDown, CircleClose } from '@element-plus/icons-vue';
-import { Placement } from '@popperjs/core';
-import { ProFieldMode } from '../../typing';
+import { ArrowDown, CircleClose } from "@element-plus/icons-vue";
+import { MarkShape, ValueEnum, ValueOption } from "@element-plus/pro-types";
+import { Placement } from "@popperjs/core";
+import { ComponentSize, Options, tagProps, useTooltipContentProps } from "element-plus";
+import type { CSSProperties, Component, ExtractPropTypes, PropType } from "vue-demi";
+import { ProFieldMode } from "../../typing";
 
 export const proFieldSelectProps = {
 	modelValue: {
@@ -22,15 +22,15 @@ export const proFieldSelectProps = {
 	id: String,
 	autocomplete: {
 		type: String,
-		default: 'off',
+		default: "off",
 	},
 	automaticDropdown: Boolean,
 	size: {
 		type: String as PropType<ComponentSize>,
 	},
 	effect: {
-		type: String as PropType<'light' | 'dark' | string>,
-		default: 'light',
+		type: String as PropType<"light" | "dark" | string>,
+		default: "light",
 	},
 	disabled: Boolean,
 	clearable: Boolean,
@@ -39,7 +39,7 @@ export const proFieldSelectProps = {
 	loading: Boolean,
 	popperClass: {
 		type: String,
-		default: '',
+		default: "",
 	},
 	popperOptions: {
 		type: Object as PropType<Partial<Options>>,
@@ -66,7 +66,7 @@ export const proFieldSelectProps = {
 	},
 	valueKey: {
 		type: String,
-		default: 'value',
+		default: "value",
 	},
 	collapseTags: Boolean,
 	collapseTagsTooltip: {
@@ -94,7 +94,7 @@ export const proFieldSelectProps = {
 		type: [String, Object] as PropType<string | Component>,
 		default: ArrowDown,
 	},
-	tagType: { ...tagProps.type, default: 'info' },
+	tagType: { ...tagProps.type, default: "info" },
 	validateEvent: {
 		type: Boolean,
 		default: true,
@@ -109,11 +109,11 @@ export const proFieldSelectProps = {
 	},
 	placement: {
 		type: String as PropType<Placement>,
-		default: 'bottom-start',
+		default: "bottom-start",
 	},
 	mode: {
 		type: String as PropType<ProFieldMode>,
-		default: 'edit',
+		default: "edit",
 	},
 	markShape: {
 		type: String as PropType<MarkShape>,
@@ -135,6 +135,6 @@ export type ProFieldSelectValueOption = ValueOption<{
 	disabled?: boolean;
 }>;
 
-export type ProFieldSelectValueEnum = ValueEnum<Omit<ProFieldSelectValueOption, 'value'>>;
+export type ProFieldSelectValueEnum = ValueEnum<Omit<ProFieldSelectValueOption, "value">>;
 
 export type ProFieldSelectProps = Partial<ExtractPropTypes<typeof proFieldSelectProps>>;

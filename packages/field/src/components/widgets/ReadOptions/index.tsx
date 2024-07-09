@@ -1,39 +1,39 @@
-import { MarkShape, StatusColorEnum, ValueOption } from '@element-plus/pro-types';
-import { ElTag, ElText } from 'element-plus';
-import { Fragment, computed } from 'vue';
-import './style.scss';
+import { MarkShape, StatusColorEnum, ValueOption } from "@element-plus/pro-types";
+import { ElTag, ElText } from "element-plus";
+import { Fragment, computed } from "vue-demi";
+import "./style.scss";
 
 /*
  * @Description: 阅读模式下选项值展示的形式
  * @Author: wangbowen936926
  * @Date: 2024-06-01 14:12:33
- * @LastEditTime: 2024-06-22 19:48:22
+ * @LastEditTime: 2024-07-09 17:03:26
  * @FilePath: \element-plus-pro\packages\field\src\components\widgets\ReadOptions\index.tsx
  */
 interface ReadOptionsProps {
 	value: ValueOption[];
-	markShape?: 'tag' | MarkShape;
+	markShape?: "tag" | MarkShape;
 	split?: string;
 }
 
 export const ReadOptions = (props: ReadOptionsProps) => {
 	const getColor = ({ color, status }: ValueOption) => {
-		return status && StatusColorEnum[status] ? StatusColorEnum[status] : color ?? 'default';
+		return status && StatusColorEnum[status] ? StatusColorEnum[status] : color ?? "default";
 	};
 
 	type ModeComponentProps = { option: ValueOption; split: string };
 
 	const isShowMark = computed(() => {
-		return ['tag', 'disc', 'circle', 'square', 'disclosure-open', 'disclosure-closed'].some(
+		return ["tag", "disc", "circle", "square", "disclosure-open", "disclosure-closed"].some(
 			(mark) => mark === props.markShape
 		);
 	});
 
 	const components = {
 		text: ({ option, split }: ModeComponentProps) => (
-			<ElText style={{ color: !isShowMark.value ? getColor(option) : 'default' }}>
+			<ElText style={{ color: !isShowMark.value ? getColor(option) : "default" }}>
 				{option.label}
-				<i style={{ color: '#606266' }}>{split}</i>
+				<i style={{ color: "#606266" }}>{split}</i>
 			</ElText>
 		),
 		tag: ({ option, split }: ModeComponentProps) => {
@@ -49,31 +49,31 @@ export const ReadOptions = (props: ReadOptionsProps) => {
 					>
 						{option.label}
 					</ElTag>
-					<i style={{ color: '#606266' }}>{split}</i>
+					<i style={{ color: "#606266" }}>{split}</i>
 				</>
 			);
 		},
 	};
 
 	const Render = computed(() => {
-		return props.markShape === 'tag' ? components[props.markShape] : components.text;
+		return props.markShape === "tag" ? components[props.markShape] : components.text;
 	});
 
-	const getSplit = (i: number) => (i + 1 < props.value.length ? props.split || '、' : '');
+	const getSplit = (i: number) => (i + 1 < props.value.length ? props.split || "、" : "");
 
 	return (
-		<div class='read-options'>
-			{isShowMark.value && props.markShape != 'tag' ? (
+		<div class="read-options">
+			{isShowMark.value && props.markShape != "tag" ? (
 				<ul>
 					{props.value.map((option, i) => {
 						const color = getColor(option);
 						return (
 							<li
 								key={option.label}
-								class={`${option.status ?? ''}`}
+								class={`${option.status ?? ""}`}
 								style={{
-									'--dot-color': color || 'default',
-									listStyleType: color ? props.markShape : 'none',
+									"--dot-color": color || "default",
+									listStyleType: color ? props.markShape : "none",
 								}}
 							>
 								<Render.value option={option} split={getSplit(i)} />

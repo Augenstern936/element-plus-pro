@@ -1,15 +1,15 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-07-06 22:57:42
+ * @LastEditTime: 2024-07-09 17:05:47
  */
-import type { ProFieldType } from '@element-plus/pro-field';
-import { ProRequestData, ValueEnum, ValueOption } from '@element-plus/pro-types';
-import type { FormItemProps } from 'element-plus';
-import { formProps as elFormProps } from 'element-plus';
-import { CSSProperties, ExtractPropTypes, PropType } from 'vue';
-import { ActionsProps } from './Actions';
-import { ProButtonProps } from 'packages/button/es';
+import type { ProFieldType } from "@element-plus/pro-field";
+import { ProRequestData, ValueEnum, ValueOption } from "@element-plus/pro-types";
+import type { FormItemProps } from "element-plus";
+import { formProps as elFormProps } from "element-plus";
+import { ProButtonProps } from "packages/button/es";
+import { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
+import { ActionsProps } from "./Actions";
 
 const commonFormProps = {
 	modelValue: {
@@ -23,8 +23,8 @@ const commonFormProps = {
 		default: [],
 	},
 	layout: {
-		type: String as PropType<'horizontal' | 'vertical' | 'inline'>,
-		default: 'horizontal',
+		type: String as PropType<"horizontal" | "vertical" | "inline">,
+		default: "horizontal",
 	},
 	readonly: {
 		type: Boolean,
@@ -40,7 +40,7 @@ const commonFormProps = {
 	},
 	emptyText: {
 		type: String,
-		default: '--',
+		default: "--",
 	},
 	params: {
 		type: Object as PropType<Record<string, any>>,
@@ -62,18 +62,18 @@ export const generateFormProps = {
 	...elFormProps,
 	...commonFormProps,
 	type: {
-		type: String as PropType<'default' | 'dialog-form' | 'drawer-form' | 'steps-form' | 'search-form'>,
+		type: String as PropType<"default" | "dialog-form" | "drawer-form" | "steps-form" | "search-form">,
 	},
 	labelWidth: {
-		type: [String, Number] as PropType<'auto' | number>,
-		default: 'auto',
+		type: [String, Number] as PropType<"auto" | number>,
+		default: "auto",
 	},
 	trigger: {
 		type: Object as PropType<ProButtonProps>,
 	},
 };
 
-export type ProFormColumns = Omit<FormItemProps, 'prop' | 'label'> & {
+export type ProFormColumns = Omit<FormItemProps, "prop" | "label"> & {
 	key?: string;
 	label?: string | (() => JSX.Element);
 	dataField?: string;

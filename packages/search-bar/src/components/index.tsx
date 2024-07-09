@@ -2,19 +2,19 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-03-26 23:44:29
+ * @LastEditTime: 2024-07-09 17:07:21
  * @FilePath: \element-plus-pro\packages\search-bar\src\components\index.tsx
  */
-import Input from './Input';
-import Date from './Date';
-import Select from './Select';
-import Radio from './Radio';
-import Rate from './Rate';
-import Switch from './Switch';
-import Slider from './Slider';
-import Color from './Color';
-import { FunctionalComponent, PropType, defineComponent, provide } from 'vue';
-import type { SearchBarFormItem } from '../typing';
+import { FunctionalComponent, PropType, defineComponent, provide } from "vue-demi";
+import type { SearchBarFormItem } from "../typing";
+import Color from "./Color";
+import Date from "./Date";
+import Input from "./Input";
+import Radio from "./Radio";
+import Rate from "./Rate";
+import Select from "./Select";
+import Slider from "./Slider";
+import Switch from "./Switch";
 
 const components = {
 	text: Input.Text,
@@ -50,14 +50,14 @@ interface RenderProps {
 
 const Render: FunctionalComponent<RenderProps> = defineComponent((props: RenderProps) => {
 	const valueType = props.formItem?.valueType as keyof typeof components;
-	const isHasComponent = valueType != 'select' && components[valueType];
+	const isHasComponent = valueType != "select" && components[valueType];
 	const isSelect = isHasComponent ? false : Array.isArray(props.formItem.valueOptions);
-	const type = isSelect ? 'select' : valueType || 'text';
-	console.log(type, 'type');
+	const type = isSelect ? "select" : valueType || "text";
+	console.log(type, "type");
 
 	console.log(
 		{ ...props, formItem: { ...props.formItem, valueType: type } },
-		'{ ...props, formItem: { ...props.formItem, valueType: type } }'
+		"{ ...props, formItem: { ...props.formItem, valueType: type } }"
 	);
 
 	provide(type, { ...props, formItem: { ...props.formItem, valueType: type } });

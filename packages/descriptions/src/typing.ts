@@ -1,13 +1,13 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:42:23
- * @LastEditTime: 2024-06-04 23:13:44
+ * @LastEditTime: 2024-07-09 16:58:12
  */
-import { descriptionProps } from 'element-plus';
-import { GeneratePropTypes, MarkShape } from '@element-plus/pro-types';
-import type { PropType } from 'vue';
-import { CSSProperties } from 'vue';
-import { JSX } from 'vue/jsx-runtime';
+import { GeneratePropTypes, MarkShape } from "@element-plus/pro-types";
+import { descriptionProps } from "element-plus";
+import type { PropType } from "vue-demi";
+import { CSSProperties } from "vue-demi";
+import { JSX } from "vue/jsx-runtime";
 
 export const proDescriptionProps = {
 	...descriptionProps,
@@ -43,7 +43,7 @@ export type TitleJsonConfig = {
 
 export type TitleMark = {
 	color?: string;
-	shape?: 'bar' | MarkShape;
+	shape?: "bar" | MarkShape;
 };
 
 export type ProDescriptionsTitle = string | TitleJsonConfig | Array<string>;

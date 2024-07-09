@@ -1,14 +1,14 @@
 /*
  * @Description:
  * @Date: 2024-07-01 09:06:21
- * @LastEditTime: 2024-07-07 20:48:22
+ * @LastEditTime: 2024-07-09 17:03:33
  */
-import { DefineComponent, defineComponent } from 'vue';
-import { withInstall } from '@element-plus/pro-utils';
-import { ProFormField } from '../../core';
-import { FormFieldProps } from '../../typing';
-import { useVModel } from '@vueuse/core';
-import type { CascaderProps } from 'element-plus';
+import { withInstall } from "@element-plus/pro-utils";
+import { useVModel } from "@vueuse/core";
+import type { CascaderProps } from "element-plus";
+import { DefineComponent, defineComponent } from "vue-demi";
+import { ProFormField } from "../../core";
+import { FormFieldProps } from "../../typing";
 
 export type ProFormCascaderProps = FormFieldProps<CascaderProps> & {
 	modelValue?: string | number | (string | number)[];
@@ -17,12 +17,12 @@ export type ProFormCascaderProps = FormFieldProps<CascaderProps> & {
 
 const FormCascader = defineComponent<ProFormCascaderProps>(
 	(props, ctx) => {
-		const model = useVModel(props, 'modelValue', ctx.emit);
+		const model = useVModel(props, "modelValue", ctx.emit);
 
-		return () => <ProFormField type={'cascader'} fieldProps={props} v-model={model.value} />;
+		return () => <ProFormField type={"cascader"} fieldProps={props} v-model={model.value} />;
 	},
 	{
-		name: 'ProFormCascader',
+		name: "ProFormCascader",
 	}
 ) as DefineComponent<ProFormCascaderProps>;
 

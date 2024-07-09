@@ -1,9 +1,9 @@
 /*
  * @Description:
  * @Date: 2024-04-27 16:16:27
- * @LastEditTime: 2024-04-28 10:05:22
+ * @LastEditTime: 2024-07-09 17:09:48
  */
-import type { Component } from "vue";
+import type { Component } from "vue-demi";
 import { JSX } from "vue/jsx-runtime";
 
 export type ProTabsProps = {

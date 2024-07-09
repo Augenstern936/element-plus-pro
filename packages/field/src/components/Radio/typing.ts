@@ -1,19 +1,19 @@
 /*
  * @Description:
  * @Date: 2024-04-15 10:48:08
- * @LastEditTime: 2024-07-07 13:57:18
+ * @LastEditTime: 2024-07-09 17:02:00
  */
-import type { ValueOption, ValueEnum, MarkShape } from '@element-plus/pro-types';
-import { radioGroupProps } from 'element-plus';
-import type { RadioProps, RadioButtonProps } from 'element-plus';
-import { CSSProperties, ExtractPropTypes, PropType } from 'vue';
-import { ProFieldMode } from '../../typing';
+import type { MarkShape, ValueEnum, ValueOption } from "@element-plus/pro-types";
+import type { RadioButtonProps, RadioProps } from "element-plus";
+import { radioGroupProps } from "element-plus";
+import { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
+import { ProFieldMode } from "../../typing";
 
 const commomProps = {
 	...radioGroupProps,
 	mode: {
 		type: String as PropType<ProFieldMode>,
-		default: 'edit',
+		default: "edit",
 	},
 	markShape: {
 		type: String as PropType<MarkShape>,
@@ -46,9 +46,9 @@ export const proFieldRadioButtonProps = {
 	},
 };
 
-type BaseRadioProps = Partial<Omit<RadioProps, 'label' | 'value' | 'modelValue'>>;
+type BaseRadioProps = Partial<Omit<RadioProps, "label" | "value" | "modelValue">>;
 
-type BaseRadioButtonProps = Partial<Omit<RadioButtonProps, 'label' | 'value'>>;
+type BaseRadioButtonProps = Partial<Omit<RadioButtonProps, "label" | "value">>;
 
 export type ProFieldRadioValueOption = ValueOption<BaseRadioProps>;
 

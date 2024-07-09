@@ -1,13 +1,13 @@
 /*
  * @Description:
  * @Date: 2024-07-01 09:06:21
- * @LastEditTime: 2024-07-07 20:52:59
+ * @LastEditTime: 2024-07-09 17:04:38
  */
-import { DefineComponent, defineComponent } from 'vue';
-import { withInstall } from '@element-plus/pro-utils';
-import { ProFormField } from '../../core';
-import { FormFieldProps } from '../../typing';
-import type { SliderProps } from 'element-plus';
+import { withInstall } from "@element-plus/pro-utils";
+import type { SliderProps } from "element-plus";
+import { DefineComponent, defineComponent } from "vue-demi";
+import { ProFormField } from "../../core";
+import { FormFieldProps } from "../../typing";
 
 export type ProFormSliderProps = FormFieldProps<SliderProps> & {
 	modelValue?: number | number[];
@@ -15,10 +15,10 @@ export type ProFormSliderProps = FormFieldProps<SliderProps> & {
 
 const FormSlider = defineComponent<ProFormSliderProps>(
 	(props) => {
-		return () => <ProFormField {...props} type={'slider'} />;
+		return () => <ProFormField {...props} type={"slider"} />;
 	},
 	{
-		name: 'ProFormSlider',
+		name: "ProFormSlider",
 	}
 ) as DefineComponent<ProFormSliderProps>;
 

@@ -2,11 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-05-25 23:32:22
- * @LastEditTime: 2024-06-02 00:45:27
+ * @LastEditTime: 2024-07-09 17:08:45
  * @FilePath: \element-plus-pro\packages\types\props.ts
  */
-import type { Prop } from 'vue';
-import type { IfAny } from '@vue/shared';
+import type { IfAny } from "@vue/shared";
+import type { Prop } from "vue-demi";
 
 type RequiredKeys<T> = {
 	[K in keyof T]: T[K] extends {

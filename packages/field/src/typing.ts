@@ -1,153 +1,152 @@
 /*
  * @Description:
  * @Date: 2024-05-28 16:49:08
- * @LastEditTime: 2024-07-07 12:03:09
+ * @LastEditTime: 2024-07-09 16:58:21
  */
-import { DefineComponent } from 'vue';
-import components, * as Types from './components';
-import type { ValueEnum, ValueOption } from '@element-plus/pro-types';
+import { DefineComponent } from "vue-demi";
+import components, * as Types from "./components";
 
 type TextFieldProps = {
-	type?: 'text';
+	type?: "text";
 	fieldProps?: Types.ProFieldTextProps;
 };
 
 type NumberFieldProps = {
-	type?: 'number';
+	type?: "number";
 	fieldProps?: Types.ProFieldNumberProps;
 };
 
 type PasswordFieldProps = {
-	type?: 'password';
+	type?: "password";
 	fieldProps?: Types.ProFieldPasswordProps;
 };
 
 type TextareaFieldProps = {
-	type?: 'textarea';
+	type?: "textarea";
 	fieldProps?: Types.ProFieldTextareaProps;
 };
 
 type DateFieldProps = {
-	type: 'date';
+	type: "date";
 	fieldProps?: Types.ProFieldDateProps;
 };
 
 type DateRangeFieldProps = {
-	type: 'dateRange';
+	type: "dateRange";
 	fieldProps?: Types.ProFieldDateRangeProps;
 };
 
 type DatesFieldProps = {
-	type: 'dates';
+	type: "dates";
 	fieldProps?: Types.ProFieldDatesProps;
 };
 
 type DateYearFieldProps = {
-	type: 'dateYear';
+	type: "dateYear";
 	fieldProps?: Types.ProFieldDateYearProps;
 };
 
 type DateMonthFieldProps = {
-	type: 'dateMonth';
+	type: "dateMonth";
 	fieldProps?: Types.ProFieldDateMonthProps;
 };
 
 type DateMonthRangeFieldProps = {
-	type: 'dateMonthRange';
+	type: "dateMonthRange";
 	fieldProps?: Types.ProFieldDateMonthRangeProps;
 };
 
 type DateTimeWeekFieldProps = {
-	type: 'dateWeek';
+	type: "dateWeek";
 	fieldProps?: Types.ProFieldDateWeekProps;
 };
 
 type DateTimeFieldProps = {
-	type: 'dateTime';
+	type: "dateTime";
 	fieldProps?: Types.ProFieldDateTimeProps;
 };
 
 type DateTimeRangeFieldProps = {
-	type: 'dateTimeRange';
+	type: "dateTimeRange";
 	fieldProps?: Types.ProFieldDateTimeRangeProps;
 };
 
 type TimeFieldProps = {
-	type: 'time';
+	type: "time";
 	fieldProps?: Types.ProFieldTimeProps;
 };
 
 type TimeRangeFieldProps = {
-	type: 'timeRange';
+	type: "timeRange";
 	fieldProps?: Types.ProFieldTimeRangeProps;
 };
 
 type TimeSelectFieldProps = {
-	type: 'timeSelect';
+	type: "timeSelect";
 	fieldProps?: Types.ProFieldTimeSelectProps;
 };
 
 type SelectFieldProps = {
-	type: 'select';
+	type: "select";
 	fieldProps?: Types.ProFieldSelectProps;
 };
 
 type AvatarFieldProps = {
-	type?: 'avatar';
+	type?: "avatar";
 	fieldProps?: Types.ProFieldAvatarProps;
 };
 
 type SwitchFieldProps = {
-	type?: 'switch';
+	type?: "switch";
 	fieldProps?: Types.ProFieldSwitchProps;
 };
 
 type CascaderFieldProps = {
-	type?: 'cascader';
+	type?: "cascader";
 	fieldProps?: Types.ProFieldCascaderProps;
 };
 
 type CheckboxFieldProps = {
-	type?: 'checkbox' | 'checkboxButton';
+	type?: "checkbox" | "checkboxButton";
 	fieldProps?: Types.ProFieldCheckboxProps;
 };
 
 type ColorFieldProps = {
-	type?: 'color';
+	type?: "color";
 	fieldProps?: Types.ProFieldColorProps;
 };
 
 type ImageFieldProps = {
-	type?: 'image';
+	type?: "image";
 	fieldProps?: Types.ProFieldImageProps;
 };
 
 type ProgressFieldProps = {
-	type?: 'progress';
+	type?: "progress";
 	fieldProps?: Types.ProFieldProgressProps;
 };
 
 type RateFieldProps = {
-	type?: 'rate';
+	type?: "rate";
 	fieldProps?: Types.ProFieldRateProps;
 };
 
 type RadioFieldProps = {
-	type?: 'radio' | 'radioButton';
+	type?: "radio" | "radioButton";
 	fieldProps?: Types.ProFieldRadioProps;
 };
 
 type SliderFieldProps = {
-	type?: 'slider';
+	type?: "slider";
 	fieldProps?: Types.ProFieldSliderProps;
 };
 
 type TreeSelectFieldProps = {
-	type?: 'treeSelect';
+	type?: "treeSelect";
 	fieldProps?: Types.ProFieldTreeSelectProps;
 };
 
-export type ProFieldMode = 'read' | 'edit';
+export type ProFieldMode = "read" | "edit";
 
 export type ProFieldType = keyof typeof components;
 

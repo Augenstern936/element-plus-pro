@@ -1,13 +1,13 @@
 /*
  * @Description:
  * @Date: 2024-07-01 09:06:21
- * @LastEditTime: 2024-07-07 17:44:24
+ * @LastEditTime: 2024-07-09 17:03:52
  */
-import { DefineComponent, defineComponent } from 'vue';
-import { withInstall } from '@element-plus/pro-utils';
-import { ProFormField } from '../../core';
-import { FormFieldProps } from '../../typing';
-import type { ColorPickerProps } from 'element-plus';
+import { withInstall } from "@element-plus/pro-utils";
+import type { ColorPickerProps } from "element-plus";
+import { DefineComponent, defineComponent } from "vue-demi";
+import { ProFormField } from "../../core";
+import { FormFieldProps } from "../../typing";
 
 export type ProFormColorProps = FormFieldProps<ColorPickerProps> & {
 	modelValue?: string;
@@ -15,10 +15,10 @@ export type ProFormColorProps = FormFieldProps<ColorPickerProps> & {
 
 const FormColor = defineComponent<ProFormColorProps>(
 	(props) => {
-		return () => <ProFormField type={'color'} fieldProps={props} />;
+		return () => <ProFormField type={"color"} fieldProps={props} />;
 	},
 	{
-		name: 'ProFormColor',
+		name: "ProFormColor",
 	}
 ) as DefineComponent<ProFormColorProps>;
 

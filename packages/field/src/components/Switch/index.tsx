@@ -2,22 +2,22 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-06-16 13:12:06
+ * @LastEditTime: 2024-07-09 17:02:54
  * @FilePath: \element-plus-pro\packages\field\src\components\Switch\index.tsx
  */
-import { ElSwitch, ElText } from 'element-plus';
-import 'element-plus/theme-chalk/src/switch.scss';
-import { DefineComponent, computed, defineComponent } from 'vue';
-import { ProFieldSwitchProps, proFieldSwitchProps } from './props';
-import { useVModel } from '@vueuse/core';
+import { useVModel } from "@vueuse/core";
+import { ElSwitch, ElText } from "element-plus";
+import "element-plus/theme-chalk/src/switch.scss";
+import { DefineComponent, computed, defineComponent } from "vue-demi";
+import { ProFieldSwitchProps, proFieldSwitchProps } from "./props";
 
 const ProFieldSwitch = defineComponent<ProFieldSwitchProps>(
 	(props, ctx) => {
-		const model = useVModel(props, 'modelValue', ctx.emit);
+		const model = useVModel(props, "modelValue", ctx.emit);
 
 		const text = computed(() => {
-			const activeText = props.activeText || '打开';
-			const inactiveText = props.inactiveText || '关闭';
+			const activeText = props.activeText || "打开";
+			const inactiveText = props.inactiveText || "关闭";
 
 			const { activeValue, inactiveValue } = props;
 
@@ -32,7 +32,7 @@ const ProFieldSwitch = defineComponent<ProFieldSwitchProps>(
 		});
 
 		const render = () => {
-			if (props.mode === 'read') {
+			if (props.mode === "read") {
 				return <ElText>{text.value}</ElText>;
 			}
 			return <ElSwitch {...props} v-model={model.value} />;
@@ -41,13 +41,13 @@ const ProFieldSwitch = defineComponent<ProFieldSwitchProps>(
 		return render;
 	},
 	{
-		name: 'ProFieldSwitch',
+		name: "ProFieldSwitch",
 	}
 ) as DefineComponent<ProFieldSwitchProps>;
 
 ProFieldSwitch.props = proFieldSwitchProps as any;
 
-export * from './props';
+export * from "./props";
 
 export { ProFieldSwitch };
 

@@ -1,5 +1,5 @@
-import { PropType } from 'vue';
-import { SearchBarItem, SearchBarActions, SearchBarRightTools } from './typing';
+import { PropType } from "vue-demi";
+import { SearchBarActions, SearchBarItem, SearchBarRightTools } from "./typing";
 
 export default {
 	modelValue: {
@@ -12,11 +12,11 @@ export default {
 	},
 	searchText: {
 		type: String,
-		default: '查询',
+		default: "查询",
 	},
 	resetText: {
 		type: String,
-		default: '重置',
+		default: "重置",
 	},
 	actions: {
 		type: Array as PropType<SearchBarActions[]>,

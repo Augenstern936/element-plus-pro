@@ -1,5 +1,5 @@
-import type { Component, PropType } from 'vue';
-import type { TabsPane } from './typing';
+import type { Component, PropType } from "vue-demi";
+import type { TabsPane } from "./typing";
 
 export default {
 	modelValue: {

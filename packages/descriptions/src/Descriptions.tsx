@@ -1,44 +1,44 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:41:09
- * @LastEditTime: 2024-06-04 23:15:45
+ * @LastEditTime: 2024-07-09 16:58:08
  */
-import ProCopyable from '@element-plus/pro-copyable';
-import './style.scss';
+import ProCopyable from "@element-plus/pro-copyable";
+import { isObject } from "@vueuse/core";
+import { ElDescriptions, ElDescriptionsItem, ElSpace } from "element-plus";
+import { FunctionalComponent, computed, defineComponent } from "vue-demi";
+import "./style.scss";
 import {
 	ProDescriptionsItem,
 	ProDescriptionsItems,
 	ProDescriptionsProps,
 	ProDescriptionsTitle,
-	proDescriptionProps,
 	TitleJsonConfig,
-} from './typing';
-import { FunctionalComponent, computed, defineComponent } from 'vue';
-import { ElDescriptions, ElDescriptionsItem, ElSpace } from 'element-plus';
-import { isObject } from '@vueuse/core';
+	proDescriptionProps,
+} from "./typing";
 
 enum ShapeEnum {
-	'bar',
-	'disc',
-	'circle',
-	'square',
-	'disclosure-open',
-	'disclosure-closed',
+	"bar",
+	"disc",
+	"circle",
+	"square",
+	"disclosure-open",
+	"disclosure-closed",
 }
 
 const ProDescriptions = defineComponent<ProDescriptionsProps>(
 	(props, ctx) => {
 		const title = computed(() => {
 			const title = props.title as ProDescriptionsTitle;
-			if (typeof title === 'string') {
+			if (typeof title === "string") {
 				return {
 					text: [title],
 				};
 			}
 			if (isObject(title)) {
-				const { text = '', mark, textStyle } = title as TitleJsonConfig;
+				const { text = "", mark, textStyle } = title as TitleJsonConfig;
 				return {
-					text: typeof text === 'string' ? [text] : Array.isArray(text) ? text : [''],
+					text: typeof text === "string" ? [text] : Array.isArray(text) ? text : [""],
 					textStyle,
 					mark,
 				};
@@ -78,13 +78,13 @@ const ProDescriptions = defineComponent<ProDescriptionsProps>(
 		};
 
 		return () => (
-			<ElSpace fill size={props.gap} direction='vertical' style='width: 100%'>
+			<ElSpace fill size={props.gap} direction="vertical" style="width: 100%">
 				{itemsFormat(props.items).map((descItems, index) => {
 					return (
 						<ElDescriptions
-							class='pro-descriptions'
+							class="pro-descriptions"
 							{...(props as any)}
-							title={''}
+							title={""}
 							v-slots={{
 								title: () => {
 									if (ctx.slots.title) {
@@ -92,13 +92,13 @@ const ProDescriptions = defineComponent<ProDescriptionsProps>(
 									}
 									const titleText = title.value.text[index];
 									const { mark = {}, textStyle = {} } = title.value;
-									const { shape = '', color = 'default' } = isObject(mark) ? mark : {};
+									const { shape = "", color = "default" } = isObject(mark) ? mark : {};
 									return titleText ? (
 										<>
-											{mark === true || shape === 'bar' || !shape ? (
+											{mark === true || shape === "bar" || !shape ? (
 												<span
-													class='title-mark-shape-bar'
-													style={{ '--mark-color': color, ...textStyle }}
+													class="title-mark-shape-bar"
+													style={{ "--mark-color": color, ...textStyle }}
 												>
 													{titleText}
 												</span>
@@ -106,8 +106,8 @@ const ProDescriptions = defineComponent<ProDescriptionsProps>(
 												<ul>
 													<li
 														style={{
-															'--mark-color': color,
-															listStyleType: ShapeEnum[shape] ? shape : 'disc',
+															"--mark-color": color,
+															listStyleType: ShapeEnum[shape] ? shape : "disc",
 														}}
 													>
 														<span style={textStyle}>{titleText}</span>
@@ -116,13 +116,13 @@ const ProDescriptions = defineComponent<ProDescriptionsProps>(
 											)}
 										</>
 									) : (
-										''
+										""
 									);
 								},
 							}}
 						>
 							{descItems?.map((item, index) => {
-								const { dataField = '', render } = item;
+								const { dataField = "", render } = item;
 								const data = props.data ?? {};
 								const slotContent =
 									dataField && ctx.slots[dataField]
@@ -148,7 +148,7 @@ const ProDescriptions = defineComponent<ProDescriptionsProps>(
 													(item.copyable && (data[dataField] || data[dataField] === 0) ? (
 														<ProCopyable value={data[dataField]} />
 													) : (
-														data[dataField] || props.emptyText || '--'
+														data[dataField] || props.emptyText || "--"
 													))}
 											</ElDescriptionsItem>
 										)}
@@ -162,12 +162,12 @@ const ProDescriptions = defineComponent<ProDescriptionsProps>(
 		);
 	},
 	{
-		name: 'ProDescriptions',
+		name: "ProDescriptions",
 	}
 ) as unknown as FunctionalComponent<ProDescriptionsProps>;
 
 ProDescriptions.props = proDescriptionProps;
 
-export * from './typing';
+export * from "./typing";
 
 export default ProDescriptions;

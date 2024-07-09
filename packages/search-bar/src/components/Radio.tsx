@@ -2,12 +2,12 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-06 21:50:46
- * @LastEditTime: 2024-03-27 00:11:41
+ * @LastEditTime: 2024-07-09 17:07:28
  * @FilePath: \element-plus-pro\packages\search-bar\src\components\Radio.tsx
  */
-import { ElRadio, ElRadioButton, ElRadioGroup } from 'element-plus';
-import { FunctionalComponent, PropType, defineComponent, inject, computed } from 'vue';
-import type { SearchBarFormItem } from '../typing';
+import { ElRadio, ElRadioButton, ElRadioGroup } from "element-plus";
+import { FunctionalComponent, PropType, computed, defineComponent, inject } from "vue-demi";
+import type { SearchBarFormItem } from "../typing";
 
 const Radio = defineComponent((radioProps, ctx) => {
 	const props = inject(radioProps.type, {}) as { formItem: SearchBarFormItem; emitter: Record<string, any> };
@@ -15,8 +15,8 @@ const Radio = defineComponent((radioProps, ctx) => {
 	const data = computed({
 		get: () => radioProps.modelValue,
 		set: (v) => {
-			ctx.emit('update:modelValue', v);
-			props.emitter.emit('value-change', { field: props.formItem.dataField, value: v });
+			ctx.emit("update:modelValue", v);
+			props.emitter.emit("value-change", { field: props.formItem.dataField, value: v });
 		},
 	});
 
@@ -24,7 +24,7 @@ const Radio = defineComponent((radioProps, ctx) => {
 		<ElRadioGroup v-model={data.value}>
 			{props.formItem.valueOptions?.map((optionProps, i) => (
 				<>
-					{radioProps.type == 'radio' ? (
+					{radioProps.type == "radio" ? (
 						<ElRadio {...optionProps} key={i}>
 							{optionProps.label}
 						</ElRadio>
@@ -42,15 +42,15 @@ const Radio = defineComponent((radioProps, ctx) => {
 Radio.props = {
 	modelValue: {
 		type: [String, Number, Boolean],
-		default: '',
+		default: "",
 	},
 	type: {
-		type: String as PropType<'radio' | 'radioButton'>,
-		default: 'radio',
+		type: String as PropType<"radio" | "radioButton">,
+		default: "radio",
 	},
 };
 
 export default {
-	Default: () => <Radio type='radio' />,
-	RadioButton: () => <Radio type='radioButton' />,
+	Default: () => <Radio type="radio" />,
+	RadioButton: () => <Radio type="radioButton" />,
 };

@@ -11,7 +11,7 @@ import {
 	ElTableColumn,
 	ElTooltip,
 } from "element-plus";
-import { FunctionalComponent, PropType, computed, defineComponent, inject } from "vue";
+import { FunctionalComponent, PropType, computed, defineComponent, inject } from "vue-demi";
 import { StatusColorEnum } from "../../enum";
 import type { ProTableProps, TableColumns, ValueType } from "../../typing";
 

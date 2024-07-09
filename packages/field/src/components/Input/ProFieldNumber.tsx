@@ -2,24 +2,24 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-22 19:04:01
- * @LastEditTime: 2024-07-06 15:57:00
+ * @LastEditTime: 2024-07-09 17:01:37
  * @FilePath: \element-plus-pro\packages\field\src\components\Input\ProFieldNumber.tsx
  */
-import { DefineComponent, defineComponent } from 'vue';
-import { ElInputNumber } from 'element-plus';
-import { proInputNumberProps, ProFieldNumberProps } from './props';
-import { useVModel } from '@vueuse/core';
+import { useVModel } from "@vueuse/core";
+import { ElInputNumber } from "element-plus";
+import { DefineComponent, defineComponent } from "vue-demi";
+import { ProFieldNumberProps, proInputNumberProps } from "./props";
 
 export const ProFieldNumber = defineComponent<ProFieldNumberProps>((props, ctx) => {
-	const model = useVModel(props, 'modelValue', ctx.emit);
+	const model = useVModel(props, "modelValue", ctx.emit);
 	return () => {
-		if (props.mode === 'read') {
+		if (props.mode === "read") {
 			return <el-text>{model.value ?? 0}</el-text>;
 		}
-		if (props.mode === 'edit') {
+		if (props.mode === "edit") {
 			return <ElInputNumber {...props} v-model={model.value} />;
 		}
-		return '';
+		return "";
 	};
 }) as DefineComponent<ProFieldNumberProps>;
 

@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 23:05:53
- * @LastEditTime: 2024-07-06 17:49:10
+ * @LastEditTime: 2024-07-09 17:06:35
  * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\typing.ts
  */
-import components, * as Types from '../../components';
-import type { FormProps, FormItemProps, FormItemRule } from 'element-plus';
-import type { DefineComponent } from 'vue';
-import type { JSX } from 'vue/jsx-runtime';
+import type { FormItemProps, FormItemRule, FormProps } from "element-plus";
+import type { DefineComponent } from "vue-demi";
+import type { JSX } from "vue/jsx-runtime";
+import components, * as Types from "../../components";
 
 export interface ProFormProps extends FormProps {
 	// 绑定的数据
@@ -33,7 +33,7 @@ export interface ProFormProps extends FormProps {
 	onFinish?: (entity: Record<string, unknown>) => void;
 }
 
-export interface ProFormItem extends Omit<FormItemProps, 'prop' | 'label' | 'rules' | 'required'> {
+export interface ProFormItem extends Omit<FormItemProps, "prop" | "label" | "rules" | "required"> {
 	// 表单项类型，决定着渲染的内容
 	type?: Type | ProFormItemFunction<Type>;
 	// 绑定的字段
@@ -58,7 +58,7 @@ export interface ProFormItem extends Omit<FormItemProps, 'prop' | 'label' | 'rul
 
 export type Type = keyof typeof components;
 
-export type ProFormItemRule = Omit<FormItemRule, 'required'>;
+export type ProFormItemRule = Omit<FormItemRule, "required">;
 
 type ProFormItemFunction<T> = (entity: Record<string, unknown>) => T;
 

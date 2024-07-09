@@ -8,30 +8,30 @@
 </template>
 
 <script setup lang="ts">
-	import { ref } from 'vue';
+	import { ref } from "vue-demi";
 
-	import type { SearchBarItem } from '@element-plus/pro-components';
+	import type { SearchBarItem } from "@element-plus/pro-components";
 
 	const formItems = ref<SearchBarItem[]>([
 		{
-			label: '姓名',
-			field: 'name',
+			label: "姓名",
+			field: "name",
 		},
 		{
-			label: '年龄',
-			field: 'age',
+			label: "年龄",
+			field: "age",
 		},
 		{
-			label: '性别',
-			field: 'sex',
-			valueType: 'select',
+			label: "性别",
+			field: "sex",
+			valueType: "select",
 			valueOptions: [
 				{
-					label: '男',
+					label: "男",
 					value: 1,
 				},
 				{
-					label: '女',
+					label: "女",
 					value: 2,
 				},
 			],

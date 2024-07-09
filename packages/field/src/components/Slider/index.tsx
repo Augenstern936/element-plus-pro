@@ -2,39 +2,39 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-07-06 16:01:36
+ * @LastEditTime: 2024-07-09 17:02:34
  * @FilePath: \element-plus-pro\packages\field\src\components\Slider\index.tsx
  */
-import { useVModel } from '@vueuse/core';
-import { ElSlider, ElText } from 'element-plus';
-import 'element-plus/theme-chalk/src/slider.scss';
-import { DefineComponent, defineComponent } from 'vue';
-import { ProFieldSliderProps, proFieldSliderProps } from './props';
+import { useVModel } from "@vueuse/core";
+import { ElSlider, ElText } from "element-plus";
+import "element-plus/theme-chalk/src/slider.scss";
+import { DefineComponent, defineComponent } from "vue-demi";
+import { ProFieldSliderProps, proFieldSliderProps } from "./props";
 
 const ProFieldSlider = defineComponent<ProFieldSliderProps>(
 	(props, ctx) => {
-		const model = useVModel(props, 'modelValue', ctx.emit);
+		const model = useVModel(props, "modelValue", ctx.emit);
 
 		const render = () => {
-			if (props.mode === 'read') {
+			if (props.mode === "read") {
 				return <ElText>{model.value}</ElText>;
 			}
-			if (props.mode === 'edit') {
+			if (props.mode === "edit") {
 				return <ElSlider {...props} v-model={model.value} />;
 			}
-			return '';
+			return "";
 		};
 
 		return render;
 	},
 	{
-		name: 'ProFieldSlider',
+		name: "ProFieldSlider",
 	}
 ) as DefineComponent<ProFieldSliderProps>;
 
 ProFieldSlider.props = proFieldSliderProps as any;
 
-export * from './props';
+export * from "./props";
 
 export { ProFieldSlider };
 

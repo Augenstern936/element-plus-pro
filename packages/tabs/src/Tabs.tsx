@@ -1,22 +1,27 @@
-import './style/index.scss';
-import props from './props';
-import { withInstall, checkValueIsComponent } from '@element-plus/pro-utils';
-import { defineComponent, computed } from 'vue';
-import { ElTabs, ElTabPane, ElEmpty } from 'element-plus';
-import ProCenterContainer from '@element-plus/pro-center-container';
-import type { FunctionalComponent } from 'vue';
-import type { ProTabsProps, TabsPane } from './typing';
+/*
+ * @Description:
+ * @Date: 2024-06-17 10:01:38
+ * @LastEditTime: 2024-07-09 17:09:44
+ */
+import ProCenterContainer from "@element-plus/pro-center-container";
+import { checkValueIsComponent, withInstall } from "@element-plus/pro-utils";
+import { ElEmpty, ElTabPane, ElTabs } from "element-plus";
+import type { FunctionalComponent } from "vue-demi";
+import { computed, defineComponent } from "vue-demi";
+import props from "./props";
+import "./style/index.scss";
+import type { ProTabsProps, TabsPane } from "./typing";
 
 const ProTabs = defineComponent(
 	(props: ProTabsProps, ctx) => {
 		const activeTab = computed({
 			get: () => props.modelValue,
-			set: (v) => ctx.emit('update:modelValue', v),
+			set: (v) => ctx.emit("update:modelValue", v),
 		});
 
 		const onTabChange = (name: string | number) => {
-			ctx.emit('change', name);
-			ctx.emit('update:modelValue', name);
+			ctx.emit("change", name);
+			ctx.emit("update:modelValue", name);
 		};
 
 		/**
@@ -25,16 +30,16 @@ const ProTabs = defineComponent(
 		 * @returns
 		 */
 		const RenderTabLabel = ({ label, badge }: TabsPane) => {
-			if (typeof badge === 'string' && Number.isNaN(Number(badge))) {
+			if (typeof badge === "string" && Number.isNaN(Number(badge))) {
 				badge = 0;
-				console.warn('Badge field value incorrect!');
+				console.warn("Badge field value incorrect!");
 			} else {
 				badge = Number(badge);
 			}
 
 			return (
 				<>
-					{label} {badge ? <span class='badge'>{badge > 99 ? '99+' : badge}</span> : ''}
+					{label} {badge ? <span class="badge">{badge > 99 ? "99+" : badge}</span> : ""}
 				</>
 			);
 		};
@@ -51,8 +56,8 @@ const ProTabs = defineComponent(
 				return ctx.slots[value]?.();
 			}
 			if (render) {
-				if (typeof render !== 'function') {
-					throw new TypeError('render not a function');
+				if (typeof render !== "function") {
+					throw new TypeError("render not a function");
 				}
 				const RenderContent = render(renderContentProps);
 				const EmptyContent =
@@ -100,7 +105,7 @@ const ProTabs = defineComponent(
 
 		return () => (
 			<ElTabs
-				class='pro-tabs'
+				class="pro-tabs"
 				v-model={activeTab.value}
 				{...props.tabsProps}
 				before-leave={props.beforeChange}
@@ -118,7 +123,7 @@ const ProTabs = defineComponent(
 		);
 	},
 	{
-		name: 'ProTabs',
+		name: "ProTabs",
 	}
 ) as unknown as FunctionalComponent;
 

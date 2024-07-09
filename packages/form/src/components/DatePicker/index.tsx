@@ -2,50 +2,50 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-02 22:22:28
- * @LastEditTime: 2024-07-07 20:49:34
+ * @LastEditTime: 2024-07-09 17:04:08
  * @FilePath: \element-plus-pro\packages\form\src\components\DatePicker\index.tsx
  */
-import { DefineComponent, defineComponent } from 'vue';
-import { withInstall } from '@element-plus/pro-utils';
-import { ProFormField } from '../../core';
-import { FormFieldProps } from '../../typing';
-import type * as Types from '@element-plus/pro-field';
+import type * as Types from "@element-plus/pro-field";
+import { withInstall } from "@element-plus/pro-utils";
+import { DefineComponent, defineComponent } from "vue-demi";
+import { ProFormField } from "../../core";
+import { FormFieldProps } from "../../typing";
 
 type ModelValue = string | number | Date | [Date, Date] | [string, string];
 
-export type ProFormDateProps = FormFieldProps<Omit<Types.ProFieldDateProps, 'type'>> & {
+export type ProFormDateProps = FormFieldProps<Omit<Types.ProFieldDateProps, "type">> & {
 	modelValue?: ModelValue;
 	placeholder?: string;
 };
-export type ProFormDatesProps = FormFieldProps<Omit<Types.ProFieldDatesProps, 'type'>> & {
+export type ProFormDatesProps = FormFieldProps<Omit<Types.ProFieldDatesProps, "type">> & {
 	modelValue?: ModelValue;
 	placeholder?: string;
 };
-export type ProFormDateRangeProps = FormFieldProps<Omit<Types.ProFieldDateRangeProps, 'type'>> & {
+export type ProFormDateRangeProps = FormFieldProps<Omit<Types.ProFieldDateRangeProps, "type">> & {
 	modelValue?: ModelValue;
 	placeholder?: string;
 };
-export type ProFormDateTimeProps = FormFieldProps<Omit<Types.ProFieldDateTimeProps, 'type'>> & {
+export type ProFormDateTimeProps = FormFieldProps<Omit<Types.ProFieldDateTimeProps, "type">> & {
 	modelValue?: ModelValue;
 	placeholder?: string;
 };
-export type ProFormDateTimeRangeProps = FormFieldProps<Omit<Types.ProFieldDateTimeRangeProps, 'type'>> & {
+export type ProFormDateTimeRangeProps = FormFieldProps<Omit<Types.ProFieldDateTimeRangeProps, "type">> & {
 	modelValue?: ModelValue;
 	placeholder?: string;
 };
-export type ProFormDateWeekProps = FormFieldProps<Omit<Types.ProFieldDateWeekProps, 'type'>> & {
+export type ProFormDateWeekProps = FormFieldProps<Omit<Types.ProFieldDateWeekProps, "type">> & {
 	modelValue?: ModelValue;
 	placeholder?: string;
 };
-export type ProFormDateMonthProps = FormFieldProps<Omit<Types.ProFieldDateMonthProps, 'type'>> & {
+export type ProFormDateMonthProps = FormFieldProps<Omit<Types.ProFieldDateMonthProps, "type">> & {
 	modelValue?: ModelValue;
 	placeholder?: string;
 };
-export type ProFormDateMonthRangeProps = FormFieldProps<Omit<Types.ProFieldDateMonthRangeProps, 'type'>> & {
+export type ProFormDateMonthRangeProps = FormFieldProps<Omit<Types.ProFieldDateMonthRangeProps, "type">> & {
 	modelValue?: ModelValue;
 	placeholder?: string;
 };
-export type ProFormDateYearProps = FormFieldProps<Omit<Types.ProFieldDateYearProps, 'type'>> & {
+export type ProFormDateYearProps = FormFieldProps<Omit<Types.ProFieldDateYearProps, "type">> & {
 	modelValue?: ModelValue;
 	placeholder?: string;
 };
@@ -55,10 +55,10 @@ export type ProFormDateYearProps = FormFieldProps<Omit<Types.ProFieldDateYearPro
  */
 const FormDate = defineComponent<ProFormDateProps>(
 	(props) => {
-		return () => <ProFormField type={'date'} fieldProps={props} />;
+		return () => <ProFormField type={"date"} fieldProps={props} />;
 	},
 	{
-		name: 'ProFormDate',
+		name: "ProFormDate",
 	}
 ) as DefineComponent<ProFormDateProps>;
 
@@ -67,19 +67,19 @@ const FormDate = defineComponent<ProFormDateProps>(
  */
 const FormDateRange = defineComponent<ProFormDateRangeProps>(
 	(props) => {
-		return () => <ProFormField type={'dateRange'} fieldProps={props} />;
+		return () => <ProFormField type={"dateRange"} fieldProps={props} />;
 	},
 	{
-		name: 'ProFormDateRange',
+		name: "ProFormDateRange",
 	}
 ) as DefineComponent<ProFormDateRangeProps>;
 
 const FormDates = defineComponent<ProFormDatesProps>(
 	(props) => {
-		return () => <ProFormField type={'dates'} fieldProps={props} />;
+		return () => <ProFormField type={"dates"} fieldProps={props} />;
 	},
 	{
-		name: 'ProFormDates',
+		name: "ProFormDates",
 	}
 ) as DefineComponent<ProFormDatesProps>;
 
@@ -88,10 +88,10 @@ const FormDates = defineComponent<ProFormDatesProps>(
  */
 const FormDateTime = defineComponent<ProFormDateTimeProps>(
 	(props) => {
-		return () => <ProFormField type={'dateTime'} fieldProps={props} />;
+		return () => <ProFormField type={"dateTime"} fieldProps={props} />;
 	},
 	{
-		name: 'ProFormDateTime',
+		name: "ProFormDateTime",
 	}
 ) as DefineComponent<ProFormDateTimeProps>;
 
@@ -100,10 +100,10 @@ const FormDateTime = defineComponent<ProFormDateTimeProps>(
  */
 const FormDateTimeRange = defineComponent<ProFormDateTimeRangeProps>(
 	(props) => {
-		return () => <ProFormField type={'dateTimeRange'} fieldProps={props} />;
+		return () => <ProFormField type={"dateTimeRange"} fieldProps={props} />;
 	},
 	{
-		name: 'ProFormDateTimeRange',
+		name: "ProFormDateTimeRange",
 	}
 ) as DefineComponent<ProFormDateTimeRangeProps>;
 
@@ -112,10 +112,10 @@ const FormDateTimeRange = defineComponent<ProFormDateTimeRangeProps>(
  */
 const FormDateWeek = defineComponent<ProFormDateWeekProps>(
 	(props) => {
-		return () => <ProFormField type={'dateWeek'} fieldProps={props} />;
+		return () => <ProFormField type={"dateWeek"} fieldProps={props} />;
 	},
 	{
-		name: 'ProFormDateWeek',
+		name: "ProFormDateWeek",
 	}
 ) as DefineComponent<ProFormDateWeekProps>;
 
@@ -124,10 +124,10 @@ const FormDateWeek = defineComponent<ProFormDateWeekProps>(
  */
 const FormDateMonth = defineComponent<ProFormDateMonthProps>(
 	(props) => {
-		return () => <ProFormField type={'dateMonth'} fieldProps={props} />;
+		return () => <ProFormField type={"dateMonth"} fieldProps={props} />;
 	},
 	{
-		name: 'ProFormDateMonth',
+		name: "ProFormDateMonth",
 	}
 ) as DefineComponent<ProFormDateMonthProps>;
 
@@ -136,10 +136,10 @@ const FormDateMonth = defineComponent<ProFormDateMonthProps>(
  */
 const FormDateMonthRange = defineComponent<ProFormDateMonthRangeProps>(
 	(props) => {
-		return () => <ProFormField type={'dateMonthRange'} fieldProps={props} />;
+		return () => <ProFormField type={"dateMonthRange"} fieldProps={props} />;
 	},
 	{
-		name: 'ProFormDateMonthRange',
+		name: "ProFormDateMonthRange",
 	}
 ) as DefineComponent<ProFormDateMonthRangeProps>;
 
@@ -148,10 +148,10 @@ const FormDateMonthRange = defineComponent<ProFormDateMonthRangeProps>(
  */
 const FormDateYear = defineComponent<ProFormDateYearProps>(
 	(props) => {
-		return () => <ProFormField type={'dateYear'} fieldProps={props} />;
+		return () => <ProFormField type={"dateYear"} fieldProps={props} />;
 	},
 	{
-		name: 'ProFormDateYear',
+		name: "ProFormDateYear",
 	}
 ) as DefineComponent<ProFormDateYearProps>;
 

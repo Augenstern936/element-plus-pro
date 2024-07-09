@@ -1,3 +1,8 @@
+<!--
+ * @Description: 
+ * @Date: 2024-06-17 10:01:37
+ * @LastEditTime: 2024-07-09 16:57:35
+-->
 <template>
 	<pro-tabs v-model="active" :panes="panes">
 		<template #1>
@@ -7,26 +12,26 @@
 </template>
 
 <script setup lang="tsx">
-	import { ref } from 'vue';
+	import { ref } from "vue-demi";
 
-	import Auth from './auth.vue';
+	import Auth from "./auth.vue";
 
-	import type { TabsPane } from '@element-plus/pro-components';
+	import type { TabsPane } from "@element-plus/pro-components";
 
 	const active = ref(1);
 
 	const panes: TabsPane[] = [
 		{
-			label: '用户管理',
+			label: "用户管理",
 			value: 1,
 		},
 		{
-			label: '角色管理',
+			label: "角色管理",
 			value: 2,
-			render: () => <div style={{ textAlign: 'center' }}>角色管理</div>,
+			render: () => <div style={{ textAlign: "center" }}>角色管理</div>,
 		},
 		{
-			label: '权限管理',
+			label: "权限管理",
 			value: 3,
 			render: () => Auth,
 		},

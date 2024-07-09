@@ -32,7 +32,13 @@
 	"author": "17634393156@163.com",
 	"peerDependencies": {
 		"element-plus": "^2.7.2",
-		"vue": "^3.4.27"
+		"@vue/composition-api": "^1.0.0-rc.1",
+		"vue": ">=3.0.0"
+	},
+	"peerDependenciesMeta": {
+		"@vue/composition-api": {
+			"optional": true
+		}
 	},
 	"dependencies": {
 		"@element-plus/icons-vue": "^2.3.1"

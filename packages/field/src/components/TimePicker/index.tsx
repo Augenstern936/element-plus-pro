@@ -2,17 +2,17 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-07-06 16:02:06
+ * @LastEditTime: 2024-07-09 17:03:00
  * @FilePath: \element-plus-pro\packages\field\src\components\TimePicker\index.tsx
  */
-import { useVModel } from '@vueuse/core';
-import { ElTimePicker, timePickerDefaultProps } from 'element-plus';
-import 'element-plus/theme-chalk/src/time-picker.scss';
-import { CSSProperties, DefineComponent, PropType, defineComponent } from 'vue';
-import { BaseTimePickerProps, ProFieldTimeProps, ProFieldTimeRangeProps } from './props';
+import { useVModel } from "@vueuse/core";
+import { ElTimePicker, timePickerDefaultProps } from "element-plus";
+import "element-plus/theme-chalk/src/time-picker.scss";
+import { CSSProperties, DefineComponent, PropType, defineComponent } from "vue-demi";
+import { BaseTimePickerProps, ProFieldTimeProps, ProFieldTimeRangeProps } from "./props";
 
 const BaseTimePicker = defineComponent<BaseTimePickerProps>((props, ctx) => {
-	const model = useVModel(props, 'modelValue', ctx.emit);
+	const model = useVModel(props, "modelValue", ctx.emit);
 
 	return () => <ElTimePicker {...props} v-model={model.value} />;
 }) as DefineComponent<BaseTimePickerProps>;
@@ -33,4 +33,4 @@ export const ProFieldTimeRange = (props: ProFieldTimeRangeProps) => {
 	return <BaseTimePicker {...props} isRange={true} />;
 };
 
-export * from './props';
+export * from "./props";

@@ -1,5 +1,5 @@
 import { ElSwitch } from 'element-plus';
-import { FunctionalComponent, defineComponent, inject, ref } from 'vue';
+import { FunctionalComponent, defineComponent, inject, ref } from 'vue-demi';
 
 const Switch = defineComponent(() => {
 	const props = inject('switch', {}) as any;

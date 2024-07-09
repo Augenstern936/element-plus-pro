@@ -1,8 +1,8 @@
 import { FullScreen, RefreshRight, Search, Setting } from "@element-plus/icons-vue";
 import { ElButton, ElCheckbox, ElCheckboxGroup, ElInput, ElPopover, ElTooltip } from "element-plus";
 import screenfull from "screenfull";
-import type { FunctionalComponent } from "vue";
-import { computed, defineComponent, inject, ref, watch } from "vue";
+import type { FunctionalComponent } from "vue-demi";
+import { computed, defineComponent, inject, ref, watch } from "vue-demi";
 import type { TableColumns, TableToolbarConfig } from "../../typing";
 
 interface ToolBarProps {

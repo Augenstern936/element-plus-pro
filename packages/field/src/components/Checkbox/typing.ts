@@ -1,19 +1,19 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-07-07 12:44:19
+ * @LastEditTime: 2024-07-09 16:58:51
  */
-import type { ValueOption, ValueEnum, MarkShape } from '@element-plus/pro-types';
-import { checkboxGroupProps } from 'element-plus';
-import type { CheckboxProps } from 'element-plus';
-import type { CSSProperties, ExtractPropTypes, PropType } from 'vue';
-import { ProFieldMode } from '../../typing';
+import type { MarkShape, ValueEnum, ValueOption } from "@element-plus/pro-types";
+import type { CheckboxProps } from "element-plus";
+import { checkboxGroupProps } from "element-plus";
+import type { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
+import { ProFieldMode } from "../../typing";
 
 const commonProps = {
 	...checkboxGroupProps,
 	mode: {
 		type: String as PropType<ProFieldMode>,
-		default: 'edit',
+		default: "edit",
 	},
 	markShape: {
 		type: String as PropType<MarkShape>,
@@ -46,22 +46,22 @@ export const proFieldCheckboxButtonProps = {
 	},
 };
 
-type BaseCheckboxProps = Partial<Omit<CheckboxProps, 'label' | 'value' | 'modelValue'>>;
+type BaseCheckboxProps = Partial<Omit<CheckboxProps, "label" | "value" | "modelValue">>;
 
 type BaseCheckboxButtonProps = Partial<
 	Omit<
 		CheckboxProps,
-		| 'label'
-		| 'value'
-		| 'modelValue'
-		| 'border'
-		| 'size'
-		| 'indeterminate'
-		| 'validate-event'
-		| 'tabindex'
-		| 'id'
-		| 'controls'
-		| 'aria-controls'
+		| "label"
+		| "value"
+		| "modelValue"
+		| "border"
+		| "size"
+		| "indeterminate"
+		| "validate-event"
+		| "tabindex"
+		| "id"
+		| "controls"
+		| "aria-controls"
 	>
 >;
 

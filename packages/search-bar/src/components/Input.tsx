@@ -1,11 +1,11 @@
-import { ElInput } from 'element-plus';
-import { FunctionalComponent, defineComponent, inject, ref } from 'vue';
-import { formatPlaceholder } from '@element-plus/pro-utils';
+import { formatPlaceholder } from "@element-plus/pro-utils";
+import { ElInput } from "element-plus";
+import { FunctionalComponent, defineComponent, inject, ref } from "vue-demi";
 
-const Render = defineComponent(({ type }: { type: 'text' | 'password' | 'textarea' }) => {
+const Render = defineComponent(({ type }: { type: "text" | "password" | "textarea" }) => {
 	const props = inject(type, {}) as any;
 
-	const data = ref('');
+	const data = ref("");
 
 	return () => (
 		<ElInput
@@ -13,7 +13,7 @@ const Render = defineComponent(({ type }: { type: 'text' | 'password' | 'textare
 			placeholder={formatPlaceholder(props.formItem.label, type) as string}
 			clearable
 			type={type}
-			onInput={(v) => props.emitter.emit('value-change', { field: props.formItem.dataField, value: v })}
+			onInput={(v) => props.emitter.emit("value-change", { field: props.formItem.dataField, value: v })}
 		/>
 	);
 }) as FunctionalComponent<any>;
@@ -21,12 +21,12 @@ const Render = defineComponent(({ type }: { type: 'text' | 'password' | 'textare
 Render.props = {
 	type: {
 		type: String,
-		default: 'text',
+		default: "text",
 	},
 };
 
 export default {
-	Text: () => <Render type='text' />,
-	Password: () => <Render type='password' />,
-	Textarea: () => <Render type='textarea' />,
+	Text: () => <Render type="text" />,
+	Password: () => <Render type="password" />,
+	Textarea: () => <Render type="textarea" />,
 };

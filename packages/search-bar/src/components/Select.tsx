@@ -1,23 +1,26 @@
-import { ElSelect, ElOption } from 'element-plus';
-import { FunctionalComponent, defineComponent, inject, ref } from 'vue';
-import { formatPlaceholder } from '@element-plus/pro-utils';
-import type { SearchBarFormItem } from '../typing';
+/*
+ * @Description:
+ * @Date: 2024-06-17 10:01:38
+ * @LastEditTime: 2024-07-09 17:07:42
+ */
+import { formatPlaceholder } from "@element-plus/pro-utils";
+import { ElOption, ElSelect } from "element-plus";
+import { FunctionalComponent, defineComponent, inject, ref } from "vue-demi";
+import type { SearchBarFormItem } from "../typing";
 
 const Select = defineComponent(() => {
-	const props = inject('select', {}) as { formItem: SearchBarFormItem; emitter: Record<string, any> };
+	const props = inject("select", {}) as { formItem: SearchBarFormItem; emitter: Record<string, any> };
 
-	const data = ref('');
+	const data = ref("");
 
 	return () => (
 		<ElSelect
 			v-model={data.value}
-			placeholder={formatPlaceholder(props.formItem.label, 'select') as string}
+			placeholder={formatPlaceholder(props.formItem.label, "select") as string}
 			clearable
-			onChange={(v) => props.emitter.emit('value-change', { field: props.formItem.dataField, value: v })}
+			onChange={(v) => props.emitter.emit("value-change", { field: props.formItem.dataField, value: v })}
 		>
-			{props.formItem.valueOptions?.map((optionProps, index) => (
-				<ElOption {...optionProps} key={index} />
-			))}
+			{props.formItem.valueOptions?.map((optionProps, index) => <ElOption {...optionProps} key={index} />)}
 		</ElSelect>
 	);
 }) as FunctionalComponent<any>;
