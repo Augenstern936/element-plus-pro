@@ -1,10 +1,13 @@
 <!--
  * @Description: 
  * @Date: 2024-07-09 16:21:57
- * @LastEditTime: 2024-07-09 17:23:40
+ * @LastEditTime: 2024-07-09 22:38:38
 -->
 <template>
-	<pro-button tip="提示内容">pro-button</pro-button>
+	<el-space>
+		<pro-button tip="提示内容">default</pro-button>
+		<ProButton type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">popconfirm</ProButton>
+	</el-space>
 </template>
 
 <script setup lang="ts">

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-07-09 17:01:30
+ * @LastEditTime: 2024-07-09 22:49:03
  * @FilePath: \element-plus-pro\packages\field\src\components\Image\index.tsx
  */
 import { CloseBold, View } from "@element-plus/icons-vue";

@@ -61,36 +61,6 @@
 				},
 			}"
 		/> -->
-		<ProDescriptions
-			:title="{
-				text: ['个人简介'],
-				mark: {
-					shape: 'disclosure-closed',
-				},
-			}"
-			:gap="20"
-			:items="[
-				[{ label: '姓名' }, { label: '年龄' }, { label: '爱好' }],
-				[{ label: '姓名' }, { label: '年龄' }, { label: '爱好' }],
-			]"
-		/>
-		<ProForm
-			v-model="requestParams"
-			:label-style="{ fontWeight: 600 }"
-			:readonly="false"
-			:required="true"
-			:columns="formItems"
-			:request="getFormData"
-			:params="requestParams"
-			:actions="{
-				buttonFillMode: 'aequilate',
-			}"
-		>
-			33
-			<div>222</div>
-			<ProFormAvatar :order="-2" />
-			<ProForm.Switch v-model="test" :order="1" label="开关测试:" activeText="已打开" inactive-text="测试" />
-		</ProForm>
 	</div>
 </template>
 
@@ -98,107 +68,14 @@
 	import {
 		ProButton,
 		ProCopyable,
-		ProDescriptions,
 		ProField,
-		ProForm,
-		ProFormAvatar,
 	} from '@element-plus/pro-components';
 	import { reactive, ref } from 'vue';
-	// import type { TableColumns } from "@element-plus/pro-components";
-	// import { ProFieldCascader } from "@element-plus/pro-field";
 
-	const test = ref(true);
-
-	const switchs = ref('22');
-
-	const requestParams = ref({
-		id: '1001',
-	});
-
-	const getFormData = async (params: Record<string, any>, props) => {
-		console.log('请求参数', params, props);
-		return {
-			name: '拔都',
-			age: 50,
-		};
-	};
 
 	const reset = () => {
-		requestParams.value.id = '1002';
-		console.log(requestParams.value, '重置');
+		
 	};
-
-	const formItems = ref([
-		{
-			label: '姓名:',
-			dataField: 'name',
-			required: true,
-		},
-		{
-			label: '年龄:',
-			dataField: 'age',
-			valueType: 'number',
-		},
-		{
-			label: '出生日期:',
-			valueType: 'date',
-		},
-		{
-			label: '头像:',
-			dataField: 'avatar',
-			valueType: 'avatar',
-		},
-		{
-			label: '爱好:',
-			dataField: 'test',
-			valueType: 'radio',
-			valueEnum: {
-				1: '钓鱼',
-				2: '王者',
-				3: '台球',
-				4: '阅读',
-			},
-		},
-		{
-			label: '星级:',
-			valueType: 'rate',
-			fieldProps: {
-				scoreTemplate: '{value} 级',
-			},
-		},
-		{
-			label: '进度:',
-			valueType: 'slider',
-		},
-		{
-			label: '相册:',
-			valueType: 'image',
-			fieldProps: {
-				src: [
-					'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg1',
-					'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
-					'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
-					'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg2',
-					'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
-					'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
-					'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',
-				],
-			},
-		},
-		{
-			label: '开关:',
-			dataField: 'switch',
-			valueType: 'switch',
-		},
-		{
-			label: '百分比:',
-			dataField: 'progress',
-			valueType: 'progress',
-			fieldProps: {
-				percentage: 50,
-			},
-		},
-	]);
 
 	const columns = ref<any[]>([
 		{
