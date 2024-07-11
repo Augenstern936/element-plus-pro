@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-27 20:57:53
- * @LastEditTime: 2024-07-09 17:06:11
+ * @LastEditTime: 2024-07-11 23:01:42
  * @FilePath: \element-plus-pro\packages\form\src\core\HOC\createField.tsx
  */
-import { ProFieldType } from "@element-plus/pro-field";
-import { useVModel } from "@vueuse/core";
-import { DefineComponent, FunctionalComponent, SetupContext } from "vue-demi";
-import { ProFormItem } from "../FormItem";
+import { ProFieldType } from '@element-plus/pro-field';
+import { useVModel } from '@vueuse/core';
+import { DefineComponent, FunctionalComponent, SetupContext } from 'vue-demi';
+import { ProFormItem } from '../FormItem';
 
 type RenderProps = {
 	modelValue?: string | number | boolean | Date | [Date, Date] | [string, string];
@@ -20,13 +20,13 @@ type RenderProps = {
 
 function createField<T>(FieldComponent: DefineComponent<T> | FunctionalComponent<T>, config?: Record<string, any>) {
 	const render = (props: RenderProps, ctx: SetupContext) => {
-		const model = useVModel(props, "modelValue", ctx.emit);
-		console.log(props, "createField");
+		const model = useVModel(props, 'modelValue', ctx.emit);
+		console.log(props, 'createField');
 		return (
 			<ProFormItem {...(props as any)}>
 				<FieldComponent
 					type={props.type}
-					mode={props.readonly === true ? "read" : "edit"}
+					mode={props.readonly === true ? 'read' : 'edit'}
 					placeholder={props.placeholder}
 					fieldProps={props.fieldProps}
 					v-model={model.value}

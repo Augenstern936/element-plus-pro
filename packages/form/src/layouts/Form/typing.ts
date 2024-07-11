@@ -2,13 +2,43 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 23:05:53
- * @LastEditTime: 2024-07-09 17:06:35
+ * @LastEditTime: 2024-07-11 22:37:02
  * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\typing.ts
  */
-import type { FormItemProps, FormItemRule, FormProps } from "element-plus";
-import type { DefineComponent } from "vue-demi";
-import type { JSX } from "vue/jsx-runtime";
-import components, * as Types from "../../components";
+import type { FormItemProps, FormItemRule, FormProps } from 'element-plus';
+import type { DefineComponent } from 'vue-demi';
+import type { JSX } from 'vue/jsx-runtime';
+import components, {
+	ProFormAavtarProps,
+	ProFormCascaderProps,
+	ProFormCheckboxButtonProps,
+	ProFormCheckboxProps,
+	ProFormColorProps,
+	ProFormDateMonthProps,
+	ProFormDateMonthRangeProps,
+	ProFormDateProps,
+	ProFormDateRangeProps,
+	ProFormDatesProps,
+	ProFormDateTimeProps,
+	ProFormDateTimeRangeProps,
+	ProFormDateWeekProps,
+	ProFormDateYearProps,
+	ProFormImageProps,
+	ProFormNumberProps,
+	ProFormPasswordProps,
+	ProFormRadioButtonProps,
+	ProFormRadioProps,
+	ProFormRateProps,
+	ProFormSelectProps,
+	ProFormSliderProps,
+	ProFormSwitchProps,
+	ProFormTextareaProps,
+	ProFormTextProps,
+	ProFormTimeProps,
+	ProFormTimeRangeProps,
+	ProFormTimeSelectProps,
+	ProFormTreeSelectProps,
+} from '../../components';
 
 export interface ProFormProps extends FormProps {
 	// 绑定的数据
@@ -33,7 +63,7 @@ export interface ProFormProps extends FormProps {
 	onFinish?: (entity: Record<string, unknown>) => void;
 }
 
-export interface ProFormItem extends Omit<FormItemProps, "prop" | "label" | "rules" | "required"> {
+export interface ProFormItem extends Omit<FormItemProps, 'prop' | 'label' | 'rules' | 'required'> {
 	// 表单项类型，决定着渲染的内容
 	type?: Type | ProFormItemFunction<Type>;
 	// 绑定的字段
@@ -58,38 +88,38 @@ export interface ProFormItem extends Omit<FormItemProps, "prop" | "label" | "rul
 
 export type Type = keyof typeof components;
 
-export type ProFormItemRule = Omit<FormItemRule, "required">;
+export type ProFormItemRule = Omit<FormItemRule, 'required'>;
 
 type ProFormItemFunction<T> = (entity: Record<string, unknown>) => T;
 
 export type ProFormSuperProps<T> = DefineComponent<T> & {
-	Text: DefineComponent<Types.ProFormTextProps>;
-	Number: DefineComponent<Types.ProFormNumberProps>;
-	Password: DefineComponent<Types.ProFormPaaswordProps>;
-	Textarea: DefineComponent<Types.ProFormTextareaProps>;
-	Date: DefineComponent<Types.ProFormDateProps>;
-	Dates: DefineComponent<Types.ProFormDatesProps>;
-	DateTime: DefineComponent<Types.ProFormDateTimeProps>;
-	DateWeek: DefineComponent<Types.ProFormDateWeekProps>;
-	DateMonth: DefineComponent<Types.ProFormDateMonthProps>;
-	DateYear: DefineComponent<Types.ProFormDateYearProps>;
-	DateRange: DefineComponent<Types.ProFormDateRangeProps>;
-	DateTimeRange: DefineComponent<Types.ProFormDateTimeRangeProps>;
-	DateMonthRange: DefineComponent<Types.ProFormDateMonthRangeProps>;
-	Time: DefineComponent<Types.ProFormTimeProps>;
-	TimeRange: DefineComponent<Types.ProFormTimeRangeProps>;
-	TimeSelect: DefineComponent<Types.ProFormTimeSelectProps>;
-	Select: DefineComponent<Types.ProFormSelectProps>;
-	TreeSelect: DefineComponent<Types.ProFormTreeSelectProps>;
-	Checkbox: DefineComponent<Types.ProFormCheckboxProps>;
-	CheckboxButton: DefineComponent<Types.ProFormCheckboxButtonProps>;
-	Radio: DefineComponent<Types.ProFormRadioProps>;
-	RadioButton: DefineComponent<Types.ProFormRadioButtonProps>;
-	Switch: DefineComponent<Types.ProFormSwitchProps>;
-	Avatar: DefineComponent<Types.ProFormAavtarProps>;
-	Image: DefineComponent<Types.ProFormImageProps>;
-	Rate: DefineComponent<Types.ProFormRateProps>;
-	Color: DefineComponent<Types.ProFormColorProps>;
-	Cascader: DefineComponent<Types.ProFormCascaderProps>;
-	Slider: DefineComponent<Types.ProFormSliderProps>;
+	Text: DefineComponent<ProFormTextProps>;
+	Number: DefineComponent<ProFormNumberProps>;
+	Password: DefineComponent<ProFormPasswordProps>;
+	Textarea: DefineComponent<ProFormTextareaProps>;
+	Date: DefineComponent<ProFormDateProps>;
+	Dates: DefineComponent<ProFormDatesProps>;
+	DateTime: DefineComponent<ProFormDateTimeProps>;
+	DateWeek: DefineComponent<ProFormDateWeekProps>;
+	DateMonth: DefineComponent<ProFormDateMonthProps>;
+	DateYear: DefineComponent<ProFormDateYearProps>;
+	DateRange: DefineComponent<ProFormDateRangeProps>;
+	DateTimeRange: DefineComponent<ProFormDateTimeRangeProps>;
+	DateMonthRange: DefineComponent<ProFormDateMonthRangeProps>;
+	Time: DefineComponent<ProFormTimeProps>;
+	TimeRange: DefineComponent<ProFormTimeRangeProps>;
+	TimeSelect: DefineComponent<ProFormTimeSelectProps>;
+	Select: DefineComponent<ProFormSelectProps>;
+	TreeSelect: DefineComponent<ProFormTreeSelectProps>;
+	Checkbox: DefineComponent<ProFormCheckboxProps>;
+	CheckboxButton: DefineComponent<ProFormCheckboxButtonProps>;
+	Radio: DefineComponent<ProFormRadioProps>;
+	RadioButton: DefineComponent<ProFormRadioButtonProps>;
+	Switch: DefineComponent<ProFormSwitchProps>;
+	Avatar: DefineComponent<ProFormAavtarProps>;
+	Image: DefineComponent<ProFormImageProps>;
+	Rate: DefineComponent<ProFormRateProps>;
+	Color: DefineComponent<ProFormColorProps>;
+	Cascader: DefineComponent<ProFormCascaderProps>;
+	Slider: DefineComponent<ProFormSliderProps>;
 };

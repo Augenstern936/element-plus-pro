@@ -12,15 +12,12 @@
 				<ElButton type="info">删除</ElButton>
 			</template>
 		</pro-table> -->
-		<!-- <pro-button type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }">删除</pro-button> -->
 		<el-space fill>
-			<ProButton type="danger" :tip="{ mode: 'popconfirm', text: '确定要删除吗?' }" @click="reset"
-				>刷新</ProButton
-			>
 			<ProCopyable value="17634393156" @success="() => console.log('成功')" />
 			<ProField :type="'switch'" />
-			<!-- <ProField.Rate mode="read" />
+			<ProField.Rate mode="read" />
 			<ProField.Slider />
+			<ProField.Switch v-model="testSwitch" />
 			<ProField.Image
 				:src="[
 					'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg1',
@@ -33,16 +30,9 @@
 				]"
 			/>
 			<ProField.Progress :percentage="50" />
-			<ProField.Switch
-				v-model="switchs"
-				mode="edit"
-				active-value="22"
-				active-text="已打开"
-				inactive-text="测试"
-			/>
-			<ProText>11</ProText> -->
+			<ProText>11</ProText>
 		</el-space>
-		<!-- <ProField.CheckboxButton
+		<ProField.CheckboxButton
 			v-model="test"
 			:mode="'read'"
 			:mark-shape="'disclosure-closed'"
@@ -60,22 +50,17 @@
 					status: 'warning',
 				},
 			}"
-		/> -->
+		/>
 	</div>
 </template>
 
 <script setup lang="ts">
-	import {
-		ProButton,
-		ProCopyable,
-		ProField,
-	} from '@element-plus/pro-components';
+	import { ProCopyable, ProField } from '@element-plus/pro-components';
 	import { reactive, ref } from 'vue';
 
+	const test = ref([1, 3]);
 
-	const reset = () => {
-		
-	};
+	const testSwitch = ref(false);
 
 	const columns = ref<any[]>([
 		{

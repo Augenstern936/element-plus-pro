@@ -2,15 +2,15 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-30 21:35:16
- * @LastEditTime: 2024-07-09 17:04:41
+ * @LastEditTime: 2024-07-11 23:05:56
  * @FilePath: \element-plus-pro\packages\form\src\components\Switch\index.tsx
  */
-import { withInstall } from "@element-plus/pro-utils";
-import { useVModel } from "@vueuse/core";
-import type { SwitchProps } from "element-plus";
-import { DefineComponent, PropType, defineComponent } from "vue-demi";
-import { ProFormField } from "../../core";
-import { FormFieldProps } from "../../typing";
+import { withInstall } from '@element-plus/pro-utils';
+import { useVModel } from '@vueuse/core';
+import type { SwitchProps } from 'element-plus';
+import { DefineComponent, PropType, defineComponent } from 'vue-demi';
+import { ProFormField } from '../../core';
+import { FormFieldProps } from '../../typing';
 
 export type ProFormSwitchProps = FormFieldProps<SwitchProps> & {
 	modelValue?: string | number | boolean;
@@ -18,13 +18,13 @@ export type ProFormSwitchProps = FormFieldProps<SwitchProps> & {
 
 const FormSwitch = defineComponent<ProFormSwitchProps>(
 	(props, ctx) => {
-		console.log(props, "props1");
-		const model = useVModel(props, "modelValue", ctx.emit);
+		console.log(props, 'props1');
+		const model = useVModel(props, 'modelValue', ctx.emit);
 
-		return () => <ProFormField {...props} type={"switch"} v-model={model.value} />;
+		return () => <ProFormField {...props} type={'switch'} v-model={model.value} />;
 	},
 	{
-		name: "ProFormSwitch",
+		name: 'ProFormSwitch',
 	}
 ) as DefineComponent<ProFormSwitchProps>;
 
