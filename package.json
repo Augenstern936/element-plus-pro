@@ -42,7 +42,7 @@
 		"@vue/shared": "^3.2.37",
 		"@vueuse/core": "^10.7.0",
 		"copy-to-clipboard": "^3.3.3",
-		"element-plus": "^2.4.1",
+		"element-plus": "^2.7.6",
 		"eslint": "^9.3.0",
 		"fs-extra": "^11.1.1",
 		"glob": "^10.3.12",

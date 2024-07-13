@@ -14,10 +14,9 @@
 		</pro-table> -->
 		<el-space fill>
 			<ProCopyable value="17634393156" @success="() => console.log('成功')" />
-			<ProField :type="'switch'" />
+			<ProField :type="'switch'" v-model="testSwitch" />
 			<ProField.Rate mode="read" />
 			<ProField.Slider />
-			<ProField.Switch v-model="testSwitch" />
 			<ProField.Image
 				:src="[
 					'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg1',

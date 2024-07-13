@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-27 20:57:53
- * @LastEditTime: 2024-07-11 23:01:42
+ * @LastEditTime: 2024-07-13 22:56:15
  * @FilePath: \element-plus-pro\packages\form\src\core\HOC\createField.tsx
  */
 import { ProFieldType } from '@element-plus/pro-field';
@@ -21,7 +21,6 @@ type RenderProps = {
 function createField<T>(FieldComponent: DefineComponent<T> | FunctionalComponent<T>, config?: Record<string, any>) {
 	const render = (props: RenderProps, ctx: SetupContext) => {
 		const model = useVModel(props, 'modelValue', ctx.emit);
-		console.log(props, 'createField');
 		return (
 			<ProFormItem {...(props as any)}>
 				<FieldComponent

@@ -2,24 +2,27 @@
  * @Description:;
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:23:41
- * @LastEditTime: 2024-07-09 17:06:47
+ * @LastEditTime: 2024-07-13 23:04:18
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\index.tsx
  */
-import { withInstall } from "@element-plus/pro-utils";
-import { defineComponent, FunctionalComponent } from "vue-demi";
-import { proSearchBarProps, ProSearchBarProps } from "./typing";
+import { withInstall } from '@element-plus/pro-utils';
+import { DefineComponent, defineComponent } from 'vue-demi';
+import { proSearchBarProps, ProSearchBarProps } from './typing';
+import { GenerateForm } from '../../core';
+import { useVModel } from '@vueuse/core';
 
 const SearchBar = defineComponent<ProSearchBarProps>(
 	(props, ctx) => {
-		return () => <div>111</div>;
+		const model = useVModel(props, 'modelValue', ctx.emit);
+		return () => <GenerateForm {...props} v-model={model.value} />;
 	},
 	{
-		name: "ProSearchBar",
+		name: 'ProSearchBar',
 	}
-) as FunctionalComponent<ProSearchBarProps>;
+) as DefineComponent<ProSearchBarProps>;
 
 SearchBar.props = proSearchBarProps;
 
-export * from "./typing";
+export * from './typing';
 
 export const ProSearchBar = withInstall(SearchBar);

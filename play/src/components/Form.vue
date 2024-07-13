@@ -2,26 +2,24 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-09 22:25:21
- * @LastEditTime: 2024-07-11 22:46:35
+ * @LastEditTime: 2024-07-13 16:13:17
  * @FilePath: \element-plus-pro\play\src\components\Form.vue
 -->
 <template>
 	<ProForm
-		v-model="requestParams"
+		v-model="form"
 		:label-style="{ fontWeight: 600 }"
 		:readonly="false"
 		:required="true"
 		:columns="formItems"
 		:request="getFormData"
-		:params="requestParams"
+		:params="form"
 		:actions="{
 			buttonFillMode: 'aequilate',
 		}"
 	>
-		33
-		<div>222</div>
 		<ProFormAvatar :order="-2" />
-		<ProForm.Switch v-model="test" :order="1" label="开关测试:" activeText="已打开" inactive-text="测试" />
+		<ProForm.Switch v-model="form.switch" :order="1" label="开关测试:" activeText="已打开" inactive-text="测试" />
 	</ProForm>
 </template>
 
@@ -36,6 +34,10 @@
 			label: '姓名:',
 			dataField: 'name',
 			required: true,
+			hide: (data: any) => {
+				console.log(data, 'data');
+				return data.switch === true;
+			},
 		},
 		{
 			label: '年龄:',
@@ -103,8 +105,9 @@
 		},
 	]);
 
-	const requestParams = ref({
+	const form = ref({
 		id: '1001',
+		switch: false,
 	});
 
 	const getFormData = async (params: Record<string, any>, props: Record<string, any>) => {

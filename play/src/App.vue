@@ -1,19 +1,19 @@
 <!--
  * @Description: 
  * @Date: 2024-07-09 16:21:57
- * @LastEditTime: 2024-07-11 22:41:45
+ * @LastEditTime: 2024-07-13 16:57:25
 -->
 <template>
 	<el-container style="height: 100vh">
 		<el-aside width="200px">
 			<el-menu
-				:default-active="active"
+				:default-active="active + ''"
 				text-color="#fff"
 				active-text-color="#ffd04b"
 				background-color="#545c64"
 				style="height: 100%"
 			>
-				<el-menu-item v-for="(menu, index) in menus" :index="index" :key="index" @click="onSelect(index)">
+				<el-menu-item v-for="(menu, index) in menus" :index="index + ''" :key="index" @click="onSelect(index)">
 					<template #title>{{ menu.title }}</template>
 				</el-menu-item>
 			</el-menu>
