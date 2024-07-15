@@ -9,7 +9,7 @@ import type { FormItemProps } from "element-plus";
 import { formProps as elFormProps } from "element-plus";
 import { ProButtonProps } from "packages/button/es";
 import { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
-import { ActionsProps } from "./Actions";
+import { ActionsProps } from "./Submitter";
 
 const commonFormProps = {
 	modelValue: {

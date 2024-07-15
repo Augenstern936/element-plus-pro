@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-14 17:03:21
- * @LastEditTime: 2024-07-15 16:30:00
+ * @LastEditTime: 2024-07-15 17:35:36
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\GenerateForm.tsx
  */
 import { ProField } from "@element-plus/pro-field";
@@ -11,7 +11,7 @@ import { formatPlaceholder } from "@element-plus/pro-utils";
 import { useVModel } from "@vueuse/core";
 import { ElForm, ElFormItem } from "element-plus";
 import { DefineComponent, computed, defineComponent, ref } from "vue-demi";
-import Actions from "./Actions";
+import Submitter from "./Submitter";
 import "./style.scss";
 import { GenerateFormProps, ProFormColumns, generateFormProps } from "./typing";
 import useFormProps from "./useFormProps";
@@ -92,7 +92,7 @@ const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
 				})}
 				{props.readonly !== true && (
 					<ElFormItem label=" ">
-						<Actions {...actionProps.value} />
+						{ctx.slots.default ? ctx.slots.default(model.value) : <Submitter {...actionProps.value} />}
 					</ElFormItem>
 				)}
 			</ElForm>
