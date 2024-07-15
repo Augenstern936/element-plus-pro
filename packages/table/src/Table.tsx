@@ -1,12 +1,12 @@
-import ProSearchBar from "@element-plus/pro-search-bar";
-import { toOptions, withInstall } from "@element-plus/pro-utils";
-import { ElAlert, ElMessage, ElPagination, ElTable } from "element-plus";
-import { v4 as uuidv4 } from "uuid";
-import type { FunctionalComponent } from "vue-demi";
-import { KeepAlive, computed, defineComponent, provide, ref, watch } from "vue-demi";
-import { Card, TableColumn, ToolBar } from "./components";
-import "./style/index.scss";
-import { Ctx, ProTableProps, TableColumns, proTableProps } from "./typing";
+import ProSearchBar from '@element-plus/pro-form';
+import { toOptions, withInstall } from '@element-plus/pro-utils';
+import { ElAlert, ElMessage, ElPagination, ElTable } from 'element-plus';
+import { v4 as uuidv4 } from 'uuid';
+import type { FunctionalComponent } from 'vue-demi';
+import { KeepAlive, computed, defineComponent, provide, ref, watch } from 'vue-demi';
+import { Card, TableColumn, ToolBar } from './components';
+import './style/index.scss';
+import { Ctx, ProTableProps, TableColumns, proTableProps } from './typing';
 
 /**
  * 高级表格组件
@@ -37,7 +37,7 @@ const ProTable = defineComponent<ProTableProps>(
 
 		const multipleSelection = ref<{ [x: string]: any }[]>([]);
 
-		const searchDisplay = ref<"none" | "block">("block");
+		const searchDisplay = ref<'none' | 'block'>('block');
 
 		const data = ref<{ total: number; data: any[] }>({
 			data: [],
@@ -54,11 +54,11 @@ const ProTable = defineComponent<ProTableProps>(
 		const isColumnsSettingChange = ref(false);
 
 		const searchBarTools = computed(() => {
-			return typeof props.search == "object" ? props.search["rightTools"] ?? [] : void 0;
+			return typeof props.search == 'object' ? props.search['rightTools'] ?? [] : void 0;
 		});
 
 		const toolbarTitleRender = computed(() => {
-			return ctx.slots.title || ctx.slots["title"];
+			return ctx.slots.title || ctx.slots['title'];
 		});
 
 		const tableColumns = computed(() => {
@@ -71,10 +71,10 @@ const ProTable = defineComponent<ProTableProps>(
 		});
 
 		const paginationAlignStyle = computed(() => {
-			const align = typeof props?.pagination == "object" ? props.pagination["align"] : "right";
+			const align = typeof props?.pagination == 'object' ? props.pagination['align'] : 'right';
 			return {
-				display: "flex",
-				justifyContent: align || "right",
+				display: 'flex',
+				justifyContent: align || 'right',
 			};
 		});
 
@@ -83,15 +83,15 @@ const ProTable = defineComponent<ProTableProps>(
 		 */
 		const searchFormItems = computed(() => {
 			const isShowUndefinedItem = globalSearch || globalSearch === void 0 ? void 0 : true;
-			return columns
+			return tableColumns.value
 				.map((item: TableColumns) => {
 					const { valueType, search } = item;
 					const exclude =
-						valueType != "index" &&
-						valueType != "image" &&
-						valueType != "avatar" &&
-						valueType != "tag" &&
-						valueType != "action";
+						valueType != 'index' &&
+						valueType != 'image' &&
+						valueType != 'avatar' &&
+						valueType != 'tag' &&
+						valueType != 'action';
 					if (exclude && (search || search === isShowUndefinedItem)) {
 						return formatSearchFormItemsConfig(item);
 					}
@@ -107,14 +107,14 @@ const ProTable = defineComponent<ProTableProps>(
 		 * @returns
 		 */
 		const formatSearchFormItemsConfig = (tableColumn: TableColumns) => {
-			const { dataField = "", title, valueType, valueEnum } = tableColumn;
-			const columnSearchConfig = typeof tableColumn.search === "object" ? tableColumn.search : {};
-			const globalSearchConfig = typeof globalSearch === "object" ? globalSearch : {};
+			const { dataField = '', title, valueType, valueEnum } = tableColumn;
+			const columnSearchConfig = typeof tableColumn.search === 'object' ? tableColumn.search : {};
+			const globalSearchConfig = typeof globalSearch === 'object' ? globalSearch : {};
 			return {
 				label: title,
 				dataField,
 				valueType,
-				valueOptions: valueEnum ? toOptions(valueEnum) : void 0,
+				//valueOptions: valueEnum ? toOptions(valueEnum) : void 0,
 				...globalSearchConfig,
 				...columnSearchConfig,
 			};
@@ -127,13 +127,13 @@ const ProTable = defineComponent<ProTableProps>(
 		 * @returns
 		 */
 		const mergePaginationParams = (
-			defaultPage: Record<"current" | "pageSize", number>,
+			defaultPage: Record<'current' | 'pageSize', number>,
 			...pages: any[]
-		): Record<"current" | "pageSize", number> => {
+		): Record<'current' | 'pageSize', number> => {
 			let params = { ...defaultPage };
 			if (pages.length) {
 				pages.forEach((item) => {
-					if (typeof item === "object" && (item.current || item.pageSize)) {
+					if (typeof item === 'object' && (item.current || item.pageSize)) {
 						params = { ...params, ...item };
 					}
 				});
@@ -148,7 +148,7 @@ const ProTable = defineComponent<ProTableProps>(
 		 * 发起请求获取数据
 		 */
 		const sendRequest = async (otherFilterParams = {}) => {
-			if (getDataSource && typeof getDataSource === "function" && !loading.value) {
+			if (getDataSource && typeof getDataSource === 'function' && !loading.value) {
 				try {
 					loading.value = true;
 					const pageParams = mergePaginationParams(params.value);
@@ -217,20 +217,20 @@ const ProTable = defineComponent<ProTableProps>(
 		const onSearch = () => {
 			const isEmpty = isEmptyObj(searchForm.value);
 			if (isEmpty) {
-				return ElMessage.warning("筛选栏表单信息为空");
+				return ElMessage.warning('筛选栏表单信息为空');
 			}
 			sendRequest();
 		};
 
 		const onSearchDisplay = () => {
 			if (searchFormItems.value.length) {
-				searchDisplay.value = searchDisplay.value === "block" ? "none" : "block";
+				searchDisplay.value = searchDisplay.value === 'block' ? 'none' : 'block';
 			}
 		};
 
 		const onColumnsSettingChange = (ids: string[]) => {
 			settingTableColumns.value = tableColumns.value.filter(
-				(column: any) => ids.includes(column.id) || column?.type == "selection"
+				(column: any) => ids.includes(column.id) || column?.type == 'selection'
 			);
 			isColumnsSettingChange.value = true;
 		};
@@ -248,10 +248,10 @@ const ProTable = defineComponent<ProTableProps>(
 		 * 监听分页参数变化
 		 * @param current
 		 */
-		const onPageChange = (name: "current" | "pageSize", value: number) => {
+		const onPageChange = (name: 'current' | 'pageSize', value: number) => {
 			const pageParams = mergePaginationParams(params.value);
 			if (dataSource) {
-				return ctx.emit("pageChange", { ...pageParams, [name]: value });
+				return ctx.emit('pageChange', { ...pageParams, [name]: value });
 			}
 			params.value[name] = value;
 		};
@@ -262,14 +262,14 @@ const ProTable = defineComponent<ProTableProps>(
 		 * 渲染表格
 		 */
 		const RenderTable = () => (
-			<div style={{ border: "1px solid transparent" }}>
+			<div style={{ border: '1px solid transparent' }}>
 				<ElTable
 					ref={multipleTableRef}
 					data={data.value.data}
 					header-cell-style={{
-						color: "#333",
+						color: '#333',
 						fontWeight: 600,
-						background: "#f5f7fa",
+						background: '#f5f7fa',
 						...props.headerCellStyle,
 					}}
 					onSelection-change={onSelectionChange}
@@ -277,16 +277,16 @@ const ProTable = defineComponent<ProTableProps>(
 					<TableColumn columns={renderTableColumns.value} />
 				</ElTable>
 				{propsPagination !== false && data.value.total > 0 && (
-					<div class="pagination-container" style={paginationAlignStyle.value}>
+					<div class='pagination-container' style={paginationAlignStyle.value}>
 						<ElPagination
 							v-model:current-page={params.value.current}
 							background={true}
 							total={data.value.total}
 							page-size={params.value.pageSize}
 							page-sizes={[10, 30, 50, 100, 200]}
-							layout="total, sizes, prev, pager, next, jumper"
-							onUpdate:page-size={(e: number) => onPageChange("pageSize", e)}
-							onUpdate:current-page={(e: number) => onPageChange("current", e)}
+							layout='total, sizes, prev, pager, next, jumper'
+							onUpdate:page-size={(e: number) => onPageChange('pageSize', e)}
+							onUpdate:current-page={(e: number) => onPageChange('current', e)}
 						/>
 					</div>
 				)}
@@ -304,13 +304,13 @@ const ProTable = defineComponent<ProTableProps>(
 			}
 		};
 
-		provide("tableProps", {
+		provide('tableProps', {
 			ctx,
 			...props,
 			columns: renderTableColumns.value,
 		});
 
-		provide("toolbar", {
+		provide('toolbar', {
 			title: props.title,
 			options: props.options,
 			columns: tableColumns.value,
@@ -352,33 +352,33 @@ const ProTable = defineComponent<ProTableProps>(
 
 		return () => (
 			<div
-				id="pro-table"
-				class="pro-table"
-				style={isFullScreening.value ? { height: "100vh", background: "#fff" } : {}}
+				id='pro-table'
+				class='pro-table'
+				style={isFullScreening.value ? { height: '100vh', background: '#fff' } : {}}
 			>
 				<Card
-					v-show={searchDisplay.value === "block"}
+					v-show={searchDisplay.value === 'block'}
 					ghost={props.ghost || false}
-					style={{ paddingBottom: 0, marginBottom: "20px" }}
+					style={{ paddingBottom: 0, marginBottom: '20px' }}
 				>
-					<ProSearchBar
+					{/* <ProSearchBar
 						ref={searchBarRef}
 						v-model={searchForm.value}
-						items={searchFormItems.value as any}
+						columns={searchFormItems.value as any}
 						rightTools={searchBarTools.value}
 						inline={
-							typeof globalSearch == "object"
-								? globalSearch["inline"] === void 0
+							typeof globalSearch == 'object'
+								? globalSearch['inline'] === void 0
 									? true
-									: globalSearch["inline"]
+									: globalSearch['inline']
 								: true
 						}
 						v-slots={{
-							"right-tools": () => ctx.slots["search-bar-right-tools"]?.({ ...searchForm.value }),
+							'right-tools': () => ctx.slots['search-bar-right-tools']?.({ ...searchForm.value }),
 						}}
 						onSearch={onSearch}
-						onTools={(i: number) => ctx.emit("tools", i)}
-					/>
+						onTools={(i: number) => ctx.emit('tools', i)}
+					/> */}
 				</Card>
 				<Card ghost={props.ghost || false}>
 					<ToolBar
@@ -396,14 +396,14 @@ const ProTable = defineComponent<ProTableProps>(
 					/>
 					{multipleSelection.value.length > 0 && (
 						<ElAlert
-							type="info"
-							close-text="取消选择"
-							style={{ marginBottom: "20px", backgroundColor: "#f5f7fa" }}
+							type='info'
+							close-text='取消选择'
+							style={{ marginBottom: '20px', backgroundColor: '#f5f7fa' }}
 							onClose={clearSelected}
 							v-slots={{
 								title: () => (
 									<>
-										已选择 <span class="alert-count">{multipleSelection.value.length}</span> 项
+										已选择 <span class='alert-count'>{multipleSelection.value.length}</span> 项
 									</>
 								),
 							}}
@@ -415,7 +415,7 @@ const ProTable = defineComponent<ProTableProps>(
 		);
 	},
 	{
-		name: "ProTable",
+		name: 'ProTable',
 	}
 ) as unknown as FunctionalComponent<ProTableProps>;
 

@@ -1,19 +1,20 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-07-15 17:07:14
+ * @LastEditTime: 2024-07-15 21:55:53
  */
-import type { ProFieldType } from "@element-plus/pro-field";
-import { ProRequestData, ValueEnum, ValueOption } from "@element-plus/pro-types";
-import type { FormItemProps } from "element-plus";
-import { formProps as elFormProps } from "element-plus";
-import { ProButtonProps } from "packages/button/es";
-import { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
-import { ActionsProps } from "./Submitter";
+import type { ProFieldType } from '@element-plus/pro-field';
+import { ProRequestData, ValueEnum, ValueOption } from '@element-plus/pro-types';
+import type { FormItemProps } from 'element-plus';
+import { formProps as elFormProps } from 'element-plus';
+import { ProButtonProps } from 'packages/button/es';
+import { CSSProperties, ExtractPropTypes, PropType } from 'vue-demi';
+import { ActionsProps } from './Submitter';
 
 const commonFormProps = {
 	modelValue: {
 		type: Object as PropType<{ [x: string]: any }>,
+		default: void 0,
 	},
 	title: {
 		type: String,
@@ -36,7 +37,7 @@ const commonFormProps = {
 	},
 	emptyText: {
 		type: String,
-		default: "--",
+		default: '--',
 	},
 	params: {
 		type: Object as PropType<Record<string, any>>,
@@ -58,18 +59,18 @@ export const generateFormProps = {
 	...elFormProps,
 	...commonFormProps,
 	type: {
-		type: String as PropType<"default" | "dialog-form" | "drawer-form" | "steps-form" | "search-form">,
+		type: String as PropType<'default' | 'dialog-form' | 'drawer-form' | 'steps-form' | 'search-form'>,
 	},
 	labelWidth: {
-		type: [String, Number] as PropType<"auto" | number>,
-		default: "auto",
+		type: [String, Number] as PropType<'auto' | number>,
+		default: 'auto',
 	},
 	trigger: {
 		type: Object as PropType<ProButtonProps>,
 	},
 };
 
-export type ProFormColumns = Omit<FormItemProps, "prop" | "label"> & {
+export type ProFormColumns = Omit<FormItemProps, 'prop' | 'label'> & {
 	key?: string;
 	label?: string | (() => JSX.Element);
 	tooltip?: string;

@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-06-25 09:54:28
- * @LastEditTime: 2024-07-13 15:40:04
+ * @LastEditTime: 2024-07-15 21:21:38
  */
 import { isObject } from '@vueuse/core';
 import { computed } from 'vue-demi';
@@ -16,7 +16,7 @@ interface SlotConfig {
 const useFormProps = (props: GenerateFormProps, slots: SlotConfig[]) => {
 	const columns = computed(() => {
 		let data = [...(props?.columns ?? [])] as Record<string, any>[];
-		slots.forEach((slot, index) => {
+		slots?.forEach((slot, index) => {
 			const order = isProFormFieldComponent(slot) ? slot?.props?.order : null;
 
 			if (typeof order === 'number') {
