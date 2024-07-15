@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-07-09 17:05:47
+ * @LastEditTime: 2024-07-15 17:07:14
  */
 import type { ProFieldType } from "@element-plus/pro-field";
 import { ProRequestData, ValueEnum, ValueOption } from "@element-plus/pro-types";
@@ -21,10 +21,6 @@ const commonFormProps = {
 	columns: {
 		type: Array as PropType<ProFormColumns[]>,
 		default: [],
-	},
-	layout: {
-		type: String as PropType<"horizontal" | "vertical" | "inline">,
-		default: "horizontal",
 	},
 	readonly: {
 		type: Boolean,
@@ -76,6 +72,7 @@ export const generateFormProps = {
 export type ProFormColumns = Omit<FormItemProps, "prop" | "label"> & {
 	key?: string;
 	label?: string | (() => JSX.Element);
+	tooltip?: string;
 	dataField?: string;
 	readonly?: boolean;
 	valueType?: ProFormValueType;

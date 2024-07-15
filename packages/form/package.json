@@ -30,10 +30,11 @@
 	],
 	"author": "17634393156@163.com",
 	"dependencies": {
+		"@element-plus/pro-button": "workspace:^",
 		"@element-plus/pro-field": "workspace:^"
 	},
 	"peerDependencies": {
-		"vue": "^3.4.27",
-		"element-plus": "^2.7.2"
+		"element-plus": "^2.7.2",
+		"vue": "^3.4.27"
 	}
 }
