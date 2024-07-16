@@ -42,39 +42,10 @@
 </template>
 
 <script setup lang="ts">
-	import { ProCopyable, ProField } from '@element-plus/pro-components';
-	import { reactive, ref } from 'vue';
+	import { ProCopyable, ProField } from "@element-plus/pro-components";
+	import { ref } from "vue";
 
 	const test = ref([1, 3]);
 
 	const testSwitch = ref(false);
-
-	const data = reactive({
-		total: 5,
-		data: [
-			{
-				id: 1,
-				name: '张三',
-				age: 0,
-				sex: '男',
-				rate: 0,
-				avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
-			},
-			{
-				id: 2,
-				name: '李斯',
-				age: 30,
-				sex: '女',
-				avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
-				rate: 5,
-			},
-			{
-				id: 3,
-				name: '王五',
-				age: 15,
-				sex: '男',
-				rate: 3,
-			},
-		],
-	});
 </script>

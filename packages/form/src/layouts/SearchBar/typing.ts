@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:26:41
- * @LastEditTime: 2024-07-15 21:56:28
+ * @LastEditTime: 2024-07-16 10:32:47
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\typing.ts
  */
-import type { ProButtonProps } from '@element-plus/pro-button';
-import type { ExtractPropTypes, PropType } from 'vue-demi';
-import { ProFormColumns } from '../../core';
-import { ProFormLayout } from '../../typing';
+import type { ProButtonProps } from "@element-plus/pro-button";
+import type { ExtractPropTypes, PropType } from "vue-demi";
+import { ProFormColumns } from "../../core";
+import { ProFormLayout } from "../../typing";
 
 export const proSearchBarProps = {
 	modelValue: {
@@ -20,7 +20,7 @@ export const proSearchBarProps = {
 	},
 	layout: {
 		type: String as PropType<ProFormLayout>,
-		default: 'inline',
+		default: "inline",
 	},
 	searchButton: {
 		type: [Object, Boolean] as PropType<ProButtonProps | boolean>,
@@ -32,11 +32,9 @@ export const proSearchBarProps = {
 	},
 	searchButtonTitle: {
 		type: String,
-		default: '查询',
 	},
 	resetButtonTitle: {
 		type: String,
-		default: '重置',
 	},
 	submitter: {
 		type: [Array, Function] as PropType<ProButtonProps[] | (() => JSX.Element)>,

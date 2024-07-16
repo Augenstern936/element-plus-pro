@@ -1,3 +1,4 @@
+import type { ProSearchBarProps } from "@element-plus/pro-form";
 import type { ButtonProps } from "element-plus";
 import type { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
 import { JSX } from "vue/jsx-runtime";
@@ -6,18 +7,20 @@ import { PaginationAlignEnum, StatusColorEnum, ValueTypeEnum } from "./enum";
 export const proTableProps = {
 	loading: {
 		type: Boolean,
-		default: false,
 	},
 	ghost: {
 		type: Boolean,
-		default: false,
+	},
+	openV2: {
+		type: Boolean,
 	},
 	// 是否开启缓存模式
 	keepAlive: {
 		type: Boolean,
-		default: false,
 	},
-	title: String,
+	title: {
+		type: String,
+	},
 	cellAlign: {
 		type: String as PropType<GlobalCellAlign>,
 		default: "left",
@@ -103,50 +106,6 @@ export const proTableProps = {
 
 export type ProTableProps = ExtractPropTypes<typeof proTableProps>;
 
-// export type ProTableProps = {
-// 	loading?: boolean;
-// 	ghost?: boolean;
-// 	// 是否开启缓存模式
-// 	keepAlive?: boolean;
-// 	// 标题
-// 	title?: string;
-// 	// 列
-// 	columns: TableColumns[];
-// 	// 头部样式
-// 	headerCellStyle?: CSSProperties;
-// 	//
-// 	cellAlign?: GlobalCellAlign;
-// 	// 为空时，默认显示的标记
-// 	columnEmptyText?: boolean | string;
-// 	// 默认分页大小
-// 	defaultSize?: number;
-// 	// 是否开启超出列宽显示省略号
-// 	ellipsis?: boolean;
-// 	// 全局搜索栏配置(权限低于单列配置)
-// 	search?: boolean | GlobalSearchConfig;
-// 	// 工具栏
-// 	toolbar?: TableToolbarConfig[];
-// 	//
-// 	options?: boolean;
-// 	//日期格式化
-// 	dateFormatter?: string | number;
-// 	// 样式
-// 	tableStyle?: TableStyle;
-// 	// 获取数据需要的额外参数
-// 	params?: Params;
-// 	pagination?: boolean | PaginationConfig;
-// 	// 数据源
-// 	dataSource?: DataSource;
-// 	// 获取数据的方法
-// 	request?: Request;
-// 	// 监听查询事件
-// 	onSearch?: (params: { [x: string]: any }) => void;
-// 	// 监听重置事件
-// 	onReset?: () => void;
-// 	// 监听过滤事件
-// 	onFilter?: (e: { field: string; value: string | number }) => void;
-// };
-
 export type TableColumns = {
 	key?: string | number; //标识
 	title?: string; // 表格列标题
@@ -185,12 +144,12 @@ export type GlobalCellAlign = "left" | "right" | "center";
 /**
  * 全局筛选栏配置
  */
-export interface GlobalSearchConfig {
-	maxShow?: number;
-	inline?: boolean;
-	labelWidth?: number | string;
-	rightTools?: ToolbarActions;
-}
+export type GlobalSearchConfig = Omit<ProSearchBarProps, "modelValue" | "columns"> & {
+	// maxShow?: number;
+	// inline?: boolean;
+	// labelWidth?: number | string;
+	// rightTools?: ToolbarActions;
+};
 
 /**
  * 筛选栏配置

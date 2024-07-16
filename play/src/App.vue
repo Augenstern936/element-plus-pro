@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-07-09 16:21:57
- * @LastEditTime: 2024-07-14 14:29:43
+ * @LastEditTime: 2024-07-16 13:48:24
 -->
 <template>
 	<el-container style="height: 100vh">
@@ -18,7 +18,7 @@
 				</el-menu-item>
 			</el-menu>
 		</el-aside>
-		<el-main>
+		<el-main style="background: #eee">
 			<component :is="menus[active].component" />
 		</el-main>
 	</el-container>
@@ -27,10 +27,11 @@
 <script setup lang="ts">
 	import { ref } from "vue";
 	import Button from "./components/Button.vue";
+	import Descriptions from "./components/Descriptions.vue";
 	import Field from "./components/Field.vue";
 	import Form from "./components/Form.vue";
 	import SearchBar from "./components/SearchBar.vue";
-	import Descriptions from "./components/Descriptions.vue";
+	import Table from "./components/Table.vue";
 	const menus = ref([
 		{
 			title: "pro-button",
@@ -47,6 +48,10 @@
 		{
 			title: "pro-search-bar",
 			component: SearchBar,
+		},
+		{
+			title: "pro-table",
+			component: Table,
 		},
 		{
 			title: "pro-descriptions",
