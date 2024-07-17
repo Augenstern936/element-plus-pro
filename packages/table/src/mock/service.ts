@@ -1,13 +1,13 @@
 /*
  * @Description:
  * @Date: 2024-07-17 14:58:11
- * @LastEditTime: 2024-07-17 15:47:53
+ * @LastEditTime: 2024-07-17 16:45:34
  */
 import Mock from "mockjs";
 import { http, HttpResponse } from "msw";
 
-export default [
-	http.get("/api/pro-table/data", () => {
+export const service = [
+	http.get("https://example.com/api/pro-table/list", () => {
 		return HttpResponse.json({
 			code: 0,
 			msg: "操作成功",

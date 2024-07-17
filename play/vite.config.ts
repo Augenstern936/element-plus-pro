@@ -11,6 +11,9 @@ export default defineConfig(async ({ mode }) => {
 			host: true,
 			https: !!env.https,
 		},
-		plugins: [Vue(), VueJsx({})],
+		plugins: [
+			Vue(),
+			VueJsx({})
+		],
 	};
 });

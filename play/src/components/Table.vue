@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-07-16 08:59:01
- * @LastEditTime: 2024-07-17 16:50:08
+ * @LastEditTime: 2024-07-17 23:33:40
 -->
 <!--
  * @Description: 
@@ -9,11 +9,11 @@
  * @LastEditTime: 2024-07-16 09:41:14
 -->
 <template>
-	<div style="height: calc(100vh - 40px)">
+	<div style="height: calc(100vh - 40px);">
 		<ProTable
 			title="标题"
 			:columns="columns"
-			:dataSource="data.data"
+			:request="onAction"
 			:ghost="false"
 			:search="{
 				searchButtonTitle: '测试',
@@ -31,15 +31,14 @@
 <script setup lang="ts">
 	import { ProTable } from "@element-plus/pro-components";
 	import { reactive, ref } from "vue";
-	import { server } from "../mock/test";
-
-	server.start();
+	//import { server } from "../mock";
 
 	const columns = ref<any[]>([
 		{
 			title: "ID",
 			dataField: "id",
 			search: false,
+			width: 100
 		},
 		{
 			title: "姓名",
@@ -61,45 +60,43 @@
 			},
 		},
 		{
+			title: "年龄",
+			dataField: "age",
+		},
+		{
 			title: "头像",
 			dataField: "avatar",
 			valueType: "avatar",
 		},
 		{
-			title: "图片",
-			dataField: "avatar",
-			valueType: "image",
-		},
-		{
-			title: "评价",
-			dataField: "rate",
-			valueType: "rate",
+			title: "户籍",
+			dataField: "city",
 			search: true,
 		},
-		{
-			title: "状态",
-			dataField: "age",
-			valueEnum: {
-				0: {
-					text: "进行中",
-					status: "Processing",
-				},
-				1: {
-					text: "已完成",
-					status: "Success",
-				},
-			},
-		},
-		{
-			title: "会员",
-			dataField: "slider",
-			valueType: "slider",
-		},
-		{
-			title: "颜色",
-			dataField: "color",
-			valueType: "color",
-		},
+		// {
+		// 	title: "状态",
+		// 	dataField: "age",
+		// 	valueEnum: {
+		// 		0: {
+		// 			text: "进行中",
+		// 			status: "Processing",
+		// 		},
+		// 		1: {
+		// 			text: "已完成",
+		// 			status: "Success",
+		// 		},
+		// 	},
+		// },
+		// {
+		// 	title: "会员",
+		// 	dataField: "slider",
+		// 	valueType: "slider",
+		// },
+		// {
+		// 	title: "颜色",
+		// 	dataField: "color",
+		// 	valueType: "color",
+		// },
 		{
 			title: "生日",
 			dataField: "date",
@@ -108,7 +105,7 @@
 		{
 			title: "操作",
 			valueType: "action",
-			width: 300,
+			width: 200,
 			fixed: "right",
 		},
 	]);
@@ -143,17 +140,19 @@
 	});
 
 	const onAction = () => {
-		getData();
+		//getData();
 	};
 
-	const getData = async () => {
-		try {
-			const res = await fetch("https://example.com/api/pro-table/list");
-			const data = await res.json();
-			console.log(data, "数据");
-		} catch (err) {
-			console.log(err, "异常");
-		} finally {
-		}
-	};
+    // const getData = async () => {
+	//     server.start();
+	// 	try {
+	// 		const res = await fetch("https://example.com/api/pro-table/list");
+	// 		const data = await res.json();
+	// 		console.log(data, "数据");
+	// 	} catch (err) {
+	// 		console.log(err, "异常");
+	// 	} finally {
+
+	// 	}
+	// };
 </script>

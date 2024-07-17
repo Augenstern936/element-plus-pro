@@ -8,6 +8,8 @@ import { KeepAlive, computed, defineComponent, provide, ref, watch } from "vue-d
 import { Card, TableColumn, ToolBar } from "./components";
 import "./style/index.scss";
 import { Ctx, ProTableProps, TableColumns, proTableProps } from "./typing";
+import fetchMock from "fetch-mock";
+import "./fetch-mock"
 
 /**
  * 高级表格组件
@@ -149,24 +151,37 @@ const ProTable = defineComponent<ProTableProps>(
 		 * 发起请求获取数据
 		 */
 		const sendRequest = async (otherFilterParams = {}) => {
-			if (getDataSource && typeof getDataSource === "function" && !loading.value) {
-				try {
-					loading.value = true;
-					const pageParams = mergePaginationParams(params.value);
-					const filterParams = { ...params.value } as Record<string, number>;
-					delete filterParams.current;
-					delete filterParams.pageSize;
-					data.value = await getDataSource(pageParams, {
-						...searchForm.value,
-						...filterParams,
-						...otherFilterParams,
-					});
-				} catch (err: any) {
-					console.warn(err);
-				} finally {
-					loading.value = false;
-				}
+			try {
+				const res = await fetch("https://example.com/api/pro-table/list");
+				const test = await res.json() as Record<string, any>;
+				console.log(test.data.list, "数据");
+				data.value = {
+					data: test.data.list,
+					total: test.data.total
+				};
+			} catch (err) {
+				console.log(err, "异常");
+			} finally {
+                fetchMock.restore()
 			}
+			// if (getDataSource && typeof getDataSource === "function" && !loading.value) {
+			// 	try {
+			// 		loading.value = true;
+			// 		const pageParams = mergePaginationParams(params.value);
+			// 		const filterParams = { ...params.value } as Record<string, number>;
+			// 		delete filterParams.current;
+			// 		delete filterParams.pageSize;
+			// 		data.value = await getDataSource(pageParams, {
+			// 			...searchForm.value,
+			// 			...filterParams,
+			// 			...otherFilterParams,
+			// 		});
+			// 	} catch (err: any) {
+			// 		console.warn(err);
+			// 	} finally {
+			// 		loading.value = false;
+			// 	}
+			// }
 		};
 
 		/**
