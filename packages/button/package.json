@@ -40,6 +40,9 @@
 			"optional": true
 		}
 	},
+	"engines": {
+		"node": ">=18.0.0"
+	},
 	"release-it": {
 		"git": false
 	}

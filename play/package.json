@@ -4,7 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "vite"
+		"dev": "vite",
+		"mock": "tsx ./src/mock/test.ts"
 	},
 	"keywords": [],
 	"author": "",

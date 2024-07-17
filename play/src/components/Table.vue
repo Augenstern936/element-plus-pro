@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-07-16 08:59:01
- * @LastEditTime: 2024-07-16 14:35:39
+ * @LastEditTime: 2024-07-17 16:50:08
 -->
 <!--
  * @Description: 
@@ -18,7 +18,7 @@
 			:search="{
 				searchButtonTitle: '测试',
 			}"
-			@action="console.log($event, 'action')"
+			@action="onAction"
 		>
 			<template #search-bar-right-tools>
 				<ElButton type="info">新增</ElButton>
@@ -31,6 +31,9 @@
 <script setup lang="ts">
 	import { ProTable } from "@element-plus/pro-components";
 	import { reactive, ref } from "vue";
+	import { server } from "../mock/test";
+
+	server.start();
 
 	const columns = ref<any[]>([
 		{
@@ -138,4 +141,19 @@
 			},
 		],
 	});
+
+	const onAction = () => {
+		getData();
+	};
+
+	const getData = async () => {
+		try {
+			const res = await fetch("https://example.com/api/pro-table/list");
+			const data = await res.json();
+			console.log(data, "数据");
+		} catch (err) {
+			console.log(err, "异常");
+		} finally {
+		}
+	};
 </script>
