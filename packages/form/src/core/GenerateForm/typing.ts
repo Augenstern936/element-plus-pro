@@ -1,11 +1,11 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-07-15 21:55:53
+ * @LastEditTime: 2024-07-21 18:13:40
  */
 import type { ProFieldType } from '@element-plus/pro-field';
 import { ProRequestData, ValueEnum, ValueOption } from '@element-plus/pro-types';
-import type { FormItemProps } from 'element-plus';
+import type { FormItemProps, RowProps, ColProps } from 'element-plus';
 import { formProps as elFormProps } from 'element-plus';
 import { ProButtonProps } from 'packages/button/es';
 import { CSSProperties, ExtractPropTypes, PropType } from 'vue-demi';
@@ -55,9 +55,22 @@ const commonFormProps = {
 	},
 };
 
+const proFormGridConfig = {
+	grid: {
+		type: Boolean,
+	},
+	rowProps: {
+		type: Object as PropType<RowProps>,
+	},
+	colProps: {
+		type: Object as PropType<ColProps>,
+	},
+};
+
 export const generateFormProps = {
 	...elFormProps,
 	...commonFormProps,
+	...proFormGridConfig,
 	type: {
 		type: String as PropType<'default' | 'dialog-form' | 'drawer-form' | 'steps-form' | 'search-form'>,
 	},
@@ -72,7 +85,7 @@ export const generateFormProps = {
 
 export type ProFormColumns = Omit<FormItemProps, 'prop' | 'label'> & {
 	key?: string;
-	label?: string | (() => JSX.Element);
+	label?: string | ((entity: Record<string, any>, columns?: ProFormColumns[]) => JSX.Element);
 	tooltip?: string;
 	dataField?: string;
 	readonly?: boolean;
@@ -95,5 +108,7 @@ export type ProFormValueType = ProFieldType;
 export type Actions = boolean | ActionsProps;
 
 export type CommonFormProps = Partial<ExtractPropTypes<typeof commonFormProps>>;
+
+export type ProFormGridConfig = Partial<ExtractPropTypes<typeof proFormGridConfig>>;
 
 export type GenerateFormProps = Partial<ExtractPropTypes<typeof generateFormProps>>;

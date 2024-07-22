@@ -1,8 +1,8 @@
-import type { ProSearchBarProps } from "@element-plus/pro-form";
-import type { ButtonProps } from "element-plus";
-import type { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
-import { JSX } from "vue/jsx-runtime";
-import { PaginationAlignEnum, StatusColorEnum, ValueTypeEnum } from "./enum";
+import type { ProSearchBarProps } from '@element-plus/pro-form';
+import type { ButtonProps } from 'element-plus';
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue-demi';
+import { JSX } from 'vue/jsx-runtime';
+import { PaginationAlignEnum, StatusColorEnum, ValueTypeEnum } from './enum';
 
 export const proTableProps = {
 	loading: {
@@ -23,7 +23,7 @@ export const proTableProps = {
 	},
 	cellAlign: {
 		type: String as PropType<GlobalCellAlign>,
-		default: "left",
+		default: 'left',
 	},
 	headerCellStyle: {
 		type: Object as PropType<CSSProperties>,
@@ -37,7 +37,7 @@ export const proTableProps = {
 	// 为空时，默认显示的标记
 	columnEmptyText: {
 		type: [Boolean, String],
-		default: "-",
+		default: '-',
 	},
 	// 默认分页大小
 	defaultSize: {
@@ -58,7 +58,7 @@ export const proTableProps = {
 	toolbar: {
 		type: Object as PropType<TableToolbarConfig[]>,
 		default: {
-			placeholder: "请输入关键字",
+			placeholder: '请输入关键字',
 			showAction: true,
 			actionStyle: {},
 		},
@@ -81,6 +81,9 @@ export const proTableProps = {
 	pagination: {
 		type: [Boolean, Object as PropType<PaginationConfig>],
 		default: true,
+	},
+	mock: {
+		type: Object as PropType<{}>,
 	},
 	// 数据源
 	dataSource: {
@@ -112,8 +115,8 @@ export type TableColumns = {
 	dataField?: string; // 列字段名称(与数据源中字段对应进行值的映射)
 	//type?: ColumnType; // selection：多选 index：序号 expand：可展开的按钮
 	width?: string | number; // 列宽
-	fixed?: boolean | "left" | "right"; // 固定列
-	align?: "left" | "right" | "center";
+	fixed?: boolean | 'left' | 'right'; // 固定列
+	align?: 'left' | 'right' | 'center';
 	tooltip?: string | ((row: { [x: string]: any }) => string); // 提示文本
 	ellipsis?: boolean; // 是否显示省略号
 	hideInTable?: boolean; // 是否在表格中不显示该列
@@ -139,12 +142,13 @@ export type ValueOption = {
 
 export type ValueEnum = Record<string, string | number | { text: string; status?: keyof typeof StatusColorEnum }>;
 
-export type GlobalCellAlign = "left" | "right" | "center";
+export type GlobalCellAlign = 'left' | 'right' | 'center';
 
 /**
  * 全局筛选栏配置
  */
-export type GlobalSearchConfig = Omit<ProSearchBarProps, "modelValue" | "columns"> & {
+export type GlobalSearchConfig = Omit<ProSearchBarProps, 'modelValue' | 'columns'> & {
+	colSpan?: number;
 	// maxShow?: number;
 	// inline?: boolean;
 	// labelWidth?: number | string;
@@ -157,7 +161,7 @@ export type GlobalSearchConfig = Omit<ProSearchBarProps, "modelValue" | "columns
 export type ColumnSearchConfig = {
 	order?: number;
 	label?: string;
-	labelWidth?: "auto" | number | string;
+	labelWidth?: 'auto' | number | string;
 	placeholder?: string;
 	fieldProps?: {
 		options?: { label: string; value: string | number | boolean }[];

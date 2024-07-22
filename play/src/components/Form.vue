@@ -2,25 +2,35 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-09 22:25:21
- * @LastEditTime: 2024-07-13 16:13:17
+ * @LastEditTime: 2024-07-21 22:19:38
  * @FilePath: \element-plus-pro\play\src\components\Form.vue
 -->
 <template>
-	<ProForm
-		v-model="form"
-		:label-style="{ fontWeight: 600 }"
-		:readonly="false"
-		:required="true"
-		:columns="formItems"
-		:request="getFormData"
-		:params="form"
-		:actions="{
-			buttonFillMode: 'aequilate',
-		}"
-	>
-		<ProFormAvatar :order="-2" />
-		<ProForm.Switch v-model="form.switch" :order="1" label="开关测试:" activeText="已打开" inactive-text="测试" />
-	</ProForm>
+	<el-card>
+		<ProForm
+			v-model="form"
+			:label-style="{ fontWeight: 600 }"
+			:readonly="false"
+			:required="true"
+			:columns="formItems"
+			:request="getFormData"
+			:params="form"
+			:grid="true"
+			:col-props="{ span: 12 }"
+			:actions="{
+				buttonFillMode: 'aequilate',
+			}"
+		>
+			<ProFormAvatar label="头像2" :order="2" />
+			<ProForm.Switch
+				v-model="form.switch"
+				:order="1"
+				label="开关测试:"
+				activeText="已打开"
+				inactive-text="测试"
+			/>
+		</ProForm>
+	</el-card>
 </template>
 
 <script setup lang="ts">
@@ -43,6 +53,7 @@
 			label: '年龄:',
 			dataField: 'age',
 			valueType: 'number',
+			tooltip: '测试',
 		},
 		{
 			label: '出生日期:',

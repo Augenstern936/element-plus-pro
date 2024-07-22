@@ -1,5 +1,7 @@
 @use 'element-plus/theme-chalk/src/space.scss';
 @use 'element-plus/theme-chalk/src/button.scss';
+@use 'element-plus/theme-chalk/src/row.scss';
+@use 'element-plus/theme-chalk/src/col.scss';
 @use 'element-plus/theme-chalk/src/form.scss';
 @use 'element-plus/theme-chalk/src/form-item.scss';
 
@@ -7,6 +9,10 @@
 	.el-input,
 	.el-input-number {
 		flex: 1;
+	}
+	.pro-form-item-submitter > .el-form-item__content {
+		display: flex;
+		justify-content: end;
 	}
 	.actions-box {
 		flex: 1;

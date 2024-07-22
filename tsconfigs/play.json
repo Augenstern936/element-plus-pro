@@ -9,6 +9,7 @@
 		"../typings/env.d.ts",
 		"../play/main.ts",
 		"../play/env.d.ts",
-		"../play/src/**/*"
+		"../play/src/**/*",
+		"../play/mockServiceWorker.js"
 	]
 }

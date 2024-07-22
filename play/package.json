@@ -1,29 +1,29 @@
 {
-  "name": "play",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "vite",
-    "mock": "tsx ./src/mock/test.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^4.4.0",
-    "@vitejs/plugin-vue-jsx": "^3.0.2",
-    "vite": "^4.5.0"
-  },
-  "dependencies": {
-    "@element-plus/pro-button": "workspace:^",
-    "@element-plus/pro-components": "workspace:^",
-    "@element-plus/pro-field": "workspace:^",
-    "vue": "^3.4.31"
-  },
-  "msw": {
-    "workerDirectory": [
-      "src\\mock"
-    ]
-  }
+	"name": "play",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "vite",
+		"mock": "tsx ./src/mock/test.ts"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@vitejs/plugin-vue": "^4.4.0",
+		"@vitejs/plugin-vue-jsx": "^3.0.2",
+		"vite": "^4.5.0"
+	},
+	"dependencies": {
+		"@element-plus/pro-button": "workspace:^",
+		"@element-plus/pro-components": "workspace:^",
+		"@element-plus/pro-field": "workspace:^",
+		"vue": "^3.4.31"
+	},
+	"msw": {
+		"workerDirectory": [
+			"public"
+		]
+	}
 }

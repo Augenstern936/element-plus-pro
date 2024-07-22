@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-07-16 08:59:01
- * @LastEditTime: 2024-07-17 23:33:40
+ * @LastEditTime: 2024-07-21 16:21:59
 -->
 <!--
  * @Description: 
@@ -9,7 +9,7 @@
  * @LastEditTime: 2024-07-16 09:41:14
 -->
 <template>
-	<div style="height: calc(100vh - 40px);">
+	<div style="height: calc(100vh - 40px)">
 		<ProTable
 			title="标题"
 			:columns="columns"
@@ -17,6 +17,16 @@
 			:ghost="false"
 			:search="{
 				searchButtonTitle: '测试',
+				extraTools: [
+					{
+						title: '测试',
+						type: 'success',
+					},
+					{
+						title: '测试',
+						type: 'success',
+					},
+				],
 			}"
 			@action="onAction"
 		>
@@ -29,48 +39,48 @@
 </template>
 
 <script setup lang="ts">
-	import { ProTable } from "@element-plus/pro-components";
-	import { reactive, ref } from "vue";
+	import { ProTable } from '@element-plus/pro-components';
+	import { reactive, ref } from 'vue';
 	//import { server } from "../mock";
 
 	const columns = ref<any[]>([
 		{
-			title: "ID",
-			dataField: "id",
+			title: 'ID',
+			dataField: 'id',
 			search: false,
-			width: 100
+			width: 100,
 		},
 		{
-			title: "姓名",
-			dataField: "name",
+			title: '姓名',
+			dataField: 'name',
 			search: {
 				order: 10,
 			},
 		},
 		{
-			title: "性别",
-			dataField: "sex",
-			valueType: "radioButton",
+			title: '性别',
+			dataField: 'sex',
+			valueType: 'radioButton',
 			search: {
 				order: 8,
 			},
 			valueEnum: {
-				0: "男",
-				1: "女",
+				0: '男',
+				1: '女',
 			},
 		},
 		{
-			title: "年龄",
-			dataField: "age",
+			title: '年龄',
+			dataField: 'age',
 		},
 		{
-			title: "头像",
-			dataField: "avatar",
-			valueType: "avatar",
+			title: '头像',
+			dataField: 'avatar',
+			valueType: 'avatar',
 		},
 		{
-			title: "户籍",
-			dataField: "city",
+			title: '户籍',
+			dataField: 'city',
 			search: true,
 		},
 		// {
@@ -98,15 +108,15 @@
 		// 	valueType: "color",
 		// },
 		{
-			title: "生日",
-			dataField: "date",
-			valueType: "dateYear",
+			title: '生日',
+			dataField: 'date',
+			valueType: 'dateYear',
 		},
 		{
-			title: "操作",
-			valueType: "action",
+			title: '操作',
+			valueType: 'action',
 			width: 200,
-			fixed: "right",
+			fixed: 'right',
 		},
 	]);
 
@@ -115,25 +125,25 @@
 		data: [
 			{
 				id: 1,
-				name: "张三",
+				name: '张三',
 				age: 0,
-				sex: "男",
+				sex: '男',
 				rate: 0,
-				avatar: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+				avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
 			},
 			{
 				id: 2,
-				name: "李斯",
+				name: '李斯',
 				age: 30,
-				sex: "女",
-				avatar: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
+				sex: '女',
+				avatar: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
 				rate: 5,
 			},
 			{
 				id: 3,
-				name: "王五",
+				name: '王五',
 				age: 15,
-				sex: "男",
+				sex: '男',
 				rate: 3,
 			},
 		],
@@ -143,7 +153,7 @@
 		//getData();
 	};
 
-    // const getData = async () => {
+	// const getData = async () => {
 	//     server.start();
 	// 	try {
 	// 		const res = await fetch("https://example.com/api/pro-table/list");
