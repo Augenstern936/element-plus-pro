@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-06-25 09:54:28
- * @LastEditTime: 2024-07-20 18:13:04
+ * @LastEditTime: 2024-07-27 16:46:50
  */
 import { isObject } from '@vueuse/core';
 import { computed } from 'vue-demi';
@@ -34,7 +34,7 @@ const useFormProps = (props: GenerateFormProps, slots: SlotConfig[]) => {
 	};
 
 	return {
-		columns: columns.value,
+		columns,
 	};
 };
 

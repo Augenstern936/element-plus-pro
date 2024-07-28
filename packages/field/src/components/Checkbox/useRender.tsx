@@ -5,25 +5,25 @@
  * @LastEditTime: 2024-07-09 16:59:01
  * @FilePath: \element-plus-pro\packages\field\src\components\Checkbox\useRender.tsx
  */
-import { enumTransformOptions, getValueOptionConfigs } from "@element-plus/pro-utils";
-import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup } from "element-plus";
-import { Ref, computed } from "vue-demi";
-import { ReadOptions } from "../widgets";
-import { ProFieldCheckboxButtonProps, ProFieldCheckboxProps } from "./typing";
+import { enumTransformOptions, getValueOptionConfigs } from '@element-plus/pro-utils';
+import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup } from 'element-plus';
+import { Ref, computed } from 'vue-demi';
+import { ReadOptions } from '../widgets';
+import { ProFieldCheckboxButtonProps, ProFieldCheckboxProps } from './typing';
 
 function useRender(
-	type: "checkbox" | "checkbox-button",
+	type: 'checkbox' | 'checkbox-button',
 	props: ProFieldCheckboxProps | ProFieldCheckboxButtonProps,
 	model: Ref
 ) {
-	const RenderElement = type === "checkbox" ? ElCheckbox : ElCheckboxButton;
+	const RenderElement = type === 'checkbox' ? ElCheckbox : ElCheckboxButton;
 
 	const options = computed(() => {
 		return props?.valueOptions?.length ? props.valueOptions : enumTransformOptions(props.valueEnum ?? {});
 	});
 
 	const element = computed(() => {
-		if (props.mode === "read") {
+		if (props.mode === 'read') {
 			return (
 				<ReadOptions
 					markShape={props.markShape}
@@ -31,7 +31,7 @@ function useRender(
 				/>
 			);
 		}
-		if (props.mode === "edit") {
+		if (props.mode === 'edit') {
 			return (
 				<ElCheckboxGroup v-model={model.value}>
 					{options.value?.map((option) => {
@@ -44,7 +44,7 @@ function useRender(
 				</ElCheckboxGroup>
 			);
 		}
-		return "";
+		return '';
 	});
 
 	return () => element.value;

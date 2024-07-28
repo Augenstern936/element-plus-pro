@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:26:41
- * @LastEditTime: 2024-07-21 16:30:55
+ * @LastEditTime: 2024-07-27 19:11:34
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\typing.ts
  */
 import type { ProButtonProps } from '@element-plus/pro-button';
@@ -40,6 +40,10 @@ export const proSearchBarProps = {
 		type: [Array, Function] as PropType<ProButtonProps[] | (() => JSX.Element)>,
 		default: void 0,
 	},
+	collapsed: {
+		type: Boolean,
+		default: void 0,
+	},
 	defaultCollapsed: {
 		type: Boolean,
 	},
@@ -51,6 +55,9 @@ export const proSearchBarProps = {
 	},
 	preserve: {
 		type: Boolean,
+	},
+	searchBefore: {
+		type: Function as PropType<(model: Record<string, any>) => Record<string, any>>,
 	},
 	extraTools: {
 		type: [Array, Function] as PropType<ProButtonProps[] | (() => JSX.Element)>,

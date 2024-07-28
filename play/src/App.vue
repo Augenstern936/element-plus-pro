@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-07-09 16:21:57
- * @LastEditTime: 2024-07-17 23:17:26
+ * @LastEditTime: 2024-07-25 21:36:28
 -->
 <template>
 	<el-container style="height: 100vh">
@@ -25,36 +25,36 @@
 </template>
 
 <script setup lang="ts">
-	import { ref } from "vue";
-	import Button from "./components/Button.vue";
-	import Descriptions from "./components/Descriptions.vue";
-	import Field from "./components/Field.vue";
-	import Form from "./components/Form.vue";
-	import SearchBar from "./components/SearchBar.vue";
-	import Table from "./components/Table.vue";
-	const menus = ref([
+	import { ref, shallowRef } from 'vue';
+	import Button from './components/Button.vue';
+	import Descriptions from './components/Descriptions.vue';
+	import Field from './components/Field.vue';
+	import Form from './components/Form.vue';
+	import SearchBar from './components/SearchBar.vue';
+	import Table from './components/Table.vue';
+	const menus = shallowRef([
 		{
-			title: "pro-button",
+			title: 'pro-button',
 			component: Button,
 		},
 		{
-			title: "pro-field",
+			title: 'pro-field',
 			component: Field,
 		},
 		{
-			title: "pro-form",
+			title: 'pro-form',
 			component: Form,
 		},
 		{
-			title: "pro-search-bar",
+			title: 'pro-search-bar',
 			component: SearchBar,
 		},
 		{
-			title: "pro-table",
+			title: 'pro-table',
 			component: Table,
 		},
 		{
-			title: "pro-descriptions",
+			title: 'pro-descriptions',
 			component: Descriptions,
 		},
 	]);

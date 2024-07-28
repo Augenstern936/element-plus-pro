@@ -2,19 +2,20 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-19 10:34:28
- * @LastEditTime: 2024-07-19 14:38:32
+ * @LastEditTime: 2024-07-28 13:37:06
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\Actions.tsx
  */
 import { ElButton, ElIcon, ElSpace } from 'element-plus';
 import { ProSearchBarProps } from './typing';
 import { isObject } from '@vueuse/core';
-import { ref, SetupContext } from 'vue';
-import { ArrowDown, ArrowUp, Search } from '@element-plus/icons-vue';
+import { SetupContext } from 'vue-demi';
+import { ArrowDown, ArrowUp, Delete, Search } from '@element-plus/icons-vue';
 import ProButton, { ProButtonProps } from '@element-plus/pro-button';
 
 type ActionsProps = ProSearchBarProps & {
 	onSubmit: (buttonProps: ProButtonProps) => void;
 	onReset: (buttonProps: ProButtonProps) => void;
+	onCollapse: (collapse: boolean) => void;
 };
 
 const Actions = (props: ActionsProps, ctx: SetupContext) => {
@@ -22,7 +23,6 @@ const Actions = (props: ActionsProps, ctx: SetupContext) => {
 	const resetButtonProps = isObject(props.resetButton) ? props.resetButton : {};
 	const submitter = ctx.slots?.submitter?.() as Record<string, any>[];
 	const isSubmitterUndefined = String(submitter[0].type) === 'Symbol(v-cmt)';
-	const isFilterBarExpand = ref(false);
 	return (
 		<ElSpace>
 			{props.searchButton !== false && isSubmitterUndefined && (
@@ -32,18 +32,20 @@ const Actions = (props: ActionsProps, ctx: SetupContext) => {
 					{...searchButtonProps}
 					onClick={() => props.onSubmit(searchButtonProps)}
 				>
-					{props.searchButtonTitle || '搜索'}
+					{props.searchButtonTitle || '查询'}
 				</ProButton>
 			)}
 			{props.resetButton != false && isSubmitterUndefined && (
-				<ProButton {...resetButtonProps} onClick={() => props.onSubmit(resetButtonProps)}>
+				<ProButton icon={Delete} {...resetButtonProps} onClick={() => props.onReset(resetButtonProps)}>
 					{props.resetButtonTitle || '重置'}
 				</ProButton>
 			)}
 			{submitter}
-			<ElButton type='primary' link onClick={() => (isFilterBarExpand.value = !isFilterBarExpand.value)}>
-				<ElIcon>{!isFilterBarExpand.value ? <ArrowDown /> : <ArrowUp />}</ElIcon>
-				<span>{!isFilterBarExpand.value ? '展开' : '收起'}</span>
+			<ElButton type='primary' link onClick={() => props.onCollapse(!props.collapsed)}>
+				<ElSpace>
+					<span>{props.collapsed ? '收起' : '展开'}</span>
+					<ElIcon>{props.collapsed ? <ArrowUp /> : <ArrowDown />}</ElIcon>
+				</ElSpace>
 			</ElButton>
 		</ElSpace>
 	);

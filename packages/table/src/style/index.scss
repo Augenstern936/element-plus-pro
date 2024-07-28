@@ -21,10 +21,14 @@
 		margin-bottom: 20px;
 		.left {
 			flex: 1;
-			h3 {
+			h4 {
+				font-size: 18px;
 				display: flex !important;
 				font-weight: 600 !important;
 				margin: 0 !important;
+			}
+			.title-tooltip-icon:hover {
+				color: var(--el-color-primary) !important;
 			}
 		}
 		.right {
@@ -54,10 +58,6 @@
 	}
 	.el-alert {
 		padding: 10px 14px !important;
-		.alert-count {
-			color: var(--el-color-primary);
-			font-weight: 600;
-		}
 		&__content {
 			padding: 0 !important;
 			display: flex !important;
@@ -70,6 +70,20 @@
 		&__close-btn.is-customed {
 			top: unset !important;
 		}
+	}
+	.selection-alert {
+		color: #333333;
+		margin-bottom: 20px;
+		border: 1px solid var(--el-color-primary);
+		background: color-mix(in oklch, var(--el-color-primary-light-5), transparent 80%);
+		.alert-count {
+			color: var(--el-color-primary);
+			font-weight: 600;
+		}
+	}
+	.el-table .el-table-column--selection:has(.el-checkbox.is-checked),
+	.el-table .el-table-column--selection:has(.el-checkbox.is-checked) ~ .el-table__cell {
+		background-color: color-mix(in oklch, var(--el-color-primary-light-5), transparent 80%);
 	}
 	.el-table .cell {
 		display: flex;

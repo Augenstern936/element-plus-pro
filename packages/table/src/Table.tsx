@@ -4,7 +4,7 @@ import { isObject } from '@vueuse/core';
 import { ElAlert, ElMessage, ElPagination, ElTable } from 'element-plus';
 import { v4 as uuidv4 } from 'uuid';
 import type { FunctionalComponent } from 'vue-demi';
-import { KeepAlive, computed, defineComponent, provide, ref, watch } from 'vue-demi';
+import { KeepAlive, computed, defineComponent, provide, ref, toRaw, watch } from 'vue-demi';
 import { Card, TableColumn, ToolBar } from './components';
 import './style/index.scss';
 import { Ctx, GlobalSearchConfig, ProTableProps, TableColumns, proTableProps } from './typing';
@@ -20,12 +20,10 @@ const ProTable = defineComponent<ProTableProps>(
 			loading: propsLoading,
 			search: globalSearch,
 			keepAlive,
-			columns,
 			params: propsParams,
 			defaultSize: propsDefaultSize,
 			pagination: propsPagination,
 			dataSource,
-			request: getDataSource,
 		} = props;
 
 		const loading = ref(propsLoading);
@@ -232,6 +230,10 @@ const ProTable = defineComponent<ProTableProps>(
 			if (isEmpty) {
 				return ElMessage.warning('筛选栏表单信息为空');
 			}
+			if (isObject(props.search) && typeof props.search?.searchBefore === 'function') {
+				const params = props.search.searchBefore(toRaw(searchForm.value));
+				return sendRequest(params);
+			}
 			sendRequest();
 		};
 
@@ -287,7 +289,7 @@ const ProTable = defineComponent<ProTableProps>(
 					}}
 					onSelection-change={onSelectionChange}
 				>
-					<TableColumn columns={renderTableColumns.value} />
+					<TableColumn selection={props.selection} columns={renderTableColumns.value} />
 				</ElTable>
 				{propsPagination !== false && data.value.total > 0 && (
 					<div class='pagination-container' style={paginationAlignStyle.value}>
@@ -376,38 +378,34 @@ const ProTable = defineComponent<ProTableProps>(
 						ghost={props.ghost || false}
 						style={{ paddingBottom: 0, marginBottom: '20px' }}
 					>
-						<ProSearchBar
-							ref={searchBarRef}
-							{...searchProps}
-							columns={searchFormItems.value as any}
-							colProps={{
-								span: searchProps?.colSpan,
-							}}
-							v-model={searchForm.value}
-							v-slots={
-								{
-									// submitter: () => (
-									// 	<>
-									// 		<div>111</div>
-									// 		<div>222</div>
-									// 	</>
-									// ),
+						{ctx.slots?.['search-bar']?.(searchForm.value) ?? (
+							<ProSearchBar
+								ref={searchBarRef}
+								{...searchProps}
+								columns={searchFormItems.value as any}
+								colProps={{
+									span: searchProps?.colSpan,
+								}}
+								v-model={searchForm.value}
+								v-slots={
+									{
+										// submitter: () => (
+										// 	<>
+										// 		<div>111</div>
+										// 		<div>222</div>
+										// 	</>
+										// ),
+									}
 								}
-							}
-							// rightTools={searchBarTools.value}
-							// inline={
-							// 	typeof globalSearch == 'object'
-							// 		? globalSearch['inline'] === void 0
-							// 			? true
-							// 			: globalSearch['inline']
-							// 		: true
-							// }
-							// v-slots={{
-							// 	'right-tools': () => ctx.slots['search-bar-right-tools']?.({ ...searchForm.value }),
-							// }}
-							// onSearch={onSearch}
-							// onTools={(i: number) => ctx.emit('tools', i)}
-						/>
+								onSearch={onSearch}
+								onCollapse={(collapse: boolean) => ctx.emit('collapse', collapse)}
+								// rightTools={searchBarTools.value}
+								// v-slots={{
+								// 	'right-tools': () => ctx.slots['search-bar-right-tools']?.({ ...searchForm.value }),
+								// }}
+								// onTools={(i: number) => ctx.emit('tools', i)}
+							/>
+						)}
 					</Card>
 					<Card ghost={props.ghost || false}>
 						<ToolBar
@@ -426,9 +424,9 @@ const ProTable = defineComponent<ProTableProps>(
 						/>
 						{multipleSelection.value.length > 0 && (
 							<ElAlert
+								class={'selection-alert'}
 								type='info'
 								close-text='取消选择'
-								style={{ marginBottom: '20px', backgroundColor: '#f5f7fa' }}
 								onClose={clearSelected}
 								v-slots={{
 									title: () => (

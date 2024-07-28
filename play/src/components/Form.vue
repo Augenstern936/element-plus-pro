@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-09 22:25:21
- * @LastEditTime: 2024-07-21 22:19:38
+ * @LastEditTime: 2024-07-24 14:51:47
  * @FilePath: \element-plus-pro\play\src\components\Form.vue
 -->
 <template>
@@ -16,8 +16,9 @@
 			:request="getFormData"
 			:params="form"
 			:grid="true"
-			:col-props="{ span: 12 }"
-			:actions="{
+			:col-props="{ span: 24 }"
+			:submitter="{
+				hideResetButton: false,
 				buttonFillMode: 'aequilate',
 			}"
 		>
@@ -44,8 +45,8 @@
 			label: '姓名:',
 			dataField: 'name',
 			required: true,
-			hide: (data: any) => {
-				console.log(data, 'data');
+			hidden: (data: any) => {
+				console.log(data, 'data222222');
 				return data.switch === true;
 			},
 		},

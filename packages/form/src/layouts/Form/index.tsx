@@ -2,34 +2,34 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:40:06
- * @LastEditTime: 2024-07-15 17:04:15
+ * @LastEditTime: 2024-07-24 14:24:21
  * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\index.tsx
  */
-import { ToUppercaseFirst } from "@element-plus/pro-types";
-import { withInstall } from "@element-plus/pro-utils";
-import { useVModel } from "@vueuse/core";
-import { defineComponent } from "vue-demi";
-import components from "../../components";
-import { GenerateForm } from "../../core";
-import { ProFormFieldType } from "../../typing";
-import { proFormProps, ProFormSuperProps } from "./typing";
+import { ToUppercaseFirst } from '@element-plus/pro-types';
+import { withInstall } from '@element-plus/pro-utils';
+import { useVModel } from '@vueuse/core';
+import { defineComponent, ref } from 'vue-demi';
+import components from '../../components';
+import { GenerateForm } from '../../core';
+import { ProFormFieldType } from '../../typing';
+import { proFormProps, ProFormProps, ProFormSuperProps } from './typing';
 
-const ProForm = defineComponent<ProFormSuperProps>(
+const ProForm = defineComponent<ProFormProps>(
 	(props, ctx) => {
-		const model = useVModel(props, "modelValue", ctx.emit);
+		const model = props?.modelValue ? useVModel(props, 'modelValue', ctx.emit) : ref({});
 
 		return () => (
 			<GenerateForm
 				{...props}
-				labelPosition={props.layout === "vertical" ? "top" : "right"}
-				inline={props.layout === "inline"}
+				labelPosition={props.layout === 'vertical' ? 'top' : 'right'}
+				inline={props.layout === 'inline'}
 				v-model={model.value}
 				v-slots={{ default: () => ctx.slots?.default?.() }}
 			/>
 		);
 	},
 	{
-		name: "ProForm",
+		name: 'ProForm',
 	}
 ) as ProFormSuperProps;
 
@@ -41,6 +41,6 @@ for (const key in components) {
 	ProForm[ComName] = FieldComponent;
 }
 
-export * from "./typing";
+export * from './typing';
 
 export default withInstall(ProForm);

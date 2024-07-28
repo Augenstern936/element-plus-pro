@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-07-21 18:13:40
+ * @LastEditTime: 2024-07-24 13:50:33
  */
 import type { ProFieldType } from '@element-plus/pro-field';
 import { ProRequestData, ValueEnum, ValueOption } from '@element-plus/pro-types';
@@ -49,7 +49,7 @@ const commonFormProps = {
 	loading: {
 		type: Boolean,
 	},
-	actions: {
+	submitter: {
 		type: [Boolean, Object] as PropType<Actions>,
 		default: true,
 	},
@@ -60,10 +60,10 @@ const proFormGridConfig = {
 		type: Boolean,
 	},
 	rowProps: {
-		type: Object as PropType<RowProps>,
+		type: Object as PropType<Partial<RowProps>>,
 	},
 	colProps: {
-		type: Object as PropType<ColProps>,
+		type: Object as PropType<Partial<ColProps>>,
 	},
 };
 
@@ -94,7 +94,7 @@ export type ProFormColumns = Omit<FormItemProps, 'prop' | 'label'> & {
 	valueOptions?: ValueOption[];
 	defaultValue?: string | number | boolean | any[];
 	fieldProps?: Record<string, any>;
-	hide?: boolean | FormItemPropertyFunction<boolean>;
+	hidden?: boolean | FormItemPropertyFunction<boolean>;
 	render?: () => JSX.Element;
 };
 

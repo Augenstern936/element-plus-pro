@@ -1,5 +1,12 @@
+<!--
+ * @Description: 
+ * @Author: wangbowen936926
+ * @Date: 2024-07-16 21:57:06
+ * @LastEditTime: 2024-07-26 22:31:01
+ * @FilePath: \element-plus-pro\play\src\components\Field.vue
+-->
 <template>
-	<div style="height: calc(100vh - 40px); padding: 20px">
+	<el-card>
 		<el-space fill>
 			<ProCopyable value="17634393156" @success="() => console.log('成功')" />
 			<ProField :type="'switch'" v-model="testSwitch" />
@@ -38,12 +45,12 @@
 				},
 			}"
 		/>
-	</div>
+	</el-card>
 </template>
 
 <script setup lang="ts">
-	import { ProCopyable, ProField } from "@element-plus/pro-components";
-	import { ref } from "vue";
+	import { ProCopyable, ProField } from '@element-plus/pro-components';
+	import { ref } from 'vue';
 
 	const test = ref([1, 3]);
 

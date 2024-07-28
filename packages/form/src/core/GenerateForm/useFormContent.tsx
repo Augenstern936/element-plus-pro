@@ -2,22 +2,19 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-21 17:49:59
- * @LastEditTime: 2024-07-21 23:10:51
+ * @LastEditTime: 2024-07-26 16:51:36
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\useFormContent.tsx
  */
 import { ElFormItem, ElIcon, ElSpace, ElTooltip, FormItemProps } from 'element-plus';
 import { ProField } from '@element-plus/pro-field';
 import { SetupContext, ref } from 'vue-demi';
-import { formatPlaceholder } from '@element-plus/pro-utils';
+import { excludeObjectProperty, formatPlaceholder } from '@element-plus/pro-utils';
 import { GenerateFormProps, ProFormColumns } from './typing';
 import { InfoFilled } from '@element-plus/icons-vue';
-import useFormProps from './useFormProps';
 import { useVModel } from '@vueuse/core';
 import { useGridHelpers } from '../helpers';
 
 const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => {
-	const { columns } = useFormProps(formProps, formCtx.slots?.default?.() as []);
-
 	const getFormItemProps = (item: ProFormColumns, model: Record<string, any>) => {
 		const { dataField, rules = {} } = item;
 		const globalRulesItem = dataField && formProps.rules ? formProps.rules[dataField] ?? {} : {};
@@ -27,7 +24,7 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
 		return {
 			...item,
 			label,
-			required,
+			required: formProps.readonly === true ? false : required,
 			prop: dataField,
 			rules: {
 				...globalRulesItem,
@@ -39,7 +36,7 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
 	const getFieldProps = (item: ProFormColumns) => {
 		const { label, valueType = 'text', readonly } = item;
 		return {
-			...item,
+			...excludeObjectProperty(item, ['hidden', 'label']),
 			...item.fieldProps,
 			type: valueType,
 			mode: readonly === true || formProps.readonly === true ? 'read' : 'edit',
@@ -54,15 +51,13 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
 
 		return (
 			<RowWrapper gutter={10} {...props.rowProps}>
-				{columns?.map((item, index) => {
-					if (typeof item.hide === 'function') {
-						item.hide(model.value, formProps.columns);
-					}
-					if (item.hide === true) {
-						return '';
+				{props.columns?.map((item: any, index: number) => {
+					const hidden = item?.hidden?.(model.value, formProps.columns);
+					if (hidden === true) {
+						return null;
 					}
 					if (item.is === 'slot') {
-						return formCtx.slots.default?.()[item.index];
+						return <ColWrapper {...props.colProps}>{formCtx.slots.default?.()[item.index]}</ColWrapper>;
 					}
 					const { key, dataField, tooltip } = item;
 					const formItemProps = getFormItemProps(item as ProFormColumns, model);
@@ -105,9 +100,7 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
 						</ColWrapper>
 					);
 				})}
-				<ColWrapper gutter={10} {...props.rowProps}>
-					{ctx.slots?.default?.()}
-				</ColWrapper>
+				{ctx.slots?.submitter && ctx.slots?.submitter?.(ColWrapper)}
 			</RowWrapper>
 		);
 	};

@@ -2,11 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 23:05:53
- * @LastEditTime: 2024-07-15 17:07:01
+ * @LastEditTime: 2024-07-24 14:05:07
  * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\typing.ts
  */
-import { excludeObjectProperty } from "@element-plus/pro-utils";
-import type { DefineComponent, ExtractPropTypes, PropType } from "vue-demi";
+import { excludeObjectProperty } from '@element-plus/pro-utils';
+import type { DefineComponent, ExtractPropTypes, PropType } from 'vue-demi';
 import {
 	ProFormAavtarProps,
 	ProFormCascaderProps,
@@ -37,15 +37,18 @@ import {
 	ProFormTimeRangeProps,
 	ProFormTimeSelectProps,
 	ProFormTreeSelectProps,
-} from "../../components";
-import { generateFormProps } from "../../core";
-import { ProFormLayout } from "../../typing";
+} from '../../components';
+import { generateFormProps, GenerateFormProps } from '../../core';
+import { ProFormLayout } from '../../typing';
 
 export const proFormProps = {
-	...excludeObjectProperty(generateFormProps, ["inline", "labelPosition"]),
+	...(excludeObjectProperty(generateFormProps, ['inline', 'labelPosition']) as Omit<
+		GenerateFormProps,
+		'inline' | 'labelPosition'
+	>),
 	layout: {
 		type: String as PropType<ProFormLayout>,
-		default: "horizontal",
+		default: 'horizontal',
 	},
 };
 

@@ -1,9 +1,10 @@
-import { FullScreen, RefreshRight, Search, Setting } from "@element-plus/icons-vue";
-import { ElButton, ElCheckbox, ElCheckboxGroup, ElInput, ElPopover, ElTooltip } from "element-plus";
-import screenfull from "screenfull";
-import type { FunctionalComponent } from "vue-demi";
-import { computed, defineComponent, inject, ref, watch } from "vue-demi";
-import type { TableColumns, TableToolbarConfig } from "../../typing";
+import { FullScreen, Warning, RefreshRight, Search, Setting } from '@element-plus/icons-vue';
+import { ElButton, ElCheckbox, ElCheckboxGroup, ElIcon, ElInput, ElPopover, ElSpace, ElTooltip } from 'element-plus';
+import screenfull from 'screenfull';
+import type { FunctionalComponent } from 'vue-demi';
+import { computed, defineComponent, inject, ref, watch } from 'vue-demi';
+import type { ProTableTitleConfig, TableColumns, TableToolbarConfig } from '../../typing';
+import { isObject } from '@vueuse/core';
 
 interface ToolBarProps {
 	onSearchDisplay?: () => void;
@@ -13,8 +14,8 @@ interface ToolBarProps {
 }
 
 const ToolBar = defineComponent<ToolBarProps>((props, ctx) => {
-	const toolbar = inject("toolbar", {}) as {
-		title?: string;
+	const toolbar = inject('toolbar', {}) as {
+		title?: string | ProTableTitleConfig;
 		columns: (TableColumns & { id: string })[];
 		options?: boolean;
 		showSearchOption?: boolean;
@@ -23,7 +24,7 @@ const ToolBar = defineComponent<ToolBarProps>((props, ctx) => {
 
 	const isScreenfull = ref(false);
 
-	const searchKeywords = ref("");
+	const searchKeywords = ref('');
 
 	const allSelected = ref<boolean>(true);
 
@@ -31,19 +32,36 @@ const ToolBar = defineComponent<ToolBarProps>((props, ctx) => {
 
 	const title = computed(() => {
 		const content = ctx.slots?.title?.() as any[];
-		return content[0].children ? content : toolbar.title ? <h3>{toolbar.title}</h3> : "";
+		if (content[0].children) {
+			return content;
+		}
+		if (isObject(toolbar.title) && toolbar.title.text) {
+			return (
+				<ElSpace size={5}>
+					<h4>{toolbar.title.text}</h4>
+					{toolbar.title.tooltip && (
+						<ElTooltip content={toolbar.title.tooltip} placement='top'>
+							<ElIcon class={'title-tooltip-icon'} size={18}>
+								<Warning />
+							</ElIcon>
+						</ElTooltip>
+					)}
+				</ElSpace>
+			);
+		}
+		return toolbar.title ? <h4>{toolbar.title}</h4> : '';
 	});
 
 	const searchRender = computed(() => {
 		const search = toolbar.config?.search;
 		const {
-			placeholder = "请输入关键字",
+			placeholder = '请输入关键字',
 			showAction = true,
-			actionText = "",
+			actionText = '',
 			actionStyle = {},
 			onChange = null,
 			onAction = null,
-		} = typeof search === "object" ? search : {};
+		} = typeof search === 'object' ? search : {};
 		const actionElementRender = () => {
 			return showAction === true ? (
 				<ElButton
@@ -64,17 +82,17 @@ const ToolBar = defineComponent<ToolBarProps>((props, ctx) => {
 				v-slots={{ append: actionElementRender }}
 				placeholder={placeholder}
 				clearable
-				style={{ width: "200px" }}
+				style={{ width: '200px' }}
 				onInput={(v) => onChange?.(v)}
 			/>
 		);
-		return search ? ComElement : "";
+		return search ? ComElement : '';
 	});
 
 	const actionsRender = computed(() => {
 		const { actions }: any = toolbar.config || {};
 
-		if (typeof actions === "object" && actions != null) {
+		if (typeof actions === 'object' && actions != null) {
 			if (actions?.__v_isVNode) {
 				return actions;
 			}
@@ -96,25 +114,25 @@ const ToolBar = defineComponent<ToolBarProps>((props, ctx) => {
 	});
 
 	const onColumnsSettingChange = (ids: any[]) => {
-		ctx.emit("columnsSettingChange", ids);
+		ctx.emit('columnsSettingChange', ids);
 	};
 
 	const initSelectedStatus = () => {
 		allSelected.value = true;
 		selectedColumns.value = columns.value.map(({ id }) => id);
-		ctx.emit("columnsSettingReset");
+		ctx.emit('columnsSettingReset');
 	};
 
 	const onFullScreen = () => {
 		if (screenfull.isEnabled) {
-			const element = document.getElementById("pro-table");
+			const element = document.getElementById('pro-table');
 			if (isScreenfull.value) {
 				screenfull.exit();
 			} else {
 				screenfull.request(element);
 			}
 			isScreenfull.value = isScreenfull.value ? false : true;
-			ctx.emit("fullScreenChange", isScreenfull.value);
+			ctx.emit('fullScreenChange', isScreenfull.value);
 		}
 	};
 
@@ -125,7 +143,7 @@ const ToolBar = defineComponent<ToolBarProps>((props, ctx) => {
 				return initSelectedStatus();
 			}
 			selectedColumns.value = [];
-			ctx.emit("columnsSettingChange", []);
+			ctx.emit('columnsSettingChange', []);
 		},
 		{
 			immediate: true,
@@ -133,50 +151,50 @@ const ToolBar = defineComponent<ToolBarProps>((props, ctx) => {
 	);
 
 	return () => (
-		<div class="toolbar-container">
-			<div class="left">{title.value ? title.value : searchRender.value}</div>
-			<div class="right">
+		<div class='toolbar-container'>
+			<div class='left title'>{title.value ? title.value : searchRender.value}</div>
+			<div class='right'>
 				{title.value && searchRender.value}
-				<div class="actions">{actionsRender.value}</div>
+				<div class='actions'>{actionsRender.value}</div>
 				{toolbar.options && (
-					<div class="options">
-						<ElTooltip content="刷新" placement="top">
-							<ElButton class={"icon"} icon={RefreshRight} circle onClick={() => ctx.emit("refresh")} />
+					<div class='options'>
+						<ElTooltip content='刷新' placement='top'>
+							<ElButton class={'icon'} icon={RefreshRight} circle onClick={() => ctx.emit('refresh')} />
 						</ElTooltip>
 						{toolbar.showSearchOption && (
-							<ElTooltip content="搜索栏显隐" placement="top">
+							<ElTooltip content='搜索栏显隐' placement='top'>
 								<ElButton
-									class={"icon"}
+									class={'icon'}
 									icon={Search}
 									circle
-									onClick={() => ctx.emit("searchDisplay")}
+									onClick={() => ctx.emit('searchDisplay')}
 								/>
 							</ElTooltip>
 						)}
 						<ElPopover
-							placement="bottom"
+							placement='bottom'
 							width={200}
-							trigger="click"
-							popper-class="columns-setting-popover"
+							trigger='click'
+							popper-class='columns-setting-popover'
 							popper-style={{ padding: 0 }}
 							v-slots={{
 								reference: () => (
-									<div class={"icon"} style="display: flex; align-items: center">
-										<ElTooltip content="列设置" placement="top">
+									<div class={'icon'} style='display: flex; align-items: center'>
+										<ElTooltip content='列设置' placement='top'>
 											<ElButton icon={Setting} circle />
 										</ElTooltip>
 									</div>
 								),
 							}}
 						>
-							<div class="columns-setting-popover-content">
-								<div class="head">
+							<div class='columns-setting-popover-content'>
+								<div class='head'>
 									<ElCheckbox v-model={allSelected.value}>列展示</ElCheckbox>
-									<span class="reset-btn" onClick={initSelectedStatus}>
+									<span class='reset-btn' onClick={initSelectedStatus}>
 										重置
 									</span>
 								</div>
-								<div class="body">
+								<div class='body'>
 									<ElCheckboxGroup v-model={selectedColumns.value} onChange={onColumnsSettingChange}>
 										{columns.value.map((item, index) => (
 											<p key={index}>
@@ -187,8 +205,8 @@ const ToolBar = defineComponent<ToolBarProps>((props, ctx) => {
 								</div>
 							</div>
 						</ElPopover>
-						<ElTooltip content={isScreenfull.value ? "退出全屏" : "全屏"} placement="top">
-							<ElButton class={"icon"} icon={FullScreen} circle onClick={onFullScreen} />
+						<ElTooltip content={isScreenfull.value ? '退出全屏' : '全屏'} placement='top'>
+							<ElButton class={'icon'} icon={FullScreen} circle onClick={onFullScreen} />
 						</ElTooltip>
 					</div>
 				)}

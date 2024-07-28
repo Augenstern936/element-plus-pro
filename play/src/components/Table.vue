@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-07-16 08:59:01
- * @LastEditTime: 2024-07-21 16:21:59
+ * @LastEditTime: 2024-07-28 13:58:15
 -->
 <!--
  * @Description: 
@@ -11,12 +11,17 @@
 <template>
 	<div style="height: calc(100vh - 40px)">
 		<ProTable
-			title="标题"
+			:title="{
+				text: 'ProTable',
+				tooltip: '高级表格组件',
+			}"
 			:columns="columns"
 			:request="onAction"
 			:ghost="false"
+			:selection="true"
 			:search="{
-				searchButtonTitle: '测试',
+				colSpan: 8,
+				//searchButtonTitle: '测试',
 				extraTools: [
 					{
 						title: '测试',
@@ -27,9 +32,12 @@
 						type: 'success',
 					},
 				],
+				onCollapse: (v: boolean) => console.log(v, '是否展开1'),
 			}"
 			@action="onAction"
+			@collapse="console.log($event, '是否展开2')"
 		>
+			<!-- <template #search-bar> 11 </template> -->
 			<template #search-bar-right-tools>
 				<ElButton type="info">新增</ElButton>
 				<ElButton type="info">删除</ElButton>
@@ -60,10 +68,8 @@
 		{
 			title: '性别',
 			dataField: 'sex',
+			search: false,
 			valueType: 'radioButton',
-			search: {
-				order: 8,
-			},
 			valueEnum: {
 				0: '男',
 				1: '女',

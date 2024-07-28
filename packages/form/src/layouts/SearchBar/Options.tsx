@@ -1,17 +1,16 @@
-import { MoreFilled } from '@element-plus/icons-vue';
-import ProButton, { ProButtonProps } from '@element-plus/pro-button';
-import { isObject } from '@vueuse/core';
-import { ElButton, ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus';
-import { computed, SetupContext } from 'vue';
-
 /*
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-18 21:25:23
- * @LastEditTime: 2024-07-19 09:21:03
+ * @LastEditTime: 2024-07-27 16:47:22
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\Options.tsx
  */
+import ProButton, { ProButtonProps } from '@element-plus/pro-button';
+import { isObject } from '@vueuse/core';
+import { ElDropdown, ElDropdownItem, ElDropdownMenu } from 'element-plus';
+import { computed, SetupContext } from 'vue';
 interface OptionsProps {
+	trigger: any;
 	buttons?: ProButtonProps[] | (() => JSX.Element);
 	onClick?: (index: number) => void;
 }
@@ -28,7 +27,7 @@ const Options = (props: OptionsProps, ctx: SetupContext) => {
 			return (
 				<ElDropdown
 					v-slots={{
-						dropdown: (
+						dropdown: () => (
 							<ElDropdownMenu>
 								{buttons.map((btn: ProButtonProps, index: number) => (
 									<ElDropdownItem key={index}>
@@ -39,7 +38,7 @@ const Options = (props: OptionsProps, ctx: SetupContext) => {
 						),
 					}}
 				>
-					<ElButton icon={MoreFilled} circle />
+					{props.trigger}
 				</ElDropdown>
 			);
 		}
@@ -60,7 +59,7 @@ const Options = (props: OptionsProps, ctx: SetupContext) => {
 			return (
 				<ElDropdown
 					v-slots={{
-						dropdown: (
+						dropdown: () => (
 							<ElDropdownMenu>
 								{slots.value.map((el, index) => (
 									<ElDropdownItem key={index}>{[el]}</ElDropdownItem>
@@ -69,7 +68,7 @@ const Options = (props: OptionsProps, ctx: SetupContext) => {
 						),
 					}}
 				>
-					<ElButton icon={MoreFilled} circle />
+					{props.trigger}
 				</ElDropdown>
 			);
 		}
@@ -80,7 +79,7 @@ const Options = (props: OptionsProps, ctx: SetupContext) => {
 	const generateButtonElement = (
 		btnConfig: ProButtonProps & { [x: string]: any },
 		isText: boolean,
-		index?: number
+		index: number = 0
 	) => {
 		if (!btnConfig.__v_isVNode && Object.keys(btnConfig)?.length) {
 			return (
@@ -95,7 +94,7 @@ const Options = (props: OptionsProps, ctx: SetupContext) => {
 		return null;
 	};
 
-	return <div>{slots.value.length ? renderSlots() : renderButtons()}</div>;
+	return <div class={'options'}>{slots.value.length ? renderSlots() : renderButtons()}</div>;
 };
 
 export default Options;
