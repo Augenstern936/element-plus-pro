@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-07-16 08:59:01
- * @LastEditTime: 2024-07-28 13:58:15
+ * @LastEditTime: 2024-07-29 15:44:16
 -->
 <!--
  * @Description: 
@@ -32,6 +32,9 @@
 						type: 'success',
 					},
 				],
+				searchBefore: (params) => {
+					console.log(params, 'params');
+				},
 				onCollapse: (v: boolean) => console.log(v, '是否展开1'),
 			}"
 			@action="onAction"

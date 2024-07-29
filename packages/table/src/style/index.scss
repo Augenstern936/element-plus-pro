@@ -81,10 +81,11 @@
 			font-weight: 600;
 		}
 	}
-	.el-table .el-table-column--selection:has(.el-checkbox.is-checked),
-	.el-table .el-table-column--selection:has(.el-checkbox.is-checked) ~ .el-table__cell {
+	.el-table .el-table__row:has(.el-checkbox.is-checked),
+	.el-table .el-table__row:has(.el-checkbox.is-checked) ~ .el-table__cell {
 		background-color: color-mix(in oklch, var(--el-color-primary-light-5), transparent 80%);
 	}
+
 	.el-table .cell {
 		display: flex;
 		align-items: center;
