@@ -1,19 +1,19 @@
-# @element-plus/pro-form
+# @element-plus-pro/form
 
 > 测试
 
 ## Install
 
 ```bash
-$ npm install @element-plus/pro-form
+$ npm install @element-plus-pro/form
 ```
 
 ```bash
-$ yarn add @element-plus/pro-form
+$ yarn add @element-plus-pro/form
 ```
 
 ```bash
-$ pnpm add @element-plus/pro-form
+$ pnpm add @element-plus-pro/form
 ```
 
 ## API

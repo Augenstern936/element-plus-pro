@@ -5,24 +5,24 @@
  * @LastEditTime: 2024-07-25 21:10:33
  * @FilePath: \element-plus-pro\packages\field\src\components\Input\BaseInput.tsx
  */
-import { useVModel } from '@vueuse/core';
-import { ElInput } from 'element-plus';
-import { DefineComponent, defineComponent } from 'vue-demi';
-import { BaseInputProps, baseInputProps } from './props';
-import { excludeObjectProperty } from '@element-plus/pro-utils';
+import { excludeObjectProperty } from "@element-plus-pro/utils";
+import { useVModel } from "@vueuse/core";
+import { ElInput } from "element-plus";
+import { DefineComponent, defineComponent } from "vue-demi";
+import { BaseInputProps, baseInputProps } from "./props";
 
 const BaseInput = defineComponent<BaseInputProps>((props, ctx) => {
-	const model = useVModel(props, 'modelValue', ctx.emit);
+  const model = useVModel(props, "modelValue", ctx.emit);
 
-	return () => {
-		if (props.mode === 'read') {
-			return model.value;
-		}
-		if (props.mode === 'edit') {
-			return <ElInput {...excludeObjectProperty(props, ['label'])} v-model={model.value} />;
-		}
-		return '';
-	};
+  return () => {
+    if (props.mode === "read") {
+      return model.value;
+    }
+    if (props.mode === "edit") {
+      return <ElInput {...excludeObjectProperty(props, ["label"])} v-model={model.value} />;
+    }
+    return "";
+  };
 }) as DefineComponent<BaseInputProps>;
 
 BaseInput.props = baseInputProps as any;

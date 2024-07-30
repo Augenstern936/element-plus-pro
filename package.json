@@ -1,99 +1,99 @@
 {
-	"name": "element-plus-pro",
-	"private": true,
-	"license": "ISC",
-	"packageManager": "pnpm@8.10.2",
-	"workspaces": [
-		"packages/*",
-		"play",
-		"docs"
-	],
-	"scripts": {
-		"dev": "pnpm -C play dev",
-		"docs:dev": "pnpm run -C docs dev",
-		"gen:version": "tsx scripts/gen-version.ts",
-		"update:version": "tsx scripts/update-version.ts",
-		"build": "npx nx run-many -t build --projects=@element-plus/**",
-		"clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
-		"clean:dist": "rimraf dist",
-		"graph": "npx nx graph",
-		"lint": "eslint --cache --ext .vue,.js,.jsx,.ts,.tsx  --fix --format=pretty ./ && npm run tsc",
-		"lint:fix": "pnpm run lint --fix",
-		"release": "release-it --workspaces",
-		"dry-run": "npx nx release --dry-run --first-release --verbose",
-		"nx:publish": "npx nx release publish"
-	},
-	"devDependencies": {
-		"@element-plus/icons-vue": "^2.3.1",
-		"@element-plus/pro-hooks": "workspace:^",
-		"@element-plus/pro-types": "workspace:^",
-		"@element-plus/pro-utils": "workspace:^",
-		"@esbuild-kit/cjs-loader": "^2.4.4",
-		"@nx/js": "^19.4.1",
-		"@pnpm/find-workspace-packages": "^6.0.9",
-		"@pnpm/types": "^10.0.0",
-		"@popperjs/core": "^2.11.8",
-		"@swc-node/register": "^1.10.3",
-		"@swc/core": "^1.6.13",
-		"@types/gulp": "^4.0.17",
-		"@types/mockjs": "^1.0.10",
-		"@types/node": "^20.8.9",
-		"@vitejs/plugin-vue": "^4.4.0",
-		"@vitejs/plugin-vue-jsx": "^3.0.2",
-		"@vue/shared": "^3.2.37",
-		"@vueuse/core": "^10.7.0",
-		"copy-to-clipboard": "^3.3.3",
-		"element-plus": "^2.7.6",
-		"eslint": "^9.3.0",
-		"fetch-mock": "^10.0.8",
-		"fs-extra": "^11.1.1",
-		"glob": "^10.3.12",
-		"gulp": "^4.0.2",
-		"husky": "^9.0.11",
-		"mockjs": "^1.1.0",
-		"msw": "^2.3.1",
-		"nx": "19.3.0",
-		"prettier-plugin-organize-imports": "^3.2.4",
-		"prettier-plugin-packagejson": "^2.5.0",
-		"pretty-quick": "^4.0.0",
-		"release-it": "^17.4.1",
-		"rimraf": "^5.0.5",
-		"rollup-plugin-visualizer": "^5.11.0",
-		"sass": "^1.69.5",
-		"tsup": "^8.0.2",
-		"tsx": "^3.14.0",
-		"typescript": "^5.2.2",
-		"vite": "^4.5.0",
-		"vite-plugin-css-injected-by-js": "^3.5.1",
-		"vite-plugin-dts": "^3.9.1",
-		"vitest": "^1.6.0",
-		"vue": "^3.3.7",
-		"vue-demi": "^0.14.8",
-		"vue-draggable-plus": "^0.3.5",
-		"vue3-styled-components": "^1.2.1"
-	},
-	"release-it": {
-		"git": {
-			"commitMessage": "chore(release): v${version}",
-			"push": true,
-			"commit": true,
-			"tag": true,
-			"requireCommits": false,
-			"requireCleanWorkingDir": false
-		},
-		"github": {
-			"release": true,
-			"draft": true
-		},
-		"npm": {
-			"publish": false,
-			"ignoreVersion": false
-		}
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "pretty-quick --staged && npm run lint && npm test"
-		}
-	},
-	"version": "0.0.2"
+  "name": "element-plus-pro",
+  "version": "0.0.2",
+  "private": true,
+  "license": "ISC",
+  "packageManager": "pnpm@8.10.2",
+  "workspaces": [
+    "packages/*",
+    "play",
+    "docs"
+  ],
+  "scripts": {
+    "dev": "pnpm -C play dev",
+    "docs:dev": "pnpm run -C docs dev",
+    "gen:version": "tsx scripts/gen-version.ts",
+    "update:version": "tsx scripts/update-version.ts",
+    "build": "npx nx run-many -t build --projects=@element-plus-pro/**",
+    "clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
+    "clean:dist": "rimraf dist",
+    "graph": "npx nx graph",
+    "lint": "eslint --cache --ext .vue,.js,.jsx,.ts,.tsx  --fix --format=pretty ./ && npm run tsc",
+    "lint:fix": "pnpm run lint --fix",
+    "release": "release-it --workspaces",
+    "dry-run": "npx nx release --dry-run --first-release --verbose",
+    "nx:publish": "npx nx release publish"
+  },
+  "devDependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "@element-plus-pro/hooks": "workspace:^",
+    "@element-plus-pro/types": "workspace:^",
+    "@element-plus-pro/utils": "workspace:^",
+    "@esbuild-kit/cjs-loader": "^2.4.4",
+    "@nx/js": "^19.4.1",
+    "@pnpm/find-workspace-packages": "^6.0.9",
+    "@pnpm/types": "^10.0.0",
+    "@popperjs/core": "^2.11.8",
+    "@swc-node/register": "^1.10.3",
+    "@swc/core": "^1.6.13",
+    "@types/gulp": "^4.0.17",
+    "@types/mockjs": "^1.0.10",
+    "@types/node": "^20.8.9",
+    "@vitejs/plugin-vue": "^4.4.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
+    "@vue/shared": "^3.2.37",
+    "@vueuse/core": "^10.7.0",
+    "copy-to-clipboard": "^3.3.3",
+    "element-plus": "^2.7.6",
+    "eslint": "^9.3.0",
+    "fetch-mock": "^10.0.8",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.3.12",
+    "gulp": "^4.0.2",
+    "husky": "^9.0.11",
+    "mockjs": "^1.1.0",
+    "msw": "^2.3.1",
+    "nx": "19.3.0",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-packagejson": "^2.5.0",
+    "pretty-quick": "^4.0.0",
+    "release-it": "^17.4.1",
+    "rimraf": "^5.0.5",
+    "rollup-plugin-visualizer": "^5.11.0",
+    "sass": "^1.69.5",
+    "tsup": "^8.0.2",
+    "tsx": "^3.14.0",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0",
+    "vite-plugin-css-injected-by-js": "^3.5.1",
+    "vite-plugin-dts": "^3.9.1",
+    "vitest": "^1.6.0",
+    "vue": "^3.3.7",
+    "vue-demi": "^0.14.8",
+    "vue-draggable-plus": "^0.3.5",
+    "vue3-styled-components": "^1.2.1"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): v${version}",
+      "push": true,
+      "commit": true,
+      "tag": true,
+      "requireCommits": false,
+      "requireCleanWorkingDir": false
+    },
+    "github": {
+      "release": true,
+      "draft": true
+    },
+    "npm": {
+      "publish": false,
+      "ignoreVersion": false
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged && npm run lint && npm test"
+    }
+  }
 }

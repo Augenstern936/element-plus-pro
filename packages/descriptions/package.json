@@ -1,39 +1,39 @@
 {
-	"name": "@element-plus/pro-descriptions",
-	"version": "0.0.1",
-	"description": "@element-plus/pro-descriptions",
-	"keywords": [
-		"ui",
-		"vue3",
-		"element",
-		"component",
-		"element-plus",
-		"element-plus-pro"
-	],
-	"license": "ISC",
-	"homepage": "",
-	"bugs": "https://gitee.com/bo-wen-wang936926/element-plus-pro/issues",
-	"gitpository": {
-		"type": "git",
-		"url": ""
-	},
-	"scripts": {
-		"build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
-	},
-	"sideEffects": false,
-	"main": "lib/index.js",
-	"module": "src/index.ts",
-	"types": "es/index.d.ts",
-	"files": [
-		"lib",
-		"es"
-	],
-	"author": "17634393156@163.com",
-	"peerDependencies": {
-		"element-plus": "^2.4.1",
-		"vue": "^3.3.7"
-	},
-	"dependencies": {
-		"@element-plus/pro-copyable": "workspace:^"
-	}
+  "name": "@element-plus-pro/descriptions",
+  "version": "0.0.1",
+  "description": "@element-plus-pro/descriptions",
+  "keywords": [
+    "ui",
+    "vue3",
+    "element",
+    "component",
+    "element-plus",
+    "element-plus-pro"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "bugs": "https://gitee.com/bo-wen-wang936926/element-plus-pro/issues",
+  "gitpository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
+  },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "src/index.ts",
+  "types": "es/index.d.ts",
+  "files": [
+    "lib",
+    "es"
+  ],
+  "author": "17634393156@163.com",
+  "peerDependencies": {
+    "element-plus": "^2.4.1",
+    "vue": "^3.3.7"
+  },
+  "dependencies": {
+    "@element-plus-pro/copyable": "workspace:^"
+  }
 }

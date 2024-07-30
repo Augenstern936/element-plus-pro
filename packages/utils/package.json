@@ -1,9 +1,9 @@
 {
-	"name": "@element-plus/pro-utils",
-	"private": true,
-	"main": "index.ts",
-	"license": "ISC",
-	"peerDependencies": {
-		"vue": "^3.2.0"
-	}
+  "name": "@element-plus-pro/utils",
+  "private": true,
+  "main": "index.ts",
+  "license": "ISC",
+  "peerDependencies": {
+    "vue": "^3.2.0"
+  }
 }

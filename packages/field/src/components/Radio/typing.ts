@@ -3,47 +3,47 @@
  * @Date: 2024-04-15 10:48:08
  * @LastEditTime: 2024-07-09 17:02:00
  */
-import type { MarkShape, ValueEnum, ValueOption } from "@element-plus/pro-types";
+import type { MarkShape, ValueEnum, ValueOption } from "@element-plus-pro/types";
 import type { RadioButtonProps, RadioProps } from "element-plus";
 import { radioGroupProps } from "element-plus";
 import { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
 import { ProFieldMode } from "../../typing";
 
 const commomProps = {
-	...radioGroupProps,
-	mode: {
-		type: String as PropType<ProFieldMode>,
-		default: "edit",
-	},
-	markShape: {
-		type: String as PropType<MarkShape>,
-	},
-	style: {
-		type: Object as PropType<CSSProperties>,
-		default: {},
-	},
+  ...radioGroupProps,
+  mode: {
+    type: String as PropType<ProFieldMode>,
+    default: "edit"
+  },
+  markShape: {
+    type: String as PropType<MarkShape>
+  },
+  style: {
+    type: Object as PropType<CSSProperties>,
+    default: {}
+  }
 };
 
 export const proFieldRadioProps = {
-	...commomProps,
-	valueOptions: {
-		type: Array as PropType<ProFieldRadioValueOption[]>,
-		default: [],
-	},
-	valueEnum: {
-		type: Object as PropType<ProFieldRadioValueEnum>,
-	},
+  ...commomProps,
+  valueOptions: {
+    type: Array as PropType<ProFieldRadioValueOption[]>,
+    default: []
+  },
+  valueEnum: {
+    type: Object as PropType<ProFieldRadioValueEnum>
+  }
 };
 
 export const proFieldRadioButtonProps = {
-	...commomProps,
-	valueOptions: {
-		type: Array as PropType<ProFieldRadioButtonValueOption[]>,
-		default: [],
-	},
-	valueEnum: {
-		type: Object as PropType<ProFieldRadioButtonValueEnum>,
-	},
+  ...commomProps,
+  valueOptions: {
+    type: Array as PropType<ProFieldRadioButtonValueOption[]>,
+    default: []
+  },
+  valueEnum: {
+    type: Object as PropType<ProFieldRadioButtonValueEnum>
+  }
 };
 
 type BaseRadioProps = Partial<Omit<RadioProps, "label" | "value" | "modelValue">>;

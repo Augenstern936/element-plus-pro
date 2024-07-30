@@ -1,7 +1,7 @@
 {
-  "name": "@element-plus/pro-table",
+  "name": "@element-plus-pro/table",
   "version": "0.0.1",
-  "description": "@element-plus/pro-table",
+  "description": "@element-plus-pro/table",
   "keywords": [
     "ui",
     "vue3",
@@ -30,9 +30,8 @@
   ],
   "author": "17634393156@163.com",
   "dependencies": {
-    "@element-plus/pro-button": "workspace:^",
-    "@element-plus/pro-form": "workspace:^",
-    "@element-plus/pro-search-bar": "workspace:^",
+    "@element-plus-pro/button": "workspace:^",
+    "@element-plus-pro/form": "workspace:^",
     "@types/uuid": "^9.0.7",
     "@vueuse/core": "^10.7.0",
     "screenfull": "^6.0.2",
