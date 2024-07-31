@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { ref } from "vue-demi";
 
-import type { SearchBarItem } from "@element-plus-pro/components";
+import type { SearchBarItem } from "@element-plus-ui/pro-components";
 
 const formItems = ref<SearchBarItem[]>([
   {

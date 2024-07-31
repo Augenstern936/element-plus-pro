@@ -1,5 +1,5 @@
-import { ProSearchBar } from "@element-plus-pro/form";
-import { enumTransformOptions, withInstall } from "@element-plus-pro/utils";
+import { ProSearchBar } from "@element-plus-ui/pro-form";
+import { enumTransformOptions, withInstall } from "@element-plus-ui/pro-utils";
 import { isObject } from "@vueuse/core";
 import { ElAlert, ElMessage, ElPagination, ElTable } from "element-plus";
 import { v4 as uuidv4 } from "uuid";

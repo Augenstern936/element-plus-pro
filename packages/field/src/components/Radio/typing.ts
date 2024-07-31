@@ -3,7 +3,7 @@
  * @Date: 2024-04-15 10:48:08
  * @LastEditTime: 2024-07-09 17:02:00
  */
-import type { MarkShape, ValueEnum, ValueOption } from "@element-plus-pro/types";
+import type { MarkShape, ValueEnum, ValueOption } from "@element-plus-ui/pro-types";
 import type { RadioButtonProps, RadioProps } from "element-plus";
 import { radioGroupProps } from "element-plus";
 import { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";

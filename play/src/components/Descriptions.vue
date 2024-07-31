@@ -24,5 +24,5 @@
 </template>
 
 <script setup lang="ts">
-import { ProDescriptions } from "@element-plus-pro/components";
+import { ProDescriptions } from "@element-plus-ui/pro-components";
 </script>

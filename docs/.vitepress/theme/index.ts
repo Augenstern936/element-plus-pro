@@ -1,5 +1,5 @@
 // https://vitepress.dev/guide/custom-theme
-import ProComponents from "@element-plus-pro/components";
+import ProComponents from "@element-plus-ui/pro-components";
 import "@ruabick/vitepress-demo-block/dist/style.css";
 import ElementPlus from "element-plus";
 import type { Theme } from "vitepress";

@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-09 17:04:13
  * @FilePath: \element-plus-pro\packages\form\src\components\Input\Text.tsx
  */
-import { withInstall } from "@element-plus-pro/utils";
+import { withInstall } from "@element-plus-ui/pro-utils";
 import type { InputProps } from "element-plus";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";

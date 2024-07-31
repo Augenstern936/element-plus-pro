@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-09 17:03:22
  * @FilePath: \element-plus-pro\packages\field\src\components\VirtualizedSelect\props.ts
  */
-import { MarkShape, ValueEnum, ValueOption } from "@element-plus-pro/types";
+import { MarkShape, ValueEnum, ValueOption } from "@element-plus-ui/pro-types";
 import { ArrowDown, CircleClose } from "@element-plus/icons-vue";
 import { Placement } from "@popperjs/core";
 import { ComponentSize, Options, tagProps, useTooltipContentProps } from "element-plus";

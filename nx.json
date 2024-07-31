@@ -8,7 +8,7 @@
     }
   },
   "release": {
-    "projects": ["@element-plus-pro/button", "!ignore-me"],
+    "projects": ["@element-plus-ui/pro-button", "!ignore-me"],
     "version": {
       "conventionalCommits": true
     },

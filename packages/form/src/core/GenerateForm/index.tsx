@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-27 15:36:10
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\index.tsx
  */
-import { useFetchData } from "@element-plus-pro/hooks";
+import { useFetchData } from "@element-plus-ui/pro-hooks";
 import { useVModel } from "@vueuse/core";
 import { ColProps, ElForm, ElFormItem } from "element-plus";
 import { DefineComponent, FunctionalComponent, computed, defineComponent, ref } from "vue-demi";

@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-24 14:05:07
  * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\typing.ts
  */
-import { excludeObjectProperty } from "@element-plus-pro/utils";
+import { excludeObjectProperty } from "@element-plus-ui/pro-utils";
 import type { DefineComponent, ExtractPropTypes, PropType } from "vue-demi";
 import {
   ProFormAavtarProps,

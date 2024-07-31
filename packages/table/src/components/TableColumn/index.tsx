@@ -1,4 +1,4 @@
-import ProButton from "@element-plus-pro/button";
+import ProButton from "@element-plus-ui/pro-button";
 import { Delete, DocumentCopy, Edit, Picture, Search, UserFilled, View } from "@element-plus/icons-vue";
 import { isObject } from "@vueuse/core";
 import { ElAvatar, ElButton, ElIcon, ElImage, ElProgress, ElRate, ElSpace, ElTableColumn, ElTooltip } from "element-plus";

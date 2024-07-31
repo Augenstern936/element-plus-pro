@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-25 22:06:38
  * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\index.tsx
  */
-import { formatPlaceholder } from "@element-plus-pro/utils";
+import { formatPlaceholder } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
 import { DatePickerProps, ElDatePicker } from "element-plus";
 import "element-plus/theme-chalk/src/button.scss";

@@ -1,4 +1,4 @@
-import { MarkShape, StatusColorEnum, ValueOption } from "@element-plus-pro/types";
+import { MarkShape, StatusColorEnum, ValueOption } from "@element-plus-ui/pro-types";
 import { ElTag, ElText } from "element-plus";
 import { Fragment, computed } from "vue-demi";
 import "./style.scss";

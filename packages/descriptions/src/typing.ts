@@ -3,7 +3,7 @@
  * @Date: 2024-04-30 17:42:23
  * @LastEditTime: 2024-07-09 16:58:12
  */
-import { GeneratePropTypes, MarkShape } from "@element-plus-pro/types";
+import { GeneratePropTypes, MarkShape } from "@element-plus-ui/pro-types";
 import { descriptionProps } from "element-plus";
 import type { PropType } from "vue-demi";
 import { CSSProperties } from "vue-demi";

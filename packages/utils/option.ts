@@ -1,4 +1,4 @@
-import { VModelOptionValue, ValueOption } from "@element-plus-pro/types";
+import { VModelOptionValue, ValueOption } from "@element-plus-ui/pro-types";
 
 /**
  * 获取当前v-model选中的值配置项

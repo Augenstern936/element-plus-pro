@@ -5,8 +5,8 @@
  * @LastEditTime: 2024-07-25 21:18:22
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
-import type { GeneratePropTypes, ToUppercaseFirst } from "@element-plus-pro/types";
-import { formatPlaceholder, withInstall } from "@element-plus-pro/utils";
+import type { GeneratePropTypes, ToUppercaseFirst } from "@element-plus-ui/pro-types";
+import { formatPlaceholder, withInstall } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
 import "element-plus/theme-chalk/src/base.scss";
 import type { DefineComponent, PropType } from "vue-demi";

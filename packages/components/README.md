@@ -1,29 +1,30 @@
-# @element-plus-pro/components
+<h1 align="center">@element-plus-ui/pro-components</h1>
 
-> 基于 Element Plus 而开发的一套Vue3模板组件。在 Element Plus 上进行了自己的封装，更加易用，样式风格与 Element Plus 一脉相承，无需魔改，浑然天成。使用 📠 TypeScript 开发，提供完整的类型定义文件，无需频繁打开官网，让中后台开发更简单.
+> 基于 <a href="https://element-plus.org/zh-CN/"><img src="https://element-plus.org/images/element-plus-logo.svg" width="100px"/></a> 而开发的一套 Vue3 模板组件。在 [Element Plus](https://element-plus.org/zh-CN/) 上进行了自己的封装，更加易用，样式风格与 [Element Plus](https://element-plus.org/zh-CN/) 一脉相承，无需魔改，浑然天成。使用 📠 [TypeScript](https://www.typescriptlang.org/) 开发，提供完整的类型定义文件，无需频繁打开官网，让中后台开发更简单.
 
 ## 📦 Install
 
 ```bash
-$ npm install @element-plus-pro/components
+$ npm install @element-plus-ui/pro-components
 ```
 
 ```bash
-$ yarn add @element-plus-pro/components
+$ yarn add @element-plus-ui/pro-components
 ```
 
 ```bash
-$ pnpm add @element-plus-pro/components
+$ pnpm add @element-plus-ui/pro-components
 ```
 
 ## ✨ Components
 
-- [ProButton](https://www.npmjs.com/package/@element-plus-pro/button) 按钮模板组件，抽象网络请求和表格格式化
-- [ProField](https://www.npmjs.com/package/@element-plus-pro/field) 表单字段模板组件，抽象网络请求和表格格式化
-- [ProForm](https://www.npmjs.com/package/@element-plus-pro/form) 表单模板组件，预设常见布局和行为
-- [ProTable](https://www.npmjs.com/package/@element-plus-pro/table) 表格模板组件，抽象网络请求和表格格式化
-- [ProTabs](https://www.npmjs.com/package/@element-plus-pro/tabs) 标签模板组件，抽象网络请求和表格格式化
-- [ProDescriptions](https://www.npmjs.com/package/@element-plus-pro/descriptions) 定义列表模板组件，ProTable 的配套组件
+- [ProButton](https://www.npmjs.com/package/@element-plus-ui/pro-button) 按钮模板组件，抽象网络请求和表格格式化
+- [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 表单字段模板组件，抽象网络请求和表格格式化
+- [ProForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 表单模板组件，预设常见布局和行为
+- [ProSearchBar](https://www.npmjs.com/package/@element-plus-ui/pro-form) 搜索栏模板组件，属于`ProForm`子集
+- [ProTable](https://www.npmjs.com/package/@element-plus-ui/pro-table) 表格模板组件，抽象网络请求和表格格式化
+- [ProTabs](https://www.npmjs.com/package/@element-plus-ui/pro-tabs) 标签模板组件，抽象网络请求和表格格式化
+- [ProDescriptions](https://www.npmjs.com/package/@element-plus-ui/pro-descriptions) 定义列表模板组件，ProTable 的配套组件
 
 ## 🔨 Usage
 
@@ -32,7 +33,7 @@ $ pnpm add @element-plus-pro/components
 ```ts
 import { createApp } from "vue";
 import App from "./src/App.vue";
-import ProComponents from "@element-plus-pro/components";
+import ProComponents from "@element-plus-ui/pro-components";
 
 const app = createApp(App);
 
@@ -48,8 +49,8 @@ app.mount("#app").use(ProComponents);
 
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import { ProTable } from "@element-plus-pro/components";
-import type { TableColumns } from "@element-plus-pro/components";
+import { ProTable } from "@element-plus-ui/pro-components";
+import type { TableColumns } from "@element-plus-ui/pro-components";
 
 const columns = ref<TableColumns[]>([
   {

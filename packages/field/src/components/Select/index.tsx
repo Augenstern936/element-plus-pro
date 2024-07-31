@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-09 17:02:21
  * @FilePath: \element-plus-pro\packages\field\src\components\Select\index.tsx
  */
-import { enumTransformOptions, getValueOptionConfigs } from "@element-plus-pro/utils";
+import { enumTransformOptions, getValueOptionConfigs } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
 import { ElOption, ElSelect } from "element-plus";
 import "element-plus/theme-chalk/src/option.scss";

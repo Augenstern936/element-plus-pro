@@ -16,9 +16,9 @@
     "vite": "^4.5.0"
   },
   "dependencies": {
-    "@element-plus-pro/button": "workspace:^",
-    "@element-plus-pro/components": "workspace:^",
-    "@element-plus-pro/field": "workspace:^",
+    "@element-plus-ui/pro-button": "workspace:^",
+    "@element-plus-ui/pro-components": "workspace:^",
+    "@element-plus-ui/pro-field": "workspace:^",
     "vue": "^3.4.31"
   },
   "msw": {

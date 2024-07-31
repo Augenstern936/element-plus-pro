@@ -7,7 +7,7 @@ async function main() {
   // 把数组转为对象，以name作为key
   const pkgsObj = Object.fromEntries(pkgs.map(pkg => [pkg.manifest.name, pkg]));
 
-  const proComponents = pkgsObj["@element-plus-pro/components"];
+  const proComponents = pkgsObj["@element-plus-ui/pro-components"];
 
   const gitHead = process.env.GIT_HEAD;
 

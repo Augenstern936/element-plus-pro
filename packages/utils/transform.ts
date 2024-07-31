@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-06-02 12:25:39
  * @FilePath: \element-plus-pro\packages\utils\transform.ts
  */
-import { CssUnitEnum, ValueEnum } from "@element-plus-pro/types";
+import { CssUnitEnum, ValueEnum } from "@element-plus-ui/pro-types";
 import { isObject } from "@vueuse/core";
 
 /**

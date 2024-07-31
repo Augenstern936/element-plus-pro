@@ -1,7 +1,7 @@
 {
-  "name": "@element-plus-pro/text",
+  "name": "@element-plus-ui/pro-text",
   "version": "0.0.1",
-  "description": "@element-plus-pro/text",
+  "description": "@element-plus-ui/pro-text",
   "keywords": [
     "ui",
     "vue3",

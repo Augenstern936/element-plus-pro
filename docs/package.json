@@ -34,7 +34,7 @@
   "dependencies": {
     "@docsearch/js": "^3.5.2",
     "@element-plus/icons-vue": "^2.3.1",
-    "@element-plus-pro/components": "workspace:^",
+    "@element-plus-ui/pro-components": "workspace:^",
     "@vue/shared": "^3.2.37",
     "@vueuse/core": "^10.7.0",
     "element-plus": "^2.4.1",

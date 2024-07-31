@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-06-20 22:22:25
  * @FilePath: \element-plus-pro\packages\utils\form.ts
  */
-// import { FormValueTypeEnum } from "@element-plus-pro/types";
+// import { FormValueTypeEnum } from "@element-plus-ui/pro-types";
 import { isOnlySymbols } from "./check";
 
 /**

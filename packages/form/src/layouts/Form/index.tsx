@@ -5,8 +5,8 @@
  * @LastEditTime: 2024-07-24 14:24:21
  * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\index.tsx
  */
-import { ToUppercaseFirst } from "@element-plus-pro/types";
-import { withInstall } from "@element-plus-pro/utils";
+import { ToUppercaseFirst } from "@element-plus-ui/pro-types";
+import { withInstall } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
 import { defineComponent, ref } from "vue-demi";
 import components from "../../components";

@@ -3,7 +3,7 @@
  * @Date: 2024-04-15 09:39:26
  * @LastEditTime: 2024-07-09 16:58:51
  */
-import type { MarkShape, ValueEnum, ValueOption } from "@element-plus-pro/types";
+import type { MarkShape, ValueEnum, ValueOption } from "@element-plus-ui/pro-types";
 import type { CheckboxProps } from "element-plus";
 import { checkboxGroupProps } from "element-plus";
 import type { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";

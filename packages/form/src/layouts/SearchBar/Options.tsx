@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-27 16:47:22
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\Options.tsx
  */
-import ProButton, { ProButtonProps } from "@element-plus-pro/button";
+import ProButton, { ProButtonProps } from "@element-plus-ui/pro-button";
 import { isObject } from "@vueuse/core";
 import { ElDropdown, ElDropdownItem, ElDropdownMenu } from "element-plus";
 import { computed, SetupContext } from "vue";

@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-28 13:37:06
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\Actions.tsx
  */
-import ProButton, { ProButtonProps } from "@element-plus-pro/button";
+import ProButton, { ProButtonProps } from "@element-plus-ui/pro-button";
 import { ArrowDown, ArrowUp, Delete, Search } from "@element-plus/icons-vue";
 import { isObject } from "@vueuse/core";
 import { ElButton, ElIcon, ElSpace } from "element-plus";

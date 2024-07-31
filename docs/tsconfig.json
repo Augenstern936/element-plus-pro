@@ -12,7 +12,7 @@
     "skipLibCheck": true,
     "lib": ["WebWorker"],
     "paths": {
-      "@element-plus-pro/components": ["../packages/components"],
+      "@element-plus-ui/pro-components": ["../packages/components"],
       "~/*": ["./.vitepress/vitepress/*"]
     },
     "types": ["../typings/components"],

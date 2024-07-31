@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-27 19:11:34
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\typing.ts
  */
-import type { ProButtonProps } from "@element-plus-pro/button";
+import type { ProButtonProps } from "@element-plus-ui/pro-button";
 import type { ExtractPropTypes, PropType } from "vue-demi";
 import { ProFormColumns } from "../../core";
 import { ProFormLayout } from "../../typing";

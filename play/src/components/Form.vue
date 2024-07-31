@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { ProForm, ProFormAvatar } from "@element-plus-pro/components";
+import { ProForm, ProFormAvatar } from "@element-plus-ui/pro-components";
 import { ref } from "vue";
 
 const test = ref(false);

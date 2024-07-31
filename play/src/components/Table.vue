@@ -15,23 +15,23 @@
       :ghost="false"
       :selection="true"
       :search="{
-				colSpan: 8,
-				//searchButtonTitle: '测试',
-				extraTools: [
-					{
-						title: '测试',
-						type: 'success',
-					},
-					{
-						title: '测试',
-						type: 'success',
-					},
-				],
-				searchBefore: (params) => {
-					console.log(params, 'params');
-				},
-				onCollapse: (v: boolean) => console.log(v, '是否展开1'),
-			}"
+        colSpan: 8,
+        //searchButtonTitle: '测试',
+        extraTools: [
+          {
+            title: '测试',
+            type: 'success'
+          },
+          {
+            title: '测试',
+            type: 'success'
+          }
+        ],
+        searchBefore: params => {
+          console.log(params, 'params');
+        },
+        onCollapse: (v: boolean) => console.log(v, '是否展开1')
+      }"
       @action="onAction"
       @collapse="console.log($event, '是否展开2')"
     >
@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { ProTable } from "@element-plus-pro/components";
+import { ProTable } from "@element-plus-ui/pro-components";
 import { reactive, ref } from "vue";
 //import { server } from "../mock";
 

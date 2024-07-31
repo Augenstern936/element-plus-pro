@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-25 21:41:33
  * @FilePath: \element-plus-pro\packages\hooks\useFetchData\index.ts
  */
-import { ProRequestData } from "@element-plus-pro/types";
+import { ProRequestData } from "@element-plus-ui/pro-types";
 import { ref, watch } from "vue-demi";
 import { useRequest } from "vue-request";
 

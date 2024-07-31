@@ -5,8 +5,8 @@
  * @LastEditTime: 2024-07-26 16:51:36
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\useFormContent.tsx
  */
-import { ProField } from "@element-plus-pro/field";
-import { excludeObjectProperty, formatPlaceholder } from "@element-plus-pro/utils";
+import { ProField } from "@element-plus-ui/pro-field";
+import { excludeObjectProperty, formatPlaceholder } from "@element-plus-ui/pro-utils";
 import { InfoFilled } from "@element-plus/icons-vue";
 import { useVModel } from "@vueuse/core";
 import { ElFormItem, ElIcon, ElSpace, ElTooltip, FormItemProps } from "element-plus";

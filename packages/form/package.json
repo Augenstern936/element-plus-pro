@@ -1,7 +1,7 @@
 {
-  "name": "@element-plus-pro/form",
+  "name": "@element-plus-ui/pro-form",
   "version": "0.0.1",
-  "description": "@element-plus-pro/form",
+  "description": "@element-plus-ui/pro-form",
   "keywords": [
     "ui",
     "vue3",
@@ -30,11 +30,14 @@
   ],
   "author": "17634393156@163.com",
   "dependencies": {
-    "@element-plus-pro/button": "workspace:^",
-    "@element-plus-pro/field": "workspace:^"
+    "@element-plus-ui/pro-button": "workspace:^",
+    "@element-plus-ui/pro-field": "workspace:^"
   },
   "peerDependencies": {
     "element-plus": "^2.7.2",
     "vue": "^3.4.27"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }

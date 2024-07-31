@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-09 16:59:01
  * @FilePath: \element-plus-pro\packages\field\src\components\Checkbox\useRender.tsx
  */
-import { enumTransformOptions, getValueOptionConfigs } from "@element-plus-pro/utils";
+import { enumTransformOptions, getValueOptionConfigs } from "@element-plus-ui/pro-utils";
 import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup } from "element-plus";
 import { Ref, computed } from "vue-demi";
 import { ReadOptions } from "../widgets";

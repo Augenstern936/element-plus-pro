@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-09 17:03:30
  * @FilePath: \element-plus-pro\packages\form\src\components\Avatar\index.tsx
  */
-import { withInstall } from "@element-plus-pro/utils";
+import { withInstall } from "@element-plus-ui/pro-utils";
 import type { AvatarProps } from "element-plus";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";

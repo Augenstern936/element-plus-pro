@@ -13,5 +13,5 @@
 </template>
 
 <script setup lang="ts">
-import { ProButton } from "@element-plus-pro/button";
+import { ProButton } from "@element-plus-ui/pro-button";
 </script>

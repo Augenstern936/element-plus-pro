@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { ProSearchBar } from "@element-plus-pro/components";
+import { ProSearchBar } from "@element-plus-ui/pro-components";
 import { ref } from "vue";
 
 const onCollapse = (v: boolean) => {

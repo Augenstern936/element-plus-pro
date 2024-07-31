@@ -1,7 +1,7 @@
 {
-  "name": "@element-plus-pro/tabs",
+  "name": "@element-plus-ui/pro-tabs",
   "version": "0.0.1",
-  "description": "@element-plus-pro/tabs",
+  "description": "@element-plus-ui/pro-tabs",
   "keywords": [
     "ui",
     "vue3",
@@ -30,10 +30,13 @@
   ],
   "author": "17634393156@163.com",
   "dependencies": {
-    "@element-plus-pro/center-container": "workspace:^"
+    "@element-plus-ui/pro-center-container": "workspace:^"
   },
   "peerDependencies": {
     "vue": "^3.4.27",
     "element-plus": "^2.7.2"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }

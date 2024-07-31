@@ -1,7 +1,7 @@
 {
-  "name": "@element-plus-pro/copyable",
+  "name": "@element-plus-ui/pro-copyable",
   "version": "0.0.1",
-  "description": "@element-plus-pro/copyable",
+  "description": "@element-plus-ui/pro-copyable",
   "keywords": [
     "ui",
     "vue3",

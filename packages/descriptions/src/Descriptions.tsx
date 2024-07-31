@@ -3,7 +3,7 @@
  * @Date: 2024-04-30 17:41:09
  * @LastEditTime: 2024-07-09 16:58:08
  */
-import ProCopyable from "@element-plus-pro/copyable";
+import ProCopyable from "@element-plus-ui/pro-copyable";
 import { isObject } from "@vueuse/core";
 import { ElDescriptions, ElDescriptionsItem, ElSpace } from "element-plus";
 import { FunctionalComponent, computed, defineComponent } from "vue-demi";

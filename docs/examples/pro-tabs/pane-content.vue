@@ -16,7 +16,7 @@ import { ref } from "vue-demi";
 
 import Auth from "./auth.vue";
 
-import type { TabsPane } from "@element-plus-pro/components";
+import type { TabsPane } from "@element-plus-ui/pro-components";
 
 const active = ref(1);
 

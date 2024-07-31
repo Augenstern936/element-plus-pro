@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-25 21:10:33
  * @FilePath: \element-plus-pro\packages\field\src\components\Input\BaseInput.tsx
  */
-import { excludeObjectProperty } from "@element-plus-pro/utils";
+import { excludeObjectProperty } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
 import { ElInput } from "element-plus";
 import { DefineComponent, defineComponent } from "vue-demi";

@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-13 22:56:15
  * @FilePath: \element-plus-pro\packages\form\src\core\HOC\createField.tsx
  */
-import { ProFieldType } from "@element-plus-pro/field";
+import { ProFieldType } from "@element-plus-ui/pro-field";
 import { useVModel } from "@vueuse/core";
 import { DefineComponent, FunctionalComponent, SetupContext } from "vue-demi";
 import { ProFormItem } from "../FormItem";

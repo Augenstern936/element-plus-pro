@@ -5,8 +5,8 @@
  * @LastEditTime: 2024-07-27 19:15:19
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\index.tsx
  */
-import { ProButtonProps } from "@element-plus-pro/button";
-import { withInstall } from "@element-plus-pro/utils";
+import { ProButtonProps } from "@element-plus-ui/pro-button";
+import { withInstall } from "@element-plus-ui/pro-utils";
 import { MoreFilled } from "@element-plus/icons-vue";
 import { isObject } from "@vue/shared";
 import { useVModel } from "@vueuse/core";

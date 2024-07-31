@@ -5,8 +5,8 @@
  * @LastEditTime: 2024-07-06 16:37:06
  * @FilePath: \element-plus-pro\packages\form\src\core\FormItem\typing.ts
  */
-import type { ProFieldType } from "@element-plus-pro/field";
-import { ValueEnum, ValueOption } from "@element-plus-pro/types";
+import type { ProFieldType } from "@element-plus-ui/pro-field";
+import { ValueEnum, ValueOption } from "@element-plus-ui/pro-types";
 import { FormItemProps } from "element-plus";
 import type { JSX } from "vue/jsx-runtime";
 

@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-06-06 22:04:36
  * @FilePath: \element-plus-pro\packages\copyable\src\index.ts
  */
-import { withInstall } from "@element-plus-pro/utils";
+import { withInstall } from "@element-plus-ui/pro-utils";
 import Copyable from "./Copyable.vue";
 import "./style.scss";
 

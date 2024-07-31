@@ -1,4 +1,4 @@
-import type { ProSearchBarProps } from "@element-plus-pro/form";
+import type { ProSearchBarProps } from "@element-plus-ui/pro-form";
 import type { ButtonProps, ColProps } from "element-plus";
 import type { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
 import { JSX } from "vue/jsx-runtime";

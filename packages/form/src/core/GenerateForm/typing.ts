@@ -3,8 +3,8 @@
  * @Date: 2024-04-15 09:39:26
  * @LastEditTime: 2024-07-24 13:50:33
  */
-import type { ProFieldType } from "@element-plus-pro/field";
-import { ProRequestData, ValueEnum, ValueOption } from "@element-plus-pro/types";
+import type { ProFieldType } from "@element-plus-ui/pro-field";
+import { ProRequestData, ValueEnum, ValueOption } from "@element-plus-ui/pro-types";
 import type { ColProps, FormItemProps, RowProps } from "element-plus";
 import { formProps as elFormProps } from "element-plus";
 import { ProButtonProps } from "packages/button/es";

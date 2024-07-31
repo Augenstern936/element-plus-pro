@@ -3,7 +3,7 @@
  * @Date: 2024-06-17 10:01:37
  * @LastEditTime: 2024-07-09 16:57:46
  */
-import { toCssUnitValue, withInstall } from "@element-plus-pro/utils";
+import { toCssUnitValue, withInstall } from "@element-plus-ui/pro-utils";
 import type { FunctionalComponent } from "vue-demi";
 import { computed, defineComponent } from "vue-demi";
 import props from "./props";

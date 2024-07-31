@@ -1,7 +1,7 @@
 {
-  "name": "@element-plus-pro/field",
+  "name": "@element-plus-ui/pro-field",
   "version": "0.0.1",
-  "description": "@element-plus-pro/field",
+  "description": "@element-plus-ui/pro-field",
   "keywords": [
     "ui",
     "vue3",
@@ -33,6 +33,9 @@
   "peerDependencies": {
     "element-plus": "^2.4.1",
     "vue": "^3.3.7"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "release-it": {
     "git": false

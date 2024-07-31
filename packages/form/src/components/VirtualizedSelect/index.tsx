@@ -5,8 +5,8 @@
  * @LastEditTime: 2024-07-09 17:05:31
  * @FilePath: \element-plus-pro\packages\form\src\components\VirtualizedSelect\index.tsx
  */
-import type { ProFieldTreeSelectProps } from "@element-plus-pro/field";
-import { withInstall } from "@element-plus-pro/utils";
+import type { ProFieldTreeSelectProps } from "@element-plus-ui/pro-field";
+import { withInstall } from "@element-plus-ui/pro-utils";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";
 import { FormFieldProps } from "../../typing";

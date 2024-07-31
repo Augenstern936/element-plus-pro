@@ -3,10 +3,10 @@
  * @Date: 2024-04-10 17:30:49
  * @LastEditTime: 2024-07-30 12:48:30
  */
-import ProButton from "@element-plus-pro/button";
-import ProCopyable from "@element-plus-pro/copyable";
-import ProDescriptions from "@element-plus-pro/descriptions";
-import { ProField } from "@element-plus-pro/field";
+import ProButton from "@element-plus-ui/pro-button";
+import ProCopyable from "@element-plus-ui/pro-copyable";
+import ProDescriptions from "@element-plus-ui/pro-descriptions";
+import { ProField } from "@element-plus-ui/pro-field";
 import {
   ProForm,
   ProFormAvatar,
@@ -39,10 +39,10 @@ import {
   ProFormTimeSelect,
   ProFormTreeSelect,
   ProFormVirtualizedSelect
-} from "@element-plus-pro/form";
-import ProTable from "@element-plus-pro/table";
-import ProText from "@element-plus-pro/text";
-// import ProTabs from "@element-plus-pro/tabs";
+} from "@element-plus-ui/pro-form";
+import ProTable from "@element-plus-ui/pro-table";
+import ProText from "@element-plus-ui/pro-text";
+// import ProTabs from "@element-plus-ui/pro-tabs";
 import markInstaller from "./mark-installer";
 
 export default markInstaller({

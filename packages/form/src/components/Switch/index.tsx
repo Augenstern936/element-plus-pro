@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-13 15:40:52
  * @FilePath: \element-plus-pro\packages\form\src\components\Switch\index.tsx
  */
-import { withInstall } from "@element-plus-pro/utils";
+import { withInstall } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
 import type { SwitchProps } from "element-plus";
 import { DefineComponent, defineComponent } from "vue-demi";

@@ -26,7 +26,7 @@
 <script setup lang="tsx">
 import { computed, ref } from "vue-demi";
 
-import type { TableColumns, TableToolbarConfig } from "@element-plus-pro/components";
+import type { TableColumns, TableToolbarConfig } from "@element-plus-ui/pro-components";
 
 const toolbar = computed(
   (): TableToolbarConfig => ({

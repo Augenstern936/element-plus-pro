@@ -3,8 +3,8 @@
  * @Date: 2024-06-17 10:01:38
  * @LastEditTime: 2024-07-09 17:09:44
  */
-import ProCenterContainer from "@element-plus-pro/center-container";
-import { checkValueIsComponent, withInstall } from "@element-plus-pro/utils";
+import ProCenterContainer from "@element-plus-ui/pro-center-container";
+import { checkValueIsComponent, withInstall } from "@element-plus-ui/pro-utils";
 import { ElEmpty, ElTabPane, ElTabs } from "element-plus";
 import type { FunctionalComponent } from "vue-demi";
 import { computed, defineComponent } from "vue-demi";

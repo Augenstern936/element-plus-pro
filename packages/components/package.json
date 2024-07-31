@@ -1,7 +1,7 @@
 {
-  "name": "@element-plus-pro/components",
+  "name": "@element-plus-ui/pro-components",
   "version": "0.0.1",
-  "description": "@element-plus-pro/components",
+  "description": "@element-plus-ui/pro-components",
   "keywords": [
     "ui",
     "vue3",
@@ -29,18 +29,21 @@
   ],
   "gitHead": "111",
   "dependencies": {
-    "@element-plus-pro/button": "workspace:^",
-    "@element-plus-pro/center-container": "workspace:^",
-    "@element-plus-pro/copyable": "workspace:^",
-    "@element-plus-pro/descriptions": "workspace:^",
-    "@element-plus-pro/field": "workspace:^",
-    "@element-plus-pro/form": "workspace:^",
-    "@element-plus-pro/table": "workspace:^",
-    "@element-plus-pro/tabs": "workspace:^",
-    "@element-plus-pro/text": "workspace:^"
+    "@element-plus-ui/pro-button": "workspace:^",
+    "@element-plus-ui/pro-center-container": "workspace:^",
+    "@element-plus-ui/pro-copyable": "workspace:^",
+    "@element-plus-ui/pro-descriptions": "workspace:^",
+    "@element-plus-ui/pro-field": "workspace:^",
+    "@element-plus-ui/pro-form": "workspace:^",
+    "@element-plus-ui/pro-table": "workspace:^",
+    "@element-plus-ui/pro-tabs": "workspace:^",
+    "@element-plus-ui/pro-text": "workspace:^"
   },
   "peerDependencies": {
     "element-plus": "^2.4.1",
     "vue": "^3.3.7"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }

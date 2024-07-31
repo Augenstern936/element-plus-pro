@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { ProCopyable, ProField } from "@element-plus-pro/components";
+import { ProCopyable, ProField } from "@element-plus-ui/pro-components";
 import { ref } from "vue";
 
 const test = ref([1, 3]);

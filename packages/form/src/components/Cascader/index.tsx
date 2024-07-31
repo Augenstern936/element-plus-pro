@@ -3,7 +3,7 @@
  * @Date: 2024-07-01 09:06:21
  * @LastEditTime: 2024-07-09 17:03:33
  */
-import { withInstall } from "@element-plus-pro/utils";
+import { withInstall } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
 import type { CascaderProps } from "element-plus";
 import { DefineComponent, defineComponent } from "vue-demi";

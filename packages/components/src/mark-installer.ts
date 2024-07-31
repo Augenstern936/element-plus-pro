@@ -14,7 +14,7 @@ const markInstaller = (components: Record<string, any>) => {
   };
 
   return {
-    version: version["@element-plus-pro/components"],
+    version: version["@element-plus-ui/pro-components"],
     install
   };
 };

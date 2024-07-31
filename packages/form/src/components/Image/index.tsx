@@ -5,7 +5,7 @@
  * @LastEditTime: 2024-07-09 17:03:56
  * @FilePath: \element-plus-pro\packages\form\src\components\Image\index.tsx
  */
-import { withInstall } from "@element-plus-pro/utils";
+import { withInstall } from "@element-plus-ui/pro-utils";
 import type { ImageProps } from "element-plus";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";
