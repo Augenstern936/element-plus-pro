@@ -37,6 +37,9 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "engines": {
+    "node": ">=16.17.1"
+  },
   "release-it": {
     "git": false
   }

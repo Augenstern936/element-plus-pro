@@ -1,6 +1,8 @@
 <h1 align="center">@element-plus-ui/pro-components</h1>
 
-> 基于 <a href="https://element-plus.org/zh-CN/"><img src="https://element-plus.org/images/element-plus-logo.svg" width="100px"/></a> 而开发的一套 Vue3 模板组件。在 [Element Plus](https://element-plus.org/zh-CN/) 上进行了自己的封装，更加易用，样式风格与 [Element Plus](https://element-plus.org/zh-CN/) 一脉相承，无需魔改，浑然天成。使用 📠 [TypeScript](https://www.typescriptlang.org/) 开发，提供完整的类型定义文件，无需频繁打开官网，让中后台开发更简单.
+> <p>基于 <a href="https://element-plus.org/zh-CN/" style="vertical-align:middle"><img src="https://element-plus.org/images/element-plus-logo.svg" width="113px"/></a> 而开发的一套 Vue3 模板组件.</p>
+> <p>在 <a href="https://element-plus.org/zh-CN/" style="vertical-align:middle"><img src="https://element-plus.org/images/element-plus-logo.svg" width="100px"/></a> 上进行了自己的封装，更加易用，样式风格与 <a href="https://element-plus.org/zh-CN/" style="vertical-align:middle"><img src="https://element-plus.org/images/element-plus-logo.svg" width="100px"/></a> 一脉相承，无需魔改，浑然天成.</p>
+> <p>使用 📠<a href="https://www.typescriptlang.org/"> TypeScript </a>开发，提供完整的类型定义文件，无需频繁打开官网，让中后台开发更简单.</p>
 
 ## 📦 Install
 
