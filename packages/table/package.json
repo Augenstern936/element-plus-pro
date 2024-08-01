@@ -1,7 +1,7 @@
 {
-  "name": "@element-plus/pro-table",
+  "name": "@element-plus-ui/pro-table",
   "version": "0.0.1",
-  "description": "@element-plus/pro-table",
+  "description": "@element-plus-ui/pro-table",
   "keywords": [
     "ui",
     "vue3",
@@ -30,9 +30,8 @@
   ],
   "author": "17634393156@163.com",
   "dependencies": {
-    "@element-plus/pro-button": "workspace:^",
-    "@element-plus/pro-form": "workspace:^",
-    "@element-plus/pro-search-bar": "workspace:^",
+    "@element-plus-ui/pro-button": "workspace:^",
+    "@element-plus-ui/pro-form": "workspace:^",
     "@types/uuid": "^9.0.7",
     "@vueuse/core": "^10.7.0",
     "screenfull": "^6.0.2",
@@ -41,6 +40,12 @@
   "peerDependencies": {
     "element-plus": "^2.7.2",
     "vue": "^3.4.27"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=16.17.1"
   },
   "msw": {
     "workerDirectory": [

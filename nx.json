@@ -1,33 +1,33 @@
 {
-	"$schema": "./node_modules/nx/schemas/nx-schema.json",
-	"defaultBase": "master",
-	"nxCloudAccessToken": "MjBkMzhlOWItNmJjNS00MmIyLTllMzUtNTVhZTA2NzYxMTU0fHJlYWQtd3JpdGU=",
-	"targetDefaults": {
-		"build": {
-			"dependsOn": ["^build"]
-		}
-	},
-	"release": {
-		"projects": ["@element-plus/pro-button", "!ignore-me"],
-		"version": {
-			"conventionalCommits": true
-		},
-		"changelog": {
-			"projectChangelogs": {
-				"renderOptions": {
-					"authors": true,
-					"mapAuthorsToGitHubUsernames": true,
-					"commitReferences": true,
-					"versionTitleDate": true
-				}
-			},
-			"workspaceChangelog": {
-				"renderOptions": {
-					"authors": true,
-					"commitReferences": true,
-					"versionTitleDate": true
-				}
-			}
-		}
-	}
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "defaultBase": "master",
+  "nxCloudAccessToken": "MjBkMzhlOWItNmJjNS00MmIyLTllMzUtNTVhZTA2NzYxMTU0fHJlYWQtd3JpdGU=",
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"]
+    }
+  },
+  "release": {
+    "projects": ["@element-plus-ui/pro-button", "!ignore-me"],
+    "version": {
+      "conventionalCommits": true
+    },
+    "changelog": {
+      "projectChangelogs": {
+        "renderOptions": {
+          "authors": true,
+          "mapAuthorsToGitHubUsernames": true,
+          "commitReferences": true,
+          "versionTitleDate": true
+        }
+      },
+      "workspaceChangelog": {
+        "renderOptions": {
+          "authors": true,
+          "commitReferences": true,
+          "versionTitleDate": true
+        }
+      }
+    }
+  }
 }

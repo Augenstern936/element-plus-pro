@@ -5,17 +5,17 @@
  * @LastEditTime: 2024-07-09 17:06:23
  * @FilePath: \element-plus-pro\packages\form\src\layouts\DrawerForm\index.tsx
  */
-import { withInstall } from "@element-plus/pro-utils";
+import { withInstall } from "@element-plus-ui/pro-utils";
 import { defineComponent, FunctionalComponent } from "vue-demi";
 import { proDrawerFormProps, ProDrawerFormProps } from "./typing";
 
 const DrawerForm = defineComponent<ProDrawerFormProps>(
-	(props, ctx) => {
-		return () => <div>111</div>;
-	},
-	{
-		name: "ProDrawerForm",
-	}
+  (props, ctx) => {
+    return () => <div>111</div>;
+  },
+  {
+    name: "ProDrawerForm"
+  }
 ) as FunctionalComponent<ProDrawerFormProps>;
 
 DrawerForm.props = proDrawerFormProps;

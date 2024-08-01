@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--
  * @Description: 
  * @Author: wangbowen936926
@@ -6,21 +7,24 @@
  * @FilePath: \element-plus-pro\packages\form\README.md
 -->
 # @element-plus/pro-form
+=======
+# @element-plus-ui/pro-form
+>>>>>>> f6abb778d01005aad8853ec749e64e4b83314a28
 
 > 测试
 
 ## Install
 
 ```bash
-$ npm install @element-plus/pro-form
+$ npm install @element-plus-ui/pro-form
 ```
 
 ```bash
-$ yarn add @element-plus/pro-form
+$ yarn add @element-plus-ui/pro-form
 ```
 
 ```bash
-$ pnpm add @element-plus/pro-form
+$ pnpm add @element-plus-ui/pro-form
 ```
 
 ## Usage

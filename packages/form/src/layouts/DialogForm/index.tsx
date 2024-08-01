@@ -5,17 +5,17 @@
  * @LastEditTime: 2024-07-09 17:06:18
  * @FilePath: \element-plus-pro\packages\form\src\layouts\DialogForm\index.tsx
  */
-import { withInstall } from "@element-plus/pro-utils";
+import { withInstall } from "@element-plus-ui/pro-utils";
 import { defineComponent, FunctionalComponent } from "vue-demi";
 import { proDialogFormProps, ProDialogFormProps } from "./typing";
 
 const DialogForm = defineComponent<ProDialogFormProps>(
-	(props, ctx) => {
-		return () => <div>111</div>;
-	},
-	{
-		name: "ProDialogForm",
-	}
+  (props, ctx) => {
+    return () => <div>111</div>;
+  },
+  {
+    name: "ProDialogForm"
+  }
 ) as FunctionalComponent<ProDialogFormProps>;
 
 DialogForm.props = proDialogFormProps;

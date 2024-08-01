@@ -7,16 +7,16 @@ import type { App, FunctionalComponent } from "vue-demi";
 import { version } from "./version";
 
 const markInstaller = (components: Record<string, any>) => {
-	const install = (app: App) => {
-		for (const key in components) {
-			app.component(key, components[key] as FunctionalComponent);
-		}
-	};
+  const install = (app: App) => {
+    for (const key in components) {
+      app.component(key, components[key] as FunctionalComponent);
+    }
+  };
 
-	return {
-		version: version["@element-plus/pro-components"],
-		install,
-	};
+  return {
+    version: version["@element-plus-ui/pro-components"],
+    install
+  };
 };
 
 export default markInstaller;

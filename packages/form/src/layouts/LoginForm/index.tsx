@@ -5,17 +5,17 @@
  * @LastEditTime: 2024-07-09 17:06:39
  * @FilePath: \element-plus-pro\packages\form\src\layouts\LoginForm\index.tsx
  */
-import { withInstall } from "@element-plus/pro-utils";
+import { withInstall } from "@element-plus-ui/pro-utils";
 import { defineComponent, FunctionalComponent } from "vue-demi";
 import { proLoginFormProps, ProLoginFormProps } from "./typing";
 
 const LoginForm = defineComponent<ProLoginFormProps>(
-	(props, ctx) => {
-		return () => <div>111</div>;
-	},
-	{
-		name: "ProLoginForm",
-	}
+  (props, ctx) => {
+    return () => <div>111</div>;
+  },
+  {
+    name: "ProLoginForm"
+  }
 ) as FunctionalComponent<ProLoginFormProps>;
 
 LoginForm.props = proLoginFormProps;

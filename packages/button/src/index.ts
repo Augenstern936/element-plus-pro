@@ -5,13 +5,13 @@
  * @LastEditTime: 2024-07-15 21:38:19
  * @FilePath: \element-plus-pro\packages\button\src\index.ts
  */
-import { withInstall } from '@element-plus/pro-utils';
-import Button from './Button.vue';
-import './style.scss';
-import { ProButtonProps } from './typing';
-import { DefineComponent } from 'vue';
+import { withInstall } from "@element-plus-ui/pro-utils";
+import { DefineComponent } from "vue";
+import Button from "./Button.vue";
+import "./style.scss";
+import { ProButtonProps } from "./typing";
 
-export * from './typing';
+export * from "./typing";
 
 const ProButton = withInstall(Button) as DefineComponent<ProButtonProps>;
 

@@ -1,44 +1,44 @@
 {
-	"name": "docs",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"dev": "vitepress dev",
-		"build": "vitepress build",
-		"preview": "vitepress preview"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"devDependencies": {
-		"@iconify-json/ri": "^1.1.18",
-		"@ruabick/md-demo-plugins": "^0.3.3",
-		"@ruabick/vitepress-demo-block": "^0.3.3",
-		"@vitejs/plugin-vue-jsx": "^3.0.2",
-		"chalk": "^4.1.2",
-		"consola": "^3.2.3",
-		"escape-html": "^1.0.3",
-		"fast-glob": "^3.3.2",
-		"markdown-it-container": "^4.0.0",
-		"postcss": "^8.4.32",
-		"prismjs": "^1.29.0",
-		"unplugin-icons": "^0.18.1",
-		"unplugin-vue-components": "^0.26.0",
-		"unplugin-vue-macros": "^2.7.6",
-		"vite": "^4.5.0",
-		"vite-plugin-inspect": "^0.8.1",
-		"vite-plugin-mkcert": "^1.17.1",
-		"vitepress": "1.0.0-rc.32"
-	},
-	"dependencies": {
-		"@docsearch/js": "^3.5.2",
-		"@element-plus/icons-vue": "^2.3.1",
-		"@element-plus/pro-components": "workspace:^",
-		"@vue/shared": "^3.2.37",
-		"@vueuse/core": "^10.7.0",
-		"element-plus": "^2.4.1",
-		"markdown-it": "13.0.1",
-		"vue": "^3.2.37"
-	}
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@iconify-json/ri": "^1.1.18",
+    "@ruabick/md-demo-plugins": "^0.3.3",
+    "@ruabick/vitepress-demo-block": "^0.3.3",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
+    "chalk": "^4.1.2",
+    "consola": "^3.2.3",
+    "escape-html": "^1.0.3",
+    "fast-glob": "^3.3.2",
+    "markdown-it-container": "^4.0.0",
+    "postcss": "^8.4.32",
+    "prismjs": "^1.29.0",
+    "unplugin-icons": "^0.18.1",
+    "unplugin-vue-components": "^0.26.0",
+    "unplugin-vue-macros": "^2.7.6",
+    "vite": "^4.5.0",
+    "vite-plugin-inspect": "^0.8.1",
+    "vite-plugin-mkcert": "^1.17.1",
+    "vitepress": "1.0.0-rc.32"
+  },
+  "dependencies": {
+    "@docsearch/js": "^3.5.2",
+    "@element-plus/icons-vue": "^2.3.1",
+    "@element-plus-ui/pro-components": "workspace:^",
+    "@vue/shared": "^3.2.37",
+    "@vueuse/core": "^10.7.0",
+    "element-plus": "^2.4.1",
+    "markdown-it": "13.0.1",
+    "vue": "^3.2.37"
+  }
 }

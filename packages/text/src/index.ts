@@ -5,11 +5,11 @@
  * @LastEditTime: 2024-06-16 00:02:39
  * @FilePath: \element-plus-pro\packages\text\src\index.ts
  */
-import { withInstall } from '@element-plus/pro-utils';
+import { withInstall } from "@element-plus-ui/pro-utils";
 
-import Text from './Text';
+import Text from "./Text";
 
-export * from './Text';
+export * from "./Text";
 
 export const ProText = withInstall(Text);
 
