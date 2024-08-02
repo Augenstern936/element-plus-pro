@@ -1,8 +1,8 @@
 <h1 align="center">@element-plus-ui/pro-components</h1>
 
-> <p>基于 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle;"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 而开发的一套 <a href="https://cn.vuejs.org/">Vue3</a> 模板组件.</p>
-> <p>在 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 上进行了自己的封装，更加易用，样式风格与 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px;  vertical-align:middle"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 一脉相承，无需魔改，浑然天成.</p>
-> <p>使用 📠<a href="https://www.typescriptlang.org/"> TypeScript </a>开发，提供完整的类型定义文件，无需频繁打开官网，让中后台开发更简单.</p>
+<p align="center">基于 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle;"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 而开发的一套 <a href="https://cn.vuejs.org/">Vue3</a> 模板组件.</p>
+<p align="center">在 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 上进行了自己的封装，更加易用，样式风格与 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px;  vertical-align:middle"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 一脉相承，无需魔改，浑然天成.</p>
+<p align="center">使用 📠<a href="https://www.typescriptlang.org/"> TypeScript </a>开发，提供完整的类型定义文件，无需频繁打开官网，让中后台开发更简单.</p>
 
 ## 📦 Install
 
@@ -43,6 +43,8 @@ app.mount("#app").use(ProComponents);
 ```
 
 ##### 🚀 按需使用
+
+<img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/domes/pro-table.jpg"/>
 
 ```vue
 <template>
