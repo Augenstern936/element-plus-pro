@@ -20,9 +20,11 @@ $ pnpm add @element-plus-ui/pro-components
 
 ## ✨ Components
 
+- [ProText](https://www.npmjs.com/package/@element-plus-ui/pro-text) 文本模板组件，抽象网络请求和表格格式化
 - [ProButton](https://www.npmjs.com/package/@element-plus-ui/pro-button) 按钮模板组件，抽象网络请求和表格格式化
 - [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 表单字段模板组件，抽象网络请求和表格格式化
 - [ProForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 表单模板组件，预设常见布局和行为
+- [ProStepsForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 表单模板组件，预设常见布局和行为
 - [ProSearchBar](https://www.npmjs.com/package/@element-plus-ui/pro-form) 搜索栏模板组件，属于`ProForm`子集
 - [ProTable](https://www.npmjs.com/package/@element-plus-ui/pro-table) 表格模板组件，抽象网络请求和表格格式化
 - [ProTabs](https://www.npmjs.com/package/@element-plus-ui/pro-tabs) 标签模板组件，抽象网络请求和表格格式化

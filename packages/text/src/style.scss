@@ -1,4 +1,14 @@
-@use 'element-plus/theme-chalk/src/text.scss';
+@use "element-plus/theme-chalk/src/text.scss";
+@use "element-plus/theme-chalk/src/tooltip.scss";
 
 .pro-text {
+  display: flex;
+  align-items: center;
+  .icon {
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  .icon:not(:last-child) {
+    margin-right: 10px;
+  }
 }

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-30 21:35:16
- * @LastEditTime: 2024-07-09 17:03:30
+ * @LastEditTime: 2024-08-04 14:55:53
  * @FilePath: \element-plus-pro\packages\form\src\components\Avatar\index.tsx
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
