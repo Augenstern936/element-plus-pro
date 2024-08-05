@@ -1,6 +1,6 @@
-# @element-plus-ui/pro-button
+<h1 align="center">@element-plus-ui/pro-button</h1>
 
-> 基于 Element Plus 的 Button 进行了扩展，完全兼容 ElButton 按钮，增加二次确认提示操作。
+<p align="center">对 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle;"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 的 Button 进行了扩展，完全兼容 ElButton 组件，增加二次确认提示操作.</p>
 
 ## 📦 Install
 
