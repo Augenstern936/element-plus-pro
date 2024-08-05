@@ -2,19 +2,38 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-08-04 17:39:23
+ * @LastEditTime: 2024-08-05 23:19:38
  * @FilePath: \element-plus-pro\play\src\components\Text.vue
 -->
 <template>
   <el-card>
-    <pro-text :truncated="true">
-      <span>测试</span>
-      2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222</pro-text
-    >
+    <pro-text
+      tag="i"
+      :content="'cessssss111111111111111111111122222222222222222222222222333333333333333333333334444444444444444455555555555555'"
+      :truncated="true"
+      :copyable="{
+        text: '复制的文本',
+        onCopy: (isSuccess: boolean, text: string) => {
+          console.log(isSuccess, text);
+        }
+      }"
+      :editable="{
+        text: '编辑的文本',
+        tooltip: '测试',
+        maxLength: 100,
+        autoSize: { minRows: 3 },
+        onInput: (text: string) => {
+          console.log(text);
+        },
+        onChange: (editing: boolean, text: string) => {
+          console.log(editing, text);
+        }
+      }"
+      style="font-size: 33px"
+    />
   </el-card>
 </template>
 
 <script setup lang="ts">
 import { ProText } from "@element-plus-ui/pro-components";
-import { ref } from "vue";
 </script>

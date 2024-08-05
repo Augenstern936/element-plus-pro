@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:42:23
- * @LastEditTime: 2024-08-04 17:32:54
+ * @LastEditTime: 2024-08-05 22:46:11
  */
 import { GeneratePropTypes } from "@element-plus-ui/pro-types";
 import { textProps } from "element-plus";
@@ -9,9 +9,6 @@ import { PropType } from "vue";
 
 export const proTextProps = {
   ...textProps,
-  mark: {
-    type: Boolean
-  },
   strong: {
     type: Boolean
   },
@@ -22,9 +19,6 @@ export const proTextProps = {
     type: Boolean
   },
   disabled: {
-    type: Boolean
-  },
-  underline: {
     type: Boolean
   },
   content: {
@@ -38,8 +32,22 @@ export const proTextProps = {
   }
 } as const;
 
-export type ProTextCopyableConfig = {};
+export type ProTextCopyableConfig = {
+  text?: string;
+  icon?: JSX.Element;
+  tooltip?: string;
+  onCopy?: (isSuccess: boolean, text: string) => void;
+};
 
-export type ProTextEditableConfig = {};
+export type ProTextEditableConfig = {
+  text?: string;
+  icon?: JSX.Element;
+  tooltip?: string;
+  editing?: boolean;
+  maxLength?: number;
+  autoSize?: boolean | { minRows?: number; maxRows?: number };
+  onInput?: (text: string) => void;
+  onChange?: (editing: boolean, text: string) => void;
+};
 
 export type ProTextProps = GeneratePropTypes<typeof proTextProps>;
