@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-08-05 23:19:38
+ * @LastEditTime: 2024-08-06 19:21:06
  * @FilePath: \element-plus-pro\play\src\components\Text.vue
 -->
 <template>
@@ -18,10 +18,11 @@
         }
       }"
       :editable="{
-        text: '编辑的文本',
+        //text: '编辑的文本',
         tooltip: '测试',
-        maxLength: 100,
-        autoSize: { minRows: 3 },
+        //editing: true,
+        //maxLength: 100,
+        //autoSize: { minRows: 3 },
         onInput: (text: string) => {
           console.log(text);
         },
@@ -30,7 +31,8 @@
         }
       }"
       style="font-size: 33px"
-    />
+      >测试</pro-text
+    >
   </el-card>
 </template>
 

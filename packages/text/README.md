@@ -1,8 +1,8 @@
-# @element-plus-ui/pro-text
+<h1 align="center">@element-plus-ui/pro-text</h1>
 
-> 基于 Element Plus 的 Text 进行了扩展，完全兼容 ElText 组件.
+<p align="center">基于 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle;"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 的 <a href="https://element-plus.org/zh-CN/component/text.html">Text</a> 组件而开发，提供了一些基础操作功能，如：拷贝/可编辑，让中后台开发更简单 💪</P>
 
-## 📦 Install
+## 📦 安装
 
 ```bash
 $ npm install @element-plus-ui/pro-text
@@ -16,7 +16,7 @@ $ yarn add @element-plus-ui/pro-text
 $ pnpm add @element-plus-ui/pro-text
 ```
 
-## 🔨 Usage
+## 🔨 使用
 
 ##### 🚀 全局引用
 
@@ -34,7 +34,12 @@ app.mount("#app").use(ProText);
 
 ```vue
 <template>
-  <pro-text>Default</pro-text>
+  <pro-text class="mx-1">Default</pro-text>
+  <pro-text class="mx-1" type="primary">Primary</pro-text>
+  <pro-text class="mx-1" type="success">Success</pro-text>
+  <pro-text class="mx-1" type="info">Info</pro-text>
+  <pro-text class="mx-1" type="warning">Warning</pro-text>
+  <pro-text class="mx-1" type="danger">Danger</pro-text>
 </template>
 
 <script setup lang="ts">
@@ -49,3 +54,5 @@ import ProText from "@element-plus-ui/pro-text";
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
 | tip  | 二次确认提示. | `string` / [`TipConfig`](#TipConfig) | -      |
+
+## 🔨 案例

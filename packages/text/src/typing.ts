@@ -5,7 +5,7 @@
  */
 import { GeneratePropTypes } from "@element-plus-ui/pro-types";
 import { textProps } from "element-plus";
-import { PropType } from "vue";
+import { Component, PropType } from "vue";
 
 export const proTextProps = {
   ...textProps,
@@ -34,14 +34,14 @@ export const proTextProps = {
 
 export type ProTextCopyableConfig = {
   text?: string;
-  icon?: JSX.Element;
+  icon?: Component;
   tooltip?: string;
   onCopy?: (isSuccess: boolean, text: string) => void;
 };
 
 export type ProTextEditableConfig = {
   text?: string;
-  icon?: JSX.Element;
+  icon?: Component;
   tooltip?: string;
   editing?: boolean;
   maxLength?: number;

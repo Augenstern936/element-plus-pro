@@ -2,9 +2,9 @@
 
 <p align="center">基于 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle;"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 而开发的一套 <a href="https://cn.vuejs.org/">Vue3</a> 模板组件.</p>
 <p align="center">在 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 上进行了自己的封装，更加易用，样式风格与 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px;  vertical-align:middle"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 一脉相承，无需魔改，浑然天成.</p>
-<p align="center">使用 📠<a href="https://www.typescriptlang.org/"> TypeScript </a>开发，提供完整的类型定义文件，无需频繁打开官网，让中后台开发更简单.</p>
+<p align="center">使用 <a href="https://www.typescriptlang.org/"> TypeScript </a>开发，提供完整的类型定义文件，无需频繁打开官网，让中后台开发更简单 💪</p>
 
-## 📦 Install
+## 📦 安装
 
 ```bash
 $ npm install @element-plus-ui/pro-components
@@ -18,31 +18,19 @@ $ yarn add @element-plus-ui/pro-components
 $ pnpm add @element-plus-ui/pro-components
 ```
 
-## ✨ Components
-
-##### 基础
+## ✨ 组件
 
 - [ProText](https://www.npmjs.com/package/@element-plus-ui/pro-text) 文本模板组件，抽象网络请求和表格格式化
 - [ProButton](https://www.npmjs.com/package/@element-plus-ui/pro-button) 按钮模板组件，抽象网络请求和表格格式化
-
----
-
-##### 数据录入
-
 - [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 表单字段模板组件，抽象网络请求和表格格式化
 - [ProForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 表单模板组件，预设常见布局和行为
 - [ProStepsForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 表单模板组件，预设常见布局和行为
 - [ProSearchBar](https://www.npmjs.com/package/@element-plus-ui/pro-form) 搜索栏模板组件，属于`ProForm`子集
-
----
-
-##### 数据展示
-
 - [ProTable](https://www.npmjs.com/package/@element-plus-ui/pro-table) 表格模板组件，抽象网络请求和表格格式化
 - [ProTabs](https://www.npmjs.com/package/@element-plus-ui/pro-tabs) 标签模板组件，抽象网络请求和表格格式化
 - [ProDescriptions](https://www.npmjs.com/package/@element-plus-ui/pro-descriptions) 定义列表模板组件，ProTable 的配套组件
 
-## 🔨 Usage
+## 🔨 使用
 
 ##### 🚀 完整引入
 
@@ -122,3 +110,5 @@ const columns = ref<TableColumns[]>([
 ]);
 </script>
 ```
+
+## 🔨 案例

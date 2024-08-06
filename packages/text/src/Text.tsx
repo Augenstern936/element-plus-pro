@@ -1,14 +1,14 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:41:09
- * @LastEditTime: 2024-08-05 23:14:04
+ * @LastEditTime: 2024-08-06 19:18:42
  */
 import { DocumentCopy, EditPen, Select, CloseBold } from "@element-plus/icons-vue";
-import { ElIcon, ElMessage, ElText, ElTooltip, ElInput } from "element-plus";
+import { ElIcon, ElText, ElTooltip, ElInput } from "element-plus";
 import { FunctionalComponent, computed, defineComponent, ref, watch } from "vue-demi";
 import copy from "copy-to-clipboard";
 import "./style.scss";
-import { ProTextProps, proTextProps } from "./typing";
+import { ProTextCopyableConfig, ProTextProps, proTextProps } from "./typing";
 import { isObject } from "@vueuse/core";
 
 const ProText = defineComponent<ProTextProps>(
@@ -22,15 +22,18 @@ const ProText = defineComponent<ProTextProps>(
     const copyIcons = {
       default: {
         color: "var(--el-color-primary)",
-        icon: <DocumentCopy />
+        icon: <DocumentCopy />,
+        tooltips: isObject(props.copyable) && props.copyable?.tooltip ? props.copyable?.tooltip : "复制"
       },
       success: {
         color: "var(--el-color-success)",
-        icon: <Select />
+        icon: <Select />,
+        tooltips: "复制成功"
       },
       error: {
         color: "var(--el-color-danger)",
-        icon: <CloseBold />
+        icon: <CloseBold />,
+        tooltips: "复制失败"
       }
     };
 
@@ -58,7 +61,6 @@ const ProText = defineComponent<ProTextProps>(
 
     const copyResult = (type: "success" | "error", copyText: string = "") => {
       const isSuccess = type === "success";
-      ElMessage[type](`复制${isSuccess ? "成功" : "失败"}`);
       if (isObject(props.copyable) && typeof props.copyable.onCopy === "function") {
         props.copyable.onCopy(isSuccess, copyText);
       } else {
@@ -96,10 +98,15 @@ const ProText = defineComponent<ProTextProps>(
         return (
           <ElInput
             v-model={currentEditText.value}
-            type={editable.autoSize ? "textarea" : "text"}
-            autosize={editable.autoSize}
+            type={"textarea"}
+            autofocus={isEditing.value}
+            autosize={editable.autoSize ?? { minRows: 1 }}
             maxlength={editable.maxLength}
             show-word-limit={editable.maxLength ? true : false}
+            onBlur={() => {
+              isEditing.value = false;
+              editable?.onChange?.(false, currentEditText.value);
+            }}
             onInput={v => editable?.onInput?.(v)}
             onChange={v => {
               isEditing.value = false;
@@ -111,15 +118,8 @@ const ProText = defineComponent<ProTextProps>(
       return (
         <div class={"pro-text"}>
           <ElText class={"text"} {...props} {...ctx.attrs}>
-            {(currentEditText.value || ctx.slots.default?.()) ?? props.content}
+            {editable.text ? ctx.slots.default?.() ?? props.content : currentEditText.value}
           </ElText>
-          {(props.copyable === true || isObject(props.copyable)) && (
-            <ElTooltip content={copyable.tooltip ?? "复制"} placement="top">
-              <ElIcon class={"icon"} {...ctx.attrs} color={currentCopyIcon.value.color} onClick={() => onCopy(copyable.text)}>
-                {currentCopyIcon.value.icon}
-              </ElIcon>
-            </ElTooltip>
-          )}
           {(props.editable === true || isObject(props.editable)) && (
             <ElTooltip content={editable.tooltip ?? "编辑"} placement="top">
               <ElIcon
@@ -132,6 +132,13 @@ const ProText = defineComponent<ProTextProps>(
                 }}
               >
                 <EditPen />
+              </ElIcon>
+            </ElTooltip>
+          )}
+          {(props.copyable === true || isObject(props.copyable)) && (
+            <ElTooltip content={currentCopyIcon.value.tooltips} placement="top">
+              <ElIcon class={"icon"} {...ctx.attrs} color={currentCopyIcon.value.color} onClick={() => onCopy(copyable.text)}>
+                {currentCopyIcon.value.icon}
               </ElIcon>
             </ElTooltip>
           )}
