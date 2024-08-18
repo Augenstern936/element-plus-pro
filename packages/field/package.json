@@ -31,8 +31,14 @@
   ],
   "author": "17634393156@163.com",
   "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
     "element-plus": "^2.4.1",
-    "vue": "^3.3.7"
+    "vue": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -42,5 +48,8 @@
   },
   "release-it": {
     "git": false
+  },
+  "dependencies": {
+    "vue-demi": "^0.14.8"
   }
 }

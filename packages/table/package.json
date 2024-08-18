@@ -35,11 +35,18 @@
     "@types/uuid": "^9.0.7",
     "@vueuse/core": "^10.7.0",
     "screenfull": "^6.0.2",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "vue-demi": "^0.14.8"
   },
   "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
     "element-plus": "^2.7.2",
-    "vue": "^3.4.27"
+    "vue": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

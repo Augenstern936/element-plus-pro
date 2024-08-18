@@ -31,11 +31,18 @@
   "author": "17634393156@163.com",
   "dependencies": {
     "@element-plus-ui/pro-button": "workspace:^",
-    "@element-plus-ui/pro-field": "workspace:^"
+    "@element-plus-ui/pro-field": "workspace:^",
+    "vue-demi": "^0.14.8"
   },
   "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
     "element-plus": "^2.7.2",
-    "vue": "^3.4.27"
+    "vue": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"

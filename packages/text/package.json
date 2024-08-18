@@ -30,17 +30,24 @@
   ],
   "author": "17634393156@163.com",
   "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
     "element-plus": "^2.4.1",
     "vue": "^3.3.7"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "copy-to-clipboard": "^3.3.3",
+    "vue-demi": "^0.14.8"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "engines": {
     "node": ">=16.17.1"
-  },
-  "dependencies": {
-    "@element-plus/icons-vue": "^2.3.1",
-    "copy-to-clipboard": "^3.3.3"
   }
 }
