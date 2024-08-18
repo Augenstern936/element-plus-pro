@@ -33,9 +33,6 @@
     "element-plus": "^2.4.1",
     "vue": "^3.3.7"
   },
-  "dependencies": {
-    "@element-plus-ui/pro-copyable": "workspace:^"
-  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

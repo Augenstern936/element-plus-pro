@@ -11,4 +11,7 @@
   .icon:not(:last-child) {
     margin-right: 10px;
   }
+  .el-text.is-truncated {
+    padding-right: 3px;
+  }
 }

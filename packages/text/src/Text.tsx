@@ -1,14 +1,14 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:41:09
- * @LastEditTime: 2024-08-06 19:18:42
+ * @LastEditTime: 2024-08-17 17:06:28
  */
 import { DocumentCopy, EditPen, Select, CloseBold } from "@element-plus/icons-vue";
 import { ElIcon, ElText, ElTooltip, ElInput } from "element-plus";
 import { FunctionalComponent, computed, defineComponent, ref, watch } from "vue-demi";
 import copy from "copy-to-clipboard";
 import "./style.scss";
-import { ProTextCopyableConfig, ProTextProps, proTextProps } from "./typing";
+import { ProTextProps, proTextProps } from "./typing";
 import { isObject } from "@vueuse/core";
 
 const ProText = defineComponent<ProTextProps>(

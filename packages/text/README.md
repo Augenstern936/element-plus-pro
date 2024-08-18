@@ -1,3 +1,10 @@
+<!--
+ * @Description:
+ * @Author: wangbowen936926
+ * @Date: 2024-06-26 21:22:42
+ * @LastEditTime: 2024-08-08 02:15:50
+ * @FilePath: \element-plus-pro\packages\text\README.md
+-->
 <h1 align="center">@element-plus-ui/pro-text</h1>
 
 <p align="center">基于 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle;"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 的 <a href="https://element-plus.org/zh-CN/component/text.html">Text</a> 组件而开发，提供了一些基础操作功能，如：拷贝/可编辑，让中后台开发更简单 💪</P>
@@ -49,10 +56,16 @@ import ProText from "@element-plus-ui/pro-text";
 
 ## API
 
-> ProButton 除了继承 [ElButton](https://element-plus.org/zh-CN/component/button.html) 的 API 以外还支持下面的属性.
+> ProText 除了继承 [ElText](https://element-plus.org/zh-CN/component/button.html) 的 API 以外还支持以下属性.
 
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| tip  | 二次确认提示. | `string` / [`TipConfig`](#TipConfig) | -      |
+| 属性     | 描述      | 类型                                            | 默认值 |
+| -------- | --------- | ----------------------------------------------- | ------ |
+| content  | 文本内容. | `string`                                        | -      |
+| copyable | 文本复制. | `boolean` / [`CopyableConfig`](#CopyableConfig) | -      |
+| editable | 文本编辑. | `boolean` / [`EditableConfig`](#EditableConfig) | -      |
+
+#### CopyableConfig
+
+#### EditableConfig
 
 ## 🔨 案例

@@ -31,7 +31,6 @@
   "dependencies": {
     "@element-plus-ui/pro-button": "workspace:^",
     "@element-plus-ui/pro-center-container": "workspace:^",
-    "@element-plus-ui/pro-copyable": "workspace:^",
     "@element-plus-ui/pro-descriptions": "workspace:^",
     "@element-plus-ui/pro-field": "workspace:^",
     "@element-plus-ui/pro-form": "workspace:^",

@@ -2,13 +2,12 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-07-26 22:31:01
+ * @LastEditTime: 2024-08-08 17:11:29
  * @FilePath: \element-plus-pro\play\src\components\Field.vue
 -->
 <template>
   <el-card>
     <el-space fill>
-      <ProCopyable value="17634393156" @success="() => console.log('成功')" />
       <ProField :type="'switch'" v-model="testSwitch" />
       <ProField.Rate mode="read" />
       <ProField.Slider />
@@ -49,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { ProCopyable, ProField } from "@element-plus-ui/pro-components";
+import { ProField } from "@element-plus-ui/pro-components";
 import { ref } from "vue";
 
 const test = ref([1, 3]);

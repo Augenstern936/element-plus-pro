@@ -1,9 +1,8 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:41:09
- * @LastEditTime: 2024-07-09 16:58:08
+ * @LastEditTime: 2024-08-08 17:10:13
  */
-import ProCopyable from "@element-plus-ui/pro-copyable";
 import { isObject } from "@vueuse/core";
 import { ElDescriptions, ElDescriptionsItem, ElSpace } from "element-plus";
 import { FunctionalComponent, computed, defineComponent } from "vue-demi";
@@ -136,7 +135,8 @@ const ProDescriptions = defineComponent<ProDescriptionsProps>(
                       >
                         {slotContent ??
                           (item.copyable && (data[dataField] || data[dataField] === 0) ? (
-                            <ProCopyable value={data[dataField]} />
+                            //<ProCopyable value={data[dataField]} />
+                            <div>111</div>
                           ) : (
                             data[dataField] || props.emptyText || "--"
                           ))}

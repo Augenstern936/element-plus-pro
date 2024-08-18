@@ -4,7 +4,6 @@
  * @LastEditTime: 2024-07-30 12:48:30
  */
 import ProButton from "@element-plus-ui/pro-button";
-import ProCopyable from "@element-plus-ui/pro-copyable";
 import ProDescriptions from "@element-plus-ui/pro-descriptions";
 import { ProField } from "@element-plus-ui/pro-field";
 import {
@@ -49,7 +48,6 @@ export default markInstaller({
   ProTable,
   ProText,
   ProButton,
-  ProCopyable,
   ProDescriptions,
   ProField,
   ProForm,
