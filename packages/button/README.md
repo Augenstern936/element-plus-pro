@@ -12,7 +12,7 @@ $ npm install @element-plus-ui/pro-button
 $ yarn add @element-plus-ui/pro-button
 ```
 
-```bash
+````bash
 $ pnpm add @element-plus-ui/pro-button
 ```
 
@@ -28,7 +28,7 @@ import ProButton from "@element-plus-ui/pro-button";
 const app = createApp(App);
 
 app.mount("#app").use(ProButton);
-```
+````
 
 ##### 🚀 按需使用
 
@@ -58,10 +58,34 @@ import ProButton from "@element-plus-ui/pro-button";
 
 #### TipConfig
 
-> 弹框分为 [popconfirm](#https://element-plus.org/zh-CN/component/popconfirm.html) 和 [message-box](https://element-plus.org/zh-CN/component/message-box.html) 两种，可通过 `mode` 参数进行指定，同时 `TipConfig` 继承了 [ElPopconfirm](#https://element-plus.org/zh-CN/component/popconfirm.html) 和 [ElMessageBox](https://element-plus.org/zh-CN/component/message-box.html) 组件 API，其它参数指定您可查阅 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle;"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 相关文档.
+> 弹框分为 [popconfirm](#https://element-plus.org/zh-CN/component/popconfirm.html) 和 [message-box](https://element-plus.org/zh-CN/component/message-box.html) 两种，可通过 `mode` 参数进行指定，同时 `TipConfig` 继承了 [ElPopconfirm](#https://element-plus.org/zh-CN/component/popconfirm.html) 和 [ElMessageBox](https://element-plus.org/zh-CN/component/message-box.html) 组件 API，相关参数可查阅 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle;"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 文档.
 
 | 属性 | 描述              | 类型                         | 默认值      |
 | ---- | ----------------- | ---------------------------- | ----------- |
 | mode | 提示弹框展示模式. | `popconfirm` / `message-box` | message-box |
 
 ## 🔨 案例
+
+#### 🚀 message-box
+
+```vue
+<template>
+  <pro-button type="danger" :tip={mode: "message-box", title: '温馨提示', message: '确定要删除吗?'}>
+    删除
+  </pro-button>
+</template>
+```
+
+<img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/images/button_example/demo1.jpg"/>
+
+#### 🚀 popconfirm
+
+```vue
+<template>
+  <pro-button type="danger" :tip={mode: "popconfirm", title: '确定要删除吗?'}>
+    删除
+  </pro-button>
+</template>v
+```
+
+<img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/images/button_example/demo2.jpg"/>

@@ -1,6 +1,6 @@
 {
   "name": "@element-plus-ui/pro-button",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "@element-plus-ui/pro-button",
   "keywords": [
     "ui",
@@ -19,6 +19,7 @@
   },
   "scripts": {
     "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
+    "dry-run": "npx nx release --dry-run --first-release --verbose",
     "release": "release-it"
   },
   "sideEffects": false,
@@ -42,9 +43,6 @@
   },
   "dependencies": {
     "vue-demi": "^0.14.8"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
   },
   "engines": {
     "node": ">=16.17.1"

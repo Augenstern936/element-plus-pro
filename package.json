@@ -1,6 +1,6 @@
 {
   "name": "element-plus-pro",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "private": true,
   "license": "ISC",
   "packageManager": "pnpm@8.10.2",
@@ -22,6 +22,7 @@
     "lint:fix": "pnpm run lint --fix",
     "release": "release-it --workspaces",
     "dry-run": "npx nx release --dry-run --first-release --verbose",
+    "first:publish": "npx nx release publish --first-release",
     "nx:publish": "npx nx release publish"
   },
   "devDependencies": {

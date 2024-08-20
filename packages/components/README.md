@@ -46,7 +46,7 @@ app.mount("#app").use(ProComponents);
 
 ##### 🚀 按需使用
 
-<img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/domes/pro-table.jpg"/>
+<img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/images/table_example/demo1.jpg"/>
 
 ```vue
 <template>
