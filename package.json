@@ -10,6 +10,7 @@
     "docs"
   ],
   "scripts": {
+    "cz": "git add . && czg",
     "dev": "pnpm -C play dev",
     "docs:dev": "pnpm run -C docs dev",
     "gen:version": "tsx scripts/gen-version.ts",
@@ -26,6 +27,8 @@
     "nx:publish": "npx nx release publish"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.4.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@element-plus-ui/pro-hooks": "workspace:^",
     "@element-plus-ui/pro-types": "workspace:^",
     "@element-plus-ui/pro-utils": "workspace:^",
@@ -43,6 +46,8 @@
     "@vitejs/plugin-vue-jsx": "^3.0.2",
     "@vue/shared": "^3.2.37",
     "@vueuse/core": "^10.7.0",
+    "cz-git": "^1.9.4",
+    "czg": "^1.9.4",
     "element-plus": "^2.7.6",
     "eslint": "^9.3.0",
     "fetch-mock": "^10.0.8",
@@ -94,6 +99,11 @@
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged && npm run lint && npm test"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
     }
   }
 }
