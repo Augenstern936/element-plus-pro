@@ -121,4 +121,4 @@ const columns = ref<TableColumns[]>([
 
 |                                        微信                                        |                                       支付宝                                       |
 | :--------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: |
-| <img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/images/pay/weixin_pay-qrcode.jpg" alt="Wechat QRcode" width=170> | <img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/images/pay/weixin_pay-qrcode.jpg" alt="Alipay QRcode" width=170> |
+| <img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/images/pay/weixin_pay-qrcode.jpg" alt="Wechat QRcode" width=170> | <img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/images/pay/alipay-qrcode.jpg" alt="Alipay QRcode" width=170> |
