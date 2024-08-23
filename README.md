@@ -109,3 +109,16 @@ const columns = ref<TableColumns[]>([
 ```
 
 <img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/images/table_example/demo1.jpg"/>
+
+## 微信交流群 👨‍👨‍👦‍👦
+
+## 捐赠 🍵
+
+如果您正在使用这个项目或者喜欢这个项目的，可以通过以下方式支持我：
+
+- Star、Fork、Watch 一键三连 🚀
+- 通过微信、支付宝一次性捐款 ❤
+
+|                                        微信                                        |                                       支付宝                                       |
+| :--------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: |
+| <img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/images/pay/weixin_pay-qrcode.jpg" alt="Wechat QRcode" width=170> | <img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/images/pay/weixin_pay-qrcode.jpg" alt="Alipay QRcode" width=170> |
