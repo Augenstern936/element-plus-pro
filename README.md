@@ -20,8 +20,7 @@ $ pnpm add @element-plus-ui/pro-components
 
 ## ✨ 组件
 
-- [ProText](https://www.npmjs.com/package/@element-plus-ui/pro-text) 文本模板组件，抽象网络请求和表格格式化
-- [ProButton](https://www.npmjs.com/package/@element-plus-ui/pro-button) 按钮模板组件，抽象网络请求和表格格式化
+- [ProButton](https://www.npmjs.com/package/@element-plus-ui/pro-button) 按钮模板组件，支持复制及编辑
 - [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 表单字段模板组件，抽象网络请求和表格格式化
 - [ProForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 表单模板组件，预设常见布局和行为
 - [ProStepsForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 表单模板组件，预设常见布局和行为
@@ -45,8 +44,6 @@ app.mount("#app").use(ProComponents);
 ```
 
 ##### 🚀 按需使用
-
-<img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/images/table_example/demo1.jpg"/>
 
 ```vue
 <template>
@@ -111,4 +108,4 @@ const columns = ref<TableColumns[]>([
 </script>
 ```
 
-## 🔨 案例
+<img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/images/table_example/demo1.jpg"/>
