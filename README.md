@@ -20,8 +20,7 @@ $ pnpm add @element-plus-ui/pro-components
 
 ## ✨ 组件
 
-- [ProText](https://www.npmjs.com/package/@element-plus-ui/pro-text) 文本模板组件，抽象网络请求和表格格式化
-- [ProButton](https://www.npmjs.com/package/@element-plus-ui/pro-button) 按钮模板组件，抽象网络请求和表格格式化
+- [ProButton](https://www.npmjs.com/package/@element-plus-ui/pro-button) 按钮模板组件，支持复制及编辑
 - [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 表单字段模板组件，抽象网络请求和表格格式化
 - [ProForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 表单模板组件，预设常见布局和行为
 - [ProStepsForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 表单模板组件，预设常见布局和行为
@@ -45,8 +44,6 @@ app.mount("#app").use(ProComponents);
 ```
 
 ##### 🚀 按需使用
-
-<img src="https://github.com/Augenstern936/element-plus-pro/raw/master/docs/public/images/table_example/demo1.jpg"/>
 
 ```vue
 <template>
@@ -111,4 +108,17 @@ const columns = ref<TableColumns[]>([
 </script>
 ```
 
-## 🔨 案例
+<img src="https://github.com/Augenstern936/element-plus-pro/raw/master/docs/public/images/table_example/demo1.jpg"/>
+
+## 微信交流群 👨‍👨‍👦‍👦
+
+## 捐赠 🍵
+
+如果您正在使用这个项目或者喜欢这个项目的，可以通过以下方式支持我：
+
+- Star、Fork、Watch 一键三连 🚀
+- 通过微信、支付宝一次性捐款 ❤
+
+|                                        微信                                        |                                       支付宝                                       |
+| :--------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: |
+| <img src="https://github.com/Augenstern936/element-plus-pro/raw/master/docs/public/images/pay/weixin_pay-qrcode.jpg" alt="Wechat QRcode" width=170> | <img src="https://github.com/Augenstern936/element-plus-pro/raw/master/docs/public/images/pay/alipay-qrcode.jpg" alt="Alipay QRcode" width=170> |

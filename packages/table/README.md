@@ -34,7 +34,7 @@ app.mount("#app").use(ProTable);
 
 ##### 🚀 按需使用
 
-<img src="https://gitee.com/bo-wen-wang936926/element-plus-pro/raw/master/docs/public/domes/pro-table.jpg"/>
+<img src="https://github.com/Augenstern936/element-plus-pro/raw/master/docs/public/domes/pro-table.jpg"/>
 
 ```vue
 <template>

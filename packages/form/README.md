@@ -1,15 +1,4 @@
-<<<<<<< HEAD
-<!--
- * @Description: 
- * @Author: wangbowen936926
- * @Date: 2024-06-26 21:22:42
- * @LastEditTime: 2024-08-01 22:04:08
- * @FilePath: \element-plus-pro\packages\form\README.md
--->
-# @element-plus/pro-form
-=======
 # @element-plus-ui/pro-form
->>>>>>> f6abb778d01005aad8853ec749e64e4b83314a28
 
 > 测试
 
