@@ -1,6 +1,6 @@
 {
   "name": "@element-plus-ui/pro-button",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "@element-plus-ui/pro-button",
   "keywords": [
     "ui",
@@ -11,7 +11,6 @@
     "element-plus-pro"
   ],
   "license": "ISC",
-  "homepage": "",
   "bugs": "https://gitee.com/bo-wen-wang936926/element-plus-pro/issues",
   "gitpository": {
     "type": "git",
@@ -19,7 +18,9 @@
   },
   "scripts": {
     "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
-    "release": "release-it"
+    "release": "release-it",
+    "nx:release": "npx nx release publish --first-release",
+    "nx:publish": "npx nx release publish --first-release"
   },
   "sideEffects": false,
   "main": "lib/index.js",
@@ -42,9 +43,6 @@
   },
   "dependencies": {
     "vue-demi": "^0.14.8"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
   },
   "engines": {
     "node": ">=16.17.1"

@@ -22,7 +22,7 @@
     "lint:fix": "pnpm run lint --fix",
     "release": "release-it --workspaces",
     "dry-run": "npx nx release --dry-run --first-release --verbose",
-    "nx:publish": "npx nx release publish"
+    "nx:release": "npx nx release --first-release"
   },
   "devDependencies": {
     "@element-plus-ui/pro-hooks": "workspace:^",
