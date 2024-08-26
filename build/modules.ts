@@ -1,13 +1,13 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-08-18 18:36:51
+ * @LastEditTime: 2024-08-26 16:06:39
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import { basename } from "path";
-import { build, PluginOption } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
+import { build, PluginOption } from "vite";
 import CssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import Dts from "vite-plugin-dts";
 import { generateExternal, getOutputConfig } from "./utils";
@@ -17,7 +17,7 @@ export default async () => {
 
   return await build({
     esbuild: {
-      //pure: ['console.log', 'debugger'],
+      pure: ["console.log", "debugger"]
     },
     build: {
       target: "es2018",

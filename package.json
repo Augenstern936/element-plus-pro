@@ -25,7 +25,9 @@
     "lint:fix": "pnpm run lint --fix",
     "release": "release-it --workspaces",
     "dry-run": "npx nx release publish --dry-run --first-release --verbose",
-    "nx:release": "npx nx release publish --first-release"
+    "first:release": "npx nx release --first-release",
+    "nx:release": "npx nx release",
+    "nx:publish": "npx nx release publish"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",

@@ -1,6 +1,7 @@
 <h1 align="center">@element-plus-ui/pro-button</h1>
 
-<p align="center">基于 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle;"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 的 <a href="https://element-plus.org/zh-CN/component/button.html">Button</a> 组件而开发，提供了二次确认提示操作，让中后台开发更简单 💪</p>
+<p align="center">基于 <a href="https://element-plus.org/zh-CN/" style="line-height: 0px; vertical-align:middle;"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 的 <a href="https://element-plus.org/zh-CN/component/button.html">Button</a> </p>
+<p align="center">组件而开发，提供了二次确认提示操作，让中后台开发更简单 💪</p>
 
 ## 📦 安装
 
@@ -12,7 +13,7 @@ $ npm install @element-plus-ui/pro-button
 $ yarn add @element-plus-ui/pro-button
 ```
 
-````bash
+```bash
 $ pnpm add @element-plus-ui/pro-button
 ```
 
@@ -28,7 +29,7 @@ import ProButton from "@element-plus-ui/pro-button";
 const app = createApp(App);
 
 app.mount("#app").use(ProButton);
-````
+```
 
 ##### 🚀 按需使用
 
