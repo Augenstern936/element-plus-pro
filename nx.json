@@ -14,9 +14,9 @@
       "!@element-plus-ui/pro-hooks",
       "!@element-plus-ui/pro-types"
     ],
-    "version": {
-      "conventionalCommits": true //根据commit记录发布新版本，没有记录不发布
-    },
+    // "version": {
+    //   "conventionalCommits": true //根据commit记录发布新版本，没有记录不发布
+    // },
     "changelog": {
       "projectChangelogs": {
         "renderOptions": {

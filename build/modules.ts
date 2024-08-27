@@ -1,15 +1,17 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-08-26 16:06:39
+ * @LastEditTime: 2024-08-27 18:05:27
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import { basename } from "path";
 import { visualizer } from "rollup-plugin-visualizer";
 import { build, PluginOption } from "vite";
-import CssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
+// import CssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import Dts from "vite-plugin-dts";
+import createStyleImportPlugin, { ElementPlusResolve } from "vite-plugin-style-import";
+//import libcss from "vite-plugin-libcss";
 import { generateExternal, getOutputConfig } from "./utils";
 
 export default async () => {
@@ -31,7 +33,7 @@ export default async () => {
       rollupOptions: {
         treeshake: true,
         //忽略打包文件
-        external: generateExternal({ full: false }),
+        external: [...generateExternal({ full: false }), "element-plus/dist/index.css"],
         output: [getOutputConfig("es", preserveModules), getOutputConfig("cjs", preserveModules)]
       }
     },
@@ -49,7 +51,22 @@ export default async () => {
           moduleResolution: 2
         }
       }),
-      CssInjectedByJsPlugin({ topExecutionPriority: false, relativeCSSInjection: true })
+      // libcss({
+      //   include: "src/**/*"
+      // })
+      createStyleImportPlugin({
+        resolves: [ElementPlusResolve()],
+        libs: [
+          {
+            libraryName: "element-plus",
+            esModule: true,
+            resolveStyle: name => {
+              return `element-plus/theme-chalk/${name}.css`;
+            }
+          }
+        ]
+      })
+      // CssInjectedByJsPlugin({ topExecutionPriority: false, relativeCSSInjection: true })
     ],
     optimizeDeps: {
       exclude: ["vue-demi"]
