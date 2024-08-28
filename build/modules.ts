@@ -1,21 +1,22 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-08-27 18:05:27
+ * @LastEditTime: 2024-08-28 15:18:59
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import { basename } from "path";
 import { visualizer } from "rollup-plugin-visualizer";
 import { build, PluginOption } from "vite";
-// import CssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
+import CssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import Dts from "vite-plugin-dts";
-import createStyleImportPlugin, { ElementPlusResolve } from "vite-plugin-style-import";
-//import libcss from "vite-plugin-libcss";
-import { generateExternal, getOutputConfig } from "./utils";
+// import { libInjectCss } from "vite-plugin-lib-inject-css";
+import { generateExternal, getEntry, getOutputConfig } from "./utils";
 
 export default async () => {
   const preserveModules = basename(process.cwd()) == "components" ? false : true;
+
+  console.log(getEntry(), "111111");
 
   return await build({
     esbuild: {
@@ -24,22 +25,23 @@ export default async () => {
     build: {
       target: "es2018",
       emptyOutDir: true,
-      minify: "esbuild",
+      //minify: "esbuild",
       cssCodeSplit: true,
       copyPublicDir: true,
       lib: {
-        entry: "src/index.ts"
+        entry: getEntry() //"src/index.ts"
       },
       rollupOptions: {
         treeshake: true,
         //忽略打包文件
-        external: [...generateExternal({ full: false }), "element-plus/dist/index.css"],
+        external: generateExternal({ full: false }),
         output: [getOutputConfig("es", preserveModules), getOutputConfig("cjs", preserveModules)]
       }
     },
     plugins: [
       Vue(),
       VueJsx(),
+      //libInjectCss(),
       visualizer() as PluginOption,
       Dts({
         entryRoot: "./src",
@@ -51,22 +53,7 @@ export default async () => {
           moduleResolution: 2
         }
       }),
-      // libcss({
-      //   include: "src/**/*"
-      // })
-      createStyleImportPlugin({
-        resolves: [ElementPlusResolve()],
-        libs: [
-          {
-            libraryName: "element-plus",
-            esModule: true,
-            resolveStyle: name => {
-              return `element-plus/theme-chalk/${name}.css`;
-            }
-          }
-        ]
-      })
-      // CssInjectedByJsPlugin({ topExecutionPriority: false, relativeCSSInjection: true })
+      CssInjectedByJsPlugin({ topExecutionPriority: false, relativeCSSInjection: true })
     ],
     optimizeDeps: {
       exclude: ["vue-demi"]
