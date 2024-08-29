@@ -2,13 +2,14 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2023-12-13 21:22:31
- * @LastEditTime: 2024-07-15 21:38:19
+ * @LastEditTime: 2024-08-27 22:14:36
  * @FilePath: \element-plus-pro\packages\button\src\index.ts
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
 import { DefineComponent } from "vue";
 import Button from "./Button.vue";
-import "./style.scss";
+// import "./style.scss";
+import "element-plus/theme-chalk/el-button.css";
 import { ProButtonProps } from "./typing";
 
 export * from "./typing";

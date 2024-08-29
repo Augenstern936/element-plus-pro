@@ -1,6 +1,6 @@
 {
   "name": "@element-plus-ui/pro-button",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "@element-plus-ui/pro-button",
   "keywords": [
     "ui",
@@ -11,8 +11,9 @@
     "element-plus-pro"
   ],
   "license": "ISC",
+  "homepage": "",
   "bugs": "https://github.com/Augenstern936/element-plus-pro/issues",
-  "gitpository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/Augenstern936/element-plus-pro"
   },
@@ -42,6 +43,7 @@
     }
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
     "vue-demi": "^0.14.8"
   },
   "engines": {
@@ -49,5 +51,8 @@
   },
   "release-it": {
     "git": false
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
