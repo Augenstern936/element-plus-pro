@@ -22,7 +22,7 @@
   },
   "sideEffects": false,
   "main": "lib/index.js",
-  "module": "src/index.ts",
+  "module": "es/index.mjs",
   "types": "es/index.d.ts",
   "files": [
     "lib",

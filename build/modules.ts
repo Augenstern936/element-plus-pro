@@ -1,22 +1,25 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
+<<<<<<< HEAD
  * @LastEditTime: 2024-08-30 22:08:38
+=======
+ * @LastEditTime: 2024-08-30 17:44:30
+>>>>>>> 6f27c5aa473e2aa2beca7d6b3664aa48c4261a2a
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
-import { basename } from "path";
 import { visualizer } from "rollup-plugin-visualizer";
 import { build, PluginOption } from "vite";
-// import CssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
+import { libInjectCss } from "vite-plugin-lib-inject-css";
+//import CssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import Dts from "vite-plugin-dts";
-// import { libInjectCss } from "vite-plugin-lib-inject-css";
 import { generateExternal, getEntry, getOutputConfig } from "./utils";
 
 export default async () => {
-  const preserveModules = basename(process.cwd()) == "components" ? false : true;
+  const preserveModules = false; //basename(process.cwd()) == "components" ? false : true;
 
-  console.log(getEntry(), "entry");
+  console.log(getEntry(preserveModules), "entry");
 
   return await build({
     esbuild: {
@@ -25,11 +28,10 @@ export default async () => {
     build: {
       target: "es2018",
       emptyOutDir: true,
-      // cssCodeSplit: true,
-      cssTarget: "",
+      cssCodeSplit: true,
       copyPublicDir: true,
       lib: {
-        entry: getEntry()
+        entry: getEntry(preserveModules)
       },
       rollupOptions: {
         treeshake: true,
@@ -40,8 +42,9 @@ export default async () => {
     plugins: [
       Vue(),
       VueJsx(),
-      //libInjectCss(),
+      libInjectCss(),
       visualizer() as PluginOption,
+      //CssInjectedByJsPlugin({ topExecutionPriority: false, relativeCSSInjection: true }),
       Dts({
         entryRoot: "./src",
         outDir: "./es",
@@ -52,7 +55,6 @@ export default async () => {
           moduleResolution: 2
         }
       })
-      //CssInjectedByJsPlugin({ topExecutionPriority: false, relativeCSSInjection: true })
     ],
     optimizeDeps: {
       exclude: ["vue-demi"]

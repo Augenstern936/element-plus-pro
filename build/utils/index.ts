@@ -4,12 +4,16 @@ import { resolve } from "path";
 /*
  * @Description:
  * @Date: 2024-05-21 14:03:12
- * @LastEditTime: 2024-08-29 22:52:46
+ * @LastEditTime: 2024-08-30 22:14:38
  */
 export * from "./pkg";
 export * from "./rollup";
 
-export function getEntry() {
+export function getEntry(preserveModules: boolean) {
+  if (preserveModules) {
+    return "src/index.ts";
+  }
+
   const entry: Record<string, string> = {};
   const files = globSync("src/**/*.{ts,tsx,vue}", {
     windowsPathsNoEscape: true,
@@ -28,20 +32,22 @@ export function getOutputConfig(format: "es" | "cjs", preserveModules: boolean):
   return {
     format,
     dir: format == "es" ? "es" : "lib",
-    preserveModules: false,
+    preserveModules,
     preserveModulesRoot: resolve(process.cwd(), "src"),
-    externalLiveBindings: false,
-    exports: format === "cjs" ? "named" : "named",
-    entryFileNames: `[name].${format == "es" ? "mjs" : "js"}`
-    // manualChunks: (id: string, info: Record<string, any>) => {
-    //   console.log(JSON.stringify(info.getModuleInfo()), "info");
-    //   const has = ["packages/utils", "packages/hooks"];
-    //   if (id.includes(has[0]) || id.includes(has[1])) {
-    //     const file = id.split("element-plus-pro/packages")[1];
-    //     return file.replace(".ts", "").replace(".tsx", "").slice(1, -1);
-    //   }
-    //   return "";
-    // }
+    exports: format === "cjs" ? "named" : undefined,
+    //entryFileNames: `[name].${format == "es" ? "mjs" : "js"}`,
+    //chunkFileNames: `[name].${format == "es" ? "mjs" : "js"}`,
+    manualChunks: (id: string) => {
+      if (id.includes(".css") || id.includes(".scss")) {
+        console.log(id, "id");
+        const test = id.split("/");
+        return `styles/${test[test.length - 1].replace("css", "")}`;
+      }
+      if (id.includes("packages/utils") || id.includes("packages/hooks")) {
+        const file = id.split("packages/")[1];
+        return file.replace(".ts", "").replace(".tsx", "");
+      }
+    }
   };
 }
 
