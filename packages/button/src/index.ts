@@ -2,14 +2,21 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2023-12-13 21:22:31
- * @LastEditTime: 2024-08-27 22:14:36
+ * @LastEditTime: 2024-08-29 21:48:54
  * @FilePath: \element-plus-pro\packages\button\src\index.ts
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
 import { DefineComponent } from "vue";
 import Button from "./Button.vue";
 // import "./style.scss";
+// import "element-plus/theme-chalk/el-base.css";
 import "element-plus/theme-chalk/el-button.css";
+// import "element-plus/theme-chalk/el-message-box.css";
+// import "element-plus/theme-chalk/el-overlay.css";
+// import "element-plus/theme-chalk/el-popconfirm.css";
+// import "element-plus/theme-chalk/el-popover.css";
+// import "element-plus/theme-chalk/el-popper.css";
+// import "element-plus/dist/index.css";
 import { ProButtonProps } from "./typing";
 
 export * from "./typing";

@@ -2,44 +2,18 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-07-25 21:18:22
+ * @LastEditTime: 2024-08-29 11:54:51
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import type { GeneratePropTypes, ToUppercaseFirst } from "@element-plus-ui/pro-types";
 import { formatPlaceholder, withInstall } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
 import "element-plus/theme-chalk/src/base.scss";
-import type { DefineComponent, PropType } from "vue-demi";
+import type { DefineComponent } from "vue-demi";
 import { computed, defineComponent } from "vue-demi";
 import components from "./components";
+import { proFieldProps } from "./props";
 import type { FieldProps, ProFieldSuperProps, ProFieldType } from "./typing";
-
-export const proFieldProps = {
-  modelValue: {
-    type: [String, Number, Boolean, Array] as PropType<string | number | boolean | []>,
-    default: void 0
-  },
-  mode: {
-    type: String as PropType<"read" | "edit">,
-    default: "edit"
-  },
-  type: {
-    type: String as PropType<ProFieldType>,
-    default: "text"
-  },
-  emptyText: {
-    type: String,
-    default: "--"
-  },
-  placeholder: {
-    type: [String, Array] as PropType<string | [string] | [string, string]>
-  },
-  fieldProps: {
-    type: Object as PropType<Record<string, unknown>>
-  }
-} as const;
-
-export * from "./typing";
 
 export type ProFieldProps = Omit<GeneratePropTypes<typeof proFieldProps>, "type" | "fieldProps"> & FieldProps;
 

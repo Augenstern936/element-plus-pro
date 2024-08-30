@@ -19,9 +19,7 @@
   },
   "scripts": {
     "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
-    "release": "release-it",
-    "nx:release": "npx nx release publish --first-release",
-    "nx:publish": "npx nx release publish --first-release"
+    "release": "release-it"
   },
   "sideEffects": false,
   "main": "lib/index.js",

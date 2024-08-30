@@ -32,6 +32,7 @@
   "dependencies": {
     "@element-plus-ui/pro-button": "workspace:^",
     "@element-plus-ui/pro-form": "workspace:^",
+    "@element-plus/icons-vue": "^2.3.1",
     "@types/uuid": "^9.0.7",
     "@vueuse/core": "^10.7.0",
     "screenfull": "^6.0.2",

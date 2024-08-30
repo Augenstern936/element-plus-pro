@@ -1,23 +1,23 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-08-27 22:50:04
+ * @LastEditTime: 2024-08-30 22:08:38
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import { basename } from "path";
-import { build, PluginOption } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
+import { build, PluginOption } from "vite";
 // import CssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
-import { libInjectCss } from "vite-plugin-lib-inject-css";
 import Dts from "vite-plugin-dts";
-import { generateExternal, getOutputConfig } from "./utils";
-import { glob } from "glob";
+// import { libInjectCss } from "vite-plugin-lib-inject-css";
+import { generateExternal, getEntry, getOutputConfig } from "./utils";
 
 export default async () => {
   const preserveModules = basename(process.cwd()) == "components" ? false : true;
-  const jsfiles = await glob("src/**", { ignore: "node_modules/**" });
-  console.log(jsfiles, "jsfiles");
+
+  console.log(getEntry(), "entry");
+
   return await build({
     esbuild: {
       pure: ["console.log", "debugger"]
@@ -25,15 +25,14 @@ export default async () => {
     build: {
       target: "es2018",
       emptyOutDir: true,
-      //minify: "esbuild",
-      cssCodeSplit: true,
+      // cssCodeSplit: true,
+      cssTarget: "",
       copyPublicDir: true,
       lib: {
-        entry: ["src/index.ts", "src/Button.vue"]
+        entry: getEntry()
       },
       rollupOptions: {
         treeshake: true,
-        //忽略打包文件
         external: generateExternal({ full: false }),
         output: [getOutputConfig("es", preserveModules), getOutputConfig("cjs", preserveModules)]
       }
@@ -41,7 +40,7 @@ export default async () => {
     plugins: [
       Vue(),
       VueJsx(),
-      libInjectCss(),
+      //libInjectCss(),
       visualizer() as PluginOption,
       Dts({
         entryRoot: "./src",
