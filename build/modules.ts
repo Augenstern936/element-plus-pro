@@ -1,13 +1,13 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-08-30 22:41:06
+ * @LastEditTime: 2024-09-01 13:13:31
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
 import { build, PluginOption } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
-// import CssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
+import CssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 import Dts from "vite-plugin-dts";
 import { generateExternal, getEntry, getOutputConfig } from "./utils";
@@ -37,7 +37,7 @@ export default async () => {
     plugins: [
       Vue(),
       VueJsx(),
-      libInjectCss(),
+      //libInjectCss(),
       visualizer() as PluginOption,
       Dts({
         entryRoot: "./src",
@@ -48,8 +48,8 @@ export default async () => {
           importHelpers: true,
           moduleResolution: 2
         }
-      })
-      //CssInjectedByJsPlugin({ topExecutionPriority: false, relativeCSSInjection: true })
+      }),
+      CssInjectedByJsPlugin({ topExecutionPriority: false, relativeCSSInjection: true })
     ],
     optimizeDeps: {
       exclude: ["vue-demi"]

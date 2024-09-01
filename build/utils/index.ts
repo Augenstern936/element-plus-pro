@@ -4,7 +4,7 @@ import { resolve } from "path";
 /*
  * @Description:
  * @Date: 2024-05-21 14:03:12
- * @LastEditTime: 2024-08-30 22:56:36
+ * @LastEditTime: 2024-09-01 13:16:20
  */
 export * from "./pkg";
 export * from "./rollup";
@@ -37,6 +37,7 @@ export function getOutputConfig(format: "es" | "cjs", preserveModules: boolean):
     exports: format === "cjs" ? "named" : undefined,
     //entryFileNames: `[name].${format == "es" ? "mjs" : "js"}`,
     //chunkFileNames: `[name].${format == "es" ? "mjs" : "js"}`,
+    hoistTransitiveImports: false,
     manualChunks: (id: string) => {
       if (id.includes("packages/utils") || id.includes("packages/hooks")) {
         const file = id.split("packages/")[1];

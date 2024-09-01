@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-25 09:53:37
- * @LastEditTime: 2024-08-30 15:49:36
+ * @LastEditTime: 2024-09-01 13:34:01
  */
 import fs from "fs";
 import { glob } from "glob";
@@ -11,11 +11,11 @@ import { projRoot } from "../configs";
 import buildModules from "./modules";
 
 const outputRootDist = () => {
-  const files = ["es", "lib", ["README.md", "package.json"]];
+  const files = ["es", "lib", ["README.md", "CHANGELOG.md", "package.json"]];
 
   const component = process.cwd().split("\\").pop();
 
-  const dir = resolve(projRoot, `dist/pro-${component}`);
+  const dir = resolve(projRoot, "dist", `pro-${component}`);
 
   const isHasTarget = glob.sync(dir);
 

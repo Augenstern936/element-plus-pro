@@ -1,15 +1,15 @@
 <!--
  * @Description: 
  * @Date: 2024-04-27 16:16:26
- * @LastEditTime: 2024-08-27 17:12:02
+ * @LastEditTime: 2024-09-01 14:51:12
 -->
 <template>
   <el-popconfirm
-    v-if="tipType == 'popconfirm' && (tip as TipConfig).text"
-    :icon="WarningFilled"
+    v-if="tipType == 'popconfirm' && tip.title"
     v-bind="tipConfig.popconfirm"
     v-model:visible="popconfirmVisible"
-    :title="(tip as TipConfig).text"
+    :title="tip.title"
+    :icon="WarningFilled"
     trigger=""
     @confirm="emits('click')"
   >
@@ -29,23 +29,13 @@ import { WarningFilled } from "@element-plus/icons-vue";
 import { isObject } from "@vueuse/core";
 import { ElButton, ElMessageBox, ElPopconfirm } from "element-plus";
 import { computed, ref } from "vue-demi";
-import { MessageBoxConfig, PopconfirmConfig, ProButtonProps, TipConfig } from "./typing";
+import { MessageBoxConfig, ProButtonProps } from "./typing";
 
 const emits = defineEmits(["click"]);
 
 const props = defineProps<ProButtonProps>();
 
 const popconfirmVisible = ref(false);
-
-const tipConfig = computed<{
-  messageBox: MessageBoxConfig | {};
-  popconfirm: PopconfirmConfig | {};
-}>(() => {
-  return {
-    messageBox: isObject(props.tip) && props.tip.mode === "message-box" ? props.tip : {},
-    popconfirm: isObject(props.tip) && props.tip.mode === "popconfirm" ? props.tip : {}
-  };
-});
 
 const tipType = computed(() => {
   return typeof props.tip == "string" ? "message-box" : (props.tip?.mode ?? "message-box");
@@ -57,12 +47,12 @@ const onClick = () => {
   }
 
   let isContinue = true;
+  let tipText: any = typeof props.tip === "string" ? props.tip : "";
 
-  if (typeof props.tip == "object" && typeof props.tip.before == "function") {
-    isContinue = props.tip.before();
+  if (isObject(props.tip)) {
+    tipText = (props.tip as MessageBoxConfig).message;
+    isContinue = props.tip?.before?.() ?? true;
   }
-
-  const tipText = typeof props.tip == "string" ? props.tip : props.tip.text;
 
   if (!tipText) {
     return emits("click");
@@ -74,11 +64,14 @@ const onClick = () => {
       return;
     }
 
-    ElMessageBox.confirm(tipText, tipConfig.value.messageBox?.title ?? "提示", {
+    const config = isObject(props.tip) ? props.tip : {};
+
+    ElMessageBox.confirm(tipText, (props.tip as MessageBoxConfig).title ?? "提示", {
       confirmButtonText: "确定",
       cancelButtonText: "取消",
       type: "warning",
-      ...tipConfig.value.messageBox
+      message: tipText,
+      ...config
     }).then(() => {
       emits("click");
     });
