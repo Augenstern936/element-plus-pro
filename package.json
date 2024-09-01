@@ -23,8 +23,8 @@
     "format": "prettier --write --cache .",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx,.md,.json --max-warnings 0 --cache",
     "lint:fix": "pnpm run lint --fix",
-    "changelog": "npx nx release changelog --first-release",
-    "dry-run": "npx nx release --dry-run --first-release --verbose",
+    "changelog": "npx nx release changelog",
+    "dry-run": "npx nx release version --dry-run --git-tag --first-release --verbose",
     "first:publish": "npx nx release publish --first-release",
     "release": "npx nx release",
     "publish": "npx nx release publish"
