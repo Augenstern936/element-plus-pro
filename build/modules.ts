@@ -1,14 +1,13 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-09-01 13:13:31
+ * @LastEditTime: 2024-09-02 15:44:52
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
-import { build, PluginOption } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
+import { build, PluginOption } from "vite";
 import CssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
-import { libInjectCss } from "vite-plugin-lib-inject-css";
 import Dts from "vite-plugin-dts";
 import { generateExternal, getEntry, getOutputConfig } from "./utils";
 

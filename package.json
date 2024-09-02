@@ -26,6 +26,7 @@
     "changelog": "npx nx release changelog",
     "dry-run": "npx nx release version --dry-run --git-tag --first-release --verbose",
     "first:publish": "npx nx release publish --first-release",
+    "release:tag": "npx nx release version --git-tag",
     "release": "npx nx release",
     "publish": "npx nx release publish"
   },
