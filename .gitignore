@@ -3,8 +3,7 @@ node_modules
 
 */**/es
 */**/lib
-
-stats.html
+*/**/stats.html
 
 pnpm-lock.yaml
 

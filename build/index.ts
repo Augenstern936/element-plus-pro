@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-25 09:53:37
- * @LastEditTime: 2024-09-01 13:34:01
+ * @LastEditTime: 2024-09-02 14:35:42
  */
 import fs from "fs";
 import { glob } from "glob";
@@ -11,7 +11,7 @@ import { projRoot } from "../configs";
 import buildModules from "./modules";
 
 const outputRootDist = () => {
-  const files = ["es", "lib", ["README.md", "CHANGELOG.md", "package.json"]];
+  const files = ["es", "lib", ["README.md", "package.json"]];
 
   const component = process.cwd().split("\\").pop();
 

@@ -24,7 +24,6 @@
     "changelog": {
       "projectChangelogs": {
         "createRelease": "github",
-        "file": true,
         "renderOptions": {
           "authors": true,
           "mapAuthorsToGitHubUsernames": true,

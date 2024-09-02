@@ -1,5 +1,4 @@
 import { globSync } from "glob";
-import { resolve } from "path";
 
 /*
  * @Description:
