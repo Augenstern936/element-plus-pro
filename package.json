@@ -2,7 +2,7 @@
   "name": "element-plus-pro",
   "version": "0.0.6",
   "private": true,
-  "license": "ISC",
+  "license": "MIT",
   "packageManager": "pnpm@8.10.2",
   "workspaces": [
     "packages/*",
@@ -50,8 +50,7 @@
     "@types/node": "^20.8.9",
     "@vitejs/plugin-vue": "^4.4.0",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
-    "@vue/shared": "^3.2.37",
-    "@vueuse/core": "^10.7.0",
+    "@vueuse/core": "^11.0.3",
     "consola": "^3.2.3",
     "cz-git": "^1.9.4",
     "czg": "^1.9.4",
@@ -68,7 +67,6 @@
     "msw": "^2.3.1",
     "nx": "19.3.0",
     "prettier": "^3.3.3",
-    "release-it": "^17.6.0",
     "rimraf": "^5.0.5",
     "rollup-plugin-esbuild": "^6.1.1",
     "rollup-plugin-visualizer": "^5.11.0",
@@ -77,34 +75,15 @@
     "tsx": "^3.14.0",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
-    "vite-plugin-babel-import": "^2.0.5",
-    "vite-plugin-chunk-split": "^0.5.0",
     "vite-plugin-css-injected-by-js": "^3.5.1",
     "vite-plugin-dts": "^3.9.1",
     "vite-plugin-lib-inject-css": "^2.1.1",
+    "vite-plugin-style-import": "^2.0.0",
     "vitest": "^1.6.0",
     "vue": "^3.3.7",
     "vue-demi": "^0.14.8",
     "vue-draggable-plus": "^0.3.5",
     "vue3-styled-components": "^1.2.1"
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore(release): v${version}",
-      "push": true,
-      "commit": true,
-      "tag": true,
-      "requireCommits": false,
-      "requireCleanWorkingDir": false
-    },
-    "github": {
-      "release": true,
-      "draft": true
-    },
-    "npm": {
-      "publish": false,
-      "ignoreVersion": false
-    }
   },
   "lint-staged": {
     "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --fix"
@@ -113,5 +92,8 @@
     "commitizen": {
       "path": "node_modules/cz-git"
     }
+  },
+  "dependencies": {
+    "@vue/shared": "^3.2.37"
   }
 }

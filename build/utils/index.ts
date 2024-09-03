@@ -1,9 +1,10 @@
 import { globSync } from "glob";
+import { resolve } from "path";
 
 /*
  * @Description:
  * @Date: 2024-05-21 14:03:12
- * @LastEditTime: 2024-09-01 13:16:20
+ * @LastEditTime: 2024-09-03 14:46:36
  */
 export * from "./pkg";
 export * from "./rollup";
@@ -31,18 +32,22 @@ export function getOutputConfig(format: "es" | "cjs", preserveModules: boolean):
   return {
     format,
     dir: format == "es" ? "es" : "lib",
-    // preserveModules,
-    // preserveModulesRoot: resolve(process.cwd(), "src"),
+    preserveModules,
+    preserveModulesRoot: resolve(process.cwd(), "src"),
     exports: format === "cjs" ? "named" : undefined,
-    //entryFileNames: `[name].${format == "es" ? "mjs" : "js"}`,
-    //chunkFileNames: `[name].${format == "es" ? "mjs" : "js"}`,
-    hoistTransitiveImports: false,
-    manualChunks: (id: string) => {
-      if (id.includes("packages/utils") || id.includes("packages/hooks")) {
-        const file = id.split("packages/")[1];
-        return file.replace(".ts", "").replace(".tsx", "");
-      }
-    }
+    entryFileNames: `[name].${format == "es" ? "mjs" : "js"}`
+    //chunkFileNames: `[name].${format == "es" ? "mjs" : "js"}`
+    //hoistTransitiveImports: false
+    // reexportProtoFromExternal: false,
+    // sanitizeFileName: false,
+    // manualChunks: (id: string) => {
+    //   const packages = ["packages/utils", "packages/hooks"].some(v => id.includes(v));
+    //   const exclude = ["typing.ts", "index.ts"].some(v => id.includes(v));
+    //   if (packages && !exclude) {
+    //     const file = id.split("packages/")[1];
+    //     return file.replace(".ts", "").replace(".tsx", "");
+    //   }
+    // }
   };
 }
 

@@ -10,16 +10,15 @@
     "element-plus",
     "element-plus-pro"
   ],
-  "license": "ISC",
-  "homepage": "",
+  "license": "MIT",
+  "homepage": "https://github.com/Augenstern936/element-plus-pro",
   "bugs": "https://github.com/Augenstern936/element-plus-pro/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/Augenstern936/element-plus-pro"
   },
   "scripts": {
-    "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
-    "release": "release-it"
+    "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
   },
   "sideEffects": false,
   "main": "lib/index.js",
@@ -42,13 +41,11 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@vueuse/core": "^10.7.0",
     "vue-demi": "^0.14.8"
   },
   "engines": {
     "node": ">=16.17.1"
-  },
-  "release-it": {
-    "git": false
   },
   "publishConfig": {
     "access": "public"

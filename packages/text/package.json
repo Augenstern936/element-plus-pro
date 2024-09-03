@@ -10,12 +10,12 @@
     "element-plus",
     "element-plus-pro"
   ],
-  "license": "ISC",
-  "homepage": "",
+  "license": "MIT",
+  "homepage": "https://github.com/Augenstern936/element-plus-pro",
   "bugs": "https://github.com/Augenstern936/element-plus-pro/issues",
   "gitpository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/Augenstern936/element-plus-pro"
   },
   "scripts": {
     "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
@@ -41,11 +41,9 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@vueuse/core": "^11.0.3",
     "copy-to-clipboard": "^3.3.3",
     "vue-demi": "^0.14.8"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
   },
   "engines": {
     "node": ">=16.17.1"

@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-25 09:53:37
- * @LastEditTime: 2024-09-02 14:35:42
+ * @LastEditTime: 2024-09-03 11:48:17
  */
 import fs from "fs";
 import { glob } from "glob";
@@ -20,7 +20,7 @@ const outputRootDist = () => {
   const isHasTarget = glob.sync(dir);
 
   if (isHasTarget.length) {
-    fs.rmdirSync(dir, { recursive: true });
+    fs.rmSync(dir, { recursive: true });
   }
 
   return Promise.all(

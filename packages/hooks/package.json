@@ -2,7 +2,7 @@
   "name": "@element-plus-ui/pro-hooks",
   "private": true,
   "main": "index.ts",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "vue-request": "^2.0.4"
   }
