@@ -1,12 +1,12 @@
 <!--
  * @Description: 
  * @Date: 2024-04-27 16:16:26
- * @LastEditTime: 2024-09-01 14:51:12
+ * @LastEditTime: 2024-09-05 15:40:45
 -->
 <template>
   <el-popconfirm
-    v-if="tipType == 'popconfirm' && tip.title"
-    v-bind="tipConfig.popconfirm"
+    v-if="tipType == 'popconfirm' && isObject(tip) && (tip as TipConfig).title"
+    v-bind="tip"
     v-model:visible="popconfirmVisible"
     :title="tip.title"
     :icon="WarningFilled"
@@ -27,9 +27,9 @@
 <script setup name="ProButton" lang="ts">
 import { WarningFilled } from "@element-plus/icons-vue";
 import { isObject } from "@vueuse/core";
-import { ElButton, ElMessageBox, ElPopconfirm } from "element-plus";
+// import { ElButton, ElMessageBox, ElPopconfirm } from "element-plus";
 import { computed, ref } from "vue-demi";
-import { MessageBoxConfig, ProButtonProps } from "./typing";
+import { MessageBoxConfig, ProButtonProps, TipConfig } from "./typing";
 
 const emits = defineEmits(["click"]);
 
