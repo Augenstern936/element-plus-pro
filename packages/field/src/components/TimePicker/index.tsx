@@ -2,12 +2,12 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-07-09 17:03:00
+ * @LastEditTime: 2024-09-13 15:18:41
  * @FilePath: \element-plus-pro\packages\field\src\components\TimePicker\index.tsx
  */
 import { useVModel } from "@vueuse/core";
 import { ElTimePicker, timePickerDefaultProps } from "element-plus";
-import "element-plus/theme-chalk/src/time-picker.scss";
+// import "element-plus/theme-chalk/src/time-picker.scss";
 import { CSSProperties, DefineComponent, PropType, defineComponent } from "vue-demi";
 import { BaseTimePickerProps, ProFieldTimeProps, ProFieldTimeRangeProps } from "./props";
 
@@ -34,3 +34,4 @@ export const ProFieldTimeRange = (props: ProFieldTimeRangeProps) => {
 };
 
 export * from "./props";
+

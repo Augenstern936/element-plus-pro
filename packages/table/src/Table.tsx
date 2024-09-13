@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from "uuid";
 import type { FunctionalComponent } from "vue-demi";
 import { KeepAlive, computed, defineComponent, provide, ref, toRaw, watch } from "vue-demi";
 import { Card, TableColumn, ToolBar } from "./components";
-import "./style/index.scss";
 import { Ctx, GlobalSearchConfig, ProTableProps, TableColumns, proTableProps } from "./typing";
 // import './fetch-mock';
 import { server } from "./mock";

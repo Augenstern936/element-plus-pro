@@ -37,7 +37,8 @@
     "@vueuse/core": "^10.11.1",
     "screenfull": "^6.0.2",
     "uuid": "^9.0.1",
-    "vue-demi": "^0.14.8"
+    "vue-demi": "^0.14.8",
+    "vue3-styled-components": "^1.2.1"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",

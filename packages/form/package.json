@@ -32,8 +32,10 @@
   "dependencies": {
     "@element-plus-ui/pro-button": "workspace:^",
     "@element-plus-ui/pro-field": "workspace:^",
+    "@element-plus/icons-vue": "^2.3.1",
     "@vueuse/core": "^10.7.0",
-    "vue-demi": "^0.14.8"
+    "vue-demi": "^0.14.8",
+    "vue-request": "^2.0.4"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",

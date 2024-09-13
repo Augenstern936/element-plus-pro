@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-08-29 11:54:51
+ * @LastEditTime: 2024-09-13 15:19:28
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import type { GeneratePropTypes, ToUppercaseFirst } from "@element-plus-ui/pro-types";
 import { formatPlaceholder, withInstall } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
-import "element-plus/theme-chalk/src/base.scss";
+// import "element-plus/theme-chalk/src/base.scss";
 import type { DefineComponent } from "vue-demi";
 import { computed, defineComponent } from "vue-demi";
 import components from "./components";

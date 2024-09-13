@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-09-12 18:08:25
+ * @LastEditTime: 2024-09-13 17:22:07
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
@@ -9,6 +9,7 @@ import { basename } from "path";
 import { visualizer } from "rollup-plugin-visualizer";
 import { build, PluginOption } from "vite";
 import { createAutoInjectCssPlugin, ElementPlusResolver } from "vite-plugin-auto-inject-css";
+import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import Dts from "vite-plugin-dts";
 import { generateExternal, getEntry, getOutputConfig } from "./utils";
 
@@ -36,6 +37,7 @@ export default async () => {
       Vue(),
       VueJsx(),
       visualizer() as PluginOption,
+      cssInjectedByJsPlugin(),
       createAutoInjectCssPlugin({
         mode: "peerDependencies",
         resolvers: [ElementPlusResolver()]

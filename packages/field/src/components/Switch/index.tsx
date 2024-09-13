@@ -2,12 +2,12 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-07-09 17:02:54
+ * @LastEditTime: 2024-09-13 15:18:36
  * @FilePath: \element-plus-pro\packages\field\src\components\Switch\index.tsx
  */
 import { useVModel } from "@vueuse/core";
 import { ElSwitch, ElText } from "element-plus";
-import "element-plus/theme-chalk/src/switch.scss";
+// import "element-plus/theme-chalk/src/switch.scss";
 import { DefineComponent, computed, defineComponent } from "vue-demi";
 import { ProFieldSwitchProps, proFieldSwitchProps } from "./props";
 

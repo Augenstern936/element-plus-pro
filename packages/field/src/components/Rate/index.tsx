@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-07-09 17:02:05
+ * @LastEditTime: 2024-09-13 15:18:14
  * @FilePath: \element-plus-pro\packages\field\src\components\Rate\index.tsx
  */
 import { useVModel } from "@vueuse/core";
 import { ElRate, ElText } from "element-plus";
-import "element-plus/theme-chalk/src/rate.scss";
-import "element-plus/theme-chalk/src/text.scss";
+// import "element-plus/theme-chalk/src/rate.scss";
+// import "element-plus/theme-chalk/src/text.scss";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFieldRateProps, proFieldRateProps } from "./props";
 

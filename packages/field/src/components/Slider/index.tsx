@@ -2,12 +2,12 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-07-09 17:02:34
+ * @LastEditTime: 2024-09-13 15:18:29
  * @FilePath: \element-plus-pro\packages\field\src\components\Slider\index.tsx
  */
 import { useVModel } from "@vueuse/core";
 import { ElSlider, ElText } from "element-plus";
-import "element-plus/theme-chalk/src/slider.scss";
+// import "element-plus/theme-chalk/src/slider.scss";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFieldSliderProps, proFieldSliderProps } from "./props";
 

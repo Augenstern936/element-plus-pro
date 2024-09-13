@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-08-06 19:21:06
+ * @LastEditTime: 2024-09-13 18:02:55
  * @FilePath: \element-plus-pro\play\src\components\Text.vue
 -->
 <template>
@@ -37,5 +37,5 @@
 </template>
 
 <script setup lang="ts">
-import { ProText } from "@element-plus-ui/pro-components";
+import { ProText } from "@element-plus-ui/pro-text";
 </script>

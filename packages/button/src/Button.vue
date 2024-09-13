@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-04-27 16:16:26
- * @LastEditTime: 2024-09-05 15:40:45
+ * @LastEditTime: 2024-09-13 18:01:52
 -->
 <template>
   <el-popconfirm
@@ -27,7 +27,7 @@
 <script setup name="ProButton" lang="ts">
 import { WarningFilled } from "@element-plus/icons-vue";
 import { isObject } from "@vueuse/core";
-// import { ElButton, ElMessageBox, ElPopconfirm } from "element-plus";
+import { ElButton, ElMessageBox, ElPopconfirm } from "element-plus";
 import { computed, ref } from "vue-demi";
 import { MessageBoxConfig, ProButtonProps, TipConfig } from "./typing";
 

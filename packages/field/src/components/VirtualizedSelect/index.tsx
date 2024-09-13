@@ -2,14 +2,14 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-07-09 17:03:19
+ * @LastEditTime: 2024-09-13 15:19:00
  * @FilePath: \element-plus-pro\packages\field\src\components\VirtualizedSelect\index.tsx
  */
 import { enumTransformOptions, getValueOptionConfigs } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
 import { ElOption, ElSelect } from "element-plus";
-import "element-plus/theme-chalk/src/option.scss";
-import "element-plus/theme-chalk/src/select.scss";
+// import "element-plus/theme-chalk/src/option.scss";
+// import "element-plus/theme-chalk/src/select.scss";
 import { computed, DefineComponent, defineComponent } from "vue-demi";
 import { ReadOptions } from "../widgets";
 import { proFieldSelectProps, ProFieldSelectProps } from "./props";

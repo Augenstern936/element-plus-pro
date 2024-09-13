@@ -19,6 +19,7 @@
     "@element-plus-ui/pro-button": "workspace:^",
     "@element-plus-ui/pro-components": "workspace:^",
     "@element-plus-ui/pro-field": "workspace:^",
+    "@element-plus-ui/pro-text": "workspace:^",
     "vue": "^3.4.31"
   },
   "msw": {
