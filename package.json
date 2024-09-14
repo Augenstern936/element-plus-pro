@@ -1,6 +1,6 @@
 {
   "name": "element-plus-pro",
-  "version": "0.0.6",
+  "version": "0.0.1",
   "private": true,
   "license": "MIT",
   "packageManager": "pnpm@8.10.2",
@@ -29,7 +29,7 @@
     "lint:fix": "pnpm run lint --fix",
     "clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
     "clean:dist": "rimraf dist",
-    "prepare": "husky install"
+    "prepare": "simple-git-hooks"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",
@@ -60,7 +60,6 @@
     "fs-extra": "^11.1.1",
     "glob": "^10.3.12",
     "gulp": "^4.0.2",
-    "husky": "^9.1.5",
     "lint-staged": "^15.2.9",
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",
@@ -71,6 +70,7 @@
     "rollup-plugin-esbuild": "^6.1.1",
     "rollup-plugin-visualizer": "^5.11.0",
     "sass": "^1.69.5",
+    "simple-git-hooks": "^2.11.1",
     "tsup": "^8.0.2",
     "tsx": "^3.14.0",
     "typescript": "^5.2.2",
@@ -90,6 +90,10 @@
     "commitizen": {
       "path": "node_modules/cz-git"
     }
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged --concurrent false",
+    "pre-push": "pnpm format"
   },
   "dependencies": {
     "@vue/shared": "^3.2.37"
