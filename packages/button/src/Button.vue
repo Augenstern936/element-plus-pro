@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-04-27 16:16:26
- * @LastEditTime: 2024-09-13 18:01:52
+ * @LastEditTime: 2024-09-14 16:51:42
 -->
 <template>
   <el-popconfirm
@@ -50,7 +50,8 @@ const onClick = () => {
   let tipText: any = typeof props.tip === "string" ? props.tip : "";
 
   if (isObject(props.tip)) {
-    tipText = (props.tip as MessageBoxConfig).message;
+    const tip = props.tip as MessageBoxConfig;
+    tipText = tipType.value === "popconfirm" ? tip.title : tip.message;
     isContinue = props.tip?.before?.() ?? true;
   }
 
@@ -78,7 +79,3 @@ const onClick = () => {
   }
 };
 </script>
-
-<!-- <style>
-@import "element-plus/theme-chalk/el-button.css";
-</style> -->
