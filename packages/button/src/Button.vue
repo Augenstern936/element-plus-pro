@@ -1,11 +1,11 @@
 <!--
  * @Description: 
  * @Date: 2024-04-27 16:16:26
- * @LastEditTime: 2024-09-13 18:01:52
+ * @LastEditTime: 2024-09-13 21:59:37
 -->
 <template>
   <el-popconfirm
-    v-if="tipType == 'popconfirm' && isObject(tip) && (tip as TipConfig).title"
+    v-if="tipType == 'popconfirm' && (tip as TipConfig).title"
     v-bind="tip"
     v-model:visible="popconfirmVisible"
     :title="tip.title"
@@ -38,6 +38,7 @@ const props = defineProps<ProButtonProps>();
 const popconfirmVisible = ref(false);
 
 const tipType = computed(() => {
+  console.log(props.tip, "tip");
   return typeof props.tip == "string" ? "message-box" : (props.tip?.mode ?? "message-box");
 });
 
