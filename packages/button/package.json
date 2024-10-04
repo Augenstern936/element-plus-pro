@@ -1,10 +1,12 @@
 {
   "name": "@element-plus-ui/pro-button",
-  "version": "0.0.2-0",
+  "version": "0.0.1-beta.2",
   "description": "@element-plus-ui/pro-button",
   "keywords": [
     "ui",
+    "pro",
     "vue3",
+    "button",
     "element",
     "component",
     "element-plus",
@@ -46,8 +48,5 @@
   },
   "engines": {
     "node": ">=16.17.1"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

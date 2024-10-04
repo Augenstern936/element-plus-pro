@@ -1,10 +1,10 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:41:09
- * @LastEditTime: 2024-08-17 17:06:28
+ * @LastEditTime: 2024-10-02 20:48:55
  */
 import { DocumentCopy, EditPen, Select, CloseBold } from "@element-plus/icons-vue";
-import { ElIcon, ElText, ElTooltip, ElInput } from "element-plus";
+import { ElIcon, ElText, ElTooltip, ElInput, ElSpace } from "element-plus";
 import { FunctionalComponent, computed, defineComponent, ref, watch } from "vue-demi";
 import copy from "copy-to-clipboard";
 import "./style.scss";
@@ -116,9 +116,9 @@ const ProText = defineComponent<ProTextProps>(
         );
       }
       return (
-        <div class={"pro-text"}>
+        <div class={"pro-text"} style={{ display: "flex", alignItems: "center" }}>
           <ElText class={"text"} {...props} {...ctx.attrs}>
-            {editable.text ? ctx.slots.default?.() ?? props.content : currentEditText.value}
+            {editable.text ? (ctx.slots.default?.() ?? props.content) : currentEditText.value}
           </ElText>
           {(props.editable === true || isObject(props.editable)) && (
             <ElTooltip content={editable.tooltip ?? "编辑"} placement="top">

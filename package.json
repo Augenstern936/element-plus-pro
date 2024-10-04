@@ -1,6 +1,6 @@
 {
   "name": "element-plus-pro",
-  "version": "0.0.6",
+  "version": "0.0.1",
   "private": true,
   "license": "MIT",
   "packageManager": "pnpm@8.10.2",
@@ -19,9 +19,9 @@
     "dry-run": "npx nx release --dry-run --first-release --verbose",
     "gen:tag": "npx nx release version --git-tag",
     "push:tags": "git push origin --tags",
-    "first:publish": "npx nx release publish --first-release && pnpm push:tags",
-    "release": "npx nx release && pnpm push:tags",
-    "publish": "npx nx release publish && pnpm push:tags",
+    "release:first": "npx nx release --first-release",
+    "release": "npx nx release",
+    "publish:only": "npx nx release publish",
     "gen:version": "tsx scripts/gen-version.ts",
     "update:version": "tsx scripts/update-version.ts",
     "format": "prettier --write --cache .",
@@ -29,7 +29,7 @@
     "lint:fix": "pnpm run lint --fix",
     "clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
     "clean:dist": "rimraf dist",
-    "prepare": "husky install"
+    "prepare": "simple-git-hooks"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",
@@ -71,14 +71,13 @@
     "rollup-plugin-esbuild": "^6.1.1",
     "rollup-plugin-visualizer": "^5.11.0",
     "sass": "^1.69.5",
+    "simple-git-hooks": "^2.11.1",
     "tsup": "^8.0.2",
     "tsx": "^3.14.0",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
-    "vite-plugin-auto-inject-css": "^0.0.4",
-    "vite-plugin-css-injected-by-js": "^3.5.1",
+    "vite-plugin-auto-inject-css": "^1.0.0",
     "vite-plugin-dts": "^3.9.1",
-    "vitest": "^1.6.0",
     "vue": "^3.3.7",
     "vue-demi": "^0.14.8",
     "vue-draggable-plus": "^0.3.5"
@@ -90,6 +89,10 @@
     "commitizen": {
       "path": "node_modules/cz-git"
     }
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged --concurrent false",
+    "pre-push": "pnpm format"
   },
   "dependencies": {
     "@vue/shared": "^3.2.37"

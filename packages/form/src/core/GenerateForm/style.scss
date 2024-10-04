@@ -1,21 +1,16 @@
-// @use 'element-plus/theme-chalk/src/space.scss';
-// @use 'element-plus/theme-chalk/src/button.scss';
-// @use 'element-plus/theme-chalk/src/row.scss';
-// @use 'element-plus/theme-chalk/src/col.scss';
-// @use 'element-plus/theme-chalk/src/form.scss';
-// @use 'element-plus/theme-chalk/src/form-item.scss';
-
-.generate-form {
-	.el-input,
-	.el-input-number {
-		flex: 1;
-	}
-	.actions-box {
-		flex: 1;
-		display: grid;
-		gap: 10px;
-		& > * {
-			margin: 0 !important;
-		}
-	}
+.el-form.generate-form {
+  width: 100%;
+  .el-input,
+  .el-input-number,
+  .el-date-editor.el-input {
+    flex: 1 !important;
+  }
+  .actions-box {
+    flex: 1;
+    display: grid;
+    gap: 10px;
+    & > * {
+      margin: 0 !important;
+    }
+  }
 }

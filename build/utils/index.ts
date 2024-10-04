@@ -4,7 +4,7 @@ import { resolve } from "path";
 /*
  * @Description:
  * @Date: 2024-05-21 14:03:12
- * @LastEditTime: 2024-09-12 18:10:15
+ * @LastEditTime: 2024-10-04 20:41:41
  */
 export * from "./pkg";
 export * from "./rollup";
@@ -36,16 +36,7 @@ export function getOutputConfig(format: "es" | "cjs", preserveModules: boolean):
     preserveModulesRoot: resolve(process.cwd(), "src"),
     exports: format === "cjs" ? "named" : undefined,
     entryFileNames: `[name].${format == "es" ? "mjs" : "js"}`
-    // chunkFileNames: `[name].${format == "es" ? "mjs" : "js"}`
-    // hoistTransitiveImports: false,
-    // manualChunks: (id: string) => {
-    //   const packages = ["packages/utils", "packages/hooks"].some(v => id.includes(v));
-    //   const exclude = ["typing.ts", "index.ts"].some(v => id.includes(v));
-    //   if (packages && !exclude) {
-    //     const file = id.split("packages/")[1];
-    //     return file.replace(".ts", "").replace(".tsx", "");
-    //   }
-    // }
+    // hoistTransitiveImports: false
   };
 }
 

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-09 22:25:21
- * @LastEditTime: 2024-08-04 16:19:50
+ * @LastEditTime: 2024-10-04 11:03:52
  * @FilePath: \element-plus-pro\play\src\components\Form.vue
 -->
 <template>
@@ -10,7 +10,7 @@
     <ProForm
       v-model="form"
       :label-style="{ fontWeight: 600 }"
-      :readonly="true"
+      :readonly="false"
       :required="true"
       :columns="formItems"
       :request="getFormData"
