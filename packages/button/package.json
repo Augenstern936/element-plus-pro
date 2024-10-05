@@ -1,11 +1,12 @@
 {
   "name": "@element-plus-ui/pro-button",
-  "version": "0.0.1-beta.2",
-  "description": "@element-plus-ui/pro-button",
+  "version": "1.0.0",
+  "description": "🏆 Use Element Plus Button like a Pro!",
   "keywords": [
     "ui",
     "pro",
     "vue3",
+    "admin",
     "button",
     "element",
     "component",
@@ -13,7 +14,7 @@
     "element-plus-pro"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Augenstern936/element-plus-pro",
+  "homepage": "https://github.com/Augenstern936/element-plus-pro/tree/master/packages/button#readme",
   "bugs": "https://github.com/Augenstern936/element-plus-pro/issues",
   "repository": {
     "type": "git",
@@ -33,7 +34,7 @@
   "author": "17634393156@163.com",
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
-    "element-plus": "^2.7.2",
+    "element-plus": ">=2.7.2",
     "vue": ">=3.0.0"
   },
   "peerDependenciesMeta": {
@@ -46,7 +47,7 @@
     "@vueuse/core": "^10.7.0",
     "vue-demi": "^0.14.8"
   },
-  "engines": {
-    "node": ">=16.17.1"
+  "publishConfig": {
+    "access": "public"
   }
 }
