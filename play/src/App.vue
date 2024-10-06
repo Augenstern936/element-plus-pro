@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-07-09 16:21:57
- * @LastEditTime: 2024-10-02 14:00:45
+ * @LastEditTime: 2024-10-06 15:59:15
 -->
 <template>
   <el-container style="height: 100vh">
@@ -33,10 +33,15 @@ import Field from "./components/Field.vue";
 import Form from "./components/Form.vue";
 import SearchBar from "./components/SearchBar.vue";
 import Table from "./components/Table.vue";
+import Icon from "./components/Icon.vue";
 const menus = shallowRef([
   {
     title: "pro-button",
     component: Button
+  },
+  {
+    title: "pro-icon",
+    component: Icon
   },
   {
     title: "pro-text",

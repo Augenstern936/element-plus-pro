@@ -1,10 +1,10 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:41:09
- * @LastEditTime: 2024-10-02 20:48:55
+ * @LastEditTime: 2024-10-05 22:38:47
  */
 import { DocumentCopy, EditPen, Select, CloseBold } from "@element-plus/icons-vue";
-import { ElIcon, ElText, ElTooltip, ElInput, ElSpace } from "element-plus";
+import { ElIcon, ElText, ElTooltip, ElInput } from "element-plus";
 import { FunctionalComponent, computed, defineComponent, ref, watch } from "vue-demi";
 import copy from "copy-to-clipboard";
 import "./style.scss";
@@ -152,7 +152,5 @@ const ProText = defineComponent<ProTextProps>(
 ) as unknown as FunctionalComponent<ProTextProps>;
 
 ProText.props = proTextProps;
-
-export * from "./typing";
 
 export default ProText;

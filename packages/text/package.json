@@ -1,19 +1,22 @@
 {
   "name": "@element-plus-ui/pro-text",
-  "version": "0.0.1",
-  "description": "@element-plus-ui/pro-text",
+  "version": "1.0.0",
+  "description": "🏆 Use Element Plus Text like a Pro!",
   "keywords": [
     "ui",
+    "pro",
     "vue3",
+    "text",
+    "admin",
     "element",
     "component",
     "element-plus",
     "element-plus-pro"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Augenstern936/element-plus-pro",
+  "homepage": "https://github.com/Augenstern936/element-plus-pro/tree/master/packages/text#readme",
   "bugs": "https://github.com/Augenstern936/element-plus-pro/issues",
-  "gitpository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/Augenstern936/element-plus-pro"
   },
@@ -31,8 +34,8 @@
   "author": "17634393156@163.com",
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
-    "element-plus": "^2.4.1",
-    "vue": "^3.3.7"
+    "element-plus": ">=2.7.2",
+    "vue": ">=3.0.0"
   },
   "peerDependenciesMeta": {
     "@vue/composition-api": {
@@ -41,11 +44,10 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
-    "@vueuse/core": "^11.0.3",
-    "copy-to-clipboard": "^3.3.3",
+    "@vueuse/core": "^10.7.0",
     "vue-demi": "^0.14.8"
   },
-  "engines": {
-    "node": ">=16.17.1"
+  "publishConfig": {
+    "access": "public"
   }
 }

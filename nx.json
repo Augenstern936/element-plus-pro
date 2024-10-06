@@ -9,12 +9,13 @@
   },
   "release": {
     "projects": [
-      "@element-plus-ui/pro-button",
+      "@element-plus-ui/pro-icon",
       "!@element-plus-ui/pro-utils",
       "!@element-plus-ui/pro-hooks",
       "!@element-plus-ui/pro-types"
     ],
     "version": {
+      "skipLockFileUpdate": true,
       "conventionalCommits": false, //根据commit记录发布新版本，没有记录不发布
       "generatorOptions": {
         "currentVersionResolver": "git-tag",
