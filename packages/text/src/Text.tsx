@@ -1,10 +1,10 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:41:09
- * @LastEditTime: 2024-10-05 22:38:47
+ * @LastEditTime: 2024-10-06 22:21:06
  */
-import { DocumentCopy, EditPen, Select, CloseBold } from "@element-plus/icons-vue";
-import { ElIcon, ElText, ElTooltip, ElInput } from "element-plus";
+import { ElText, ElTooltip, ElInput } from "element-plus";
+import { ProIcon } from "@element-plus-ui/pro-icon";
 import { FunctionalComponent, computed, defineComponent, ref, watch } from "vue-demi";
 import copy from "copy-to-clipboard";
 import "./style.scss";
@@ -19,25 +19,46 @@ const ProText = defineComponent<ProTextProps>(
 
     const currentEditText = ref("");
 
-    const copyIcons = {
-      default: {
-        color: "var(--el-color-primary)",
-        icon: <DocumentCopy />,
-        tooltips: isObject(props.copyable) && props.copyable?.tooltip ? props.copyable?.tooltip : "复制"
-      },
-      success: {
-        color: "var(--el-color-success)",
-        icon: <Select />,
-        tooltips: "复制成功"
-      },
-      error: {
-        color: "var(--el-color-danger)",
-        icon: <CloseBold />,
-        tooltips: "复制失败"
-      }
-    };
+    const copyIcons = computed(() => {
+      const copyable = isObject(props.copyable) ? props.copyable : {};
+      return {
+        default: {
+          icon: () => (
+            <ProIcon
+              {...ctx.attrs}
+              class={"icon"}
+              name={Array.isArray(copyable.icon) ? copyable.icon[0] : "DocumentCopy"}
+              color="var(--el-color-primary)"
+            />
+          ),
+          tooltips: copyable?.tooltip ? copyable.tooltip : "复制"
+        },
+        success: {
+          icon: () => (
+            <ProIcon
+              {...ctx.attrs}
+              class={"icon"}
+              name={Array.isArray(copyable.icon) ? copyable.icon[1] : "Select"}
+              color="var(--el-color-success)"
+            />
+          ),
+          tooltips: "复制成功"
+        },
+        error: {
+          icon: () => (
+            <ProIcon
+              {...ctx.attrs}
+              class={"icon"}
+              name={Array.isArray(copyable.icon) ? copyable.icon[1] : "CloseBold"}
+              color="var(--el-color-danger)"
+            />
+          ),
+          tooltips: "复制失败"
+        }
+      };
+    });
 
-    const currentCopyIcon = computed(() => copyIcons[isCopySuccess.value]);
+    const currentCopyIcon = computed(() => copyIcons.value[isCopySuccess.value]);
 
     const content = computed(() => {
       const slots = ctx.slots.default?.();
@@ -78,11 +99,14 @@ const ProText = defineComponent<ProTextProps>(
     };
 
     watch(
-      () => props.editable,
-      editable => {
+      () => [props.editable, content.value],
+      () => {
+        const editable = props.editable;
         if (isObject(editable)) {
           currentEditText.value = editable.text ?? content.value;
           isEditing.value = editable.editing ?? false;
+        } else {
+          currentEditText.value = content.value || currentEditText.value;
         }
       },
       {
@@ -122,24 +146,21 @@ const ProText = defineComponent<ProTextProps>(
           </ElText>
           {(props.editable === true || isObject(props.editable)) && (
             <ElTooltip content={editable.tooltip ?? "编辑"} placement="top">
-              <ElIcon
-                class={"icon"}
+              <ProIcon
                 {...ctx.attrs}
+                class={"icon"}
+                name={isObject(props.editable) ? props.editable.icon || "EditPen" : "EditPen"}
                 color="var(--el-color-primary)"
                 onClick={() => {
                   onOpenEdit(editable.text);
                   editable?.onChange?.(true, editable.text ?? content.value);
                 }}
-              >
-                <EditPen />
-              </ElIcon>
+              />
             </ElTooltip>
           )}
           {(props.copyable === true || isObject(props.copyable)) && (
             <ElTooltip content={currentCopyIcon.value.tooltips} placement="top">
-              <ElIcon class={"icon"} {...ctx.attrs} color={currentCopyIcon.value.color} onClick={() => onCopy(copyable.text)}>
-                {currentCopyIcon.value.icon}
-              </ElIcon>
+              <currentCopyIcon.value.icon onClick={() => onCopy(copyable.text)} />
             </ElTooltip>
           )}
         </div>

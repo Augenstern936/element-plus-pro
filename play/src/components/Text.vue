@@ -2,14 +2,14 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-09-13 18:02:55
+ * @LastEditTime: 2024-10-06 22:35:48
  * @FilePath: \element-plus-pro\play\src\components\Text.vue
 -->
 <template>
   <el-card>
     <pro-text
       tag="i"
-      :content="'cessssss111111111111111111111122222222222222222222222222333333333333333333333334444444444444444455555555555555'"
+      :content="'通过content设置的文本，优先级低于默认插槽'"
       :truncated="true"
       :copyable="{
         text: '复制的文本',
@@ -31,8 +31,9 @@
         }
       }"
       style="font-size: 33px"
-      >测试</pro-text
     >
+      通过插槽设置文本内容
+    </pro-text>
   </el-card>
 </template>
 

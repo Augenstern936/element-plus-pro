@@ -43,8 +43,9 @@
     }
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.3.1",
+    "@element-plus-ui/pro-icon": "^1.1.0",
     "@vueuse/core": "^10.7.0",
+    "copy-to-clipboard": "^3.3.3",
     "vue-demi": "^0.14.8"
   },
   "publishConfig": {

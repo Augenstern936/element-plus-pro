@@ -1,11 +1,12 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:42:23
- * @LastEditTime: 2024-08-05 22:46:11
+ * @LastEditTime: 2024-10-06 21:57:56
  */
+import { ProIconName } from "@element-plus-ui/pro-icon";
 import { GeneratePropTypes } from "@element-plus-ui/pro-types";
 import { textProps } from "element-plus";
-import { Component, PropType } from "vue";
+import { PropType } from "vue";
 
 export const proTextProps = {
   ...textProps,
@@ -34,14 +35,14 @@ export const proTextProps = {
 
 export type ProTextCopyableConfig = {
   text?: string;
-  icon?: Component;
+  icon?: ProIconName | [ProIconName] | [ProIconName, ProIconName] | [ProIconName, ProIconName, ProIconName];
   tooltip?: string;
   onCopy?: (isSuccess: boolean, text: string) => void;
 };
 
 export type ProTextEditableConfig = {
   text?: string;
-  icon?: Component;
+  icon?: ProIconName;
   tooltip?: string;
   editing?: boolean;
   maxLength?: number;
