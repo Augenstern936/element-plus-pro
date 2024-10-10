@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-07-16 08:59:01
- * @LastEditTime: 2024-07-29 15:44:16
+ * @LastEditTime: 2024-10-09 16:06:25
 -->
 <template>
   <div style="height: calc(100vh - 40px)">
@@ -16,7 +16,6 @@
       :selection="true"
       :search="{
         colSpan: 8,
-        //searchButtonTitle: '测试',
         extraTools: [
           {
             title: '测试',
@@ -29,6 +28,7 @@
         ],
         searchBefore: params => {
           console.log(params, 'params');
+          return params;
         },
         onCollapse: (v: boolean) => console.log(v, '是否展开1')
       }"
@@ -46,10 +46,11 @@
 
 <script setup lang="ts">
 import { ProTable } from "@element-plus-ui/pro-components";
+import type { TableColumns } from "@element-plus-ui/pro-components";
 import { reactive, ref } from "vue";
 //import { server } from "../mock";
 
-const columns = ref<any[]>([
+const columns = ref<TableColumns[]>([
   {
     title: "ID",
     dataField: "id",
@@ -87,20 +88,26 @@ const columns = ref<any[]>([
     dataField: "city",
     search: true
   },
-  // {
-  // 	title: "状态",
-  // 	dataField: "age",
-  // 	valueEnum: {
-  // 		0: {
-  // 			text: "进行中",
-  // 			status: "Processing",
-  // 		},
-  // 		1: {
-  // 			text: "已完成",
-  // 			status: "Success",
-  // 		},
-  // 	},
-  // },
+  {
+    title: "状态",
+    dataField: "status",
+    //valueEnum: ["进行中", "已完成", "已失败"]
+    valueEnum: {
+      0: {
+        label: "进行中",
+        status: "processing"
+      },
+      1: {
+        label: "已完成",
+        status: "success"
+      },
+      2: {
+        label: "已失败",
+        status: "error"
+      }
+    },
+    valueEnumMark: "tag"
+  },
   // {
   // 	title: "会员",
   // 	dataField: "slider",
@@ -133,6 +140,7 @@ const data = reactive({
       age: 0,
       sex: "男",
       rate: 0,
+      status: 0,
       avatar: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
     },
     {
@@ -140,6 +148,7 @@ const data = reactive({
       name: "李斯",
       age: 30,
       sex: "女",
+      status: 1,
       avatar: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
       rate: 5
     },
@@ -148,7 +157,8 @@ const data = reactive({
       name: "王五",
       age: 15,
       sex: "男",
-      rate: 3
+      rate: 3,
+      status: 0
     }
   ]
 });

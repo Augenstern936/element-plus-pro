@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2023-11-10 00:34:25
- * @LastEditTime: 2024-09-28 22:00:11
+ * @LastEditTime: 2024-10-09 21:52:54
  * @FilePath: \element-plus-pro\play\main.ts
  */
 import ElemntPlus from "element-plus";

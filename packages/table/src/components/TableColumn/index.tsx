@@ -1,9 +1,9 @@
 import ProButton from "@element-plus-ui/pro-button";
 import { Delete, DocumentCopy, Edit, Picture, Search, UserFilled, View } from "@element-plus/icons-vue";
 import { isObject } from "@vueuse/core";
-import { ElAvatar, ElButton, ElIcon, ElImage, ElProgress, ElRate, ElSpace, ElTableColumn, ElTooltip } from "element-plus";
+import { ElAvatar, ElButton, ElIcon, ElImage, ElProgress, ElRate, ElTableColumn, ElTooltip } from "element-plus";
 import { FunctionalComponent, PropType, computed, defineComponent, inject } from "vue-demi";
-import { StatusColorEnum } from "../../enum";
+import { ProField } from "@element-plus-ui/pro-field";
 import type { ProTableProps, TableColumns, ValueType } from "../../typing";
 
 const TableColumn = defineComponent(props => {
@@ -109,7 +109,7 @@ const TableColumn = defineComponent(props => {
 
   // 渲染表格列内容
   const renderTableColumnContent = (e: { [x: string]: any }, column: TableColumns) => {
-    const { dataField: field, valueType: type, valueEnum, tooltip, ellipsis, render } = column;
+    const { dataField: field, valueType: type, valueEnum, valueEnumMark, tooltip, ellipsis, render } = column;
 
     if ((field && tableCtx.slots[field]) || (type && tableCtx.slots[type])) {
       const name = field || type;
@@ -126,19 +126,14 @@ const TableColumn = defineComponent(props => {
     }
 
     if (type === void 0 && valueEnum) {
-      const key: string = field ? e.row[field] : "";
-      const item = valueEnum[key];
-      const color = typeof item == "object" ? (item.status ? StatusColorEnum[item.status] : void 0) : void 0;
-      tdValue =
-        typeof item == "object" && Object.prototype.toString.call(item) == "[object Object]" ? (
-          <ElSpace size={5}>
-            {color && <span class={`dot ${item.status}`} style={{ "--status-color": color, background: color }} />} {item.text}
-          </ElSpace>
-        ) : (
-          item
-        );
+      const key = field ? e.row[field] : "";
+      const item = (valueEnum as any)[key] ?? "";
+      tdValue = isObject(item) ? (
+        <ProField.Radio v-model={key} mode="read" mark-shape={valueEnumMark || "disc"} valueEnum={valueEnum} />
+      ) : (
+        item
+      );
     }
-
     // if (tooltip) {
     // 	tdValue = typeof tooltip === 'function' ? tooltip(e.row) : tooltip;
     // 	//tdValue = <el-tooltip placement="top" content={tips}>{ tdValue }</el-tooltip>

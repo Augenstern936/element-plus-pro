@@ -2,7 +2,8 @@ import type { ProSearchBarProps } from "@element-plus-ui/pro-form";
 import type { ButtonProps, ColProps } from "element-plus";
 import type { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
 import { JSX } from "vue/jsx-runtime";
-import { PaginationAlignEnum, StatusColorEnum, ValueTypeEnum } from "./enum";
+import { PaginationAlignEnum, ValueTypeEnum } from "./enum";
+import { StatusColorEnum } from "@element-plus-ui/pro-types";
 
 export const proTableProps = {
   loading: {
@@ -126,6 +127,7 @@ export type TableColumns = {
   valueType?: ValueType; // 当前筛选项输入框类型
   valueOption?: ValueOption; // 筛选项数据集合
   valueEnum?: ValueEnum;
+  valueEnumMark?: "tag" | "disc" | "none";
   children?: TableColumns[]; // 子级
   render?: (row: { [x: string]: any }) => string | number | JSX.Element; // 渲染该列对应的值
 };
@@ -137,7 +139,13 @@ export type ValueOption = {
   value: string | number;
 }[];
 
-export type ValueEnum = Record<string, string | number | { text: string; status?: keyof typeof StatusColorEnum }>;
+interface ValueEnumConfig {
+  label: string;
+  color?: string;
+  status?: keyof typeof StatusColorEnum;
+}
+
+export type ValueEnum = Record<string, string | number | ValueEnumConfig> | (string | ValueEnumConfig)[];
 
 export type GlobalCellAlign = "left" | "right" | "center";
 

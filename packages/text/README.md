@@ -44,7 +44,7 @@ app.mount("#app").use(ProText);
 </template>
 
 <script setup lang="ts">
-import ProText from "@element-plus-ui/pro-text";
+  import ProText from "@element-plus-ui/pro-text";
 </script>
 ```
 
@@ -55,14 +55,14 @@ import ProText from "@element-plus-ui/pro-text";
 | 属性     | 描述      | 类型                                            | 默认值 |
 | -------- | --------- | ----------------------------------------------- | ------ |
 | content  | 文本内容，优先级低于插槽. | `string`                                        | -      |
-| copyable | 文本复制. | `boolean` / [`CopyableConfig`](#opyableConfig) | false      |
+| copyable | 文本复制. | `boolean` / [`CopyableConfig`](#CopyableConfig) | false      |
 | editable | 文本编辑. | `boolean` / [`EditableConfig`](#EditableConfig) | false      |
 
 ### CopyableConfig
 
 | 属性     | 描述      | 类型                                            | 默认值 |
 | -------- | --------- | ----------------------------------------------- | ------ |
-| text  | 复制的内容，默认不设置值为当前ProText文本内容. | `string`                                           | -      |
+| text  | 复制的文本(未设置时，值为当前ProText文本内容). | `string`                                           | -      |
 | icon  | 图标名称. | `string` / `string[]                                             | [DocumentCopy, Select, CloseBold]      |
 | tooltip  | 提示框文本. | `string`                                        | -      |
 | onCopy  | 监听复制事件. | `(isSuccess: boolean, text: string) => void`   | -      |
@@ -71,12 +71,12 @@ import ProText from "@element-plus-ui/pro-text";
 
 | 属性     | 描述      | 类型                                            | 默认值 |
 | -------- | --------- | ----------------------------------------------- | ------ |
-| text  | 编辑的文本，，默认不设置值为当前ProText文本内容. | `string`                                           | -      |
+| text  | 编辑的文本(未设置时，值为当前ProText文本内容). | `string`                                           | -      |
 | icon  | 图标名称. | `string`                                             | EditPen      |
 | tooltip  | 提示框文本. | `string`                                        | -      |
 | editing  | 是否编辑中. | `boolean`                                       | false      |
 | maxLength  | 最大输入长度. | `number`                                    | -      |
-| autoSize  | 自动resize文本域. | `boolean` / `AutoSizeConfig`                                       | -      |
+| autoSize  | 自动resize文本域. | `boolean` / [`AutoSizeConfig`](#AutoSizeConfig)                                       | -      |
 | onInput  | 监听输入事件. | `(text: string) => void`                      | -      |
 | onChange  | 监听编辑状态变化. | `(editing: boolean, text: string) => void`   | -      |
 
@@ -106,7 +106,6 @@ import ProText from "@element-plus-ui/pro-text";
   import { ProText } from "@element-plus-ui/pro-text";
 </script>
 ```
-
 <img src="https://github.com/Augenstern936/element-plus-pro/blob/master/docs/public/images/text_example/default.jpg"/>
 
 ```vue

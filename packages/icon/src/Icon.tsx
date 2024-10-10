@@ -2,18 +2,34 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-10-05 22:47:22
- * @LastEditTime: 2024-10-06 16:34:13
+ * @LastEditTime: 2024-10-10 10:44:48
  * @FilePath: \element-plus-pro\packages\icon\src\Icon.tsx
  */
 import { ElIcon } from "element-plus";
 import * as Icons from "@element-plus/icons-vue";
-import { ProIconProps } from "./typing";
-import { computed } from "vue";
+import { computed, defineComponent } from "vue-demi";
+import { ProIconName, proIconProps, ProIconProps } from "./typing";
+import type { DefineComponent, FunctionalComponent } from "vue-demi";
 
-const Icon = (props: ProIconProps) => {
-  const IconEelement = computed(() => Icons[props.name ?? "none"]);
+type ProIconSuperProps<T> = DefineComponent<T> & Record<ProIconName, FunctionalComponent<Omit<T, "name">>>;
 
-  return <ElIcon {...props}>{IconEelement.value && <IconEelement.value />}</ElIcon>;
-};
+const ProIcon = defineComponent<ProIconProps>(
+  (props, ctx) => {
+    const IconEelement = computed(() => Icons[(props.name as ProIconName) ?? "none"]);
 
-export default Icon;
+    return () => <ElIcon {...props}>{ctx.slots?.default?.() || (IconEelement.value && <IconEelement.value />)}</ElIcon>;
+  },
+  {
+    name: "ProIcon"
+  }
+) as ProIconSuperProps<ProIconProps>;
+
+ProIcon.props = proIconProps;
+
+for (const key in Icons) {
+  ProIcon[key] = (props: Omit<ProIconProps, "name">) => {
+    return <ProIcon {...props} name={key as ProIconName} />;
+  };
+}
+
+export default ProIcon;

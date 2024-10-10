@@ -22,7 +22,7 @@
   },
   "sideEffects": false,
   "main": "lib/index.js",
-  "module": "es/index.mjs",
+  "module": "src/index.ts",
   "types": "es/index.d.ts",
   "files": [
     "lib",
@@ -32,6 +32,7 @@
   "dependencies": {
     "@element-plus-ui/pro-button": "workspace:^",
     "@element-plus-ui/pro-form": "workspace:^",
+    "@element-plus-ui/pro-field": "workspace:^",
     "@element-plus/icons-vue": "^2.3.1",
     "@types/uuid": "^9.0.7",
     "@vueuse/core": "^10.11.1",

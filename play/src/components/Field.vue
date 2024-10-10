@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-08-08 17:11:29
+ * @LastEditTime: 2024-10-09 23:24:42
  * @FilePath: \element-plus-pro\play\src\components\Field.vue
 -->
 <template>
@@ -25,10 +25,11 @@
       <ProField.Progress :percentage="50" />
       <ProText>11</ProText>
     </el-space>
-    <ProField.CheckboxButton
-      v-model="test"
+    <!-- <ProField.Radio /> -->
+    <ProField.Radio
+      v-model="test[0]"
       :mode="'read'"
-      :mark-shape="'disclosure-closed'"
+      :mark-shape="'disc'"
       :value-enum="{
         1: {
           label: '拔都',
@@ -48,10 +49,12 @@
 </template>
 
 <script setup lang="ts">
-import { ProField } from "@element-plus-ui/pro-components";
+import { ProField } from "@element-plus-ui/pro-field";
 import { ref } from "vue";
 
 const test = ref([1, 3]);
 
 const testSwitch = ref(false);
+
+console.log(ProField, "Radio");
 </script>

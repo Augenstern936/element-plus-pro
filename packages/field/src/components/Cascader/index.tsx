@@ -2,24 +2,23 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-09-13 15:05:45
+ * @LastEditTime: 2024-10-08 22:07:34
  * @FilePath: \element-plus-pro\packages\field\src\components\Cascader\index.tsx
  */
 import { useVModel } from "@vueuse/core";
 import { ElCascader } from "element-plus";
-// import "element-plus/theme-chalk/src/cascader.scss";
 import { defineComponent, DefineComponent } from "vue-demi";
 import { proFieldCascaderProps, ProFieldCascaderProps } from "./props";
 
 const ProFieldCascader = defineComponent<ProFieldCascaderProps>(
-	(props, ctx) => {
-		const model = useVModel(props, "modelValue", ctx.emit);
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
 
-		return () => <ElCascader {...props} v-model={model.value} />;
-	},
-	{
-		name: "ProFieldCascader",
-	}
+    return () => <ElCascader {...props} v-model={model.value} />;
+  },
+  {
+    name: "ProFieldCascader"
+  }
 ) as DefineComponent<ProFieldCascaderProps>;
 
 ProFieldCascader.props = proFieldCascaderProps as any;

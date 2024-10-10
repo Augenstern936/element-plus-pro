@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-09 22:25:21
- * @LastEditTime: 2024-10-04 11:03:52
+ * @LastEditTime: 2024-10-08 16:51:56
  * @FilePath: \element-plus-pro\play\src\components\Form.vue
 -->
 <template>
@@ -26,12 +26,18 @@
       <ProFormAvatar
         label="头像2"
         :order="2"
-        :fieldProps="{ gender: 'male', src: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg' }"
+        :fieldProps="{ mark: 'on-line', src: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg' }"
       />
       <ProFormAvatar
         label="头像3"
         :order="3"
-        :fieldProps="{ gender: 'female', src: 'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg' }"
+        :fieldProps="{
+          mark: 'off-line',
+          src: 'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',
+          uploadProps: {
+            action: '11'
+          }
+        }"
       />
       <ProForm.Switch v-model="form.switch" :order="1" label="开关测试:" activeText="已打开" inactive-text="测试" />
     </ProForm>
@@ -69,7 +75,7 @@ const formItems = ref([
     dataField: "avatar",
     valueType: "avatar",
     fieldProps: {
-      gender: "male",
+      mark: "male",
       src: "https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg"
     }
   },

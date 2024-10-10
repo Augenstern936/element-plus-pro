@@ -76,7 +76,7 @@
     "tsx": "^3.14.0",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
-    "vite-plugin-auto-inject-css": "^1.0.0",
+    "vite-plugin-auto-inject-css": "^1.0.1",
     "vite-plugin-dts": "^3.9.1",
     "vue": "^3.3.7",
     "vue-demi": "^0.14.8",
