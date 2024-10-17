@@ -1,6 +1,6 @@
 {
   "name": "@element-plus-ui/pro-field",
-  "version": "0.0.1",
+  "version": "0.0.1-1",
   "description": "🏆 原子信息组件，统一 ProForm、ProTable 等组件里面的字段定义。",
   "keywords": [
     "ui",
