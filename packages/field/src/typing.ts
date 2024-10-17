@@ -1,11 +1,12 @@
 /*
  * @Description:
  * @Date: 2024-05-28 16:49:08
- * @LastEditTime: 2024-07-11 20:54:01
+ * @LastEditTime: 2024-10-16 18:00:57
  */
 import { DefineComponent } from "vue-demi";
+import { GeneratePropTypes } from "@element-plus-ui/pro-types";
 import components, {
-  ProFieldAvatarProps,
+  ProFieldUploadAvatarProps,
   ProFieldCascaderProps,
   ProFieldCheckboxProps,
   ProFieldColorProps,
@@ -18,7 +19,7 @@ import components, {
   ProFieldDateTimeRangeProps,
   ProFieldDateWeekProps,
   ProFieldDateYearProps,
-  ProFieldImageProps,
+  ProFieldUploadImageProps,
   ProFieldNumberProps,
   ProFieldPasswordProps,
   ProFieldProgressProps,
@@ -32,148 +33,126 @@ import components, {
   ProFieldTimeProps,
   ProFieldTimeRangeProps,
   ProFieldTimeSelectProps,
-  ProFieldTreeSelectProps
+  ProFieldTreeSelectProps,
+  ProFieldVirtualizedSelectProps
 } from "./components";
+import { proFieldProps } from "./props";
 
-type TextFieldProps = {
+interface TextFieldProps extends Pick<ProFieldTextProps, "fieldProps"> {
   type?: "text";
-  fieldProps?: ProFieldTextProps;
-};
+}
 
-type NumberFieldProps = {
+interface NumberFieldProps extends Pick<ProFieldNumberProps, "fieldProps"> {
   type?: "number";
-  fieldProps?: ProFieldNumberProps;
-};
+}
 
-type PasswordFieldProps = {
+interface PasswordFieldProps extends Pick<ProFieldPasswordProps, "fieldProps"> {
   type?: "password";
-  fieldProps?: ProFieldPasswordProps;
-};
+}
 
-type TextareaFieldProps = {
+interface TextareaFieldProps extends Pick<ProFieldTextareaProps, "fieldProps"> {
   type?: "textarea";
-  fieldProps?: ProFieldTextareaProps;
-};
+}
 
-type DateFieldProps = {
+interface DateFieldProps extends Pick<ProFieldDateProps, "fieldProps"> {
   type: "date";
-  fieldProps?: ProFieldDateProps;
-};
+}
 
-type DateRangeFieldProps = {
+interface DateRangeFieldProps extends Pick<ProFieldDateRangeProps, "fieldProps"> {
   type: "dateRange";
-  fieldProps?: ProFieldDateRangeProps;
-};
+}
 
-type DatesFieldProps = {
+interface DatesFieldProps extends Pick<ProFieldDatesProps, "fieldProps"> {
   type: "dates";
-  fieldProps?: ProFieldDatesProps;
-};
+}
 
-type DateYearFieldProps = {
+interface DateYearFieldProps extends Pick<ProFieldDateYearProps, "fieldProps"> {
   type: "dateYear";
-  fieldProps?: ProFieldDateYearProps;
-};
+}
 
-type DateMonthFieldProps = {
+interface DateMonthFieldProps extends Pick<ProFieldDateMonthProps, "fieldProps"> {
   type: "dateMonth";
-  fieldProps?: ProFieldDateMonthProps;
-};
+}
 
-type DateMonthRangeFieldProps = {
+interface DateMonthRangeFieldProps extends Pick<ProFieldDateMonthRangeProps, "fieldProps"> {
   type: "dateMonthRange";
-  fieldProps?: ProFieldDateMonthRangeProps;
-};
+}
 
-type DateTimeWeekFieldProps = {
+interface DateTimeWeekFieldProps extends Pick<ProFieldDateWeekProps, "fieldProps"> {
   type: "dateWeek";
-  fieldProps?: ProFieldDateWeekProps;
-};
+}
 
-type DateTimeFieldProps = {
+interface DateTimeFieldProps extends Pick<ProFieldDateTimeProps, "fieldProps"> {
   type: "dateTime";
-  fieldProps?: ProFieldDateTimeProps;
-};
+}
 
-type DateTimeRangeFieldProps = {
+interface DateTimeRangeFieldProps extends Pick<ProFieldDateTimeRangeProps, "fieldProps"> {
   type: "dateTimeRange";
-  fieldProps?: ProFieldDateTimeRangeProps;
-};
+}
 
-type TimeFieldProps = {
+interface TimeFieldProps extends Pick<ProFieldTimeProps, "fieldProps"> {
   type: "time";
-  fieldProps?: ProFieldTimeProps;
-};
+}
 
-type TimeRangeFieldProps = {
+interface TimeRangeFieldProps extends Pick<ProFieldTimeRangeProps, "fieldProps"> {
   type: "timeRange";
-  fieldProps?: ProFieldTimeRangeProps;
-};
+}
 
-type TimeSelectFieldProps = {
+interface TimeSelectFieldProps extends Pick<ProFieldTimeSelectProps, "fieldProps"> {
   type: "timeSelect";
-  fieldProps?: ProFieldTimeSelectProps;
-};
+}
 
-type SelectFieldProps = {
+interface SelectFieldProps extends Pick<ProFieldSelectProps, "fieldProps"> {
   type: "select";
-  fieldProps?: ProFieldSelectProps;
-};
+}
 
-type AvatarFieldProps = {
-  type?: "avatar";
-  fieldProps?: ProFieldAvatarProps;
-};
+interface AvatarFieldProps extends Pick<ProFieldUploadAvatarProps, "fieldProps"> {
+  type?: "uploadAvatar";
+}
 
-type SwitchFieldProps = {
+interface SwitchFieldProps extends Pick<ProFieldSwitchProps, "fieldProps"> {
   type?: "switch";
-  fieldProps?: ProFieldSwitchProps;
-};
+}
 
-type CascaderFieldProps = {
+interface CascaderFieldProps extends Pick<ProFieldCascaderProps, "fieldProps"> {
   type?: "cascader";
-  fieldProps?: ProFieldCascaderProps;
-};
+}
 
-type CheckboxFieldProps = {
+interface CheckboxFieldProps extends Pick<ProFieldCheckboxProps, "fieldProps"> {
   type?: "checkbox" | "checkboxButton";
-  fieldProps?: ProFieldCheckboxProps;
-};
+}
 
-type ColorFieldProps = {
+interface ColorFieldProps extends Pick<ProFieldColorProps, "fieldProps"> {
   type?: "color";
-  fieldProps?: ProFieldColorProps;
-};
+}
 
-type ImageFieldProps = {
-  type?: "image";
-  fieldProps?: ProFieldImageProps;
-};
+interface ImageFieldProps extends Pick<ProFieldUploadImageProps, "fieldProps"> {
+  type?: "uploadImage";
+}
 
-type ProgressFieldProps = {
+interface ProgressFieldProps extends Pick<ProFieldProgressProps, "fieldProps"> {
   type?: "progress";
-  fieldProps?: ProFieldProgressProps;
-};
+}
 
-type RateFieldProps = {
+interface RateFieldProps extends Pick<ProFieldRateProps, "fieldProps"> {
   type?: "rate";
-  fieldProps?: ProFieldRateProps;
-};
+}
 
-type RadioFieldProps = {
+interface RadioFieldProps extends Pick<ProFieldRadioProps, "fieldProps"> {
   type?: "radio" | "radioButton";
-  fieldProps?: ProFieldRadioProps;
-};
+}
 
-type SliderFieldProps = {
+interface SliderFieldProps extends Pick<ProFieldSliderProps, "fieldProps"> {
   type?: "slider";
-  fieldProps?: ProFieldSliderProps;
-};
+}
 
-type TreeSelectFieldProps = {
+interface TreeSelectFieldProps extends Pick<ProFieldTreeSelectProps, "fieldProps"> {
   type?: "treeSelect";
-  fieldProps?: ProFieldTreeSelectProps;
-};
+}
+
+interface VirtualizedSelectProps extends Pick<ProFieldVirtualizedSelectProps, "fieldProps"> {
+  type?: "virtualizedSelect";
+}
 
 export type ProFieldMode = "read" | "edit";
 
@@ -207,7 +186,8 @@ export type FieldProps =
   | RadioFieldProps
   | RateFieldProps
   | SliderFieldProps
-  | TreeSelectFieldProps;
+  | TreeSelectFieldProps
+  | VirtualizedSelectProps;
 
 export type ProFieldSuperProps<T> = DefineComponent<T> & {
   Text: DefineComponent<ProFieldTextProps>;
@@ -233,11 +213,14 @@ export type ProFieldSuperProps<T> = DefineComponent<T> & {
   Radio: DefineComponent<ProFieldRadioProps>;
   RadioButton: DefineComponent<ProFieldRadioProps>;
   Switch: DefineComponent<ProFieldSwitchProps>;
-  Avatar: DefineComponent<ProFieldAvatarProps>;
-  Image: DefineComponent<ProFieldImageProps>;
+  UploadAvatar: DefineComponent<ProFieldUploadAvatarProps>;
+  UploadImage: DefineComponent<ProFieldUploadImageProps>;
   Rate: DefineComponent<ProFieldRateProps>;
   Color: DefineComponent<ProFieldColorProps>;
   Cascader: DefineComponent<ProFieldCascaderProps>;
   Slider: DefineComponent<ProFieldSliderProps>;
   Progress: DefineComponent<ProFieldProgressProps>;
+  VirtualizedSelect: DefineComponent<ProFieldVirtualizedSelectProps>;
 };
+
+export type ProFieldProps = Omit<GeneratePropTypes<typeof proFieldProps>, "type" | "fieldProps"> & FieldProps;

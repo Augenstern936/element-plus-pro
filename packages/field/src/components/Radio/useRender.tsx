@@ -2,42 +2,63 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-07 12:15:18
- * @LastEditTime: 2024-07-09 17:02:08
+ * @LastEditTime: 2024-10-16 21:40:00
  * @FilePath: \element-plus-pro\packages\field\src\components\Radio\useRender.tsx
  */
-import { enumTransformOptions, getValueOptionConfigs } from "@element-plus-ui/pro-utils";
-import { ElRadio, ElRadioButton, ElRadioGroup } from "element-plus";
+import { enumTransformOptions, getVModelSelectedOptions } from "@element-plus-ui/pro-utils";
+import { ElRadio, ElRadioButton, ElRadioGroup, ElText } from "element-plus";
 import { Ref, computed } from "vue-demi";
-import { ReadOptions } from "../widgets";
+import { ReadOptions, Skeleton } from "../widgets";
+import { ValueEnum } from "@element-plus-ui/pro-types";
+import { useFetchData } from "@element-plus-ui/pro-hooks";
 import { ProFieldRadioButtonProps, ProFieldRadioProps } from "./typing";
 
 function useRender(type: "radio" | "radio-button", props: ProFieldRadioProps | ProFieldRadioButtonProps, model: Ref) {
   const RenderElement = type === "radio" ? ElRadio : ElRadioButton;
 
+  const { loading, data } = useFetchData<ValueEnum>({
+    params: {},
+    request: props?.request
+  });
+
   const options = computed(() => {
-    return props?.valueOptions?.length ? props.valueOptions : enumTransformOptions(props.valueEnum ?? {});
+    if (typeof props.request === "function") {
+      return enumTransformOptions(data.value, props.mappingEnumValue);
+    }
+    return enumTransformOptions(props.valueEnum, props.mappingEnumValue);
   });
 
   const element = computed(() => {
     if (props.mode === "read") {
-      const value = getValueOptionConfigs(model.value ?? [], options.value);
-      return !value?.length ? model.value : <ReadOptions markShape={props.markShape} value={value} />;
+      const selectedOptions = getVModelSelectedOptions(model.value ?? [], options.value);
+      return selectedOptions.length ? (
+        <ReadOptions value={selectedOptions} marker={props.marker} separator={props.separator} />
+      ) : (
+        <ElText>{props.emptyText}</ElText>
+      );
     }
     if (props.mode === "edit") {
-      return (
-        <ElRadioGroup v-model={model.value}>
+      const Element = (
+        <ElRadioGroup {...props?.fieldProps} v-model={model.value}>
           {options.value?.map(option => (
-            <RenderElement {...option} label={option.value} key={option.label}>
+            <RenderElement {...option} label={option.value} data-key={option.label}>
               {option.label}
             </RenderElement>
           ))}
         </ElRadioGroup>
       );
+      return typeof props.request === "function" ? (
+        <Skeleton loading={loading.value} columns={4} wSize={60} hSize={18} gap={30}>
+          {Element}
+        </Skeleton>
+      ) : (
+        Element
+      );
     }
     return "";
   });
 
-  return () => element.value;
+  return () => <div style={{ width: "100%" }}>{element.value}</div>;
 }
 
 export default useRender;

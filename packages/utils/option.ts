@@ -2,22 +2,43 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-09-13 21:28:34
- * @LastEditTime: 2024-10-09 11:56:37
+ * @LastEditTime: 2024-10-16 15:06:50
  * @FilePath: \element-plus-pro\packages\utils\option.ts
  */
-import { VModelOptionValue, ValueOption } from "@element-plus-ui/pro-types";
+import { StatusColorEnum, VModelOptionValue, ValueOption } from "@element-plus-ui/pro-types";
 
 /**
- * 获取当前v-model选中的值配置项
- * @param value
- * @param options
+ * 获取Option选项设置的颜色
+ * @param param
+ * @returns
  */
-export function getValueOptionConfigs(value: VModelOptionValue, options: ValueOption[]) {
-  if ((!value && value !== 0) || !options.length) {
-    return [];
+export function getOptionStatusColor({ color, status }: ValueOption) {
+  return status && StatusColorEnum[status] ? StatusColorEnum[status] : (color ?? "default");
+}
+
+/**
+ * 获取选中项
+ * @param model
+ * @param datas
+ * @returns
+ */
+export function getVModelSelectedOptions(model: VModelOptionValue, datas: ValueOption[]) {
+  let options: ValueOption[] = [];
+  const search = (terget: string | number | boolean, values: ValueOption[]) => {
+    if (Array.isArray(values) && values.length) {
+      values?.forEach(item => {
+        const children = item.children ?? [];
+        if (item.value === terget) {
+          return options.push(item);
+        }
+        search(terget, children);
+      });
+    }
+    return options;
+  };
+  if (Array.isArray(model)) {
+    model.forEach(v => search(v, datas));
+    return options;
   }
-  return options?.filter(option => {
-    const vmodel = Array.isArray(value) ? value : [value];
-    return vmodel?.some(v => v == option.value);
-  });
+  return search(model, datas);
 }

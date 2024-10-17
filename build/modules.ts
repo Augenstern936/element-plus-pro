@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-10-04 11:35:05
+ * @LastEditTime: 2024-10-15 11:26:40
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";
@@ -38,20 +38,10 @@ export default async () => {
       visualizer() as PluginOption,
       createAutoInjectCssPlugin({
         mode: "peerDependencies",
+        baseCss: false,
         resolvers: [
           ElementPlusResolver({
-            inject: name => {
-              if (name === "el-image") {
-                return [`element-plus/theme-chalk/${name}.css`, `element-plus/theme-chalk/el-image-viewer.css`];
-              }
-              if (name === "el-tooltip") {
-                return [`element-plus/theme-chalk/${name}.css`, `element-plus/theme-chalk/el-popper.css`];
-              }
-              if (name === "el-message-box") {
-                return [`element-plus/theme-chalk/${name}.css`, `element-plus/theme-chalk/el-overlay.css`];
-              }
-              return `element-plus/theme-chalk/${name}.css`;
-            }
+            inject: () => "element-plus/theme-chalk/index.css"
           })
         ]
       }),

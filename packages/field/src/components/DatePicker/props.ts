@@ -2,48 +2,124 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-10 00:18:39
- * @LastEditTime: 2024-07-09 17:01:22
+ * @LastEditTime: 2024-10-16 22:24:22
  * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\props.ts
  */
-import { datePickerProps } from "element-plus";
-import type { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
-import { ProFieldMode } from "../../typing";
+import { DatePickerProps, DatePickType } from "element-plus";
+import { excludeObjectProperty } from "@element-plus-ui/pro-utils";
+import type { ExtractPropTypes, PropType } from "vue-demi";
+import { commomFieldProps } from "../../props";
 
 export const proDatePickerProps = {
-	...datePickerProps,
-	mode: {
-		type: String as PropType<ProFieldMode>,
-		default: "edit",
-	},
-	placeholder: {
-		type: [String, Array as unknown as PropType<[string] | [string, string]>],
-		default: void 0,
-	},
-	style: {
-		type: Object as PropType<CSSProperties>,
-		default: {},
-	},
+  ...commomFieldProps,
+  modelValue: {
+    type: [String, Number, Array as PropType<(string | number)[]>],
+    default: void 0
+  },
+  type: {
+    type: String as PropType<DatePickType>
+  },
+  placeholder: {
+    type: [String, Array as unknown as PropType<[string] | [string, string]>],
+    default: void 0
+  },
+  fieldProps: {
+    type: Object as PropType<Partial<Omit<DatePickerProps, "modelValue">>>
+  }
 };
 
-export type ProDatePickerProps = Omit<
-	Partial<ExtractPropTypes<typeof proDatePickerProps>>,
-	"startPlaceholder" | "endPlaceholder"
->;
+const commomPropsEntity = excludeObjectProperty(proDatePickerProps, ["type"]);
 
-export type ProFieldDateProps = Omit<ProDatePickerProps, "type">;
+export const proFieldDateProps = commomPropsEntity;
 
-export type ProFieldDatesProps = Omit<ProDatePickerProps, "type">;
+export const proFieldDatesProps = {
+  ...commomPropsEntity,
+  modelValue: {
+    type: Array as PropType<Array<string | number>>,
+    default: []
+  }
+};
 
-export type ProFieldDateTimeProps = Omit<ProDatePickerProps, "type">;
+export const proFieldDateTimeProps = commomPropsEntity;
 
-export type ProFieldDateWeekProps = Omit<ProDatePickerProps, "type">;
+export const proFieldDateWeekProps = commomPropsEntity;
 
-export type ProFieldDateMonthProps = Omit<ProDatePickerProps, "type">;
+export const proFieldDateMonthProps = commomPropsEntity;
 
-export type ProFieldDateYearProps = Omit<ProDatePickerProps, "type">;
+export const proFieldDateMonthsProps = {
+  ...proDatePickerProps,
+  modelValue: {
+    type: Array as PropType<Array<string | number>>,
+    default: []
+  }
+};
 
-export type ProFieldDateRangeProps = Omit<ProDatePickerProps, "type">;
+export const proFieldDateYearProps = commomPropsEntity;
 
-export type ProFieldDateTimeRangeProps = Omit<ProDatePickerProps, "type">;
+export const proFieldDateYearsProps = {
+  ...commomPropsEntity,
+  modelValue: {
+    type: Array as PropType<Array<string | number>>,
+    default: []
+  }
+};
 
-export type ProFieldDateMonthRangeProps = Omit<ProDatePickerProps, "type">;
+export const proFieldDateRangeProps = {
+  ...commomPropsEntity,
+  modelValue: {
+    type: Array as PropType<Array<string | number>>,
+    default: []
+  },
+  separator: {
+    type: String,
+    default: "-"
+  }
+};
+
+export const proFieldDateTimeRangeProps = {
+  ...commomPropsEntity,
+  modelValue: {
+    type: Array as PropType<Array<string | number>>,
+    default: []
+  },
+  separator: {
+    type: String,
+    default: "-"
+  }
+};
+
+export const proFieldDateMonthRangeProps = {
+  ...commomPropsEntity,
+  modelValue: {
+    type: Array as PropType<Array<string | number>>,
+    default: []
+  },
+  separator: {
+    type: String,
+    default: "-"
+  }
+};
+
+export type ProDatePickerProps = Partial<ExtractPropTypes<typeof proDatePickerProps>>;
+
+export type ProFieldDateProps = Partial<ExtractPropTypes<typeof proFieldDateProps>>;
+
+export type ProFieldDatesProps = Partial<ExtractPropTypes<typeof proFieldDatesProps>>;
+
+export type ProFieldDateTimeProps = Partial<ExtractPropTypes<typeof proFieldDateTimeProps>>;
+
+export type ProFieldDateWeekProps = Partial<ExtractPropTypes<typeof proFieldDateWeekProps>>;
+
+export type ProFieldDateMonthProps = Partial<ExtractPropTypes<typeof proFieldDateMonthProps>>;
+
+export type ProFieldDateMonthsProps = Partial<ExtractPropTypes<typeof proFieldDateMonthsProps>>;
+
+export type ProFieldDateYearProps = Partial<ExtractPropTypes<typeof proFieldDateYearProps>>;
+
+export type ProFieldDateYearsProps = Partial<ExtractPropTypes<typeof proFieldDateYearsProps>>;
+
+export type ProFieldDateRangeProps = Partial<ExtractPropTypes<typeof proFieldDateRangeProps>>;
+
+export type ProFieldDateTimeRangeProps = Partial<ExtractPropTypes<typeof proFieldDateTimeRangeProps>>;
+
+export type ProFieldDateMonthRangeProps = Partial<ExtractPropTypes<typeof proFieldDateMonthRangeProps>>;

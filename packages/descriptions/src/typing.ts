@@ -1,9 +1,9 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:42:23
- * @LastEditTime: 2024-07-09 16:58:12
+ * @LastEditTime: 2024-10-15 16:03:11
  */
-import { GeneratePropTypes, MarkShape } from "@element-plus-ui/pro-types";
+import { GeneratePropTypes, Marker } from "@element-plus-ui/pro-types";
 import { descriptionProps } from "element-plus";
 import type { PropType } from "vue-demi";
 import { CSSProperties } from "vue-demi";
@@ -43,7 +43,7 @@ export type TitleJsonConfig = {
 
 export type TitleMark = {
   color?: string;
-  shape?: "bar" | MarkShape;
+  shape?: "bar" | Marker;
 };
 
 export type ProDescriptionsTitle = string | TitleJsonConfig | Array<string>;

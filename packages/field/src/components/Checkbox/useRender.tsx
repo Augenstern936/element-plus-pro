@@ -2,43 +2,70 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-07 12:15:18
- * @LastEditTime: 2024-07-09 16:59:01
+ * @LastEditTime: 2024-10-16 21:44:44
  * @FilePath: \element-plus-pro\packages\field\src\components\Checkbox\useRender.tsx
  */
-import { enumTransformOptions, getValueOptionConfigs } from "@element-plus-ui/pro-utils";
-import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup } from "element-plus";
-import { Ref, computed } from "vue-demi";
-import { ReadOptions } from "../widgets";
+import { enumTransformOptions, getVModelSelectedOptions } from "@element-plus-ui/pro-utils";
+import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup, ElText } from "element-plus";
+import { useFetchData } from "@element-plus-ui/pro-hooks";
+import { ValueEnum } from "@element-plus-ui/pro-types";
+import { Ref, SetupContext, computed } from "vue-demi";
+import { ReadOptions, Skeleton } from "../widgets";
 import { ProFieldCheckboxButtonProps, ProFieldCheckboxProps } from "./typing";
 
-function useRender(type: "checkbox" | "checkbox-button", props: ProFieldCheckboxProps | ProFieldCheckboxButtonProps, model: Ref) {
+function useRender(
+  type: "checkbox" | "checkbox-button",
+  props: ProFieldCheckboxProps | ProFieldCheckboxButtonProps,
+  model: Ref,
+  ctx: SetupContext
+) {
   const RenderElement = type === "checkbox" ? ElCheckbox : ElCheckboxButton;
 
+  const { loading, data } = useFetchData<ValueEnum>({
+    params: {},
+    request: props?.request
+  });
+
   const options = computed(() => {
-    return props?.valueOptions?.length ? props.valueOptions : enumTransformOptions(props.valueEnum ?? {});
+    if (typeof props.request === "function") {
+      return enumTransformOptions(data.value, props.mappingEnumValue);
+    }
+    return enumTransformOptions(props.valueEnum, props.mappingEnumValue);
   });
 
   const element = computed(() => {
     if (props.mode === "read") {
-      return <ReadOptions markShape={props.markShape} value={getValueOptionConfigs(props.modelValue ?? [], options.value)} />;
+      const selectedOptions = getVModelSelectedOptions(props.modelValue ?? [], options.value);
+      return selectedOptions.length ? (
+        <ReadOptions value={selectedOptions} marker={props.marker} separator={props.separator} />
+      ) : (
+        <ElText>{props.emptyText}</ElText>
+      );
     }
     if (props.mode === "edit") {
-      return (
-        <ElCheckboxGroup v-model={model.value}>
+      const Element = (
+        <ElCheckboxGroup {...props?.fieldProps} v-model={model.value}>
           {options.value?.map(option => {
             return (
-              <RenderElement {...option} label={option.value} key={option.label}>
+              <RenderElement {...option} label={option.value} data-key={option.label} v-slots={ctx?.slots}>
                 {option.label}
               </RenderElement>
             );
           })}
         </ElCheckboxGroup>
       );
+      return typeof props.request === "function" ? (
+        <Skeleton loading={loading.value} columns={4} wSize={60} hSize={18} gap={30}>
+          {Element}
+        </Skeleton>
+      ) : (
+        Element
+      );
     }
     return "";
   });
 
-  return () => element.value;
+  return () => <div style={{ width: "100%" }}>{element.value}</div>;
 }
 
 export default useRender;

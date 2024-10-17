@@ -2,10 +2,10 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-05-17 19:46:42
- * @LastEditTime: 2024-09-03 16:39:58
+ * @LastEditTime: 2024-10-13 16:56:22
  * @FilePath: \element-plus-pro\packages\utils\transform.ts
  */
-import { CssUnitEnum, ValueEnum } from "@element-plus-ui/pro-types";
+import { CssUnitEnum, ValueEnum, ValueOption } from "@element-plus-ui/pro-types";
 import { isObject } from "@vueuse/core";
 
 /**
@@ -38,16 +38,37 @@ export function toCssUnitValue(val: number | string, unit: keyof typeof CssUnitE
   return newVal;
 }
 
-export function enumTransformOptions(valueEnum: ValueEnum<{ [x: string]: any }>) {
-  const options = Object.keys(valueEnum).map(key => {
-    const item = valueEnum[key];
-    const baseOption = {
-      label: isObject(item) ? (item as Record<string, any>).label : item,
-      value: key
-    };
-    return !isObject(item) ? baseOption : { ...(item as any), ...baseOption };
-  });
-  return options ?? [];
+export function enumTransformOptions(valueEnum?: ValueEnum, mappingEnumValue?: "label" | "index"): ValueOption[] {
+  if (Array.isArray(valueEnum) && valueEnum.length) {
+    return valueEnum.map((item, index) => {
+      if (isObject(item)) {
+        const option = {
+          ...item,
+          value: item.value ?? (mappingEnumValue === "index" ? index : item.label)
+        };
+        if (Array.isArray(item.children) && item.children.length) {
+          return {
+            ...option,
+            children: enumTransformOptions(item.children)
+          };
+        }
+        return option;
+      }
+      return {
+        label: item,
+        value: mappingEnumValue === "index" ? index : item
+      };
+    });
+  }
+
+  if (isObject(valueEnum) && Object.keys(valueEnum).length) {
+    return Object.keys(valueEnum).map(value => {
+      const item = valueEnum[value as keyof typeof valueEnum];
+      return isObject(item) ? { ...item, value } : { label: item, value };
+    });
+  }
+
+  return [];
 }
 
 export function toEnum(options: { label: string; value: string | number | boolean }[]) {

@@ -1,22 +1,21 @@
 /*
  * @Description:
  * @Date: 2024-04-15 10:48:08
- * @LastEditTime: 2024-07-09 17:01:50
+ * @LastEditTime: 2024-10-16 22:24:54
  */
-import { progressProps } from "element-plus";
-import { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
-import { ProFieldMode } from "../../typing";
+import { ProgressProps } from "element-plus";
+import { ExtractPropTypes, PropType } from "vue-demi";
+import { commomFieldProps } from "../../props";
 
 export const proFieldProgressProps = {
-	...progressProps,
-	mode: {
-		type: String as PropType<ProFieldMode>,
-		default: "edit",
-	},
-	style: {
-		type: Object as PropType<CSSProperties>,
-		default: {},
-	},
+  ...commomFieldProps,
+  modelValue: {
+    type: Number,
+    default: 0
+  },
+  fieldProps: {
+    type: Object as PropType<Partial<ProgressProps>>
+  }
 };
 
 export type ProFieldProgressProps = Partial<ExtractPropTypes<typeof proFieldProgressProps>>;

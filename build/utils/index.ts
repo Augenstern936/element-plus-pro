@@ -4,7 +4,7 @@ import { resolve } from "path";
 /*
  * @Description:
  * @Date: 2024-05-21 14:03:12
- * @LastEditTime: 2024-10-04 20:41:41
+ * @LastEditTime: 2024-10-15 10:43:39
  */
 export * from "./pkg";
 export * from "./rollup";
@@ -35,7 +35,8 @@ export function getOutputConfig(format: "es" | "cjs", preserveModules: boolean):
     preserveModules,
     preserveModulesRoot: resolve(process.cwd(), "src"),
     exports: format === "cjs" ? "named" : undefined,
-    entryFileNames: `[name].${format == "es" ? "mjs" : "js"}`
+    entryFileNames: `[name].${format == "es" ? "mjs" : "js"}`,
+    assetFileNames: "styles/[name][extname]"
     // hoistTransitiveImports: false
   };
 }

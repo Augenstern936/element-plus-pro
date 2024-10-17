@@ -1,41 +1,41 @@
-import { MarkShape, StatusColorEnum, ValueOption } from "@element-plus-ui/pro-types";
-import { ElTag, ElText } from "element-plus";
-import { Fragment, computed } from "vue-demi";
-import "./style.scss";
-
 /*
  * @Description: 阅读模式下选项值展示的形式
  * @Author: wangbowen936926
  * @Date: 2024-06-01 14:12:33
- * @LastEditTime: 2024-07-09 17:03:26
+ * @LastEditTime: 2024-10-16 11:18:57
  * @FilePath: \element-plus-pro\packages\field\src\components\widgets\ReadOptions\index.tsx
  */
-interface ReadOptionsProps {
-  value: ValueOption[];
-  markShape?: "tag" | MarkShape;
-  split?: string;
+import { Marker, ValueOption } from "@element-plus-ui/pro-types";
+import { getOptionStatusColor } from "@element-plus-ui/pro-utils";
+import { ElTag, ElText } from "element-plus";
+import { computed } from "vue-demi";
+import "./readOptions.scss";
+import { isObject } from "@vueuse/core";
+export interface ReadOptionsProps {
+  value: (string | number | boolean)[] | ValueOption[];
+  marker?: "tag" | Marker;
+  textColor?: string;
+  separator?: string;
 }
 
-export const ReadOptions = (props: ReadOptionsProps) => {
-  const getColor = ({ color, status }: ValueOption) => {
-    return status && StatusColorEnum[status] ? StatusColorEnum[status] : (color ?? "default");
-  };
+export const marker = ["tag", "disc", "circle", "square", "disclosure-open", "disclosure-closed"];
 
-  type ModeComponentProps = { option: ValueOption; split: string };
+export const ReadOptions = (props: ReadOptionsProps) => {
+  type ModeComponentProps = { option: ValueOption; separator: string };
 
   const isShowMark = computed(() => {
-    return ["tag", "disc", "circle", "square", "disclosure-open", "disclosure-closed"].some(mark => mark === props.markShape);
+    return marker.some(mark => mark === props.marker);
   });
 
   const components = {
-    text: ({ option, split }: ModeComponentProps) => (
-      <ElText style={{ color: !isShowMark.value ? getColor(option) : "default" }}>
+    text: ({ option, separator }: ModeComponentProps) => (
+      <ElText style={{ color: props.textColor || (!isShowMark.value ? getOptionStatusColor(option) : "default") }}>
         {option.label}
-        <i style={{ color: "#606266" }}>{split}</i>
+        <i style={{ color: "#606266" }}>{separator}</i>
       </ElText>
     ),
-    tag: ({ option, split }: ModeComponentProps) => {
-      const color = getColor(option);
+    tag: ({ option, separator }: ModeComponentProps) => {
+      const color = getOptionStatusColor(option);
       return (
         <>
           <ElTag
@@ -47,43 +47,44 @@ export const ReadOptions = (props: ReadOptionsProps) => {
           >
             {option.label}
           </ElTag>
-          <i style={{ color: "#606266" }}>{split}</i>
+          <i style={{ color: "#606266" }}>{separator}</i>
         </>
       );
     }
   };
 
   const Render = computed(() => {
-    return props.markShape === "tag" ? components[props.markShape] : components.text;
+    return props.marker === "tag" ? components[props.marker] : components.text;
   });
 
-  const getSplit = (i: number) => (i + 1 < props.value.length ? props.split || "、" : "");
+  const getSeparator = (i: number) => (i + 1 < props.value.length ? props.separator || "、" : "");
 
   return (
     <div class="read-options">
-      {isShowMark.value && props.markShape != "tag" ? (
+      {isShowMark.value && props.marker != "tag" ? (
         <ul>
           {props.value.map((option, i) => {
-            const color = getColor(option);
+            if (!isObject(option)) {
+              return <Render.value key={i} option={isObject(option) ? option : { label: option }} separator={getSeparator(i)} />;
+            }
+            const color = getOptionStatusColor(option);
             return (
               <li
-                key={option.label}
+                data-key={option.label}
                 class={`${option.status ?? ""}`}
                 style={{
                   "--dot-color": color || "default",
-                  listStyleType: color ? props.markShape : "none"
+                  listStyleType: color ? props.marker : "none"
                 }}
               >
-                <Render.value option={option} split={getSplit(i)} />
+                <Render.value option={option} separator={getSeparator(i)} />
               </li>
             );
           })}
         </ul>
       ) : (
         props.value.map((option, i) => (
-          <Fragment key={option.label}>
-            <Render.value option={option} split={getSplit(i)} />
-          </Fragment>
+          <Render.value key={i} option={isObject(option) ? option : { label: option }} separator={getSeparator(i)} />
         ))
       )}
     </div>

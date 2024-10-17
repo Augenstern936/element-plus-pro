@@ -10,7 +10,7 @@ import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFieldRadioProps, proFieldRadioProps } from "./typing";
 import useRender from "./useRender";
 
-export const ProFieldRadio = defineComponent<ProFieldRadioProps>(
+const ProFieldRadio = defineComponent<ProFieldRadioProps>(
   (props, ctx) => {
     const model = useVModel(props, "modelValue", ctx.emit);
 
@@ -22,3 +22,5 @@ export const ProFieldRadio = defineComponent<ProFieldRadioProps>(
 ) as DefineComponent<ProFieldRadioProps>;
 
 ProFieldRadio.props = proFieldRadioProps;
+
+export default ProFieldRadio;

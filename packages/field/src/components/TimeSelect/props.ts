@@ -1,65 +1,22 @@
 /*
  * @Description:
  * @Date: 2024-04-10 17:50:45
- * @LastEditTime: 2024-07-09 17:03:11
+ * @LastEditTime: 2024-10-16 22:26:54
  */
-import { CircleClose, Clock } from "@element-plus/icons-vue";
-import { useSizeProp } from "element-plus";
-import type { CSSProperties, Component, ExtractPropTypes, PropType } from "vue-demi";
-import { ProFieldMode } from "../../typing";
+import { timeSelectProps, TimeSelectProps } from "element-plus";
+import type { ExtractPropTypes, PropType } from "vue-demi";
+import { commomFieldProps } from "../../props";
 
 export const proFieldTimeSelectProps = {
-	mode: {
-		type: String as PropType<ProFieldMode>,
-		default: "edit",
-	},
-	format: {
-		type: String,
-		default: "HH:mm",
-	},
-	modelValue: String,
-	disabled: Boolean,
-	editable: {
-		type: Boolean,
-		default: true,
-	},
-	effect: {
-		type: String as PropType<"light" | "dark" | string>,
-		default: "light",
-	},
-	clearable: {
-		type: Boolean,
-		default: true,
-	},
-	size: useSizeProp,
-	placeholder: String,
-	start: {
-		type: String,
-		default: "09:00",
-	},
-	end: {
-		type: String,
-		default: "18:00",
-	},
-	step: {
-		type: String,
-		default: "00:30",
-	},
-	minTime: String,
-	maxTime: String,
-	name: String,
-	prefixIcon: {
-		type: [String, Object as PropType<Component>],
-		default: () => Clock,
-	},
-	clearIcon: {
-		type: [String, Object as PropType<Component>],
-		default: () => CircleClose,
-	},
-	style: {
-		type: Object as PropType<CSSProperties>,
-		default: {},
-	},
+  ...commomFieldProps,
+  modelValue: timeSelectProps.modelValue,
+  placeholder: {
+    type: String,
+    default: void 0
+  },
+  fieldProps: {
+    type: Object as PropType<Partial<Omit<TimeSelectProps, "modelValue">>>
+  }
 };
 
 export type ProFieldTimeSelectProps = Partial<ExtractPropTypes<typeof proFieldTimeSelectProps>>;

@@ -1,7 +1,7 @@
 {
   "name": "@element-plus-ui/pro-field",
   "version": "0.0.1",
-  "description": "@element-plus-ui/pro-field",
+  "description": "🏆 原子信息组件，统一 ProForm、ProTable 等组件里面的字段定义。",
   "keywords": [
     "ui",
     "vue3",
@@ -11,7 +11,7 @@
     "element-plus-pro"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Augenstern936/element-plus-pro",
+  "homepage": "https://github.com/Augenstern936/element-plus-pro/tree/master/packages/field#readme",
   "bugs": "https://github.com/Augenstern936/element-plus-pro/issues",
   "gitpository": {
     "type": "git",
@@ -32,7 +32,7 @@
   "author": "17634393156@163.com",
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
-    "element-plus": "^2.4.1",
+    "element-plus": ">=2.7.2",
     "vue": ">=3.0.0"
   },
   "peerDependenciesMeta": {
@@ -40,12 +40,13 @@
       "optional": true
     }
   },
-  "engines": {
-    "node": ">=16.17.1"
-  },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.3.1",
+    "@element-plus-ui/pro-icon": "^1.2.0",
     "@vueuse/core": "^10.7.0",
-    "vue-demi": "^0.14.8"
+    "vue-demi": "^0.14.8",
+    "vue-request": "^2.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

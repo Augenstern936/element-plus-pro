@@ -1,34 +1,36 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-08-29 14:47:29
+ * @LastEditTime: 2024-10-16 22:22:56
  */
-import type { MarkShape, ValueEnum, ValueOption } from "@element-plus-ui/pro-types";
+import type { Marker, ValueEnum, Request } from "@element-plus-ui/pro-types";
 import type { CheckboxProps } from "element-plus";
-import { checkboxGroupProps } from "element-plus";
-import type { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
-import { ProFieldMode } from "../../typing";
+import { checkboxGroupProps, CheckboxGroupProps } from "element-plus";
+import type { ExtractPropTypes, PropType } from "vue-demi";
+import { commomFieldProps } from "../../props";
 
 const commonProps = {
-  ...checkboxGroupProps,
-  mode: {
-    type: String as PropType<ProFieldMode>,
-    default: "edit"
+  ...commomFieldProps,
+  modelValue: checkboxGroupProps.modelValue,
+  marker: {
+    type: String as PropType<Marker>
   },
-  markShape: {
-    type: String as PropType<MarkShape>
+  separator: {
+    type: String
   },
-  style: {
-    type: Object as PropType<CSSProperties>,
-    default: {}
+  mappingEnumValue: {
+    type: String as PropType<"label" | "index">,
+    default: "label"
+  },
+  fieldProps: {
+    type: Object as PropType<Partial<Omit<CheckboxGroupProps, "modelValue">>>
   }
 };
 
 export const proFieldCheckboxProps = {
   ...commonProps,
-  valueOptions: {
-    type: Array as PropType<ProFieldCheckboxValueOption[]>,
-    default: []
+  request: {
+    type: Function as PropType<Request<ProFieldCheckboxValueEnum>>
   },
   valueEnum: {
     type: Object as PropType<ProFieldCheckboxValueEnum>
@@ -37,9 +39,8 @@ export const proFieldCheckboxProps = {
 
 export const proFieldCheckboxButtonProps = {
   ...commonProps,
-  valueOptions: {
-    type: Array as PropType<ProFieldCheckboxButtonValueOption[]>,
-    default: []
+  request: {
+    type: Function as PropType<Request<ProFieldCheckboxButtonValueEnum>>
   },
   valueEnum: {
     type: Object as PropType<ProFieldCheckboxButtonValueEnum>
@@ -65,11 +66,7 @@ type BaseCheckboxButtonProps = Partial<
   >
 >;
 
-export type ProFieldCheckboxValueOption = ValueOption<BaseCheckboxProps>;
-
 export type ProFieldCheckboxValueEnum = ValueEnum<BaseCheckboxProps>;
-
-export type ProFieldCheckboxButtonValueOption = ValueOption<BaseCheckboxButtonProps>;
 
 export type ProFieldCheckboxButtonValueEnum = ValueEnum<BaseCheckboxButtonProps>;
 

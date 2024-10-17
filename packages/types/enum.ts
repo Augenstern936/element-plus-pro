@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-27 16:16:27
- * @LastEditTime: 2024-10-09 11:28:27
+ * @LastEditTime: 2024-10-14 15:43:46
  */
 export enum StatusColorEnum {
   "success" = "#67C23A",
@@ -24,26 +24,23 @@ export enum CssUnitEnum {
 
 export enum FormValueTypeEnum {
   "text",
+  "number",
   "password",
   "textarea",
   "date",
   "dates",
   "dateTime",
-  // "datetime",
   "dateWeek",
-  "week",
   "dateMonth",
-  "month",
+  "dateMonths",
   "dateYear",
-  "year",
+  "dateYears",
   "dateRange",
-  // "daterange",
   "dateTimeRange",
-  // "datetimerange",
   "dateMonthRange",
-  // "monthrange",
   "time",
   "timeRange",
+  "timeSelect",
   "select",
   "treeSelect",
   "checkbox",
@@ -53,5 +50,8 @@ export enum FormValueTypeEnum {
   "rate",
   "color",
   "cascader",
-  "slider"
+  "slider",
+  "uploadImage",
+  "uploadAavtar",
+  "virtualizedSelect"
 }

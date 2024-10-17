@@ -1,17 +1,44 @@
 /*
  * @Description:
  * @Date: 2024-04-10 17:57:47
- * @LastEditTime: 2024-07-09 17:03:03
+ * @LastEditTime: 2024-10-16 23:51:17
  */
-import type { TimePickerDefaultProps } from "element-plus";
-import type { CSSProperties } from "vue-demi";
-import { ProFieldMode } from "../../typing";
+import { TimePickerDefaultProps } from "element-plus";
+import { ExtractPropTypes, PropType } from "vue-demi";
+import { commomFieldProps } from "../../props";
 
-export interface BaseTimePickerProps extends Partial<TimePickerDefaultProps> {
-	mode?: ProFieldMode;
-	style?: CSSProperties;
-}
+const baseTimePickerProps = {
+  ...commomFieldProps,
+  fieldProps: {
+    type: Object as PropType<Partial<Omit<TimePickerDefaultProps, "modelValue" | "isRange">>>
+  }
+};
 
-export type ProFieldTimeProps = Omit<BaseTimePickerProps, "isRange">;
+export const proFieldTimeProps = {
+  ...baseTimePickerProps,
+  modelValue: {
+    type: [String, Number]
+  },
+  placeholder: {
+    type: String,
+    default: void 0
+  }
+};
 
-export type ProFieldTimeRangeProps = Omit<BaseTimePickerProps, "isRange">;
+export const proFieldTimeRangeProps = {
+  ...baseTimePickerProps,
+  modelValue: {
+    type: Array as PropType<(string | number)[]>
+  },
+  separator: {
+    type: String
+  },
+  placeholder: {
+    type: [String, Array as unknown as PropType<[string] | [string, string]>],
+    default: void 0
+  }
+};
+
+export type ProFieldTimeProps = Omit<Partial<ExtractPropTypes<typeof proFieldTimeProps>>, "isRange">;
+
+export type ProFieldTimeRangeProps = Omit<Partial<ExtractPropTypes<typeof proFieldTimeRangeProps>>, "isRange">;

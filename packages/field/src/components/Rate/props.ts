@@ -1,22 +1,18 @@
 /*
  * @Description:
  * @Date: 2024-04-15 10:48:08
- * @LastEditTime: 2024-07-09 17:02:12
+ * @LastEditTime: 2024-10-16 22:25:31
  */
-import { rateProps } from "element-plus";
-import { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
-import { ProFieldMode } from "../../typing";
+import { rateProps, RateProps } from "element-plus";
+import { ExtractPropTypes, PropType } from "vue-demi";
+import { commomFieldProps } from "../../props";
 
 export const proFieldRateProps = {
-	...rateProps,
-	mode: {
-		type: String as PropType<ProFieldMode>,
-		default: "edit",
-	},
-	style: {
-		type: Object as PropType<CSSProperties>,
-		default: {},
-	},
+  ...commomFieldProps,
+  modelValue: rateProps.modelValue,
+  fieldProps: {
+    type: Object as PropType<Partial<Omit<RateProps, "modelValue">>>
+  }
 };
 
 export type ProFieldRateProps = Partial<ExtractPropTypes<typeof proFieldRateProps>>;

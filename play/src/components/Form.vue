@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-09 22:25:21
- * @LastEditTime: 2024-10-08 16:51:56
+ * @LastEditTime: 2024-10-11 22:08:19
  * @FilePath: \element-plus-pro\play\src\components\Form.vue
 -->
 <template>
@@ -23,20 +23,21 @@
       }"
     >
       <!-- female male-->
-      <ProFormAvatar
+      <ProFormUploadAvatar
         label="头像2"
         :order="2"
-        :fieldProps="{ mark: 'on-line', src: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg' }"
+        :fieldProps="{
+          mark: 'on-line',
+          src: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
+          action: 'https://fuss10.elemecdn.com'
+        }"
       />
-      <ProFormAvatar
+      <ProFormUploadAvatar
         label="头像3"
         :order="3"
         :fieldProps="{
           mark: 'off-line',
-          src: 'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg',
-          uploadProps: {
-            action: '11'
-          }
+          src: 'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
         }"
       />
       <ProForm.Switch v-model="form.switch" :order="1" label="开关测试:" activeText="已打开" inactive-text="测试" />
@@ -45,10 +46,8 @@
 </template>
 
 <script setup lang="ts">
-import { ProForm, ProFormAvatar } from "@element-plus-ui/pro-components";
+import { ProForm, ProFormUploadAvatar } from "@element-plus-ui/pro-components";
 import { ref } from "vue";
-
-const test = ref(false);
 
 const formItems = ref([
   {
@@ -103,7 +102,7 @@ const formItems = ref([
   },
   {
     label: "相册:",
-    valueType: "image",
+    valueType: "uploadImage",
     fieldProps: {
       src: [
         "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg1",
