@@ -1,3 +1,7 @@
+## 1.0.1 (2024-10-17)
+
+This was a version bump only for @element-plus-ui/pro-button to align it with other projects, there were no code changes.
+
 # 1.0.0 (2024-10-05)
 
 
