@@ -1,6 +1,6 @@
 {
   "name": "@element-plus-ui/pro-text",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "🏆 Use Element Plus Text like a Pro!",
   "keywords": [
     "ui",
@@ -43,7 +43,7 @@
     }
   },
   "dependencies": {
-    "@element-plus-ui/pro-icon": "^1.1.0",
+    "@element-plus-ui/pro-icon": "^1.2.1",
     "@vueuse/core": "^10.7.0",
     "copy-to-clipboard": "^3.3.3",
     "vue-demi": "^0.14.8"
