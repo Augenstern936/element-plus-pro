@@ -19,20 +19,6 @@ $ pnpm add @element-plus-ui/pro-text
 
 ## 🔨 使用
 
-#### 🚀 全局引用
-
-```ts
-import { createApp } from "vue";
-import App from "./src/App.vue";
-import ProText from "@element-plus-ui/pro-text";
-
-const app = createApp(App);
-
-app.mount("#app").use(ProText);
-```
-
-#### 🚀 按需使用
-
 ```vue
 <template>
   <pro-text class="mx-1">Default</pro-text>
@@ -142,7 +128,7 @@ app.mount("#app").use(ProText);
 import { ProText } from "@element-plus-ui/pro-text";
 import { ref } from "vue";
 
-const editValue = ref("我是ProText");
+const editValue = ref("我是ProText组件");
 const isEditing = ref(false);
 </script>
 ```

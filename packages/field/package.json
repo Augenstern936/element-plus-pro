@@ -1,11 +1,15 @@
 {
   "name": "@element-plus-ui/pro-field",
-  "version": "0.0.1-1",
+  "version": "0.0.1",
   "description": "🏆 原子信息组件，统一 ProForm、ProTable 等组件里面的字段定义。",
   "keywords": [
     "ui",
+    "pro",
     "vue3",
+    "plus",
+    "field",
     "element",
+    "pro-field",
     "component",
     "element-plus",
     "element-plus-pro"
@@ -18,12 +22,11 @@
     "url": "https://github.com/Augenstern936/element-plus-pro"
   },
   "scripts": {
-    "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
-    "release": "release-it"
+    "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
   },
   "sideEffects": false,
   "main": "lib/index.js",
-  "module": "src/index.ts",
+  "module": "es/index.mjs",
   "types": "es/index.d.ts",
   "files": [
     "lib",
@@ -41,7 +44,7 @@
     }
   },
   "dependencies": {
-    "@element-plus-ui/pro-icon": "^1.2.0",
+    "@element-plus-ui/pro-icon": "^1.2.1",
     "@vueuse/core": "^10.7.0",
     "vue-demi": "^0.14.8",
     "vue-request": "^2.0.4"

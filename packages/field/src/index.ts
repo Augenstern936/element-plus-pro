@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-03 17:55:59
- * @LastEditTime: 2024-10-11 10:04:09
+ * @LastEditTime: 2024-10-17 22:08:48
  * @FilePath: \element-plus-pro\packages\field\src\index.ts
  */
 
@@ -12,6 +12,6 @@ export * from "./typing";
 
 export * from "./components";
 
-export { ProField };
+export * from "./Field";
 
 export default ProField;

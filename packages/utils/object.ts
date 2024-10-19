@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-07-15 16:43:09
- * @LastEditTime: 2024-10-10 17:35:29
+ * @LastEditTime: 2024-10-17 22:01:27
  */
 export function excludeObjectProperty<T extends Record<string, any>>(entity: T, keys: (keyof T)[]) {
   const keysToExclude = new Set(keys);

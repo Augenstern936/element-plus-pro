@@ -2,34 +2,56 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-10-16 21:42:32
+ * @LastEditTime: 2024-10-19 23:20:11
  * @FilePath: \element-plus-pro\packages\field\src\components\UploadAvatar\UploadAvatar.tsx
  */
-import "./uploadAvatar.scss";
+import "./upload-avatar.scss";
 import { ProIcon } from "@element-plus-ui/pro-icon";
 import { ElAvatar, ElUpload, uploadProps, avatarProps, UploadRawFile, UploadFile, UploadFiles } from "element-plus";
 import { computed, DefineComponent, defineComponent, ref } from "vue-demi";
-import { excludeUplaodPropsKeys, proFieldUploadAvatar, ProFieldUploadAvatarProps } from "./props";
+import { AvatarSizeEnum, excludeUplaodPropsKeys, proFieldUploadAvatar, ProFieldUploadAvatarProps } from "./props";
 import { isUrl, excludeObjectProperty } from "@element-plus-ui/pro-utils";
+import { isObject } from "@vueuse/core";
 
 const ProFieldUploadAvatar = defineComponent<ProFieldUploadAvatarProps>(
   (props, ctx) => {
     const uploading = ref(false);
 
-    const iconSize = computed(() => {
-      return props?.fieldProps?.size && !Number.isNaN(props.fieldProps.size) ? +props?.fieldProps.size / 2 : void 0;
+    const avatarUrl = computed(() => {
+      if (typeof props.modelValue === "string") {
+        return props.modelValue;
+      }
+      if (isObject(props.modelValue)) {
+        return props.modelValue?.url ?? "#";
+      }
+      return "#";
     });
 
-    const proAvatarProps = () => {
-      return excludeObjectProperty(props.fieldProps ?? {}, Object.keys(uploadProps) as keyof typeof props.fieldProps);
-    };
+    const avatarSize = computed(() => {
+      const size = (props?.fieldProps || {}).size ?? props.size;
+      return size && AvatarSizeEnum[size] ? AvatarSizeEnum[size] : size;
+    });
 
-    const proUploadProps = () => {
+    const iconSize = computed(() => {
+      return avatarSize.value && !Number.isNaN(avatarSize.value) ? +avatarSize.value / 2 : void 0;
+    });
+
+    const dotSize = computed(() => (iconSize.value ?? 40) / 3);
+
+    const dotSizeStyle = computed(() => {
+      return { height: `${dotSize.value}px`, minWidth: `${dotSize.value}px` };
+    });
+
+    const proAvatarProps = computed(() => {
+      return excludeObjectProperty(props.fieldProps ?? {}, Object.keys(uploadProps) as keyof typeof props.fieldProps);
+    });
+
+    const proUploadProps = computed(() => {
       return excludeObjectProperty(props.fieldProps ?? {}, [
         ...excludeUplaodPropsKeys,
         ...Object.keys(avatarProps)
       ] as (keyof typeof props.fieldProps)[]);
-    };
+    });
 
     const AvatarElement = () => {
       const icon = {
@@ -54,61 +76,84 @@ const ProFieldUploadAvatar = defineComponent<ProFieldUploadAvatarProps>(
             />
           </svg>
         ),
-        "on-line": <div class={"mark-on-line"}></div>,
-        "off-line": <div class={"mark-off-line"}></div>
+        "on-line": <span class={"mark-on-line"} style={dotSizeStyle.value} />,
+        "off-line": <span class={"mark-off-line"} style={dotSizeStyle.value} />
       };
 
-      const mark = typeof props.mark === "function" ? props.mark() : props?.mark ? icon[props?.mark] : "";
+      const mark = computed(() => (props?.marker ? icon[props?.marker] : ""));
 
       return (
         <div
-          class={`pro-avatar ${uploading.value ? "uploading" : ""}`}
-          style={{ "--icon-size": iconSize.value, height: `${iconSize.value ?? 40}px` }}
+          class={`avatar-box ${uploading.value ? "uploading" : ""}`}
+          style={{
+            width: `${avatarSize.value}px`,
+            height: `${avatarSize.value}px`
+          }}
         >
-          {mark && !uploading.value && (
-            <ProIcon class={`mark-icon ${props.mark}`} size={iconSize.value}>
-              {mark}
+          {props.mode === "edit" && (
+            <div class={"hover-mask"}>
+              <ProIcon.Camera color="#fff" size={iconSize.value} />
+            </div>
+          )}
+          {mark.value && !uploading.value && (
+            <ProIcon
+              class={`marker ${props.marker}`}
+              size={iconSize.value}
+              style={{
+                position: "absolute",
+                top: `-${dotSize.value / 2}px`,
+                right: `-${dotSize.value / 2}px`
+              }}
+            >
+              {mark.value}
             </ProIcon>
           )}
           <ElAvatar
-            {...proAvatarProps}
-            src={props.modelValue || props?.fieldProps?.src || "#"}
+            {...proAvatarProps.value}
+            shape={"circle"}
+            src={avatarUrl.value}
             v-slots={{ default: () => <ProIcon.UserFilled size={iconSize.value} />, ...ctx.slots }}
           />
         </div>
       );
     };
 
-    if (props.mode === "read") {
-      return () => AvatarElement();
-    }
-
     return () => (
-      <div style={{ width: "100%" }}>
-        <ElUpload
-          {...proUploadProps()}
-          list-type="picture"
-          auto-upload={false}
-          before-upload={(rawFile: UploadRawFile) => {
-            uploading.value = true;
-            proUploadProps()["before-upload"]?.(rawFile);
-          }}
-          on-success={(response: any, uploadFile: UploadFile, uploadFiles: UploadFiles) => {
-            uploading.value = false;
-            ctx.emit("update:modelValue", URL.createObjectURL(uploadFile.raw!));
-            proUploadProps()["on-success"]?.(response, uploadFile, uploadFiles);
-          }}
-          v-slots={{
-            default: AvatarElement,
-            file: (info: Record<string, any>) => {
-              if (!isUrl(props?.fieldProps?.action ?? "")) {
-                ctx.emit("update:modelValue", info.file.url);
-                proUploadProps()["on-success"]?.(info);
+      <div class={"pro-avatar"}>
+        {props.mode === "read" && AvatarElement()}
+        {props.mode === "edit" && (
+          <ElUpload
+            {...proUploadProps.value}
+            file-list={[{ url: avatarUrl.value }]}
+            list-type="picture"
+            auto-upload={false}
+            before-upload={(rawFile: UploadRawFile) => {
+              uploading.value = true;
+              proUploadProps.value["before-upload"]?.(rawFile);
+            }}
+            on-success={(response: any, uploadFile: UploadFile, uploadFiles: UploadFiles) => {
+              uploading.value = false;
+              ctx.emit("update:modelValue", uploadFile);
+              proUploadProps.value["on-success"]?.(response, uploadFile, uploadFiles);
+            }}
+            v-slots={{
+              default: AvatarElement,
+              file: (info: Record<string, any>) => {
+                if (!isUrl(props?.fieldProps?.action ?? "")) {
+                  if (typeof props.modelValue === "string" && info.file.url != props.modelValue) {
+                    ctx.emit("update:modelValue", info.file.url);
+                    proUploadProps.value["on-success"]?.(info.file);
+                  }
+                  if (isObject(props.modelValue) && info.file.url != props.modelValue.url) {
+                    ctx.emit("update:modelValue", info.file);
+                    proUploadProps.value["on-success"]?.(info.file);
+                  }
+                }
+                return "";
               }
-              return "";
-            }
-          }}
-        />
+            }}
+          />
+        )}
       </div>
     );
   },

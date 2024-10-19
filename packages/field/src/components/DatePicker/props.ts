@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-10 00:18:39
- * @LastEditTime: 2024-10-16 22:24:22
+ * @LastEditTime: 2024-10-17 22:02:55
  * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\props.ts
  */
 import { DatePickerProps, DatePickType } from "element-plus";
@@ -28,7 +28,10 @@ export const proDatePickerProps = {
   }
 };
 
-const commomPropsEntity = excludeObjectProperty(proDatePickerProps, ["type"]);
+const commomPropsEntity = excludeObjectProperty(proDatePickerProps, ["type"]) as Record<
+  Exclude<keyof typeof proDatePickerProps, "type">,
+  any
+>;
 
 export const proFieldDateProps = commomPropsEntity;
 

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-09-13 21:28:34
- * @LastEditTime: 2024-10-13 20:23:31
+ * @LastEditTime: 2024-10-19 23:31:39
  * @FilePath: \element-plus-pro\packages\field\src\props.ts
  */
 import { PropType } from "vue-demi";
@@ -28,6 +28,10 @@ export const proFieldProps = {
   type: {
     type: String as PropType<ProFieldType>,
     default: "text"
+  },
+  size: {
+    type: Number,
+    default: 40
   },
   placeholder: {
     type: [String, Array] as PropType<string | [string] | [string, string]>

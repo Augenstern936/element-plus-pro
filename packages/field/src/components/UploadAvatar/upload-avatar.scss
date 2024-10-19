@@ -1,0 +1,93 @@
+.pro-avatar {
+  width: 100%;
+  .el-upload-list {
+    height: 0 !important;
+    margin: 0;
+    display: none !important;
+  }
+  .el-upload-list--picture {
+    display: none;
+  }
+}
+
+.pro-avatar .avatar-box {
+  position: relative;
+  border-radius: 50%;
+  .hover-mask {
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.4);
+    & > .el-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &:hover > .hover-mask {
+    display: block;
+  }
+  &:hover > .hover-mask + .marker {
+    display: none;
+  }
+
+  .mark-on-line,
+  .mark-off-line {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    justify-content: center;
+    align-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 0.75rem;
+    line-height: 1;
+    z-index: 1;
+    transform: scale(1) translate(0%, 0%);
+    transform-origin: 100% 100%;
+    transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 50%;
+    padding: 0px;
+    box-shadow: rgb(255, 255, 255) 0px 0px 0px 2px;
+  }
+
+  .mark-on-line {
+    color: rgb(68, 183, 0);
+    background-color: rgb(68, 183, 0);
+  }
+  .mark-off-line {
+    color: #d81e06;
+    background-color: #d81e06;
+  }
+
+  .mark-on-line::after,
+  .mark-on-off::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: 1.2s ease-in-out 0s infinite normal none running ripple;
+    border: 1px solid currentcolor;
+    content: "";
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0.8);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2.4);
+      opacity: 0;
+    }
+  }
+}

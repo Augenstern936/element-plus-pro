@@ -8,9 +8,9 @@
     }
   },
   "release": {
-    "releaseTagPattern": "{projectName}@{version}",
+    "releaseTagPattern": "{releaseGroupName}/{projectName}@{version}",
     "projects": [
-      "@element-plus-ui/pro-icon",
+      "@element-plus-ui/pro-field",
       "!@element-plus-ui/pro-utils",
       "!@element-plus-ui/pro-hooks",
       "!@element-plus-ui/pro-types"

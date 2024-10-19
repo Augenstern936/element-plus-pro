@@ -2,13 +2,12 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-10-06 22:35:48
+ * @LastEditTime: 2024-10-18 15:38:53
  * @FilePath: \element-plus-pro\play\src\components\Text.vue
 -->
 <template>
   <el-card>
     <pro-text
-      tag="i"
       :content="'通过content设置的文本，优先级低于默认插槽'"
       :truncated="true"
       :copyable="{

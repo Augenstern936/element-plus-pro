@@ -1,13 +1,13 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:41:09
- * @LastEditTime: 2024-10-06 22:21:06
+ * @LastEditTime: 2024-10-18 15:19:04
  */
 import { ElText, ElTooltip, ElInput } from "element-plus";
 import { ProIcon } from "@element-plus-ui/pro-icon";
 import { FunctionalComponent, computed, defineComponent, ref, watch } from "vue-demi";
 import copy from "copy-to-clipboard";
-import "./style.scss";
+import "./text.scss";
 import { ProTextProps, proTextProps } from "./typing";
 import { isObject } from "@vueuse/core";
 

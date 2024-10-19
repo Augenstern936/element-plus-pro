@@ -31,7 +31,7 @@
       <ProField.Color v-model="form.color" :mode="mode" />
       <ProField.Slider v-model="form.slider" :mode="mode" />
       <ProField.Cascader v-model="form.cascader" :mode="mode" :separator="'~'" :request="getData" />
-      <ProField.UploadAvatar v-model="form.avatar" :mode="mode" />
+      <ProField.UploadAvatar v-model="form.avatar" :mode="mode" :marker="'on-line'" :field-props="{ size: 'large' }" />
       <ProField.Progress v-model="form.progress" :percentage="50" :mode="mode" />
       <ProField.VirtualizedSelect v-model="value" :mode="mode" :marker="'square'" :request="getRadioData" />
       <ProField.Radio
@@ -52,7 +52,6 @@
             status: 'warning'
           }
         }"
-        :request="getRadioData"
       />
       <ProField.Checkbox
         v-model="form.checkbox"
@@ -63,7 +62,6 @@
           3: '昔班',
           4: '海都'
         }"
-        :request="getData"
       />
       <ProField.Checkbox
         v-model="checkboxValues"
@@ -94,7 +92,7 @@
           }
         ]"
       />
-      <ProField.UploadImage v-model="form.uploadImage" :mode="mode" />
+      <ProField.UploadImage v-model="form.uploadImage" :mode="mode" :size="40" :field-props="{ limit: 6 }" />
     </el-space>
   </el-card>
 </template>
@@ -138,13 +136,19 @@ const form = ref({
   checkboxButton: [2, 3],
   radio: 2,
   uploadImage: [
-    "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg1",
-    "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
-    "https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg",
-    "https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg",
-    "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
-    "https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg",
-    "https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg"
+    {
+      url: '"https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg1"'
+    },
+    {
+      url: "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg"
+    }
+    // "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg1",
+    // "https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",
+    // "https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg",
+    // "https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg",
+    // "https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg",
+    // "https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg",
+    // "https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg"
   ]
 });
 
@@ -178,9 +182,23 @@ const getRadioData = async () => {
 };
 
 watch(
-  () => form.value.switch,
+  () => [form.value.switch, form.value.avatar],
   v => {
-    mode.value = v ? "read" : "edit";
+    mode.value = v[0] ? "read" : "edit";
+    //console.log(v[1]);
+    console.log(v[1]);
+  },
+  {
+    deep: true
+  }
+);
+watch(
+  () => form.value.uploadImage,
+  v => {
+    console.log(v, "1111");
+  },
+  {
+    deep: true
   }
 );
 </script>
