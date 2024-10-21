@@ -2,13 +2,14 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 23:05:53
- * @LastEditTime: 2024-07-24 14:05:07
+ * @LastEditTime: 2024-10-20 14:03:36
  * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\typing.ts
  */
 import { excludeObjectProperty } from "@element-plus-ui/pro-utils";
-import type { DefineComponent, ExtractPropTypes, PropType } from "vue-demi";
+import { GeneratePropTypes } from "@element-plus-ui/pro-types";
+import type { DefineComponent, PropType } from "vue-demi";
 import {
-  ProFormAavtarProps,
+  ProFormUploadAavtarProps,
   ProFormCascaderProps,
   ProFormCheckboxButtonProps,
   ProFormCheckboxProps,
@@ -22,7 +23,7 @@ import {
   ProFormDateTimeRangeProps,
   ProFormDateWeekProps,
   ProFormDateYearProps,
-  ProFormImageProps,
+  ProFormUploadImageProps,
   ProFormNumberProps,
   ProFormPasswordProps,
   ProFormRadioButtonProps,
@@ -41,18 +42,17 @@ import {
 import { generateFormProps, GenerateFormProps } from "../../core";
 import { ProFormLayout } from "../../typing";
 
+export * from "../../core/GenerateForm/typing";
+
 export const proFormProps = {
-  ...(excludeObjectProperty(generateFormProps, ["inline", "labelPosition"]) as Omit<
-    GenerateFormProps,
-    "inline" | "labelPosition"
-  >),
+  ...excludeObjectProperty(generateFormProps, ["inline", "labelPosition"]),
   layout: {
     type: String as PropType<ProFormLayout>,
     default: "horizontal"
   }
 };
 
-export type ProFormProps = Partial<ExtractPropTypes<typeof proFormProps>>;
+export type ProFormProps = GeneratePropTypes<typeof proFormProps> & Omit<GenerateFormProps, "inline" | "labelPosition">;
 
 export type ProFormSuperProps = DefineComponent<ProFormProps> & {
   Text: DefineComponent<ProFormTextProps>;
@@ -78,8 +78,8 @@ export type ProFormSuperProps = DefineComponent<ProFormProps> & {
   Radio: DefineComponent<ProFormRadioProps>;
   RadioButton: DefineComponent<ProFormRadioButtonProps>;
   Switch: DefineComponent<ProFormSwitchProps>;
-  Avatar: DefineComponent<ProFormAavtarProps>;
-  Image: DefineComponent<ProFormImageProps>;
+  UploadAavtar: DefineComponent<ProFormUploadAavtarProps>;
+  UploadImage: DefineComponent<ProFormUploadImageProps>;
   Rate: DefineComponent<ProFormRateProps>;
   Color: DefineComponent<ProFormColorProps>;
   Cascader: DefineComponent<ProFormCascaderProps>;

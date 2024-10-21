@@ -10,7 +10,7 @@ import { ValueEnum, ValueOption } from "@element-plus-ui/pro-types";
 import { FormItemProps } from "element-plus";
 import type { JSX } from "vue/jsx-runtime";
 
-export type ProFormColumns = Omit<FormItemProps, "prop" | "label"> & {
+export type ProFormColumn = Omit<FormItemProps, "prop" | "label"> & {
   key?: string;
   label?: string | (() => JSX.Element);
   dataField?: string;
@@ -27,4 +27,4 @@ export type ProFormColumns = Omit<FormItemProps, "prop" | "label"> & {
 /**
  * 通用函数类型
  */
-type FormItemPropertyFunction<T> = (entity: Record<string, any>, items: ProFormColumns[]) => T;
+type FormItemPropertyFunction<T> = (entity: Record<string, any>, items: ProFormColumn[]) => T;

@@ -7,12 +7,12 @@
  */
 import { ElFormItem } from "element-plus";
 import { DefineComponent, computed, defineComponent } from "vue-demi";
-import { ProFormColumns } from "./typing";
+import { ProFormColumn } from "./typing";
 
-export const ProFormItem = defineComponent<ProFormColumns>((props, ctx) => {
-	const label = computed(() => {
-		return typeof props.label === "function" ? props.label() : props.label;
-	});
+export const ProFormItem = defineComponent<ProFormColumn>((props, ctx) => {
+  const label = computed(() => {
+    return typeof props.label === "function" ? props.label() : props.label;
+  });
 
-	return () => <ElFormItem v-slots={{ label: () => label.value }}>{ctx.slots.default?.()}</ElFormItem>;
-}) as DefineComponent<ProFormColumns>;
+  return () => <ElFormItem v-slots={{ label: () => label.value }}>{ctx.slots.default?.()}</ElFormItem>;
+}) as DefineComponent<ProFormColumn>;

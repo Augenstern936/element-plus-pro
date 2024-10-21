@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:40:06
- * @LastEditTime: 2024-07-24 14:24:21
+ * @LastEditTime: 2024-10-20 13:32:44
  * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\index.tsx
  */
 import { ToUppercaseFirst } from "@element-plus-ui/pro-types";
@@ -33,7 +33,7 @@ const ProForm = defineComponent<ProFormProps>(
   }
 ) as ProFormSuperProps;
 
-ProForm.props = proFormProps as any;
+ProForm.props = proFormProps;
 
 for (const key in components) {
   const ComName = (key.charAt(0).toUpperCase() + key.slice(1)) as ToUppercaseFirst<ProFormFieldType>;

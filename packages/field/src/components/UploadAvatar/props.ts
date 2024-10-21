@@ -24,7 +24,7 @@ export const proFieldUploadAvatar = {
     type: String as PropType<Mark>
   },
   fieldProps: {
-    type: Object as PropType<Partial<UploadProps & AvatarProps>>
+    type: Object as PropType<Partial<Omit<UploadProps, "fileList"> & AvatarProps>>
   }
 };
 

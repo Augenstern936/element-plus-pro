@@ -2,11 +2,12 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-09-13 21:28:34
- * @LastEditTime: 2024-10-19 23:31:39
+ * @LastEditTime: 2024-10-20 14:46:33
  * @FilePath: \element-plus-pro\packages\field\src\props.ts
  */
 import { PropType } from "vue-demi";
 import type { ProFieldMode, ProFieldType } from "./typing";
+import { Marker, Request, ValueEnum } from "@element-plus-ui/pro-types";
 
 export const commomFieldProps = {
   mode: {
@@ -33,10 +34,27 @@ export const proFieldProps = {
     type: Number,
     default: 40
   },
+  marker: {
+    type: String as PropType<Marker>
+  },
+  request: {
+    type: Function as PropType<Request<ValueEnum>>
+  },
+  valueEnum: {
+    type: Object as PropType<ValueEnum>
+  },
+  separator: {
+    type: String,
+    default: ""
+  },
   placeholder: {
     type: [String, Array] as PropType<string | [string] | [string, string]>
   },
   fieldProps: {
     type: Object as PropType<Record<string, any>>
+  },
+  mappingEnumValue: {
+    type: String as PropType<"label" | "index">,
+    default: "label"
   }
 } as const;

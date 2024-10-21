@@ -2,12 +2,12 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:26:41
- * @LastEditTime: 2024-07-27 19:11:34
+ * @LastEditTime: 2024-10-20 14:09:29
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\typing.ts
  */
 import type { ProButtonProps } from "@element-plus-ui/pro-button";
 import type { ExtractPropTypes, PropType } from "vue-demi";
-import { ProFormColumns } from "../../core";
+import { ProFormColumn } from "../../core";
 import { ProFormLayout } from "../../typing";
 
 export const proSearchBarProps = {
@@ -15,7 +15,7 @@ export const proSearchBarProps = {
     type: Object as PropType<Record<string, string | number | boolean | (string | number)[]>>
   },
   columns: {
-    type: Array as PropType<ProFormColumns[]>,
+    type: Array as PropType<ProFormColumn[]>,
     default: []
   },
   layout: {

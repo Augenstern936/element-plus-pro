@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-14 17:03:21
- * @LastEditTime: 2024-07-27 15:36:10
+ * @LastEditTime: 2024-10-20 13:53:40
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\index.tsx
  */
 import { useFetchData } from "@element-plus-ui/pro-hooks";
@@ -10,7 +10,7 @@ import { useVModel } from "@vueuse/core";
 import { ColProps, ElForm, ElFormItem } from "element-plus";
 import { DefineComponent, FunctionalComponent, computed, defineComponent, ref } from "vue-demi";
 import Submitter from "./Submitter";
-import "./style.scss";
+import "./generate-form.scss";
 import { GenerateFormProps, generateFormProps } from "./typing";
 import useFormContent from "./useFormContent";
 import useFormProps from "./useFormProps";

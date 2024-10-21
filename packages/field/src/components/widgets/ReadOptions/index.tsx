@@ -2,14 +2,14 @@
  * @Description: 阅读模式下选项值展示的形式
  * @Author: wangbowen936926
  * @Date: 2024-06-01 14:12:33
- * @LastEditTime: 2024-10-16 11:18:57
+ * @LastEditTime: 2024-10-19 23:50:55
  * @FilePath: \element-plus-pro\packages\field\src\components\widgets\ReadOptions\index.tsx
  */
 import { Marker, ValueOption } from "@element-plus-ui/pro-types";
 import { getOptionStatusColor } from "@element-plus-ui/pro-utils";
 import { ElTag, ElText } from "element-plus";
 import { computed } from "vue-demi";
-import "./readOptions.scss";
+import "./read-options.scss";
 import { isObject } from "@vueuse/core";
 export interface ReadOptionsProps {
   value: (string | number | boolean)[] | ValueOption[];

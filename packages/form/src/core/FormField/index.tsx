@@ -2,12 +2,12 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-07 22:53:35
- * @LastEditTime: 2024-07-13 21:27:33
+ * @LastEditTime: 2024-10-20 11:54:15
  * @FilePath: \element-plus-pro\packages\form\src\core\FormField\index.tsx
  */
 import { ProField, ProFieldProps } from "@element-plus-ui/pro-field";
 import { useVModel } from "@vueuse/core";
-import { SetupContext } from "vue-demi";
+import { SetupContext, FunctionalComponent } from "vue-demi";
 import createField from "../HOC/createField";
 
 function BaseProFormField(props: ProFieldProps, ctx: SetupContext) {
@@ -16,6 +16,6 @@ function BaseProFormField(props: ProFieldProps, ctx: SetupContext) {
   return <ProField {...props} v-model={model.value} />;
 }
 
-export const ProFormField = createField<ProFieldProps>(BaseProFormField as any);
+export const ProFormField = createField(BaseProFormField as FunctionalComponent);
 
 export default ProFormField;

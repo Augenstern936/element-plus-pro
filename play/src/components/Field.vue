@@ -1,13 +1,14 @@
 <template>
   <el-card>
     <el-space fill :size="20">
+      <ProField :type="'cascader'" />
       <ProField.Text v-model="form.text" :mode="mode" />
       <ProField.Number v-model="form.number" :mode="mode" />
       <ProField.Password v-model="form.password" :mode="mode" />
       <ProField.Textarea v-model="form.textarea" :mode="mode" />
       <ProField.Date v-model="form.date" :mode="mode" />
       <ProField.Dates v-model="form.dates" :mode="mode" />
-      <ProField.DateRange v-model="form.dateRange" :mode="mode" :separator="'/'" @change="e => console.log(e, 'e')" />
+      <ProField.DateRange v-model="form.dateRange" :mode="mode" @change="e => console.log(e, 'e')" />
       <ProField.DateYear v-model="form.dateYear" :mode="mode" />
       <ProField.DateYears v-model="form.dateYears" :mode="mode" />
       <ProField.DateMonth v-model="form.dateMonth" :mode="mode" />

@@ -12,10 +12,10 @@ import { useVModel } from "@vueuse/core";
 import { ElFormItem, ElIcon, ElSpace, ElTooltip, FormItemProps } from "element-plus";
 import { SetupContext, ref } from "vue-demi";
 import { useGridHelpers } from "../helpers";
-import { GenerateFormProps, ProFormColumns } from "./typing";
+import { GenerateFormProps, ProFormColumn } from "./typing";
 
 const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => {
-  const getFormItemProps = (item: ProFormColumns, model: Record<string, any>) => {
+  const getFormItemProps = (item: ProFormColumn, model: Record<string, any>) => {
     const { dataField, rules = {} } = item;
     const globalRulesItem = dataField && formProps.rules ? (formProps.rules[dataField] ?? {}) : {};
     const required = item.required ?? rules.required ?? formProps.required ?? globalRulesItem.required;
@@ -33,7 +33,7 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
     };
   };
 
-  const getFieldProps = (item: ProFormColumns) => {
+  const getFieldProps = (item: ProFormColumn) => {
     const { label, valueType = "text", readonly } = item;
     return {
       ...excludeObjectProperty(item, ["hidden", "label"]),
@@ -60,7 +60,7 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
             return <ColWrapper {...props.colProps}>{formCtx.slots.default?.()[item.index]}</ColWrapper>;
           }
           const { key, dataField, tooltip } = item;
-          const formItemProps = getFormItemProps(item as ProFormColumns, model);
+          const formItemProps = getFormItemProps(item as ProFormColumn, model);
           const slotName = key || dataField;
           return (
             <ColWrapper {...props.colProps}>
@@ -87,9 +87,9 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
                 ) : (
                   <>
                     {dataField ? (
-                      <ProField {...getFieldProps(item as ProFormColumns)} v-model={(model.value as any)[dataField]} />
+                      <ProField {...getFieldProps(item as ProFormColumn)} v-model={(model.value as any)[dataField]} />
                     ) : (
-                      <ProField {...getFieldProps(item as ProFormColumns)} />
+                      <ProField {...getFieldProps(item as ProFormColumn)} />
                     )}
                   </>
                 )}
