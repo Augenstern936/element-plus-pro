@@ -2,11 +2,12 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-10 00:18:39
- * @LastEditTime: 2024-10-17 22:02:55
+ * @LastEditTime: 2024-10-21 23:27:43
  * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\props.ts
  */
 import { DatePickerProps, DatePickType } from "element-plus";
 import { excludeObjectProperty } from "@element-plus-ui/pro-utils";
+import { GeneratePropTypes } from "@element-plus-ui/pro-types";
 import type { ExtractPropTypes, PropType } from "vue-demi";
 import { commomFieldProps } from "../../props";
 
@@ -28,10 +29,7 @@ export const proDatePickerProps = {
   }
 };
 
-const commomPropsEntity = excludeObjectProperty(proDatePickerProps, ["type"]) as Record<
-  Exclude<keyof typeof proDatePickerProps, "type">,
-  any
->;
+const commomPropsEntity = excludeObjectProperty(proDatePickerProps, ["type"]);
 
 export const proFieldDateProps = commomPropsEntity;
 
@@ -40,6 +38,10 @@ export const proFieldDatesProps = {
   modelValue: {
     type: Array as PropType<Array<string | number>>,
     default: []
+  },
+  separator: {
+    type: String,
+    default: "、"
   }
 };
 
@@ -54,6 +56,10 @@ export const proFieldDateMonthsProps = {
   modelValue: {
     type: Array as PropType<Array<string | number>>,
     default: []
+  },
+  separator: {
+    type: String,
+    default: "、"
   }
 };
 
@@ -64,6 +70,10 @@ export const proFieldDateYearsProps = {
   modelValue: {
     type: Array as PropType<Array<string | number>>,
     default: []
+  },
+  separator: {
+    type: String,
+    default: "、"
   }
 };
 
@@ -103,7 +113,7 @@ export const proFieldDateMonthRangeProps = {
   }
 };
 
-export type ProDatePickerProps = Partial<ExtractPropTypes<typeof proDatePickerProps>>;
+export type ProDatePickerProps = GeneratePropTypes<typeof proDatePickerProps>;
 
 export type ProFieldDateProps = Partial<ExtractPropTypes<typeof proFieldDateProps>>;
 

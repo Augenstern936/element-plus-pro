@@ -340,6 +340,7 @@ Array<string | number | boolean | {
 | ---- | ------------- | ------------------------------------ | ------ |
 | v-model  | 绑定的值. | `string[]` / `number[]` / `Date[]` | -      |
 | mode  | 展示模式. | `read` / `edit` | edit      |
+| separator  | 多个值之间的分隔符. | `string` | -      |
 | emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
 | fieldProps  | **DateMonth** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
 | placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` | -      |
@@ -413,6 +414,7 @@ Array<string | number | boolean | {
 | ---- | ------------- | ------------------------------------ | ------ |
 | v-model  | 绑定的值. | `string[]` / `number[]` / `Date[]` | -      |
 | mode  | 展示模式. | `read` / `edit` | edit      |
+| separator  | 多个值之间的分隔符. | `string` | -      |
 | emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
 | fieldProps  | **DateYears** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
 | placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` | -      |
@@ -444,7 +446,7 @@ Array<string | number | boolean | {
 | ---- | ------------- | ------------------------------------ | ------ |
 | v-model  | 绑定的值. | `string` / `number` / `boolean` | -      |
 | mode  | 展示模式. | `read` / `edit` | edit      |
-| marker  | 阅读模式下，需要显示的标记. | [Marker](#Marker) | none      |
+| marker  | **mode=read** 时，需要显示的标记. | [Marker](#Marker) | none      |
 | request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
 | valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
 | mappingEnumValue  | 枚举配置未明确指定 **value** 时，需要映射的目标对象. | `lable` / `index` | lable      |
@@ -457,7 +459,7 @@ Array<string | number | boolean | {
 | ---- | ------------- | ------------------------------------ | ------ |
 | v-model  | 绑定的值. | `string` / `number` / `boolean` | -      |
 | mode  | 展示模式. | `read` / `edit` | edit      |
-| marker  | 阅读模式下，需要显示的标记. | [Marker](#Marker) | none      |
+| marker  | **mode=read** 时，需要显示的标记. | [Marker](#Marker) | none      |
 | request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
 | valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
 | mappingEnumValue  | 枚举配置未明确指定 **value** 时，需要映射的目标对象. | `lable` / `index` | lable      |
@@ -468,13 +470,13 @@ Array<string | number | boolean | {
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `(string | number | boolean)[]` | -      |
+| v-model  | 绑定的值. | `Array<string \| number \| boolean>` | -      |
 | mode  | 展示模式. | `read` / `edit` | edit      |
-| marker  | 需要显示的标记. | [Marker](#Marker) | none      |
+| marker  | **mode=read** 时，需要显示的标记. | [Marker](#Marker) | none      |
 | request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
 | valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
 | mappingEnumValue  | 枚举配置未明确指定 **value** 时，需要映射的目标对象. | `lable` / `index` | lable      |
-| separator  | 阅读模式下，显示的多个值之间的分隔符. | `string` | -      |
+| separator  | **mode=read** 时，显示的多个值之间的分隔符. | `string` | -      |
 | emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
 | fieldProps  | **CheckboxGroup** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/checkbox.html) | {}      |
 
@@ -482,13 +484,13 @@ Array<string | number | boolean | {
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `(string | number | boolean)[]` | -      |
+| v-model  | 绑定的值. | `Array<string \| number \| boolean>` | -      |
 | mode  | 展示模式. | `read` / `edit` | edit      |
-| marker  | 阅读模式下，需要显示的标记. | [Marker](#Marker) | none      |
+| marker  | **mode=read** 时，需要显示的标记. | [Marker](#Marker) | none      |
 | request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
 | valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
 | mappingEnumValue  | 枚举配置未明确指定 **value** 时，需要映射的目标对象. | `lable` / `index` | lable      |
-| separator  | 阅读模式下，显示的多个值之间的分隔符. | `string` | -      |
+| separator  | **mode=read** 时，显示的多个值之间的分隔符. | `string` | -      |
 | emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
 | fieldProps  | **CheckboxGroup** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/checkbox.html) | {}      |
 
@@ -511,7 +513,7 @@ Array<string | number | boolean | {
 | request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
 | valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
 | mappingEnumValue  | 枚举配置未明确指定 **value** 时，需要映射的目标对象. | `lable` / `index` | lable      |
-| separator  | 阅读模式下，显示的多个值之间的分隔符. | `string` | -      |
+| separator  | **mode=read** 时，显示的多个值之间的分隔符. | `string` | -      |
 | emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
 | fieldProps  | **Select** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/select.html) | {}      |
 | placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/select.html) 中. | `string` | -      |
@@ -608,7 +610,7 @@ Array<string | number | boolean | {
 | marker  | 需要显示的标记. | [Marker](#Marker) | none      |
 | request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
 | valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
-| separator  | 阅读模式下，显示的多个值之间的分隔符. | `string` | -      |
+| separator  | **mode=read** 时，显示的多个值之间的分隔符. | `string` | -      |
 | emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
 | fieldProps  | **VirtualizedSelect** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/select-v2.html) | {}      |
 | placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/select-v2.html) 中. | `string` | -      |

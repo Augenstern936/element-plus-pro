@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-10-16 22:18:52
+ * @LastEditTime: 2024-10-21 22:36:20
  * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\DatePicker.tsx
  */
 import { formatPlaceholder } from "@element-plus-ui/pro-utils";
@@ -38,7 +38,7 @@ const ProDatePicker = defineComponent<ProDatePickerProps>((props, ctx) => {
     if (props.mode === "read") {
       if (props.type === "dates" || props.type === "years" || props.type === "months") {
         return model.value ? (
-          <ReadOptions value={Array.isArray(model.value) ? model.value : [model.value]} />
+          <ReadOptions value={Array.isArray(model.value) ? model.value : [model.value]} separator={props.separator} />
         ) : (
           <ElText>{props.emptyText}</ElText>
         );

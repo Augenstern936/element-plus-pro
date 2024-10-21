@@ -1,33 +1,42 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-10-20 22:45:55
+ * @LastEditTime: 2024-10-21 21:53:11
  */
-import type { ProFieldType, ProFieldProps } from "@element-plus-ui/pro-field";
-import { ProRequestData } from "@element-plus-ui/pro-types";
 import type {
-  AvatarProps,
-  CascaderProps,
-  CheckboxGroupProps,
-  ColorPickerProps,
-  ColProps,
-  DatePickerProps,
-  FormItemProps,
-  ImageProps,
-  InputNumberProps,
-  InputProps,
-  ISelectProps,
-  ISelectV2Props,
-  ProgressProps,
-  RadioGroupProps,
-  RateProps,
-  RowProps,
-  SliderProps,
-  SwitchProps,
-  TimePickerDefaultProps,
-  TimeSelectProps,
-  UploadProps
-} from "element-plus";
+  ProFieldType,
+  ProFieldTextProps,
+  ProFieldNumberProps,
+  ProFieldDateRangeProps,
+  ProFieldTimeProps,
+  ProFieldTimeSelectProps,
+  ProFieldSelectProps,
+  ProFieldTreeSelectProps,
+  ProFieldVirtualizedSelectProps,
+  ProFieldCheckboxProps,
+  ProFieldRadioProps,
+  ProFieldSwitchProps,
+  ProFieldRateProps,
+  ProFieldColorProps,
+  ProFieldCascaderProps,
+  ProFieldSliderProps,
+  ProFieldProgressProps,
+  ProFieldUploadAvatarProps,
+  ProFieldUploadImageProps,
+  ProFieldTimeRangeProps,
+  ProFieldDateProps,
+  ProFieldDatesProps,
+  ProFieldDateYearProps,
+  ProFieldDateYearsProps,
+  ProFieldDateMonthProps,
+  ProFieldDateMonthsProps,
+  ProFieldDateTimeProps,
+  ProFieldDateTimeRangeProps,
+  ProFieldDateMonthRangeProps,
+  ProFieldDateWeekProps
+} from "@element-plus-ui/pro-field";
+import { ProRequestData } from "@element-plus-ui/pro-types";
+import type { ColProps, DatePickerProps, FormItemProps, RowProps } from "element-plus";
 import { formProps as elFormProps } from "element-plus";
 import { ProButtonProps } from "packages/button/es";
 import { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
@@ -107,14 +116,12 @@ export const generateFormProps = {
 
 type ProFormItemProps = Partial<Omit<FormItemProps, "prop" | "label">>;
 
-type ProFormFieldProps = Omit<ProFieldProps, "type" | "size">;
-
 /**
  * 通用函数类型
  */
 type FormItemPropertyFunction<T> = (entity: Record<string, any>, items: ProFormColumn[]) => T;
 
-interface ProFormColumnCommonConfig extends ProFormItemProps, ProFormFieldProps {
+interface ProFormColumnCommonConfig extends ProFormItemProps {
   key?: string;
   label?: string | ((entity: Record<string, any>, columns?: ProFormColumn[]) => JSX.Element);
   tooltip?: string;
@@ -125,112 +132,138 @@ interface ProFormColumnCommonConfig extends ProFormItemProps, ProFormFieldProps 
   render?: () => JSX.Element;
 }
 
-interface ValueTypeInput extends ProFormColumnCommonConfig {
+interface ValueTypeInput extends ProFormColumnCommonConfig, Omit<ProFieldTextProps, "modelValue" | "type"> {
   valueType?: "text" | "password" | "textarea";
-  fieldProps?: Partial<Omit<InputProps, "modelValue" | "type">>;
 }
 
-interface ValueTypeNumber extends ProFormColumnCommonConfig {
+interface ValueTypeNumber extends ProFormColumnCommonConfig, Omit<ProFieldNumberProps, "modelValue"> {
   valueType?: "number";
-  fieldProps?: Partial<Omit<InputNumberProps, "modelValue">>;
 }
 
-interface ValueTypeDate extends ProFormColumnCommonConfig {
-  valueType?:
-    | "date"
-    | "dates"
-    | "dateRange"
-    | "dateYear"
-    | "dateYears"
-    | "dateMonth"
-    | "dateMonths"
-    | "dateMonthRange"
-    | "dateTimeRange"
-    | "dateTime"
-    | "dateTimeRange";
-  fieldProps?: Partial<Omit<DatePickerProps, "modelValue" | "type">>;
+interface ValueTypeDate extends ProFormColumnCommonConfig, Omit<ProFieldDateProps, "modelValue"> {
+  valueType?: "date";
 }
 
-interface ValueTypeTime extends ProFormColumnCommonConfig {
-  valueType?: "time" | "timeRange";
-  fieldProps?: Partial<Omit<TimePickerDefaultProps, "modelValue">>;
+interface ValueTypeDates extends ProFormColumnCommonConfig, Omit<ProFieldDatesProps, "modelValue"> {
+  valueType?: "dates";
 }
 
-interface ValueTypeTimeSelect extends ProFormColumnCommonConfig {
+interface ValueTypeDateTime extends ProFormColumnCommonConfig, Omit<ProFieldDateTimeProps, "modelValue"> {
+  valueType?: "dateTime";
+}
+
+interface ValueTypeDateWeek extends ProFormColumnCommonConfig, Omit<ProFieldDateWeekProps, "modelValue"> {
+  valueType?: "dateWeek";
+}
+
+interface ValueTypeDateMonth extends ProFormColumnCommonConfig, Omit<ProFieldDateMonthProps, "modelValue"> {
+  valueType?: "dateMonth";
+}
+
+interface ValueTypeDateMonths extends ProFormColumnCommonConfig, Omit<ProFieldDateMonthsProps, "modelValue"> {
+  valueType?: "dateMonths";
+}
+
+interface ValueTypeDateYear extends ProFormColumnCommonConfig, Omit<ProFieldDateYearProps, "modelValue"> {
+  valueType?: "dateYear";
+}
+
+interface ValueTypeDateYears extends ProFormColumnCommonConfig, Omit<ProFieldDateYearsProps, "modelValue"> {
+  valueType?: "dateYears";
+}
+
+interface ValueTypeDateRange extends ProFormColumnCommonConfig, Omit<ProFieldDateRangeProps, "modelValue"> {
+  valueType?: "dateRange";
+}
+
+interface ValueTypeDateTimeRange extends ProFormColumnCommonConfig, Omit<ProFieldDateTimeRangeProps, "modelValue"> {
+  valueType?: "dateTimeRange";
+}
+
+interface ValueTypeDateMonthRange extends ProFormColumnCommonConfig, Omit<ProFieldDateMonthRangeProps, "modelValue"> {
+  valueType?: "dateMonthRange";
+}
+
+interface ValueTypeTime extends ProFormColumnCommonConfig, Omit<ProFieldTimeProps, "modelValue"> {
+  valueType?: "time";
+}
+
+interface ValueTypeTimeRange extends ProFormColumnCommonConfig, Omit<ProFieldTimeRangeProps, "modelValue"> {
+  valueType?: "timeRange";
+}
+
+interface ValueTypeTimeSelect extends ProFormColumnCommonConfig, Omit<ProFieldTimeSelectProps, "modelValue"> {
   valueType?: "timeSelect";
-  fieldProps?: Partial<Omit<TimeSelectProps, "modelValue">>;
 }
 
-interface ValueTypeSelect extends ProFormColumnCommonConfig {
+interface ValueTypeSelect extends ProFormColumnCommonConfig, Omit<ProFieldSelectProps, "modelValue"> {
   valueType?: "select";
-  fieldProps?: Partial<Omit<ISelectProps, "modelValue">>;
 }
 
-interface ValueTypeTreeSelect extends ProFormColumnCommonConfig {
+interface ValueTypeTreeSelect extends ProFormColumnCommonConfig, Omit<ProFieldTreeSelectProps, "modelValue"> {
   valueType?: "treeSelect";
-  fieldProps?: Partial<Omit<ISelectProps & Record<string, any>, "modelValue">>;
 }
 
-interface ValueTypevirtualizedSelect extends ProFormColumnCommonConfig {
+interface ValueTypevirtualizedSelect extends ProFormColumnCommonConfig, Omit<ProFieldVirtualizedSelectProps, "modelValue"> {
   valueType?: "virtualizedSelect";
-  fieldProps?: Partial<Omit<ISelectV2Props, "modelValue">>;
 }
 
-interface ValueTypeCheckbox extends ProFormColumnCommonConfig {
+interface ValueTypeCheckbox extends ProFormColumnCommonConfig, Omit<ProFieldCheckboxProps, "modelValue"> {
   valueType?: "checkbox" | "checkboxButton";
-  fieldProps?: Partial<Omit<CheckboxGroupProps, "modelValue">>;
 }
 
-interface ValueTypeRadio extends ProFormColumnCommonConfig {
+interface ValueTypeRadio extends ProFormColumnCommonConfig, Omit<ProFieldRadioProps, "modelValue"> {
   valueType?: "radio" | "radioButton";
-  fieldProps?: Partial<Omit<RadioGroupProps, "modelValue">>;
 }
 
-interface ValueTypeSwitch extends ProFormColumnCommonConfig {
+interface ValueTypeSwitch extends ProFormColumnCommonConfig, Omit<ProFieldSwitchProps, "modelValue"> {
   valueType?: "switch";
-  fieldProps?: Partial<Omit<SwitchProps, "modelValue">>;
 }
 
-interface ValueTypeUploadAvatar extends ProFormColumnCommonConfig {
+interface ValueTypeUploadAvatar extends ProFormColumnCommonConfig, Omit<ProFieldUploadAvatarProps, "modelValue" | "size"> {
   valueType?: "uploadAvatar";
-  fieldProps?: Partial<Omit<UploadProps, "fileList"> & AvatarProps>;
 }
 
-interface ValueTypeUploadImage extends ProFormColumnCommonConfig {
+interface ValueTypeUploadImage extends ProFormColumnCommonConfig, Omit<ProFieldUploadImageProps, "modelValue" | "size"> {
   valueType?: "uploadImage";
-  fieldProps?: Partial<Omit<UploadProps, "fileList"> & ImageProps>;
 }
 
-interface ValueTypeRate extends ProFormColumnCommonConfig {
+interface ValueTypeRate extends ProFormColumnCommonConfig, Omit<ProFieldRateProps, "modelValue"> {
   valueType?: "rate";
-  fieldProps?: Partial<Omit<RateProps, "modelValue">>;
 }
 
-interface ValueTypeColor extends ProFormColumnCommonConfig {
+interface ValueTypeColor extends ProFormColumnCommonConfig, Omit<ProFieldColorProps, "modelValue"> {
   valueType?: "color";
-  fieldProps?: Partial<Omit<ColorPickerProps, "modelValue">>;
 }
 
-interface ValueTypeCascader extends ProFormColumnCommonConfig {
+interface ValueTypeCascader extends ProFormColumnCommonConfig, Omit<ProFieldCascaderProps, "modelValue"> {
   valueType?: "cascader";
-  fieldProps?: Partial<Omit<CascaderProps & { placeholder?: string }, "modelValue">>;
 }
 
-interface ValueTypeSlider extends ProFormColumnCommonConfig {
+interface ValueTypeSlider extends ProFormColumnCommonConfig, Omit<ProFieldSliderProps, "modelValue"> {
   valueType?: "slider";
-  fieldProps?: Partial<Omit<SliderProps, "modelValue">>;
 }
 
-interface ValueTypeProgress extends ProFormColumnCommonConfig {
+interface ValueTypeProgress extends ProFormColumnCommonConfig, ProFieldProgressProps {
   valueType?: "progress";
-  fieldProps?: Partial<ProgressProps>;
 }
 
 export type ProFormColumn =
   | ValueTypeInput
   | ValueTypeNumber
   | ValueTypeDate
+  | ValueTypeDates
+  | ValueTypeDateTime
+  | ValueTypeDateWeek
+  | ValueTypeDateMonth
+  | ValueTypeDateMonths
+  | ValueTypeDateYear
+  | ValueTypeDateYears
+  | ValueTypeDateRange
+  | ValueTypeDateTimeRange
+  | ValueTypeDateMonthRange
   | ValueTypeTime
+  | ValueTypeTimeRange
   | ValueTypeTimeSelect
   | ValueTypeSelect
   | ValueTypeTreeSelect

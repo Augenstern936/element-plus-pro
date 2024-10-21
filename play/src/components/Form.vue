@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-09 22:25:21
- * @LastEditTime: 2024-10-20 22:36:58
+ * @LastEditTime: 2024-10-21 22:14:10
  * @FilePath: \element-plus-pro\play\src\components\Form.vue
 -->
 <template>
@@ -28,7 +28,7 @@
         :order="2"
         :fieldProps="{
           marker: 'on-line',
-          src: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
+          //src: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
           action: 'https://fuss10.elemecdn.com'
         }"
       />
@@ -74,8 +74,8 @@ const formItems = ref<ProFormColumn[]>([
     label: "头像:",
     dataField: "avatar",
     valueType: "uploadAvatar",
+    marker: "female",
     fieldProps: {
-      marker: "on-line",
       size: "default",
       src: "https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg"
     }

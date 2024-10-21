@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-05-28 16:49:08
- * @LastEditTime: 2024-10-20 19:10:15
+ * @LastEditTime: 2024-10-21 22:30:57
  */
 import { DefineComponent } from "vue-demi";
 import { GeneratePropTypes } from "@element-plus-ui/pro-types";
@@ -34,7 +34,9 @@ import components, {
   ProFieldTimeRangeProps,
   ProFieldTimeSelectProps,
   ProFieldTreeSelectProps,
-  ProFieldVirtualizedSelectProps
+  ProFieldVirtualizedSelectProps,
+  ProFieldDateYearsProps,
+  ProFieldDateMonthsProps
 } from "./components";
 import { proFieldProps } from "./props";
 
@@ -72,15 +74,23 @@ interface DateYearFieldProps extends CommonProps, Pick<ProFieldDateYearProps, "f
   type: "dateYear";
 }
 
+interface DateYearsFieldProps extends CommonProps, Pick<ProFieldDateYearsProps, "fieldProps"> {
+  type: "dateYears";
+}
+
 interface DateMonthFieldProps extends CommonProps, Pick<ProFieldDateMonthProps, "fieldProps"> {
   type: "dateMonth";
+}
+
+interface DateMonthsFieldProps extends CommonProps, Pick<ProFieldDateMonthsProps, "fieldProps"> {
+  type: "dateMonths";
 }
 
 interface DateMonthRangeFieldProps extends CommonProps, Pick<ProFieldDateMonthRangeProps, "fieldProps"> {
   type: "dateMonthRange";
 }
 
-interface DateTimeWeekFieldProps extends CommonProps, Pick<ProFieldDateWeekProps, "fieldProps"> {
+interface DateWeekFieldProps extends CommonProps, Pick<ProFieldDateWeekProps, "fieldProps"> {
   type: "dateWeek";
 }
 
@@ -170,7 +180,9 @@ export type ProFieldSuperProps<T> = DefineComponent<T> & {
   DateTime: DefineComponent<ProFieldDateTimeProps>;
   DateWeek: DefineComponent<ProFieldDateWeekProps>;
   DateMonth: DefineComponent<ProFieldDateMonthProps>;
+  DateMonths: DefineComponent<ProFieldDateMonthsProps>;
   DateYear: DefineComponent<ProFieldDateYearProps>;
+  DateYears: DefineComponent<ProFieldDateYearsProps>;
   DateRange: DefineComponent<ProFieldDateRangeProps>;
   DateTimeRange: DefineComponent<ProFieldDateTimeRangeProps>;
   DateMonthRange: DefineComponent<ProFieldDateMonthRangeProps>;
@@ -203,9 +215,11 @@ export type ProFieldProps =
   | DateRangeFieldProps
   | DatesFieldProps
   | DateYearFieldProps
+  | DateYearsFieldProps
   | DateMonthFieldProps
+  | DateMonthsFieldProps
   | DateMonthRangeFieldProps
-  | DateTimeWeekFieldProps
+  | DateWeekFieldProps
   | DateTimeFieldProps
   | DateTimeRangeFieldProps
   | TimeFieldProps
