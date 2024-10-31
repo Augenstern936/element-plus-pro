@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-05-28 16:49:08
- * @LastEditTime: 2024-10-21 22:30:57
+ * @LastEditTime: 2024-10-27 17:20:13
  */
 import { DefineComponent } from "vue-demi";
 import { GeneratePropTypes } from "@element-plus-ui/pro-types";
@@ -164,6 +164,12 @@ interface TreeSelectFieldProps extends CommonProps, Pick<ProFieldTreeSelectProps
 
 interface VirtualizedSelectProps extends CommonProps, Pick<ProFieldVirtualizedSelectProps, "fieldProps"> {
   type?: "virtualizedSelect";
+}
+
+export enum SizeEnum {
+  "default" = 40,
+  "large" = 56,
+  "small" = 24
 }
 
 export type ProFieldMode = "read" | "edit";

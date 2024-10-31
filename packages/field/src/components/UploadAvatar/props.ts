@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-15 10:48:02
- * @LastEditTime: 2024-10-19 22:16:02
+ * @LastEditTime: 2024-10-27 16:33:50
  */
 import { UploadProps, AvatarProps } from "element-plus";
 import { ExtractPropTypes, PropType } from "vue-demi";
@@ -17,7 +17,7 @@ export const proFieldUploadAvatar = {
     default: "edit"
   },
   size: {
-    type: [String as PropType<"default" | "large" | "small">, Number],
+    type: [String, Number] as PropType<"default" | "large" | "small" | number>,
     default: "default"
   },
   marker: {
@@ -27,12 +27,6 @@ export const proFieldUploadAvatar = {
     type: Object as PropType<Partial<Omit<UploadProps, "fileList"> & AvatarProps>>
   }
 };
-
-export enum AvatarSizeEnum {
-  "default" = 40,
-  "large" = 56,
-  "small" = 24
-}
 
 export type Mark = "female" | "male" | "on-line" | "off-line";
 

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-09-13 21:28:34
- * @LastEditTime: 2024-10-20 14:46:33
+ * @LastEditTime: 2024-10-27 17:15:13
  * @FilePath: \element-plus-pro\packages\field\src\props.ts
  */
 import { PropType } from "vue-demi";
@@ -31,8 +31,8 @@ export const proFieldProps = {
     default: "text"
   },
   size: {
-    type: Number,
-    default: 40
+    type: [String, Number] as PropType<"default" | "large" | "small" | number>,
+    default: "default"
   },
   marker: {
     type: String as PropType<Marker>

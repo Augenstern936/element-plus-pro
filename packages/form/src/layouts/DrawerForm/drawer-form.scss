@@ -1,0 +1,14 @@
+.pro-drawer-form {
+  .el-drawer__title {
+    color: var(--title-color);
+    font-size: var(--title-size);
+    font-weight: var(--title-weight);
+  }
+  .submitter-box {
+    display: grid;
+    gap: 10px;
+  }
+  .submitter-box > * {
+    margin: 0;
+  }
+}

@@ -9,7 +9,7 @@ import { useVModel } from "@vueuse/core";
 import { DefineComponent, defineComponent } from "vue";
 import BaseInput from "./BaseInput";
 import { baseInputProps, ProFieldTextProps } from "./props";
-import { excludeObjectProperty } from "@element-plus-ui/pro-utils";
+import { omitObjectProperty } from "@element-plus-ui/pro-utils";
 import { ElText } from "element-plus";
 
 const ProFieldText = defineComponent<ProFieldTextProps>(
@@ -31,6 +31,6 @@ const ProFieldText = defineComponent<ProFieldTextProps>(
   }
 ) as DefineComponent<ProFieldTextProps>;
 
-ProFieldText.props = excludeObjectProperty(baseInputProps, ["type"]);
+ProFieldText.props = omitObjectProperty(baseInputProps, ["type"]);
 
 export default ProFieldText;

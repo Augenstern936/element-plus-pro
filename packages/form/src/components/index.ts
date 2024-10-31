@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-13 23:34:01
- * @LastEditTime: 2024-10-10 20:42:17
+ * @LastEditTime: 2024-10-22 21:09:48
  * @FilePath: \element-plus-pro\packages\form\src\components\index.ts
  */
 import { ProFormUploadAvatar } from "./UploadAvatar";
@@ -21,6 +21,7 @@ import { ProFormVirtualizedSelect } from "./VirtualizedSelect";
 import { ProFormTimeSelect } from "./TimeSelect";
 import * as TimePicker from "./TimePicker";
 import * as DatePicker from "./DatePicker";
+import { ProFormProgress } from "./Progress";
 
 export * from "./UploadAvatar";
 export * from "./Cascader";
@@ -30,6 +31,7 @@ export * from "./TimePicker";
 export * from "./DatePicker";
 export * from "./ColorPicker";
 export * from "./UploadImage";
+export * from "./Progress";
 export * from "./Input";
 export * from "./Radio";
 export * from "./Rate";
@@ -53,6 +55,7 @@ export default {
   password: Input.ProFormPassword,
   textarea: Input.ProFormTextarea,
   cascader: ProFormCascader,
+  progress: ProFormProgress,
   radio: Radio.ProFormRadio,
   radioButton: Radio.ProFormRadioButton,
   checkbox: Checkbox.ProFormCheckbox,

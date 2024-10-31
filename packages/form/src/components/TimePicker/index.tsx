@@ -2,27 +2,23 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-30 21:35:16
- * @LastEditTime: 2024-07-09 17:05:17
+ * @LastEditTime: 2024-10-22 21:03:01
  * @FilePath: \element-plus-pro\packages\form\src\components\TimePicker\index.tsx
  */
 import type { ProFieldTimeProps, ProFieldTimeRangeProps } from "@element-plus-ui/pro-field";
 import { withInstall } from "@element-plus-ui/pro-utils";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";
-import { FormFieldProps } from "../../typing";
+import { FormFieldCommonProps } from "../../typing";
+import { useVModel } from "@vueuse/core";
 
-export type ProFormTimeProps = FormFieldProps<Omit<ProFieldTimeProps, "modelValue" | "mode" | "type" | "is-range">> & {
-  modelValue?: string | number | Date | (string | number | Date)[];
-  placeholder?: string;
-};
-export type ProFormTimeRangeProps = FormFieldProps<Omit<ProFieldTimeRangeProps, "type" | "is-range">> & {
-  modelValue?: string | number | boolean;
-  placeholder?: string;
-};
+export interface ProFormTimeProps extends FormFieldCommonProps, ProFieldTimeProps {}
+export interface ProFormTimeRangeProps extends FormFieldCommonProps, ProFieldTimeRangeProps {}
 
 const FormTime = defineComponent<ProFormTimeProps>(
-  props => {
-    return () => <ProFormField {...props} type={"time"} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"time"} v-model={model.value} />;
   },
   {
     name: "ProFormTime"
@@ -30,8 +26,9 @@ const FormTime = defineComponent<ProFormTimeProps>(
 ) as DefineComponent<ProFormTimeProps>;
 
 const FormTimeRange = defineComponent<ProFormTimeRangeProps>(
-  props => {
-    return () => <ProFormField {...props} type={"timeRange"} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"timeRange"} v-model={model.value} />;
   },
   {
     name: "ProFormTimeRange"

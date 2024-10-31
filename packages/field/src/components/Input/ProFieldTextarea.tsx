@@ -9,7 +9,7 @@ import { useVModel } from "@vueuse/core";
 import { DefineComponent, defineComponent } from "vue";
 import BaseInput from "./BaseInput";
 import { baseInputProps, ProFieldTextareaProps } from "./props";
-import { excludeObjectProperty } from "@element-plus-ui/pro-utils";
+import { omitObjectProperty } from "@element-plus-ui/pro-utils";
 import { ElText } from "element-plus";
 
 const ProFieldTextarea = defineComponent<ProFieldTextareaProps>(
@@ -31,6 +31,6 @@ const ProFieldTextarea = defineComponent<ProFieldTextareaProps>(
   }
 ) as DefineComponent<ProFieldTextareaProps>;
 
-ProFieldTextarea.props = excludeObjectProperty(baseInputProps, ["type"]);
+ProFieldTextarea.props = omitObjectProperty(baseInputProps, ["type"]);
 
 export default ProFieldTextarea;

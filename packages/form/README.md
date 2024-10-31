@@ -1,7 +1,6 @@
 <h1 align="center">@element-plus-ui/pro-form</h1>
 
-<p align="center">⚡️ 原子信息组件，基于 <a href="https://element-plus.org/zh-CN/">ElementPlus</a> 的 <a href="https://element-plus.org/zh-CN/component/form.html">Form</a> 表单组件</p>
-<p align="center">统一 <a href="https://www.npmjs.com/package/@element-plus-ui/pro-components">@element-plus-ui/pro-components</a> 中的 <a href="https://www.npmjs.com/package/@element-plus-ui/pro-form">ProForm</a>、<a href="https://www.npmjs.com/package/@element-plus-ui/pro-table">ProTable</a> 等组件里的字段定义</p>
+<p align="center">在原来的 <a href="https://element-plus.org/zh-CN/component/form.html">ElForm</a> 的基础上增加了一些语法糖和更多的布局设置，帮助我们快速地开发一个表单</p>
 <p align="center">让中后台开发更简单 💪</p>
 
 ## 📦 安装
@@ -18,597 +17,381 @@ $ yarn add @element-plus-ui/pro-form
 $ pnpm add @element-plus-ui/pro-form
 ```
 
-## ✨ 组件列表
+## ✨ 布局组件
 
-- [ProForm](#ProForm) **顶级组件，挂载了以下所有组件，可从中指定需要渲染的组件**
-- [ProFormText](#ProFormText) 用于输入各类文本
-- [ProFormTextarea](#ProFormTextarea) 用于输入多行文本
-- [ProFormNumber](#ProFormNumber) 用于输入数子
-- [ProFormPassword](#ProFormPassword) 用于输入密码
-- [ProFormDate](#ProFormDate) 日期选择器用于输入日期
-- [ProFormDateMonth](#ProFormDateMonth) 日期 + 月选择器，用于输入日期和月
-- [ProFormDateMonths](#ProFormDateMonths) 日期 + 月选择器，用于输入多个日期和月
-- [ProFormDateMonthRange](#ProFormDateMonthRange) 日期 + 月区间选择器，用于输入一个日期 + 月的区间
-- [ProFormDateRange](#ProFormDateRange) 日期区间选择器用于输入一个日期区间
-- [ProFormDates](#ProFormDates) 用于选择多个日期
-- [ProFormDateTime](#ProFormDateTime) 日期 + 时间选择器，用于输入日期和时间
-- [ProFormDateTimeRange](#ProFormDateTimeRange) 日期 + 时间区间选择器，用于输入一个日期 + 时间的区间
-- [ProFormDateWeek](#ProFormDateWeek) 日期 + 周选择器，用于输入日期和周
-- [ProFormDateYear](#ProFormDateYear) 日期 + 年选择器，用于输入日期和年
-- [ProFormDateYears](#ProFormDateYears) 日期 + 年选择器，用于输入多个日期和年
-- [ProFormTime](#ProFormTime) 时间选择器用于输入时间
-- [ProFormTimeRange](#ProFormTimeRange) 时间区间选择器用于输入一个时间区间
-- [ProFormRadio](#ProFormRadio) 支持 **request** 和 **valueEnum** 两种方式来生成子项
-- [ProFormRadioButton](#ProFormRadioButton) 支持 **request** 和 **valueEnum** 两种方式来生成子项
-- [ProFormCheckbox](#ProFormCheckbox) 支持 **request** 和 **valueEnum** 两种方式来生成子项
-- [ProFormCheckboxButton](#ProFormCheckboxButton) 支持 **request** 和 **valueEnum** 两种方式来生成子项
-- [ProFormRate](#ProFormRate) 用于评分
-- [ProFormSelect](#ProFormSelect) 支持 **request** 和 **valueEnum** 两种方式来生成子项
-- [ProFormSlider](#ProFormSlider) 当用户需要在数值区间 / 自定义区间内进行选择时，可为连续或离散值
-- [ProFormSwitch](#ProFormSwitch) 用于输入互斥的两个选项，一般是 **true** 和 **false**
-- [ProFormColor](#ProFormColor) 用于颜色选择
-- [ProFormCascader](#ProFormCascader) 级联选择器逐级查看并选择，支持 **request** 和 **valueEnum** 两种方式来生成子项
-- [ProFormTimeSelect](#ProFormTimeSelect) 用于选择或输入日期
-- [ProFormTreeSelect](#ProFormTreeSelect) 支持 **request** 和 **valueEnum** 两种方式来生成子项
-- [ProFormUploadImage](#ProFormUploadImage) 用于图片上传和展示
-- [ProFormUploadAvatar](#ProFormUploadAvatar) 用于头像上传和展示
-- [ProFormVirtualizedSelect](#ProFormVirtualizedSelect) 虚拟化选择器，支持 **request** 和 **valueEnum** 两种方式来生成子项
+- [ProForm](#ProForm) 基础表单组件，并挂载了辅助和表单项组件
+- [ProSearchBar](#ProSearchBar) 搜索栏表单组件，配合其它组件单独使用，如：table
+- [ProStepsForm](#ProStepsForm) 分布式表单组件
+- [ProDialogForm](#ProDialogForm) 组合了 **ElDialog** 和 **ProForm** 组件，可通过 **trigger** 来控制显隐, 减少繁琐的状态管理
+- [ProDrawerForm](#ProDrawerForm) 组合了 **ElDrawer** 和 **ProForm** 组件，可通过 **trigger** 来控制显隐, 减少繁琐的状态管理
 
-## 🔨 使用
+## ✨ 表单项组件(一般配合布局组件一起使用)
+
+> 这些组件本质上是 **ElFormItem** 和 组件的结合，我们可以把他们当成一个 **ElFormItem** 来使用，并且支持各种 **props**。
+> 每个表单项都支持 **fieldProps** 属性来支持设置输入组件的 **props**。 我们支持了 **placeholder** 的透传，你可以直接在组件上设置 **placeholder**
+
+- [ProFormText](#ProFormFields) 用于输入各类文本
+- [ProFormTextarea](#ProFormFields) 用于输入多行文本
+- [ProFormNumber](#ProFormFields) 用于输入数子
+- [ProFormPassword](#ProFormFields) 用于输入密码
+- [ProFormDate](#ProFormFields) 日期选择器用于输入日期
+- [ProFormDateMonth](#ProFormFields) 日期 + 月选择器，用于输入日期和月
+- [ProFormDateMonths](#ProFormFields) 日期 + 月选择器，用于输入多个日期和月
+- [ProFormDateMonthRange](#ProFormFields) 日期 + 月区间选择器，用于输入一个日期 + 月的区间
+- [ProFormDateRange](#ProFormFields) 日期区间选择器用于输入一个日期区间
+- [ProFormDates](#ProFormFields) 用于选择多个日期
+- [ProFormDateTime](#ProFormFields) 日期 + 时间选择器，用于输入日期和时间
+- [ProFormDateTimeRange](#ProFormFields) 日期 + 时间区间选择器，用于输入一个日期 + 时间的区间
+- [ProFormDateWeek](#ProFormFields) 日期 + 周选择器，用于输入日期和周
+- [ProFormDateYear](#ProFormFields) 日期 + 年选择器，用于输入日期和年
+- [ProFormDateYears](#ProFormFields) 日期 + 年选择器，用于输入多个日期和年
+- [ProFormTime](#ProFormFields) 时间选择器用于输入时间
+- [ProFormTimeRange](#ProFormFields) 时间区间选择器用于输入一个时间区间
+- [ProFormRadio](#ProFormFields) 支持 **request** 和 **valueEnum** 两种方式来生成子项
+- [ProFormRadioButton](#ProFormFields) 支持 **request** 和 **valueEnum** 两种方式来生成子项
+- [ProFormCheckbox](#ProFormFields) 支持 **request** 和 **valueEnum** 两种方式来生成子项
+- [ProFormCheckboxButton](#ProFormFields) 支持 **request** 和 **valueEnum** 两种方式来生成子项
+- [ProFormRate](#ProFormFields) 用于评分
+- [ProFormSelect](#ProFormFields) 支持 **request** 和 **valueEnum** 两种方式来生成子项
+- [ProFormSlider](#ProFormFields) 当用户需要在数值区间 / 自定义区间内进行选择时，可为连续或离散值
+- [ProFormSwitch](#ProFormFields) 用于输入互斥的两个选项，一般是 **true** 和 **false**
+- [ProFormColor](#ProFormFields) 用于颜色选择
+- [ProFormCascader](#ProFormFields) 级联选择器逐级查看并选择，支持 **request** 和 **valueEnum** 两种方式来生成子项
+- [ProFormTimeSelect](#ProFormFields) 用于选择或输入日期
+- [ProFormTreeSelect](#ProFormFields) 支持 **request** 和 **valueEnum** 两种方式来生成子项
+- [ProFormUploadImage](#ProFormFields) 用于图片上传和展示
+- [ProFormUploadAvatar](#ProFormFields) 用于头像上传和展示
+- [ProFormVirtualizedSelect](#ProFormFields) 虚拟化选择器，支持 **request** 和 **valueEnum** 两种方式来生成子项
+
+## API
+
+### ProForm
+
+> 在 [ElForm](https://element-plus.org/zh-CN/component/form.html) 的基础上，新增了以下属性，如果你想要自定义表单元素，ProForm 与 ElForm 的方法是相同的，你仍然可以用 FormItem + 自定义组件的方式来自定义。
+
+| 属性 | 描述          | 类型                                 | 默认值 |
+| ---- | ------------- | ------------------------------------ | ------ |
+| v-model  | 绑定的数据实体. | `Record<string, any>` | -      |
+| title  | 标题. | `string` | -      |
+| grid  | 开启栅格化模式. | `boolean` | false      |
+| colProps  | 开启 **grid** 模式时，需配置的布局参数. | [ColProps](https://element-plus.org/zh-CN/component/layout.html) | {}      |
+| rowProps  | 开启 **grid** 模式时，需配置的布局参数. | [RowProps](https://element-plus.org/zh-CN/component/layout.html) | {}      |
+| columns  | 以JSON配置的方式生成表单项. | Array<[ColumnConfig](ColumnConfig)> | []     |
+| params  | 请求参数. | `Record<string, any>` | {}      |
+| request  | 发起网络请求，返回值会覆盖给 v-model. | `(params) => Promise<data>` | -      |
+| readonly  | 是否只读. | `boolean` | false      |
+| emptyText  | **readonly=true** 以及值为空时，需要显示的占位文本. | `string` | -      |
+| labelStyle  | 表单项标签样式. | `Record<string, any>` | {}      |
+| submitter  | 提交器，用于配置相关按钮. | [SubmitterConfig](#SubmitterConfig) | -      |
 
 ```vue
 <template>
-  <!-- 通过 type 属性指定渲染的组件 -->
-  <ProForm type="switch" v-model="isOpenSwitch" />
-  <!-- 通过导出的形式直接使用对应的组件 -->
-  <ProFormSelect :request="getSelectList"/>
-  <!-- 通过对象取值的方式指定渲染的组件 -->
-  <ProForm.Radio
-    v-model="selectedRadio"
-    mode="read"
-    marker="disc"
-    :value-enum="{
-      1: {
-        label: '拔都',
-        status: 'success'
-      },
-      2: {
-        label: '海都',
-        color: 'red'
-      },
-      3: {
-        label: '蒙哥',
-        status: 'warning'
-      },
-      4: '昔班',
+  <pro-form
+    ref="formRef"
+    v-model="formData"
+    :label-style="{ fontWeight: 600 }"
+    :required="true"
+    :columns="formItems"
+    :request="getFormData"
+    :params="form"
+    :grid="true"
+    :col-props="{ span: 24 }"
+    :submitter="{
+      hideResetButton: false,
+      fillMode: 'full'
     }"
-  />
+    @reset="() => console.log(formRef, 'reset')"
+  >
+    <ProForm.Switch v-model="form.switch" :order="1" label="开关测试:" activeText="已打开" inactive-text="测试" />
+  </pro-form>
 </template>
 
 <script setup lang="ts">
-  import { ProForm, ProFormSelect } from "@element-plus-ui/pro-form";
+  import { ProForm } from "@element-plus-ui/pro-form";
+  import type { ProFormColumn } "@element-plus-ui/pro-form";
+  import { ref } from "vue";
 
-  const isOpenSwitch = ref(true);
-  const selectedRadio = ref(1)
+  const formRef = ref();
 
-  const getSelectList = async () => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve([
-          {
-            label: '红楼梦',
-            value: 1,
-            disabled: true
-          },
-          {
-            label: '水浒传',
-            value: 2
-          },
-          {
-            label: '西游记',
-            value: 3
-          },
-          {
-            label: '三国演义',
-            value: 4
-          },
-          '聊斋志异',
-          '笑傲江湖'
-        ]);
-      }, 2000);
-    });
+  const formData = ref({})
+
+  const formItems = ref<ProFormColumn[]>([
+    {
+      label: "姓名:",
+      dataField: "name",
+      required: true,
+      order: 0,
+      hidden: (model: Record<string, any>) => {
+        return model.switch === true;
+      }
+    },
+    {
+      label: "年龄:",
+      dataField: "age",
+      valueType: "number",
+      tooltip: "测试"
+    },
+    {
+      label: "出生日期:",
+      valueType: "date",
+    },
+    {
+      label: "爱好:",
+      dataField: "test",
+      valueType: "radio",
+      valueEnum: {
+        1: "钓鱼",
+        2: "王者",
+        3: "台球",
+        4: "阅读"
+      }
+    },
+    {
+      label: "评价:",
+      valueType: "rate",
+      fieldProps: {
+        scoreTemplate: "{value} 级"
+      }
+    }
+  ]);
+
+  const getFormData = async (params: Record<string, any>, props: Record<string, any>) => {
+    return {
+      name: "拔都",
+      age: 50
+    };
   };
 </script>
 ```
 
-> 在 **ValueEnum** 配置中，当键值为对象时，除了包含 **status**、**color** 等属性之外、同时也继承了当前渲染的组件自身的 **Props**，如以上设置了 **disabled** 。
-> 如有需要，您可前往 [ElementPlus](https://element-plus.org/zh-CN/) 官方文档处，查阅对应的组件 **API**.
+### ProSearchBar
 
-## ProForm
-
-属性 `size`、`marker`、`request`、`valueEnum`、`separator`、`emptyText`、`placeholder`、`mappingEnumValue` 只在当前 **type** 指定的组件，包含此属性时生效.
+表单生成方式与 [ProForm](#proform) 组件相同.
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `number` / `boolean` / `Array<string \| number \| boolean>` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| type  | 当前渲染的元素. | [Type](#Type) | text      |
-| size  | 图片和头像大小. | `number` | 40      |
-| marker  | 需要显示的标记. | [Marker](#Marker) | none      |
-| request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
-| valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
-| separator  | 多个值之间的分隔符. | `string` | -      |
-| emptyText  | **mode=read** 值为空时，提供的占位文本. | `string` | -      |
-| placeholder  | 输入框占位文本，透传到 **fieldProps** 中. | `string` / `[string]` / `[string, string]` | -      |
-| mappingEnumValue  | 当选项集数据中，未明确指定 **value** 时，需要映射的目标对象. | `lable` / `index` | lable      |
-| fieldProps  | 当前渲染的组件 **Props** 配置. | `Record<string, any>` | {}      |
-
-> **fieldProps** 为当前 **type** 所对应的组件 **Props** 配置，主要兼容 [ElementPlus](https://element-plus.org/zh-CN/) 组件，优先级是最高的.
-> 如有需要，您可前往 [ElementPlus](https://element-plus.org/zh-CN/) 官方文档处，查阅对应的组件 **API**
-
-### Type
-
-* `text`
-* `textarea`
-* `number`
-* `password`
-* `date`
-* `dateMonth`
-* `dateMonths`
-* `dateMonthRange`
-* `dateRange`
-* `dates`
-* `dateTime`
-* `dateTimeRange`
-* `dateWeek`
-* `dateYear`
-* `dateYears`
-* `time`
-* `timeRange`
-* `radio`
-* `radioButton`
-* `checkbox`
-* `checkboxButton`
-* `rate`
-* `select`
-* `slider`
-* `switch`
-* `color`
-* `cascader`
-* `timeSelect`
-* `treeSelect`
-* `uploadImage`
-* `uploadAvatar`
-
-### Marker
-
-```ts
-type Marker = "tag" | "disc" | "circle" | "square" | "disclosure-open" | "disclosure-closed"
-```
-
-### ValueEnum
-
-*1. 对象类型，键值为字符串或数字或布尔值或对象*
-
-```ts
-Record<string, string | number | boolean | {
-  label: string; 
-  color?: string; 
-  status?: 'success' | 'error' | 'warning' | 'default' | 'processing',
-  [key: string]: any
-}>
-```
+| v-model  | 绑定的数据实体. | `Record<string, string \| number \| boolean \| any[]>` | -      |
+| layout  | 布局方式. | `horizontal` / `vertical` / `inline` | horizontal      |
+| columns  | 以JSON配置的方式生成表单项. | Array<ColumnsConfig> | []      |
+| colSpan  | 提交器. | `number` | 3      |
+| preserve  | 是否能够查询收起的数据，如果设置为 false，收起后的表单数据将会丢失. | `boolean` | true      |
+| collapsed  | 是否展开. | `boolean` | false      |
+| extraTools  | 额外的工具集配置，权限低于插槽. | Array<[ButtonConfig](#ButtonConfig)> / `() => JSX.Element` | []      |
+| searchBefore  | 触发搜索的前置行为. | `(data) => boolean` | -      |
+| defaultCollapsed  | 默认是否展开. | `boolean` | false      |
+| defaultColsNumber  | 默认显示列数. | `number` | 3      |
 
 ```vue
 <template>
-  <ProForm.Radio
-    :value-enum="{
-      1: '未知',
-      2: 2
-      3: { label: '审核中', status: 'processing' },
-      4: { label: '未通过', status: 'error' },
-      5: { label: '已过期', status: 'warning' },
-      6: { label: '已完成', status: 'success' },
-    }"
-  />
+  <pro-form-text/>
 </template>
 
 <script setup lang="ts">
-  import ProForm from "@element-plus-ui/pro-form";
+  import { ProFormText } from '@element-plus-ui/pro-form';
 </script>
 ```
 
-*2. 数组类型，值为字符串或数字或布尔值或对象*
+### ProStepsForm
 
-```ts
-Array<string | number | boolean | {
-  label: string; 
-  value?: string | number | boolean; 
-  color?: string; 
-  status?: 'success' | 'error' | 'warning' | 'default' | 'processing',
-  [key: string]: any
-}>
-```
+我们提供了三种方式来生成表单，首先是通过 `ProStepForm` 组件以插槽的形式生成，这种方式权限也是最高的，其次是通过 `steps` 属性进行配置，如果 `steps` 配置中，未定义 `columns`，那么会使用全局 `columns`。
+
+| 属性 | 描述          | 类型                                 | 默认值 |
+| ---- | ------------- | ------------------------------------ | ------ |
+| active  | 当前激活的步骤，透传到 **stepsProps** 中. | `number` | 0      |
+| steps  | 配置步骤和表单定义. | `string[]` / [StepConfig](#StepConfig)[] | -      |
+| columns  | 表单定义，需要使用二维数组来生成多个表单. | Array<[ColumnConfig](#ColumnConfig)[] \| [ColumnConfig](#ColumnConfig)> | -      |
+| hideStepsBar  | 是否隐藏步骤栏. | `boolean` | false      |
+| stepsProps  | **ElSteps** 组件 **Props** 配置. | [StepsProps](https://element-plus.org/zh-CN/component/steps.html) | -      |
 
 ```vue
 <template>
-  <ProForm.Checkbox
-    mapping-enum-value="index"
-    :value-enum="[
-      '成吉思汗', 
-      '阿骨打', 
-      '阿保机', 
-      99, 
+  <pro-form-text/>
+</template>
+
+<script setup lang="ts">
+  import { ProFormText } from '@element-plus-ui/pro-form';
+</script>
+```
+
+### ProDialogForm
+
+**ProDialogForm** 是 [ElDiaLog](https://element-plus.org/zh-CN/component/dialog.html) 和 [ProForm](#ProForm) 组件的组合，除了以下属性外，还继承了 [ProForm](#ProForm) 的 [Props](#ProForm)，在这不再一一列举，如有需要，可查阅 [ProFormAPI](#ProForm)
+
+| 属性 | 描述          | 类型                                 | 默认值 |
+| ---- | ------------- | ------------------------------------ | ------ |
+| v-model:open  | 是否打开. | `boolean` | false      |
+| title  | 标题文本，透传到 dialogProps 中. | `string` | -      |
+| titleSize  | 标题大小. | `number` | 16      |
+| titleColor  | 标题颜色. | `string` | #303133      |
+| titleWeight  | 标题粗细. | `number` / `string` | 600      |
+| width  | 宽度，透传到 dialogProps 中. | `number` / `string` | 50%      |
+| trigger  | 用于触发 **Dialog** 打开，一般是 **button**，减少 open 的使用. | [ButtonConfig](#ButtonConfig) / `() => JSX.Element` | -      |
+| submitter  | 提交器，用于配置相关按钮 | [SubmitterConfig](#SubmitterConfig) | -      |
+| dialogProps  | **ElDialog** 组件 **Props** 配置。注意：不支持 **modelValue**，请使用全局的 **open**. | [DialogProps](https://element-plus.org/zh-CN/component/dialog.html) | {}     |
+
+```vue
+<template>
+  <el-button @click="open = true">打开</el-button>
+  <ProDialogForm
+    v-model:open="open"
+    :title="'创建用户'"
+    :grid="true"
+    :col-props="{ span: 24 }"
+    :columns="[
       {
-        label: '汉高祖',
-        value: 0,
-        disabled: true
-      },
-      {
-        label: '唐太宗',
-        value: 1
-      },
-      {
-        label: '宋太祖',
-        value: 2
-      },
-      {
-        label: '明太祖',
+        label: '年龄',
+        order: 1,
+        valueType: 'number'
       }
     ]"
-  />
+    :trigger="{ title: '以 trigger 方式控制显隐', type: 'primary' }"
+  >
+    <!-- 自定义 -->
+    <el-form-item label="姓名">
+      <el-input />
+    </el-form-item>
+    <!-- 使用表单日期字段组件 -->
+    <ProFormDate label="出生日期" :order="3" />
+  </ProDialogForm>
 </template>
 
 <script setup lang="ts">
-  import ProForm from "@element-plus-ui/pro-form";
+  import { ProDialogForm, ProFormDate } from "@element-plus-ui/pro-form";
+  import { ref } from "vue";
+  const open = ref(false);
 </script>
 ```
 
-## ProFormText
+### ProDrawerForm
+
+**ProDrawerForm** 是 [ElDrawer](https://element-plus.org/zh-CN/component/drawer.html) 和 [ProForm](#ProForm) 组件的组合，除了以下属性外，还继承了 [ProForm](#ProForm) 的 [Props](#ProForm)，在这不再一一列举，如有需要，可查阅 [ProFormAPI](#ProForm)
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **Text** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/input.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/input.html) 中. | `string` | -      |
+| v-model:open  | 是否打开. | `boolean` | false      |
+| title  | 标题文本，透传到 **drawerProps** 中. | `string` | -      |
+| titleSize  | 标题大小. | `number` | 16      |
+| titleColor  | 标题颜色. | `string` | #303133      |
+| titleWeight  | 标题粗细. | `number` / `string` | 600      |
+| width  | 宽度，透传到 **drawerProps** 中.. | `number` / `string` | 50%      |
+| trigger  | 用于触发 **Drawer** 打开，一般是 **button**，减少 open 的使用. | [ButtonConfig](#ButtonConfig) / `() => JSX.Element` | -      |
+| submitter  | 提交器，用于配置相关按钮. | [SubmitterConfig](#SubmitterConfig) | -      |
+| drawerProps  | **ElDrawer** 组件 **Props** 配置。注意：不支持 **modelValue**，请使用全局的 **open**. | [DrawerProps](https://element-plus.org/zh-CN/component/drawer.html) | {}     |
 
-## ProFormTextarea
+```vue
+<template>
+  <el-card>
+    <el-button @click="open = true">打开</el-button>
+    <ProDrawerForm
+      v-model:open="open"
+      :title="'创建用户'"
+      :grid="true"
+      :col-props="{ span: 24 }"
+      :columns="[
+        {
+          label: '年龄',
+          order: 1,
+          valueType: 'number'
+        }
+      ]"
+      :trigger="{ title: '以 trigger 方式控制显隐', type: 'primary' }"
+    >
+      <!-- 自定义 -->
+      <el-form-item label="姓名">
+        <el-input />
+      </el-form-item>
+      <!-- 使用表单日期字段组件 -->
+      <ProFormDate label="出生日期" :order="3" />
+    </ProDrawerForm>
+  </el-card>
+</template>
 
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **Textarea** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/input.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/input.html) 中. | `string` | -      |
+<script setup lang="ts">
+  import { ProDrawerForm, ProFormDate } from "@element-plus-ui/pro-form";
+  import { ref } from "vue";
+  const open = ref(false);
+</script>
+```
 
-## ProFormNumber
+### ProFormFields
 
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **Number** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/input-number.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/input-number.html) 中. | `string` | -      |
+ProForm 自带的 Filed, 与 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 组件的 type 基本上一一对应, 除了以下新增的属性之外, 同时也继承了 [ElFormItem](https://element-plus.org/zh-CN/component/form.html) 和 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 对应的组件 Props.
 
-## ProFormPassword
+可以这样理解，ProFormText 是 ElFormItem + ElInput 的产物，所以我们给 ProFormText 设置的 props 其实是 ElFormItem 的，fieldProps 才是包含的组件的，要切记.
 
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **Password** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/input.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/input.html) 中. | `string` | -      |
-
-## ProFormDate
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `number` / `Date` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **Date** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` | -      |
-
-## ProFormDates
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **Dates** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` | -      |
-
-## ProFormDateMonth
+对一些继承的属性，在这里不再一一列举，如有需要, 可前往 [ElFormItem](https://element-plus.org/zh-CN/component/form.html) 和 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 组件处进行查阅
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `number` / `Date` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **DateMonth** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` | -      |
+| order  | 对表单项进行排序，数值越大越靠后. | `number` | -      |
 
-## ProFormDateMonths
+```vue
+<template>
+  <pro-form-text/>
+</template>
 
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string[]` / `number[]` / `Date[]` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **DateMonth** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` | -      |
+<script setup lang="ts">
+  import { ProFormText } from '@element-plus-ui/pro-form';
+</script>
+```
 
-## ProFormDateMonthRange
+### StepConfig
+
+除了以下属性，同时还继承了 [ElStepProps](https://element-plus.org/zh-CN/component/steps.html) 和 [ProFormProps](#ProForm)
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| separator  | 多个值之间的分隔符，透传到 **FieldProps** 中. | `string` | -      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **DateMonthRange** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` / `[string]` / `[string, string]` | -      |
+| columns  | 表单项定义. | [ColumnConfig](#ColumnConfig) | []      |
 
-## ProFormDateRange
+### ColumnConfig
+
+Column 配置除了以下属性外，自身也继承了 [ElFormItemProps](https://element-plus.org/zh-CN/component/form.html)，以下不再一一列举
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| separator  | 多个值之间的分隔符，透传到 **FieldProps** 中. | `string` | -      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **DateRange** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` / `[string]` / `[string, string]` | -      |
-
-## ProFormDateTime
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `number` / `Date` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **DateTime** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` | -      |
-
-## ProFormDateTimeRange
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| separator  | 多个值之间的分隔符，透传到 **FieldProps** 中. | `string` | -      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **DateTimeRange** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` / `[string]` / `[string, string]` | -      |
-
-## ProFormDateWeek
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `number` / `Date` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **DateWeek** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` | -      |
-
-## ProFormDateYear
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `number` / `Date` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **DateYear** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` | -      |
-
-## ProFormDateYears
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string[]` / `number[]` / `Date[]` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **DateYears** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/date-picker.html) 中. | `string` | -      |
-
-## ProFormTime
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **Time** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/time-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/time-picker.html) 中. | `string` | -      |
-
-## ProFormTimeRange
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| separator  | 多个值之间的分隔符，透传到 **FieldProps** 中. | `string` | -      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **TimeRange** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/time-picker.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/time-picker.html) 中. | `string` / `[string]` / `[string, string]` | -      |
-
-## ProFormRadio
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `number` / `boolean` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| marker  | 阅读模式下，需要显示的标记. | [Marker](#Marker) | none      |
+| key  | 唯一标识. | `string` / `number` | -      |
+| order  | 对表单项进行排序，数值越大越靠后. | `number` | -      |
+| labelStyle  | **label** 样式设置. | `Record<string, any>` | 
+| tooltip  | **label** 提示语. | `string` | -      |
+| dataField  | 绑定的数据字段. | `string` | -      |
+| valueType  | . | [ProFieldType](https://www.npmjs.com/package/@element-plus-ui/pro-field) | text      |
+| valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ProFieldValueEnum](https://www.npmjs.com/package/@element-plus-ui/pro-field) | -      |
+| separator  | 多个值之间的分隔符，如日期区间、多选项. | `string` | -      |
+| emptyText  | **readonly=true** 时，并且值为空，提供的占位文本. | `string` | -      |
+| marker  | 需要显示的标记. | [ProFieldMarker](https://www.npmjs.com/package/@element-plus-ui/pro-field) | none      |
 | request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
-| valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
-| mappingEnumValue  | 枚举配置未明确指定 **value** 时，需要映射的目标对象. | `lable` / `index` | lable      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **RadioGroup** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/radio.html) | {}      |
+| placeholder  | 输入框占位文本，透传到 **fieldProps** 中. | `string` / `[string]` / `[string, string]` | -      |
+| mappingEnumValue  | 当 **valueEnum** 数据中，未明确指定 **value** 时，需要映射的目标对象. | `lable` / `index` | lable      |
+| fieldProps  | 当前 **valueType** 渲染的组件 **Props** 配置. | [FieldProps](https://www.npmjs.com/package/@element-plus-ui/pro-field) | {}      |
+| defaultValue  | 默认值. | `string` / `number` / `array` | -      |
+| hidden  | 是否隐藏当前表单项. | `boolean` / `() => boolean` | false      |
+| readonly  | 是否只读. | `boolean` | false      |
+| render  | 自定义渲染表单项. | `() => Jsx.Element` | -      |
+| renderFormItem  | 按钮标题文本. | `string` | -      |
 
-## ProFormRadioButton
+> 属性 **valueType**、**valueEnum**、**request**、**marker**、**mappingEnumValue**、**fieldProps** 使用方式与 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 组件完全相同，在这不再过多描述，如有需要可前往 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 文档处进行查阅
 
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `number` / `boolean` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| marker  | 阅读模式下，需要显示的标记. | [Marker](#Marker) | none      |
-| request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
-| valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
-| mappingEnumValue  | 枚举配置未明确指定 **value** 时，需要映射的目标对象. | `lable` / `index` | lable      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **RadioGroup** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/radio.html) | {}      |
+### ButtonConfig
 
-## ProFormCheckbox
+在 [ElButtonProps](https://element-plus.org/zh-CN/component/button.html) 的基础上新增了以下属性
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `(string | number | boolean)[]` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| marker  | 需要显示的标记. | [Marker](#Marker) | none      |
-| request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
-| valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
-| mappingEnumValue  | 枚举配置未明确指定 **value** 时，需要映射的目标对象. | `lable` / `index` | lable      |
-| separator  | 阅读模式下，显示的多个值之间的分隔符. | `string` | -      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **CheckboxGroup** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/checkbox.html) | {}      |
+| title  | 按钮标题文本. | `string` | -      |
+| onClick  | 点击事件. | `Function` | -      |
 
-## ProFormCheckboxButton
+### SubmitterConfig
+
+除了支持 `boolean`、`ButtonConfig[]`、`() => JSX.Element` 类型外，还支持以下对象类型配置
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `(string | number | boolean)[]` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| marker  | 阅读模式下，需要显示的标记. | [Marker](#Marker) | none      |
-| request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
-| valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
-| mappingEnumValue  | 枚举配置未明确指定 **value** 时，需要映射的目标对象. | `lable` / `index` | lable      |
-| separator  | 阅读模式下，显示的多个值之间的分隔符. | `string` | -      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **CheckboxGroup** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/checkbox.html) | {}      |
-
-## ProFormRate
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `number` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **Rate** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/rate.html) | {}      |
-
-## ProFormSelect
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `number` / `boolean` / `object` / `array` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| marker  | 需要显示的标记. | [Marker](#Marker) | none      |
-| request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
-| valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
-| mappingEnumValue  | 枚举配置未明确指定 **value** 时，需要映射的目标对象. | `lable` / `index` | lable      |
-| separator  | 阅读模式下，显示的多个值之间的分隔符. | `string` | -      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **Select** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/select.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/select.html) 中. | `string` | -      |
-
-## ProFormSlider
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `number` / `number[]` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **Slider** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/slider.html) | {}      |
-
-## ProFormSwitch
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `boolean` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **Switch** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/switch.html) | {}      |
-
-## ProFormColor
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **ColorPicker** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/color-picker.html) | {}      |
-
-## ProFormCascader
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `number` / `array` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| separator  | 多个值之间的分隔符. | `string` | -      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **Cascader** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/cascader.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/cascader.html) 中. | `string` | -      |
-
-## ProFormTimeSelect
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **TimeSelect** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/time-select.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/time-select.html) 中. | `string` | -      |
-
-## ProFormTreeSelect
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
-| valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **TreeSelect** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/tree-select.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/tree-select.html) 中. | `string` | -      |
-
-## ProFormUploadImage
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `{name?: string; url: string}` / `Array<{name?: string; url: string}>` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| size  | 图片大小. | `number` | 40      |
-| fieldProps  | **UploadImage** 组件 **Props** 配置 | [FieldProps](#) | {}      |
-
-> **fieldProps** 合并了 [ElUpload](https://element-plus.org/zh-CN/component/upload.html) 和 [ElImage](https://element-plus.org/zh-CN/component/image.html) 组件 **Props** 属性，可统一在此进行指定相关属性
-
-## ProFormUploadAvatar
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `{name?: string; url: string}` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| size  | 图片大小，透传到 [FieldProps](#) 中. | `default \| large \| small` / `number` | default      |
-| marker  | 需要显示的标记. | `female \| male \| on-line \| off-line`      | none |
-| fieldProps  | **UploadAvatar** 组件 **Props** 配置 | [FieldProps](#) | {}      |
-
-> **fieldProps** 合并了 [ElUpload](https://element-plus.org/zh-CN/component/upload.html) 和 [ElAvatar](https://element-plus.org/zh-CN/component/avatar.html) 组件 **Props** 属性，可统一在此进行指定相关属性
-
-## ProFormVirtualizedSelect
-
-| 属性 | 描述          | 类型                                 | 默认值 |
-| ---- | ------------- | ------------------------------------ | ------ |
-| v-model  | 绑定的值. | `string` / `number` / `boolean` / `Array<string \| number \| boolean>` | -      |
-| mode  | 展示模式. | `read` / `edit` | edit      |
-| marker  | 需要显示的标记. | [Marker](#Marker) | none      |
-| request  | 从服务器获取数据. | `() => Promise<ValueEnum>` | -      |
-| valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ValueEnum](#ValueEnum) | -      |
-| separator  | 阅读模式下，显示的多个值之间的分隔符. | `string` | -      |
-| emptyText  | **mode=read** 时，值为空时的占位文本. | `string` | -      |
-| fieldProps  | **VirtualizedSelect** 组件 **Props** 配置 | [FieldProps](https://element-plus.org/zh-CN/component/select-v2.html) | {}      |
-| placeholder  | 输入框占位文本，透传到 [FieldProps](https://element-plus.org/zh-CN/component/select-v2.html) 中. | `string` | -      |
+| align  | 水平排列位置. | `left` / `right` / `center` | right      |
+| reversal  | 是否反转按钮前后显示顺序. | `boolean` | false      |
+| fillMode  | 提交器按钮填充模式. | `auto` / `full` / `aequilate` | auto      |
+| hideResetButton  | 是否隐藏取消按钮. | `boolean` | false      |
+| resetButtonTitle  | 重置按钮文本设置. | `string` | 重置/取消      |
+| submitButtonTitle  | 提交按钮文本设置. | `string` | 提交/确定/查询      |
+| render  | 自定义渲染提交器. | `() => JSX.Element` | -      |
+| onReset  | 监听取消事件，权限大于全局 **v-bind** 绑定的事件. | `Function` | -      |
+| onSubmit  | 监听提交事件，权限大于全局 **v-bind** 绑定的事件. | `Function` | -      |

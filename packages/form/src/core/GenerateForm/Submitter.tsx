@@ -2,52 +2,86 @@
  * @Description:表单操作器
  * @Author: wangbowen936926
  * @Date: 2024-06-16 20:02:37
- * @LastEditTime: 2024-07-24 13:08:14
+ * @LastEditTime: 2024-10-29 21:27:14
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\Submitter.tsx
  */
-import { ButtonProps, ElButton } from 'element-plus';
-import { CSSProperties, FunctionalComponent } from 'vue-demi';
-import type { JSX } from 'vue/jsx-runtime';
+import { ElButton } from "element-plus";
+import { ProButtonProps } from "@element-plus-ui/pro-button";
+import { computed, CSSProperties, FunctionalComponent } from "vue-demi";
+import type { JSX } from "vue/jsx-runtime";
+import { omitObjectProperty } from "@element-plus-ui/pro-utils";
 
-export interface ActionsProps {
-	submitButtonProps?: ButtonProps & { style?: CSSProperties };
-	resetButtonProps?: ButtonProps & { style?: CSSProperties };
-	submitButtonText?: string;
-	resetButtonText?: string;
-	hideResetButton?: boolean;
-	buttonFillMode?: 'aequilate' | 'full' | 'auto';
-	render?: (props: ActionsProps, doms: JSX.Element[]) => JSX.Element | JSX.Element[];
-	onSubmit?: (entity: Record<string, any>) => void;
-	onReset?: (entity: Record<string, any>) => void;
+interface ButtonProps extends ProButtonProps {
+  style?: CSSProperties;
+  onClick?: (e?: Record<string, any>) => void;
 }
 
-const Actions: FunctionalComponent<ActionsProps> = (props: ActionsProps) => {
-	const getGridTemplateColumns = () => {
-		const width = {
-			auto: 'repeat(2, 0fr)',
-			full: 'repeat(1, 1fr)',
-			aequilate: 'repeat(2, 1fr)',
-		};
-		return width[props.buttonFillMode || 'auto'];
-	};
+export interface SubmitterProps {
+  submitButtonTitle?: string;
+  resetButtonTitle?: string;
+  hideResetButton?: boolean;
+  submitButtonProps?: ButtonProps;
+  resetButtonProps?: ButtonProps;
+  fillMode?: "aequilate" | "full" | "auto";
+  align?: "left" | "right" | "center";
+  reversal?: boolean;
+  render?: (props: SubmitterProps, doms?: JSX.Element[]) => JSX.Element | JSX.Element[];
+  onSubmit?: (entity: Record<string, any>) => void;
+  onReset?: (entity: Record<string, any>) => void;
+}
 
-	return (
-		<div
-			class={'actions-box'}
-			style={{
-				gridTemplateColumns: getGridTemplateColumns(),
-			}}
-		>
-			<ElButton type='primary' {...props.submitButtonProps} onClick={props.onSubmit}>
-				{props.submitButtonText || '提交'}
-			</ElButton>
-			{props.hideResetButton !== true && (
-				<ElButton type='default' {...props.resetButtonProps} onClick={props.onReset}>
-					{props.resetButtonText || '重置'}
-				</ElButton>
-			)}
-		</div>
-	);
+const Submitter: FunctionalComponent<SubmitterProps> = props => {
+  const isRenderSubmitter = computed(() => {
+    return props?.render?.(props)?.type?.name === "Submitter";
+  });
+
+  const getGridTemplateColumns = () => {
+    const total = props.hideResetButton === true ? 1 : 2;
+    const width = {
+      auto: "repeat(2, 0fr)",
+      full: "repeat(1, 1fr)",
+      aequilate: `repeat(${total}, 1fr)`
+    };
+    return width[props.fillMode || "auto"];
+  };
+
+  const actions = computed(() => [
+    <ElButton type="primary" onClick={props.onSubmit} {...props?.submitButtonProps}>
+      {props?.submitButtonProps?.title || props.submitButtonTitle || "提交"}
+    </ElButton>,
+    <ElButton type="default" onClick={props.onReset} {...props?.resetButtonProps}>
+      {props?.resetButtonProps?.title || props.resetButtonTitle || "重置"}
+    </ElButton>
+  ]);
+
+  const renderButton = () => {
+    if (typeof props.render === "function") {
+      return props.render(omitObjectProperty(props, ["render"]));
+    }
+    return (
+      <>
+        {actions.value[props.reversal === true ? 1 : 0]}
+        {props.hideResetButton !== true && actions.value[props.reversal === true ? 0 : 1]}
+      </>
+    );
+  };
+
+  if (isRenderSubmitter.value) {
+    return renderButton();
+  }
+
+  return (
+    <div
+      class={"submitter-box"}
+      style={{
+        width: "100%",
+        justifyContent: ["left", "right", "center"].includes(props.align ?? "left") ? props.align : "left",
+        gridTemplateColumns: getGridTemplateColumns()
+      }}
+    >
+      {renderButton()}
+    </div>
+  );
 };
 
-export default Actions;
+export default Submitter;

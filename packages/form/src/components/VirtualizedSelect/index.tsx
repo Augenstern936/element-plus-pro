@@ -2,23 +2,22 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-30 21:35:16
- * @LastEditTime: 2024-07-09 17:05:31
+ * @LastEditTime: 2024-10-22 21:04:17
  * @FilePath: \element-plus-pro\packages\form\src\components\VirtualizedSelect\index.tsx
  */
-import type { ProFieldTreeSelectProps } from "@element-plus-ui/pro-field";
+import type { ProFieldVirtualizedSelectProps } from "@element-plus-ui/pro-field";
 import { withInstall } from "@element-plus-ui/pro-utils";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";
-import { FormFieldProps } from "../../typing";
+import { FormFieldCommonProps } from "../../typing";
+import { useVModel } from "@vueuse/core";
 
-export type ProFormVirtualizedSelectProps = FormFieldProps<ProFieldTreeSelectProps> & {
-  modelValue?: string | number | boolean | (string | number | boolean)[];
-  placeholder?: string;
-};
+export interface ProFormVirtualizedSelectProps extends FormFieldCommonProps, ProFieldVirtualizedSelectProps {}
 
 const FormVirtualizedSelect = defineComponent<ProFormVirtualizedSelectProps>(
-  props => {
-    return () => <ProFormField {...props} type={"treeSelect"} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"treeSelect"} v-model={model.value} />;
   },
   {
     name: "ProFormVirtualizedSelect"

@@ -1,21 +1,21 @@
 /*
  * @Description:
  * @Date: 2024-07-01 09:06:21
- * @LastEditTime: 2024-07-09 17:04:38
+ * @LastEditTime: 2024-10-22 21:02:15
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
-import type { SliderProps } from "element-plus";
+import type { ProFieldSliderProps } from "@element-plus-ui/pro-field";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";
-import { FormFieldProps } from "../../typing";
+import { FormFieldCommonProps } from "../../typing";
+import { useVModel } from "@vueuse/core";
 
-export type ProFormSliderProps = FormFieldProps<SliderProps> & {
-  modelValue?: number | number[];
-};
+export interface ProFormSliderProps extends FormFieldCommonProps, ProFieldSliderProps {}
 
 const FormSlider = defineComponent<ProFormSliderProps>(
-  props => {
-    return () => <ProFormField {...props} type={"slider"} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"slider"} v-model={model.value} />;
   },
   {
     name: "ProFormSlider"

@@ -2,60 +2,23 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-02 22:22:28
- * @LastEditTime: 2024-07-09 17:04:08
+ * @LastEditTime: 2024-10-22 20:58:13
  * @FilePath: \element-plus-pro\packages\form\src\components\DatePicker\index.tsx
  */
 import type * as Types from "@element-plus-ui/pro-field";
 import { withInstall } from "@element-plus-ui/pro-utils";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";
-import { FormFieldProps } from "../../typing";
-
-type ModelValue = string | number | Date | [Date, Date] | [string, string];
-
-export type ProFormDateProps = FormFieldProps<Omit<Types.ProFieldDateProps, "type">> & {
-  modelValue?: ModelValue;
-  placeholder?: string;
-};
-export type ProFormDatesProps = FormFieldProps<Omit<Types.ProFieldDatesProps, "type">> & {
-  modelValue?: ModelValue;
-  placeholder?: string;
-};
-export type ProFormDateRangeProps = FormFieldProps<Omit<Types.ProFieldDateRangeProps, "type">> & {
-  modelValue?: ModelValue;
-  placeholder?: string;
-};
-export type ProFormDateTimeProps = FormFieldProps<Omit<Types.ProFieldDateTimeProps, "type">> & {
-  modelValue?: ModelValue;
-  placeholder?: string;
-};
-export type ProFormDateTimeRangeProps = FormFieldProps<Omit<Types.ProFieldDateTimeRangeProps, "type">> & {
-  modelValue?: ModelValue;
-  placeholder?: string;
-};
-export type ProFormDateWeekProps = FormFieldProps<Omit<Types.ProFieldDateWeekProps, "type">> & {
-  modelValue?: ModelValue;
-  placeholder?: string;
-};
-export type ProFormDateMonthProps = FormFieldProps<Omit<Types.ProFieldDateMonthProps, "type">> & {
-  modelValue?: ModelValue;
-  placeholder?: string;
-};
-export type ProFormDateMonthRangeProps = FormFieldProps<Omit<Types.ProFieldDateMonthRangeProps, "type">> & {
-  modelValue?: ModelValue;
-  placeholder?: string;
-};
-export type ProFormDateYearProps = FormFieldProps<Omit<Types.ProFieldDateYearProps, "type">> & {
-  modelValue?: ModelValue;
-  placeholder?: string;
-};
+import { FormFieldCommonProps } from "../../typing";
+import { useVModel } from "@vueuse/core";
 
 /**
  * 日期
  */
 const FormDate = defineComponent<ProFormDateProps>(
-  props => {
-    return () => <ProFormField type={"date"} fieldProps={props} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"date"} v-model={model.value} />;
   },
   {
     name: "ProFormDate"
@@ -66,8 +29,9 @@ const FormDate = defineComponent<ProFormDateProps>(
  * 分段日期
  */
 const FormDateRange = defineComponent<ProFormDateRangeProps>(
-  props => {
-    return () => <ProFormField type={"dateRange"} fieldProps={props} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"dateRange"} v-model={model.value} />;
   },
   {
     name: "ProFormDateRange"
@@ -75,8 +39,9 @@ const FormDateRange = defineComponent<ProFormDateRangeProps>(
 ) as DefineComponent<ProFormDateRangeProps>;
 
 const FormDates = defineComponent<ProFormDatesProps>(
-  props => {
-    return () => <ProFormField type={"dates"} fieldProps={props} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"dates"} v-model={model.value} />;
   },
   {
     name: "ProFormDates"
@@ -87,8 +52,9 @@ const FormDates = defineComponent<ProFormDatesProps>(
  * 日期时间
  */
 const FormDateTime = defineComponent<ProFormDateTimeProps>(
-  props => {
-    return () => <ProFormField type={"dateTime"} fieldProps={props} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"dateTime"} v-model={model.value} />;
   },
   {
     name: "ProFormDateTime"
@@ -99,8 +65,9 @@ const FormDateTime = defineComponent<ProFormDateTimeProps>(
  * 分段日期时间
  */
 const FormDateTimeRange = defineComponent<ProFormDateTimeRangeProps>(
-  props => {
-    return () => <ProFormField type={"dateTimeRange"} fieldProps={props} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"dateTimeRange"} v-model={model.value} />;
   },
   {
     name: "ProFormDateTimeRange"
@@ -111,8 +78,9 @@ const FormDateTimeRange = defineComponent<ProFormDateTimeRangeProps>(
  * 周
  */
 const FormDateWeek = defineComponent<ProFormDateWeekProps>(
-  props => {
-    return () => <ProFormField type={"dateWeek"} fieldProps={props} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"dateWeek"} v-model={model.value} />;
   },
   {
     name: "ProFormDateWeek"
@@ -123,8 +91,9 @@ const FormDateWeek = defineComponent<ProFormDateWeekProps>(
  * 月
  */
 const FormDateMonth = defineComponent<ProFormDateMonthProps>(
-  props => {
-    return () => <ProFormField type={"dateMonth"} fieldProps={props} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"dateMonth"} v-model={model.value} />;
   },
   {
     name: "ProFormDateMonth"
@@ -132,11 +101,25 @@ const FormDateMonth = defineComponent<ProFormDateMonthProps>(
 ) as DefineComponent<ProFormDateMonthProps>;
 
 /**
+ * 多选-月
+ */
+const FormDateMonths = defineComponent<ProFormDateMonthProps>(
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"dateMonths"} v-model={model.value} />;
+  },
+  {
+    name: "ProFormDateMonths"
+  }
+) as DefineComponent<ProFormDateMonthsProps>;
+
+/**
  * 分段月
  */
 const FormDateMonthRange = defineComponent<ProFormDateMonthRangeProps>(
-  props => {
-    return () => <ProFormField type={"dateMonthRange"} fieldProps={props} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"dateMonthRange"} v-model={model.value} />;
   },
   {
     name: "ProFormDateMonthRange"
@@ -147,13 +130,39 @@ const FormDateMonthRange = defineComponent<ProFormDateMonthRangeProps>(
  * 年
  */
 const FormDateYear = defineComponent<ProFormDateYearProps>(
-  props => {
-    return () => <ProFormField type={"dateYear"} fieldProps={props} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"dateYear"} v-model={model.value} />;
   },
   {
     name: "ProFormDateYear"
   }
 ) as DefineComponent<ProFormDateYearProps>;
+
+/**
+ * 多选-年
+ */
+const FormDateYears = defineComponent<ProFormDateYearProps>(
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"dateYears"} v-model={model.value} />;
+  },
+  {
+    name: "ProFormDateYears"
+  }
+) as DefineComponent<ProFormDateYearsProps>;
+
+export interface ProFormDateProps extends FormFieldCommonProps, Types.ProFieldDateProps {}
+export interface ProFormDatesProps extends FormFieldCommonProps, Types.ProFieldDatesProps {}
+export interface ProFormDateRangeProps extends FormFieldCommonProps, Types.ProFieldDateRangeProps {}
+export interface ProFormDateTimeProps extends FormFieldCommonProps, Types.ProFieldDateTimeProps {}
+export interface ProFormDateTimeRangeProps extends FormFieldCommonProps, Types.ProFieldDateTimeRangeProps {}
+export interface ProFormDateWeekProps extends FormFieldCommonProps, Types.ProFieldDateWeekProps {}
+export interface ProFormDateMonthProps extends FormFieldCommonProps, Types.ProFieldDateMonthProps {}
+export interface ProFormDateMonthsProps extends FormFieldCommonProps, Types.ProFieldDateMonthsProps {}
+export interface ProFormDateMonthRangeProps extends FormFieldCommonProps, Types.ProFieldDateMonthRangeProps {}
+export interface ProFormDateYearProps extends FormFieldCommonProps, Types.ProFieldDateYearProps {}
+export interface ProFormDateYearsProps extends FormFieldCommonProps, Types.ProFieldDateYearsProps {}
 
 export const ProFormDate = withInstall(FormDate);
 export const ProFormDates = withInstall(FormDates);
@@ -162,5 +171,7 @@ export const ProFormDateTime = withInstall(FormDateTime);
 export const ProFormDateTimeRange = withInstall(FormDateTimeRange);
 export const ProFormDateWeek = withInstall(FormDateWeek);
 export const ProFormDateMonth = withInstall(FormDateMonth);
+export const ProFormDateMonths = withInstall(FormDateMonths);
 export const ProFormDateMonthRange = withInstall(FormDateMonthRange);
 export const ProFormDateYear = withInstall(FormDateYear);
+export const ProFormDateYears = withInstall(FormDateYears);

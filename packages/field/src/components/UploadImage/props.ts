@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-15 10:48:08
- * @LastEditTime: 2024-10-19 23:13:59
+ * @LastEditTime: 2024-10-27 17:28:28
  */
 import { UploadProps, ImageProps } from "element-plus";
 import { ExtractPropTypes, PropType } from "vue-demi";
@@ -13,8 +13,8 @@ export const proFieldUploadImageProps = {
     default: "edit"
   },
   size: {
-    type: Number,
-    default: 40
+    type: [String, Number] as PropType<"default" | "large" | "small" | number>,
+    default: "default"
   },
   modelValue: {
     type: [
@@ -24,7 +24,7 @@ export const proFieldUploadImageProps = {
     ]
   },
   fieldProps: {
-    type: Object as PropType<Partial<UploadProps & ImageProps>>
+    type: Object as PropType<Partial<UploadProps & ImageProps & { size?: "default" | "large" | "small" | number }>>
   }
 };
 

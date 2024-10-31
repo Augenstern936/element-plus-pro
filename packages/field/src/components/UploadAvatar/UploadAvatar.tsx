@@ -2,16 +2,17 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-10-19 23:20:11
+ * @LastEditTime: 2024-10-27 17:20:39
  * @FilePath: \element-plus-pro\packages\field\src\components\UploadAvatar\UploadAvatar.tsx
  */
 import "./upload-avatar.scss";
 import { ProIcon } from "@element-plus-ui/pro-icon";
 import { ElAvatar, ElUpload, uploadProps, avatarProps, UploadRawFile, UploadFile, UploadFiles } from "element-plus";
 import { computed, DefineComponent, defineComponent, ref } from "vue-demi";
-import { AvatarSizeEnum, excludeUplaodPropsKeys, proFieldUploadAvatar, ProFieldUploadAvatarProps } from "./props";
-import { isUrl, excludeObjectProperty } from "@element-plus-ui/pro-utils";
+import { excludeUplaodPropsKeys, proFieldUploadAvatar, ProFieldUploadAvatarProps } from "./props";
+import { isUrl, omitObjectProperty } from "@element-plus-ui/pro-utils";
 import { isObject } from "@vueuse/core";
+import { SizeEnum } from "../../typing";
 
 const ProFieldUploadAvatar = defineComponent<ProFieldUploadAvatarProps>(
   (props, ctx) => {
@@ -29,7 +30,10 @@ const ProFieldUploadAvatar = defineComponent<ProFieldUploadAvatarProps>(
 
     const avatarSize = computed(() => {
       const size = (props?.fieldProps || {}).size ?? props.size;
-      return size && AvatarSizeEnum[size] ? AvatarSizeEnum[size] : size;
+      if (size && typeof size === "string" && SizeEnum[size]) {
+        return SizeEnum[size];
+      }
+      return size;
     });
 
     const iconSize = computed(() => {
@@ -43,11 +47,11 @@ const ProFieldUploadAvatar = defineComponent<ProFieldUploadAvatarProps>(
     });
 
     const proAvatarProps = computed(() => {
-      return excludeObjectProperty(props.fieldProps ?? {}, Object.keys(uploadProps) as keyof typeof props.fieldProps);
+      return omitObjectProperty(props.fieldProps ?? {}, Object.keys(uploadProps) as keyof typeof props.fieldProps);
     });
 
     const proUploadProps = computed(() => {
-      return excludeObjectProperty(props.fieldProps ?? {}, [
+      return omitObjectProperty(props.fieldProps ?? {}, [
         ...excludeUplaodPropsKeys,
         ...Object.keys(avatarProps)
       ] as (keyof typeof props.fieldProps)[]);
@@ -110,6 +114,7 @@ const ProFieldUploadAvatar = defineComponent<ProFieldUploadAvatarProps>(
           )}
           <ElAvatar
             {...proAvatarProps.value}
+            size={avatarSize.value}
             shape={"circle"}
             src={avatarUrl.value}
             v-slots={{ default: () => <ProIcon.UserFilled size={iconSize.value} />, ...ctx.slots }}

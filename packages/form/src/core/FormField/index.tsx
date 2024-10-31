@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-07 22:53:35
- * @LastEditTime: 2024-10-20 11:54:15
+ * @LastEditTime: 2024-10-22 17:53:51
  * @FilePath: \element-plus-pro\packages\form\src\core\FormField\index.tsx
  */
 import { ProField, ProFieldProps } from "@element-plus-ui/pro-field";
@@ -16,6 +16,6 @@ function BaseProFormField(props: ProFieldProps, ctx: SetupContext) {
   return <ProField {...props} v-model={model.value} />;
 }
 
-export const ProFormField = createField(BaseProFormField as FunctionalComponent);
+export const ProFormField = createField(BaseProFormField as FunctionalComponent<any>);
 
 export default ProFormField;

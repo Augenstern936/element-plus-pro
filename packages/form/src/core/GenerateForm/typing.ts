@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-10-21 21:53:11
+ * @LastEditTime: 2024-10-31 10:13:29
  */
 import type {
   ProFieldType,
@@ -36,11 +36,11 @@ import type {
   ProFieldDateWeekProps
 } from "@element-plus-ui/pro-field";
 import { ProRequestData } from "@element-plus-ui/pro-types";
-import type { ColProps, DatePickerProps, FormItemProps, RowProps } from "element-plus";
+import type { ColProps, FormItemProps, RowProps } from "element-plus";
 import { formProps as elFormProps } from "element-plus";
-import { ProButtonProps } from "packages/button/es";
 import { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
-import { ActionsProps } from "./Submitter";
+import { SubmitterProps } from "./Submitter";
+import type { ProButtonProps } from "@element-plus-ui/pro-button";
 
 const commonFormProps = {
   modelValue: {
@@ -81,7 +81,7 @@ const commonFormProps = {
     type: Boolean
   },
   submitter: {
-    type: [Boolean, Object] as PropType<Actions>,
+    type: [Boolean, Object, Function, Array] as PropType<ProFormSubmitter>,
     default: true
   }
 };
@@ -102,19 +102,13 @@ export const generateFormProps = {
   ...elFormProps,
   ...commonFormProps,
   ...proFormGridConfig,
-  type: {
-    type: String as PropType<"default" | "dialog-form" | "drawer-form" | "steps-form" | "search-form">
-  },
   labelWidth: {
     type: [String, Number] as PropType<"auto" | number>,
     default: "auto"
-  },
-  trigger: {
-    type: Object as PropType<ProButtonProps>
   }
 };
 
-type ProFormItemProps = Partial<Omit<FormItemProps, "prop" | "label">>;
+type ProFormItemProps = Partial<Omit<FormItemProps, "prop" | "label" | "inline" | "labelPosition">>;
 
 /**
  * 通用函数类型
@@ -123,13 +117,16 @@ type FormItemPropertyFunction<T> = (entity: Record<string, any>, items: ProFormC
 
 interface ProFormColumnCommonConfig extends ProFormItemProps {
   key?: string;
+  order?: number;
   label?: string | ((entity: Record<string, any>, columns?: ProFormColumn[]) => JSX.Element);
+  labelStyle?: CSSProperties;
   tooltip?: string;
   dataField?: string;
   readonly?: boolean;
   defaultValue?: string | number | boolean | any[];
   hidden?: boolean | FormItemPropertyFunction<boolean>;
   render?: () => JSX.Element;
+  renderFormItem?: () => JSX.Element;
 }
 
 interface ValueTypeInput extends ProFormColumnCommonConfig, Omit<ProFieldTextProps, "modelValue" | "type"> {
@@ -281,7 +278,15 @@ export type ProFormColumn =
 
 export type ProFormValueType = ProFieldType;
 
-export type Actions = boolean | ActionsProps;
+export type ProFormSubmitter<T extends Record<string, any> = {}, K extends string = ""> =
+  | boolean
+  | Omit<SubmitterProps & T, K>
+  | (() => JSX.Element)
+  | Array<
+      Omit<ProButtonProps, "tip"> & {
+        onClick?: () => void;
+      }
+    >;
 
 export type CommonFormProps = Partial<ExtractPropTypes<typeof commonFormProps>>;
 

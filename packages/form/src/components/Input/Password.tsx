@@ -2,23 +2,22 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-30 21:35:16
- * @LastEditTime: 2024-07-09 17:04:02
+ * @LastEditTime: 2024-10-22 16:19:13
  * @FilePath: \element-plus-pro\packages\form\src\components\Input\Password.tsx
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
-import type { InputProps } from "element-plus";
+import type { ProFieldPasswordProps } from "@element-plus-ui/pro-field";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";
-import { FormFieldProps } from "../../typing";
+import { FormFieldCommonProps } from "../../typing";
+import { useVModel } from "@vueuse/core";
 
-export type ProFormPasswordProps = FormFieldProps<Omit<InputProps, "type">> & {
-  modelValue?: string | number;
-  placeholder?: string;
-};
+export interface ProFormPasswordProps extends FormFieldCommonProps, ProFieldPasswordProps {}
 
 const FormPassword = defineComponent<ProFormPasswordProps>(
-  props => {
-    return () => <ProFormField {...props} type={"password"} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"password"} v-model={model.value} />;
   },
   {
     name: "ProFormPassword"

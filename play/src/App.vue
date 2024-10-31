@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-07-09 16:21:57
- * @LastEditTime: 2024-10-06 15:59:15
+ * @LastEditTime: 2024-10-27 18:13:39
 -->
 <template>
   <el-container style="height: 100vh">
@@ -32,8 +32,11 @@ import Descriptions from "./components/Descriptions.vue";
 import Field from "./components/Field.vue";
 import Form from "./components/Form.vue";
 import SearchBar from "./components/SearchBar.vue";
+import DialogForm from "./components/DialogForm.vue";
+import DrawerForm from "./components/DrawerForm.vue";
 import Table from "./components/Table.vue";
 import Icon from "./components/Icon.vue";
+import StepsForm from "./components/StepsForm.vue";
 const menus = shallowRef([
   {
     title: "pro-button",
@@ -56,8 +59,20 @@ const menus = shallowRef([
     component: Form
   },
   {
+    title: "pro-steps-form",
+    component: StepsForm
+  },
+  {
     title: "pro-search-bar",
     component: SearchBar
+  },
+  {
+    title: "pro-dialog-form",
+    component: DialogForm
+  },
+  {
+    title: "pro-drawer-form",
+    component: DrawerForm
   },
   {
     title: "pro-table",

@@ -2,16 +2,17 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-10-19 23:28:08
+ * @LastEditTime: 2024-10-27 17:30:28
  * @FilePath: \element-plus-pro\packages\field\src\components\UploadImage\UploadImage.tsx
  */
 import { ProIcon } from "@element-plus-ui/pro-icon";
 import { ElImage, ElSpace, ElUpload, imageProps, uploadProps, UploadRawFile } from "element-plus";
-import { excludeObjectProperty, isUrl } from "@element-plus-ui/pro-utils";
+import { omitObjectProperty, isUrl } from "@element-plus-ui/pro-utils";
 import { DefineComponent, computed, defineComponent, reactive, ref, watch, watchEffect } from "vue-demi";
 import { ProFieldUploadImageProps, proFieldUploadImageProps } from "./props";
 import "./upload-image.scss";
 import { isObject } from "@vueuse/core";
+import { SizeEnum } from "../../typing";
 
 const ProFieldUploadImage = defineComponent<ProFieldUploadImageProps>(
   (props, ctx) => {
@@ -27,11 +28,19 @@ const ProFieldUploadImage = defineComponent<ProFieldUploadImageProps>(
     });
 
     const proImageProps = computed(() => {
-      return excludeObjectProperty(props.fieldProps ?? {}, Object.keys(uploadProps) as keyof typeof props.fieldProps);
+      return omitObjectProperty(props.fieldProps ?? {}, Object.keys(uploadProps) as keyof typeof props.fieldProps);
+    });
+
+    const imageSize = computed((): number => {
+      const size = (props?.fieldProps || {}).size ?? props.size;
+      if (size && typeof size === "string" && SizeEnum[size]) {
+        return SizeEnum[size];
+      }
+      return Number(size ?? 40);
     });
 
     const proUploadProps = computed(() => {
-      return excludeObjectProperty(props.fieldProps ?? {}, [
+      return omitObjectProperty(props.fieldProps ?? {}, [
         "list-type",
         "file-list",
         "model:file-list",
@@ -115,17 +124,17 @@ const ProFieldUploadImage = defineComponent<ProFieldUploadImageProps>(
               <div
                 class={"pro-field-image__del-mark"}
                 style={{
-                  width: `${(props.size || 40) / 3}px`,
-                  height: `${(props.size || 40) / 3}px`
+                  width: `${(imageSize.value || 40) / 3}px`,
+                  height: `${(imageSize.value || 40) / 3}px`
                 }}
                 onClick={() => onRemove(index)}
               >
-                <ProIcon.CloseBold size={(props.size || 40) / 5} color="#fff" />
+                <ProIcon.CloseBold size={(imageSize.value || 40) / 5} color="#fff" />
               </div>
             )}
             {!isError[index] && (
               <div class="pro-field-image__hover-mask">
-                <ProIcon.View color="#fff" size={(props.size || 40) / 2} />
+                <ProIcon.View color="#fff" size={(imageSize.value || 40) / 2} />
               </div>
             )}
           </div>
@@ -181,7 +190,7 @@ const ProFieldUploadImage = defineComponent<ProFieldUploadImageProps>(
       <div
         class={"pro-upload-image"}
         style={{
-          "--size": `${props.size || 40}px`,
+          "--size": `${imageSize.value}px`,
           "--is-show-plus-box": model.value.length === 0 || model.value.length < limit.value ? "block" : "none"
         }}
       >
@@ -199,7 +208,7 @@ const ProFieldUploadImage = defineComponent<ProFieldUploadImageProps>(
               proUploadProps.value?.["before-upload"]?.(rawFile);
             }}
             v-slots={{
-              default: () => <ProIcon.Plus size={props.size && !Number.isNaN(props.size) ? props.size / 2 : 20} />,
+              default: () => <ProIcon.Plus size={imageSize.value ? imageSize.value / 2 : 20} />,
               file: ({ file, index }: any) => {
                 if (!isUrl(props?.fieldProps?.action ?? "")) {
                   if (typeof props.modelValue === "string" && props.modelValue != file.url) {

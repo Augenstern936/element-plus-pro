@@ -2,34 +2,33 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-02 22:22:28
- * @LastEditTime: 2024-07-09 17:03:48
+ * @LastEditTime: 2024-10-22 20:53:51
  * @FilePath: \element-plus-pro\packages\form\src\components\Checkbox\index.tsx
  */
 import type { ProFieldCheckboxButtonProps, ProFieldCheckboxProps } from "@element-plus-ui/pro-field";
 import { withInstall } from "@element-plus-ui/pro-utils";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";
-import { FormFieldProps } from "../../typing";
+import { FormFieldCommonProps } from "../../typing";
+import { useVModel } from "@vueuse/core";
 
-export type ProFormCheckboxProps = FormFieldProps<ProFieldCheckboxProps> & {
-  modelValue?: string | number | boolean;
-};
-export type ProFormCheckboxButtonProps = FormFieldProps<ProFieldCheckboxButtonProps> & {
-  modelValue?: string | number | boolean;
-};
+export interface ProFormCheckboxProps extends FormFieldCommonProps, ProFieldCheckboxProps {}
+export interface ProFormCheckboxButtonProps extends FormFieldCommonProps, ProFieldCheckboxButtonProps {}
 
-const FormCheckbox = defineComponent(
-  (props: ProFormCheckboxProps) => {
-    return () => <ProFormField type={"checkbox"} fieldProps={props} />;
+const FormCheckbox = defineComponent<ProFormCheckboxProps>(
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"checkbox"} v-model={model.value} />;
   },
   {
     name: "ProFormCheckbox"
   }
 ) as DefineComponent<ProFormCheckboxProps>;
 
-const FormCheckboxButton = defineComponent(
-  (props: ProFormCheckboxButtonProps) => {
-    return () => <ProFormField type={"checkboxButton"} fieldProps={props} />;
+const FormCheckboxButton = defineComponent<ProFormCheckboxButtonProps>(
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"checkboxButton"} v-model={model.value} />;
   },
   {
     name: "ProFormCheckboxButton"

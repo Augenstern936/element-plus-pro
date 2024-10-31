@@ -2,11 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-21 17:49:59
- * @LastEditTime: 2024-07-26 16:51:36
+ * @LastEditTime: 2024-10-28 20:18:52
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\useFormContent.tsx
  */
 import { ProField } from "@element-plus-ui/pro-field";
-import { excludeObjectProperty, formatPlaceholder } from "@element-plus-ui/pro-utils";
+import { omitObjectProperty, formatPlaceholder } from "@element-plus-ui/pro-utils";
 import { InfoFilled } from "@element-plus/icons-vue";
 import { useVModel } from "@vueuse/core";
 import { ElFormItem, ElIcon, ElSpace, ElTooltip, FormItemProps } from "element-plus";
@@ -36,8 +36,7 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
   const getFieldProps = (item: ProFormColumn) => {
     const { label, valueType = "text", readonly } = item;
     return {
-      ...excludeObjectProperty(item, ["hidden", "label"]),
-      ...item.fieldProps,
+      ...omitObjectProperty(item, ["hidden", "label"]),
       type: valueType,
       mode: readonly === true || formProps.readonly === true ? "read" : "edit",
       placeholder: formatPlaceholder(typeof label === "string" ? label : "", valueType)
@@ -46,11 +45,9 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
 
   const Content = (props: Record<string, any>, ctx: SetupContext) => {
     const model = props.modelValue !== void 0 ? useVModel(props, "modelValue", ctx.emit) : ref({});
-
     const { RowWrapper, ColWrapper } = useGridHelpers(props);
-
     return (
-      <RowWrapper gutter={10} {...props.rowProps}>
+      <RowWrapper gutter={10} {...props?.rowProps}>
         {props.columns?.map((item: any, index: number) => {
           const hidden = item?.hidden?.(model.value, formProps.columns);
           if (hidden === true) {
@@ -59,11 +56,14 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
           if (item.is === "slot") {
             return <ColWrapper {...props.colProps}>{formCtx.slots.default?.()[item.index]}</ColWrapper>;
           }
+          if (item.is === "element") {
+            return <ColWrapper {...props.colProps}>{item}</ColWrapper>;
+          }
           const { key, dataField, tooltip } = item;
           const formItemProps = getFormItemProps(item as ProFormColumn, model);
           const slotName = key || dataField;
           return (
-            <ColWrapper {...props.colProps}>
+            <ColWrapper {...props?.colProps}>
               <ElFormItem
                 {...(formItemProps as FormItemProps)}
                 key={key || dataField || index}
@@ -87,7 +87,7 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
                 ) : (
                   <>
                     {dataField ? (
-                      <ProField {...getFieldProps(item as ProFormColumn)} v-model={(model.value as any)[dataField]} />
+                      <ProField {...getFieldProps(item as ProFormColumn)} v-model={model.value[dataField]} />
                     ) : (
                       <ProField {...getFieldProps(item as ProFormColumn)} />
                     )}

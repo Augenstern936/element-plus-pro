@@ -2,12 +2,13 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-09 22:25:21
- * @LastEditTime: 2024-10-21 22:14:10
+ * @LastEditTime: 2024-10-28 20:26:38
  * @FilePath: \element-plus-pro\play\src\components\Form.vue
 -->
 <template>
   <el-card>
     <ProForm
+      ref="formRef"
       v-model="form"
       :label-style="{ fontWeight: 600 }"
       :readonly="false"
@@ -19,15 +20,16 @@
       :col-props="{ span: 24 }"
       :submitter="{
         hideResetButton: false,
-        buttonFillMode: 'aequilate'
+        fillMode: 'full'
       }"
+      @reset="() => console.log(formRef, 'reset')"
     >
       <!-- female male-->
       <ProFormUploadAvatar
         label="头像2"
         :order="2"
+        :marker="'on-line'"
         :fieldProps="{
-          marker: 'on-line',
           //src: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
           action: 'https://fuss10.elemecdn.com'
         }"
@@ -35,8 +37,8 @@
       <ProFormUploadAvatar
         label="头像3"
         :order="3"
+        :marker="'off-line'"
         :fieldProps="{
-          marker: 'off-line',
           src: 'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
         }"
       />
@@ -49,13 +51,15 @@
 import { ProForm, ProFormUploadAvatar, ProFormColumn } from "@element-plus-ui/pro-form";
 import { ref } from "vue";
 
+const formRef = ref();
+
 const formItems = ref<ProFormColumn[]>([
   {
     label: "姓名:",
     dataField: "name",
     required: true,
+    order: 0,
     hidden: (data: any) => {
-      console.log(data, "data222222");
       return data.switch === true;
     }
   },

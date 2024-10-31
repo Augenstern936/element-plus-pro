@@ -2,23 +2,22 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-30 21:35:16
- * @LastEditTime: 2024-07-09 17:03:58
+ * @LastEditTime: 2024-10-22 16:17:04
  * @FilePath: \element-plus-pro\packages\form\src\components\Input\Number.tsx
  */
 import type { ProFieldNumberProps } from "@element-plus-ui/pro-field";
 import { withInstall } from "@element-plus-ui/pro-utils";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";
-import { FormFieldProps } from "../../typing";
+import { FormFieldCommonProps } from "../../typing";
+import { useVModel } from "@vueuse/core";
 
-export type ProFormNumberProps = FormFieldProps<ProFieldNumberProps> & {
-  modelValue?: number;
-  placeholder?: string;
-};
+export interface ProFormNumberProps extends FormFieldCommonProps, ProFieldNumberProps {}
 
 const FormNumber = defineComponent<ProFormNumberProps>(
-  props => {
-    return () => <ProFormField {...props} type={"number"} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"number"} v-model={model.value} />;
   },
   {
     name: "ProFormNumber"

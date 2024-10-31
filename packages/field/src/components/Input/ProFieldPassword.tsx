@@ -11,7 +11,7 @@ import { defineComponent, DefineComponent, ref } from "vue-demi";
 import BaseInput from "./BaseInput";
 import { baseInputProps, ProFieldPasswordProps } from "./props";
 import ProIcon from "@element-plus-ui/pro-icon";
-import { excludeObjectProperty } from "@element-plus-ui/pro-utils";
+import { omitObjectProperty } from "@element-plus-ui/pro-utils";
 
 const ProFieldPassword = defineComponent<ProFieldPasswordProps>((props, ctx) => {
   const isView = ref(false);
@@ -46,6 +46,6 @@ const ProFieldPassword = defineComponent<ProFieldPasswordProps>((props, ctx) => 
   return () => <div style={{ width: "100%" }}>{render()}</div>;
 }) as DefineComponent<ProFieldPasswordProps>;
 
-ProFieldPassword.props = excludeObjectProperty(baseInputProps, ["type"]);
+ProFieldPassword.props = omitObjectProperty(baseInputProps, ["type"]);
 
 export default ProFieldPassword;

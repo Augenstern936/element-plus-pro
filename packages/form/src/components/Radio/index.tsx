@@ -1,23 +1,20 @@
 /*
  * @Description:
  * @Date: 2024-07-01 09:06:21
- * @LastEditTime: 2024-07-09 17:04:28
+ * @LastEditTime: 2024-10-22 16:22:26
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
-import type { RadioButtonProps, RadioProps } from "element-plus";
+import type { ProFieldRadioButtonProps, ProFieldRadioProps } from "@element-plus-ui/pro-field";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";
-import { FormFieldProps } from "../../typing";
+import { FormFieldCommonProps } from "../../typing";
+import { useVModel } from "@vueuse/core";
 
-export type ProFormRadioProps = FormFieldProps<RadioProps> & {
-  modelValue?: string | number | boolean;
-};
-export type ProFormRadioButtonProps = FormFieldProps<RadioButtonProps> & {
-  modelValue?: string | number | boolean;
-};
+export interface ProFormRadioProps extends FormFieldCommonProps, ProFieldRadioProps {}
+export interface ProFormRadioButtonProps extends FormFieldCommonProps, ProFieldRadioButtonProps {}
 
 const FormRadio = defineComponent<ProFormRadioProps>(
-  props => {
+  (props, ctx) => {
     return () => <ProFormField {...props} type={"radio"} />;
   },
   {
@@ -26,8 +23,9 @@ const FormRadio = defineComponent<ProFormRadioProps>(
 ) as DefineComponent<ProFormRadioProps>;
 
 const FormRadioButton = defineComponent<ProFormRadioButtonProps>(
-  props => {
-    return () => <ProFormField {...props} type={"radioButton"} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"radioButton"} v-model={model.value} />;
   },
   {
     name: "ProFormRadioButton"

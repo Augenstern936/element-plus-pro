@@ -20,16 +20,17 @@ $ pnpm add @element-plus-ui/pro-components
 
 ## ✨ 组件
 
-- [ProIcon](https://www.npmjs.com/package/@element-plus-ui/pro-icon) 图标组件，简化了 `ElIcon` 组件，更加简单易用
-- [ProText](https://www.npmjs.com/package/@element-plus-ui/pro-text) 文本模板组件，抽象网络请求和表格格式化
-- [ProButton](https://www.npmjs.com/package/@element-plus-ui/pro-button) 按钮模板组件，抽象网络请求和表格格式化
-- [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 原子组件，表单字段通用组件
-- [ProForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 表单模板组件
-- [ProStepsForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 分步表单模板组件，属于 `ProForm` 子集，可从 `ProForm` 中导出使用
-- [ProSearchBar](https://www.npmjs.com/package/@element-plus-ui/pro-form) 搜索栏模板组件，属于 `ProForm` 子集，可从 `ProForm` 中导出使用
+- [ProIcon](https://www.npmjs.com/package/@element-plus-ui/pro-icon) 图标组件，简化了 **ElIcon** 组件，更加简单易用
+- [ProText](https://www.npmjs.com/package/@element-plus-ui/pro-text) 文本组件，提供了一些基础操作功能(拷贝/可编辑)
+- [ProButton](https://www.npmjs.com/package/@element-plus-ui/pro-button) 按钮模板组件，新增了二次确认操作
+- [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 原子信息组件，统一定义了 **ProForm** 和 **ProTable** 组件中的字段
 - [ProTable](https://www.npmjs.com/package/@element-plus-ui/pro-table) 表格模板组件，抽象网络请求和表格格式化
-- [ProTabs](https://www.npmjs.com/package/@element-plus-ui/pro-tabs) 标签模板组件，抽象网络请求和表格格式化
-- [ProDescriptions](https://www.npmjs.com/package/@element-plus-ui/pro-descriptions) 定义列表模板组件，ProTable 的配套组件
+- [ProForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 基础表单模板组件
+- [ProSearchBar](https://www.npmjs.com/package/@element-plus-ui/pro-form) 搜索栏组件，属于 **ProForm** 子集，可从 **ProForm** 中导出使用
+- [ProStepsForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 分步表单组件，属于 **ProForm** 子集，可从 **ProForm** 中导出使用
+- [ProDialogForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 搜索栏组件，属于 **ProForm** 子集，可从 **ProForm** 中导出使用
+- [ProDrawerForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 分步表单组件，属于 **ProForm** 子集，可从 **ProForm** 中导出使用
+- [ProDescriptions](https://www.npmjs.com/package/@element-plus-ui/pro-descriptions) 定义列表模板组件，**ProTable** 的配套组件
 
 ## 🔨 使用
 

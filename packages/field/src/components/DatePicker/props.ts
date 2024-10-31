@@ -6,7 +6,7 @@
  * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\props.ts
  */
 import { DatePickerProps, DatePickType } from "element-plus";
-import { excludeObjectProperty } from "@element-plus-ui/pro-utils";
+import { omitObjectProperty } from "@element-plus-ui/pro-utils";
 import { GeneratePropTypes } from "@element-plus-ui/pro-types";
 import type { ExtractPropTypes, PropType } from "vue-demi";
 import { commomFieldProps } from "../../props";
@@ -29,7 +29,7 @@ export const proDatePickerProps = {
   }
 };
 
-const commomPropsEntity = excludeObjectProperty(proDatePickerProps, ["type"]);
+const commomPropsEntity = omitObjectProperty(proDatePickerProps, ["type"]);
 
 export const proFieldDateProps = commomPropsEntity;
 

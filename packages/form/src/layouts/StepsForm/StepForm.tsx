@@ -1,0 +1,58 @@
+/*
+ * @Description:
+ * @Author: wangbowen936926
+ * @Date: 2024-10-29 09:58:07
+ * @LastEditTime: 2024-10-30 16:00:52
+ * @FilePath: \element-plus-pro\packages\form\src\layouts\StepsForm\StepForm.tsx
+ */
+import mitt from "mitt";
+import { DefineComponent, defineComponent, inject } from "vue-demi";
+import { proStepFormProps, ProStepFormProps } from "./typing";
+import { GenerateForm, Submitter } from "../../core";
+import { omitObjectProperty } from "@element-plus-ui/pro-utils";
+
+export const emitter = mitt();
+
+const StepForm = defineComponent<ProStepFormProps>(
+  (props, ctx) => {
+    const total = inject("total") as number;
+    const current = inject("current") as number;
+    const submitter = inject("submitter") as Record<string, any>;
+    return () => (
+      <GenerateForm
+        {...omitObjectProperty(props, ["stepProps"])}
+        v-slots={{ default: ctx.slots.default }}
+        style={{ width: "50%", margin: "auto" }}
+        submitter={() => (
+          <Submitter
+            {...submitter}
+            reversal={current !== 0}
+            hideResetButton={current === 0 && total > 1}
+            resetButtonTitle={total > 1 ? "上一步" : "重置"}
+            submitButtonProps={{
+              title: current + 1 === total ? "提交" : "下一步",
+              onClick: () => {
+                if (total > 1 && current + 1 < total) {
+                  return emitter.emit("next");
+                }
+                emitter.emit("submit");
+              }
+            }}
+            onReset={() => {
+              if (total > 1) {
+                return emitter.emit("prev");
+              }
+            }}
+          />
+        )}
+      />
+    );
+  },
+  {
+    name: "ProStepForm"
+  }
+) as DefineComponent<ProStepFormProps>;
+
+StepForm.props = proStepFormProps;
+
+export default StepForm;

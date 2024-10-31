@@ -2,23 +2,22 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-30 21:35:16
- * @LastEditTime: 2024-07-09 17:04:20
+ * @LastEditTime: 2024-10-22 20:59:59
  * @FilePath: \element-plus-pro\packages\form\src\components\Input\Textarea.tsx
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
-import type { InputProps } from "element-plus";
+import type { ProFieldTextareaProps } from "@element-plus-ui/pro-field";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";
-import { FormFieldProps } from "../../typing";
+import { FormFieldCommonProps } from "../../typing";
+import { useVModel } from "@vueuse/core";
 
-export type ProFormTextareaProps = FormFieldProps<Omit<InputProps, "type">> & {
-  modelValue?: string | number;
-  placeholder?: string;
-};
+export interface ProFormTextareaProps extends FormFieldCommonProps, ProFieldTextareaProps {}
 
 const FormTextarea = defineComponent<ProFormTextareaProps>(
-  props => {
-    return () => <ProFormField {...props} type={"textarea"} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"textarea"} v-model={model.value} />;
   },
   {
     name: "ProFormTextarea"

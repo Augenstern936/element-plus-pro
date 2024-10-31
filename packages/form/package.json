@@ -22,7 +22,7 @@
   },
   "sideEffects": false,
   "main": "lib/index.js",
-  "module": "es/index.mjs",
+  "module": "src/index.ts",
   "types": "es/index.d.ts",
   "files": [
     "lib",
@@ -31,9 +31,11 @@
   "author": "17634393156@163.com",
   "dependencies": {
     "@element-plus-ui/pro-button": "workspace:^",
+    "@element-plus-ui/pro-context-provider": "workspace:^",
     "@element-plus-ui/pro-field": "workspace:^",
     "@element-plus/icons-vue": "^2.3.1",
     "@vueuse/core": "^10.7.0",
+    "mitt": "^3.0.1",
     "vue-demi": "^0.14.8",
     "vue-request": "^2.0.4"
   },

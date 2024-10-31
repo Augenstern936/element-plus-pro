@@ -2,16 +2,15 @@
  * @Description:;
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:23:41
- * @LastEditTime: 2024-07-27 19:15:19
+ * @LastEditTime: 2024-10-27 18:04:40
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\index.tsx
  */
 import { ProButtonProps } from "@element-plus-ui/pro-button";
-import { withInstall } from "@element-plus-ui/pro-utils";
+import { omitObjectProperty, withInstall } from "@element-plus-ui/pro-utils";
 import { MoreFilled } from "@element-plus/icons-vue";
-import { isObject } from "@vue/shared";
-import { useVModel } from "@vueuse/core";
+import { useVModel, isObject } from "@vueuse/core";
 import { ColProps, ElButton, ElFormItem } from "element-plus";
-import { computed, DefineComponent, defineComponent, FunctionalComponent, ref, toRaw, watch } from "vue-demi";
+import { computed, CSSProperties, DefineComponent, defineComponent, FunctionalComponent, ref, toRaw, watch } from "vue-demi";
 import { GenerateForm } from "../../core";
 import Actions from "./Actions";
 import Options from "./Options";
@@ -20,6 +19,8 @@ import { proSearchBarProps, ProSearchBarProps } from "./typing";
 
 const SearchBar = defineComponent<ProSearchBarProps>(
   (props, ctx) => {
+    const formRef = ref();
+
     const model = useVModel(props, "modelValue", ctx.emit);
 
     const defaultSpan = ref(8);
@@ -38,13 +39,19 @@ const SearchBar = defineComponent<ProSearchBarProps>(
     });
 
     const columns = computed(() => {
-      if (collapsed.value === true) {
-        return props.columns;
-      }
+      const slots = (ctx.slots?.default?.() ?? [])?.map((item: any) => {
+        item["is"] = "element";
+        return item;
+      });
 
+      const columnsConfig = props?.columns ?? [];
+
+      if (collapsed.value === true) {
+        return [...slots, ...columnsConfig];
+      }
       const colSpan = isObject(span.value) ? span.value?.span : span.value;
 
-      return props.columns?.slice(0, 24 / colSpan - 1);
+      return [...slots, ...columnsConfig]?.slice(0, 24 / colSpan - 1);
     });
 
     const isOptions = computed(() => {
@@ -79,6 +86,15 @@ const SearchBar = defineComponent<ProSearchBarProps>(
       }
     };
 
+    ctx.expose({
+      validate: () => formRef.value?.validate(),
+      validateField: () => formRef.value?.validateField(),
+      resetFields: () => formRef.value?.resetFields(),
+      scrollToField: () => formRef.value?.scrollToField(),
+      clearValidate: () => formRef.value?.clearValidate(),
+      fields: () => formRef.value?.fields()
+    });
+
     watch(
       () => props,
       () => {
@@ -89,20 +105,27 @@ const SearchBar = defineComponent<ProSearchBarProps>(
     return () => (
       <div class={"pro-search-bar"}>
         <GenerateForm
+          ref={formRef}
           colProps={colProps.value as ColProps}
           rowProps={{ gutter: 24 }}
-          {...props}
+          {...omitObjectProperty(props, ["submitter"])}
           columns={columns.value}
           grid={true}
           labelPosition={props.layout === "vertical" ? "top" : "right"}
           v-model={model.value}
           v-slots={{
-            submitter: (model: Record<string, any>, ColWrapper: FunctionalComponent<ColProps>) => {
+            submitter: (model: Record<string, any>, ColWrapper: FunctionalComponent<ColProps & { style?: CSSProperties }>) => {
               return (
-                <ColWrapper {...(colProps.value as ColProps)} span={lastItemColSpan.value}>
+                <ColWrapper
+                  {...(colProps.value as ColProps)}
+                  span={lastItemColSpan.value}
+                  style={{ display: "flex", alignItems: props.layout === "vertical" ? "end" : "unset" }}
+                >
                   <ElFormItem
                     class={"submitter-form-item"}
+                    label={lastItemColSpan.value === 24 ? " " : ""}
                     style={{
+                      paddingLeft: lastItemColSpan.value === 24 ? "12px" : 0,
                       "--justify-content": isOptions.value ? "space-between" : "end"
                     }}
                   >

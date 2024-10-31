@@ -1,21 +1,21 @@
 /*
  * @Description:
  * @Date: 2024-07-01 09:06:21
- * @LastEditTime: 2024-07-09 17:04:32
+ * @LastEditTime: 2024-10-22 16:24:41
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
-import type { RateProps } from "element-plus";
+import type { ProFieldRateProps } from "@element-plus-ui/pro-field";
 import { DefineComponent, defineComponent } from "vue-demi";
 import { ProFormField } from "../../core";
-import { FormFieldProps } from "../../typing";
+import { FormFieldCommonProps } from "../../typing";
+import { useVModel } from "@vueuse/core";
 
-export type ProFormRateProps = FormFieldProps<RateProps> & {
-  modelValue?: number;
-};
+export interface ProFormRateProps extends FormFieldCommonProps, ProFieldRateProps {}
 
 const FormRate = defineComponent<ProFormRateProps>(
-  props => {
-    return () => <ProFormField {...props} type={"rate"} />;
+  (props, ctx) => {
+    const model = useVModel(props, "modelValue", ctx.emit);
+    return () => <ProFormField {...props} type={"rate"} v-model={model.value} />;
   },
   {
     name: "ProFormRate"
