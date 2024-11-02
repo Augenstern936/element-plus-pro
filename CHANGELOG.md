@@ -1,3 +1,18 @@
+## 1.0.2 (2024-11-02)
+
+
+### 🚀 Features
+
+- 🚀 添加ProStepsForm、ProDialogForm、ProDrawerForm、ProSearchBar组件 ([45d111d](https://github.com/Augenstern936/element-plus-pro/commit/45d111d))
+
+### 🩹 Fixes
+
+- 🐛 修复pro-fields组件控制台警告prop类型有误 ([b0fdda0](https://github.com/Augenstern936/element-plus-pro/commit/b0fdda0))
+
+### ❤️  Thank You
+
+- wangbowen936926 @l
+
 ## 1.0.2-1 (2024-10-18)
 
 
