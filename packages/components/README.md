@@ -22,7 +22,7 @@ $ pnpm add @element-plus-ui/pro-components
 
 - [ProIcon](https://www.npmjs.com/package/@element-plus-ui/pro-icon) 图标组件，简化了 **ElIcon** 组件，更加简单易用
 - [ProText](https://www.npmjs.com/package/@element-plus-ui/pro-text) 文本组件，提供了一些基础操作功能(拷贝/可编辑)
-- [ProButton](https://www.npmjs.com/package/@element-plus-ui/pro-button) 按钮模板组件，新增了二次确认操作
+- [ProButton](https://www.npmjs.com/package/@element-plus-ui/pro-button) 按钮模板组件，提供了二次确认操作流程
 - [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 原子信息组件，统一定义了 **ProForm** 和 **ProTable** 组件中的字段
 - [ProTable](https://www.npmjs.com/package/@element-plus-ui/pro-table) 表格模板组件，抽象网络请求和表格格式化
 - [ProForm](https://www.npmjs.com/package/@element-plus-ui/pro-form) 基础表单模板组件

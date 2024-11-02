@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-10-21 22:36:20
+ * @LastEditTime: 2024-11-02 14:16:05
  * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\DatePicker.tsx
  */
 import { formatPlaceholder } from "@element-plus-ui/pro-utils";
@@ -67,7 +67,7 @@ const ProDatePicker = defineComponent<ProDatePickerProps>((props, ctx) => {
         />
       );
     }
-    return <></>;
+    return "";
   };
 
   return () => <div style={{ width: "100%" }}>{render()}</div>;

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:40:06
- * @LastEditTime: 2024-10-30 10:38:41
+ * @LastEditTime: 2024-11-01 17:16:12
  * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\index.tsx
  */
 import { ToUppercaseFirst } from "@element-plus-ui/pro-types";
@@ -17,6 +17,7 @@ import { ProSearchBar } from "../SearchBar";
 import { ProStepForm, ProStepsForm } from "../StepsForm";
 import { ProDialogForm } from "../DialogForm";
 import { ProDrawerForm } from "../DrawerForm";
+import { getFormRefExpose } from "../../core/utils";
 
 const ProForm = defineComponent<ProFormProps>(
   (props, ctx) => {
@@ -35,18 +36,13 @@ const ProForm = defineComponent<ProFormProps>(
     });
 
     ctx.expose({
-      validate: () => formRef.value?.validate(),
-      validateField: () => formRef.value?.validateField(),
-      resetFields: () => formRef.value?.resetFields(),
-      scrollToField: () => formRef.value?.scrollToField(),
-      clearValidate: () => formRef.value?.clearValidate(),
-      fields: () => formRef.value?.fields()
+      ...getFormRefExpose(formRef.value)
     });
 
     return () => {
-      // if (RenderTypeComponent.value) {
-      //   return <RenderTypeComponent.value {...omitObjectProperty(props, ["type"])} v-model={model.value} v-slots={ctx.slots} />;
-      // }
+      if (RenderTypeComponent.value) {
+        return <RenderTypeComponent.value {...omitObjectProperty(props, ["type"])} v-model={model.value} v-slots={ctx.slots} />;
+      }
       return (
         <GenerateForm
           {...props}
@@ -80,5 +76,7 @@ for (const key in components) {
 }
 
 export * from "./typing";
+
+export type ProFormInstance = InstanceType<typeof ProForm>;
 
 export default withInstall(ProForm);

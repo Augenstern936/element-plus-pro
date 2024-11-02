@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-27 20:57:53
- * @LastEditTime: 2024-10-27 17:43:04
+ * @LastEditTime: 2024-11-01 22:36:20
  * @FilePath: \element-plus-pro\packages\form\src\core\HOC\createField.tsx
  */
 import { useVModel } from "@vueuse/core";
@@ -55,7 +55,7 @@ type FieldComponentType =
       Omit<RenderProps, "readonly"> & { mode?: "read" | "edit"; emptyText?: string; placeholder?: string | string[] }
     >;
 
-function createField(FieldComponent: FieldComponentType, config?: Record<string, any>) {
+function createField(FieldComponent: FieldComponentType) {
   const render = (props: RenderProps, ctx: SetupContext) => {
     const model = useVModel(props, "modelValue", ctx.emit);
     return (

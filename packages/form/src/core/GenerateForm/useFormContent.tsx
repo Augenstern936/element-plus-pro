@@ -2,24 +2,24 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-21 17:49:59
- * @LastEditTime: 2024-10-28 20:18:52
+ * @LastEditTime: 2024-11-01 23:31:09
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\useFormContent.tsx
  */
-import { ProField } from "@element-plus-ui/pro-field";
-import { omitObjectProperty, formatPlaceholder } from "@element-plus-ui/pro-utils";
-import { InfoFilled } from "@element-plus/icons-vue";
+import { ProField, ProFieldProps } from "@element-plus-ui/pro-field";
+import { omitObjectProperty, formatPlaceholder, pickObjectProperty } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
-import { ElFormItem, ElIcon, ElSpace, ElTooltip, FormItemProps } from "element-plus";
+import { ElFormItem, ElSpace, ElTooltip, FormItemProps } from "element-plus";
 import { SetupContext, ref } from "vue-demi";
 import { useGridHelpers } from "../helpers";
 import { GenerateFormProps, ProFormColumn } from "./typing";
+import ProIcon from "@element-plus-ui/pro-icon";
 
 const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => {
   const getFormItemProps = (item: ProFormColumn, model: Record<string, any>) => {
     const { dataField, rules = {} } = item;
     const globalRulesItem = dataField && formProps.rules ? (formProps.rules[dataField] ?? {}) : {};
     const required = item.required ?? rules.required ?? formProps.required ?? globalRulesItem.required;
-    const label = typeof item.label === "function" ? item.label(model, formProps.columns) : item.label;
+    const label = typeof item.label === "function" ? item.label(model, formProps.columns as []) : item.label;
 
     return {
       ...item,
@@ -36,11 +36,20 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
   const getFieldProps = (item: ProFormColumn) => {
     const { label, valueType = "text", readonly } = item;
     return {
-      ...omitObjectProperty(item, ["hidden", "label"]),
+      ...pickObjectProperty(item, [
+        "size",
+        "marker",
+        "request",
+        "valueEnum",
+        "separator",
+        "placeholder",
+        "mappingEnumValue",
+        "fieldProps"
+      ]),
       type: valueType,
       mode: readonly === true || formProps.readonly === true ? "read" : "edit",
       placeholder: formatPlaceholder(typeof label === "string" ? label : "", valueType)
-    };
+    } as ProFieldProps;
   };
 
   const Content = (props: Record<string, any>, ctx: SetupContext) => {
@@ -49,32 +58,28 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
     return (
       <RowWrapper gutter={10} {...props?.rowProps}>
         {props.columns?.map((item: any, index: number) => {
-          const hidden = item?.hidden?.(model.value, formProps.columns);
-          if (hidden === true) {
-            return null;
-          }
+          const { key, hidden, dataField, tooltip } = item;
+          const id = key || dataField || index;
+          const hide = typeof hidden === "function" ? hidden(model.value, formProps.columns) : hidden;
+          if (hide === true) return null;
           if (item.is === "slot") {
-            return <ColWrapper {...props.colProps}>{formCtx.slots.default?.()[item.index]}</ColWrapper>;
+            return <ColWrapper {...props.colProps} key={id} v-slots={{ default: () => formCtx.slots.default?.()[item.index] }} />;
           }
           if (item.is === "element") {
-            return <ColWrapper {...props.colProps}>{item}</ColWrapper>;
+            return <ColWrapper {...props.colProps} key={id} v-slots={{ default: () => item }} />;
           }
-          const { key, dataField, tooltip } = item;
           const formItemProps = getFormItemProps(item as ProFormColumn, model);
           const slotName = key || dataField;
           return (
-            <ColWrapper {...props?.colProps}>
+            <ColWrapper key={id} {...props?.colProps}>
               <ElFormItem
                 {...(formItemProps as FormItemProps)}
-                key={key || dataField || index}
                 v-slots={{
                   label: () => (
                     <ElSpace size={3} style={formProps.labelStyle}>
                       {tooltip && (
                         <ElTooltip placement={"top"} content={tooltip}>
-                          <ElIcon size={16}>
-                            <InfoFilled />
-                          </ElIcon>
+                          <ProIcon.InfoFilled size={16} />
                         </ElTooltip>
                       )}
                       {formItemProps.label}

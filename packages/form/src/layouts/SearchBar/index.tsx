@@ -2,7 +2,7 @@
  * @Description:;
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:23:41
- * @LastEditTime: 2024-10-27 18:04:40
+ * @LastEditTime: 2024-11-01 17:50:26
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\index.tsx
  */
 import { ProButtonProps } from "@element-plus-ui/pro-button";
@@ -16,18 +16,19 @@ import Actions from "./Actions";
 import Options from "./Options";
 import "./style.scss";
 import { proSearchBarProps, ProSearchBarProps } from "./typing";
+import { getFormRefExpose } from "../../core/utils";
 
 const SearchBar = defineComponent<ProSearchBarProps>(
   (props, ctx) => {
     const formRef = ref();
 
-    const model = useVModel(props, "modelValue", ctx.emit);
+    const model = props.modelValue ? useVModel(props, "modelValue", ctx.emit) : ref({});
 
     const defaultSpan = ref(8);
 
     const collapsed = ref<boolean>(props.collapsed ?? props.defaultCollapsed ?? false);
 
-    const span = computed(() => props.colSpan ?? defaultSpan.value);
+    const span = computed(() => (props.colSpan ?? defaultSpan.value) as number | Record<string, any>);
 
     const colProps = computed(() => {
       if (isObject(span.value)) {
@@ -87,12 +88,7 @@ const SearchBar = defineComponent<ProSearchBarProps>(
     };
 
     ctx.expose({
-      validate: () => formRef.value?.validate(),
-      validateField: () => formRef.value?.validateField(),
-      resetFields: () => formRef.value?.resetFields(),
-      scrollToField: () => formRef.value?.scrollToField(),
-      clearValidate: () => formRef.value?.clearValidate(),
-      fields: () => formRef.value?.fields()
+      ...getFormRefExpose(formRef.value)
     });
 
     watch(
@@ -161,5 +157,7 @@ const SearchBar = defineComponent<ProSearchBarProps>(
 SearchBar.props = proSearchBarProps;
 
 export * from "./typing";
+
+export type ProSearchBarInstance = InstanceType<typeof SearchBar>;
 
 export const ProSearchBar = withInstall(SearchBar);

@@ -215,7 +215,7 @@ $ pnpm add @element-plus-ui/pro-form
 
 ### ProDialogForm
 
-**ProDialogForm** 是 [ElDiaLog](https://element-plus.org/zh-CN/component/dialog.html) 和 [ProForm](#ProForm) 组件的组合，除了以下属性外，还继承了 [ProForm](#ProForm) 的 [Props](#ProForm)，在这不再一一列举，如有需要，可查阅 [ProFormAPI](#ProForm)
+**ProDialogForm** 是 [ElDiaLog](https://element-plus.org/zh-CN/component/dialog.html) 和 [ProForm](#ProForm) 组件的组合，除了以下属性外，还继承了 [ProForm](#ProForm) 的 [Props](#ProForm)，以下不再一一列举，如有需要，可查阅 [ProFormAPI](#ProForm)
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
@@ -264,7 +264,7 @@ $ pnpm add @element-plus-ui/pro-form
 
 ### ProDrawerForm
 
-**ProDrawerForm** 是 [ElDrawer](https://element-plus.org/zh-CN/component/drawer.html) 和 [ProForm](#ProForm) 组件的组合，除了以下属性外，还继承了 [ProForm](#ProForm) 的 [Props](#ProForm)，在这不再一一列举，如有需要，可查阅 [ProFormAPI](#ProForm)
+**ProDrawerForm** 是 [ElDrawer](https://element-plus.org/zh-CN/component/drawer.html) 和 [ProForm](#ProForm) 组件的组合，除了以下属性外，还继承了 [ProForm](#ProForm) 的 [Props](#ProForm)，以下不再一一列举，如有需要，可查阅 [ProFormAPI](#ProForm)
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
@@ -315,11 +315,11 @@ $ pnpm add @element-plus-ui/pro-form
 
 ### ProFormFields
 
-ProForm 自带的 Filed, 与 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 组件的 type 基本上一一对应, 除了以下新增的属性之外, 同时也继承了 [ElFormItem](https://element-plus.org/zh-CN/component/form.html) 和 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 对应的组件 Props.
+ProForm 自带的 Filed, 与 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 组件的 type 一一对应, 除了以下新增的属性之外, 同时也继承了 [ElFormItem](https://element-plus.org/zh-CN/component/form.html) 和 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 对应的组件 Props.
 
 可以这样理解，ProFormText 是 ElFormItem + ElInput 的产物，所以我们给 ProFormText 设置的 props 其实是 ElFormItem 的，fieldProps 才是包含的组件的，要切记.
 
-对一些继承的属性，在这里不再一一列举，如有需要, 可前往 [ElFormItem](https://element-plus.org/zh-CN/component/form.html) 和 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 组件处进行查阅
+对于一些继承的属性，以下不再一一列举，如有需要, 可前往 [ElFormItem](https://element-plus.org/zh-CN/component/form.html) 和 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 组件处进行查阅
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
@@ -327,11 +327,27 @@ ProForm 自带的 Filed, 与 [ProField](https://www.npmjs.com/package/@element-p
 
 ```vue
 <template>
-  <pro-form-text/>
+  <pro-form :model="entity" :grid="true" :col-props="{ span: 24 }">
+    <pro-form-text label="姓名：" v-model="entity.name" />
+    <pro-form-number label="年龄：" v-model="entity.age" />
+    <ProForm.Date label="出生日期：" v-model="entity.date" />
+    <ProForm.Textarea label="介绍：" v-model="entity.desc" />
+    <el-form-item label="自定义：">
+      <el-input v-model="entity.name" />
+    </el-form-item>
+  </pro-form>
 </template>
 
 <script setup lang="ts">
-  import { ProFormText } from '@element-plus-ui/pro-form';
+  import { ProForm, ProFormText, ProFormNumber } from "@element-plus-ui/pro-form";
+  import { ref } from "vue";
+
+  const entity = ref({
+    name: "",
+    age: 10,
+    date: "",
+    desc: ""
+  });
 </script>
 ```
 

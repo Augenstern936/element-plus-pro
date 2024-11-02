@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-10-30 16:18:34
+ * @LastEditTime: 2024-10-31 22:56:23
  * @FilePath: \element-plus-pro\play\src\components\StepsForm.vue
 -->
 <template>
@@ -61,7 +61,8 @@
           {
             label: '姓名:',
             dataField: 'name',
-            required: true
+            required: true,
+            order: 0
           },
           {
             label: '年龄:',
@@ -75,7 +76,7 @@
           }
         ]"
       >
-        <ProForm.Cascader label="选择器" :order="6" />
+        <ProForm.Cascader label="选择器" :order="0" />
       </ProStepsForm.StepForm>
       <ProStepsForm.StepForm title="测试2">
         <ProForm.Date label="日期" />

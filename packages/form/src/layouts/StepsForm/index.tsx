@@ -2,7 +2,7 @@
  * @Description:;
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:23:41
- * @LastEditTime: 2024-10-30 15:30:04
+ * @LastEditTime: 2024-11-01 15:19:12
  * @FilePath: \element-plus-pro\packages\form\src\layouts\StepsForm\index.tsx
  */
 import { omitObjectProperty, withInstall } from "@element-plus-ui/pro-utils";
@@ -21,10 +21,13 @@ import { ProContextProvider } from "@element-plus-ui/pro-context-provider";
 import { isObject } from "@vueuse/core";
 import { GenerateForm, Submitter } from "../../core";
 import StepForm, { emitter } from "./StepForm";
+import { useVModel } from "@vueuse/core";
 
 const StepsForm = defineComponent<ProStepsFormProps>(
   (props, ctx) => {
     const active = ref(0);
+
+    const model = props.modelValue ? useVModel(props, "modelValue", ctx.emit) : ref({});
 
     emitter.on("next", () => onAction("next"));
 
@@ -131,6 +134,7 @@ const StepsForm = defineComponent<ProStepsFormProps>(
               ) : (
                 <GenerateForm
                   {...omitObjectProperty(props, ["active", "stepsProps", "onFinish", "onActiveChange"])}
+                  v-model={model.value}
                   columns={config.columns}
                   style={{ width: "50%", margin: "auto" }}
                   submitter={() => (
@@ -169,6 +173,10 @@ StepsForm.props = proStepsFormProps;
 StepsForm["StepForm"] = StepForm;
 
 export * from "./typing";
+
+export type ProStepFormInstance = InstanceType<typeof StepForm>;
+
+export type ProStepsFormInstance = InstanceType<typeof StepsForm>;
 
 export const ProStepForm = withInstall(StepForm);
 

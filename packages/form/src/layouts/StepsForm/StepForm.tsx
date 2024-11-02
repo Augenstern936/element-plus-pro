@@ -2,25 +2,29 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-10-29 09:58:07
- * @LastEditTime: 2024-10-30 16:00:52
+ * @LastEditTime: 2024-11-01 15:21:20
  * @FilePath: \element-plus-pro\packages\form\src\layouts\StepsForm\StepForm.tsx
  */
 import mitt from "mitt";
-import { DefineComponent, defineComponent, inject } from "vue-demi";
+import { DefineComponent, defineComponent, inject, ref } from "vue-demi";
 import { proStepFormProps, ProStepFormProps } from "./typing";
 import { GenerateForm, Submitter } from "../../core";
 import { omitObjectProperty } from "@element-plus-ui/pro-utils";
+import { useVModel } from "@vueuse/core";
 
 export const emitter = mitt();
 
 const StepForm = defineComponent<ProStepFormProps>(
   (props, ctx) => {
+    const model = props.modelValue ? useVModel(props, "modelValue", ctx.emit) : ref({});
+
     const total = inject("total") as number;
     const current = inject("current") as number;
     const submitter = inject("submitter") as Record<string, any>;
     return () => (
       <GenerateForm
         {...omitObjectProperty(props, ["stepProps"])}
+        v-model={model.value}
         v-slots={{ default: ctx.slots.default }}
         style={{ width: "50%", margin: "auto" }}
         submitter={() => (

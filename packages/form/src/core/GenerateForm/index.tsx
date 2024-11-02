@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-14 17:03:21
- * @LastEditTime: 2024-10-29 23:06:24
+ * @LastEditTime: 2024-11-02 13:52:47
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\index.tsx
  */
 import { useFetchData } from "@element-plus-ui/pro-hooks";
@@ -16,11 +16,14 @@ import useFormContent from "./useFormContent";
 import useFormProps from "./useFormProps";
 import { isObject } from "@vueuse/core";
 import ProButton from "@element-plus-ui/pro-button";
+import { getFormRefExpose } from "../utils";
 
 export const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
   const model = props.modelValue !== void 0 ? useVModel(props, "modelValue", ctx.emit) : ref({});
 
   const formRef = ref<FormInstance>();
+
+  const { columns } = useFormProps(props, ctx.slots?.default?.() as []);
 
   const { Content } = useFormContent(props, ctx);
 
@@ -58,51 +61,38 @@ export const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
   };
 
   ctx.expose({
-    validate: () => formRef.value?.validate(),
-    validateField: () => formRef.value?.validateField(),
-    resetFields: () => formRef.value?.resetFields(),
-    scrollToField: () => formRef.value?.scrollToField(),
-    clearValidate: () => formRef.value?.clearValidate(),
-    fields: () => formRef.value?.fields()
+    ...getFormRefExpose(formRef.value)
   });
 
-  return () => {
-    const { columns } = useFormProps(props, ctx.slots?.default?.() as []);
-    console.log(ctx.slots?.default?.(), "ctx.slots?.default?.()");
-    return (
-      <ElForm {...props} ref={formRef} model={model.value} class={"generate-form"}>
-        <Content
-          {...props}
-          columns={columns.value}
-          v-model={model.value}
-          v-slots={{
-            submitter: (ColWrapper: FunctionalComponent<ColProps>) => {
-              if (!columns.value.length) {
-                return <></>;
-              }
-              if (ctx.slots.submitter) {
-                return ctx.slots.submitter(model.value, ColWrapper);
-              }
-              if (props.submitter === false) {
-                return <></>;
-              }
-              return (
-                <>
-                  {props.readonly !== true && (
-                    <ColWrapper {...(props.colProps as ColProps)}>
-                      <ElFormItem class={"pro-form-item-submitter"} label=" ">
-                        {renderSubmitter()}
-                      </ElFormItem>
-                    </ColWrapper>
-                  )}
-                </>
-              );
+  return () => (
+    <ElForm ref={formRef} model={model.value} {...props} class={"generate-form"}>
+      <Content
+        {...props}
+        columns={columns.value}
+        v-model={model.value}
+        v-slots={{
+          submitter: (ColWrapper: FunctionalComponent<ColProps>) => {
+            if (!columns.value.length) return "";
+            if (ctx.slots.submitter) {
+              return ctx.slots.submitter(model.value, ColWrapper);
             }
-          }}
-        />
-      </ElForm>
-    );
-  };
+            if (props.submitter === false) return "";
+            return (
+              <>
+                {props.readonly !== true && (
+                  <ColWrapper {...(props.colProps as ColProps)}>
+                    <ElFormItem class={"pro-form-item-submitter"} label=" ">
+                      {renderSubmitter()}
+                    </ElFormItem>
+                  </ColWrapper>
+                )}
+              </>
+            );
+          }
+        }}
+      />
+    </ElForm>
+  );
 }) as DefineComponent<GenerateFormProps>;
 
 GenerateForm.props = generateFormProps;

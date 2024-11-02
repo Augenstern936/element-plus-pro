@@ -2,7 +2,7 @@
  * @Description: 阅读模式下选项值展示的形式
  * @Author: wangbowen936926
  * @Date: 2024-06-01 14:12:33
- * @LastEditTime: 2024-10-19 23:50:55
+ * @LastEditTime: 2024-11-02 14:35:28
  * @FilePath: \element-plus-pro\packages\field\src\components\widgets\ReadOptions\index.tsx
  */
 import { Marker, ValueOption } from "@element-plus-ui/pro-types";
@@ -12,7 +12,7 @@ import { computed } from "vue-demi";
 import "./read-options.scss";
 import { isObject } from "@vueuse/core";
 export interface ReadOptionsProps {
-  value: (string | number | boolean)[] | ValueOption[];
+  value: (string | number | boolean | Date)[] | ValueOption[];
   marker?: "tag" | Marker;
   textColor?: string;
   separator?: string;
@@ -65,13 +65,13 @@ export const ReadOptions = (props: ReadOptionsProps) => {
         <ul>
           {props.value.map((option, i) => {
             if (!isObject(option)) {
-              return <Render.value key={i} option={isObject(option) ? option : { label: option }} separator={getSeparator(i)} />;
+              return <Render.value key={i} option={{ label: option }} separator={getSeparator(i)} />;
             }
             const color = getOptionStatusColor(option);
             return (
               <li
-                data-key={option.label}
-                class={`${option.status ?? ""}`}
+                key={i}
+                class={`${(option as ValueOption).status ?? ""}`}
                 style={{
                   "--dot-color": color || "default",
                   listStyleType: color ? props.marker : "none"

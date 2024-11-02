@@ -1,8 +1,10 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-10-31 10:13:29
+ * @LastEditTime: 2024-11-01 16:25:53
  */
+import { FormEmits } from "element-plus";
+
 import type {
   ProFieldType,
   ProFieldTextProps,
@@ -83,6 +85,9 @@ const commonFormProps = {
   submitter: {
     type: [Boolean, Object, Function, Array] as PropType<ProFormSubmitter>,
     default: true
+  },
+  onValidate: {
+    type: Function as PropType<FormEmits["validate"]>
   }
 };
 
@@ -113,12 +118,12 @@ type ProFormItemProps = Partial<Omit<FormItemProps, "prop" | "label" | "inline" 
 /**
  * 通用函数类型
  */
-type FormItemPropertyFunction<T> = (entity: Record<string, any>, items: ProFormColumn[]) => T;
+type FormItemPropertyFunction<T> = (entity: Record<string, any>, columns: ProFormColumn[]) => T;
 
 interface ProFormColumnCommonConfig extends ProFormItemProps {
   key?: string;
   order?: number;
-  label?: string | ((entity: Record<string, any>, columns?: ProFormColumn[]) => JSX.Element);
+  label?: string | FormItemPropertyFunction<JSX.Element>;
   labelStyle?: CSSProperties;
   tooltip?: string;
   dataField?: string;

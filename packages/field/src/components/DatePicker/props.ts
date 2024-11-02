@@ -2,10 +2,10 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-10 00:18:39
- * @LastEditTime: 2024-10-21 23:27:43
+ * @LastEditTime: 2024-11-02 14:22:31
  * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\props.ts
  */
-import { DatePickerProps, DatePickType } from "element-plus";
+import { datePickerProps, DatePickerProps, DatePickType } from "element-plus";
 import { omitObjectProperty } from "@element-plus-ui/pro-utils";
 import { GeneratePropTypes } from "@element-plus-ui/pro-types";
 import type { ExtractPropTypes, PropType } from "vue-demi";
@@ -13,10 +13,11 @@ import { commomFieldProps } from "../../props";
 
 export const proDatePickerProps = {
   ...commomFieldProps,
-  modelValue: {
-    type: [String, Number, Array as PropType<(string | number)[]>],
-    default: void 0
-  },
+  modelValue: datePickerProps.modelValue,
+  // modelValue: {
+  //   type: [String, Number, Array as PropType<(string | number)[]>],
+  //   default: void 0
+  // },
   type: {
     type: String as PropType<DatePickType>
   },
@@ -36,7 +37,7 @@ export const proFieldDateProps = commomPropsEntity;
 export const proFieldDatesProps = {
   ...commomPropsEntity,
   modelValue: {
-    type: Array as PropType<Array<string | number>>,
+    type: Array as PropType<Array<string | number | Date>>,
     default: []
   },
   separator: {
@@ -54,7 +55,7 @@ export const proFieldDateMonthProps = commomPropsEntity;
 export const proFieldDateMonthsProps = {
   ...proDatePickerProps,
   modelValue: {
-    type: Array as PropType<Array<string | number>>,
+    type: Array as PropType<Array<string | number | Date>>,
     default: []
   },
   separator: {
@@ -68,7 +69,7 @@ export const proFieldDateYearProps = commomPropsEntity;
 export const proFieldDateYearsProps = {
   ...commomPropsEntity,
   modelValue: {
-    type: Array as PropType<Array<string | number>>,
+    type: Array as PropType<Array<string | number | Date>>,
     default: []
   },
   separator: {
@@ -80,7 +81,7 @@ export const proFieldDateYearsProps = {
 export const proFieldDateRangeProps = {
   ...commomPropsEntity,
   modelValue: {
-    type: Array as PropType<Array<string | number>>,
+    type: Array as PropType<Array<string | number | Date>>,
     default: []
   },
   separator: {
@@ -92,7 +93,7 @@ export const proFieldDateRangeProps = {
 export const proFieldDateTimeRangeProps = {
   ...commomPropsEntity,
   modelValue: {
-    type: Array as PropType<Array<string | number>>,
+    type: Array as PropType<Array<string | number | Date>>,
     default: []
   },
   separator: {
@@ -104,7 +105,7 @@ export const proFieldDateTimeRangeProps = {
 export const proFieldDateMonthRangeProps = {
   ...commomPropsEntity,
   modelValue: {
-    type: Array as PropType<Array<string | number>>,
+    type: Array as PropType<Array<string | number | Date>>,
     default: []
   },
   separator: {

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-10-31 09:51:22
+ * @LastEditTime: 2024-11-01 15:46:19
  * @FilePath: \element-plus-pro\play\src\components\DrawerForm.vue
 -->
 <template>
@@ -17,6 +17,7 @@
         {
           label: '年龄',
           order: 1,
+          dataField: 'age',
           valueType: 'number'
         }
       ]"

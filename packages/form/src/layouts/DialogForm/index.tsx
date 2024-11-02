@@ -2,7 +2,7 @@
  * @Description:;
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:23:41
- * @LastEditTime: 2024-10-31 12:00:29
+ * @LastEditTime: 2024-11-01 23:11:00
  * @FilePath: \element-plus-pro\packages\form\src\layouts\DialogForm\index.tsx
  */
 import "./dialog-form.scss";
@@ -14,12 +14,15 @@ import { ProButton } from "@element-plus-ui/pro-button";
 import { GenerateForm, Submitter } from "../../core";
 import { isObject, useVModel } from "@vueuse/core";
 import { SubmitterProps } from "../../core/GenerateForm/Submitter";
+import { getFormRefExpose } from "../../core/utils";
 
 const DialogForm = defineComponent<ProDialogFormProps>(
   (props, ctx) => {
     const formRef = ref();
 
     const open = props.open != void 0 ? useVModel(props, "open", ctx.emit) : ref(false);
+
+    const model = props.modelValue ? useVModel(props, "modelValue", ctx.emit) : ref({});
 
     const TriggerElement = computed(() => {
       if (typeof props.trigger === "function") {
@@ -35,7 +38,7 @@ const DialogForm = defineComponent<ProDialogFormProps>(
           />
         );
       }
-      return <></>;
+      return "";
     });
 
     const columns = computed(() => {
@@ -43,19 +46,11 @@ const DialogForm = defineComponent<ProDialogFormProps>(
         item["is"] = "element";
         return item;
       });
-
-      const columnsConfig = props?.columns ?? [];
-
-      return [...slots, ...columnsConfig];
+      return [...slots, ...(props?.columns ?? [])];
     });
 
     ctx.expose({
-      validate: () => formRef.value?.validate(),
-      validateField: () => formRef.value?.validateField(),
-      resetFields: () => formRef.value?.resetFields(),
-      scrollToField: () => formRef.value?.scrollToField(),
-      clearValidate: () => formRef.value?.clearValidate(),
-      fields: () => formRef.value?.fields()
+      ...getFormRefExpose(formRef.value)
     });
 
     return () => (
@@ -74,7 +69,9 @@ const DialogForm = defineComponent<ProDialogFormProps>(
           {...props.dialogProps}
           v-model={open.value}
           v-slots={{
-            default: () => <GenerateForm {...props} ref={formRef} columns={columns.value} submitter={false} />,
+            default: () => (
+              <GenerateForm {...props} ref={formRef} columns={columns.value} submitter={false} v-model={model.value} />
+            ),
             footer: () => {
               if (props.submitter === false) {
                 return "";
@@ -126,5 +123,7 @@ const DialogForm = defineComponent<ProDialogFormProps>(
 DialogForm.props = proDialogFormProps;
 
 export * from "./typing";
+
+export type ProDialogFormInstance = InstanceType<typeof DialogForm>;
 
 export const ProDialogForm = withInstall(DialogForm);

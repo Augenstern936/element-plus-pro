@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-10-17 22:18:22
+ * @LastEditTime: 2024-11-02 14:25:11
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import { ToUppercaseFirst } from "@element-plus-ui/pro-types";
@@ -33,7 +33,7 @@ ProField.props = proFieldProps;
 
 for (const key in components) {
   const ComName = (key.charAt(0).toUpperCase() + key.slice(1)) as ToUppercaseFirst<ProFieldType>;
-  ProField[ComName] = components[key as ProFieldType];
+  ProField[ComName] = components[key as ProFieldType] as DefineComponent;
 }
 
 export default withInstall(ProField);

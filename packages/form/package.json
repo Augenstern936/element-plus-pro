@@ -33,7 +33,7 @@
     "@element-plus-ui/pro-button": "workspace:^",
     "@element-plus-ui/pro-context-provider": "workspace:^",
     "@element-plus-ui/pro-field": "workspace:^",
-    "@element-plus/icons-vue": "^2.3.1",
+    "@element-plus-ui/pro-icon": "^1.2.1",
     "@vueuse/core": "^10.7.0",
     "mitt": "^3.0.1",
     "vue-demi": "^0.14.8",

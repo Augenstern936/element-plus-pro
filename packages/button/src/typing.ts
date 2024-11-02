@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2023-11-10 00:34:23
- * @LastEditTime: 2024-10-28 09:20:57
+ * @LastEditTime: 2024-10-31 15:17:17
  * @FilePath: \element-plus-pro\packages\button\src\typing.ts
  */
 import type { ButtonProps, MessageOptions, PopconfirmProps } from "element-plus";

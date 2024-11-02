@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-09 22:25:21
- * @LastEditTime: 2024-10-28 20:26:38
+ * @LastEditTime: 2024-10-31 22:50:45
  * @FilePath: \element-plus-pro\play\src\components\Form.vue
 -->
 <template>
@@ -27,7 +27,6 @@
       <!-- female male-->
       <ProFormUploadAvatar
         label="头像2"
-        :order="2"
         :marker="'on-line'"
         :fieldProps="{
           //src: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
@@ -36,13 +35,12 @@
       />
       <ProFormUploadAvatar
         label="头像3"
-        :order="3"
         :marker="'off-line'"
         :fieldProps="{
           src: 'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
         }"
       />
-      <ProForm.Switch v-model="form.switch" :order="1" label="开关测试:" activeText="已打开" inactive-text="测试" />
+      <ProForm.Switch v-model="form.switch" label="开关测试:" activeText="已打开" inactive-text="测试" />
     </ProForm>
   </el-card>
 </template>
