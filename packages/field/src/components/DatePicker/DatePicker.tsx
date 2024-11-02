@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-11-02 14:16:05
+ * @LastEditTime: 2024-11-02 17:53:11
  * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\DatePicker.tsx
  */
 import { formatPlaceholder } from "@element-plus-ui/pro-utils";
@@ -20,7 +20,7 @@ const ProDatePicker = defineComponent<ProDatePickerProps>((props, ctx) => {
   const model = useVModel(props, "modelValue", ctx.emit);
 
   const placeholder = computed(() => {
-    const value = props.placeholder ?? (formatPlaceholder("", (props.type as any) || "text") as string | [string, string]);
+    const value = props.placeholder ?? (formatPlaceholder("", (props.type as any) || "date") as string | [string, string]);
 
     if (Array.isArray(value) && value.length > 1) {
       return {

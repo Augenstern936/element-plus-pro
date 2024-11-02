@@ -2,22 +2,20 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-10 00:18:39
- * @LastEditTime: 2024-11-02 14:22:31
+ * @LastEditTime: 2024-11-02 19:56:16
  * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\props.ts
  */
-import { datePickerProps, DatePickerProps, DatePickType } from "element-plus";
+import { DatePickerProps, DatePickType } from "element-plus";
 import { omitObjectProperty } from "@element-plus-ui/pro-utils";
-import { GeneratePropTypes } from "@element-plus-ui/pro-types";
 import type { ExtractPropTypes, PropType } from "vue-demi";
 import { commomFieldProps } from "../../props";
 
 export const proDatePickerProps = {
   ...commomFieldProps,
-  modelValue: datePickerProps.modelValue,
-  // modelValue: {
-  //   type: [String, Number, Array as PropType<(string | number)[]>],
-  //   default: void 0
-  // },
+  modelValue: {
+    type: [String, Number, Date, Array as PropType<(string | number | Date)[]>],
+    default: void 0
+  },
   type: {
     type: String as PropType<DatePickType>
   },
@@ -114,7 +112,7 @@ export const proFieldDateMonthRangeProps = {
   }
 };
 
-export type ProDatePickerProps = GeneratePropTypes<typeof proDatePickerProps>;
+export type ProDatePickerProps = Partial<ExtractPropTypes<typeof proDatePickerProps>>;
 
 export type ProFieldDateProps = Partial<ExtractPropTypes<typeof proFieldDateProps>>;
 

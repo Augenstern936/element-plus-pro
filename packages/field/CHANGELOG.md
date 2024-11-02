@@ -1,11 +1,5 @@
 ## 1.0.2 (2024-11-02)
 
-
-### 🚀 Features
-
-- 🚀 添加ProStepsForm、ProDialogForm、ProDrawerForm、ProSearchBar组件
-
-
 ### 🩹 Fixes
 
 - 🐛 修复pro-fields组件控制台警告prop类型有误
