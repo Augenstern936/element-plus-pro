@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-09-13 21:28:34
- * @LastEditTime: 2024-10-27 17:15:13
+ * @LastEditTime: 2024-11-03 15:42:06
  * @FilePath: \element-plus-pro\packages\field\src\props.ts
  */
 import { PropType } from "vue-demi";
@@ -23,7 +23,7 @@ export const commomFieldProps = {
 export const proFieldProps = {
   ...commomFieldProps,
   modelValue: {
-    type: [String, Number, Boolean, Array] as PropType<string | number | boolean | []>,
+    type: [String, Number, Boolean, Date, Array] as PropType<string | number | boolean | Date[]>,
     default: void 0
   },
   type: {

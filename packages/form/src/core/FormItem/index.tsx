@@ -2,11 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-23 13:06:56
- * @LastEditTime: 2024-10-22 17:16:34
+ * @LastEditTime: 2024-11-03 15:39:46
  * @FilePath: \element-plus-pro\packages\form\src\core\FormItem\index.tsx
  */
 import { formItemProps, ElFormItem } from "element-plus";
-import { DefineComponent, computed, defineComponent } from "vue-demi";
+import { DefineComponent, computed, defineComponent, watch } from "vue-demi";
 import { pickObjectProperty, omitObjectProperty } from "@element-plus-ui/pro-utils";
 import { ProFormColumn } from "./typing";
 

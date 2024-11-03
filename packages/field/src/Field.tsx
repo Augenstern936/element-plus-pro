@@ -2,11 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-04 22:57:02
- * @LastEditTime: 2024-11-02 14:25:11
+ * @LastEditTime: 2024-11-02 21:35:59
  * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import { ToUppercaseFirst } from "@element-plus-ui/pro-types";
-import { withInstall } from "@element-plus-ui/pro-utils";
+import { omitObjectProperty, withInstall } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
 import type { DefineComponent } from "vue-demi";
 import { computed, defineComponent } from "vue-demi";
@@ -22,7 +22,7 @@ export const ProField = defineComponent<ProFieldProps>(
 
     const model = useVModel(props, "modelValue", ctx.emit);
 
-    return () => <Field.value {...props} v-model={model.value} />;
+    return () => <Field.value {...omitObjectProperty(props, ["type"])} v-model={model.value} />;
   },
   {
     name: "ProField"

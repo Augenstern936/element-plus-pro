@@ -2,11 +2,11 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-21 17:49:59
- * @LastEditTime: 2024-11-01 23:31:09
+ * @LastEditTime: 2024-11-03 16:12:55
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\useFormContent.tsx
  */
 import { ProField, ProFieldProps } from "@element-plus-ui/pro-field";
-import { omitObjectProperty, formatPlaceholder, pickObjectProperty } from "@element-plus-ui/pro-utils";
+import { formatPlaceholder, pickObjectProperty } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
 import { ElFormItem, ElSpace, ElTooltip, FormItemProps } from "element-plus";
 import { SetupContext, ref } from "vue-demi";

@@ -1,7 +1,7 @@
 <template>
   <el-card>
     <el-space fill :size="20">
-      <ProField :type="'cascader'" />
+      <ProField :type="'dateTime'" />
       <ProField.Text v-model="form.text" :mode="mode" />
       <ProField.Number v-model="form.number" :mode="mode" />
       <ProField.Password v-model="form.password" :mode="mode" />
