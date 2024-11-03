@@ -1,3 +1,14 @@
+## 1.0.4 (2024-11-03)
+
+
+### 🩹 Fixes
+
+- 🐛 消除控制台警告 ([95f8801](https://github.com/Augenstern936/element-plus-pro/commit/95f8801))
+
+### ❤️  Thank You
+
+- wangbowen936926 @l
+
 ## 1.0.3 (2024-11-02)
 
 
