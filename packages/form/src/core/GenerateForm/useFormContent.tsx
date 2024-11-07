@@ -2,13 +2,13 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-21 17:49:59
- * @LastEditTime: 2024-11-03 16:12:55
+ * @LastEditTime: 2024-11-04 21:59:13
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\useFormContent.tsx
  */
 import { ProField, ProFieldProps } from "@element-plus-ui/pro-field";
-import { formatPlaceholder, pickObjectProperty } from "@element-plus-ui/pro-utils";
+import { formatPlaceholder, omitObjectProperty, pickObjectProperty } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
-import { ElFormItem, ElSpace, ElTooltip, FormItemProps } from "element-plus";
+import { ElFormItem, ElSpace, ElTooltip, formItemProps } from "element-plus";
 import { SetupContext, ref } from "vue-demi";
 import { useGridHelpers } from "../helpers";
 import { GenerateFormProps, ProFormColumn } from "./typing";
@@ -16,20 +16,11 @@ import ProIcon from "@element-plus-ui/pro-icon";
 
 const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => {
   const getFormItemProps = (item: ProFormColumn, model: Record<string, any>) => {
-    const { dataField, rules = {} } = item;
-    const globalRulesItem = dataField && formProps.rules ? (formProps.rules[dataField] ?? {}) : {};
-    const required = item.required ?? rules.required ?? formProps.required ?? globalRulesItem.required;
-    const label = typeof item.label === "function" ? item.label(model, formProps.columns as []) : item.label;
-
+    const itemProps = pickObjectProperty(item, Object.keys(formItemProps) as any[]);
     return {
-      ...item,
-      label,
-      required: formProps.readonly === true ? false : required,
-      prop: dataField,
-      rules: {
-        ...globalRulesItem,
-        ...rules
-      }
+      ...itemProps,
+      prop: item.dataField,
+      label: typeof item.label === "function" ? item.label(model, formProps.columns as ProFormColumn[]) : item.label
     };
   };
 
@@ -73,7 +64,7 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
           return (
             <ColWrapper key={id} {...props?.colProps}>
               <ElFormItem
-                {...(formItemProps as FormItemProps)}
+                {...omitObjectProperty(formItemProps, ["label"])}
                 v-slots={{
                   label: () => (
                     <ElSpace size={3} style={formProps.labelStyle}>

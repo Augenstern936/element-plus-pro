@@ -2,24 +2,23 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-14 17:03:21
- * @LastEditTime: 2024-11-02 13:52:47
+ * @LastEditTime: 2024-11-07 22:59:11
  * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\index.tsx
  */
 import { useFetchData } from "@element-plus-ui/pro-hooks";
 import { useVModel } from "@vueuse/core";
-import { ColProps, ElForm, ElFormItem, ElMessage, FormInstance } from "element-plus";
-import { DefineComponent, FunctionalComponent, defineComponent, ref } from "vue-demi";
-import Submitter from "./Submitter";
+import { ColProps, ElForm, ElFormItem, FormInstance, formProps, FormValidateCallback } from "element-plus";
+import { DefineComponent, FunctionalComponent, defineComponent, ref, watch, watchEffect } from "vue-demi";
 import "./generate-form.scss";
-import { GenerateFormProps, generateFormProps } from "./typing";
+import { GenerateFormProps, generateFormProps, ProFormColumn } from "./typing";
 import useFormContent from "./useFormContent";
 import useFormProps from "./useFormProps";
+import { useSubmitter } from "./useSubmitter";
+import { pickObjectProperty } from "@element-plus-ui/pro-utils";
 import { isObject } from "@vueuse/core";
-import ProButton from "@element-plus-ui/pro-button";
-import { getFormRefExpose } from "../utils";
 
 export const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
-  const model = props.modelValue !== void 0 ? useVModel(props, "modelValue", ctx.emit) : ref({});
+  const model: Record<string, any> = isObject(props.modelValue) ? useVModel(props, "modelValue", ctx.emit) : ref({});
 
   const formRef = ref<FormInstance>();
 
@@ -27,66 +26,69 @@ export const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
 
   const { Content } = useFormContent(props, ctx);
 
+  const { Submitter, config } = useSubmitter(props.submitter);
+
   const { data } = useFetchData({
     params: props.params,
-    request: props.request
+    request: props?.request
   });
 
-  const renderSubmitter = () => {
-    if (isObject(props.submitter) || props.submitter === true) {
-      return (
-        <Submitter
-          onReset={() => ctx.emit("reset")}
-          onSubmit={async () => {
-            if (!formRef.value) return;
-            await formRef.value.validate(valid => {
-              if (valid) {
-                ctx.emit("finish", model.value);
-              } else {
-                ElMessage.warning("表单验证未通过~");
-              }
-            });
-          }}
-          {...(props?.submitter as Record<string, any>)}
-        />
-      );
-    }
-    if (typeof props.submitter === "function") {
-      return (props.submitter as Function)();
-    }
-    if (Array.isArray(props.submitter) && props.submitter.length) {
-      return props.submitter.map((config, index) => <ProButton key={index} {...config} />);
-    }
-    return "";
-  };
-
   ctx.expose({
-    ...getFormRefExpose(formRef.value)
+    validate: (callback: FormValidateCallback) => formRef.value?.validate(callback),
+    validateField: () => formRef.value?.validateField(),
+    resetFields: () => formRef.value?.resetFields(),
+    scrollToField: () => formRef.value?.scrollToField(),
+    clearValidate: () => formRef.value?.clearValidate(),
+    fields: () => formRef.value?.fields()
+  });
+
+  watchEffect(() => {
+    if (!Array.isArray(columns.value) || !columns.value.length) return;
+    if (!isObject(data.value) || !Object.keys(data.value).length) return;
+    columns.value.forEach((item: ProFormColumn) => {
+      if (item.dataField && Object.keys(data.value as any).includes(item.dataField)) {
+        model.value[item.dataField] = data.value?.[item.dataField];
+      }
+    });
   });
 
   return () => (
-    <ElForm ref={formRef} model={model.value} {...props} class={"generate-form"}>
+    <ElForm
+      {...pickObjectProperty(props, Object.keys(formProps) as any[])}
+      ref={formRef}
+      model={model.value}
+      class={"generate-form"}
+      hideRequiredAsterisk={props?.readonly || props?.hideRequiredAsterisk}
+    >
       <Content
         {...props}
         columns={columns.value}
         v-model={model.value}
         v-slots={{
           submitter: (ColWrapper: FunctionalComponent<ColProps>) => {
-            if (!columns.value.length) return "";
+            if (!columns.value.length || props.submitter === false || props.readonly === true) return "";
             if (ctx.slots.submitter) {
               return ctx.slots.submitter(model.value, ColWrapper);
             }
-            if (props.submitter === false) return "";
             return (
-              <>
-                {props.readonly !== true && (
-                  <ColWrapper {...(props.colProps as ColProps)}>
-                    <ElFormItem class={"pro-form-item-submitter"} label=" ">
-                      {renderSubmitter()}
-                    </ElFormItem>
-                  </ColWrapper>
-                )}
-              </>
+              <ColWrapper {...(props.colProps as ColProps)}>
+                <ElFormItem class={"pro-form-item-submitter"} label=" ">
+                  <Submitter
+                    {...config.value}
+                    onReset={() => ctx.emit("reset", model.value ?? {})}
+                    onSubmit={() => {
+                      if (!formRef.value) return;
+                      formRef.value.validate(valid => {
+                        if (valid) {
+                          return ctx.emit("finish", model.value);
+                        } else {
+                          ctx.emit("failed", model.value);
+                        }
+                      });
+                    }}
+                  />
+                </ElFormItem>
+              </ColWrapper>
             );
           }
         }}
@@ -97,6 +99,6 @@ export const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
 
 GenerateForm.props = generateFormProps;
 
-export { Submitter };
+export * from "./useSubmitter";
 
 export * from "./typing";

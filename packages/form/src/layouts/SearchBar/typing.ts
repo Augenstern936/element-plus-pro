@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:26:41
- * @LastEditTime: 2024-10-31 10:12:17
+ * @LastEditTime: 2024-11-07 23:02:40
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\typing.ts
  */
 import type { ProButtonProps } from "@element-plus-ui/pro-button";
@@ -26,24 +26,6 @@ export const proSearchBarProps = {
     type: String as PropType<ProFormLayout>,
     default: "inline"
   },
-  // searchButton: {
-  //   type: [Object, Boolean] as PropType<ButtonConfig | boolean>,
-  //   default: true
-  // },
-  // resetButton: {
-  //   type: [Object, Boolean] as PropType<ButtonConfig | boolean>,
-  //   default: true
-  // },
-  // searchButtonTitle: {
-  //   type: String
-  // },
-  // resetButtonTitle: {
-  //   type: String
-  // },
-  // submitter: {
-  //   type: [Boolean, Array, Function] as PropType<boolean | ButtonConfig[] | (() => JSX.Element)>,
-  //   default: void 0
-  // },
   collapsed: {
     type: Boolean,
     default: void 0
@@ -68,9 +50,5 @@ export const proSearchBarProps = {
     default: void 0
   }
 };
-
-// type ButtonConfig = Omit<ProButtonProps, "tip"> & {
-//   onClick?: () => void;
-// };
 
 export type ProSearchBarProps = Partial<ExtractPropTypes<typeof proSearchBarProps>>;

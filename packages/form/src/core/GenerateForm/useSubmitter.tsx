@@ -1,36 +1,43 @@
 /*
- * @Description:表单操作器
+ * @Description:
  * @Author: wangbowen936926
- * @Date: 2024-06-16 20:02:37
- * @LastEditTime: 2024-10-29 21:27:14
- * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\Submitter.tsx
+ * @Date: 2024-11-03 20:20:00
+ * @LastEditTime: 2024-11-04 22:42:46
+ * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\useSubmitter.tsx
  */
+import { ProFormSubmitter, SubmitterConfigProps } from "./typing";
 import { ElButton } from "element-plus";
-import { ProButtonProps } from "@element-plus-ui/pro-button";
-import { computed, CSSProperties, FunctionalComponent } from "vue-demi";
-import type { JSX } from "vue/jsx-runtime";
+import ProButton from "@element-plus-ui/pro-button";
+import { computed, DefineComponent, FunctionalComponent } from "vue-demi";
 import { omitObjectProperty } from "@element-plus-ui/pro-utils";
+import { isObject } from "@vueuse/core";
 
-interface ButtonProps extends ProButtonProps {
-  style?: CSSProperties;
-  onClick?: (e?: Record<string, any>) => void;
-}
+export const useSubmitter = (submitter?: ProFormSubmitter) => {
+  const Render = computed(() => {
+    if (typeof submitter === "function") {
+      return (props: SubmitterConfigProps) => submitter();
+    }
+    if (Array.isArray(submitter) && submitter.length) {
+      return (props: SubmitterConfigProps) => (
+        <>
+          {submitter.map((config, index) => (
+            <ProButton key={index} {...config} />
+          ))}
+        </>
+      );
+    }
+    return Submitter;
+  });
 
-export interface SubmitterProps {
-  submitButtonTitle?: string;
-  resetButtonTitle?: string;
-  hideResetButton?: boolean;
-  submitButtonProps?: ButtonProps;
-  resetButtonProps?: ButtonProps;
-  fillMode?: "aequilate" | "full" | "auto";
-  align?: "left" | "right" | "center";
-  reversal?: boolean;
-  render?: (props: SubmitterProps, doms?: JSX.Element[]) => JSX.Element | JSX.Element[];
-  onSubmit?: (entity: Record<string, any>) => void;
-  onReset?: (entity: Record<string, any>) => void;
-}
+  return {
+    Submitter: Render.value as DefineComponent<SubmitterConfigProps> | FunctionalComponent<SubmitterConfigProps>,
+    config: computed(() => {
+      return (isObject(submitter) ? submitter : {}) as SubmitterConfigProps;
+    })
+  };
+};
 
-const Submitter: FunctionalComponent<SubmitterProps> = props => {
+const Submitter: FunctionalComponent<SubmitterConfigProps> = props => {
   const isRenderSubmitter = computed(() => {
     return props?.render?.(props)?.type?.name === "Submitter";
   });
@@ -46,10 +53,10 @@ const Submitter: FunctionalComponent<SubmitterProps> = props => {
   };
 
   const actions = computed(() => [
-    <ElButton type="primary" onClick={props.onSubmit} {...props?.submitButtonProps}>
+    <ElButton type="primary" {...props?.submitButtonProps} onClick={props.onSubmit}>
       {props?.submitButtonProps?.title || props.submitButtonTitle || "提交"}
     </ElButton>,
-    <ElButton type="default" onClick={props.onReset} {...props?.resetButtonProps}>
+    <ElButton type="default" {...props?.resetButtonProps} onClick={props.onReset}>
       {props?.resetButtonProps?.title || props.resetButtonTitle || "重置"}
     </ElButton>
   ]);
@@ -83,5 +90,3 @@ const Submitter: FunctionalComponent<SubmitterProps> = props => {
     </div>
   );
 };
-
-export default Submitter;

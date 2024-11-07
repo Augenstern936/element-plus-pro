@@ -2,13 +2,12 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:26:41
- * @LastEditTime: 2024-10-30 17:35:11
+ * @LastEditTime: 2024-11-06 21:51:53
  * @FilePath: \element-plus-pro\packages\form\src\layouts\StepsForm\typing.ts
  */
 import { StepProps, StepsProps } from "element-plus";
 import { generateFormProps, type ProFormColumn } from "../../core/GenerateForm";
 import type { DefineComponent, ExtractPropTypes, PropType } from "vue-demi";
-import { proFormProps } from "../Form";
 import { omitObjectProperty } from "@element-plus-ui/pro-utils";
 
 export const proStepsFormProps = {
@@ -34,9 +33,6 @@ export const proStepsFormProps = {
   },
   onActiveChange: {
     type: Function as PropType<(index?: number) => void>
-  },
-  onFinish: {
-    type: Function as PropType<(values: Record<string, any>) => void | boolean>
   }
 };
 
@@ -54,12 +50,9 @@ export enum StepsIndexEnum {
 }
 
 export const proStepFormProps = {
-  ...omitObjectProperty(proFormProps, ["submitter"]),
+  ...omitObjectProperty(generateFormProps, ["submitter"]),
   stepProps: {
     type: Object as PropType<StepProps>
-  },
-  onFinish: {
-    type: Function as PropType<(values: Record<string, any>) => Promise<boolean>>
   }
 };
 

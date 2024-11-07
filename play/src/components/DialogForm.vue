@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-11-01 22:15:51
+ * @LastEditTime: 2024-11-07 22:29:02
  * @FilePath: \element-plus-pro\play\src\components\DialogForm.vue
 -->
 <template>
@@ -11,7 +11,6 @@
       @click="
         () => {
           open = true;
-          console.log(formRef, 'ref');
         }
       "
       >打开</el-button
@@ -20,15 +19,32 @@
       ref="formRef"
       v-model:open="open"
       :title="'创建用户'"
-      :grid="true"
-      :col-props="{ span: 12 }"
       :trigger="{ title: '以 trigger 方式控制显隐', type: 'primary' }"
-      @finish="async () => true"
+      :columns="[
+        {
+          label: '姓名',
+          dataField: 'name',
+          required: true
+        }
+      ]"
+      :request="
+        async () => {
+          return {
+            name: 1
+          };
+        }
+      "
+      @finish="
+        async v => {
+          console.log(v, '完成');
+          return true;
+        }
+      "
     >
       <!-- -->
-      <el-form-item label="测试">
+      <!-- <el-form-item label="测试">
         <el-input />
-      </el-form-item>
+      </el-form-item> -->
     </ProDialogForm>
   </el-card>
 </template>

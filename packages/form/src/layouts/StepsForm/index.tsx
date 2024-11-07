@@ -2,7 +2,7 @@
  * @Description:;
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:23:41
- * @LastEditTime: 2024-11-01 15:19:12
+ * @LastEditTime: 2024-11-06 22:40:00
  * @FilePath: \element-plus-pro\packages\form\src\layouts\StepsForm\index.tsx
  */
 import { omitObjectProperty, withInstall } from "@element-plus-ui/pro-utils";
@@ -19,7 +19,7 @@ import { ElStep, ElSteps, vLoading } from "element-plus";
 import { ProFormColumn } from "../Form";
 import { ProContextProvider } from "@element-plus-ui/pro-context-provider";
 import { isObject } from "@vueuse/core";
-import { GenerateForm, Submitter } from "../../core";
+import { GenerateForm, useSubmitter } from "../../core";
 import StepForm, { emitter } from "./StepForm";
 import { useVModel } from "@vueuse/core";
 
@@ -32,6 +32,12 @@ const StepsForm = defineComponent<ProStepsFormProps>(
     emitter.on("next", () => onAction("next"));
 
     emitter.on("prev", () => onAction("prev"));
+
+    emitter.on("submit", () => onAction("submit"));
+
+    emitter.on("failed", () => onAction("failed"));
+
+    const { Submitter, config: submitterConfig } = useSubmitter(props.submitter);
 
     const steps = computed(() => {
       const slots = ctx.slots?.default?.();
@@ -80,12 +86,22 @@ const StepsForm = defineComponent<ProStepsFormProps>(
       return columns;
     });
 
-    const onAction = (type: "next" | "prev" | "submit") => {
+    const onAction = async (type: "next" | "prev" | "submit" | "failed") => {
       if (type !== "submit") {
         active.value = type === "next" ? active.value + 1 : active.value - 1;
         return ctx.emit("activeChange", active.value);
       }
-      ctx.emit("finish", {});
+      if (type === "submit") {
+        const result = await props?.onFinish?.(model.value ?? {});
+        if (result === true) {
+          active.value = steps.value.length + 1;
+          setTimeout(() => {
+            active.value = 0;
+          }, 500);
+        }
+        return;
+      }
+      ctx.emit("failed", model.value);
     };
 
     watch(
@@ -113,11 +129,12 @@ const StepsForm = defineComponent<ProStepsFormProps>(
           </ElSteps>
         )}
         {steps.value.map((config: StepConfig & { [x: string]: any }, i) => {
+          const length = steps.value.length;
           return (
             <div
               key={i}
               style={{
-                display: active.value === i ? "block" : "none",
+                display: active.value === i || (i + 1 === length && active.value > length) ? "block" : "none",
                 marginTop: "32px"
               }}
             >
@@ -139,7 +156,7 @@ const StepsForm = defineComponent<ProStepsFormProps>(
                   style={{ width: "50%", margin: "auto" }}
                   submitter={() => (
                     <Submitter
-                      {...(isObject(props?.submitter) ? props.submitter : {})}
+                      {...submitterConfig.value}
                       reversal={i !== 0}
                       hideResetButton={i === 0}
                       resetButtonTitle={"上一步"}

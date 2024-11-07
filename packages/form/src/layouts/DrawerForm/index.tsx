@@ -2,27 +2,28 @@
  * @Description:;
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:23:41
- * @LastEditTime: 2024-11-01 17:48:22
+ * @LastEditTime: 2024-11-06 16:42:43
  * @FilePath: \element-plus-pro\packages\form\src\layouts\DrawerForm\index.tsx
  */
 import "./drawer-form.scss";
 import { withInstall } from "@element-plus-ui/pro-utils";
 import { computed, DefineComponent, defineComponent, ref } from "vue-demi";
 import { proDrawerFormProps, ProDrawerFormProps } from "./typing";
-import { ElDrawer } from "element-plus";
+import { ElDrawer, FormInstance } from "element-plus";
 import { ProButton } from "@element-plus-ui/pro-button";
-import { GenerateForm, Submitter } from "../../core";
+import { GenerateForm, useSubmitter } from "../../core";
 import { isObject, useVModel } from "@vueuse/core";
-import { SubmitterProps } from "../../core/GenerateForm/Submitter";
 import { getFormRefExpose } from "../../core/utils";
 
 const DrawerForm = defineComponent<ProDrawerFormProps>(
   (props, ctx) => {
-    const formRef = ref();
+    const formRef = ref<FormInstance>();
 
     const open = props.open != void 0 ? useVModel(props, "open", ctx.emit) : ref(false);
 
     const model = props.modelValue ? useVModel(props, "modelValue", ctx.emit) : ref({});
+
+    const { Submitter, config } = useSubmitter(props.submitter);
 
     const TriggerElement = computed(() => {
       if (typeof props.trigger === "function") {
@@ -72,45 +73,36 @@ const DrawerForm = defineComponent<ProDrawerFormProps>(
             default: () => (
               <GenerateForm {...props} ref={formRef} columns={columns.value} submitter={false} v-model={model.value} />
             ),
-            footer: () => {
-              if (props.submitter === false) {
-                return "";
-              }
-              if (typeof props.submitter === "function") {
-                return (props.submitter as Function)();
-              }
-              if (Array.isArray(props.submitter) && props.submitter.length) {
-                return props.submitter.map((config, index) => <ProButton key={index} {...config} />);
-              }
-
-              const config = isObject(props.submitter) ? (props.submitter as SubmitterProps) : {};
-              return (
-                <Submitter
-                  {...config}
-                  align={config.align ?? "right"}
-                  reversal={config.reversal ?? true}
-                  resetButtonTitle={config.resetButtonTitle ?? "取消"}
-                  submitButtonTitle={config.submitButtonTitle ?? "确定"}
-                  hideResetButton={config.hideResetButton ?? false}
-                  onReset={() => {
-                    if (typeof config.onReset === "function") {
-                      return config.onReset({});
+            footer: () => (
+              <Submitter
+                {...config.value}
+                align={config.value.align ?? "right"}
+                reversal={config.value.reversal ?? true}
+                resetButtonTitle={config.value.resetButtonTitle ?? "取消"}
+                submitButtonTitle={config.value.submitButtonTitle ?? "确定"}
+                hideResetButton={config.value.hideResetButton ?? false}
+                onReset={() => {
+                  if (typeof config.value.onReset === "function") {
+                    return config.value.onReset({});
+                  }
+                  ctx.emit("cancel");
+                  if (props.open != void 0) {
+                    return ctx.emit("update:open", false);
+                  }
+                  open.value = false;
+                }}
+                onSubmit={v => {
+                  if (!formRef.value) return;
+                  formRef.value.validate(vaild => {
+                    if (vaild) {
+                      ctx.emit("finish", model.value);
+                    } else {
+                      ctx.emit("failed", model.value);
                     }
-                    ctx.emit("cancel");
-                    if (props.open != void 0) {
-                      return ctx.emit("update:open", false);
-                    }
-                    open.value = false;
-                  }}
-                  onSubmit={v => {
-                    if (typeof config.onSubmit === "function") {
-                      return config.onSubmit(v);
-                    }
-                    ctx.emit("confirm", v);
-                  }}
-                />
-              );
-            }
+                  });
+                }}
+              />
+            )
           }}
         />
       </div>

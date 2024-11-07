@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-11 22:26:41
- * @LastEditTime: 2024-10-31 11:59:52
+ * @LastEditTime: 2024-11-03 22:13:35
  * @FilePath: \element-plus-pro\packages\form\src\layouts\DialogForm\typing.ts
  */
 import { DialogProps } from "element-plus";
@@ -40,9 +40,6 @@ export const proDialogFormProps = {
   dialogProps: {
     type: Object as PropType<DialogProps>,
     default: {}
-  },
-  onFinish: {
-    type: Function as PropType<(data?: Record<string, any>) => void | Promise<boolean>>
   }
 };
 

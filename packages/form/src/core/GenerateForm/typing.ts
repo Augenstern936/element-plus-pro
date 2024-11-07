@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-11-01 16:25:53
+ * @LastEditTime: 2024-11-04 22:25:26
  */
 import { FormEmits } from "element-plus";
 
@@ -41,7 +41,6 @@ import { ProRequestData } from "@element-plus-ui/pro-types";
 import type { ColProps, FormItemProps, RowProps } from "element-plus";
 import { formProps as elFormProps } from "element-plus";
 import { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
-import { SubmitterProps } from "./Submitter";
 import type { ProButtonProps } from "@element-plus-ui/pro-button";
 
 const commonFormProps = {
@@ -88,6 +87,15 @@ const commonFormProps = {
   },
   onValidate: {
     type: Function as PropType<FormEmits["validate"]>
+  },
+  onReset: {
+    type: Function
+  },
+  onFinish: {
+    type: Function as PropType<(entity: Record<string, any>) => void | Promise<boolean>>
+  },
+  onFailed: {
+    type: Function as PropType<(entity: Record<string, any>) => void>
   }
 };
 
@@ -281,11 +289,29 @@ export type ProFormColumn =
   | ValueTypeSlider
   | ValueTypeProgress;
 
+export type SubmitterConfigProps = {
+  submitButtonTitle?: string;
+  resetButtonTitle?: string;
+  hideResetButton?: boolean;
+  submitButtonProps?: ButtonProps;
+  resetButtonProps?: ButtonProps;
+  fillMode?: "aequilate" | "full" | "auto";
+  align?: "left" | "right" | "center";
+  reversal?: boolean;
+  render?: (props: SubmitterConfigProps, doms?: JSX.Element[]) => JSX.Element | JSX.Element[];
+  onSubmit?: (entity: Record<string, any>) => void;
+  onReset?: (entity: Record<string, any>) => void;
+};
+interface ButtonProps extends ProButtonProps {
+  style?: CSSProperties;
+  //onClick?: (e?: Record<string, any>) => void;
+}
+
 export type ProFormValueType = ProFieldType;
 
 export type ProFormSubmitter<T extends Record<string, any> = {}, K extends string = ""> =
   | boolean
-  | Omit<SubmitterProps & T, K>
+  | Omit<SubmitterConfigProps & T, K>
   | (() => JSX.Element)
   | Array<
       Omit<ProButtonProps, "tip"> & {

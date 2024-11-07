@@ -40,9 +40,6 @@ export const proDrawerFormProps = {
   DrawerProps: {
     type: Object as PropType<DrawerProps>,
     default: {}
-  },
-  onFinish: {
-    type: Function as PropType<(data?: Record<string, any>) => void | Promise<boolean>>
   }
 };
 
