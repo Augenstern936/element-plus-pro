@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-07 12:15:18
- * @LastEditTime: 2024-10-16 21:40:00
+ * @LastEditTime: 2024-11-10 17:43:38
  * @FilePath: \element-plus-pro\packages\field\src\components\Radio\useRender.tsx
  */
 import { enumTransformOptions, getVModelSelectedOptions } from "@element-plus-ui/pro-utils";
@@ -39,7 +39,7 @@ function useRender(type: "radio" | "radio-button", props: ProFieldRadioProps | P
     }
     if (props.mode === "edit") {
       const Element = (
-        <ElRadioGroup {...props?.fieldProps} v-model={model.value}>
+        <ElRadioGroup onChange={v => props?.onChange?.(v)} {...props?.fieldProps} v-model={model.value}>
           {options.value?.map(option => (
             <RenderElement {...option} label={option.value} data-key={option.label}>
               {option.label}

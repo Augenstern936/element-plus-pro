@@ -2,13 +2,14 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-04-10 00:07:29
- * @LastEditTime: 2024-10-16 22:24:37
+ * @LastEditTime: 2024-11-10 22:23:11
  * @FilePath: \element-plus-pro\packages\field\src\components\Input\props.ts
  */
 import { inputNumberProps, inputProps } from "element-plus";
-import type { InputNumberProps, InputProps } from "element-plus";
+import type { InputEmits, InputNumberProps, InputProps } from "element-plus";
 import type { ExtractPropTypes, PropType } from "vue-demi";
 import { commomFieldProps } from "../../props";
+import { EventsFormat } from "@element-plus-ui/pro-types";
 
 export const baseInputProps = {
   ...commomFieldProps,
@@ -19,7 +20,7 @@ export const baseInputProps = {
     default: "text"
   },
   fieldProps: {
-    type: Object as PropType<Partial<Omit<InputProps, "modelValue">>>
+    type: Object as PropType<Partial<Omit<InputProps & EventsFormat<InputEmits>, "modelValue" | "onUpdate:modelValue">>>
   }
 };
 

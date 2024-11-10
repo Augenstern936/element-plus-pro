@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-10-10 22:14:25
- * @LastEditTime: 2024-10-16 21:45:54
+ * @LastEditTime: 2024-11-10 17:42:04
  * @FilePath: \element-plus-pro\packages\field\src\components\Input\ProFieldTextarea.tsx
  */
 import { useVModel } from "@vueuse/core";
@@ -20,7 +20,7 @@ const ProFieldTextarea = defineComponent<ProFieldTextareaProps>(
         return <ElText>{model.value || props.emptyText}</ElText>;
       }
       if (props.mode === "edit") {
-        return <BaseInput {...props?.fieldProps} type="textarea" v-model={model.value} />;
+        return <BaseInput onChange={v => props?.onChange?.(v)} {...props?.fieldProps} type="textarea" v-model={model.value} />;
       }
       return <></>;
     };

@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: wangbowen936926
  * @Date: 2024-07-09 22:25:21
- * @LastEditTime: 2024-11-07 22:56:21
+ * @LastEditTime: 2024-11-10 21:22:07
  * @FilePath: \element-plus-pro\play\src\components\Form.vue
 -->
 <template>
@@ -15,18 +15,21 @@
       :required="false"
       :columns="formItems"
       :request="getFormData"
-      :params="form"
       :grid="true"
       :col-props="{ span: 24 }"
       :submitter="{
         hideResetButton: false,
         fillMode: 'full'
       }"
-      @reset="() => console.log(formRef.value, 'reset')"
-      @finish="v => console.log(v, 'v')"
+      @reset="
+        () => {
+          form.age = 10;
+        }
+      "
+      @finish="v => console.log(form, '提交')"
     >
       <!-- female male-->
-      <ProFormUploadAvatar
+      <!-- <ProFormUploadAvatar
         label="头像2"
         :marker="'on-line'"
         :fieldProps="{
@@ -41,7 +44,7 @@
           src: 'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
         }"
       />
-      <ProForm.Switch v-model="form.switch" label="开关测试:" activeText="已打开" inactive-text="测试" />
+      <ProForm.Switch v-model="form.switch" label="开关测试:" activeText="已打开" inactive-text="测试" /> -->
     </ProForm>
   </el-card>
 </template>
@@ -55,7 +58,7 @@ const formRef = ref();
 const formItems = ref<ProFormColumn[]>([
   {
     label: "姓名:",
-    dataField: "name",
+    prop: "user.name",
     required: true,
     order: 0,
     hidden: (data: any) => {
@@ -64,21 +67,21 @@ const formItems = ref<ProFormColumn[]>([
   },
   {
     label: "年龄:",
-    dataField: "age",
+    prop: "age",
     valueType: "number",
     tooltip: "测试",
     rules: [{ type: "number", trigger: "change" }]
   },
-  {
-    label: "出生日期:",
-    valueType: "date",
-    dataField: "date",
-    rules: { type: "date", trigger: "change", required: true },
-    fieldProps: {}
-  },
+  // {
+  //   label: "出生日期:",
+  //   valueType: "date",
+  //   prop: "date",
+  //   rules: { type: "date", trigger: "change", required: true },
+  //   fieldProps: {}
+  // },
   // {
   //   label: "头像:",
-  //   dataField: "avatar",
+  //   prop: "avatar",
   //   valueType: "uploadAvatar",
   //   marker: "female",
   //   fieldProps: {
@@ -86,30 +89,30 @@ const formItems = ref<ProFormColumn[]>([
   //     src: "https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg"
   //   }
   // },
-  {
-    label: "爱好:",
-    dataField: "test",
-    valueType: "radio",
-    valueEnum: {
-      1: "钓鱼",
-      2: "王者",
-      3: "台球",
-      4: "阅读"
-    }
-  },
+  // {
+  //   label: "爱好:",
+  //   prop: "test",
+  //   valueType: "radio",
+  //   valueEnum: {
+  //     1: "钓鱼",
+  //     2: "王者",
+  //     3: "台球",
+  //     4: "阅读"
+  //   }
+  // },
   {
     label: "星级:",
     valueType: "rate",
-    dataField: "rate",
+    prop: "rate",
     fieldProps: {
       scoreTemplate: "{value} 级"
     }
-  },
-  {
-    label: "进度:",
-    valueType: "slider",
-    dataField: "slider"
   }
+  // {
+  //   label: "进度:",
+  //   valueType: "slider",
+  //   prop: "slider"
+  // }
   // {
   //   label: "相册:",
   //   valueType: "uploadImage",
@@ -127,13 +130,13 @@ const formItems = ref<ProFormColumn[]>([
   // },
   // {
   //   label: "开关:",
-  //   dataField: "switch",
+  //   prop: "switch",
   //   valueType: "switch",
   //   fieldProps: {}
   // }
   // {
   //   label: "百分比:",
-  //   dataField: "progress",
+  //   prop: "progress",
   //   valueType: "progress",
   //   fieldProps: {
   //     percentage: 50
@@ -143,19 +146,22 @@ const formItems = ref<ProFormColumn[]>([
 
 const form = ref({
   id: "1001",
-  switch: false
+  switch: false,
+  rate: 3,
+  age: 9
 });
 
 const getFormData = async (params: Record<string, any>, props: Record<string, any>) => {
-  console.log("请求参数", params, props);
   return {
-    name: "拔都",
+    user: {
+      name: "拔都"
+    },
     age: 50
   };
 };
 
 watch(
-  () => form.value,
+  form.value,
   v => {
     console.log(v, "v11");
   },

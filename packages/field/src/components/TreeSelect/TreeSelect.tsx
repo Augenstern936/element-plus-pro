@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-10-16 21:41:40
+ * @LastEditTime: 2024-11-10 17:47:30
  * @FilePath: \element-plus-pro\packages\field\src\components\TreeSelect\TreeSelect.tsx
  */
 import { useVModel } from "@vueuse/core";
@@ -49,6 +49,7 @@ const ProFieldTreeSelect = defineComponent<ProFieldTreeSelectProps>(
           <ElTreeSelect
             loading={loading.value}
             data={options.value}
+            onChange={(v: any) => props?.onChange?.(v)}
             {...props?.fieldProps}
             placeholder={placeholder.value}
             v-model={model.value}

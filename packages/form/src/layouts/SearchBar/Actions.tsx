@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-07-19 10:34:28
- * @LastEditTime: 2024-10-31 10:57:50
+ * @LastEditTime: 2024-11-10 21:20:12
  * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\Actions.tsx
  */
 import ProButton, { ProButtonProps } from "@element-plus-ui/pro-button";
@@ -11,7 +11,7 @@ import { isObject } from "@vueuse/core";
 import { ElButton, ElIcon, ElSpace } from "element-plus";
 import { SetupContext } from "vue-demi";
 import { ProSearchBarProps } from "./typing";
-import { SubmitterProps } from "../../core/GenerateForm/Submitter";
+import { SubmitterConfigProps } from "../Form";
 
 type ActionsProps = ProSearchBarProps & {
   onSubmit: (buttonProps: ProButtonProps) => void;
@@ -20,8 +20,6 @@ type ActionsProps = ProSearchBarProps & {
 };
 
 const Actions = (props: ActionsProps, ctx: SetupContext) => {
-  // const searchButtonProps = isObject(props.searchButton) ? props.searchButton : {};
-  // const resetButtonProps = isObject(props.resetButton) ? props.resetButton : {};
   const submitter = ctx.slots?.submitter?.() as Record<string, any>[];
   const isSubmitterUndefined = submitter?.length < 1 || String(submitter[0]?.type) === "Symbol(v-cmt)";
 
@@ -44,7 +42,7 @@ const Actions = (props: ActionsProps, ctx: SetupContext) => {
       );
     }
 
-    const config = isObject(props.submitter) ? (props.submitter as SubmitterProps) : {};
+    const config = isObject(props.submitter) ? (props.submitter as SubmitterConfigProps) : {};
 
     return (
       <>

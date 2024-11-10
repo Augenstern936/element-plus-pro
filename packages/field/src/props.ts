@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-09-13 21:28:34
- * @LastEditTime: 2024-11-03 15:42:06
+ * @LastEditTime: 2024-11-10 17:42:49
  * @FilePath: \element-plus-pro\packages\field\src\props.ts
  */
 import { PropType } from "vue-demi";
@@ -17,6 +17,9 @@ export const commomFieldProps = {
   emptyText: {
     type: String,
     default: "--"
+  },
+  onChange: {
+    type: Function as PropType<(v: any) => void>
   }
 };
 

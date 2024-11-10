@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-10-16 21:40:33
+ * @LastEditTime: 2024-11-10 17:44:16
  * @FilePath: \element-plus-pro\packages\field\src\components\Select\Select.tsx
  */
 import { formatPlaceholder, enumTransformOptions, getVModelSelectedOptions } from "@element-plus-ui/pro-utils";
@@ -47,6 +47,7 @@ const ProFieldSelect = defineComponent<ProFieldSelectProps>(
       return (
         <ElSelect
           loading={loading.value}
+          onChange={v => props?.onChange?.(v)}
           {...props?.fieldProps}
           placeholder={placeholder.value as string}
           v-model={model.value}

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-11-02 21:15:29
+ * @LastEditTime: 2024-11-10 17:28:43
  * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\DatePicker.tsx
  */
 import { formatPlaceholder } from "@element-plus-ui/pro-utils";
@@ -59,8 +59,9 @@ const ProDatePicker = defineComponent<ProDatePickerProps>((props, ctx) => {
         <ElDatePicker
           style={{ width: "100%", boxSizing: "border-box" }}
           rangeSeparator={props.separator}
-          {...props?.fieldProps}
+          onChange={(v: any) => props?.onChange?.(v)}
           {...placeholder.value}
+          {...props?.fieldProps}
           type={props.type}
           v-model={model.value}
         />

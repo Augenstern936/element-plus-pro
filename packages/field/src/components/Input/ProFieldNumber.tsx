@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-22 19:04:01
- * @LastEditTime: 2024-10-16 21:45:28
+ * @LastEditTime: 2024-11-10 17:30:21
  * @FilePath: \element-plus-pro\packages\field\src\components\Input\ProFieldNumber.tsx
  */
 import { useVModel } from "@vueuse/core";
@@ -18,7 +18,15 @@ const ProFieldNumber = defineComponent<ProFieldNumberProps>(
         return <ElText>{model.value ?? 0}</ElText>;
       }
       if (props.mode === "edit") {
-        return <ElInputNumber style={{ width: "100%" }} {...props?.fieldProps} v-model={model.value} v-slots={ctx.slots} />;
+        return (
+          <ElInputNumber
+            style={{ width: "100%" }}
+            onChange={v => props?.onChange?.(v)}
+            {...props?.fieldProps}
+            v-model={model.value}
+            v-slots={ctx.slots}
+          />
+        );
       }
       return <></>;
     };

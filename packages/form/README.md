@@ -118,7 +118,7 @@ $ pnpm add @element-plus-ui/pro-form
   const formItems = ref<ProFormColumn[]>([
     {
       label: "姓名:",
-      dataField: "name",
+      prop: "name",
       required: true,
       order: 0,
       hidden: (model: Record<string, any>) => {
@@ -127,7 +127,7 @@ $ pnpm add @element-plus-ui/pro-form
     },
     {
       label: "年龄:",
-      dataField: "age",
+      prop: "age",
       valueType: "number",
       tooltip: "测试"
     },
@@ -137,7 +137,7 @@ $ pnpm add @element-plus-ui/pro-form
     },
     {
       label: "爱好:",
-      dataField: "test",
+      prop: "test",
       valueType: "radio",
       valueEnum: {
         1: "钓鱼",
@@ -369,7 +369,7 @@ Column 配置除了以下属性外，自身也继承了 [ElFormItemProps](https:
 | order  | 对表单项进行排序，数值越大越靠后. | `number` | -      |
 | labelStyle  | **label** 样式设置. | `Record<string, any>` | 
 | tooltip  | **label** 提示语. | `string` | -      |
-| dataField  | 绑定的数据字段. | `string` | -      |
+| prop  | 绑定的数据字段. | `string` | -      |
 | valueType  | . | [ProFieldType](https://www.npmjs.com/package/@element-plus-ui/pro-field) | text      |
 | valueEnum  | 要生成的选项集数据，支持多种数据结构，优先级低于 **request**. | [ProFieldValueEnum](https://www.npmjs.com/package/@element-plus-ui/pro-field) | -      |
 | separator  | 多个值之间的分隔符，如日期区间、多选项. | `string` | -      |

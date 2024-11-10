@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-06-28 23:26:26
- * @LastEditTime: 2024-10-13 15:34:35
+ * @LastEditTime: 2024-11-09 18:21:03
  * @FilePath: \element-plus-pro\packages\hooks\useFetchData\index.ts
  */
 import { ProRequestData } from "@element-plus-ui/pro-types";

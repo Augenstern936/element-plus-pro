@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-10-16 23:54:04
+ * @LastEditTime: 2024-11-10 17:45:51
  * @FilePath: \element-plus-pro\packages\field\src\components\TimePicker\TimePicker.tsx
  */
 import { useVModel } from "@vueuse/core";
@@ -29,6 +29,7 @@ export const FieldTime = defineComponent<ProFieldTimeProps>(
         return (
           <ElTimePicker
             style={{ width: "100%" }}
+            onChange={(v: any) => props?.onChange?.(v)}
             {...props?.fieldProps}
             {...placeholder.value}
             isRange={false}

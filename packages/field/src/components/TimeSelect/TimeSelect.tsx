@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-10-15 22:33:38
+ * @LastEditTime: 2024-11-10 17:47:17
  * @FilePath: \element-plus-pro\packages\field\src\components\TimeSelect\TimeSelect.tsx
  */
 import { useVModel } from "@vueuse/core";
@@ -26,7 +26,14 @@ const ProFieldTimeSelect = defineComponent<ProFieldTimeSelectProps>(
         return <ElText>{model.value || props.emptyText}</ElText>;
       }
       if (props.mode === "edit") {
-        return <ElTimeSelect {...props?.fieldProps} placeholder={placeholder.value as string} v-model={model.value} />;
+        return (
+          <ElTimeSelect
+            onChange={v => props?.onChange?.(v)}
+            {...props?.fieldProps}
+            placeholder={placeholder.value as string}
+            v-model={model.value}
+          />
+        );
       }
       return <></>;
     };

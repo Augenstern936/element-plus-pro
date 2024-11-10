@@ -2,7 +2,7 @@
  * @Description:
  * @Author: wangbowen936926
  * @Date: 2024-10-10 22:14:25
- * @LastEditTime: 2024-10-16 21:45:47
+ * @LastEditTime: 2024-11-10 17:31:04
  * @FilePath: \element-plus-pro\packages\field\src\components\Input\ProFieldText.tsx
  */
 import { useVModel } from "@vueuse/core";
@@ -20,7 +20,15 @@ const ProFieldText = defineComponent<ProFieldTextProps>(
         return <ElText>{model.value || props.emptyText}</ElText>;
       }
       if (props.mode === "edit") {
-        return <BaseInput {...props?.fieldProps} type="text" v-model={model.value} v-slots={ctx.slots} />;
+        return (
+          <BaseInput
+            onChange={v => props?.onChange?.(v)}
+            {...props?.fieldProps}
+            type="text"
+            v-model={model.value}
+            v-slots={ctx.slots}
+          />
+        );
       }
       return <></>;
     };

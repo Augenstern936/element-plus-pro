@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-11-04 22:25:26
+ * @LastEditTime: 2024-11-10 21:06:32
  */
 import { FormEmits } from "element-plus";
 
@@ -96,6 +96,9 @@ const commonFormProps = {
   },
   onFailed: {
     type: Function as PropType<(entity: Record<string, any>) => void>
+  },
+  onValuesChange: {
+    type: Function as PropType<(entity: Record<string, any>, key: string | Array<string>) => void>
   }
 };
 
@@ -121,12 +124,12 @@ export const generateFormProps = {
   }
 };
 
-type ProFormItemProps = Partial<Omit<FormItemProps, "prop" | "label" | "inline" | "labelPosition">>;
+type ProFormItemProps = Partial<Omit<FormItemProps, "label" | "inline" | "labelPosition">>;
 
 /**
  * 通用函数类型
  */
-type FormItemPropertyFunction<T> = (entity: Record<string, any>, columns: ProFormColumn[]) => T;
+type FormItemPropertyFunction<T> = (entity: Record<string, any>, column: ProFormColumn) => T;
 
 interface ProFormColumnCommonConfig extends ProFormItemProps {
   key?: string;
@@ -134,7 +137,7 @@ interface ProFormColumnCommonConfig extends ProFormItemProps {
   label?: string | FormItemPropertyFunction<JSX.Element>;
   labelStyle?: CSSProperties;
   tooltip?: string;
-  dataField?: string;
+  //dataField?: string;
   readonly?: boolean;
   defaultValue?: string | number | boolean | any[];
   hidden?: boolean | FormItemPropertyFunction<boolean>;
