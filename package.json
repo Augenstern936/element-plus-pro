@@ -15,7 +15,7 @@
     "docs:dev": "pnpm run -C docs dev",
     "build": "npx nx run-many -t build --projects=@element-plus-ui/**",
     "graph": "npx nx graph",
-    "changelog": "npx nx release changelog",
+    "changelog": "npx nx release changelog --verbose",
     "dry-run": "npx nx release --dry-run --first-release --verbose",
     "gen:tag": "npx nx release version --git-tag",
     "release:first": "npx nx release --first-release",

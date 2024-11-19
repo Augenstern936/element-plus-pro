@@ -2,7 +2,7 @@
  * @Description:
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-10-29 16:35:31
- * @LastEditTime: 2024-11-17 13:54:48
+ * @LastEditTime: 2024-11-19 16:52:32
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
 import { defineComponent, PropType, provide } from "vue-demi";
@@ -21,7 +21,7 @@ export const ProProvider = defineComponent<ProProviderProps>({
   },
   setup(props, ctx) {
     if (props.value && Object.keys(props.value).length) {
-      provide("provide-value", props.value);
+      provide("provider-value", props.value);
       for (const key in props.value) {
         if (Object.prototype.hasOwnProperty.call(props.value, key)) {
           provide(key, props.value[key]);
