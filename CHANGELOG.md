@@ -1,3 +1,16 @@
+## 1.0.0-beta.0 (2024-11-19)
+
+
+### 🚀 Features
+
+- 🚀 表单组件功能开发 ([48aea65](https://github.com/Augenstern936/element-plus-pro/commit/48aea65))
+- 🚀 修复v-model数据更新有误 ([c1186e1](https://github.com/Augenstern936/element-plus-pro/commit/c1186e1))
+- 🚀 完善表单组件并测试 ([e51ea96](https://github.com/Augenstern936/element-plus-pro/commit/e51ea96))
+
+### ❤️  Thank You
+
+- wangbowen936926 @l
+
 ## 1.0.4 (2024-11-03)
 
 
