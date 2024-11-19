@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-11-10 17:28:43
- * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\DatePicker.tsx
+ * @LastEditTime: 2024-11-15 14:39:05
  */
 import { formatPlaceholder } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
@@ -59,7 +58,6 @@ const ProDatePicker = defineComponent<ProDatePickerProps>((props, ctx) => {
         <ElDatePicker
           style={{ width: "100%", boxSizing: "border-box" }}
           rangeSeparator={props.separator}
-          onChange={(v: any) => props?.onChange?.(v)}
           {...placeholder.value}
           {...props?.fieldProps}
           type={props.type}

@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-10-05 22:49:47
  * @LastEditTime: 2024-10-10 09:37:00
- * @FilePath: \element-plus-pro\packages\icon\src\typing.ts
+ *
  */
 import * as Icons from "@element-plus/icons-vue";
 import { iconProps } from "element-plus";

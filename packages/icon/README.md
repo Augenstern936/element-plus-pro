@@ -1,9 +1,9 @@
 <!--
  * @Description: 
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-10-05 22:43:24
  * @LastEditTime: 2024-10-10 11:00:38
- * @FilePath: \element-plus-pro\packages\icon\README.md
+ * 
 -->
 <h1 align="center">@element-plus-ui/pro-icon</h1>
 

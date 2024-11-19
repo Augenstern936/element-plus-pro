@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-06-26 21:22:42
  * @LastEditTime: 2024-10-15 20:53:28
- * @FilePath: \element-plus-pro\packages\types\option.ts
+ *
  */
 export type Marker = "disc" | "circle" | "square" | "disclosure-open" | "disclosure-closed";
 

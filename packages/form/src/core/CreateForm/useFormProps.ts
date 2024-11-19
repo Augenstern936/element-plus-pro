@@ -6,14 +6,14 @@
 import { isObject } from "@vueuse/core";
 import { computed } from "vue-demi";
 import * as components from "../../components";
-import { GenerateFormProps } from "./typing";
+import { CreateFormProps } from "./typing";
 
 interface SlotConfig {
   type: string | { name: string };
   props: Record<string, any>;
 }
 
-const useFormProps = (props: GenerateFormProps, slots: SlotConfig[]) => {
+const useFormProps = (props: CreateFormProps, slots: SlotConfig[]) => {
   const columns = computed(() => {
     const slotList = (slots ?? []).map((item, index) => ({
       ...item,

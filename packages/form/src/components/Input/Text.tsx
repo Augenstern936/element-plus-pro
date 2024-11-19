@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-06-30 21:35:16
- * @LastEditTime: 2024-10-22 21:00:20
- * @FilePath: \element-plus-pro\packages\form\src\components\Input\Text.tsx
+ * @LastEditTime: 2024-11-11 21:55:37
+ *
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
 import type { ProFieldTextProps } from "@element-plus-ui/pro-field";

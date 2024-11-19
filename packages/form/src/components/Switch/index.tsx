@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-06-30 21:35:16
  * @LastEditTime: 2024-10-25 11:00:51
- * @FilePath: \element-plus-pro\packages\form\src\components\Switch\index.tsx
+ *
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";

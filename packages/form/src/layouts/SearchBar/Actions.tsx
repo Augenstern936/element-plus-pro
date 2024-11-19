@@ -1,17 +1,19 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-19 10:34:28
- * @LastEditTime: 2024-11-10 21:20:12
- * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\Actions.tsx
+ * @LastEditTime: 2024-11-17 21:33:41
+ *
  */
 import ProButton, { ProButtonProps } from "@element-plus-ui/pro-button";
-import { ArrowDown, ArrowUp, Delete, Search } from "@element-plus/icons-vue";
+import { Delete, ProIcon, Search } from "@element-plus-ui/pro-icon";
 import { isObject } from "@vueuse/core";
-import { ElButton, ElIcon, ElSpace } from "element-plus";
+import { ElButton, ElSpace } from "element-plus";
 import { SetupContext } from "vue-demi";
 import { ProSearchBarProps } from "./typing";
 import { SubmitterConfigProps } from "../Form";
+import mitt from "mitt";
+import { omitObjectProperty } from "@element-plus-ui/pro-utils";
 
 type ActionsProps = ProSearchBarProps & {
   onSubmit: (buttonProps: ProButtonProps) => void;
@@ -19,10 +21,11 @@ type ActionsProps = ProSearchBarProps & {
   onCollapse: (collapse: boolean) => void;
 };
 
-const Actions = (props: ActionsProps, ctx: SetupContext) => {
+export const emitter = mitt();
+
+export const Actions = (props: ActionsProps, ctx: SetupContext) => {
   const submitter = ctx.slots?.submitter?.() as Record<string, any>[];
   const isSubmitterUndefined = submitter?.length < 1 || String(submitter[0]?.type) === "Symbol(v-cmt)";
-
   const renderButton = () => {
     if (!isSubmitterUndefined) {
       return submitter;
@@ -36,7 +39,18 @@ const Actions = (props: ActionsProps, ctx: SetupContext) => {
       return (
         <>
           {props.submitter.map((config, i) => {
-            return isObject(config) ? <ProButton key={i} {...config} /> : <></>;
+            return isObject(config) ? (
+              <ProButton
+                key={i}
+                {...omitObjectProperty(config, ["onClick"])}
+                onClick={() => {
+                  if (typeof config.onClick !== "function") return;
+                  emitter.emit("submitter-config-click", config);
+                }}
+              />
+            ) : (
+              ""
+            );
           })}
         </>
       );
@@ -50,14 +64,14 @@ const Actions = (props: ActionsProps, ctx: SetupContext) => {
           <ProButton
             type={"primary"}
             icon={Search}
-            onClick={() => props.onSubmit(config?.submitButtonProps ?? {})}
             {...config?.submitButtonProps}
+            onClick={() => props.onSubmit(config?.submitButtonProps ?? {})}
           >
             {config.submitButtonTitle || "查询"}
           </ProButton>
         )}
         {config.hideResetButton != true && isSubmitterUndefined && (
-          <ProButton icon={Delete} onClick={() => props.onReset(config?.resetButtonProps ?? {})} {...config?.resetButtonProps}>
+          <ProButton icon={Delete} {...config?.resetButtonProps} onClick={() => props.onReset(config?.resetButtonProps ?? {})}>
             {config.resetButtonTitle || "重置"}
           </ProButton>
         )}
@@ -71,11 +85,9 @@ const Actions = (props: ActionsProps, ctx: SetupContext) => {
       <ElButton type="primary" link onClick={() => props.onCollapse(!props.collapsed)}>
         <ElSpace>
           <span>{props.collapsed ? "收起" : "展开"}</span>
-          <ElIcon>{props.collapsed ? <ArrowUp /> : <ArrowDown />}</ElIcon>
+          <ProIcon name={props.collapsed ? "ArrowUp" : "ArrowDown"} />
         </ElSpace>
       </ElButton>
     </ElSpace>
   );
 };
-
-export default Actions;

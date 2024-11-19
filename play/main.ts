@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2023-11-10 00:34:25
- * @LastEditTime: 2024-10-14 23:40:50
- * @FilePath: \element-plus-pro\play\main.ts
+ * @LastEditTime: 2024-11-15 15:20:53
+ *
  */
 import ElemntPlus from "element-plus";
 import { createApp } from "vue";

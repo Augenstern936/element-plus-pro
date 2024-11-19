@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 23:05:53
- * @LastEditTime: 2024-10-30 16:13:08
- * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\typing.ts
+ * @LastEditTime: 2024-11-15 11:26:22
  */
 import { omitObjectProperty } from "@element-plus-ui/pro-utils";
 import type { DefineComponent, ExtractPropTypes, PropType } from "vue-demi";
@@ -42,18 +41,18 @@ import {
   ProFormDateYearsProps,
   ProFormProgressProps
 } from "../../components";
-import { generateFormProps } from "../../core";
+import { CreateFormProps } from "../../core";
 import { ProFormLayout } from "../../typing";
 import { ProStepFormProps, ProStepsFormProps } from "../StepsForm";
 import { ProSearchBarProps } from "../SearchBar";
 import { ProDialogFormProps } from "../DialogForm";
 import { ProDrawerFormProps } from "../DrawerForm";
 
-export * from "../../core/GenerateForm/typing";
+export * from "../../core/CreateForm/typing";
 
 export const proFormProps = {
-  ...omitObjectProperty(generateFormProps, ["inline", "labelPosition"]),
-  type: {
+  ...omitObjectProperty(CreateFormProps, ["inline", "labelPosition"]),
+  variant: {
     type: String as PropType<"Form" | "DialogForm" | "DrawerForm" | "StepsForm" | "SearchBar">,
     default: "Form"
   },
@@ -63,7 +62,17 @@ export const proFormProps = {
   }
 };
 
-export type ProFormProps = Partial<ExtractPropTypes<typeof proFormProps>>;
+interface VariantForm extends Partial<ExtractPropTypes<typeof proFormProps>> {}
+
+// interface VariantSearchBarProps extends ProSearchBarProps {
+//   variant?: "SearchBar";
+// }
+
+// interface VariantDialogFormProps extends ProDialogFormProps {
+//   variant?: "DialogForm";
+// }
+
+export type ProFormProps = VariantForm;
 
 export type ProFormSuperProps = DefineComponent<ProFormProps> & {
   StepForm: DefineComponent<ProStepFormProps>;

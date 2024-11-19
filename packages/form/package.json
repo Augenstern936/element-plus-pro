@@ -1,17 +1,22 @@
 {
   "name": "@element-plus-ui/pro-form",
   "version": "0.0.1",
-  "description": "@element-plus-ui/pro-form",
+  "description": "🏆 Use Element Plus Form like a Pro!",
   "keywords": [
     "ui",
+    "pro",
     "vue3",
+    "plus",
+    "form",
+    "field",
     "element",
+    "pro-form",
     "component",
     "element-plus",
     "element-plus-pro"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Augenstern936/element-plus-pro",
+  "homepage": "https://github.com/Augenstern936/element-plus-pro/tree/master/packages/form#readme",
   "bugs": "https://github.com/Augenstern936/element-plus-pro/issues",
   "gitpository": {
     "type": "git",
@@ -22,18 +27,18 @@
   },
   "sideEffects": false,
   "main": "lib/index.js",
-  "module": "src/index.ts",
+  "module": "es/index.mjs",
   "types": "es/index.d.ts",
   "files": [
     "lib",
     "es"
   ],
-  "author": "w936926@outlook.com",
+  "author": "<Haidu w936926@outlook.com>",
   "dependencies": {
-    "@element-plus-ui/pro-button": "workspace:^",
-    "@element-plus-ui/pro-context-provider": "workspace:^",
-    "@element-plus-ui/pro-field": "workspace:^",
+    "@element-plus-ui/pro-button": "^1.0.1",
+    "@element-plus-ui/pro-field": "^1.0.4",
     "@element-plus-ui/pro-icon": "^1.2.1",
+    "@element-plus-ui/pro-provider": "^0.0.1",
     "@vueuse/core": "^10.7.0",
     "mitt": "^3.0.1",
     "vue-demi": "^0.14.8",
@@ -41,7 +46,7 @@
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
-    "element-plus": "^2.7.2",
+    "element-plus": ">=2.7.2",
     "vue": ">=3.0.0"
   },
   "peerDependenciesMeta": {

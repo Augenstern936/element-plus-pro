@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
  * @LastEditTime: 2024-10-16 21:38:39
- * @FilePath: \element-plus-pro\packages\field\src\components\Progress\Progress.tsx
+ *
  */
 import { ElProgress, ElText } from "element-plus";
 import { DefineComponent, computed, defineComponent } from "vue-demi";

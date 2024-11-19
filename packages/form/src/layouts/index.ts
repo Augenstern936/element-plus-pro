@@ -1,15 +1,14 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-13 22:51:48
- * @LastEditTime: 2024-07-06 18:20:47
- * @FilePath: \element-plus-pro\packages\form\src\layouts\index.ts
+ * @LastEditTime: 2024-11-19 11:34:26
+ *
  */
-export * from './Form';
-export * from './StepsForm';
-export * from './LoginForm';
-export * from './DialogForm';
-export * from './DrawerForm';
-export * from './SearchBar';
+export * from "./Form";
+export * from "./StepsForm";
+export * from "./DialogForm";
+export * from "./DrawerForm";
+export * from "./SearchBar";
 
-export { default as ProForm } from './Form';
+export { default as ProForm } from "./Form";

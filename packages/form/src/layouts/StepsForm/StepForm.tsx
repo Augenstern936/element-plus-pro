@@ -1,16 +1,16 @@
 /*
- * @Description:
- * @Author: wangbowen936926
+ * @Description: 步骤项表单组件
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-10-29 09:58:07
- * @LastEditTime: 2024-11-06 22:19:58
- * @FilePath: \element-plus-pro\packages\form\src\layouts\StepsForm\StepForm.tsx
+ * @LastEditTime: 2024-11-19 10:59:34
+ *
  */
 import mitt from "mitt";
 import { DefineComponent, defineComponent, inject, ref } from "vue-demi";
 import { proStepFormProps, ProStepFormProps } from "./typing";
-import { GenerateForm, useSubmitter } from "../../core";
+import { CreateForm, useSubmitter } from "../../core";
 import { omitObjectProperty } from "@element-plus-ui/pro-utils";
-import { useVModel } from "@vueuse/core";
+import { isObject, useVModel } from "@vueuse/core";
 import { getFormRefExpose } from "../../core/utils";
 import { FormInstance } from "element-plus";
 
@@ -18,15 +18,15 @@ export const emitter = mitt();
 
 const StepForm = defineComponent<ProStepFormProps>(
   (props, ctx) => {
-    const formRef = ref<FormInstance>();
+    const model = isObject(props.modelValue) ? useVModel(props, "modelValue", ctx.emit) : ref({});
 
-    const model = props.modelValue ? useVModel(props, "modelValue", ctx.emit) : ref({});
+    const formRef = ref<FormInstance>();
 
     const total = inject("total") as number;
     const current = inject("current") as number;
     const submitter = inject("submitter") as Record<string, any>;
 
-    const { Submitter, config } = useSubmitter(submitter);
+    const { config } = useSubmitter(submitter, ctx);
 
     const onSubmitAction = async () => {
       if (total > 1 && current + 1 < total) {
@@ -70,29 +70,27 @@ const StepForm = defineComponent<ProStepFormProps>(
     });
 
     return () => (
-      <GenerateForm
+      <CreateForm
         {...omitObjectProperty(props, ["stepProps"])}
         ref={formRef}
         v-model={model.value}
         v-slots={{ default: ctx.slots.default }}
         style={{ width: "50%", margin: "auto" }}
-        submitter={() => (
-          <Submitter
-            {...config.value}
-            reversal={current !== 0}
-            hideResetButton={current === 0 && total > 1}
-            resetButtonTitle={total > 1 ? "上一步" : "重置"}
-            submitButtonProps={{
-              title: current + 1 === total ? "提交" : "下一步",
-              onClick: onSubmitAction
-            }}
-            onReset={() => {
-              if (total > 1) {
-                return emitter.emit("prev");
-              }
-            }}
-          />
-        )}
+        submitter={{
+          ...config.value,
+          reverse: current !== 0,
+          hideResetButton: current === 0 && total > 1,
+          resetButtonTitle: total > 1 ? "上一步" : "重置",
+          submitButtonProps: {
+            title: current + 1 === total ? "提交" : "下一步",
+            onClick: onSubmitAction
+          },
+          onReset: () => {
+            if (total > 1) {
+              return emitter.emit("prev");
+            }
+          }
+        }}
       />
     );
   },

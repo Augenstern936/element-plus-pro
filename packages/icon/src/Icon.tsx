@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-10-05 22:47:22
  * @LastEditTime: 2024-10-10 10:44:48
- * @FilePath: \element-plus-pro\packages\icon\src\Icon.tsx
+ *
  */
 import { ElIcon } from "element-plus";
 import * as Icons from "@element-plus/icons-vue";

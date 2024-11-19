@@ -32,7 +32,7 @@
     "lib",
     "es"
   ],
-  "author": "w936926@outlook.com",
+  "author": "<Haidu w936926@outlook.com>",
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
     "element-plus": ">=2.7.2",

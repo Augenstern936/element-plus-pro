@@ -1,12 +1,12 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-02 16:51:38
  * @LastEditTime: 2024-04-02 16:51:56
- * @FilePath: \element-plus-pro\packages\table\src\hooks\useTable.ts
+ *
  */
 const useTable = () => {
-	return {};
+  return {};
 };
 
 export default useTable;

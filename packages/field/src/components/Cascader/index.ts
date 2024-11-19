@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-09-13 21:28:34
- * @LastEditTime: 2024-10-10 21:16:43
- * @FilePath: \element-plus-pro\packages\field\src\components\Cascader\index.tsx
+ * @LastEditTime: 2024-11-15 14:30:08
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
 import Cascader from "./Cascader";

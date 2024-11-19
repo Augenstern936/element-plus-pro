@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-11-10 17:45:51
- * @FilePath: \element-plus-pro\packages\field\src\components\TimePicker\TimePicker.tsx
+ * @LastEditTime: 2024-11-11 20:30:53
+ *
  */
 import { useVModel } from "@vueuse/core";
 import { ElText, ElTimePicker } from "element-plus";
@@ -29,7 +29,6 @@ export const FieldTime = defineComponent<ProFieldTimeProps>(
         return (
           <ElTimePicker
             style={{ width: "100%" }}
-            onChange={(v: any) => props?.onChange?.(v)}
             {...props?.fieldProps}
             {...placeholder.value}
             isRange={false}

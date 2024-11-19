@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-06-28 23:26:26
  * @LastEditTime: 2024-11-09 18:21:03
- * @FilePath: \element-plus-pro\packages\hooks\useFetchData\index.ts
+ *
  */
 import { ProRequestData } from "@element-plus-ui/pro-types";
 import { ref, watch } from "vue-demi";

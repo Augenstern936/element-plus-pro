@@ -28,7 +28,7 @@
     "lib",
     "es"
   ],
-  "author": "w936926@outlook.com",
+  "author": "<Haidu w936926@outlook.com>",
   "peerDependencies": {
     "vue": "^3.4.27",
     "element-plus": "^2.7.2"

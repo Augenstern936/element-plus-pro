@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-21 17:49:59
- * @LastEditTime: 2024-11-10 21:48:42
- * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\useFormContent.tsx
+ * @LastEditTime: 2024-11-13 22:56:23
+ *
  */
 import { ProField, ProFieldProps } from "@element-plus-ui/pro-field";
 import { formatPlaceholder, omitObjectProperty, pickObjectProperty } from "@element-plus-ui/pro-utils";
@@ -11,10 +11,10 @@ import { useVModel } from "@vueuse/core";
 import { ElFormItem, ElSpace, ElTooltip, formItemProps } from "element-plus";
 import { SetupContext } from "vue-demi";
 import { useGridHelpers } from "../helpers";
-import { GenerateFormProps, ProFormColumn } from "./typing";
+import { CreateFormProps, ProFormColumn } from "./typing";
 import ProIcon from "@element-plus-ui/pro-icon";
 
-const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => {
+const useFormContent = (formProps: CreateFormProps, formData: Record<string, any>, formCtx: SetupContext) => {
   const getFormItemProps = (item: ProFormColumn, model: Record<string, any>) => {
     const itemProps = pickObjectProperty(item, Object.keys(formItemProps) as any[]);
     return {
@@ -61,15 +61,21 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
         {props.columns?.map((item: any, index: number) => {
           const { key, hidden, prop, tooltip } = item;
           const id = key || prop || index;
-          const hide = typeof hidden === "function" ? hidden(model.value, formProps.columns) : hidden;
+          const hide = typeof hidden === "function" ? hidden(formData, formProps.columns) : hidden;
           if (hide === true) return null;
           if (item.is === "slot") {
-            return <ColWrapper {...props.colProps} key={id} v-slots={{ default: () => formCtx.slots.default?.()[item.index] }} />;
+            return (
+              <ColWrapper
+                {...props.colProps}
+                key={id}
+                v-slots={{ default: () => formCtx.slots.default?.(model.value)[item.index] }}
+              />
+            );
           }
           if (item.is === "element") {
             return <ColWrapper {...props.colProps} key={id} v-slots={{ default: () => item }} />;
           }
-          const formItemProps = getFormItemProps(item as ProFormColumn, model);
+          const formItemProps = getFormItemProps(item as ProFormColumn, formData);
           const slotName = key || prop;
           const proFieldProps = getFieldProps(item as ProFormColumn);
           return (
@@ -97,14 +103,13 @@ const useFormContent = (formProps: GenerateFormProps, formCtx: SetupContext) => 
                       <ProField
                         {...proFieldProps}
                         v-model={model.value[formatField(prop)]}
-                        onChange={v => props?.onChange?.(formatField(prop), v)}
-                        // fieldProps={{
-                        //   ...proFieldProps.fieldProps,
-                        //   onChange: v => {
-                        //     props?.onChange?.(formatField(prop), v);
-                        //     (proFieldProps?.fieldProps ?? ({} as any))?.onChange?.(v);
-                        //   }
-                        // }}
+                        fieldProps={{
+                          ...proFieldProps.fieldProps,
+                          onChange: (v: any) => {
+                            props?.onChange?.(formatField(prop), v);
+                            (proFieldProps?.fieldProps ?? ({} as any))?.onChange?.(v);
+                          }
+                        }}
                       />
                     ) : (
                       <ProField {...proFieldProps} />

@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-15 09:39:26
- * @LastEditTime: 2024-11-10 21:06:32
+ * @LastEditTime: 2024-11-19 11:45:14
  */
 import { FormEmits } from "element-plus";
 
@@ -40,7 +40,7 @@ import type {
 import { ProRequestData } from "@element-plus-ui/pro-types";
 import type { ColProps, FormItemProps, RowProps } from "element-plus";
 import { formProps as elFormProps } from "element-plus";
-import { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
+import { CSSProperties, ExtractPropTypes, PropType, VNode } from "vue-demi";
 import type { ProButtonProps } from "@element-plus-ui/pro-button";
 
 const commonFormProps = {
@@ -89,10 +89,13 @@ const commonFormProps = {
     type: Function as PropType<FormEmits["validate"]>
   },
   onReset: {
-    type: Function
+    type: Function as PropType<(entity: Record<string, any>) => void>
+  },
+  onSubmit: {
+    type: Function as PropType<(entity: Record<string, any>) => void | boolean>
   },
   onFinish: {
-    type: Function as PropType<(entity: Record<string, any>) => void | Promise<boolean>>
+    type: Function as PropType<(entity: Record<string, any>) => void | boolean | Promise<boolean>>
   },
   onFailed: {
     type: Function as PropType<(entity: Record<string, any>) => void>
@@ -114,7 +117,7 @@ const proFormGridConfig = {
   }
 };
 
-export const generateFormProps = {
+export const CreateFormProps = {
   ...elFormProps,
   ...commonFormProps,
   ...proFormGridConfig,
@@ -134,131 +137,130 @@ type FormItemPropertyFunction<T> = (entity: Record<string, any>, column: ProForm
 interface ProFormColumnCommonConfig extends ProFormItemProps {
   key?: string;
   order?: number;
-  label?: string | FormItemPropertyFunction<JSX.Element>;
+  label?: string | FormItemPropertyFunction<string | number | VNode>;
   labelStyle?: CSSProperties;
   tooltip?: string;
-  //dataField?: string;
   readonly?: boolean;
   defaultValue?: string | number | boolean | any[];
   hidden?: boolean | FormItemPropertyFunction<boolean>;
-  render?: () => JSX.Element;
-  renderFormItem?: () => JSX.Element;
+  render?: () => string | number | VNode;
+  renderFormItem?: () => VNode;
 }
 
 interface ValueTypeInput extends ProFormColumnCommonConfig, Omit<ProFieldTextProps, "modelValue" | "type"> {
-  valueType?: "text" | "password" | "textarea";
+  valueType: "text" | "password" | "textarea";
 }
 
 interface ValueTypeNumber extends ProFormColumnCommonConfig, Omit<ProFieldNumberProps, "modelValue"> {
-  valueType?: "number";
+  valueType: "number";
 }
 
 interface ValueTypeDate extends ProFormColumnCommonConfig, Omit<ProFieldDateProps, "modelValue"> {
-  valueType?: "date";
+  valueType: "date";
 }
 
 interface ValueTypeDates extends ProFormColumnCommonConfig, Omit<ProFieldDatesProps, "modelValue"> {
-  valueType?: "dates";
+  valueType: "dates";
 }
 
 interface ValueTypeDateTime extends ProFormColumnCommonConfig, Omit<ProFieldDateTimeProps, "modelValue"> {
-  valueType?: "dateTime";
+  valueType: "dateTime";
 }
 
 interface ValueTypeDateWeek extends ProFormColumnCommonConfig, Omit<ProFieldDateWeekProps, "modelValue"> {
-  valueType?: "dateWeek";
+  valueType: "dateWeek";
 }
 
 interface ValueTypeDateMonth extends ProFormColumnCommonConfig, Omit<ProFieldDateMonthProps, "modelValue"> {
-  valueType?: "dateMonth";
+  valueType: "dateMonth";
 }
 
 interface ValueTypeDateMonths extends ProFormColumnCommonConfig, Omit<ProFieldDateMonthsProps, "modelValue"> {
-  valueType?: "dateMonths";
+  valueType: "dateMonths";
 }
 
 interface ValueTypeDateYear extends ProFormColumnCommonConfig, Omit<ProFieldDateYearProps, "modelValue"> {
-  valueType?: "dateYear";
+  valueType: "dateYear";
 }
 
 interface ValueTypeDateYears extends ProFormColumnCommonConfig, Omit<ProFieldDateYearsProps, "modelValue"> {
-  valueType?: "dateYears";
+  valueType: "dateYears";
 }
 
 interface ValueTypeDateRange extends ProFormColumnCommonConfig, Omit<ProFieldDateRangeProps, "modelValue"> {
-  valueType?: "dateRange";
+  valueType: "dateRange";
 }
 
 interface ValueTypeDateTimeRange extends ProFormColumnCommonConfig, Omit<ProFieldDateTimeRangeProps, "modelValue"> {
-  valueType?: "dateTimeRange";
+  valueType: "dateTimeRange";
 }
 
 interface ValueTypeDateMonthRange extends ProFormColumnCommonConfig, Omit<ProFieldDateMonthRangeProps, "modelValue"> {
-  valueType?: "dateMonthRange";
+  valueType: "dateMonthRange";
 }
 
 interface ValueTypeTime extends ProFormColumnCommonConfig, Omit<ProFieldTimeProps, "modelValue"> {
-  valueType?: "time";
+  valueType: "time";
 }
 
 interface ValueTypeTimeRange extends ProFormColumnCommonConfig, Omit<ProFieldTimeRangeProps, "modelValue"> {
-  valueType?: "timeRange";
+  valueType: "timeRange";
 }
 
 interface ValueTypeTimeSelect extends ProFormColumnCommonConfig, Omit<ProFieldTimeSelectProps, "modelValue"> {
-  valueType?: "timeSelect";
+  valueType: "timeSelect";
 }
 
 interface ValueTypeSelect extends ProFormColumnCommonConfig, Omit<ProFieldSelectProps, "modelValue"> {
-  valueType?: "select";
+  valueType: "select";
 }
 
 interface ValueTypeTreeSelect extends ProFormColumnCommonConfig, Omit<ProFieldTreeSelectProps, "modelValue"> {
-  valueType?: "treeSelect";
+  valueType: "treeSelect";
 }
 
 interface ValueTypevirtualizedSelect extends ProFormColumnCommonConfig, Omit<ProFieldVirtualizedSelectProps, "modelValue"> {
-  valueType?: "virtualizedSelect";
+  valueType: "virtualizedSelect";
 }
 
 interface ValueTypeCheckbox extends ProFormColumnCommonConfig, Omit<ProFieldCheckboxProps, "modelValue"> {
-  valueType?: "checkbox" | "checkboxButton";
+  valueType: "checkbox" | "checkboxButton";
 }
 
 interface ValueTypeRadio extends ProFormColumnCommonConfig, Omit<ProFieldRadioProps, "modelValue"> {
-  valueType?: "radio" | "radioButton";
+  valueType: "radio" | "radioButton";
 }
 
 interface ValueTypeSwitch extends ProFormColumnCommonConfig, Omit<ProFieldSwitchProps, "modelValue"> {
-  valueType?: "switch";
+  valueType: "switch";
 }
 
 interface ValueTypeUploadAvatar extends ProFormColumnCommonConfig, Omit<ProFieldUploadAvatarProps, "modelValue" | "size"> {
-  valueType?: "uploadAvatar";
+  valueType: "uploadAvatar";
 }
 
 interface ValueTypeUploadImage extends ProFormColumnCommonConfig, Omit<ProFieldUploadImageProps, "modelValue" | "size"> {
-  valueType?: "uploadImage";
+  valueType: "uploadImage";
 }
 
 interface ValueTypeRate extends ProFormColumnCommonConfig, Omit<ProFieldRateProps, "modelValue"> {
-  valueType?: "rate";
+  valueType: "rate";
 }
 
 interface ValueTypeColor extends ProFormColumnCommonConfig, Omit<ProFieldColorProps, "modelValue"> {
-  valueType?: "color";
+  valueType: "color";
 }
 
 interface ValueTypeCascader extends ProFormColumnCommonConfig, Omit<ProFieldCascaderProps, "modelValue"> {
-  valueType?: "cascader";
+  valueType: "cascader";
 }
 
 interface ValueTypeSlider extends ProFormColumnCommonConfig, Omit<ProFieldSliderProps, "modelValue"> {
-  valueType?: "slider";
+  valueType: "slider";
 }
 
 interface ValueTypeProgress extends ProFormColumnCommonConfig, ProFieldProgressProps {
-  valueType?: "progress";
+  valueType: "progress";
 }
 
 export type ProFormColumn =
@@ -293,21 +295,21 @@ export type ProFormColumn =
   | ValueTypeProgress;
 
 export type SubmitterConfigProps = {
+  fillMode?: "aequilate" | "full" | "auto";
+  align?: "left" | "right" | "center";
+  reverse?: boolean;
   submitButtonTitle?: string;
   resetButtonTitle?: string;
   hideResetButton?: boolean;
   submitButtonProps?: ButtonProps;
   resetButtonProps?: ButtonProps;
-  fillMode?: "aequilate" | "full" | "auto";
-  align?: "left" | "right" | "center";
-  reversal?: boolean;
-  render?: (props: SubmitterConfigProps, doms?: JSX.Element[]) => JSX.Element | JSX.Element[];
-  onSubmit?: (entity: Record<string, any>) => void;
+  render?: (props: SubmitterConfigProps, doms: VNode[]) => VNode | Array<VNode>;
+  onSubmit?: (entity: Record<string, any>) => void | boolean;
   onReset?: (entity: Record<string, any>) => void;
 };
 interface ButtonProps extends ProButtonProps {
   style?: CSSProperties;
-  //onClick?: (e?: Record<string, any>) => void;
+  onClick?: (e?: Record<string, any>) => void;
 }
 
 export type ProFormValueType = ProFieldType;
@@ -315,10 +317,10 @@ export type ProFormValueType = ProFieldType;
 export type ProFormSubmitter<T extends Record<string, any> = {}, K extends string = ""> =
   | boolean
   | Omit<SubmitterConfigProps & T, K>
-  | (() => JSX.Element)
+  | ((props: Record<string, any>, doms: VNode[]) => VNode | Array<VNode>)
   | Array<
       Omit<ProButtonProps, "tip"> & {
-        onClick?: () => void;
+        onClick?: (e?: Record<string, any>) => void;
       }
     >;
 
@@ -326,4 +328,4 @@ export type CommonFormProps = Partial<ExtractPropTypes<typeof commonFormProps>>;
 
 export type ProFormGridConfig = Partial<ExtractPropTypes<typeof proFormGridConfig>>;
 
-export type GenerateFormProps = Partial<ExtractPropTypes<typeof generateFormProps>>;
+export type CreateFormProps = Partial<ExtractPropTypes<typeof CreateFormProps>>;

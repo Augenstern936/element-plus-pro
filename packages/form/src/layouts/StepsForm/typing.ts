@@ -1,17 +1,17 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-11 22:26:41
- * @LastEditTime: 2024-11-06 21:51:53
- * @FilePath: \element-plus-pro\packages\form\src\layouts\StepsForm\typing.ts
+ * @LastEditTime: 2024-11-17 17:03:58
+ *
  */
 import { StepProps, StepsProps } from "element-plus";
-import { generateFormProps, type ProFormColumn } from "../../core/GenerateForm";
+import { CreateFormProps, type ProFormColumn } from "../../core/CreateForm";
 import type { DefineComponent, ExtractPropTypes, PropType } from "vue-demi";
 import { omitObjectProperty } from "@element-plus-ui/pro-utils";
 
 export const proStepsFormProps = {
-  ...generateFormProps,
+  ...CreateFormProps,
   active: {
     type: Number,
     default: 0
@@ -50,7 +50,7 @@ export enum StepsIndexEnum {
 }
 
 export const proStepFormProps = {
-  ...omitObjectProperty(generateFormProps, ["submitter"]),
+  ...omitObjectProperty(CreateFormProps, ["submitter"]),
   stepProps: {
     type: Object as PropType<StepProps>
   }

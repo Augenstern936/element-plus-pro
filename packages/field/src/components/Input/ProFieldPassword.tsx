@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-06-22 19:11:22
- * @LastEditTime: 2024-11-10 17:41:29
- * @FilePath: \element-plus-pro\packages\field\src\components\Input\ProFieldPassword.tsx
+ * @LastEditTime: 2024-11-15 14:39:44
  */
 import { useVModel } from "@vueuse/core";
 import { ElSpace, ElText } from "element-plus";
@@ -38,15 +37,7 @@ const ProFieldPassword = defineComponent<ProFieldPasswordProps>((props, ctx) => 
       );
     }
     if (props.mode === "edit") {
-      return (
-        <BaseInput
-          onChange={v => props?.onChange?.(v)}
-          {...props?.fieldProps}
-          type="password"
-          v-model={model.value}
-          v-slots={ctx.slots}
-        />
-      );
+      return <BaseInput {...props?.fieldProps} type="password" v-model={model.value} v-slots={ctx.slots} />;
     }
     return <></>;
   };

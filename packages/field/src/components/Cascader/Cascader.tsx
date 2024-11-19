@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-11-10 17:20:14
- * @FilePath: \element-plus-pro\packages\field\src\components\Cascader\Cascader.tsx
+ * @LastEditTime: 2024-11-11 20:27:34
  */
 import { useVModel } from "@vueuse/core";
 import { useFetchData } from "@element-plus-ui/pro-hooks";
@@ -57,7 +56,6 @@ const ProFieldCascader = defineComponent<ProFieldCascaderProps>(
             style={{ width: "100%" }}
             options={options.value as CascaderOption[]}
             separator={props.separator || "/"}
-            onChange={v => props?.onChange?.(v)}
             {...(props?.fieldProps as CascaderProps)}
             placeholder={placeholder.value as string}
             v-model={model.value}

@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
  * @LastEditTime: 2024-10-27 17:20:39
- * @FilePath: \element-plus-pro\packages\field\src\components\UploadAvatar\UploadAvatar.tsx
+ *
  */
 import "./upload-avatar.scss";
 import { ProIcon } from "@element-plus-ui/pro-icon";

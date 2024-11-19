@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-06-30 21:45:04
- * @LastEditTime: 2024-10-22 21:14:42
- * @FilePath: \element-plus-pro\packages\form\src\typing.ts
+ * @LastEditTime: 2024-11-15 14:29:03
  */
 import { FormItemProps } from "element-plus";
 import components from "./components";

@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-09-13 21:28:34
- * @LastEditTime: 2024-11-10 17:42:49
- * @FilePath: \element-plus-pro\packages\field\src\props.ts
+ * @LastEditTime: 2024-11-15 14:29:53
  */
 import { PropType } from "vue-demi";
 import type { ProFieldMode, ProFieldType } from "./typing";
@@ -17,9 +16,6 @@ export const commomFieldProps = {
   emptyText: {
     type: String,
     default: "--"
-  },
-  onChange: {
-    type: Function as PropType<(v: any) => void>
   }
 };
 

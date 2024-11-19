@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-05-17 19:46:42
  * @LastEditTime: 2024-10-13 16:56:22
- * @FilePath: \element-plus-pro\packages\utils\transform.ts
+ *
  */
 import { CssUnitEnum, ValueEnum, ValueOption } from "@element-plus-ui/pro-types";
 import { isObject } from "@vueuse/core";

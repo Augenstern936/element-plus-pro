@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-13 23:34:01
  * @LastEditTime: 2024-10-22 21:09:48
- * @FilePath: \element-plus-pro\packages\form\src\components\index.ts
+ *
  */
 import { ProFormUploadAvatar } from "./UploadAvatar";
 import { ProFormCascader } from "./Cascader";

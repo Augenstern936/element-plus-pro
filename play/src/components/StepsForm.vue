@@ -1,14 +1,13 @@
 <!--
  * @Description: 
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-11-07 21:52:18
- * @FilePath: \element-plus-pro\play\src\components\StepsForm.vue
+ * @LastEditTime: 2024-11-13 23:30:05
+ * 
 -->
 <template>
   <el-card>
     <ProStepsForm
-      :hide-steps-bar="false"
       :submitter="{
         fillMode: 'aequilate'
       }"
@@ -18,12 +17,13 @@
           columns: [
             {
               label: '姓名:',
-              dataField: 'name',
-              required: true
+              prop: 'name',
+              required: true,
+              valueType: 'text'
             },
             {
               label: '年龄:',
-              dataField: 'age',
+              prop: 'age',
               valueType: 'number',
               tooltip: '测试'
             },
@@ -42,7 +42,7 @@
             },
             {
               label: '爱好:',
-              dataField: 'test',
+              prop: 'test',
               valueType: 'radio',
               valueEnum: {
                 1: '钓鱼',
@@ -82,13 +82,14 @@
         :columns="[
           {
             label: '姓名:',
-            dataField: 'name',
+            prop: 'name',
             required: true,
-            order: 0
+            order: 0,
+            valueType: 'text'
           },
           {
             label: '年龄:',
-            dataField: 'age',
+            prop: 'age',
             valueType: 'number',
             tooltip: '测试'
           },

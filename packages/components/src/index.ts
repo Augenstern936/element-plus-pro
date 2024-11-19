@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2023-12-13 21:26:11
- * @LastEditTime: 2024-10-09 21:49:29
- * @FilePath: \element-plus-pro\packages\components\src\index.ts
+ * @LastEditTime: 2024-11-15 14:29:21
  */
 import installer from "./default";
 

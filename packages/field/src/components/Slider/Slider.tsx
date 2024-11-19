@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-11-10 17:44:29
- * @FilePath: \element-plus-pro\packages\field\src\components\Slider\Slider.tsx
+ * @LastEditTime: 2024-11-11 20:30:37
+ *
  */
 import { useVModel } from "@vueuse/core";
 import { ElSlider, ElText } from "element-plus";
@@ -19,7 +19,7 @@ const ProFieldSlider = defineComponent<ProFieldSliderProps>(
         return <ElText>{model.value || model.value === 0 ? model.value : props.emptyText}</ElText>;
       }
       if (props.mode === "edit") {
-        return <ElSlider onChange={v => props?.onChange?.(v)} {...props?.fieldProps} v-model={model.value} />;
+        return <ElSlider {...props?.fieldProps} v-model={model.value} />;
       }
       return <></>;
     };

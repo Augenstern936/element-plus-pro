@@ -1,28 +1,29 @@
 /*
  * @Description:;
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-11 22:23:41
- * @LastEditTime: 2024-11-01 17:50:26
- * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\index.tsx
+ * @LastEditTime: 2024-11-19 11:53:43
+ *
  */
 import { ProButtonProps } from "@element-plus-ui/pro-button";
 import { omitObjectProperty, withInstall } from "@element-plus-ui/pro-utils";
-import { MoreFilled } from "@element-plus/icons-vue";
 import { useVModel, isObject } from "@vueuse/core";
-import { ColProps, ElButton, ElFormItem } from "element-plus";
-import { computed, CSSProperties, DefineComponent, defineComponent, FunctionalComponent, ref, toRaw, watch } from "vue-demi";
-import { GenerateForm } from "../../core";
-import Actions from "./Actions";
+import { ColProps, ElCol, ElFormItem } from "element-plus";
+import { computed, DefineComponent, defineComponent, ref, VNode, watch } from "vue-demi";
+import { CreateForm } from "../../core";
+import { Actions, emitter } from "./Actions";
 import Options from "./Options";
-import "./style.scss";
+import "./search-bar.scss";
 import { proSearchBarProps, ProSearchBarProps } from "./typing";
 import { getFormRefExpose } from "../../core/utils";
+import ProIcon from "@element-plus-ui/pro-icon";
+import { ProProvider } from "@element-plus-ui/pro-provider";
 
 const SearchBar = defineComponent<ProSearchBarProps>(
   (props, ctx) => {
     const formRef = ref();
 
-    const model = props.modelValue ? useVModel(props, "modelValue", ctx.emit) : ref({});
+    const model: Record<string, any> = isObject(props.modelValue) ? useVModel(props, "modelValue", ctx.emit) : ref({});
 
     const defaultSpan = ref(8);
 
@@ -30,20 +31,25 @@ const SearchBar = defineComponent<ProSearchBarProps>(
 
     const span = computed(() => (props.colSpan ?? defaultSpan.value) as number | Record<string, any>);
 
+    emitter.on("submitter-config-click", ({ onClick }: any) => onClick(model.value));
+
     const colProps = computed(() => {
-      if (isObject(span.value)) {
-        return span.value;
-      }
+      if (isObject(span.value)) return span.value;
       return {
         span: span.value
       };
     });
 
     const columns = computed(() => {
-      const slots = (ctx.slots?.default?.() ?? [])?.map((item: any) => {
-        item["is"] = "element";
-        return item;
-      });
+      /**
+       * 过滤掉注释项，对正常项添加标记
+       */
+      const slots = (ctx.slots?.default?.(model.value) ?? [])
+        ?.filter(({ type }) => String(type) != "Symbol(v-cmt)")
+        .map((item: any) => {
+          item["is"] = "element";
+          return item;
+        });
 
       const columnsConfig = props?.columns ?? [];
 
@@ -59,6 +65,9 @@ const SearchBar = defineComponent<ProSearchBarProps>(
       return props.extraTools?.length || ctx.slots?.extraTools ? true : false;
     });
 
+    /**
+     * 计算最后(提交器)一列所占量
+     */
     const lastItemColSpan = computed(() => {
       // 一行所占多少个cols
       const rowColsNumber = 24 / (colProps.value ?? {})?.span;
@@ -68,14 +77,14 @@ const SearchBar = defineComponent<ProSearchBarProps>(
     });
 
     const onSubmitter = (name: "search" | "reset", buttonProps: ProButtonProps & { onClick?: Function }) => {
-      let entity = toRaw(model.value) ?? {};
       if (typeof props.searchBefore === "function") {
-        entity = props.searchBefore(entity);
+        const newModel = props.searchBefore(model.value);
+        model.value = isObject(newModel) ? newModel : model.value;
       }
       if (typeof buttonProps.onClick === "function") {
-        return buttonProps.onClick(entity);
+        return buttonProps.onClick?.(model.value);
       }
-      ctx.emit(name, entity);
+      ctx.emit(name, model.value);
     };
 
     const onCollapse = (v: boolean) => {
@@ -92,7 +101,7 @@ const SearchBar = defineComponent<ProSearchBarProps>(
     });
 
     watch(
-      () => props,
+      () => props.collapsed,
       () => {
         collapsed.value = props.collapsed ?? collapsed.value;
       }
@@ -100,52 +109,54 @@ const SearchBar = defineComponent<ProSearchBarProps>(
 
     return () => (
       <div class={"pro-search-bar"}>
-        <GenerateForm
-          ref={formRef}
-          colProps={colProps.value as ColProps}
-          rowProps={{ gutter: 24 }}
-          {...omitObjectProperty(props, ["submitter"])}
-          columns={columns.value}
-          grid={true}
-          labelPosition={props.layout === "vertical" ? "top" : "right"}
-          v-model={model.value}
-          v-slots={{
-            submitter: (model: Record<string, any>, ColWrapper: FunctionalComponent<ColProps & { style?: CSSProperties }>) => {
-              return (
-                <ColWrapper
-                  {...(colProps.value as ColProps)}
-                  span={lastItemColSpan.value}
-                  style={{ display: "flex", alignItems: props.layout === "vertical" ? "end" : "unset" }}
-                >
-                  <ElFormItem
-                    class={"submitter-form-item"}
-                    label={lastItemColSpan.value === 24 ? " " : ""}
-                    style={{
-                      paddingLeft: lastItemColSpan.value === 24 ? "12px" : 0,
-                      "--justify-content": isOptions.value ? "space-between" : "end"
-                    }}
+        <ProProvider value={{ submitterNotColWrapper: true }}>
+          <CreateForm
+            ref={formRef}
+            colProps={colProps.value as ColProps}
+            rowProps={{ gutter: 24 }}
+            {...omitObjectProperty(props, ["submitter"])}
+            columns={columns.value}
+            grid={true}
+            labelPosition={props.layout === "vertical" ? "top" : "right"}
+            v-model={model.value}
+            v-slots={{
+              submitter: (_: any, doms: VNode[]) => {
+                return (
+                  <ElCol
+                    span={lastItemColSpan.value}
+                    style={{ display: "flex", alignItems: props.layout === "vertical" ? "end" : "unset" }}
                   >
-                    <Actions
-                      {...props}
-                      collapsed={collapsed.value}
-                      onSubmit={config => onSubmitter("search", config)}
-                      onReset={config => onSubmitter("reset", config)}
-                      onCollapse={onCollapse}
-                      v-slots={{
-                        submitter: () => ctx.slots?.submitter?.(model.value)
+                    <ElFormItem
+                      class={"submitter-form-item"}
+                      label={lastItemColSpan.value === 24 ? " " : ""}
+                      style={{
+                        paddingLeft: lastItemColSpan.value === 24 ? "12px" : 0,
+                        "--justify-content": isOptions.value ? "space-between" : "end"
                       }}
-                    />
-                    <Options
-                      buttons={props.extraTools ?? []}
-                      v-slots={{ default: () => ctx.slots?.extraTools?.() }}
-                      trigger={ctx.slots["extra-tools-trigger"]?.() || <ElButton icon={MoreFilled} circle />}
-                    />
-                  </ElFormItem>
-                </ColWrapper>
-              );
-            }
-          }}
-        />
+                    >
+                      <Actions
+                        {...props}
+                        collapsed={collapsed.value}
+                        onSubmit={config => onSubmitter("search", config)}
+                        onReset={config => onSubmitter("reset", config)}
+                        onCollapse={onCollapse}
+                        v-slots={{
+                          submitter: () => ctx.slots?.submitter?.({ porps: _, doms })
+                        }}
+                      />
+                      <Options
+                        model={model.value}
+                        buttons={props.extraTools ?? []}
+                        trigger={ctx.slots["extra-tools-trigger"]?.() || <ProIcon.More />}
+                        v-slots={{ default: () => ctx.slots?.extraTools?.(model.value) }}
+                      />
+                    </ElFormItem>
+                  </ElCol>
+                );
+              }
+            }}
+          />
+        </ProProvider>
       </div>
     );
   },

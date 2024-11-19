@@ -1,23 +1,20 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-11 22:26:41
- * @LastEditTime: 2024-10-31 12:00:08
- * @FilePath: \element-plus-pro\packages\form\src\layouts\DrawerForm\typing.ts
+ * @LastEditTime: 2024-11-19 11:43:18
+ *
  */
 import { DrawerProps } from "element-plus";
 import { ProButtonProps } from "@element-plus-ui/pro-button";
-import type { ExtractPropTypes, PropType } from "vue-demi";
-import { generateFormProps } from "../Form";
+import type { ExtractPropTypes, PropType, VNode } from "vue-demi";
+import { CreateFormProps } from "../Form";
 
 export const proDrawerFormProps = {
-  ...generateFormProps,
+  ...CreateFormProps,
   open: {
     type: Boolean,
     default: void 0
-  },
-  title: {
-    type: String
   },
   width: {
     type: [Number, String]
@@ -35,7 +32,7 @@ export const proDrawerFormProps = {
     default: 600
   },
   trigger: {
-    type: [Object, Function] as PropType<ProButtonProps | (() => JSX.Element)>
+    type: [Object, Function] as PropType<ProButtonProps | (() => VNode)>
   },
   DrawerProps: {
     type: Object as PropType<DrawerProps>,

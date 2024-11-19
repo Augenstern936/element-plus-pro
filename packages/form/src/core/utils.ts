@@ -1,13 +1,12 @@
-import { FormValidateCallback } from "element-plus";
-import { toRaw, toRef } from "vue-demi";
-
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-11-01 16:58:17
- * @LastEditTime: 2024-11-10 20:36:55
- * @FilePath: \element-plus-pro\packages\form\src\core\utils.ts
+ * @LastEditTime: 2024-11-17 21:29:41
+ *
  */
+import { FormValidateCallback } from "element-plus";
+
 export function getFormRefExpose(ref?: Record<string, any>) {
   if (!ref) return {};
   return {
@@ -20,6 +19,13 @@ export function getFormRefExpose(ref?: Record<string, any>) {
   };
 }
 
+/**
+ * 深度设置对象值
+ * @param obj
+ * @param keys
+ * @param value
+ * @returns
+ */
 export function setObjectDeepValue(obj: Record<string, any>, keys: string | Array<string>, value: any) {
   keys = typeof keys === "string" ? keys.split(".") : keys;
   if (!Array.isArray(keys) || !keys.length || value === void 0) {
@@ -31,6 +37,12 @@ export function setObjectDeepValue(obj: Record<string, any>, keys: string | Arra
   keys.reduce((item, key) => (item[key] = item[key] ?? {}), obj)[lastKey] = value;
 }
 
+/**
+ * 深度获取对象属性值
+ * @param obj
+ * @param keys
+ * @returns
+ */
 export function getObjectDeepValue(obj: Record<string, any>, keys: string | Array<string>) {
   keys = typeof keys === "string" ? keys.split(".") : keys;
   if (!Array.isArray(keys) || !keys.length) {

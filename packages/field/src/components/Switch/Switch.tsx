@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-11-10 17:44:40
- * @FilePath: \element-plus-pro\packages\field\src\components\Switch\Switch.tsx
+ * @LastEditTime: 2024-11-11 20:30:45
+ *
  */
 import { useVModel } from "@vueuse/core";
 import { ElSwitch, ElText } from "element-plus";
@@ -35,7 +35,7 @@ const ProFieldSwitch = defineComponent<ProFieldSwitchProps>(
         return <ElText>{text.value ?? props.emptyText}</ElText>;
       }
       if (props.mode === "edit") {
-        return <ElSwitch onChange={v => props?.onChange?.(v)} {...props?.fieldProps} v-model={model.value} v-slots={ctx.slots} />;
+        return <ElSwitch {...props?.fieldProps} v-model={model.value} v-slots={ctx.slots} />;
       }
       return <></>;
     };

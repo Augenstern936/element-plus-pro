@@ -1,15 +1,15 @@
 <!--
  * @Description: 
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-09 22:33:10
- * @LastEditTime: 2024-07-26 22:30:12
- * @FilePath: \element-plus-pro\play\src\components\Descriptions.vue
+ * @LastEditTime: 2024-11-15 16:01:59
+ * 
 -->
 <template>
   <el-card>
     <ProDescriptions
       :title="{
-        text: ['个人简介'],
+        text: ['个人简介', '项目经验'],
         mark: {
           shape: 'disclosure-closed'
         }

@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-06 21:17:05
- * @LastEditTime: 2024-10-14 15:42:13
- * @FilePath: \element-plus-pro\packages\field\src\components\index.ts
+ * @LastEditTime: 2024-11-15 14:29:58
  */
 import ProFieldVirtualizedSelect from "./VirtualizedSelect";
 import ProFieldUploadAvatar from "./UploadAvatar";

@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-10-15 14:57:00
  * @LastEditTime: 2024-10-15 15:09:33
- * @FilePath: \element-plus-pro\packages\field\src\components\widgets\Loading\index.tsx
+ *
  */
 import "./loading.scss";
 

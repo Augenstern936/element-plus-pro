@@ -1,20 +1,20 @@
 {
-  "name": "@element-plus-ui/pro-context-provider",
+  "name": "@element-plus-ui/pro-provider",
   "version": "0.0.1",
-  "description": "🏆 Use Element Plus Button like a Pro!",
+  "description": "@element-plus-ui/pro-provider",
   "keywords": [
     "ui",
     "pro",
     "vue3",
     "admin",
-    "button",
+    "provider",
     "element",
     "component",
     "element-plus",
     "element-plus-pro"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Augenstern936/element-plus-pro/tree/master/packages/context-provider#readme",
+  "homepage": "https://github.com/Augenstern936/element-plus-pro/tree/master/packages/provider#readme",
   "bugs": "https://github.com/Augenstern936/element-plus-pro/issues",
   "repository": {
     "type": "git",
@@ -31,11 +31,23 @@
     "lib",
     "es"
   ],
-  "author": "w936926@outlook.com",
+  "author": "<Haidu w936926@outlook.com>",
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
-    "@element-plus-ui/pro-utils": "workspace:^"
+  "dependencies": {
+    "vue-demi": "^0.14.10"
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
+    "vue": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=16.17.1"
   }
 }

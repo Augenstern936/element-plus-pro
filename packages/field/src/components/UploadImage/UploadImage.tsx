@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
  * @LastEditTime: 2024-10-27 17:30:28
- * @FilePath: \element-plus-pro\packages\field\src\components\UploadImage\UploadImage.tsx
+ *
  */
 import { ProIcon } from "@element-plus-ui/pro-icon";
 import { ElImage, ElSpace, ElUpload, imageProps, uploadProps, UploadRawFile } from "element-plus";

@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-09-13 21:28:34
  * @LastEditTime: 2024-10-14 15:43:04
- * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\index.ts
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
 import {

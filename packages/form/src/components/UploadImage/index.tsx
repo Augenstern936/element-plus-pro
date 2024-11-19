@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-06-30 21:35:16
  * @LastEditTime: 2024-10-22 21:04:47
- * @FilePath: \element-plus-pro\packages\form\src\components\UploadImage\index.tsx
+ *
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
 import type { ProFieldUploadImageProps } from "@element-plus-ui/pro-field";

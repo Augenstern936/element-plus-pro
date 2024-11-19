@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-10 00:07:29
- * @LastEditTime: 2024-11-10 22:23:11
- * @FilePath: \element-plus-pro\packages\field\src\components\Input\props.ts
+ * @LastEditTime: 2024-11-15 14:43:46
  */
 import { inputNumberProps, inputProps } from "element-plus";
 import type { InputEmits, InputNumberProps, InputProps } from "element-plus";

@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-11-10 17:44:01
- * @FilePath: \element-plus-pro\packages\field\src\components\Rate\Rate.tsx
+ * @LastEditTime: 2024-11-11 20:30:20
+ *
  */
 import { useVModel } from "@vueuse/core";
 import { ElRate, ElText } from "element-plus";
@@ -24,7 +24,7 @@ const ProFieldRate = defineComponent<ProFieldRateProps>(
         );
       }
       if (props.mode === "edit") {
-        return <ElRate onChange={v => props?.onChange?.(v)} {...props?.fieldProps} v-model={model.value} />;
+        return <ElRate {...props?.fieldProps} v-model={model.value} />;
       }
       return <></>;
     };

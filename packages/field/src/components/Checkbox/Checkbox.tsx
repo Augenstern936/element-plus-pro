@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-10-15 16:04:43
- * @FilePath: \element-plus-pro\packages\field\src\components\Checkbox\Checkbox.tsx
+ * @LastEditTime: 2024-11-15 14:30:16
  */
 import { useVModel } from "@vueuse/core";
 import { DefineComponent, defineComponent } from "vue-demi";

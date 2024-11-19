@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-10-13 13:02:25
  * @LastEditTime: 2024-10-13 14:27:38
- * @FilePath: \element-plus-pro\packages\field\src\components\widgets\Skeleton\index.tsx
+ *
  */
 import { ElSkeleton, ElSkeletonItem, SkeletonItemProps, SkeletonProps as ElSkeletonProps } from "element-plus";
 import { computed, SetupContext } from "vue";

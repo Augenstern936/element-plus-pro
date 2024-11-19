@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-11-10 17:24:53
- * @FilePath: \element-plus-pro\packages\field\src\components\ColorPicker\ColorPicker.tsx
+ * @LastEditTime: 2024-11-11 20:28:20
  */
 import { useVModel } from "@vueuse/core";
 import { ElColorPicker } from "element-plus";
@@ -17,7 +16,6 @@ const ProFieldColor = defineComponent<ProFieldColorProps>(
     return () => (
       <div>
         <ElColorPicker
-          onChange={v => props?.onChange?.(v)}
           {...props?.fieldProps}
           disabled={props.mode === "read" ? true : props?.fieldProps?.disabled}
           v-model={model.value}

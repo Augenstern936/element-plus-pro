@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-07 22:53:35
  * @LastEditTime: 2024-11-01 23:16:44
- * @FilePath: \element-plus-pro\packages\form\src\core\FormField\index.tsx
+ *
  */
 import { ProField, ProFieldProps } from "@element-plus-ui/pro-field";
 import { useVModel } from "@vueuse/core";

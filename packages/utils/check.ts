@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-09-13 21:28:34
  * @LastEditTime: 2024-10-10 11:49:27
- * @FilePath: \element-plus-pro\packages\utils\check.ts
+ *
  */
 /**
  * 校验值是否是一个组件

@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-02 22:22:28
  * @LastEditTime: 2024-10-22 20:53:51
- * @FilePath: \element-plus-pro\packages\form\src\components\Checkbox\index.tsx
+ *
  */
 import type { ProFieldCheckboxButtonProps, ProFieldCheckboxProps } from "@element-plus-ui/pro-field";
 import { withInstall } from "@element-plus-ui/pro-utils";

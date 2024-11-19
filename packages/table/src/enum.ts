@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2023-12-14 14:10:39
  * @LastEditTime: 2024-10-09 14:41:42
- * @FilePath: \element-plus-pro\packages\table\src\enum.ts
+ *
  */
 export enum ValueTypeEnum {
   "index",

@@ -1,9 +1,9 @@
 /*
  * @Description:;
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-11 22:23:41
- * @LastEditTime: 2024-11-06 16:42:43
- * @FilePath: \element-plus-pro\packages\form\src\layouts\DrawerForm\index.tsx
+ * @LastEditTime: 2024-11-18 09:43:09
+ *
  */
 import "./drawer-form.scss";
 import { withInstall } from "@element-plus-ui/pro-utils";
@@ -11,7 +11,7 @@ import { computed, DefineComponent, defineComponent, ref } from "vue-demi";
 import { proDrawerFormProps, ProDrawerFormProps } from "./typing";
 import { ElDrawer, FormInstance } from "element-plus";
 import { ProButton } from "@element-plus-ui/pro-button";
-import { GenerateForm, useSubmitter } from "../../core";
+import { CreateForm, useSubmitter } from "../../core";
 import { isObject, useVModel } from "@vueuse/core";
 import { getFormRefExpose } from "../../core/utils";
 
@@ -21,9 +21,9 @@ const DrawerForm = defineComponent<ProDrawerFormProps>(
 
     const open = props.open != void 0 ? useVModel(props, "open", ctx.emit) : ref(false);
 
-    const model = props.modelValue ? useVModel(props, "modelValue", ctx.emit) : ref({});
+    const model = isObject(props.modelValue) ? useVModel(props, "modelValue", ctx.emit) : ref({});
 
-    const { Submitter, config } = useSubmitter(props.submitter);
+    const { Submitter, config } = useSubmitter(props.submitter, ctx);
 
     const TriggerElement = computed(() => {
       if (typeof props.trigger === "function") {
@@ -71,13 +71,13 @@ const DrawerForm = defineComponent<ProDrawerFormProps>(
           v-model={open.value}
           v-slots={{
             default: () => (
-              <GenerateForm {...props} ref={formRef} columns={columns.value} submitter={false} v-model={model.value} />
+              <CreateForm {...props} ref={formRef} columns={columns.value} submitter={false} v-model={model.value} />
             ),
             footer: () => (
               <Submitter
                 {...config.value}
                 align={config.value.align ?? "right"}
-                reversal={config.value.reversal ?? true}
+                reverse={config.value.reverse === void 0 ? true : !config.value.reverse}
                 resetButtonTitle={config.value.resetButtonTitle ?? "取消"}
                 submitButtonTitle={config.value.submitButtonTitle ?? "确定"}
                 hideResetButton={config.value.hideResetButton ?? false}

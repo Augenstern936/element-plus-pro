@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2023-11-10 00:34:24
  * @LastEditTime: 2024-07-15 16:54:40
- * @FilePath: \element-plus-pro\packages\utils\index.ts
+ *
  */
 export * from "./check";
 export * from "./form";

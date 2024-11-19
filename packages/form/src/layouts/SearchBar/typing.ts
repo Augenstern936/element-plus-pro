@@ -1,17 +1,17 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-11 22:26:41
- * @LastEditTime: 2024-11-07 23:02:40
- * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\typing.ts
+ * @LastEditTime: 2024-11-19 11:44:18
+ *
  */
 import type { ProButtonProps } from "@element-plus-ui/pro-button";
-import type { ExtractPropTypes, PropType } from "vue-demi";
-import { generateFormProps } from "../../core";
+import type { ExtractPropTypes, PropType, VNode } from "vue-demi";
+import { CreateFormProps } from "../../core";
 import { ProFormLayout } from "../../typing";
 import { pickObjectProperty } from "@element-plus-ui/pro-utils";
 
-const commonProps = pickObjectProperty(generateFormProps, [
+const commonProps = pickObjectProperty(CreateFormProps, [
   "modelValue",
   "columns",
   "labelWidth",
@@ -46,7 +46,9 @@ export const proSearchBarProps = {
     type: Function as PropType<(model: Record<string, any>) => Record<string, any>>
   },
   extraTools: {
-    type: [Array, Function] as PropType<(ProButtonProps & { onClick?: () => void })[] | (() => JSX.Element)>,
+    type: [Array, Function] as PropType<
+      (ProButtonProps & { onClick?: (entity: Record<string, any>) => void })[] | ((entity: Record<string, any>) => VNode)
+    >,
     default: void 0
   }
 };

@@ -1,24 +1,23 @@
 /*
- * @Description:
- * @Author: wangbowen936926
+ * @Description: 用于创建表单，统一处理相关逻辑
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-14 17:03:21
- * @LastEditTime: 2024-11-10 21:34:46
- * @FilePath: \element-plus-pro\packages\form\src\core\GenerateForm\index.tsx
+ * @LastEditTime: 2024-11-17 21:28:10
  */
 import { useFetchData } from "@element-plus-ui/pro-hooks";
 import { useVModel } from "@vueuse/core";
 import { ColProps, ElForm, ElFormItem, FormInstance, formProps, FormValidateCallback } from "element-plus";
-import { DefineComponent, FunctionalComponent, defineComponent, ref, watch } from "vue-demi";
-import "./generate-form.scss";
-import { GenerateFormProps, generateFormProps, ProFormColumn } from "./typing";
+import { DefineComponent, FunctionalComponent, defineComponent, inject, ref, watch } from "vue-demi";
+import "./create-form.scss";
+import { CreateFormProps, ProFormColumn } from "./typing";
 import useFormContent from "./useFormContent";
 import useFormProps from "./useFormProps";
 import { useSubmitter } from "./useSubmitter";
-import { pickObjectProperty } from "@element-plus-ui/pro-utils";
+import { omitObjectProperty, pickObjectProperty } from "@element-plus-ui/pro-utils";
 import { isObject } from "@vueuse/core";
 import { getObjectDeepValue, setObjectDeepValue } from "../utils";
 
-export const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
+export const CreateForm = defineComponent<CreateFormProps>((props, ctx) => {
   const formRef = ref<FormInstance>();
 
   const model: Record<string, any> = isObject(props.modelValue) ? useVModel(props, "modelValue", ctx.emit) : ref({});
@@ -29,9 +28,11 @@ export const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
 
   const { columns } = useFormProps(props, ctx.slots?.default?.() as []);
 
-  const { Content } = useFormContent(props, ctx);
+  const { Content } = useFormContent(props, model.value, ctx);
 
   const { Submitter, config } = useSubmitter(props.submitter);
+
+  const submitterNotColWrapper = inject("submitterNotColWrapper", false) as boolean;
 
   const { data } = useFetchData({
     params: props.params,
@@ -41,6 +42,17 @@ export const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
   const onChange = (k: string, v: any) => {
     setObjectDeepValue(model.value, k, v);
     props?.onValuesChange?.(model.value, k);
+  };
+
+  const validateFormRules = () => {
+    if (!formRef.value) return;
+    formRef.value.validate(valid => {
+      if (valid) {
+        ctx.emit("finish", model.value);
+      } else {
+        ctx.emit("failed", model.value);
+      }
+    });
   };
 
   watch(
@@ -101,26 +113,47 @@ export const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
         v-slots={{
           submitter: (ColWrapper: FunctionalComponent<ColProps>) => {
             if (!columns.value.length || props.submitter === false || props.readonly === true) return "";
-            if (ctx.slots.submitter) {
-              return ctx.slots.submitter(model.value, ColWrapper);
-            }
-            return (
+            const onReset = () => {
+              formRef.value?.resetFields();
+              ctx.emit("reset", model.value ?? {});
+            };
+
+            const onSubmit = () => {
+              if (typeof config.value.onSubmit === "function") {
+                const isNext = config?.value?.onSubmit?.(model.value);
+                return isNext === true ? validateFormRules() : false;
+              }
+              if (typeof props.onSubmit === "function") {
+                const isNext = props?.onSubmit?.(model.value);
+                return isNext === true ? validateFormRules() : false;
+              }
+              validateFormRules();
+            };
+
+            const submitterElement = (
+              <>
+                {ctx.slots.submitter ? (
+                  <Submitter
+                    {...omitObjectProperty(config.value, ["onReset", "onSubmit"])}
+                    render={(props, doms) => ctx.slots.submitter?.({ props, doms }) as any}
+                    onReset={onReset}
+                    onSubmit={onSubmit}
+                  />
+                ) : (
+                  <Submitter
+                    {...omitObjectProperty(config.value, ["onReset", "onSubmit"])}
+                    onReset={onReset}
+                    onSubmit={onSubmit}
+                  />
+                )}
+              </>
+            );
+            return submitterNotColWrapper === true ? (
+              submitterElement
+            ) : (
               <ColWrapper {...(props.colProps as ColProps)}>
                 <ElFormItem class={"pro-form-item-submitter"} label=" ">
-                  <Submitter
-                    {...config.value}
-                    onReset={() => ctx.emit("reset", model.value ?? {})}
-                    onSubmit={() => {
-                      if (!formRef.value) return;
-                      formRef.value.validate(valid => {
-                        if (valid) {
-                          return ctx.emit("finish", model.value);
-                        } else {
-                          ctx.emit("failed", model.value);
-                        }
-                      });
-                    }}
-                  />
+                  {submitterElement}
                 </ElFormItem>
               </ColWrapper>
             );
@@ -129,9 +162,9 @@ export const GenerateForm = defineComponent<GenerateFormProps>((props, ctx) => {
       />
     </ElForm>
   );
-}) as DefineComponent<GenerateFormProps>;
+}) as DefineComponent<CreateFormProps>;
 
-GenerateForm.props = generateFormProps;
+CreateForm.props = CreateFormProps;
 
 export * from "./useSubmitter";
 

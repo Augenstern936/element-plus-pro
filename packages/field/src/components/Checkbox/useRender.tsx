@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-07 12:15:18
- * @LastEditTime: 2024-11-10 17:24:33
- * @FilePath: \element-plus-pro\packages\field\src\components\Checkbox\useRender.tsx
+ * @LastEditTime: 2024-11-15 14:38:49
  */
 import { enumTransformOptions, getVModelSelectedOptions } from "@element-plus-ui/pro-utils";
 import { ElCheckbox, ElCheckboxButton, ElCheckboxGroup, ElText } from "element-plus";
@@ -44,7 +43,7 @@ function useRender(
     }
     if (props.mode === "edit") {
       const Element = (
-        <ElCheckboxGroup onChange={v => props?.onChange?.(v)} {...props?.fieldProps} v-model={model.value}>
+        <ElCheckboxGroup {...props?.fieldProps} v-model={model.value}>
           {options.value?.map(option => {
             return (
               <RenderElement {...option} label={option.value} data-key={option.label} v-slots={ctx?.slots}>

@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-13 16:14:11
  * @LastEditTime: 2024-07-13 17:19:41
- * @FilePath: \element-plus-pro\packages\hooks\useProps\index.ts
+ *
  */
 import { isObject } from "@vue/shared";
 import { computed } from "vue";

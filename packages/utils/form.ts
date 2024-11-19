@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-22 22:45:28
  * @LastEditTime: 2024-10-28 17:52:27
- * @FilePath: \element-plus-pro\packages\utils\form.ts
+ *
  */
 import { FormValueTypeEnum, ToLowercase } from "@element-plus-ui/pro-types";
 import { isOnlySymbols } from "./check";

@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
  * @LastEditTime: 2024-10-13 21:36:51
- * @FilePath: \element-plus-pro\packages\field\src\components\Input\index.ts
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
 import "./input.scss";

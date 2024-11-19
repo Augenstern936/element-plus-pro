@@ -1,38 +1,39 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:40:06
- * @LastEditTime: 2024-11-01 17:16:12
- * @FilePath: \element-plus-pro\packages\form\src\layouts\Form\index.tsx
+ * @LastEditTime: 2024-11-14 17:22:28
  */
 import { ToUppercaseFirst } from "@element-plus-ui/pro-types";
 import { omitObjectProperty, withInstall } from "@element-plus-ui/pro-utils";
-import { useVModel } from "@vueuse/core";
-import { computed, defineComponent, ref } from "vue-demi";
+import { isObject, useVModel } from "@vueuse/core";
+import { computed, DefineComponent, defineComponent, ref } from "vue-demi";
 import components from "../../components";
-import { GenerateForm } from "../../core";
+import { CreateForm } from "../../core";
 import { ProFormFieldType } from "../../typing";
 import { proFormProps, ProFormProps, ProFormSuperProps } from "./typing";
-import { ProSearchBar } from "../SearchBar";
-import { ProStepForm, ProStepsForm } from "../StepsForm";
-import { ProDialogForm } from "../DialogForm";
-import { ProDrawerForm } from "../DrawerForm";
+import { ProSearchBar, ProSearchBarProps } from "../SearchBar";
+import { ProStepForm, ProStepsForm, ProStepsFormProps } from "../StepsForm";
+import { ProDialogForm, ProDialogFormProps } from "../DialogForm";
+import { ProDrawerForm, ProDrawerFormProps } from "../DrawerForm";
 import { getFormRefExpose } from "../../core/utils";
+
+type Variant = DefineComponent<ProSearchBarProps | ProStepsFormProps | ProDialogFormProps | ProDrawerFormProps>;
 
 const ProForm = defineComponent<ProFormProps>(
   (props, ctx) => {
     const formRef = ref();
 
-    const model = props?.modelValue ? useVModel(props, "modelValue", ctx.emit) : ref({});
+    const model = isObject(props?.modelValue) ? useVModel(props, "modelValue", ctx.emit) : ref({});
 
-    const RenderTypeComponent = computed(() => {
-      const Type = {
+    const variant = computed(() => {
+      const components = {
         SearchBar: ProSearchBar,
         StepsForm: ProStepsForm,
         DialogForm: ProDialogForm,
         DrawerForm: ProDrawerForm
       };
-      return props.type && props.type != "Form" ? Type[props.type] : null;
+      return props.variant && props.variant != "Form" ? (components[props.variant] as Variant) : null;
     });
 
     ctx.expose({
@@ -40,11 +41,10 @@ const ProForm = defineComponent<ProFormProps>(
     });
 
     return () => {
-      if (RenderTypeComponent.value) {
-        return <RenderTypeComponent.value {...omitObjectProperty(props, ["type"])} v-model={model.value} v-slots={ctx.slots} />;
-      }
-      return (
-        <GenerateForm
+      return variant.value ? (
+        <variant.value {...omitObjectProperty(props, ["variant"])} v-model={model.value} v-slots={ctx.slots} />
+      ) : (
+        <CreateForm
           {...props}
           {...ctx.attrs}
           ref={formRef}

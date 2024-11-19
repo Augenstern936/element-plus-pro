@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-06-30 21:35:16
  * @LastEditTime: 2024-10-22 21:03:29
- * @FilePath: \element-plus-pro\packages\form\src\components\TimeSelect\index.tsx
+ *
  */
 import type { ProFieldTimeSelectProps } from "@element-plus-ui/pro-field";
 import { withInstall } from "@element-plus-ui/pro-utils";

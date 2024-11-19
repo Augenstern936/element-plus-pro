@@ -1,14 +1,15 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-06-27 20:57:53
- * @LastEditTime: 2024-11-03 15:43:13
- * @FilePath: \element-plus-pro\packages\form\src\core\HOC\createField.tsx
+ * @LastEditTime: 2024-11-19 13:37:11
+ *
  */
 import { useVModel } from "@vueuse/core";
-import { DefineComponent, FunctionalComponent, SetupContext } from "vue-demi";
-import { ProFormItem } from "../FormItem";
+import { computed, DefineComponent, FunctionalComponent, SetupContext } from "vue-demi";
 import type * as Types from "../../components";
+import { omitObjectProperty, pickObjectProperty } from "@element-plus-ui/pro-utils";
+import { ElFormItem, formItemProps } from "element-plus";
 
 type AddType<O, V> = O & { type: V };
 
@@ -47,19 +48,29 @@ type RenderProps =
   | AddType<Types.ProFormUploadAavtarProps, "uploadAvatar">
   | AddType<Types.ProFormUploadImageProps, "uploadImage">;
 
-type FieldComponentType =
-  | DefineComponent<
-      Omit<RenderProps, "readonly"> & { mode?: "read" | "edit"; emptyText?: string; placeholder?: string | string[] }
-    >
-  | FunctionalComponent<
-      Omit<RenderProps, "readonly"> & { mode?: "read" | "edit"; emptyText?: string; placeholder?: string | string[] }
-    >;
+type FieldComponentProps = Omit<RenderProps, "readonly"> & {
+  mode?: "read" | "edit";
+  emptyText?: string;
+  placeholder?: string | string[];
+};
+
+type FieldComponentType = DefineComponent<FieldComponentProps> | FunctionalComponent<FieldComponentProps>;
 
 function createField(FieldComponent: FieldComponentType) {
   const render = (props: RenderProps, ctx: SetupContext) => {
     const model = useVModel(props, "modelValue", ctx.emit);
+
+    const itemProps = computed(() => {
+      const data = pickObjectProperty(props, Object.keys(formItemProps) as any[]);
+      return omitObjectProperty(data, ["label"]);
+    });
+
+    const label = () => {
+      return typeof props.label === "function" ? (props.label as Function)(model.value, props) : props.label;
+    };
+
     return (
-      <ProFormItem {...(props as any)}>
+      <ElFormItem {...itemProps.value} v-slots={{ label }}>
         <FieldComponent
           type={props.type}
           mode={props.readonly === true ? "read" : "edit"}
@@ -68,7 +79,7 @@ function createField(FieldComponent: FieldComponentType) {
           fieldProps={props.fieldProps}
           v-model={model.value}
         />
-      </ProFormItem>
+      </ElFormItem>
     );
   };
 

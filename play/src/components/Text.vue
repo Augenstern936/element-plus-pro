@@ -1,9 +1,9 @@
 <!--
  * @Description: 
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-16 21:57:06
  * @LastEditTime: 2024-10-18 15:38:53
- * @FilePath: \element-plus-pro\play\src\components\Text.vue
+ * 
 -->
 <template>
   <el-card>

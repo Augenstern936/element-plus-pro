@@ -1,9 +1,9 @@
 /*
  * @Description:;
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-11 22:23:41
  * @LastEditTime: 2024-10-22 22:17:39
- * @FilePath: \element-plus-pro\packages\form\src\layouts\LoginForm\index.tsx
+ *
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
 import { DefineComponent, defineComponent } from "vue-demi";

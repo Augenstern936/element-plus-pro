@@ -1,15 +1,13 @@
 <!--
  * @Description: 
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-09 22:25:21
- * @LastEditTime: 2024-11-10 21:22:07
- * @FilePath: \element-plus-pro\play\src\components\Form.vue
+ * @LastEditTime: 2024-11-17 22:22:08
 -->
 <template>
   <el-card>
     <ProForm
       ref="formRef"
-      v-model="form"
       :label-style="{ fontWeight: 600 }"
       :readonly="false"
       :required="false"
@@ -18,42 +16,51 @@
       :grid="true"
       :col-props="{ span: 24 }"
       :submitter="{
+        fillMode: 'aequilate',
+        reverse: false,
         hideResetButton: false,
-        fillMode: 'full'
+        submitButtonProps: {
+          onClick: () => console.log('自定义提交事件')
+        },
+        onSubmit: entity => {
+          console.log('局部绑定的提交事件，通过返回值控制是否继续', entity);
+          return true;
+        },
+        render: renderSubmitter
       }"
-      @reset="
-        () => {
-          form.age = 10;
+      @reset="entity => console.log('全局绑定的重置事件', entity)"
+      @submit="
+        entity => {
+          console.log('全局绑定的提交事件', entity);
+          return true;
         }
       "
-      @finish="v => console.log(form, '提交')"
+      @finish="entity => console.log('表单验证成功', entity)"
+      @failed="entity => console.log('表单验证失败', entity)"
+      @values-change="(entity, key) => console.log('监听绑定的值发生变化', entity, key)"
     >
-      <!-- female male-->
-      <!-- <ProFormUploadAvatar
-        label="头像2"
-        :marker="'on-line'"
-        :fieldProps="{
-          //src: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
-          action: 'https://fuss10.elemecdn.com'
-        }"
-      />
-      <ProFormUploadAvatar
-        label="头像3"
-        :marker="'off-line'"
-        :fieldProps="{
-          src: 'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
-        }"
-      />
-      <ProForm.Switch v-model="form.switch" label="开关测试:" activeText="已打开" inactive-text="测试" /> -->
+      <template #submitter="{ doms }">
+        <component :is="doms[1]" />
+        <el-button type="primary">确定</el-button>
+      </template>
     </ProForm>
   </el-card>
 </template>
 
-<script setup lang="ts">
-import { ProForm, ProFormUploadAvatar, ProFormColumn } from "@element-plus-ui/pro-form";
-import { ref, watch } from "vue";
+<script setup lang="tsx">
+import { ProForm, ProFormColumn } from "@element-plus-ui/pro-form";
+import { ElButton } from "element-plus";
+import { ref, VNode, watch } from "vue";
 
 const formRef = ref();
+
+const renderSubmitter = (_props: Record<string, any>, doms: VNode[]) => {
+  return [
+    doms[0],
+    <ElButton onClick={() => console.log("点击按钮2")}>按钮2</ElButton>,
+    <ElButton onClick={() => console.log("点击按钮3")}>按钮3</ElButton>
+  ];
+};
 
 const formItems = ref<ProFormColumn[]>([
   {
@@ -61,6 +68,7 @@ const formItems = ref<ProFormColumn[]>([
     prop: "user.name",
     required: true,
     order: 0,
+    valueType: "text",
     hidden: (data: any) => {
       return data.switch === true;
     }
@@ -107,7 +115,7 @@ const formItems = ref<ProFormColumn[]>([
     fieldProps: {
       scoreTemplate: "{value} 级"
     }
-  }
+  },
   // {
   //   label: "进度:",
   //   valueType: "slider",
@@ -128,12 +136,12 @@ const formItems = ref<ProFormColumn[]>([
   //     ]
   //   }
   // },
-  // {
-  //   label: "开关:",
-  //   prop: "switch",
-  //   valueType: "switch",
-  //   fieldProps: {}
-  // }
+  {
+    label: "开关:",
+    prop: "switch",
+    valueType: "switch",
+    fieldProps: {}
+  }
   // {
   //   label: "百分比:",
   //   prop: "progress",

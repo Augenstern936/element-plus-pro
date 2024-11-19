@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-10 00:18:39
  * @LastEditTime: 2024-11-02 19:56:16
- * @FilePath: \element-plus-pro\packages\field\src\components\DatePicker\props.ts
  */
 import { DatePickerProps, DatePickType } from "element-plus";
 import { omitObjectProperty } from "@element-plus-ui/pro-utils";

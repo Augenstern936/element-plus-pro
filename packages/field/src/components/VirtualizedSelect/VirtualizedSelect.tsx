@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-11-10 17:48:16
- * @FilePath: \element-plus-pro\packages\field\src\components\VirtualizedSelect\VirtualizedSelect.tsx
+ * @LastEditTime: 2024-11-11 20:32:22
+ *
  */
 import { enumTransformOptions, getVModelSelectedOptions, formatPlaceholder } from "@element-plus-ui/pro-utils";
 import { useVModel } from "@vueuse/core";
@@ -47,7 +47,6 @@ const ProFieldVirtualizedSelect = defineComponent<ProFieldVirtualizedSelectProps
         <ElSelectV2
           loading={loading.value}
           options={options.value}
-          onChange={v => props?.onChange?.(v)}
           {...props?.fieldProps}
           placeholder={placeholder.value as string}
           v-model={model.value}

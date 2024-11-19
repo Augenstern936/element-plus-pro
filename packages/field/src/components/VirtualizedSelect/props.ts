@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-05-29 21:05:37
  * @LastEditTime: 2024-10-16 22:27:47
- * @FilePath: \element-plus-pro\packages\field\src\components\VirtualizedSelect\props.ts
+ *
  */
 import { Marker, ValueEnum, ValueOption, Request } from "@element-plus-ui/pro-types";
 import { ISelectV2Props } from "element-plus";

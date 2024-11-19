@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-10-10 22:14:25
- * @LastEditTime: 2024-11-10 17:42:04
- * @FilePath: \element-plus-pro\packages\field\src\components\Input\ProFieldTextarea.tsx
+ * @LastEditTime: 2024-11-15 14:40:01
  */
 import { useVModel } from "@vueuse/core";
 import { DefineComponent, defineComponent } from "vue";
@@ -20,7 +19,7 @@ const ProFieldTextarea = defineComponent<ProFieldTextareaProps>(
         return <ElText>{model.value || props.emptyText}</ElText>;
       }
       if (props.mode === "edit") {
-        return <BaseInput onChange={v => props?.onChange?.(v)} {...props?.fieldProps} type="textarea" v-model={model.value} />;
+        return <BaseInput {...props?.fieldProps} type="textarea" v-model={model.value} />;
       }
       return <></>;
     };

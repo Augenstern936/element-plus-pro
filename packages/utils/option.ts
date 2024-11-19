@@ -1,9 +1,9 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-09-13 21:28:34
  * @LastEditTime: 2024-10-16 15:06:50
- * @FilePath: \element-plus-pro\packages\utils\option.ts
+ *
  */
 import { StatusColorEnum, VModelOptionValue, ValueOption } from "@element-plus-ui/pro-types";
 

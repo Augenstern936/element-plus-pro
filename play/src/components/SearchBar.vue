@@ -1,85 +1,79 @@
-<!--
- * @Description: 
- * @Date: 2024-07-14 14:26:48
- * @LastEditTime: 2024-10-31 11:03:28
--->
 <template>
   <el-card>
     <ProSearchBar
-      :layout="'vertical'"
-      :extra-tools="[
-        {
-          title: '批量导入'
-        },
-        {
-          title: '批量导出'
-        }
-      ]"
+      v-model="formData"
+      :columns="columns"
       :collapse="collapse"
       :submitter="[
         {
-          title: '测试',
+          title: '查找',
           type: 'primary',
-          onClick: () => console.log(11)
+          onClick: data => {
+            console.log('自定义配置提交器搜索按钮', data);
+          }
+        }
+      ]"
+      :extra-tools="[
+        {
+          title: '批量导入',
+          onClick: data => console.log('批量导入', data)
+        },
+        {
+          title: '批量导出',
+          onClick: data => console.log('批量导出', data)
         }
       ]"
       @collapse="onCollapse"
-      @search="() => console.log(11)"
+      @search="onSearch"
     >
+      <!-- 自定义额外工具触发器，只有在 extra-tools 配置为多项时，才会生效 -->
       <template #extra-tools-trigger>
-        <ProIcon :name="'More'" />
+        <pro-icon name="More" />
       </template>
-      <el-form-item label="测试">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="测试">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="测试">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="测试">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="测试">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="测试">
-        <el-input />
+      <!-- 自定义表单项 -->
+      <el-form-item label="姓名:">
+        <el-input v-model="formData.name" />
       </el-form-item>
     </ProSearchBar>
   </el-card>
 </template>
 
-<script setup lang="tsx">
+<script setup lang="ts">
 import { ProSearchBar, ProFormColumn } from "@element-plus-ui/pro-form";
-import ProIcon from "@element-plus-ui/pro-icon";
+import { ProIcon } from "@element-plus-ui/pro-icon";
 import { ref } from "vue";
+
+const formData = ref({
+  name: ""
+});
 
 const collapse = ref(false);
 
-const onCollapse = (v: boolean) => {
-  console.log(v, "1111111111");
-};
-
-const formItems = ref<ProFormColumn[]>([
+const columns = ref<ProFormColumn[]>([
   {
-    label: "姓名:",
-    dataField: "name"
-  },
-  {
-    label: "年龄:",
-    dataField: "age",
-    valueType: "number"
+    label: "手机号:",
+    prop: "phone",
+    valueType: "text"
   },
   {
     label: "出生日期:",
+    prop: "date",
     valueType: "date"
-  },
-  {
-    label: "开关:",
-    dataField: "switch",
-    valueType: "switch"
   }
 ]);
+
+/**
+ * 监听展开收起变化
+ */
+const onCollapse = (v: boolean) => {
+  console.log("是否展开：", v);
+};
+
+/**
+ * 默认全局搜索事件，权重低于局部配置的事件
+ * @param entity
+ */
+const onSearch = (entity: Record<string, any>) => {
+  console.log("数据：", entity);
+};
 </script>

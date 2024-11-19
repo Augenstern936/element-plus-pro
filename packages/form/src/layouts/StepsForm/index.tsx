@@ -1,33 +1,25 @@
 /*
- * @Description:;
- * @Author: wangbowen936926
+ * @Description: 分布表单;
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-11 22:23:41
- * @LastEditTime: 2024-11-06 22:40:00
- * @FilePath: \element-plus-pro\packages\form\src\layouts\StepsForm\index.tsx
+ * @LastEditTime: 2024-11-19 11:27:40
+ *
  */
 import { omitObjectProperty, withInstall } from "@element-plus-ui/pro-utils";
 import { computed, defineComponent, ref, watch } from "vue-demi";
-import {
-  ProStepsFormColumn,
-  ProStepsFormProps,
-  proStepsFormProps,
-  ProStepsFormSuperProps,
-  StepConfig,
-  StepsIndexEnum
-} from "./typing";
+import { ProStepsFormProps, proStepsFormProps, ProStepsFormSuperProps, StepConfig, StepsIndexEnum } from "./typing";
 import { ElStep, ElSteps, vLoading } from "element-plus";
 import { ProFormColumn } from "../Form";
-import { ProContextProvider } from "@element-plus-ui/pro-context-provider";
-import { isObject } from "@vueuse/core";
-import { GenerateForm, useSubmitter } from "../../core";
+import { ProProvider } from "@element-plus-ui/pro-provider";
+import { CreateForm, useSubmitter } from "../../core";
 import StepForm, { emitter } from "./StepForm";
-import { useVModel } from "@vueuse/core";
+import { useVModel, isObject } from "@vueuse/core";
 
 const StepsForm = defineComponent<ProStepsFormProps>(
   (props, ctx) => {
     const active = ref(0);
 
-    const model = props.modelValue ? useVModel(props, "modelValue", ctx.emit) : ref({});
+    const model = isObject(props.modelValue) ? useVModel(props, "modelValue", ctx.emit) : ref({});
 
     emitter.on("next", () => onAction("next"));
 
@@ -37,8 +29,11 @@ const StepsForm = defineComponent<ProStepsFormProps>(
 
     emitter.on("failed", () => onAction("failed"));
 
-    const { Submitter, config: submitterConfig } = useSubmitter(props.submitter);
+    const { config: submitterConfig } = useSubmitter(props.submitter);
 
+    /**
+     * 数据归并，统一处理
+     */
     const steps = computed(() => {
       const slots = ctx.slots?.default?.();
       const slotConfigs = slots?.filter(({ __v_isVNode, type }: any) => __v_isVNode && type?.name === "ProStepForm");
@@ -73,13 +68,13 @@ const StepsForm = defineComponent<ProStepsFormProps>(
       let columns: ProFormColumn[][] = [];
       let startIndex: null | number = null;
       if (Array.isArray(props.columns) && props.columns.length) {
-        props.columns.forEach((item: ProStepsFormColumn, index) => {
+        props.columns.forEach((item, index) => {
           if (Array.isArray(item)) {
             columns.push(item as ProFormColumn[]);
           }
           if (isObject(item)) {
             startIndex = startIndex ?? index;
-            columns[startIndex] = columns[startIndex] ? [...columns[startIndex], item as ProFormColumn] : [item as ProFormColumn];
+            columns[startIndex] = (columns[startIndex] ? [...columns[startIndex], item] : [item]) as ProFormColumn[];
           }
         });
       }
@@ -139,7 +134,7 @@ const StepsForm = defineComponent<ProStepsFormProps>(
               }}
             >
               {config.__v_isVNode ? (
-                <ProContextProvider
+                <ProProvider
                   value={{
                     current: i,
                     total: steps.value.length,
@@ -147,31 +142,29 @@ const StepsForm = defineComponent<ProStepsFormProps>(
                   }}
                 >
                   {config}
-                </ProContextProvider>
+                </ProProvider>
               ) : (
-                <GenerateForm
+                <CreateForm
                   {...omitObjectProperty(props, ["active", "stepsProps", "onFinish", "onActiveChange"])}
                   v-model={model.value}
                   columns={config.columns}
                   style={{ width: "50%", margin: "auto" }}
-                  submitter={() => (
-                    <Submitter
-                      {...submitterConfig.value}
-                      reversal={i !== 0}
-                      hideResetButton={i === 0}
-                      resetButtonTitle={"上一步"}
-                      submitButtonProps={{
-                        title: i + 1 === steps.value.length ? "提交" : "下一步",
-                        onClick: () => {
-                          if (i + 1 < steps.value.length) {
-                            return onAction("next");
-                          }
-                          onAction("submit");
+                  submitter={{
+                    ...submitterConfig.value,
+                    reverse: i !== 0,
+                    hideResetButton: i === 0,
+                    resetButtonTitle: "上一步",
+                    submitButtonProps: {
+                      title: i + 1 === steps.value.length ? "提交" : "下一步",
+                      onClick: () => {
+                        if (i + 1 < steps.value.length) {
+                          return onAction("next");
                         }
-                      }}
-                      onReset={() => onAction("prev")}
-                    />
-                  )}
+                        onAction("submit");
+                      }
+                    },
+                    onReset: () => onAction("prev")
+                  }}
                 />
               )}
             </div>
@@ -181,7 +174,7 @@ const StepsForm = defineComponent<ProStepsFormProps>(
     );
   },
   {
-    name: "ProStepForm"
+    name: "ProStepsForm"
   }
 ) as ProStepsFormSuperProps;
 

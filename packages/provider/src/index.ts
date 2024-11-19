@@ -1,19 +1,18 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-10-29 16:35:31
- * @LastEditTime: 2024-10-30 09:38:41
- * @FilePath: \element-plus-pro\packages\context-provider\src\index.ts
+ * @LastEditTime: 2024-11-17 13:54:48
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
-import { defineComponent, PropType, provide } from "vue";
+import { defineComponent, PropType, provide } from "vue-demi";
 
-export interface ProContextProviderProps {
+export interface ProProviderProps {
   value?: Record<string, any>;
 }
 
-const ContextProvider = defineComponent<ProContextProviderProps>({
-  name: "ProContextProvider",
+export const ProProvider = defineComponent<ProProviderProps>({
+  name: "ProProvider",
   props: {
     value: {
       type: Object as PropType<Record<string, any>>,
@@ -22,6 +21,7 @@ const ContextProvider = defineComponent<ProContextProviderProps>({
   },
   setup(props, ctx) {
     if (props.value && Object.keys(props.value).length) {
+      provide("provide-value", props.value);
       for (const key in props.value) {
         if (Object.prototype.hasOwnProperty.call(props.value, key)) {
           provide(key, props.value[key]);
@@ -32,6 +32,4 @@ const ContextProvider = defineComponent<ProContextProviderProps>({
   }
 });
 
-export const ProContextProvider = ContextProvider;
-
-export default withInstall(ContextProvider);
+export default withInstall(ProProvider);

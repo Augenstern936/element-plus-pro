@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-06-02 16:15:00
  * @LastEditTime: 2024-06-02 16:15:19
- * @FilePath: \element-plus-pro\packages\descriptions\src\index.ts
  */
 import { withInstall } from "@element-plus-ui/pro-utils";
 

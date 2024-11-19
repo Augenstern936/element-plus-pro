@@ -1,18 +1,19 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-18 21:25:23
- * @LastEditTime: 2024-07-27 16:47:22
- * @FilePath: \element-plus-pro\packages\form\src\layouts\SearchBar\Options.tsx
+ * @LastEditTime: 2024-11-19 11:43:58
+ *
  */
 import ProButton, { ProButtonProps } from "@element-plus-ui/pro-button";
 import { isObject } from "@vueuse/core";
 import { ElDropdown, ElDropdownItem, ElDropdownMenu } from "element-plus";
-import { computed, SetupContext } from "vue";
+import { omitObjectProperty } from "@element-plus-ui/pro-utils";
+import { computed, SetupContext, VNode } from "vue-demi";
 interface OptionsProps {
+  model: Record<string, any>;
   trigger: any;
-  buttons?: ProButtonProps[] | (() => JSX.Element);
-  onClick?: (index: number) => void;
+  buttons?: ProButtonProps[] | ((entity: Record<string, any>) => string | number | VNode);
 }
 
 const Options = (props: OptionsProps, ctx: SetupContext) => {
@@ -49,7 +50,7 @@ const Options = (props: OptionsProps, ctx: SetupContext) => {
       return generateButtonElement(buttons, false);
     }
 
-    return typeof buttons === "function" ? buttons() : buttons || "";
+    return typeof buttons === "function" ? buttons(props.model) : buttons || "";
   };
 
   const renderSlots = () => {
@@ -77,7 +78,12 @@ const Options = (props: OptionsProps, ctx: SetupContext) => {
   const generateButtonElement = (btnConfig: ProButtonProps & { [x: string]: any }, isText: boolean, index: number = 0) => {
     if (!btnConfig.__v_isVNode && Object.keys(btnConfig)?.length) {
       return (
-        <ProButton {...btnConfig} text={btnConfig.text ?? isText} key={index || "tool"} onClick={() => props.onClick?.(index)} />
+        <ProButton
+          {...omitObjectProperty(btnConfig, ["onClick"])}
+          text={btnConfig.text ?? isText}
+          key={index || "tool"}
+          onClick={() => btnConfig?.onClick?.(props.model)}
+        />
       );
     }
     return null;

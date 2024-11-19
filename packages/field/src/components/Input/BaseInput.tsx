@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-11-10 17:40:27
- * @FilePath: \element-plus-pro\packages\field\src\components\Input\BaseInput.tsx
+ * @LastEditTime: 2024-11-15 14:39:26
  */
 import { useVModel } from "@vueuse/core";
 import { ElInput, inputProps } from "element-plus";

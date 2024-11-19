@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-22 22:07:38
- * @LastEditTime: 2024-04-25 15:27:35
- * @FilePath: \element-plus-pro\packages\field\gulpfile.ts
+ * @LastEditTime: 2024-11-15 14:29:31
  */
 import tasks from "../../build";
 

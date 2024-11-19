@@ -1,9 +1,8 @@
 /*
  * @Description:
- * @Author: wangbowen936926
+ * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-04 22:57:02
  * @LastEditTime: 2024-11-10 17:50:23
- * @FilePath: \element-plus-pro\packages\field\src\Field.tsx
  */
 import { ToUppercaseFirst } from "@element-plus-ui/pro-types";
 import { omitObjectProperty, withInstall } from "@element-plus-ui/pro-utils";
