@@ -9,7 +9,7 @@
 
 ### ❤️  Thank You
 
-- wangbowen936926 @l
+- wangbowen936926
 
 ## 1.0.4 (2024-11-03)
 
