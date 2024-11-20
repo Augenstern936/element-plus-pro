@@ -1,12 +1,13 @@
 {
   "name": "@element-plus-ui/pro-provider",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "@element-plus-ui/pro-provider",
   "keywords": [
     "ui",
     "pro",
     "vue3",
     "admin",
+    "inject",
     "provider",
     "element",
     "component",
@@ -25,7 +26,7 @@
   },
   "sideEffects": false,
   "main": "lib/index.js",
-  "module": "src/index.ts",
+  "module": "es/index.mjs",
   "types": "es/index.d.ts",
   "files": [
     "lib",

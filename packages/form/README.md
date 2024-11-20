@@ -1,7 +1,7 @@
 <h1 align="center">@element-plus-ui/pro-form</h1>
 
-<p align="center">在原来的 <a href="https://element-plus.org/zh-CN/component/form.html">ElForm</a> 的基础上增加了一些语法糖和更多的布局设置，帮助我们快速地开发一个表单</p>
-<p align="center">让中后台开发更简单 💪</p>
+<p align="center">在原来的 <a href="https://element-plus.org/zh-CN/component/form.html">ElForm</a> 的基础上增加了一些语法糖和更多的布局设置</p>
+<p align="center">帮助我们快速地开发一个表单，让中后台开发更简单 💪</p>
 
 ## 📦 安装
 
@@ -19,17 +19,19 @@ $ pnpm add @element-plus-ui/pro-form
 
 ## ✨ 布局组件
 
-- [ProForm](#ProForm组件) 通用型表单组件，自身挂载了表单项组件及以下布局组件
-- [ProSearchBar](#ProSearchBar组件) 搜索栏表单组件，配合其它组件单独使用，如：table
-- [ProStepsForm](#ProStepsForm组件) 分布式表单组件，一般在数据量比较多的情况下使用
-- [ProDialogForm](#ProDialogForm组件) 组合了 **ElDialog** 和 **ProForm** 组件，可通过 **trigger** 来控制显隐, 减少繁琐的状态管理
-- [ProDrawerForm](#ProDrawerForm组件) 组合了 **ElDrawer** 和 **ProForm** 组件，可通过 **trigger** 来控制显隐, 减少繁琐的状态管理
+- [ProForm](#ProForm) 通用型表单组件，自身挂载了表单项组件及以下布局组件
+- [ProSearchBar](#ProSearchBar) 搜索栏表单组件，配合其它组件单独使用，如：table
+- [ProStepsForm](#ProStepsForm) 分布式表单组件，一般在数据量比较多的情况下使用
+- [ProDialogForm](#ProDialogForm) 组合了 **ElDialog** 和 **ProForm** 组件，可通过 **trigger** 来控制显隐, 减少繁琐的状态管理
+- [ProDrawerForm](#ProDrawerForm) 组合了 **ElDrawer** 和 **ProForm** 组件，可通过 **trigger** 来控制显隐, 减少繁琐的状态管理
 
 ## ✨ 表单项组件(一般配合布局组件一起使用)
 
-> <p>这些组件本质上是 <a href="https://element-plus.org/zh-CN/component/form.html">ElFormItem</a> 和 <b>组件</b> 的结合，我们可以把他们当成一个 <a href="https://element-plus.org/zh-CN/component/form.html">ElFormItem</a> 来使用，并且支持各种 <b>props</b>.</p>
-> <p>每个表单项都支持 <b>fieldProps</b> 属性来支持设置输入组件的 <b>props</b>。 我们支持了 <b>placeholder</b> 的透传，你可以直接在组件上设置 <b>placeholder</b>.</p>
-> <p>对于表单项的生成，除了使用以下组件外，还支持通过 <a href="#ColumnConfig">columns</a> 属性进行配置，如果你想要自定义表单元素，你仍然可以用 <a href="https://element-plus.org/zh-CN/component/form.html">ElForm</a> 原有（<a href="https://element-plus.org/zh-CN/component/form.html">ElFormItem + 自定义组件</a>）的方式来自定义，三者可以混合使用.</p>
+这些组件本质上是 [ElFormItem](https://element-plus.org/zh-CN/component/form.html) 和 **组件** 的结合，我们可以把他们当成一个 [ElFormItem](https://element-plus.org/zh-CN/component/form.html) 来使用，并且支持各种 **props**
+
+每个表单项都支持 **fieldProps** 属性来支持设置输入组件的 **props**。 我们支持了 **placeholder** 的透传，你可以直接在组件上设置 **placeholder**
+
+对于表单项的生成，除了使用以下组件外，还支持通过 [columns](#ColumnConfig) 属性进行配置，如果你想要自定义表单元素，你仍然可以用 [ElForm](https://element-plus.org/zh-CN/component/form.html) 原有（[ElFormItem + 自定义组件](https://element-plus.org/zh-CN/component/form.html)）的方式来自定义，三者可以混合使用
 
 - [ProFormText](#ProFormFields) 用于输入各类文本
 - [ProFormTextarea](#ProFormFields) 用于输入多行文本
@@ -64,9 +66,7 @@ $ pnpm add @element-plus-ui/pro-form
 - [ProFormUploadAvatar](#ProFormFields) 用于头像上传和展示
 - [ProFormVirtualizedSelect](#ProFormFields) 虚拟化选择器，支持 **request** 和 **valueEnum** 两种方式来生成子项
 
-## API
-
-### ProForm组件
+## ProForm
 
 在 [ElForm](https://element-plus.org/zh-CN/component/form.html) 的基础上，新增了以下属性和事件
 
@@ -91,13 +91,13 @@ $ pnpm add @element-plus-ui/pro-form
 | @failed  | 监听表单验证失败，在 **submit** 事件之后执行. | `(entity) => void` | -      |
 | @values-change  | 监听表单绑定的数据发生变化. | `(entity, key) => void` | -      |
 
-##### 重置和提交按钮事件权重规则：
+#### 重置和提交按钮事件权重规则：
 
 - *submitter.submitButtonProps.onClick > submitter.onSubmit > @submit*
 
 - *submitter.submitButtonProps.onClick > submitter.onReset > @reset*
 
-##### 案例：
+#### 案例：
 
 ```vue
 <template>
@@ -150,23 +150,20 @@ $ pnpm add @element-plus-ui/pro-form
       hidden: (data: any) => {
         return data.switch === true;
       }
-    },
-    {
+    },{
       label: "年龄:",
       prop: "age",
       valueType: "number",
       tooltip: "测试",
       rules: [{ type: "number", trigger: "change" }]
-    },
-    {
+    },{
       label: "星级:",
       valueType: "rate",
       prop: "rate",
       fieldProps: {
         scoreTemplate: "{value} 级"
       }
-    },
-    {
+    },{
       label: "开关:",
       prop: "switch",
       valueType: "switch",
@@ -181,7 +178,7 @@ $ pnpm add @element-plus-ui/pro-form
     age: 9
   });
 
-  const getFormData = async (params: Record<string, any>, props: Record<string, any>) => {
+  const getFormData = async (params: Record<string, any>) => {
     return {
       user: {
         name: "拔都"
@@ -192,7 +189,7 @@ $ pnpm add @element-plus-ui/pro-form
 </script>
 ```
 
-### ProSearchBar组件
+## ProSearchBar
 
 事件绑定及权重与 [ProForm](#ProForm组件) 组件相同
 
@@ -210,6 +207,8 @@ $ pnpm add @element-plus-ui/pro-form
 | submitter  | 提交器，用于配置相关按钮. | [SubmitterConfig](#SubmitterConfig) | -      |
 | defaultCollapsed  | 默认是否展开. | `boolean` | false      |
 | defaultColsNumber  | 默认显示列数. | `number` | 3      |
+
+#### 案例：
 
 ```vue
 <template>
@@ -230,8 +229,7 @@ $ pnpm add @element-plus-ui/pro-form
       {
         title: '批量导入',
         onClick: data => console.log('批量导入', data)
-      },
-      {
+      },{
         title: '批量导出',
         onClick: data => console.log('批量导出', data)
       }
@@ -261,13 +259,15 @@ $ pnpm add @element-plus-ui/pro-form
 
   const collapse = ref(false);
 
+  /**
+   * 定义表单项
+   */
   const columns = ref<ProFormColumn[]>([
     {
       label: "手机号:",
       prop: "phone",
       valueType: "text"
-    },
-    {
+    },{
       label: "出生日期:",
       prop: "date",
       valueType: "date"
@@ -291,7 +291,7 @@ $ pnpm add @element-plus-ui/pro-form
 </script>
 ```
 
-### ProStepsForm组件
+## ProStepsForm
 
 我们提供了三种方式来生成表单，首先是通过 `ProStepForm` 组件以插槽的形式生成，这种方式权限也是最高的，其次是通过 `steps` 属性进行配置，如果在`steps` 配置中，未定义 `columns`，那么会使用全局 `columns`。
 
@@ -302,6 +302,8 @@ $ pnpm add @element-plus-ui/pro-form
 | columns  | 表单定义，需要使用二维数组来生成多个表单，否则会生成一个普通表单. | Array<[ColumnConfig](#ColumnConfig)[] \| [ColumnConfig](#ColumnConfig)> | -      |
 | hideStepsBar  | 是否隐藏步骤栏. | `boolean` | false      |
 | stepsProps  | **ElSteps** 组件 **Props** 配置. | [StepsProps](https://element-plus.org/zh-CN/component/steps.html) | -      |
+
+#### 案例：
 
 ```vue
 <template>
@@ -318,14 +320,12 @@ $ pnpm add @element-plus-ui/pro-form
             prop: 'name',
             required: true,
             valueType: 'text'
-          },
-          {
+          },{
             label: '年龄:',
             prop: 'age',
             valueType: 'number',
             tooltip: '测试'
-          },
-          {
+          },{
             label: '出生日期:',
             valueType: 'date'
           }
@@ -337,8 +337,7 @@ $ pnpm add @element-plus-ui/pro-form
           {
             label: '是否通过',
             valueType: 'switch'
-          },
-          {
+          },{
             label: '爱好:',
             prop: 'test',
             valueType: 'radio',
@@ -352,31 +351,14 @@ $ pnpm add @element-plus-ui/pro-form
         ]
       }
     ]"
-    @finish="
-      async v => {
-        console.log(v, '全局触发第二步成功');
-        return true;
-      }
-    "
-    @failed="
-      v => {
-        console.log(v, '全局触发第二步失败');
-      }
-    "
+    @finish="async v => {
+      console.log(v, '全局触发第二步成功');
+      return true;
+    }"
+    @failed="v => console.log(v, '全局触发第二步失败')"
   >
     <ProStepsForm.StepForm
       title="基础信息"
-      @finish="
-        async v => {
-          console.log(v, '第一步成功');
-          return true;
-        }
-      "
-      @failed="
-        v => {
-          console.log(v, '第一步失败');
-        }
-      "
       :columns="[
         {
           label: '姓名:',
@@ -384,18 +366,21 @@ $ pnpm add @element-plus-ui/pro-form
           required: true,
           order: 0,
           valueType: 'text'
-        },
-        {
+        },{
           label: '年龄:',
           prop: 'age',
           valueType: 'number',
           tooltip: '测试'
-        },
-        {
+        },{
           label: '出生日期:',
           valueType: 'date'
         }
       ]"
+      @finish="async v => {
+        console.log(v, '第一步成功');
+        return true;
+      }"
+      @failed="v => console.log(v, '第一步失败')"
     >
       <!-- 通过插槽的方式定义的表单项，权重大于 columns，所以在第一项显示 -->
       <ProForm.Cascader label="选择器" :order="0" />
@@ -412,9 +397,9 @@ $ pnpm add @element-plus-ui/pro-form
 </script>
 ```
 
-### ProDialogForm组件
+## ProDialogForm
 
-**ProDialogForm** 是 [ElDiaLog](https://element-plus.org/zh-CN/component/dialog.html) 和 [ProForm](#ProForm) 组件的组合，除了以下属性外，还继承了 [ProForm](#ProForm) 的 [Props](#ProForm)，以下不再一一列举，如有需要，可查阅 [ProFormAPI](#ProForm)
+是 [ElDiaLog](https://element-plus.org/zh-CN/component/dialog.html) 和 [ProForm](#ProForm) 组件的组合，除了以下属性外，还继承了 [ProForm](#ProForm) 的 [Props](#ProForm)，以下不再过多列举，如有需要，可查阅 [ProFormAPI](#ProForm)
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
@@ -426,14 +411,17 @@ $ pnpm add @element-plus-ui/pro-form
 | titleWeight  | 标题粗细. | `number` / `string` | 600      |
 | dialogProps  | **ElDialog** 组件 **Props** 配置。注意：不支持 **modelValue**，请使用全局的 **open**. | [DialogProps](https://element-plus.org/zh-CN/component/dialog.html) | {}     |
 
+#### 案例：
+
 ```vue
 <template>
   <el-button @click="open = true">创建用户</el-button>
   <pro-dialog-form
     v-model:open="open"
-    :title="'创建用户'"
+    title="创建用户"
     :grid="true"
     :col-props="{ span: 24 }"
+    :trigger="{ title: '以 trigger 方式控制显隐', type: 'primary' }"
     :columns="[
       {
         label: '年龄',
@@ -441,7 +429,6 @@ $ pnpm add @element-plus-ui/pro-form
         valueType: 'number'
       }
     ]"
-    :trigger="{ title: '以 trigger 方式控制显隐', type: 'primary' }"
   >
     <!-- 自定义 -->
     <el-form-item label="姓名">
@@ -459,9 +446,9 @@ $ pnpm add @element-plus-ui/pro-form
 </script>
 ```
 
-### ProDrawerForm组件
+## ProDrawerForm
 
-**ProDrawerForm** 是 [ElDrawer](https://element-plus.org/zh-CN/component/drawer.html) 和 [ProForm](#ProForm) 组件的组合，除了以下属性外，还继承了 [ProForm](#ProForm) 的 [Props](#ProForm)，以下不再一一列举，如有需要，可查阅 [ProFormAPI](#ProForm)
+是 [ElDrawer](https://element-plus.org/zh-CN/component/drawer.html) 和 [ProForm](#ProForm) 组件的组合，除了以下属性外，还继承了 [ProForm](#ProForm) 的 [Props](#ProForm)，以下不再一一列举，如有需要，可查阅 [ProFormAPI](#ProForm)
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
@@ -473,14 +460,17 @@ $ pnpm add @element-plus-ui/pro-form
 | titleWeight  | 标题粗细. | `number` / `string` | 600      |
 | drawerProps  | **ElDrawer** 组件 **Props** 配置。注意：不支持 **modelValue**，请使用全局的 **open**. | [DrawerProps](https://element-plus.org/zh-CN/component/drawer.html) | {}     |
 
+#### 案例：
+
 ```vue
 <template>
   <el-button @click="open = true">创建用户</el-button>
   <pro-drawer-form
     v-model:open="open"
-    :title="'创建用户'"
+    title="创建用户"
     :grid="true"
     :col-props="{ span: 24 }"
+    :trigger="{ title: '以 trigger 方式控制显隐', type: 'primary' }"
     :columns="[
       {
         label: '年龄',
@@ -488,7 +478,6 @@ $ pnpm add @element-plus-ui/pro-form
         valueType: 'number'
       }
     ]"
-    :trigger="{ title: '以 trigger 方式控制显隐', type: 'primary' }"
   >
     <!-- 自定义 -->
     <el-form-item label="姓名">
@@ -506,17 +495,19 @@ $ pnpm add @element-plus-ui/pro-form
 </script>
 ```
 
-### ProFormFields
+## ProFormFields
 
 ProForm 自带的 Filed, 与 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 组件的 type 一一对应, 除了以下新增的属性之外, 同时也继承了 [ElFormItem](https://element-plus.org/zh-CN/component/form.html) 和 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 对应的组件 Props.
 
-可以这样理解，ProFormText 是 ElFormItem + ElInput 的产物，所以我们给 ProFormText 设置的 props 其实是 ElFormItem 的，fieldProps 才是包含的组件的，要切记.
+可以这样理解，**ProFormText** 是 **ElFormItem + ElInput** 的产物，所以我们给 **ProFormText** 设置的 **props** 其实是 **ElFormItem** 的，**fieldProps** 才是包含的组件的，要切记.
 
-对于一些继承的属性，以下不再一一列举，如有需要, 可前往 [ElFormItem](https://element-plus.org/zh-CN/component/form.html) 和 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 组件文档处进行查阅
+对于一些继承的属性，以下不再过多列举，如有需要, 可前往 [ElFormItem](https://element-plus.org/zh-CN/component/form.html) 和 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 组件文档处进行查阅
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
 | order  | 表单项排序，数值越大越靠后. | `number` | -      |
+
+#### 案例：
 
 ```vue
 <template>
@@ -547,7 +538,7 @@ ProForm 自带的 Filed, 与 [ProField](https://www.npmjs.com/package/@element-p
 </script>
 ```
 
-### StepConfig
+## StepConfig
 
 除了以下属性，同时还继承了 [ElStepProps](https://element-plus.org/zh-CN/component/steps.html) 和 [ProFormProps](#ProForm)
 
@@ -555,9 +546,9 @@ ProForm 自带的 Filed, 与 [ProField](https://www.npmjs.com/package/@element-p
 | ---- | ------------- | ------------------------------------ | ------ |
 | columns  | 表单项定义. | [ColumnConfig](#ColumnConfig) | []      |
 
-### ColumnConfig
+## ColumnConfig
 
-Column 配置除了以下属性外，自身也继承了 [ElFormItemProps](https://element-plus.org/zh-CN/component/form.html)，以下不再一一列举
+除了以下属性外，还继承了 [ElFormItemProps](https://element-plus.org/zh-CN/component/form.html)，以下不再过多列举
 
 | 属性 | 描述          | 类型                                 | 默认值 |
 | ---- | ------------- | ------------------------------------ | ------ |
@@ -579,7 +570,7 @@ Column 配置除了以下属性外，自身也继承了 [ElFormItemProps](https:
 
 > 属性 **valueType**、**valueEnum**、**request**、**marker**、**mappingEnumValue**、**fieldProps** 使用方式与 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 组件完全相同，在这不再过多描述，如有需要可前往 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 文档处进行查阅
 
-### ButtonConfig
+## ButtonConfig
 
 在 [ElButtonProps](https://element-plus.org/zh-CN/component/button.html) 的基础上新增了以下属性
 
@@ -587,7 +578,7 @@ Column 配置除了以下属性外，自身也继承了 [ElFormItemProps](https:
 | ---- | ------------- | ------------------------------------ | ------ |
 | title  | 按钮标题文本. | `string` | -      |
 
-### SubmitterConfig
+## SubmitterConfig
 
 除了支持 `boolean`、`ButtonConfig[]`、`(props, doms: VNode[]) => VNode | Array<VNode>` 类型外，还支持以下对象类型配置
 
@@ -602,10 +593,10 @@ Column 配置除了以下属性外，自身也继承了 [ElFormItemProps](https:
 | resetButtonProps  | 重置按钮 Props 配置. | [ButtonConfig](#ButtonConfig) | {}      |
 | submitButtonProps  | 提交按钮 Props 配置. | [ButtonConfig](#ButtonConfig) | {}      |
 | render  | 自定义渲染提交器，一般配合 **JSX** 或 **Vue** 的 **h** 函数使用. | `(props, doms: VNode[]) => VNode \| Array<VNode>` | -      |
-| onReset  | 监听事件，权限大于全局 **v-bind** 绑定的事件. | `Function` | -      |
-| onSubmit  | 监听提交事件，权限大于全局 **v-bind** 绑定的事件. | `Function` | -      |
+| onReset  | 监听事件，权限大于全局 **v-on** 绑定的事件. | `Function` | -      |
+| onSubmit  | 监听提交事件，权限大于全局 **v-on** 绑定的事件. | `Function` | -      |
 
-##### 案例：
+#### 案例：
 
 - 在 template 中使用
 
@@ -680,7 +671,7 @@ Column 配置除了以下属性外，自身也继承了 [ElFormItemProps](https:
   </pro-form>
 </template>
 
-<script setup lang="tsx">
+<script setup lang="ts">
   import { ProForm } from "@element-plus-ui/pro-form";
 </script>
 ```

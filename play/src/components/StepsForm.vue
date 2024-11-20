@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-11-13 23:30:05
+ * @LastEditTime: 2024-11-20 15:50:33
  * 
 -->
 <template>
@@ -60,11 +60,7 @@
           return true;
         }
       "
-      @failed="
-        v => {
-          console.log(v, '全局触发第二步失败');
-        }
-      "
+      @failed="v => console.log(v, '全局触发第二步失败')"
     >
       <ProStepsForm.StepForm
         title="测试1"
@@ -74,11 +70,7 @@
             return true;
           }
         "
-        @failed="
-          v => {
-            console.log(v, '第一步失败');
-          }
-        "
+        @failed="v => console.log(v, '第一步失败')"
         :columns="[
           {
             label: '姓名:',
