@@ -4,11 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "mock": "tsx ./src/mock/test.ts"
+    "dev": "vite"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.4.0",
@@ -19,7 +16,7 @@
     "@element-plus-ui/pro-button": "workspace:^",
     "@element-plus-ui/pro-components": "workspace:^",
     "@element-plus-ui/pro-field": "workspace:^",
-    "@element-plus-ui/pro-form": "workspace:^",
+    "@element-plus-ui/pro-form": "1.0.0-beta.1",
     "@element-plus-ui/pro-icon": "1.2.0",
     "@element-plus-ui/pro-text": "workspace:^",
     "vue": "^3.4.31"

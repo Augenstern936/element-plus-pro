@@ -2,7 +2,7 @@
  * @Description:
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-05-17 19:46:42
- * @LastEditTime: 2024-10-13 16:56:22
+ * @LastEditTime: 2024-11-24 20:11:09
  *
  */
 import { CssUnitEnum, ValueEnum, ValueOption } from "@element-plus-ui/pro-types";
@@ -76,4 +76,9 @@ export function toEnum(options: { label: string; value: string | number | boolea
     acc[cur.value] = cur.label;
     return acc;
   }, {});
+}
+
+export function toUpperCase(value: string) {
+  if (!value) return;
+  return value.charAt(0).toUpperCase() + value.slice(1);
 }

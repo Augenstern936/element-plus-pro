@@ -1,17 +1,22 @@
 {
   "name": "@element-plus-ui/pro-table",
   "version": "0.0.1",
-  "description": "@element-plus-ui/pro-table",
+  "description": "🏆 Use Element Plus Table like a Pro!",
   "keywords": [
     "ui",
+    "pro",
     "vue3",
+    "form",
+    "field",
+    "admin",
+    "table",
     "element",
     "component",
     "element-plus",
     "element-plus-pro"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Augenstern936/element-plus-pro",
+  "homepage": "https://github.com/Augenstern936/element-plus-pro/tree/master/packages/table#readme",
   "bugs": "https://github.com/Augenstern936/element-plus-pro/issues",
   "gitpository": {
     "type": "git",
@@ -31,19 +36,24 @@
   "author": "<Haidu w936926@outlook.com>",
   "dependencies": {
     "@element-plus-ui/pro-button": "workspace:^",
-    "@element-plus-ui/pro-form": "workspace:^",
     "@element-plus-ui/pro-field": "workspace:^",
+    "@element-plus-ui/pro-form": "workspace:^",
+    "@element-plus-ui/pro-icon": "^1.2.1",
+    "@element-plus-ui/pro-text": "workspace:1.0.2-1",
     "@element-plus/icons-vue": "^2.3.1",
+    "@types/mockjs": "^1.0.10",
     "@types/uuid": "^9.0.7",
     "@vueuse/core": "^10.11.1",
+    "fetch-mock": "^10.0.8",
+    "mockjs": "^1.1.0",
+    "msw": "^2.6.5",
     "screenfull": "^6.0.2",
     "uuid": "^9.0.1",
     "vue-demi": "^0.14.8",
     "vue3-styled-components": "^1.2.1"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-rc.1",
-    "element-plus": "^2.7.2",
+    "element-plus": ">=2.8.8",
     "vue": ">=3.0.0"
   },
   "peerDependenciesMeta": {
@@ -53,10 +63,5 @@
   },
   "engines": {
     "node": ">=16.17.1"
-  },
-  "msw": {
-    "workerDirectory": [
-      "src\\mock"
-    ]
   }
 }

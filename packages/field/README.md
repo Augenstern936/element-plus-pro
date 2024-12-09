@@ -1,7 +1,7 @@
 <h1 align="center">@element-plus-ui/pro-field</h1>
 
 <p align="center">⚡️ 原子信息组件，基于 <a href="https://element-plus.org/zh-CN/">ElementPlus</a> 的 <a href="https://element-plus.org/zh-CN/component/form.html">Form</a> 表单组件</p>
-<p align="center">统一 <a href="https://www.npmjs.com/package/@element-plus-ui/pro-components">@element-plus-ui/pro-components</a> 中的 <a href="https://www.npmjs.com/package/@element-plus-ui/pro-form">ProForm</a>、<a href="https://www.npmjs.com/package/@element-plus-ui/pro-table">ProTable</a> 等组件里的字段定义</p>
+<p align="center">统一 <a href="bubiaoq">@element-plus-ui/pro-components</a> 中的 <a href="https://www.npmjs.com/package/@element-plus-ui/pro-form">ProForm</a>、<a href="https://www.npmjs.com/package/@element-plus-ui/pro-table">ProTable</a> 等组件里的字段定义</p>
 <p align="center">让中后台开发更简单 💪</p>
 
 ## 📦 安装

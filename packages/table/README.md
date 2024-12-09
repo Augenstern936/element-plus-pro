@@ -1,10 +1,9 @@
 <h1 align="center">@element-plus-ui/pro-table</h1>
 
-<p align="center">基于 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle;"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 而开发的一套 <a href="https://cn.vuejs.org/">Vue3</a> 模板组件.</p>
-<p align="center">在 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px; vertical-align:middle"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 上进行了自己的封装，更加易用，样式风格与 <a href="https://element-plus.org/zh-CN/" style="line-height: 16px;  vertical-align:middle"><img src="https://element-plus.org/images/element-plus-logo.svg" width="77px"/></a> 一脉相承，无需魔改，浑然天成.</p>
-<p align="center">使用 📠<a href="https://www.typescriptlang.org/"> TypeScript </a>开发，提供完整的类型定义文件，无需频繁打开官网，让中后台开发更简单.</p>
+<p align="center">在 <a href="https://element-plus.org/zh-CN">ElementPlus</a> 的 <a href="https://element-plus.org/zh-CN/component/table.html">Table</a> 上进行了一层封装，支持了一些预设，并且封装了一些行为</p>
+<p align="center">解决项目中需要写很多 <b>table</b> 样板代码问题，让中后台开发更简单 💪</p>
 
-## 📦 Install
+## 📦 安装
 
 ```bash
 $ npm install @element-plus-ui/pro-table
@@ -18,83 +17,63 @@ $ yarn add @element-plus-ui/pro-table
 $ pnpm add @element-plus-ui/pro-table
 ```
 
-## 🔨 Usage
-
-##### 🚀 完整引入
-
-```ts
-import { createApp } from "vue";
-import App from "./src/App.vue";
-import ProTable from "@element-plus-ui/pro-table";
-
-const app = createApp(App);
-
-app.mount("#app").use(ProTable);
-```
-
-##### 🚀 按需使用
-
-<img src="https://github.com/Augenstern936/element-plus-pro/raw/master/docs/public/domes/pro-table.jpg"/>
+## 🔨 使用
 
 ```vue
 <template>
-  <pro-table title="ProTable-高级表格组件" :columns="columns" />
+  <el-card>
+    <pro-table title="高级表格组件" :columns="columns" />
+  </el-card>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
-import { ProTable } from "@element-plus-ui/pro-table";
-import type { TableColumns } from "@element-plus-ui/pro-table";
+  import { reactive, ref } from "vue";
+  import { ProTable } from "@element-plus-ui/pro-table";
+  import type { TableColumns } from "@element-plus-ui/pro-table";
 
-const columns = ref<TableColumns[]>([
-  {
-    title: "ID",
-    dataField: "id",
-    search: false,
-    width: 100
-  },
-  {
-    title: "姓名",
-    dataField: "name",
-    search: {
-      order: 2
-    }
-  },
-  {
-    title: "性别",
-    dataField: "sex",
-    search: false,
-    valueType: "radioButton",
-    valueEnum: {
-      0: "男",
-      1: "女"
-    }
-  },
-  {
-    title: "年龄",
-    dataField: "age"
-  },
-  {
-    title: "头像",
-    dataField: "avatar",
-    valueType: "avatar"
-  },
-  {
-    title: "户籍",
-    dataField: "city",
-    search: true
-  },
-  {
-    title: "生日",
-    dataField: "date",
-    valueType: "dateYear"
-  },
-  {
-    title: "操作",
-    valueType: "action",
-    width: 200,
-    fixed: "right"
-  }
-]);
+  const columns = ref<TableColumns[]>([]);
 </script>
 ```
+
+## API
+
+在 [ElTableProps](https://element-plus.org/zh-CN/component/table.html) 的基础上，新增了以下属性
+
+| 属性 | 描述          | 类型                                 | 默认值 |
+| ---- | ------------- | ------------------------------------ | ------ |
+| title  | 标题. | `string` | -      |
+| ghost  | 幽灵模式. | `boolean` | -      |
+| loading  | 标题. | `boolean` | -      |
+| columns  | 定义表格列. | Array<[ColumnConfig](#ColumnConfig)> | []      |
+| request  | 从服务器读取数据. | `() => {total: number; list: amy[]}` | -      |
+| params  | . | `Record<string, any>` | {}      |
+| search  | 标题. | `string` | -      |
+| toolbar  | 标题. | [ToolbarConfig](#ToolbarConfig) | -      |
+| options  | 标题. | `boolean` | -      |
+| ellipsis  | 格子内容溢出时，是否显示省略号. | `boolean` | true      |
+| pagination  | 标题. | `string` | -      |
+| cellEmptyText  | 格子内容为空时的占位文本. | `string` / `boolean` | -      |
+
+### ColumnConfig
+
+除了包含以下属性外，还继承了 [ElTableColumn](https://element-plus.org/zh-CN/component/table.html) 组件的 [Props](https://element-plus.org/zh-CN/component/table.html);
+
+属性 `request`、`valueType`、`valueEnum`、`valueMark`、`valueEnum`、`mappingEnumValue`、`fieldProps` 来自于 [ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field) 组件，具体如何使用不再过多[说明]([ProField](https://www.npmjs.com/package/@element-plus-ui/pro-field));
+
+| 属性 | 描述          | 类型                                 | 默认值 |
+| ---- | ------------- | ------------------------------------ | ------ |
+| ellipsis  | 内容溢出显示省略号，权重大于全局设置的. | `boolean` | -      |
+| copyable  | 是否开启复制功能. | `boolean` | false      |
+| hideInTable  | 是否隐藏当前列. | `boolean` | false      |
+| search  | 标题. | [ColumnConfig](#ColumnConfig)[] | []      |
+| filters  | 定义标头筛选项集合(数据源默认来自于**request**、**valueEnum**)或设置显隐. | `boolean` / `{label: string; value: string \| number}[]` | -      |
+| request  | 从服务器读取 **ValueEnum** 数据. | `() => Promise<ValueEnum>` | -      |
+| valueType  | 值类型，. | [ValueType](https://www.npmjs.com/package/@element-plus-ui/pro-field) | {}      |
+| valueEnum  | 定义枚举数据. | [ValueEnum](https://www.npmjs.com/package/@element-plus-ui/pro-field) | -      |
+| valueMark  | 值标记. | [ValueMark](https://www.npmjs.com/package/@element-plus-ui/pro-field) | -      |
+| mappingEnumValue  | **ValueEnum** 未明确指定 **value** 时，映射的目标对象 | `label` \| `index` | label      |
+| fieldProps  | **valueType** 渲染的组件 **Props** 配置. | `Record<string, any>` | {}      |
+| children  | 定义子集. | [ColumnConfig](#ColumnConfig)[] | -      |
+| render  | 自定义渲染格子内容. | `(row) => string \| number \| VNode` | -      |
+
+### ToolbarConfig

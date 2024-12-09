@@ -39,8 +39,8 @@
     "@element-plus-ui/pro-text": "^1.0.0"
   },
   "peerDependencies": {
-    "element-plus": "^2.4.1",
-    "vue": "^3.3.7"
+    "element-plus": ">=2.8.8",
+    "vue": ">=3.0.0"
   },
   "engines": {
     "node": ">=16.17.1"

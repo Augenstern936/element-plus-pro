@@ -33,8 +33,8 @@
     "@element-plus-ui/pro-center-container": "workspace:^"
   },
   "peerDependencies": {
-    "vue": "^3.4.27",
-    "element-plus": "^2.7.2"
+    "element-plus": ">=2.8.8",
+    "vue": ">=3.0.0"
   },
   "engines": {
     "node": ">=16.17.1"

@@ -1,19 +1,209 @@
 import type { ProSearchBarProps } from "@element-plus-ui/pro-form";
-import type { ButtonProps, ColProps } from "element-plus";
-import type { CSSProperties, ExtractPropTypes, PropType } from "vue-demi";
-import { JSX } from "vue/jsx-runtime";
-import { PaginationAlignEnum, ValueTypeEnum } from "./enum";
-import { StatusColorEnum } from "@element-plus-ui/pro-types";
+import { ButtonProps, ColProps, ElTooltipProps, TreeNode, PaginationProps } from "element-plus";
+import type { CSSProperties, ExtractPropTypes, PropType, VNode } from "vue-demi";
+import { PaginationAlignEnum } from "./enum";
+import { Marker, Request as RequestType, ValueEnum } from "@element-plus-ui/pro-types";
+import type { ProFieldType } from "@element-plus-ui/pro-field";
+
+//TODO：element-plus未导出tableProps实体，在这需要自己声明，后续会根据element-plus更新做调整
+export const elTableProps = {
+  data: {
+    type: Array,
+    default: void 0
+  },
+  height: {
+    type: [String, Number],
+    default: void 0
+  },
+  maxHeight: {
+    type: [String, Number],
+    default: void 0
+  },
+  stripe: {
+    type: Boolean,
+    default: false
+  },
+  border: {
+    type: Boolean,
+    default: false
+  },
+  size: {
+    type: String as PropType<"" | "large" | "default" | "small">,
+    default: "default"
+  },
+  fit: {
+    type: Boolean,
+    default: true
+  },
+  showHeader: {
+    type: Boolean,
+    default: true
+  },
+  highlightCurrentRow: {
+    type: Boolean,
+    default: false
+  },
+  currentRowkey: {
+    type: [String, Number],
+    default: void 0
+  },
+  rowClassName: {
+    type: [String, Function as PropType<(data: { row: any; rowIndex: number }) => string>],
+    default: ""
+  },
+  rowStyle: {
+    type: [Object, Function] as PropType<CSSProperties | ((data: { row: any; rowIndex: number }) => CSSProperties)>,
+    default: {}
+  },
+  cellClassName: {
+    type: [String, Function as PropType<(data: { row: any; column: any; rowIndex: number; columnIndex: number }) => string>],
+    default: ""
+  },
+  cellStyle: {
+    type: [Object, Function] as PropType<
+      CSSProperties | ((data: { row: any; column: any; rowIndex: number; columnIndex: number }) => CSSProperties)
+    >,
+    default: {}
+  },
+  headerRowClassName: {
+    type: [String, Function as PropType<(data: { row: any; rowIndex: number }) => string>],
+    default: ""
+  },
+  headerRowStyle: {
+    type: [Object, Function] as PropType<CSSProperties | ((data: { row: any; rowIndex: number }) => CSSProperties)>,
+    default: {}
+  },
+  headerCellClassName: {
+    type: [String, Function as PropType<(data: { row: any; column: any; rowIndex: number; columnIndex: number }) => string>],
+    default: ""
+  },
+  headerCellStyle: {
+    type: [Object, Function] as PropType<
+      CSSProperties | ((data: { row: any; column: any; rowIndex: number; columnIndex: number }) => CSSProperties)
+    >,
+    default: {}
+  },
+  rowKey: {
+    type: [String, Function as PropType<(row: any) => string>],
+    default: ""
+  },
+  emptyText: {
+    type: String,
+    default: "No Data"
+  },
+  defaultExpandAll: {
+    type: Boolean,
+    default: false
+  },
+  expandRowKeys: {
+    type: Array as PropType<string[]>,
+    default: void 0
+  },
+  defaultSort: {
+    type: Object as PropType<{
+      prop: string;
+      order: "ascending" | "descending";
+      init?: any;
+      silent?: any;
+    }>,
+    default: void 0
+  },
+  tooltipEffect: {
+    type: String as PropType<"dark" | "light">,
+    default: "dark"
+  },
+  tooltipOptions: {
+    type: Object as PropType<
+      Pick<
+        ElTooltipProps,
+        | "effect"
+        | "enterable"
+        | "hideAfter"
+        | "offset"
+        | "placement"
+        | "popperClass"
+        | "popperOptions"
+        | "showAfter"
+        | "showArrow"
+      >
+    >,
+    default: void 0
+  },
+  appendFilterPanelTo: {
+    type: String,
+    default: ""
+  },
+  showSummary: {
+    type: Boolean,
+    default: false
+  },
+  sumText: {
+    type: String,
+    default: "Sum"
+  },
+  summaryMethod: {
+    type: Function as PropType<(data: { columns: any[]; data: any[] }) => (VNode | string)[]>,
+    default: void 0
+  },
+  spanMethod: {
+    type: Function as PropType<
+      (data: {
+        row: any;
+        column: any;
+        rowIndex: number;
+        columnIndex: number;
+      }) => number[] | { rowspan: number; colspan: number } | void
+    >,
+    default: void 0
+  },
+  selectOnIndeterminate: {
+    type: Boolean,
+    default: true
+  },
+  indent: {
+    type: Number,
+    default: 16
+  },
+  lazy: {
+    type: Boolean,
+    default: false
+  },
+  load: {
+    type: Function as PropType<(row: any, treeNode: TreeNode, resolve: (data: any[]) => void) => void>,
+    default: void 0
+  },
+  treeProps: {
+    type: Object as PropType<{ hasChildren?: string; children?: string; checkStrictly?: boolean }>,
+    default: { hasChildren: "hasChildren", children: "children", checkStrictly: false }
+  },
+  tableLayout: {
+    type: String as PropType<"fixed" | "auto">,
+    default: "fixed"
+  },
+  scrollbarAlwaysOn: {
+    type: Boolean,
+    default: false
+  },
+  showOverflowTooltip: {
+    type: Boolean,
+    default: false
+  },
+  flexible: {
+    type: Boolean,
+    default: false
+  },
+  scrollbarTabindex: {
+    type: [String, Number],
+    default: ""
+  }
+};
 
 export const proTableProps = {
+  ...elTableProps,
   loading: {
     type: Boolean
   },
   ghost: {
-    type: Boolean
-  },
-  // 是否开启缓存模式
-  keepAlive: {
     type: Boolean
   },
   title: {
@@ -23,24 +213,15 @@ export const proTableProps = {
     type: String as PropType<GlobalCellAlign>,
     default: "left"
   },
-  headerCellStyle: {
-    type: Object as PropType<CSSProperties>,
-    default: {}
-  },
   // 列
   columns: {
-    type: Array as PropType<TableColumns[]>,
+    type: Array as PropType<TableColumn[]>,
     required: true
   },
-  // 为空时，默认显示的标记
-  columnEmptyText: {
+  // 格子为空时，默认显示的标记
+  cellEmptyText: {
     type: [Boolean, String],
-    default: "-"
-  },
-  // 默认分页大小
-  defaultSize: {
-    type: Number,
-    default: 10
+    default: "--"
   },
   // 是否开启超出列宽显示省略号
   ellipsis: {
@@ -66,13 +247,19 @@ export const proTableProps = {
     type: Boolean,
     default: true
   },
+  index: {
+    type: Boolean,
+    default: false
+  },
+  expand: {
+    type: Boolean,
+    default: false
+  },
   selection: {
     type: [Boolean, Object] as PropType<boolean | Record<string, any>>
   },
-  // 样式
-  tableStyle: {
-    type: Object as PropType<TableStyle>,
-    default: () => {}
+  action: {
+    type: [Boolean, Object] as PropType<boolean | ActionConfig>
   },
   // 获取数据需要的额外参数
   params: {
@@ -82,13 +269,6 @@ export const proTableProps = {
   pagination: {
     type: [Boolean, Object as PropType<PaginationConfig>],
     default: true
-  },
-  mock: {
-    type: Object as PropType<{}>
-  },
-  // 数据源
-  dataSource: {
-    type: Object as PropType<DataSource>
   },
   // 获取数据的方法
   request: {
@@ -110,42 +290,85 @@ export const proTableProps = {
 
 export type ProTableProps = ExtractPropTypes<typeof proTableProps>;
 
-export type TableColumns = {
-  key?: string | number; //标识
-  title?: string; // 表格列标题
-  dataField?: string; // 列字段名称(与数据源中字段对应进行值的映射)
-  width?: string | number; // 列宽
-  fixed?: boolean | "left" | "right"; // 固定列
-  align?: "left" | "right" | "center";
-  tooltip?: string | ((row: { [x: string]: any }) => string); // 提示文本
-  ellipsis?: boolean; // 是否显示省略号
-  hideInTable?: boolean; // 是否在表格中不显示该列
-  sorter?: boolean; // 排序
-  copyable?: boolean; //是否支持复制
-  filters?: boolean | ValueOption; // 是否在表格列标头开启筛选
-  search?: boolean | ProTableColumnSearchConfig; // 是否在搜索栏中显示该项
-  valueType?: ValueType; // 当前筛选项输入框类型
-  valueOption?: ValueOption; // 筛选项数据集合
-  valueEnum?: ValueEnum;
-  valueEnumMark?: "tag" | "disc" | "none";
-  children?: TableColumns[]; // 子级
-  render?: (row: { [x: string]: any }) => string | number | JSX.Element; // 渲染该列对应的值
-};
-
-export type ValueType = keyof typeof ValueTypeEnum;
-
-export type ValueOption = {
-  label: string;
-  value: string | number;
-}[];
-
-interface ValueEnumConfig {
-  label: string;
-  color?: string;
-  status?: keyof typeof StatusColorEnum;
+/**
+ *
+ */
+interface ElTableColumn {
+  //type?: "default" | "selection" | "index" | "expand" | "actions";
+  index?: number | ((index: number) => number);
+  label?: string;
+  columnKey?: string;
+  prop?: string;
+  width?: string | number;
+  minWidth?: string | number;
+  fixed?: boolean | "left" | "right";
+  renderHeader?: (data: { column: any; $index: number }) => void;
+  sortable?: boolean | string;
+  sortMethod?: <T = any>(a: T, b: T) => number;
+  sortBy?: ((row: any, index: number) => string) | string | Array<string>;
+  sortOrders?: Array<"ascending" | "descending" | null>;
+  resizable?: boolean;
+  formatter?: (row: any, column: any, cellValue: any, index: number) => VNode | string;
+  showOverflowTooltip?: boolean | object;
+  align?: "left" | "center" | "right";
+  headerAlign?: "left" | "center" | "right";
+  className?: string;
+  labelClassName?: string;
+  // selectable?: '';
+  // reserve-selection?: boolean;
+  filters?: Array<{ text: string; value: string }>;
+  filterPlacement?:
+    | "top"
+    | "top-start"
+    | "top-end"
+    | "bottom"
+    | "bottom-start"
+    | "bottom-end"
+    | "left"
+    | "left-start"
+    | "left-end"
+    | "right"
+    | "right-start"
+    | "right-end";
+  filterClassName?: string;
+  filterMultiple?: boolean;
+  filterMethod?: (value: any, row: any, column: any) => void;
+  filteredValue?: string[];
 }
 
-export type ValueEnum = Record<string, string | number | ValueEnumConfig> | (string | ValueEnumConfig)[];
+export interface TableColumn extends Omit<ElTableColumn, "filters"> {
+  hideInTable?: boolean;
+  ellipsis?: boolean;
+  copyable?: boolean; //是否支持复制
+  filters?: boolean | Array<{ text: string; value: string }>;
+  search?: boolean | ProTableColumnSearchConfig; // 是否在搜索栏中显示该项
+  request?: RequestType<ValueEnum>;
+  valueType?: ProFieldType; // 当前筛选项输入框类型
+  valueEnum?: ValueEnum;
+  valueMark?: "tag" | Marker;
+  fieldProps?: Record<string, any>;
+  children?: TableColumn[]; // 子级
+  mappingEnumValue?: "label" | "index";
+  render?: (row: object) => string | number | VNode; // 渲染该列对应的值
+}
+
+/**
+ * 操作列配置
+ */
+export interface ActionConfig {
+  title?: string;
+  width?: number;
+  fixed?: boolean;
+  texts?: string[];
+  viewProps?: ButtonProps;
+  editProps?: ButtonProps;
+  deleteProps?: ButtonProps;
+  onView?: (row: Record<string, any>) => void;
+  onEdit?: (row: Record<string, any>) => void;
+  onDelete?: (row: Record<string, any>) => void;
+  onActions?: (e: { index: number; name?: "view" | "edit" | "delete" }, row: Record<string, any>) => void;
+  render?: (row: Record<string, any>) => VNode | Array<string | ButtonProps>;
+}
 
 export type GlobalCellAlign = "left" | "right" | "center";
 
@@ -196,15 +419,9 @@ interface ToolbarSearchConfig {
   onAction?: (keywords: string) => void;
 }
 
-export type ToolbarActions = (JSX.Element | ToolbarActionsConfig)[];
+export type ToolbarActions = (VNode | ToolbarActionsConfig)[];
 
 export type ToolbarActionsConfig = Partial<ButtonProps & { content: string }>;
-
-/**
- * 表格样式
- */
-
-export type TableStyle = {};
 
 export type ProTableTitleConfig = {
   text: string;
@@ -220,12 +437,12 @@ export type Params = {
   [x: string]: any;
 };
 
-export type PaginationConfig = {
+export interface PaginationConfig extends Partial<PaginationProps> {
   current?: number;
   pageSize?: number;
   align?: PaginationAlign;
   [x: string]: any;
-};
+}
 
 type PaginationAlign = keyof typeof PaginationAlignEnum;
 
@@ -244,13 +461,6 @@ export type Request = (
   params: { current: number; pageSize: number },
   filter: { [x: string]: any }
 ) => {
-  data: {}[];
+  list: {}[];
   total: number;
-};
-
-export type Ctx = {
-  attrs: {};
-  emit: (eventName: string, ...args: any) => void;
-  slots: any;
-  expose: (obj: { [x: string]: any }) => void;
 };

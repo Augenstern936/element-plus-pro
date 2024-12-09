@@ -2,7 +2,7 @@
  * @Description: 阅读模式下选项值展示的形式
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-06-01 14:12:33
- * @LastEditTime: 2024-11-02 14:35:28
+ * @LastEditTime: 2024-11-25 11:04:34
  *
  */
 import { Marker, ValueOption } from "@element-plus-ui/pro-types";

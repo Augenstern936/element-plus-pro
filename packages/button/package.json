@@ -33,8 +33,7 @@
   ],
   "author": "<Haidu w936926@outlook.com>",
   "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-rc.1",
-    "element-plus": ">=2.7.2",
+    "element-plus": ">=2.8.8",
     "vue": ">=3.0.0"
   },
   "peerDependenciesMeta": {

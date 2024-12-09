@@ -2,7 +2,7 @@
  * @Description:
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-09-13 21:28:34
- * @LastEditTime: 2024-10-16 15:06:50
+ * @LastEditTime: 2024-11-25 11:06:31
  *
  */
 import { StatusColorEnum, VModelOptionValue, ValueOption } from "@element-plus-ui/pro-types";
@@ -13,7 +13,7 @@ import { StatusColorEnum, VModelOptionValue, ValueOption } from "@element-plus-u
  * @returns
  */
 export function getOptionStatusColor({ color, status }: ValueOption) {
-  return status && StatusColorEnum[status] ? StatusColorEnum[status] : (color ?? "default");
+  return status && StatusColorEnum[status] ? StatusColorEnum[status] : (color ?? StatusColorEnum.processing);
 }
 
 /**
@@ -28,7 +28,7 @@ export function getVModelSelectedOptions(model: VModelOptionValue, datas: ValueO
     if (Array.isArray(values) && values.length) {
       values?.forEach(item => {
         const children = item.children ?? [];
-        if (item.value === terget) {
+        if (item.value == terget) {
           return options.push(item);
         }
         search(terget, children);
