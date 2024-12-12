@@ -1,10 +1,8 @@
 /*
  * @Description:
  * @Date: 2024-12-11 09:35:59
- * @LastEditTime: 2024-12-12 17:18:54
+ * @LastEditTime: 2024-12-12 17:51:09
  */
-// @see: http://eslint.cn
-
 module.exports = {
   root: true,
   env: {
@@ -24,6 +22,16 @@ module.exports = {
       jsx: true
     }
   },
+  ignorePatterns: [
+    "node_modules",
+    "pnpm-lock.yaml",
+    "dist",
+    "play",
+    "docs/components.d.ts",
+    "docs/.vitepress/cache/*",
+    "**/*.d.ts",
+    "!.*"
+  ],
   // 继承某些已有的规则
   extends: ["plugin:vue/vue3-recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
   /**
