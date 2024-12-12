@@ -293,8 +293,8 @@ export type ProTableProps = ExtractPropTypes<typeof proTableProps>;
 /**
  *
  */
-interface ElTableColumn {
-  //type?: "default" | "selection" | "index" | "expand" | "actions";
+export interface ElTableColumnProps {
+  type?: "default" | "selection" | "index" | "expand";
   index?: number | ((index: number) => number);
   label?: string;
   columnKey?: string;
@@ -336,14 +336,15 @@ interface ElTableColumn {
   filteredValue?: string[];
 }
 
-export interface TableColumn extends Omit<ElTableColumn, "filters"> {
+export interface TableColumn extends Omit<ElTableColumnProps, "type" | "filters"> {
+  type?: "default" | "selection" | "index" | "expand" | "actions" | ProFieldType;
   hideInTable?: boolean;
   ellipsis?: boolean;
   copyable?: boolean; //是否支持复制
   filters?: boolean | Array<{ text: string; value: string }>;
   search?: boolean | ProTableColumnSearchConfig; // 是否在搜索栏中显示该项
   request?: RequestType<ValueEnum>;
-  valueType?: ProFieldType; // 当前筛选项输入框类型
+  //valueType?: ProFieldType; // 当前筛选项输入框类型
   valueEnum?: ValueEnum;
   valueMark?: "tag" | Marker;
   fieldProps?: Record<string, any>;

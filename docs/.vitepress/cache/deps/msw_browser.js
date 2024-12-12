@@ -11,7 +11,7 @@ import {
   kDispatchEvent,
   onUnhandledRequest,
   toPublicUrl
-} from "./chunk-J4AVYOCZ.js";
+} from "./chunk-WJKQOFKN.js";
 import {
   __privateAdd,
   __privateGet,

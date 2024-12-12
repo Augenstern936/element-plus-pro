@@ -1,7 +1,8 @@
 /*
  * @Description:
- * @Date: 2024-12-11 09:35:59
- * @LastEditTime: 2024-12-12 17:51:09
+ * @Author: <Haidu w936926@outlook.com>
+ * @Date: 2024-12-12 22:03:04
+ * @LastEditTime: 2024-12-13 00:06:53
  */
 module.exports = {
   root: true,
@@ -22,16 +23,6 @@ module.exports = {
       jsx: true
     }
   },
-  ignorePatterns: [
-    "node_modules",
-    "pnpm-lock.yaml",
-    "dist",
-    "play",
-    "docs/components.d.ts",
-    "docs/.vitepress/cache/*",
-    "**/*.d.ts",
-    "!.*"
-  ],
   // 继承某些已有的规则
   extends: ["plugin:vue/vue3-recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
   /**

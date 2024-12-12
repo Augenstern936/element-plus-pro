@@ -55,10 +55,11 @@ export const useTable = (props: ProTableProps, ctx: SetupContext) => {
     const isShowUndefinedItem = props.search || props.search === void 0 ? void 0 : true;
     return originColumns.value
       .map((item: TableColumn) => {
-        const { type, valueType, search } = item;
-        const excludeType = ["default", "index", "expand", "selection", "actions"].includes(type || "none");
-        const excludeValType = ["uploadImage", "uploadAvatar"].includes(valueType || "none");
-        if (!excludeType && !excludeValType && (search || search === isShowUndefinedItem)) {
+        const { type, search } = item;
+        const excludeType = ["default", "index", "expand", "selection", "actions", "uploadImage", "uploadAvatar"].includes(
+          type || "none"
+        );
+        if (!excludeType && (search || search === isShowUndefinedItem)) {
           return formatSearchColumnConfig(item, props.search);
         }
       })

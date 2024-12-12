@@ -173,8 +173,8 @@ var f = (c, o) => {
 };
 
 // ../node_modules/.pnpm/@element-plus-ui+pro-text@1.0.1_element-plus@2.9.0_vue@3.5.13/node_modules/@element-plus-ui/pro-text/es/Text.mjs
-import "C:/Users/huaqi/Desktop/workspace/element-plus-pro/node_modules/.pnpm/@element-plus-ui+pro-text@1.0.1_element-plus@2.9.0_vue@3.5.13/node_modules/@element-plus-ui/pro-text/es/styles/text.css";
-import "C:/Users/huaqi/Desktop/workspace/element-plus-pro/node_modules/.pnpm/element-plus@2.9.0_vue@3.5.13/node_modules/element-plus/theme-chalk/index.css";
+import "D:/Users/wang936926/Desktop/workspace/element-plus-pro/node_modules/.pnpm/@element-plus-ui+pro-text@1.0.1_element-plus@2.9.0_vue@3.5.13/node_modules/@element-plus-ui/pro-text/es/styles/text.css";
+import "D:/Users/wang936926/Desktop/workspace/element-plus-pro/node_modules/.pnpm/element-plus@2.9.0_vue@3.5.13/node_modules/element-plus/theme-chalk/index.css";
 
 // ../node_modules/.pnpm/@element-plus-ui+pro-icon@1.2.1_element-plus@2.9.0_vue@3.5.13/node_modules/@element-plus-ui/pro-icon/es/utils/vue/install.mjs
 var f2 = (c, o) => {
@@ -188,7 +188,7 @@ var f2 = (c, o) => {
 };
 
 // ../node_modules/.pnpm/@element-plus-ui+pro-icon@1.2.1_element-plus@2.9.0_vue@3.5.13/node_modules/@element-plus-ui/pro-icon/es/Icon.mjs
-import "C:/Users/huaqi/Desktop/workspace/element-plus-pro/node_modules/.pnpm/element-plus@2.9.0_vue@3.5.13/node_modules/element-plus/theme-chalk/index.css";
+import "D:/Users/wang936926/Desktop/workspace/element-plus-pro/node_modules/.pnpm/element-plus@2.9.0_vue@3.5.13/node_modules/element-plus/theme-chalk/index.css";
 
 // ../node_modules/.pnpm/@element-plus-ui+pro-icon@1.2.1_element-plus@2.9.0_vue@3.5.13/node_modules/@element-plus-ui/pro-icon/es/typing.mjs
 var p = {

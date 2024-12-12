@@ -1,8 +1,3 @@
-<!--
- * @Description: 
- * @Date: 2024-07-16 08:59:01
- * @LastEditTime: 2024-11-27 09:40:59
--->
 <template>
   <div style="height: calc(100vh - 40px)">
     <ProTable
@@ -71,7 +66,7 @@ const columns = ref<TableColumn[]>([
     label: "性别",
     prop: "sex",
     search: false,
-    valueType: "radioButton",
+    type: "radioButton",
     valueMark: "tag",
     valueEnum: {
       0: "男",
@@ -85,12 +80,12 @@ const columns = ref<TableColumn[]>([
   {
     label: "头像",
     prop: "avatar",
-    valueType: "uploadAvatar"
+    type: "uploadAvatar"
   },
   {
     label: "头像",
     prop: "avatar",
-    valueType: "uploadImage"
+    type: "uploadImage"
   },
   {
     label: "户籍",
@@ -102,7 +97,7 @@ const columns = ref<TableColumn[]>([
     prop: "status",
     //valueEnum: ["进行中", "已完成", "已失败"]
     valueMark: "disc",
-    valueType: "select",
+    type: "select",
     valueEnum: {
       0: {
         label: "进行中",
@@ -121,17 +116,17 @@ const columns = ref<TableColumn[]>([
   {
     label: "会员",
     prop: "slider",
-    valueType: "slider"
+    type: "slider"
   },
   {
     label: "颜色",
     prop: "color",
-    valueType: "color"
+    type: "color"
   },
   {
     label: "生日",
     prop: "date",
-    valueType: "dateYear",
+    type: "dateYear",
     render: row => {
       return 0;
     }
