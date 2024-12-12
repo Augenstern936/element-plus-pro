@@ -14,6 +14,7 @@ import {
   escapeHtml,
   escapeHtmlComment,
   extend,
+  genCacheKey,
   genPropsAccessExp,
   generateCodeFrame,
   getEscapedCssVarName,
@@ -33,6 +34,7 @@ import {
   isHTMLTag,
   isIntegerKey,
   isKnownHtmlAttr,
+  isKnownMathMLAttr,
   isKnownSvgAttr,
   isMap,
   isMathMLTag,
@@ -69,7 +71,7 @@ import {
   toNumber,
   toRawType,
   toTypeString
-} from "./chunk-UKAMLJMJ.js";
+} from "./chunk-JVSYCCQQ.js";
 import "./chunk-MTI3AIJG.js";
 export {
   EMPTY_ARR,
@@ -87,6 +89,7 @@ export {
   escapeHtml,
   escapeHtmlComment,
   extend,
+  genCacheKey,
   genPropsAccessExp,
   generateCodeFrame,
   getEscapedCssVarName,
@@ -106,6 +109,7 @@ export {
   isHTMLTag,
   isIntegerKey,
   isKnownHtmlAttr,
+  isKnownMathMLAttr,
   isKnownSvgAttr,
   isMap,
   isMathMLTag,

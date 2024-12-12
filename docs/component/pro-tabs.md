@@ -9,17 +9,17 @@ outline: deep
 
 通过配置 `panes` 参数，渲染展示的标签页方式.
 
-<demo src="../examples/pro-tabs/basic.vue"/>
+<demo vue="../examples/pro-tabs/basic.vue"/>
 
 ## empty
 
-<demo src="../examples/pro-tabs/empty.vue"/>
+<demo vue="../examples/pro-tabs/empty.vue"/>
 
 ## 标签内容渲染
 
 通过`slots`插入内容进行渲染，同时支持`panes`配置项`render`自定义渲染内容，当两者同时配置时，`slots`优先级最高.
 
-<demo src="../examples/pro-tabs/pane-content.vue"/>
+<demo vue="../examples/pro-tabs/pane-content.vue"/>
 
 ## API
 

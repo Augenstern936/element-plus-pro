@@ -1,11 +1,11 @@
 <!--
  * @Description: 
  * @Date: 2024-06-17 10:01:37
- * @LastEditTime: 2024-07-09 16:57:19
+ * @LastEditTime: 2024-12-11 17:50:49
 -->
 <template>
   <pro-table
-    title="标题"
+    label="标题"
     :columns="columns"
     :header-cell-style="{ color: '#333' }"
     :ellipsis="false"
@@ -13,7 +13,7 @@
     :toolbar="toolbar"
     :request="getTableData"
   >
-    <template #title>
+    <template #label>
       <el-button type="danger">删除</el-button>
     </template>
     <template #search-bar-right-tools>
@@ -26,7 +26,7 @@
 <script setup lang="tsx">
 import { computed, ref } from "vue-demi";
 
-import type { TableColumns, TableToolbarConfig } from "@element-plus-ui/pro-components";
+import type { TableColumn, TableToolbarConfig } from "@element-plus-ui/pro-components";
 
 const toolbar = computed(
   (): TableToolbarConfig => ({
@@ -39,32 +39,32 @@ const toolbar = computed(
   })
 );
 
-const columns = ref<TableColumns[]>([
+const columns = ref<TableColumn[]>([
   {
-    title: "姓名",
-    dataField: "name",
+    label: "姓名",
+    prop: "name",
     search: true
   },
   {
-    title: "年龄",
-    dataField: "age",
+    label: "年龄",
+    prop: "age",
     copyable: true,
     sorter: true
   },
   {
-    title: "头像",
-    dataField: "avatar",
+    label: "头像",
+    prop: "avatar",
     valueType: "avatar",
     sorter: false
   },
   {
-    title: "等级",
-    dataField: "rate",
+    label: "等级",
+    prop: "rate",
     valueType: "rate",
     sorter: false
   },
   {
-    title: "操作",
+    label: "操作",
     valueType: "action",
     width: 160
   }

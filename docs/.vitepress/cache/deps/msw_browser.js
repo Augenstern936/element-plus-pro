@@ -11,7 +11,7 @@ import {
   kDispatchEvent,
   onUnhandledRequest,
   toPublicUrl
-} from "./chunk-EYDFQDO5.js";
+} from "./chunk-J4AVYOCZ.js";
 import {
   __privateAdd,
   __privateGet,
@@ -20,7 +20,7 @@ import {
   __publicField
 } from "./chunk-MTI3AIJG.js";
 
-// ../node_modules/.pnpm/msw@2.6.5_@types+node@22.5.4_typescript@5.6.2/node_modules/msw/lib/core/utils/toResponseInit.mjs
+// ../node_modules/.pnpm/msw@2.6.8_@types+node@20.17.9_typescript@5.7.2/node_modules/msw/lib/core/utils/toResponseInit.mjs
 function toResponseInit(response) {
   return {
     status: response.status,
@@ -29,19 +29,19 @@ function toResponseInit(response) {
   };
 }
 
-// ../node_modules/.pnpm/msw@2.6.5_@types+node@22.5.4_typescript@5.6.2/node_modules/msw/lib/core/utils/internal/isHandlerKind.mjs
+// ../node_modules/.pnpm/msw@2.6.8_@types+node@20.17.9_typescript@5.7.2/node_modules/msw/lib/core/utils/internal/isHandlerKind.mjs
 function isHandlerKind(kind) {
   return (input) => {
     return input != null && typeof input === "object" && "__kind" in input && input.__kind === kind;
   };
 }
 
-// ../node_modules/.pnpm/msw@2.6.5_@types+node@22.5.4_typescript@5.6.2/node_modules/msw/lib/core/utils/internal/isObject.mjs
+// ../node_modules/.pnpm/msw@2.6.8_@types+node@20.17.9_typescript@5.7.2/node_modules/msw/lib/core/utils/internal/isObject.mjs
 function isObject(value) {
   return value != null && typeof value === "object" && !Array.isArray(value);
 }
 
-// ../node_modules/.pnpm/msw@2.6.5_@types+node@22.5.4_typescript@5.6.2/node_modules/msw/lib/core/utils/internal/mergeRight.mjs
+// ../node_modules/.pnpm/msw@2.6.8_@types+node@20.17.9_typescript@5.7.2/node_modules/msw/lib/core/utils/internal/mergeRight.mjs
 function mergeRight(left, right) {
   return Object.entries(right).reduce(
     (result, [key, rightValue]) => {
@@ -61,7 +61,7 @@ function mergeRight(left, right) {
   );
 }
 
-// ../node_modules/.pnpm/@mswjs+interceptors@0.37.1/node_modules/@mswjs/interceptors/lib/browser/chunk-TX5GBTFY.mjs
+// ../node_modules/.pnpm/@mswjs+interceptors@0.37.3/node_modules/@mswjs/interceptors/lib/browser/chunk-TX5GBTFY.mjs
 function hasConfigurableGlobal(propertyName) {
   const descriptor = Object.getOwnPropertyDescriptor(globalThis, propertyName);
   if (typeof descriptor === "undefined") {
@@ -82,7 +82,7 @@ function hasConfigurableGlobal(propertyName) {
   return true;
 }
 
-// ../node_modules/.pnpm/@mswjs+interceptors@0.37.1/node_modules/@mswjs/interceptors/lib/browser/interceptors/WebSocket/index.mjs
+// ../node_modules/.pnpm/@mswjs+interceptors@0.37.3/node_modules/@mswjs/interceptors/lib/browser/interceptors/WebSocket/index.mjs
 function bindEvent(target, event) {
   Object.defineProperties(event, {
     target: {
@@ -759,10 +759,10 @@ var _WebSocketInterceptor = class extends Interceptor {
 var WebSocketInterceptor = _WebSocketInterceptor;
 WebSocketInterceptor.symbol = Symbol("websocket");
 
-// ../node_modules/.pnpm/msw@2.6.5_@types+node@22.5.4_typescript@5.6.2/node_modules/msw/lib/core/ws/webSocketInterceptor.mjs
+// ../node_modules/.pnpm/msw@2.6.8_@types+node@20.17.9_typescript@5.7.2/node_modules/msw/lib/core/ws/webSocketInterceptor.mjs
 var webSocketInterceptor = new WebSocketInterceptor();
 
-// ../node_modules/.pnpm/msw@2.6.5_@types+node@22.5.4_typescript@5.6.2/node_modules/msw/lib/core/ws/handleWebSocketEvent.mjs
+// ../node_modules/.pnpm/msw@2.6.8_@types+node@20.17.9_typescript@5.7.2/node_modules/msw/lib/core/ws/handleWebSocketEvent.mjs
 function handleWebSocketEvent(options) {
   webSocketInterceptor.on("connection", async (connection) => {
     const handlers = options.getHandlers();
@@ -810,7 +810,7 @@ function handleWebSocketEvent(options) {
   });
 }
 
-// ../node_modules/.pnpm/msw@2.6.5_@types+node@22.5.4_typescript@5.6.2/node_modules/msw/lib/core/ws/utils/getMessageLength.mjs
+// ../node_modules/.pnpm/msw@2.6.8_@types+node@20.17.9_typescript@5.7.2/node_modules/msw/lib/core/ws/utils/getMessageLength.mjs
 function getMessageLength(data) {
   if (data instanceof Blob) {
     return data.size;
@@ -821,7 +821,7 @@ function getMessageLength(data) {
   return new Blob([data]).size;
 }
 
-// ../node_modules/.pnpm/msw@2.6.5_@types+node@22.5.4_typescript@5.6.2/node_modules/msw/lib/core/ws/utils/truncateMessage.mjs
+// ../node_modules/.pnpm/msw@2.6.8_@types+node@20.17.9_typescript@5.7.2/node_modules/msw/lib/core/ws/utils/truncateMessage.mjs
 var MAX_LENGTH = 24;
 function truncateMessage(message) {
   if (message.length <= MAX_LENGTH) {
@@ -830,7 +830,7 @@ function truncateMessage(message) {
   return `${message.slice(0, MAX_LENGTH)}…`;
 }
 
-// ../node_modules/.pnpm/msw@2.6.5_@types+node@22.5.4_typescript@5.6.2/node_modules/msw/lib/core/ws/utils/getPublicData.mjs
+// ../node_modules/.pnpm/msw@2.6.8_@types+node@20.17.9_typescript@5.7.2/node_modules/msw/lib/core/ws/utils/getPublicData.mjs
 async function getPublicData(data) {
   if (data instanceof Blob) {
     const text = await data.text();
@@ -843,7 +843,7 @@ async function getPublicData(data) {
   return truncateMessage(data);
 }
 
-// ../node_modules/.pnpm/msw@2.6.5_@types+node@22.5.4_typescript@5.6.2/node_modules/msw/lib/core/ws/utils/attachWebSocketLogger.mjs
+// ../node_modules/.pnpm/msw@2.6.8_@types+node@20.17.9_typescript@5.7.2/node_modules/msw/lib/core/ws/utils/attachWebSocketLogger.mjs
 var colors = {
   system: "#3b82f6",
   outgoing: "#22c55e",
@@ -1013,7 +1013,7 @@ async function logIncomingServerMessage(event) {
   console.groupEnd();
 }
 
-// ../node_modules/.pnpm/msw@2.6.5_@types+node@22.5.4_typescript@5.6.2/node_modules/msw/lib/browser/index.mjs
+// ../node_modules/.pnpm/msw@2.6.8_@types+node@20.17.9_typescript@5.7.2/node_modules/msw/lib/browser/index.mjs
 var POSITIONALS_EXP = /(%?)(%([sdijo]))/g;
 function serializePositional(positional, flag) {
   switch (flag) {
@@ -1339,7 +1339,7 @@ This exception has been gracefully handled as a 500 response, however, it's stro
 async function checkWorkerIntegrity(context) {
   context.workerChannel.send("INTEGRITY_CHECK_REQUEST");
   const { payload } = await context.events.once("INTEGRITY_CHECK_RESPONSE");
-  if (payload.checksum !== "ca7800994cc8bfb5eb961e037c877074") {
+  if (payload.checksum !== "00729d72e3b82faf54ca8b9621dbb96f") {
     devUtils.warn(
       `The currently registered Service Worker has been generated by a different version of MSW (${payload.packageVersion}) and may not be fully compatible with the installed version.
 

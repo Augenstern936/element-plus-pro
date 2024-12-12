@@ -9,7 +9,7 @@ outline: deep
 
 通过配置 `columns` 参数，渲染表格列的展示方式.
 
-<demo src="../examples/pro-table/basic.vue"/>
+<demo vue="../examples/pro-table/basic.vue" stackblitz="true"/>
 
 ## API
 

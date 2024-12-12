@@ -1,9 +1,8 @@
-import VPDemo from './components/vp-demo.vue';
-import DemoBlock from '@ruabick/vitepress-demo-block';
+/*
+ * @Description:
+ * @Date: 2024-12-12 16:15:28
+ * @LastEditTime: 2024-12-12 16:16:03
+ */
+import { Component } from "vue";
 
-import type { Component } from 'vue';
-
-export const globals: [string, Component][] = [
-	//['Demo', VPDemo]
-	['Demo', DemoBlock],
-];
+export const globals: [string, Component][] = [];

@@ -7,8 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    VpApp: typeof import('./.vitepress/vitepress/components/vp-app.vue')['default']
     VpDemo: typeof import('./.vitepress/vitepress/components/vp-demo.vue')['default']
     VpExample: typeof import('./.vitepress/vitepress/components/demo/vp-example.vue')['default']
+    VpNav: typeof import('./.vitepress/vitepress/components/vp-nav.vue')['default']
     VpSourceCode: typeof import('./.vitepress/vitepress/components/demo/vp-source-code.vue')['default']
   }
 }
