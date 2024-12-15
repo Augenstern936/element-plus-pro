@@ -83,8 +83,8 @@ const columns = ref<TableColumn[]>([
     type: "uploadAvatar"
   },
   {
-    label: "头像",
-    prop: "avatar",
+    label: "相册",
+    prop: "images",
     type: "uploadImage"
   },
   {

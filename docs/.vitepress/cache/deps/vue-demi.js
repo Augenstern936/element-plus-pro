@@ -5,7 +5,7 @@ import {
   isVue2,
   isVue3,
   set
-} from "./chunk-M5QZ3KGY.js";
+} from "./chunk-V6ZDW5E6.js";
 import {
   BaseTransition,
   BaseTransitionPropsValidators,

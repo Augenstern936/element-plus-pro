@@ -58,7 +58,7 @@ var require_fs = __commonJS({
   }
 });
 
-// ../node_modules/.pnpm/vitepress-demo-plugin@1.1.3_vitepress@1.0.0-rc.32_vue@3.5.13/node_modules/vitepress-demo-plugin/dist/index.js
+// ../node_modules/.pnpm/vitepress-demo-plugin@1.1.4_vitepress@1.0.0-rc.32_@algolia+client-search@5.16.0_@types+node@2_j7e45iqawsp26sodhbm7mllylm/node_modules/vitepress-demo-plugin/dist/index.js
 var import_path = __toESM(require_path());
 var import_fs = __toESM(require_fs());
 var me = (e, t) => {
@@ -6588,7 +6588,7 @@ var Ro = defineComponent({
       class: normalizeClass([unref(b).e("container")])
     }, [
       createBaseVNode("section", {
-        class: normalizeClass([unref(b).bem("preview")])
+        class: normalizeClass([unref(b).bem("preview"), "vp-raw"])
       }, [
         p.value === "vue" ? renderSlot(x.$slots, "vue", { key: 0 }) : p.value === "html" ? (openBlock(), createElementBlock("div", {
           key: 1,

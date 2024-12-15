@@ -1,0 +1,51 @@
+{
+  "name": "@element-plus-ui/pro-interceptor",
+  "version": "1.0.1",
+  "description": "🏆 Use Element Plus interceptor like a Pro!",
+  "keywords": [
+    "ui",
+    "pro",
+    "vue3",
+    "admin",
+    "interceptor",
+    "element",
+    "component",
+    "element-plus",
+    "element-plus-pro"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Augenstern936/element-plus-pro/tree/master/packages/interceptor#readme",
+  "bugs": "https://github.com/Augenstern936/element-plus-pro/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Augenstern936/element-plus-pro"
+  },
+  "scripts": {
+    "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
+  },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "src/index.ts",
+  "types": "es/index.d.ts",
+  "files": [
+    "lib",
+    "es"
+  ],
+  "author": "<Haidu w936926@outlook.com>",
+  "peerDependencies": {
+    "element-plus": ">=2.8.8",
+    "vue": ">=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.7.0",
+    "vue-demi": "^0.14.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

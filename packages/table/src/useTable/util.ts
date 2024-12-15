@@ -1,3 +1,9 @@
+/*
+ * @Description:
+ * @Author: <Haidu w936926@outlook.com>
+ * @Date: 2024-12-14 19:08:13
+ * @LastEditTime: 2024-12-14 19:37:10
+ */
 import { isObject } from "@vueuse/core";
 import { TableColumn } from "../typing";
 import { server } from "../mock";
@@ -9,7 +15,7 @@ import { server } from "../mock";
  * @returns
  */
 export function formatSearchColumnConfig(column: TableColumn, search: any) {
-  const { prop = "", label, valueType, valueEnum } = column;
+  const { prop = "", label, type: valueType, valueEnum } = column;
   const globalSearchConfig = isObject(search) ? search : {};
   const columnSearchConfig = isObject(column.search) ? column.search : {};
   return {

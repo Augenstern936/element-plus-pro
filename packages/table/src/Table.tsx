@@ -2,7 +2,7 @@ import { ProSearchBar } from "@element-plus-ui/pro-form";
 import { isObject } from "@vueuse/core";
 import { ElPagination, ElTable, ElLoading } from "element-plus";
 import type { DefineComponent } from "vue-demi";
-import { computed, defineComponent, nextTick, ref, watchEffect } from "vue-demi";
+import { computed, defineComponent, nextTick, ref, watch, watchEffect } from "vue-demi";
 import { Alert, Card, TableColumns, ToolBar } from "./components";
 import { elTableProps, GlobalSearchConfig, ProTableProps, proTableProps } from "./typing";
 // import './fetch-mock';
@@ -64,6 +64,16 @@ const ProTable = defineComponent<ProTableProps>(
         });
       });
     });
+
+    watch(
+      () => tableColumns.value,
+      v => {
+        console.log(v, "v");
+      },
+      {
+        deep: true
+      }
+    );
 
     return () => {
       const searchProps = isObject(props.search) ? (props.search as GlobalSearchConfig) : {};

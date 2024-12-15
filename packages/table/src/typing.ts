@@ -338,19 +338,53 @@ export interface ElTableColumnProps {
 
 export interface TableColumn extends Omit<ElTableColumnProps, "type" | "filters"> {
   type?: "default" | "selection" | "index" | "expand" | "actions" | ProFieldType;
-  hideInTable?: boolean;
   ellipsis?: boolean;
   copyable?: boolean; //是否支持复制
   filters?: boolean | Array<{ text: string; value: string }>;
   search?: boolean | ProTableColumnSearchConfig; // 是否在搜索栏中显示该项
+  hideInSearch?: boolean;
+  hideInTable?: boolean;
+  hideInForm?: boolean;
   request?: RequestType<ValueEnum>;
-  //valueType?: ProFieldType; // 当前筛选项输入框类型
   valueEnum?: ValueEnum;
   valueMark?: "tag" | Marker;
   fieldProps?: Record<string, any>;
   children?: TableColumn[]; // 子级
   mappingEnumValue?: "label" | "index";
   render?: (row: object) => string | number | VNode; // 渲染该列对应的值
+}
+
+export type ProTableColumn = ElTableColumnProps | ImgColumnConfig | OptionColumnConfig;
+
+const test: ProTableColumn[] = [
+  {
+    type: "uploadAvatar",
+    ellipsis: true
+  }
+];
+
+interface CommomColumnConfig extends Omit<ElTableColumnProps, "type" | "filters"> {
+  search?: boolean | ProTableColumnSearchConfig; // 是否在搜索栏中显示该项
+  hideInSearch?: boolean;
+  hideInTable?: boolean;
+  hideInForm?: boolean;
+  children?: TableColumn[]; // 子级
+  render?: (row: object) => string | number | VNode; // 渲染该列对应的值
+}
+
+interface OptionColumnConfig extends CommomColumnConfig {
+  type: Extract<ProFieldType, "select" | "radio" | "radioButton" | "checkbox" | "checkboxButton" | "virtualizedSelect">;
+  filters?: boolean | Array<{ text: string; value: string }>;
+  request?: RequestType<ValueEnum>;
+  valueEnum?: ValueEnum;
+  valueMark?: "tag" | Marker;
+  fieldProps?: Record<string, any>;
+  mappingEnumValue?: "label" | "index";
+}
+
+interface ImgColumnConfig extends CommomColumnConfig {
+  type: Extract<ProFieldType, "uploadImage" | "uploadAvatar">;
+  fieldProps?: Record<string, any>;
 }
 
 /**
@@ -364,8 +398,8 @@ export interface ActionConfig {
   viewProps?: ButtonProps;
   editProps?: ButtonProps;
   deleteProps?: ButtonProps;
-  onView?: (row: Record<string, any>) => void;
-  onEdit?: (row: Record<string, any>) => void;
+  onView?: (row: Record<string, any>) => void | Promise<{ [x: string]: any }>;
+  onEdit?: (row: Record<string, any>) => void | Promise<{ [x: string]: any }>;
   onDelete?: (row: Record<string, any>) => void;
   onActions?: (e: { index: number; name?: "view" | "edit" | "delete" }, row: Record<string, any>) => void;
   render?: (row: Record<string, any>) => VNode | Array<string | ButtonProps>;

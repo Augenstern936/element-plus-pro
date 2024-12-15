@@ -77,6 +77,8 @@ export const TableColumns = defineComponent(props => {
     return cellValue;
   };
 
+  console.log(props.columns, "columns");
+
   return () => (
     <>
       {(props.selection === true || isObject(props.selection)) && <ElTableColumn type={"selection"} width={55} />}

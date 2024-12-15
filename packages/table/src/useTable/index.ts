@@ -99,9 +99,7 @@ export const useTable = (props: ProTableProps, ctx: SetupContext) => {
       } catch (err: any) {
         console.warn(err);
       } finally {
-        setTimeout(() => {
-          loading.value = false;
-        }, 3000);
+        loading.value = false;
       }
     }
   };
@@ -186,7 +184,10 @@ export const useTable = (props: ProTableProps, ctx: SetupContext) => {
    * @param ids
    */
   const onSettingChange = (ids: string[]) => {
+    console.log(ids, "ids");
+    console.log(originColumns.value, "originColumns");
     settingSelectedColumns.value = originColumns.value.filter(item => ids.includes(item.id) || item?.type == "selection");
+    console.log(settingSelectedColumns.value, "settingSelectedColumns.value");
     isUpdateColumns.value = true;
   };
 

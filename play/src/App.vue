@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-07-09 16:21:57
- * @LastEditTime: 2024-11-01 16:04:30
+ * @LastEditTime: 2024-12-14 20:38:48
 -->
 <template>
   <el-container style="height: 100vh">
@@ -38,6 +38,7 @@ import Table from "./components/Table.vue";
 import Icon from "./components/Icon.vue";
 import StepsForm from "./components/StepsForm.vue";
 import FormFields from "./components/FormFields.vue";
+import Interceptor from "./components/Interceptor.vue";
 const menus = shallowRef([
   {
     title: "pro-button",
@@ -86,6 +87,10 @@ const menus = shallowRef([
   {
     title: "pro-descriptions",
     component: Descriptions
+  },
+  {
+    title: "pro-interceptor",
+    component: Interceptor
   }
 ]);
 
