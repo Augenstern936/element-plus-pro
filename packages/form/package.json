@@ -28,7 +28,7 @@
   },
   "sideEffects": false,
   "main": "lib/index.js",
-  "module": "es/index.mjs",
+  "module": "src/index.ts",
   "types": "es/index.d.ts",
   "files": [
     "lib",
@@ -36,8 +36,10 @@
   ],
   "author": "<Haidu w936926@outlook.com>",
   "dependencies": {
-    "@element-plus-ui/pro-button": "^1.0.1",
-    "@element-plus-ui/pro-field": "^1.0.4",
+    "@element-plus-ui/pro-button": "workspace:^",
+    "@element-plus-ui/pro-dialog": "workspace:^",
+    "@element-plus-ui/pro-drawer": "workspace:^",
+    "@element-plus-ui/pro-field": "workspace:^",
     "@element-plus-ui/pro-icon": "^1.2.1",
     "@element-plus-ui/pro-provider": "^1.0.0",
     "@vueuse/core": "^10.7.0",

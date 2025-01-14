@@ -70,10 +70,25 @@
  * -------------------------------------------------------------------------- */
 
 :root {
-  --vp-custom-block-tip-border: transparent;
-  --vp-custom-block-tip-text: var(--vp-c-text-1);
-  --vp-custom-block-tip-bg: var(--vp-c-brand-soft);
-  --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
+  --vp-c-brand: #006aff;
+  --vp-c-brand-light: #2e8cff;
+  --vp-c-brand-lighter: #5dabff;
+  --vp-c-brand-lightest: #8bc7ff;
+  --vp-c-brand-dark: #0051d2;
+  --vp-c-brand-darker: #003aa6;
+  --vp-c-brand-dimm: rgba(100, 108, 255, 0.08);
+}
+
+:root {
+  --vp-custom-block-tip-border: var(--vp-c-brand);
+  --vp-custom-block-tip-text: var(--vp-c-brand-darker);
+  --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
+}
+
+.dark {
+  --vp-custom-block-tip-border: var(--vp-c-brand);
+  --vp-custom-block-tip-text: var(--vp-c-brand-lightest);
+  --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
 }
 
 /**

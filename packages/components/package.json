@@ -21,22 +21,21 @@
     "build": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts"
   },
   "main": "lib/index.js",
-  "module": "es/index.mjs",
+  "module": "src/index.ts",
   "types": "es/index.d.ts",
   "files": [
     "lib",
     "es"
   ],
   "dependencies": {
-    "@element-plus-ui/pro-button": "^1.0.0",
+    "@element-plus-ui/pro-button": "workspace:^",
     "@element-plus-ui/pro-center-container": "workspace:^",
     "@element-plus-ui/pro-descriptions": "workspace:^",
-    "@element-plus-ui/pro-field": "workspace:^",
-    "@element-plus-ui/pro-form": "workspace:^",
-    "@element-plus-ui/pro-icon": "^1.1.0",
+    "@element-plus-ui/pro-form": "workspace:1.0.0-beta.1",
+    "@element-plus-ui/pro-icon": "workspace:^",
     "@element-plus-ui/pro-table": "workspace:^",
     "@element-plus-ui/pro-tabs": "workspace:^",
-    "@element-plus-ui/pro-text": "^1.0.0"
+    "@element-plus-ui/pro-text": "workspace:^"
   },
   "peerDependencies": {
     "element-plus": ">=2.8.8",

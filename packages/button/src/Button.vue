@@ -1,7 +1,7 @@
 <!--
  * @Description: 
  * @Date: 2024-04-27 16:16:26
- * @LastEditTime: 2024-10-01 17:29:22
+ * @LastEditTime: 2025-01-02 11:13:32
 -->
 <template>
   <el-popconfirm
@@ -9,23 +9,23 @@
     v-bind="tip"
     v-model:visible="popconfirmVisible"
     :title="tip.title"
-    :icon="WarningFilled"
+    :icon="IconMap.WarningFilled"
     trigger=""
     @confirm="emits('click')"
   >
     <template #reference>
-      <el-button v-bind="props" @click.stop="onClick">
+      <el-button v-bind="props" :icon="Icon" @click.stop="onClick">
         <slot>{{ title }}</slot>
       </el-button>
     </template>
   </el-popconfirm>
-  <el-button v-else v-bind="props" @click.stop="onClick">
+  <el-button v-else v-bind="props" :icon="Icon" @click.stop="onClick">
     <slot>{{ title }}</slot>
   </el-button>
 </template>
 
 <script setup name="ProButton" lang="ts">
-import { WarningFilled } from "@element-plus/icons-vue";
+import * as IconMap from "@element-plus/icons-vue";
 import { isObject } from "@vueuse/core";
 import { ElButton, ElMessageBox, ElPopconfirm } from "element-plus";
 import { computed, ref } from "vue-demi";
@@ -37,14 +37,16 @@ const props = defineProps<ProButtonProps>();
 
 const popconfirmVisible = ref(false);
 
+const Icon = computed(() => {
+  return IconMap?.[props.icon as keyof typeof IconMap] ?? props.icon;
+});
+
 const tipType = computed(() => {
   return typeof props.tip == "string" ? "message-box" : (props.tip?.mode ?? "message-box");
 });
 
 const onClick = () => {
-  if (!props.tip) {
-    return emits("click");
-  }
+  if (!props.tip) return emits("click");
 
   let isContinue = true;
   let tipText: any = typeof props.tip === "string" ? props.tip : "";
@@ -55,9 +57,7 @@ const onClick = () => {
     isContinue = props.tip?.before?.() ?? true;
   }
 
-  if (!tipText) {
-    return emits("click");
-  }
+  if (!tipText) return emits("click");
 
   if (isContinue === true) {
     if (tipType.value == "popconfirm") {

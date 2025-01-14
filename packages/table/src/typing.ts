@@ -1,9 +1,11 @@
 import type { ProSearchBarProps } from "@element-plus-ui/pro-form";
-import { ButtonProps, ColProps, ElTooltipProps, TreeNode, PaginationProps } from "element-plus";
+import { ColProps, ElTooltipProps, TreeNode, PaginationProps } from "element-plus";
 import type { CSSProperties, ExtractPropTypes, PropType, VNode } from "vue-demi";
 import { PaginationAlignEnum } from "./enum";
 import { Marker, Request as RequestType, ValueEnum } from "@element-plus-ui/pro-types";
 import type { ProFieldType } from "@element-plus-ui/pro-field";
+import { ProButtonProps } from "@element-plus-ui/pro-button";
+import { TableToolbarProps, ToolBarTitle } from "./components/ToolBar/typing";
 
 //TODO：element-plus未导出tableProps实体，在这需要自己声明，后续会根据element-plus更新做调整
 export const elTableProps = {
@@ -207,7 +209,7 @@ export const proTableProps = {
     type: Boolean
   },
   title: {
-    type: [String, Object] as PropType<string | ProTableTitleConfig>
+    type: [String, Object] as PropType<ToolBarTitle>
   },
   cellAlign: {
     type: String as PropType<GlobalCellAlign>,
@@ -235,11 +237,12 @@ export const proTableProps = {
   },
   // 工具栏
   toolbar: {
-    type: Object as PropType<TableToolbarConfig[]>,
+    type: Object as PropType<TableToolbarProps>,
     default: {
-      placeholder: "请输入关键字",
-      showAction: true,
-      actionStyle: {}
+      search: {
+        placeholder: "请输入关键字",
+        button: true
+      }
     }
   },
   //
@@ -247,23 +250,17 @@ export const proTableProps = {
     type: Boolean,
     default: true
   },
-  index: {
-    type: Boolean,
-    default: false
-  },
-  expand: {
-    type: Boolean,
-    default: false
-  },
-  selection: {
-    type: [Boolean, Object] as PropType<boolean | Record<string, any>>
-  },
-  action: {
-    type: [Boolean, Object] as PropType<boolean | ActionConfig>
+  crud: {
+    type: [Boolean, Object] as PropType<boolean | CrudConfig>,
+    default: true
   },
   // 获取数据需要的额外参数
   params: {
     type: Object as PropType<Params>,
+    default: {}
+  },
+  dargSort: {
+    type: [Boolean, Object] as PropType<boolean | DargSortConfig>,
     default: {}
   },
   pagination: {
@@ -337,7 +334,7 @@ export interface ElTableColumnProps {
 }
 
 export interface TableColumn extends Omit<ElTableColumnProps, "type" | "filters"> {
-  type?: "default" | "selection" | "index" | "expand" | "actions" | ProFieldType;
+  type?: "default" | "selection" | "index" | "expand" | "dargSort" | ProFieldType;
   ellipsis?: boolean;
   copyable?: boolean; //是否支持复制
   filters?: boolean | Array<{ text: string; value: string }>;
@@ -345,23 +342,17 @@ export interface TableColumn extends Omit<ElTableColumnProps, "type" | "filters"
   hideInSearch?: boolean;
   hideInTable?: boolean;
   hideInForm?: boolean;
+  hideInDescriptions?: boolean;
   request?: RequestType<ValueEnum>;
   valueEnum?: ValueEnum;
   valueMark?: "tag" | Marker;
   fieldProps?: Record<string, any>;
   children?: TableColumn[]; // 子级
   mappingEnumValue?: "label" | "index";
-  render?: (row: object) => string | number | VNode; // 渲染该列对应的值
+  render?: (row: object) => string | number | VNode | Array<string | number | VNode>; // 渲染该列对应的值
 }
 
 export type ProTableColumn = ElTableColumnProps | ImgColumnConfig | OptionColumnConfig;
-
-const test: ProTableColumn[] = [
-  {
-    type: "uploadAvatar",
-    ellipsis: true
-  }
-];
 
 interface CommomColumnConfig extends Omit<ElTableColumnProps, "type" | "filters"> {
   search?: boolean | ProTableColumnSearchConfig; // 是否在搜索栏中显示该项
@@ -387,22 +378,24 @@ interface ImgColumnConfig extends CommomColumnConfig {
   fieldProps?: Record<string, any>;
 }
 
-/**
- * 操作列配置
- */
-export interface ActionConfig {
-  title?: string;
-  width?: number;
-  fixed?: boolean;
-  texts?: string[];
-  viewProps?: ButtonProps;
-  editProps?: ButtonProps;
-  deleteProps?: ButtonProps;
-  onView?: (row: Record<string, any>) => void | Promise<{ [x: string]: any }>;
-  onEdit?: (row: Record<string, any>) => void | Promise<{ [x: string]: any }>;
-  onDelete?: (row: Record<string, any>) => void;
-  onActions?: (e: { index: number; name?: "view" | "edit" | "delete" }, row: Record<string, any>) => void;
-  render?: (row: Record<string, any>) => VNode | Array<string | ButtonProps>;
+export interface CrudConfig {
+  texts?: [string] | [string, string] | [string, string, string] | [string, string, string, string];
+  column?: Omit<ElTableColumnProps, "type" | "filters">;
+  rudButton?: ProButtonProps;
+  createButton?: boolean | ProButtonProps;
+  readButton?: boolean | ProButtonProps | ((row: Record<string, any>) => boolean | ProButtonProps);
+  updateButton?: boolean | ProButtonProps | ((row: Record<string, any>) => boolean | ProButtonProps);
+  deleteButton?: boolean | ProButtonProps | ((row: Record<string, any>) => boolean | ProButtonProps);
+  onCreate?: (e: { open: Function }) => void;
+  onRead?: (row: Record<string, any>, e: { open: Function }) => void | Promise<{ [x: string]: any }>;
+  onUpdate?: (row: Record<string, any>, e: { open: Function }) => void | Promise<{ [x: string]: any }>;
+  onCreateConfirm?: (entity: Record<string, any>, close: Function) => void;
+  onUpdateConfirm?: (entity: Record<string, any>, close: Function) => void;
+  onDeleteConfirm?: (entity: Record<string, any>) => void;
+}
+
+export interface DargSortConfig {
+  position?: string;
 }
 
 export type GlobalCellAlign = "left" | "right" | "center";
@@ -438,32 +431,6 @@ export type ProTableColumnSearchConfig = {
 };
 
 /**
- * 工具栏配置
- */
-export type TableToolbarConfig = {
-  search?: boolean | ToolbarSearchConfig;
-  actions?: ToolbarActions;
-};
-
-interface ToolbarSearchConfig {
-  placeholder?: string;
-  showAction?: boolean;
-  actionText?: string;
-  actionStyle?: CSSProperties;
-  onChange?: (keywords: string) => void;
-  onAction?: (keywords: string) => void;
-}
-
-export type ToolbarActions = (VNode | ToolbarActionsConfig)[];
-
-export type ToolbarActionsConfig = Partial<ButtonProps & { content: string }>;
-
-export type ProTableTitleConfig = {
-  text: string;
-  tooltip?: string;
-};
-
-/**
  * 用于 request 查询的额外参数，一旦变化会触发重新加载
  */
 export type Params = {
@@ -473,10 +440,7 @@ export type Params = {
 };
 
 export interface PaginationConfig extends Partial<PaginationProps> {
-  current?: number;
-  pageSize?: number;
   align?: PaginationAlign;
-  [x: string]: any;
 }
 
 type PaginationAlign = keyof typeof PaginationAlignEnum;

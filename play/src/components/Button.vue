@@ -1,12 +1,12 @@
 <!--
  * @Description: 
  * @Date: 2024-07-09 16:21:57
- * @LastEditTime: 2024-10-04 21:06:09
+ * @LastEditTime: 2024-12-18 15:44:22
 -->
 <template>
   <el-card>
     <el-space>
-      <pro-button tip="确定要删除吗?" @click="onDelete"> default </pro-button>
+      <pro-button :icon="'AddLocation'" tip="确定要删除吗?" @click="onDelete"> default </pro-button>
       <pro-button type="danger" :tip="{ mode: 'message-box', title: '温馨提示', message: '确定要删除吗?' }" @click="onDelete">
         message-box
       </pro-button>

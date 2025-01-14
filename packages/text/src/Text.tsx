@@ -1,11 +1,11 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:41:09
- * @LastEditTime: 2024-10-18 15:19:04
+ * @LastEditTime: 2025-01-06 16:07:06
  */
 import { ElText, ElTooltip, ElInput } from "element-plus";
 import { ProIcon } from "@element-plus-ui/pro-icon";
-import { FunctionalComponent, computed, defineComponent, ref, watch } from "vue-demi";
+import { DefineComponent, computed, defineComponent, ref, watch } from "vue-demi";
 import copy from "copy-to-clipboard";
 import "./text.scss";
 import { ProTextProps, proTextProps } from "./typing";
@@ -170,7 +170,7 @@ const ProText = defineComponent<ProTextProps>(
   {
     name: "ProText"
   }
-) as unknown as FunctionalComponent<ProTextProps>;
+) as DefineComponent<ProTextProps>;
 
 ProText.props = proTextProps;
 

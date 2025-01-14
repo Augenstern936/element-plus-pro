@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-10 17:30:49
- * @LastEditTime: 2024-10-10 21:09:36
+ * @LastEditTime: 2025-01-14 15:20:38
  */
 import ProButton from "@element-plus-ui/pro-button";
 import ProDescriptions from "@element-plus-ui/pro-descriptions";
@@ -72,11 +72,13 @@ import {
 } from "@element-plus-ui/pro-form";
 import ProTable from "@element-plus-ui/pro-table";
 import ProText from "@element-plus-ui/pro-text";
+import ProIcon from "@element-plus-ui/pro-icon";
 // import ProTabs from "@element-plus-ui/pro-tabs";
 import markInstaller from "./mark-installer";
 
 export default markInstaller({
   ProTable,
+  ProIcon,
   ProText,
   ProButton,
   ProDescriptions,

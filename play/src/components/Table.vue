@@ -5,11 +5,57 @@
         text: 'ProTable',
         tooltip: '高级表格组件'
       }"
+      :crud="{
+        texts: ['新增', '详情'],
+        readButton: {
+          type: 'success',
+          icon: 'View'
+        },
+        createButton: true,
+        deleteButton: true
+      }"
+      :size="'large'"
       :columns="columns"
       :request="getData"
+      :params="params"
       :ghost="false"
       :border="true"
-      :selection="true"
+      :toolbar="{
+        title: '1',
+        menu: {
+          variant: 'tab',
+          defaultActive: 1,
+          items: [
+            {
+              label: '普通',
+              value: 1
+            },
+            {
+              label: '会员',
+              value: 2
+            },
+            {
+              label: '超级',
+              value: 3
+            }
+          ],
+          onChange: (v: number) => {
+            params.type = v;
+          }
+        },
+        search: true,
+        searchKey: 'keywords',
+        actions: [
+          {
+            title: '导入数据',
+            type: 'warning'
+          },
+          {
+            title: '导出数据',
+            type: 'success'
+          }
+        ]
+      }"
       :search="{
         colSpan: 8,
         extraTools: [
@@ -22,10 +68,7 @@
             type: 'success'
           }
         ],
-        searchBefore: params => {
-          console.log(params, 'params');
-          return params;
-        },
+        searchBefore: params => params,
         onCollapse: (v: boolean) => console.log(v, '是否展开1')
       }"
       @action="onAction"
@@ -46,18 +89,33 @@ import type { TableColumn } from "@element-plus-ui/pro-components";
 import { reactive, ref } from "vue";
 //import { server } from "../mock";
 
+const params = ref({ type: 0 });
+
 const columns = ref<TableColumn[]>([
+  {
+    type: "selection"
+  },
+  {
+    type: "expand"
+  },
+  {
+    type: "dargSort",
+    label: "排序",
+    width: 70
+  },
   {
     label: "ID",
     prop: "id",
     search: false,
     width: 100,
-    ellipsis: true
+    ellipsis: true,
+    copyable: false
   },
   {
     label: "姓名",
     prop: "name",
     copyable: true,
+    ellipsis: true,
     search: {
       order: 10
     }
@@ -65,8 +123,9 @@ const columns = ref<TableColumn[]>([
   {
     label: "性别",
     prop: "sex",
-    search: false,
+    //search: false,
     type: "radioButton",
+    filterMultiple: false,
     valueMark: "tag",
     valueEnum: {
       0: "男",
@@ -86,11 +145,6 @@ const columns = ref<TableColumn[]>([
     label: "相册",
     prop: "images",
     type: "uploadImage"
-  },
-  {
-    label: "户籍",
-    prop: "city",
-    search: true
   },
   {
     label: "状态",
@@ -127,15 +181,7 @@ const columns = ref<TableColumn[]>([
     label: "生日",
     prop: "date",
     type: "dateYear",
-    render: row => {
-      return 0;
-    }
-  },
-  {
-    label: "操作",
-    type: "actions",
-    width: 200,
-    fixed: "right"
+    render: row => row.dateYear
   }
 ]);
 
@@ -144,13 +190,27 @@ const data = reactive({
   list: [
     {
       id: "139999999999999999999999999999999999999",
-      name: "张三",
+      name: "张三222222222222222222222222222222222222222222222222222222222",
       age: 0,
       sex: 1,
       rate: 0,
       status: 0,
       slider: 60,
-      avatar: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+      avatar: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+      images: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png",
+      children: [
+        {
+          id: 2,
+          name: "李斯",
+          age: 30,
+          sex: 0,
+          status: 1,
+          slider: 90,
+          avatar: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
+          images: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
+          rate: 5
+        }
+      ]
     },
     {
       id: 2,
@@ -160,6 +220,7 @@ const data = reactive({
       status: 1,
       slider: 90,
       avatar: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
+      images: "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg",
       rate: 5
     },
     {

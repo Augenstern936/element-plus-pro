@@ -1,5 +1,14 @@
 .el-form.generate-form {
   width: 100%;
+  .el-row {
+    row-gap: 18px;
+  }
+  .el-col > .el-form-item {
+    margin-bottom: 0;
+  }
+  .el-form-item__content {
+    line-height: unset;
+  }
   .el-input,
   .el-input-number,
   .el-date-editor.el-input {

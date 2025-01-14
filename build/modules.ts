@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-24 17:52:21
- * @LastEditTime: 2024-11-19 11:38:16
+ * @LastEditTime: 2025-01-03 09:45:22
  */
 import Vue from "@vitejs/plugin-vue";
 import VueJsx from "@vitejs/plugin-vue-jsx";

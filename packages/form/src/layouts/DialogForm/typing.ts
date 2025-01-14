@@ -2,7 +2,7 @@
  * @Description:
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-11 22:26:41
- * @LastEditTime: 2024-11-19 11:44:43
+ * @LastEditTime: 2024-12-18 16:26:17
  *
  */
 import { DialogProps } from "element-plus";
@@ -32,10 +32,10 @@ export const proDialogFormProps = {
     default: 600
   },
   trigger: {
-    type: [Object, Function] as PropType<ProButtonProps | (() => VNode)>
+    type: [Object, Function] as PropType<VNode | ProButtonProps | ((e: { open: Function }) => VNode | ProButtonProps)>
   },
   dialogProps: {
-    type: Object as PropType<DialogProps>,
+    type: Object as PropType<Partial<DialogProps>>,
     default: {}
   }
 };

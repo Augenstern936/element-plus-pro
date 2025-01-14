@@ -2,7 +2,7 @@
  * @Description:
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-11 22:26:41
- * @LastEditTime: 2024-11-19 11:44:18
+ * @LastEditTime: 2025-01-02 16:34:42
  *
  */
 import type { ProButtonProps } from "@element-plus-ui/pro-button";
@@ -12,6 +12,7 @@ import { ProFormLayout } from "../../typing";
 import { pickObjectProperty } from "@element-plus-ui/pro-utils";
 
 const commonProps = pickObjectProperty(CreateFormProps, [
+  "loading",
   "modelValue",
   "columns",
   "labelWidth",

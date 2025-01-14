@@ -2,7 +2,7 @@
  * @Description: 消息拦截器
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-12-14 20:50:58
- * @LastEditTime: 2024-12-15 17:40:24
+ * @LastEditTime: 2024-12-17 13:39:51
  */
 import { DefineComponent, defineComponent } from "vue-demi";
 import { proInterceptorCommomProps, ProInterceptorProps } from "../../typing";
@@ -13,7 +13,16 @@ export interface ProMessageInterceptorProps extends Partial<MessageProps>, Omit<
 
 export const ProMessageInterceptor = defineComponent<ProMessageInterceptorProps>(
   (props, ctx) => {
-    const { Element } = useSlotsDefault(props, ctx.slots, () => {
+    const exportApi = {
+      open: () => {
+        ElMessage({
+          type: "warning",
+          message: "暂无操作权限",
+          ...props
+        });
+      }
+    };
+    const { Element } = useSlotsDefault(props, ctx.slots, exportApi, () => {
       ElMessage({
         type: "warning",
         message: "暂无操作权限",

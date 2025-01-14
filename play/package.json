@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build"
   },
   "license": "ISC",
   "devDependencies": {
@@ -13,10 +14,12 @@
     "vite": "^4.5.0"
   },
   "dependencies": {
-    "@element-plus-ui/pro-button": "workspace:^",
+    "@element-plus-ui/pro-button": "workspace:*",
     "@element-plus-ui/pro-components": "workspace:^",
-    "@element-plus-ui/pro-field": "workspace:^",
-    "@element-plus-ui/pro-form": "1.0.0-beta.1",
+    "@element-plus-ui/pro-dialog": "workspace:*",
+    "@element-plus-ui/pro-drawer": "workspace:*",
+    "@element-plus-ui/pro-field": "workspace:*",
+    "@element-plus-ui/pro-form": "workspace:^",
     "@element-plus-ui/pro-icon": "1.2.0",
     "@element-plus-ui/pro-interceptor": "workspace:^",
     "@element-plus-ui/pro-text": "workspace:^",

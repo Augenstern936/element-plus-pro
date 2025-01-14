@@ -1,6 +1,4 @@
 export default [
-	{
-		text: '数据录入11',
-		items: [{ text: 'ProForm-高级表单', link: '/guide/form' }],
-	},
+  { text: "简介", link: "/guide/intro" },
+  { text: "快速开始", link: "/guide/start" }
 ];

@@ -2,10 +2,10 @@
  * @Description:
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-12-12 23:01:02
- * @LastEditTime: 2024-12-12 23:40:54
+ * @LastEditTime: 2025-01-06 15:46:51
  */
 import { enumTransformOptions, omitObjectProperty } from "@element-plus-ui/pro-utils";
-import { ProTableProps, TableColumn, ElTableColumnProps } from "../../typing";
+import { ProTableProps, TableColumn } from "../../typing";
 import { inject } from "vue-demi";
 
 export const useTableColumns = () => {
@@ -48,7 +48,8 @@ export const useTableColumns = () => {
       type: getElTableColumnType(column) as any,
       filters: getFormatFiltersOption(column) as [] | never,
       align: column.align || tableProps.cellAlign,
-      showOverflowTooltip: column.ellipsis != void 0 ? column.ellipsis : tableProps.ellipsis
+      columnKey: column.columnKey || column.prop,
+      showOverflowTooltip: column.ellipsis ?? tableProps.ellipsis
     };
   };
 

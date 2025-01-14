@@ -1,10 +1,3 @@
-<!--
- * @Description: 
- * @Author: <Haidu w936926@outlook.com>
- * @Date: 2024-10-05 22:43:24
- * @LastEditTime: 2024-10-10 11:00:38
- * 
--->
 <h1 align="center">@element-plus-ui/pro-icon</h1>
 
 <p align="center">简化了 <a href="https://element-plus.org/zh-CN/component/icon.html">ElIcon</a> 组件的使用，通过  <b>Name</b> 或 <b>对象取值</b> 的方式指定渲染的元素</p>

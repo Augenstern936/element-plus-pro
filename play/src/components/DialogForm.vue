@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2024-11-17 21:15:06
+ * @LastEditTime: 2024-12-31 18:39:37
 -->
 <template>
   <el-card>
@@ -19,7 +19,7 @@
         ref="formRef"
         v-model:open="open"
         :title="'创建用户'"
-        :trigger="{ title: '以 trigger 方式控制显隐', type: 'primary' }"
+        :trigger="({ open }) => ({ title: '以 trigger 方式控制显隐', type: 'primary', onClick: open })"
         :columns="[
           {
             label: '姓名',

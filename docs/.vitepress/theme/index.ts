@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-12-11 09:35:59
- * @LastEditTime: 2024-12-12 16:16:56
+ * @LastEditTime: 2024-12-20 17:45:03
  */
 // https://vitepress.dev/guide/custom-theme
 import ProComponents from "@element-plus-ui/pro-components";
@@ -11,6 +11,7 @@ import type { Theme } from "vitepress";
 import "vitepress/dist/client/theme-default/styles/components/vp-code-group.css";
 import DefaultTheme from "vitepress/theme";
 import { globals } from "../vitepress";
+import "element-plus/theme-chalk/dark/css-vars.css";
 import "./style.css";
 
 export default {

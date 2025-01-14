@@ -2,7 +2,7 @@
  * @Description:
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-11 22:26:41
- * @LastEditTime: 2024-11-19 11:43:18
+ * @LastEditTime: 2024-12-18 16:26:28
  *
  */
 import { DrawerProps } from "element-plus";
@@ -32,10 +32,10 @@ export const proDrawerFormProps = {
     default: 600
   },
   trigger: {
-    type: [Object, Function] as PropType<ProButtonProps | (() => VNode)>
+    type: [Object, Function] as PropType<VNode | ProButtonProps | ((e: { open: Function }) => VNode | ProButtonProps)>
   },
   DrawerProps: {
-    type: Object as PropType<DrawerProps>,
+    type: Object as PropType<Partial<DrawerProps>>,
     default: {}
   }
 };

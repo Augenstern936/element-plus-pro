@@ -3,7 +3,7 @@ title: ProSearchBar
 outline: deep
 ---
 
-# ProSearchBar
+# ProSearchBar 搜索栏
 
 ## 基础用法
 

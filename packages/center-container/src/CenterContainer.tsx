@@ -1,10 +1,10 @@
 /*
  * @Description:
  * @Date: 2024-06-17 10:01:37
- * @LastEditTime: 2024-07-09 16:57:46
+ * @LastEditTime: 2024-12-17 14:31:03
  */
 import { toCssUnitValue, withInstall } from "@element-plus-ui/pro-utils";
-import type { FunctionalComponent } from "vue-demi";
+import type { DefineComponent } from "vue-demi";
 import { computed, defineComponent } from "vue-demi";
 import props from "./props";
 import "./styles/index.scss";
@@ -28,7 +28,7 @@ const ProCenterContainer = defineComponent(
   {
     name: "ProCenterContainer"
   }
-) as unknown as FunctionalComponent;
+) as DefineComponent<ProCenterContainerProps>;
 
 ProCenterContainer.props = props;
 

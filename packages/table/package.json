@@ -39,18 +39,21 @@
     "@element-plus-ui/pro-field": "workspace:^",
     "@element-plus-ui/pro-form": "workspace:^",
     "@element-plus-ui/pro-icon": "^1.2.1",
-    "@element-plus-ui/pro-text": "workspace:1.0.2-1",
+    "@element-plus-ui/pro-text": "workspace:^",
     "@element-plus/icons-vue": "^2.3.1",
     "@types/mockjs": "^1.0.10",
     "@types/uuid": "^9.0.7",
     "@vueuse/core": "^10.11.1",
     "fetch-mock": "^10.0.8",
+    "file-saver": "^2.0.5",
     "mockjs": "^1.1.0",
     "msw": "^2.6.5",
     "screenfull": "^6.0.2",
     "uuid": "^9.0.1",
     "vue-demi": "^0.14.8",
-    "vue3-styled-components": "^1.2.1"
+    "vue-draggable-plus": "^0.6.0",
+    "vue3-styled-components": "^1.2.1",
+    "xlsx": "^0.18.5"
   },
   "peerDependencies": {
     "element-plus": ">=2.8.8",

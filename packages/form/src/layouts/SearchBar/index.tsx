@@ -2,14 +2,14 @@
  * @Description:;
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-04-11 22:23:41
- * @LastEditTime: 2024-11-19 11:53:43
+ * @LastEditTime: 2025-01-13 18:15:41
  *
  */
 import { ProButtonProps } from "@element-plus-ui/pro-button";
 import { omitObjectProperty, withInstall } from "@element-plus-ui/pro-utils";
 import { useVModel, isObject } from "@vueuse/core";
 import { ColProps, ElCol, ElFormItem } from "element-plus";
-import { computed, DefineComponent, defineComponent, ref, VNode, watch } from "vue-demi";
+import { computed, DefineComponent, defineComponent, onMounted, ref, VNode, watch } from "vue-demi";
 import { CreateForm } from "../../core";
 import { Actions, emitter } from "./Actions";
 import Options from "./Options";
@@ -24,6 +24,8 @@ const SearchBar = defineComponent<ProSearchBarProps>(
     const formRef = ref();
 
     const model: Record<string, any> = isObject(props.modelValue) ? useVModel(props, "modelValue", ctx.emit) : ref({});
+
+    const loading = ref(false);
 
     const defaultSpan = ref(8);
 
@@ -97,15 +99,23 @@ const SearchBar = defineComponent<ProSearchBarProps>(
     };
 
     ctx.expose({
+      loading: loading.value,
       ...getFormRefExpose(formRef.value)
     });
 
     watch(
       () => props.collapsed,
       () => {
+        loading.value = !loading.value;
         collapsed.value = props.collapsed ?? collapsed.value;
       }
     );
+
+    onMounted(() => {
+      window.addEventListener("resize", function () {
+        console.log("视口宽度:", window.innerWidth);
+      });
+    });
 
     return () => (
       <div class={"pro-search-bar"}>
@@ -136,6 +146,7 @@ const SearchBar = defineComponent<ProSearchBarProps>(
                     >
                       <Actions
                         {...props}
+                        loading={loading.value}
                         collapsed={collapsed.value}
                         onSubmit={config => onSubmitter("search", config)}
                         onReset={config => onSubmitter("reset", config)}

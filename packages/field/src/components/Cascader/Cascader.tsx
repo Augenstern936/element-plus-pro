@@ -2,13 +2,13 @@
  * @Description:
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-03-27 22:42:21
- * @LastEditTime: 2024-11-11 20:27:34
+ * @LastEditTime: 2024-12-17 14:54:11
  */
 import { useVModel } from "@vueuse/core";
 import { useFetchData } from "@element-plus-ui/pro-hooks";
 import { ElCascader, CascaderProps, ElText, CascaderOption } from "element-plus";
 import { formatPlaceholder, enumTransformOptions, getVModelSelectedOptions } from "@element-plus-ui/pro-utils";
-import { computed, defineComponent, DefineComponent, watch, ref } from "vue-demi";
+import { computed, defineComponent, DefineComponent, ref } from "vue-demi";
 import { proFieldCascaderProps, ProFieldCascaderProps, ProFieldCascaderValueEnum } from "./props";
 import { ReadOptions } from "../widgets";
 import { isObject } from "@vueuse/core";
@@ -33,13 +33,6 @@ const ProFieldCascader = defineComponent<ProFieldCascaderProps>(
 
       return fieldPropsPlaceholder ?? props.placeholder ?? formatPlaceholder("", "cascader");
     });
-
-    watch(
-      () => model.value,
-      v => {
-        console.log(v, "v");
-      }
-    );
 
     const render = () => {
       if (props.mode === "read") {

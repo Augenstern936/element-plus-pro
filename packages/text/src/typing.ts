@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Date: 2024-04-30 17:42:23
- * @LastEditTime: 2024-10-06 21:57:56
+ * @LastEditTime: 2025-01-03 14:29:30
  */
 import { ProIconName } from "@element-plus-ui/pro-icon";
 import { GeneratePropTypes } from "@element-plus-ui/pro-types";
@@ -25,6 +25,9 @@ export const proTextProps = {
   content: {
     type: String
   },
+  ellipsis: {
+    type: Object as PropType<ProTextEllipsisConfig>
+  },
   copyable: {
     type: [Boolean, Object] as PropType<boolean | ProTextCopyableConfig>
   },
@@ -32,6 +35,10 @@ export const proTextProps = {
     type: [Boolean, Object] as PropType<boolean | ProTextEditableConfig>
   }
 } as const;
+
+export type ProTextEllipsisConfig = {
+  rows?: number;
+};
 
 export type ProTextCopyableConfig = {
   text?: string;

@@ -2,7 +2,7 @@
  * @Description:
  * @Author: <Haidu w936926@outlook.com>
  * @Date: 2024-07-18 21:25:23
- * @LastEditTime: 2024-11-19 11:43:58
+ * @LastEditTime: 2024-12-20 14:03:57
  *
  */
 import ProButton, { ProButtonProps } from "@element-plus-ui/pro-button";
@@ -71,7 +71,6 @@ const Options = (props: OptionsProps, ctx: SetupContext) => {
         </ElDropdown>
       );
     }
-
     return [slots.value[0]];
   };
 

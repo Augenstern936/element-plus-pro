@@ -10,6 +10,12 @@
     margin-right: 10px;
   }
   .el-text.is-truncated {
-    padding-right: 6px;
+    // padding-right: 6px;
+  }
+  .test {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    --webkit-line-clamp: 2; //line-clamp: 2;
   }
 }

@@ -20,6 +20,7 @@ export default [
   {
     text: "通用",
     items: [
+      { text: "ProIcon 图标", link: "/component/pro-icon" },
       { text: "ProText 文本", link: "/component/pro-text" },
       { text: "ProField 信息", link: "/component/pro-field" },
       { text: "ProButton 按钮", link: "/component/pro-button" },
