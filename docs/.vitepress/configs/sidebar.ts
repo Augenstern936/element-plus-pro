@@ -1,7 +1,7 @@
-import guide from './guide';
-import components from './components';
+import guide from "./guide";
+import components from "./components";
 
 export default {
-	'/guide/': guide,
-	'/component/': components,
+  "/guide/": guide,
+  "/component/": components
 };

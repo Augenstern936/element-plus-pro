@@ -1,52 +1,52 @@
 import "./chunk-V6ZDW5E6.js";
-import {
-  computed,
-  inject,
-  isRef,
-  onUnmounted,
-  provide,
-  ref,
-  shallowRef,
-  watch,
-  watchEffect
-} from "./chunk-FNEGEEL4.js";
+import { computed, inject, isRef, onUnmounted, provide, ref, shallowRef, watch, watchEffect } from "./chunk-FNEGEEL4.js";
 import "./chunk-JVSYCCQQ.js";
 import "./chunk-MTI3AIJG.js";
 
 // ../node_modules/.pnpm/vue-request@2.0.4_vue@3.5.13_typescript@5.7.2_/node_modules/vue-request/dist/index.es.js
 var GLOBAL_OPTIONS = {};
 var GLOBAL_OPTIONS_PROVIDE_KEY = Symbol("GLOBAL_OPTIONS_PROVIDE_KEY");
-var setGlobalOptions = (config) => {
-  Object.keys(config).forEach((key) => {
+var setGlobalOptions = config => {
+  Object.keys(config).forEach(key => {
     GLOBAL_OPTIONS[key] = config[key];
   });
 };
 var getGlobalOptions = () => {
   return GLOBAL_OPTIONS;
 };
-var definePlugin = (options) => {
+var definePlugin = options => {
   return options;
 };
 var objectToString = Object.prototype.toString;
-var toTypeString = (val) => objectToString.call(val);
-var isPlainObject = (val) => toTypeString(val) === "[object Object]";
-var isArray = (val) => Array.isArray(val);
-var isObject = (val) => val !== null && typeof val === "object";
-var isFunction = (fn) => fn instanceof Function;
-var isNil = (val) => val === null || val === void 0;
+var toTypeString = val => objectToString.call(val);
+var isPlainObject = val => toTypeString(val) === "[object Object]";
+var isArray = val => Array.isArray(val);
+var isObject = val => val !== null && typeof val === "object";
+var isFunction = fn => fn instanceof Function;
+var isNil = val => val === null || val === void 0;
 var isServer = typeof window === "undefined";
 var isDocumentVisibility = () => {
   var _window$document;
-  if (isServer || isNil((_window$document = window.document) === null || _window$document === void 0 ? void 0 : _window$document.visibilityState)) return true;
+  if (
+    isServer ||
+    isNil(
+      (_window$document = window.document) === null || _window$document === void 0 ? void 0 : _window$document.visibilityState
+    )
+  )
+    return true;
   return window.document.visibilityState === "visible";
 };
 var isOnline = () => {
   var _ref, _window$navigator;
-  return (_ref = !isServer && ((_window$navigator = window.navigator) === null || _window$navigator === void 0 ? void 0 : _window$navigator.onLine)) !== null && _ref !== void 0 ? _ref : true;
+  return (_ref =
+    !isServer &&
+    ((_window$navigator = window.navigator) === null || _window$navigator === void 0 ? void 0 : _window$navigator.onLine)) !==
+    null && _ref !== void 0
+    ? _ref
+    : true;
 };
-var resolvedPromise = () => new Promise(() => {
-});
-var get = function(source, path) {
+var resolvedPromise = () => new Promise(() => {});
+var get = function (source, path) {
   let defaultValue = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : void 0;
   const paths = path.replace(/\[(\d+)\]/g, ".$1").split(".");
   let result = source;
@@ -65,7 +65,7 @@ function omit(object, keys) {
   }
   return result;
 }
-var warning = function(message) {
+var warning = function (message) {
   let throwError = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
   const msg = `Warning: [vue-request] ${message}`;
   if (throwError) {
@@ -74,10 +74,10 @@ var warning = function(message) {
     console.error(msg);
   }
 };
-var refToRaw = (value) => {
+var refToRaw = value => {
   return isRef(value) ? value.value : value;
 };
-var shallowCopy = (value) => {
+var shallowCopy = value => {
   if (isObject(value)) {
     return Object.assign(isArray(value) ? [] : {}, value);
   } else {
@@ -85,7 +85,7 @@ var shallowCopy = (value) => {
   }
 };
 var CACHE_MAP = /* @__PURE__ */ new Map();
-var getCache = (cacheKey) => {
+var getCache = cacheKey => {
   if (isNil(cacheKey)) return;
   const data = CACHE_MAP.get(cacheKey);
   return data;
@@ -101,14 +101,15 @@ var setCache = (cacheKey, cacheTime, data) => {
     timer
   });
 };
-var clearCache = (cacheKey) => {
+var clearCache = cacheKey => {
   if (cacheKey) {
     var _CACHE_MAP$get;
-    const timer = (_CACHE_MAP$get = CACHE_MAP.get(cacheKey)) === null || _CACHE_MAP$get === void 0 ? void 0 : _CACHE_MAP$get.timer;
+    const timer =
+      (_CACHE_MAP$get = CACHE_MAP.get(cacheKey)) === null || _CACHE_MAP$get === void 0 ? void 0 : _CACHE_MAP$get.timer;
     timer && clearTimeout(timer);
     CACHE_MAP.delete(cacheKey);
   } else {
-    CACHE_MAP.forEach((i) => i.timer && clearTimeout(i.timer));
+    CACHE_MAP.forEach(i => i.timer && clearTimeout(i.timer));
     CACHE_MAP.clear();
   }
 };
@@ -164,7 +165,9 @@ function debounce(func, wait, options) {
   function shouldInvoke(time) {
     const timeSinceLastCall = time - lastCallTime;
     const timeSinceLastInvoke = time - lastInvokeTime;
-    return lastCallTime === void 0 || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
+    return (
+      lastCallTime === void 0 || timeSinceLastCall >= wait || timeSinceLastCall < 0 || (maxing && timeSinceLastInvoke >= maxWait)
+    );
   }
   function timerExpired() {
     const time = Date.now();
@@ -227,9 +230,11 @@ function baseMerge(origin, target) {
     if (target[key] === void 0) {
       continue;
     }
-    if (!isObject(target[key]) || // `target[key]` is not an object
-    !isObject(origin[key]) || // `target[key]` is not an object
-    !(key in origin)) {
+    if (
+      !isObject(target[key]) || // `target[key]` is not an object
+      !isObject(origin[key]) || // `target[key]` is not an object
+      !(key in origin)
+    ) {
       origin[key] = target[key];
       continue;
     }
@@ -266,11 +271,7 @@ function throttle(func, wait, options) {
   });
 }
 var useDebouncePlugin = definePlugin((queryInstance, _ref) => {
-  let {
-    debounceInterval,
-    debounceOptions,
-    manual
-  } = _ref;
+  let { debounceInterval, debounceOptions, manual } = _ref;
   const initialAutoRunFlag = ref(false);
   const debouncedRun = ref();
   const debounceOptionsRef = computed(() => debounceOptions);
@@ -279,42 +280,49 @@ var useDebouncePlugin = definePlugin((queryInstance, _ref) => {
   if (!manual) {
     initialAutoRunFlag.value = true;
   }
-  watchEffect((onInvalidate) => {
+  watchEffect(onInvalidate => {
     if (isNil(debounceIntervalRef.value)) return;
-    debouncedRun.value = debounce((callback) => callback(), debounceIntervalRef.value, debounceOptionsRef.value);
-    queryInstance.context.runAsync = function() {
+    debouncedRun.value = debounce(callback => callback(), debounceIntervalRef.value, debounceOptionsRef.value);
+    queryInstance.context.runAsync = function () {
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
       return new Promise((resolve, reject) => {
         if (initialAutoRunFlag.value) {
           initialAutoRunFlag.value = false;
-          originRunRef.value(...args).then(resolve).catch(reject);
+          originRunRef
+            .value(...args)
+            .then(resolve)
+            .catch(reject);
         } else {
           debouncedRun.value(() => {
-            originRunRef.value(...args).then(resolve).catch(reject);
+            originRunRef
+              .value(...args)
+              .then(resolve)
+              .catch(reject);
           });
         }
       });
     };
     onInvalidate(() => {
       var _debouncedRun$value;
-      (_debouncedRun$value = debouncedRun.value) === null || _debouncedRun$value === void 0 ? void 0 : _debouncedRun$value.cancel();
+      (_debouncedRun$value = debouncedRun.value) === null || _debouncedRun$value === void 0
+        ? void 0
+        : _debouncedRun$value.cancel();
       queryInstance.context.runAsync = originRunRef.value;
     });
   });
   return {
     onCancel() {
       var _debouncedRun$value2;
-      (_debouncedRun$value2 = debouncedRun.value) === null || _debouncedRun$value2 === void 0 ? void 0 : _debouncedRun$value2.cancel();
+      (_debouncedRun$value2 = debouncedRun.value) === null || _debouncedRun$value2 === void 0
+        ? void 0
+        : _debouncedRun$value2.cancel();
     }
   };
 });
 var useErrorRetryPlugin = definePlugin((queryInstance, _ref) => {
-  let {
-    errorRetryCount = 0,
-    errorRetryInterval = 0
-  } = _ref;
+  let { errorRetryCount = 0, errorRetryInterval = 0 } = _ref;
   const retryTimer = ref();
   const retriedCount = ref(0);
   const errorRetryCountRef = computed(() => refToRaw(errorRetryCount));
@@ -370,18 +378,18 @@ var useErrorRetryPlugin = definePlugin((queryInstance, _ref) => {
   };
 });
 var useReadyPlugin = definePlugin((queryInstance, _ref) => {
-  let {
-    ready = ref(true),
-    manual,
-    defaultParams = []
-  } = _ref;
-  watch(ready, (val) => {
-    if (!manual && val) {
-      queryInstance.context.run(...defaultParams);
+  let { ready = ref(true), manual, defaultParams = [] } = _ref;
+  watch(
+    ready,
+    val => {
+      if (!manual && val) {
+        queryInstance.context.run(...defaultParams);
+      }
+    },
+    {
+      flush: "sync"
     }
-  }, {
-    flush: "sync"
-  });
+  );
   return {
     onBefore() {
       const readyFlag = isFunction(ready) ? ready() : ready.value;
@@ -395,12 +403,8 @@ var useReadyPlugin = definePlugin((queryInstance, _ref) => {
   };
 });
 var useRefreshDepsPlugin = definePlugin((queryInstance, _ref) => {
-  let {
-    refreshDeps,
-    refreshDepsAction,
-    manual
-  } = _ref;
-  if (refreshDeps === void 0 || isArray(refreshDeps) && refreshDeps.length === 0) return {};
+  let { refreshDeps, refreshDepsAction, manual } = _ref;
+  if (refreshDeps === void 0 || (isArray(refreshDeps) && refreshDeps.length === 0)) return {};
   const deps = isArray(refreshDeps) ? refreshDeps : [refreshDeps];
   watch(deps, () => {
     if (refreshDepsAction) {
@@ -412,46 +416,50 @@ var useRefreshDepsPlugin = definePlugin((queryInstance, _ref) => {
   return {};
 });
 var useThrottlePlugin = definePlugin((queryInstance, _ref) => {
-  let {
-    throttleInterval,
-    throttleOptions
-  } = _ref;
+  let { throttleInterval, throttleOptions } = _ref;
   const throttledRun = ref();
   const throttleIntervalRef = computed(() => refToRaw(throttleInterval));
   const throttleOptionsRef = computed(() => throttleOptions);
   const originRunRef = ref(queryInstance.context.runAsync);
-  watchEffect((onInvalidate) => {
+  watchEffect(onInvalidate => {
     if (isNil(throttleInterval)) return {};
-    throttledRun.value = throttle((callback) => callback(), throttleIntervalRef.value, throttleOptionsRef.value);
-    queryInstance.context.runAsync = function() {
+    throttledRun.value = throttle(callback => callback(), throttleIntervalRef.value, throttleOptionsRef.value);
+    queryInstance.context.runAsync = function () {
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
       return new Promise((resolve, reject) => {
         throttledRun.value(() => {
-          originRunRef.value(...args).then(resolve).catch(reject);
+          originRunRef
+            .value(...args)
+            .then(resolve)
+            .catch(reject);
         });
       });
     };
     onInvalidate(() => {
       var _throttledRun$value;
-      (_throttledRun$value = throttledRun.value) === null || _throttledRun$value === void 0 ? void 0 : _throttledRun$value.cancel();
+      (_throttledRun$value = throttledRun.value) === null || _throttledRun$value === void 0
+        ? void 0
+        : _throttledRun$value.cancel();
       queryInstance.context.runAsync = originRunRef.value;
     });
   });
   return {
     onCancel() {
       var _throttledRun$value2;
-      (_throttledRun$value2 = throttledRun.value) === null || _throttledRun$value2 === void 0 ? void 0 : _throttledRun$value2.cancel();
+      (_throttledRun$value2 = throttledRun.value) === null || _throttledRun$value2 === void 0
+        ? void 0
+        : _throttledRun$value2.cancel();
     }
   };
 });
 var setStateBind = (oldState, publicCb) => {
-  return (newState) => {
-    Object.keys(newState).forEach((key) => {
+  return newState => {
+    Object.keys(newState).forEach(key => {
       oldState[key].value = newState[key];
     });
-    publicCb.forEach((fun) => fun(oldState));
+    publicCb.forEach(fun => fun(oldState));
   };
 };
 var composeMiddleware = (middleArray, hook) => {
@@ -465,38 +473,45 @@ var composeMiddleware = (middleArray, hook) => {
 };
 var createQuery = (service, config, initialState) => {
   var _initialState$loading, _initialState$data;
-  const {
-    initialData,
-    onSuccess,
-    onError,
-    onBefore,
-    onAfter
-  } = config;
-  const loading = ref((_initialState$loading = initialState === null || initialState === void 0 ? void 0 : initialState.loading) !== null && _initialState$loading !== void 0 ? _initialState$loading : false);
-  const data = shallowRef((_initialState$data = initialState === null || initialState === void 0 ? void 0 : initialState.data) !== null && _initialState$data !== void 0 ? _initialState$data : initialData);
+  const { initialData, onSuccess, onError, onBefore, onAfter } = config;
+  const loading = ref(
+    (_initialState$loading = initialState === null || initialState === void 0 ? void 0 : initialState.loading) !== null &&
+      _initialState$loading !== void 0
+      ? _initialState$loading
+      : false
+  );
+  const data = shallowRef(
+    (_initialState$data = initialState === null || initialState === void 0 ? void 0 : initialState.data) !== null &&
+      _initialState$data !== void 0
+      ? _initialState$data
+      : initialData
+  );
   const error = shallowRef(initialState === null || initialState === void 0 ? void 0 : initialState.error);
   const params = ref(initialState === null || initialState === void 0 ? void 0 : initialState.params);
   const plugins = ref([]);
   const status = shallowRef("pending");
   const context = {};
-  const setState = setStateBind({
-    status,
-    loading,
-    data,
-    error,
-    params
-  }, []);
-  const emit = function(event) {
+  const setState = setStateBind(
+    {
+      status,
+      loading,
+      data,
+      error,
+      params
+    },
+    []
+  );
+  const emit = function (event) {
     for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       args[_key - 1] = arguments[_key];
     }
     if (event === "onQuery") {
-      const queryFn = plugins.value.map((i) => i.onQuery).filter(Boolean);
+      const queryFn = plugins.value.map(i => i.onQuery).filter(Boolean);
       return {
         servicePromise: composeMiddleware(queryFn, args[0])()
       };
     } else {
-      const res = plugins.value.map((i) => {
+      const res = plugins.value.map(i => {
         var _i$event;
         return (_i$event = i[event]) === null || _i$event === void 0 ? void 0 : _i$event.call(i, ...args);
       });
@@ -504,7 +519,7 @@ var createQuery = (service, config, initialState) => {
     }
   };
   const count = ref(0);
-  context.runAsync = async function() {
+  context.runAsync = async function () {
     for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
       args[_key2] = arguments[_key2];
     }
@@ -515,10 +530,7 @@ var createQuery = (service, config, initialState) => {
     });
     count.value += 1;
     const currentCount = count.value;
-    const {
-      isBreak,
-      breakResult = resolvedPromise()
-    } = emit("onBefore", args);
+    const { isBreak, breakResult = resolvedPromise() } = emit("onBefore", args);
     if (isBreak) {
       setState({
         status: "settled"
@@ -527,10 +539,8 @@ var createQuery = (service, config, initialState) => {
     }
     onBefore === null || onBefore === void 0 ? void 0 : onBefore(args);
     try {
-      const serviceWrapper = () => new Promise((resolve) => resolve(service(...params.value)));
-      let {
-        servicePromise
-      } = emit("onQuery", serviceWrapper);
+      const serviceWrapper = () => new Promise(resolve => resolve(service(...params.value)));
+      let { servicePromise } = emit("onQuery", serviceWrapper);
       if (!servicePromise) {
         servicePromise = serviceWrapper();
       }
@@ -565,8 +575,8 @@ var createQuery = (service, config, initialState) => {
       throw error2;
     }
   };
-  context.run = function() {
-    context.runAsync(...arguments).catch((error2) => {
+  context.run = function () {
+    context.runAsync(...arguments).catch(error2 => {
       if (!onError) {
         console.error(error2);
       }
@@ -580,12 +590,12 @@ var createQuery = (service, config, initialState) => {
     emit("onCancel");
   };
   context.refresh = () => {
-    context.run(...params.value || []);
+    context.run(...(params.value || []));
   };
   context.refreshAsync = () => {
-    return context.runAsync(...params.value || []);
+    return context.runAsync(...(params.value || []));
   };
-  context.mutate = (x) => {
+  context.mutate = x => {
     const mutateData = isFunction(x) ? x(data.value) : x;
     const _mutateData = shallowCopy(mutateData);
     setState({
@@ -612,12 +622,9 @@ function useQuery(service) {
     ...injectedGlobalOptions,
     ...options
   };
-  const {
-    manual = false,
-    defaultParams = []
-  } = config;
+  const { manual = false, defaultParams = [] } = config;
   const queryInstance = createQuery(service, config);
-  queryInstance.plugins.value = plugins.map((i) => i(queryInstance, config));
+  queryInstance.plugins.value = plugins.map(i => i(queryInstance, config));
   if (!manual) {
     const params = queryInstance.params.value || defaultParams;
     queryInstance.context.run(...params);
@@ -639,10 +646,7 @@ function useQuery(service) {
   };
 }
 function useLoadMore(service, options) {
-  const {
-    isNoMore,
-    ...restOptions
-  } = options !== null && options !== void 0 ? options : {};
+  const { isNoMore, ...restOptions } = options !== null && options !== void 0 ? options : {};
   const data = shallowRef();
   const dataList = computed(() => {
     var _data$value;
@@ -656,64 +660,88 @@ function useLoadMore(service, options) {
     run,
     cancel: _cancel,
     ...rest
-  } = useQuery(async (lastData) => {
-    const currentCount = count.value;
-    const currentData = await service(lastData);
-    if (currentCount === count.value) {
-      if (lastData) {
-        data.value = {
-          ...currentData,
-          list: [...lastData.list, ...currentData.list]
-        };
-      } else {
-        data.value = currentData;
+  } = useQuery(
+    async lastData => {
+      const currentCount = count.value;
+      const currentData = await service(lastData);
+      if (currentCount === count.value) {
+        if (lastData) {
+          data.value = {
+            ...currentData,
+            list: [...lastData.list, ...currentData.list]
+          };
+        } else {
+          data.value = currentData;
+        }
       }
-    }
-    return currentData;
-  }, {
-    ...restOptions,
-    defaultParams: [],
-    refreshDepsAction: () => {
-      if (restOptions !== null && restOptions !== void 0 && restOptions.refreshDepsAction) {
-        restOptions.refreshDepsAction();
-      } else {
-        refresh();
-      }
+      return currentData;
     },
-    onError: (error) => {
-      var _restOptions$onError;
-      restOptions === null || restOptions === void 0 ? void 0 : (_restOptions$onError = restOptions.onError) === null || _restOptions$onError === void 0 ? void 0 : _restOptions$onError.call(restOptions, error);
-    },
-    onSuccess: (data2) => {
-      var _restOptions$onSucces;
-      restOptions === null || restOptions === void 0 ? void 0 : (_restOptions$onSucces = restOptions.onSuccess) === null || _restOptions$onSucces === void 0 ? void 0 : _restOptions$onSucces.call(restOptions, data2);
-    },
-    onBefore: () => {
-      var _restOptions$onBefore;
-      count.value += 1;
-      if (isTriggerByLoadMore.value) {
+    {
+      ...restOptions,
+      defaultParams: [],
+      refreshDepsAction: () => {
+        if (restOptions !== null && restOptions !== void 0 && restOptions.refreshDepsAction) {
+          restOptions.refreshDepsAction();
+        } else {
+          refresh();
+        }
+      },
+      onError: error => {
+        var _restOptions$onError;
+        restOptions === null || restOptions === void 0
+          ? void 0
+          : (_restOptions$onError = restOptions.onError) === null || _restOptions$onError === void 0
+            ? void 0
+            : _restOptions$onError.call(restOptions, error);
+      },
+      onSuccess: data2 => {
+        var _restOptions$onSucces;
+        restOptions === null || restOptions === void 0
+          ? void 0
+          : (_restOptions$onSucces = restOptions.onSuccess) === null || _restOptions$onSucces === void 0
+            ? void 0
+            : _restOptions$onSucces.call(restOptions, data2);
+      },
+      onBefore: () => {
+        var _restOptions$onBefore;
+        count.value += 1;
+        if (isTriggerByLoadMore.value) {
+          isTriggerByLoadMore.value = false;
+          loadingMore.value = true;
+        }
+        restOptions === null || restOptions === void 0
+          ? void 0
+          : (_restOptions$onBefore = restOptions.onBefore) === null || _restOptions$onBefore === void 0
+            ? void 0
+            : _restOptions$onBefore.call(restOptions);
+      },
+      onAfter: () => {
+        var _restOptions$onAfter;
+        loadingMore.value = false;
         isTriggerByLoadMore.value = false;
-        loadingMore.value = true;
+        restOptions === null || restOptions === void 0
+          ? void 0
+          : (_restOptions$onAfter = restOptions.onAfter) === null || _restOptions$onAfter === void 0
+            ? void 0
+            : _restOptions$onAfter.call(restOptions);
       }
-      restOptions === null || restOptions === void 0 ? void 0 : (_restOptions$onBefore = restOptions.onBefore) === null || _restOptions$onBefore === void 0 ? void 0 : _restOptions$onBefore.call(restOptions);
     },
-    onAfter: () => {
-      var _restOptions$onAfter;
-      loadingMore.value = false;
-      isTriggerByLoadMore.value = false;
-      restOptions === null || restOptions === void 0 ? void 0 : (_restOptions$onAfter = restOptions.onAfter) === null || _restOptions$onAfter === void 0 ? void 0 : _restOptions$onAfter.call(restOptions);
-    }
-  }, [useErrorRetryPlugin, useDebouncePlugin, useThrottlePlugin, useRefreshDepsPlugin, useReadyPlugin]);
+    [useErrorRetryPlugin, useDebouncePlugin, useThrottlePlugin, useRefreshDepsPlugin, useReadyPlugin]
+  );
   const noMore = computed(() => {
     return isNoMore && isFunction(isNoMore) ? isNoMore(data.value) : false;
   });
   const loadMore = () => {
-    loadMoreAsync().catch(() => {
-    });
+    loadMoreAsync().catch(() => {});
   };
   const loadMoreAsync = () => {
     if (noMore.value) {
-      return Promise.reject(warning("No more data. You need to ignore this error by checking if `noMore` is false before calling `loadMoreAsync`", true));
+      return Promise.reject(
+        warning(
+          "No more data. You need to ignore this error by checking if `noMore` is false before calling `loadMoreAsync`",
+          true
+        )
+      );
     }
     isTriggerByLoadMore.value = true;
     return runAsync(data.value);
@@ -725,7 +753,7 @@ function useLoadMore(service, options) {
     _cancel();
     loadingMore.value = false;
   };
-  const mutate = (x) => {
+  const mutate = x => {
     const mutateData = isFunction(x) ? x(data.value) : x;
     const _mutateData = shallowCopy(mutateData);
     data.value = _mutateData;
@@ -747,20 +775,22 @@ function useLoadMore(service, options) {
 var cacheQuery = /* @__PURE__ */ new Map();
 var setCacheQuery = (cacheKey, query) => {
   cacheQuery.set(cacheKey, query);
-  query.then((res) => {
-    cacheQuery.delete(cacheKey);
-    return res;
-  }).catch(() => {
-    cacheQuery.delete(cacheKey);
-  });
+  query
+    .then(res => {
+      cacheQuery.delete(cacheKey);
+      return res;
+    })
+    .catch(() => {
+      cacheQuery.delete(cacheKey);
+    });
 };
-var getCacheQuery = (cacheKey) => {
+var getCacheQuery = cacheKey => {
   return cacheQuery.get(cacheKey);
 };
 var listeners = /* @__PURE__ */ new Map();
 var trigger = (key, data) => {
   if (listeners.has(key)) {
-    listeners.get(key).forEach((item) => item(data));
+    listeners.get(key).forEach(item => item(data));
   }
 };
 var subscribe = (key, listener) => {
@@ -775,19 +805,12 @@ var subscribe = (key, listener) => {
   };
 };
 var useCachePlugin = definePlugin((queryInstance, _ref) => {
-  let {
-    cacheKey: customCacheKey,
-    cacheTime = 6e5,
-    staleTime = 0,
-    getCache: customGetCache,
-    setCache: customSetCache
-  } = _ref;
+  let { cacheKey: customCacheKey, cacheTime = 6e5, staleTime = 0, getCache: customGetCache, setCache: customSetCache } = _ref;
   if (!customCacheKey) return {};
   const cacheKey = isFunction(customCacheKey) ? customCacheKey : () => customCacheKey;
-  const unSubscribe = ref(() => {
-  });
+  const unSubscribe = ref(() => {});
   let currentQuery;
-  const _getCache = (key) => {
+  const _getCache = key => {
     if (customGetCache) {
       return customGetCache(key);
     } else {
@@ -802,11 +825,11 @@ var useCachePlugin = definePlugin((queryInstance, _ref) => {
     }
     trigger(key, cacheData.data);
   };
-  const isFresh = (time) => staleTime === -1 || time + staleTime > (/* @__PURE__ */ new Date()).getTime();
+  const isFresh = time => staleTime === -1 || time + staleTime > /* @__PURE__ */ new Date().getTime();
   const hasProp = (object, prop) => Object.prototype.hasOwnProperty.call(object, prop);
-  const subscribeCache = (params) => {
+  const subscribeCache = params => {
     const _cacheKey2 = cacheKey(params);
-    return subscribe(_cacheKey2, (data) => {
+    return subscribe(_cacheKey2, data => {
       queryInstance.data.value = data;
     });
   };
@@ -859,7 +882,7 @@ var useCachePlugin = definePlugin((queryInstance, _ref) => {
         _setCache(_cacheKey2, cacheTime, {
           data,
           params,
-          time: (/* @__PURE__ */ new Date()).getTime()
+          time: /* @__PURE__ */ new Date().getTime()
         });
         unSubscribe.value = subscribeCache(params);
       }
@@ -871,7 +894,7 @@ var useCachePlugin = definePlugin((queryInstance, _ref) => {
         _setCache(_cacheKey2, cacheTime, {
           data,
           params: queryInstance.params.value,
-          time: (/* @__PURE__ */ new Date()).getTime()
+          time: /* @__PURE__ */ new Date().getTime()
         });
         unSubscribe.value = subscribeCache(queryInstance.params.value);
       }
@@ -889,21 +912,17 @@ function setTimeoutPromise(duration) {
       };
     }
   }
-  return new Timer((resolve) => {
+  return new Timer(resolve => {
     stop = resolve;
     timerId = setTimeout(stop, duration);
   });
 }
 function getCurrentTime() {
-  return (/* @__PURE__ */ new Date()).getTime();
+  return /* @__PURE__ */ new Date().getTime();
 }
 var useLoadingDelayPlugin = definePlugin((queryInstance, _ref) => {
-  let {
-    loadingDelay = 0,
-    loadingKeep = 0
-  } = _ref;
-  const delayLoadingTimer = ref(() => {
-  });
+  let { loadingDelay = 0, loadingKeep = 0 } = _ref;
+  const delayLoadingTimer = ref(() => {});
   const loadingDelayRef = computed(() => refToRaw(loadingDelay));
   const loadingKeepRef = computed(() => refToRaw(loadingKeep));
   let startTime = 0;
@@ -943,7 +962,7 @@ var useLoadingDelayPlugin = definePlugin((queryInstance, _ref) => {
           return Promise.reject(error);
         }
       };
-      const servicePromise = Promise.allSettled([_service(), timeoutPromise]).then((res) => {
+      const servicePromise = Promise.allSettled([_service(), timeoutPromise]).then(res => {
         const result = res[0];
         if (result.status === "fulfilled") {
           return result.value;
@@ -984,33 +1003,32 @@ var subscriber = (listenerType, event) => {
     listeners2.delete(event);
   };
 };
-var observer = (listeners2) => {
-  listeners2.forEach((event) => {
+var observer = listeners2 => {
+  listeners2.forEach(event => {
     event();
   });
 };
 if (!isServer && (_window = window) !== null && _window !== void 0 && _window.addEventListener) {
-  window.addEventListener("visibilitychange", () => {
-    if (isDocumentVisibility()) {
-      observer(VISIBLE_LISTENER);
-    }
-  }, false);
+  window.addEventListener(
+    "visibilitychange",
+    () => {
+      if (isDocumentVisibility()) {
+        observer(VISIBLE_LISTENER);
+      }
+    },
+    false
+  );
   window.addEventListener("focus", () => observer(FOCUS_LISTENER), false);
   window.addEventListener("online", () => observer(RECONNECT_LISTENER), false);
 }
 var usePollingPlugin = definePlugin((queryInstance, _ref) => {
-  let {
-    pollingInterval,
-    pollingWhenHidden = false,
-    pollingWhenOffline = false,
-    errorRetryCount = 0
-  } = _ref;
+  let { pollingInterval, pollingWhenHidden = false, pollingWhenOffline = false, errorRetryCount = 0 } = _ref;
   const pollingTimer = ref();
   const stopPollingWhenHiddenOrOffline = ref(false);
   const pollingIntervalRef = computed(() => refToRaw(pollingInterval));
   const errorRetryCountRef = computed(() => refToRaw(errorRetryCount));
   const unsubscribeList = [];
-  const addUnsubscribeList = (event) => {
+  const addUnsubscribeList = event => {
     event && unsubscribeList.push(event);
   };
   const isKeepPolling = () => {
@@ -1020,7 +1038,7 @@ var usePollingPlugin = definePlugin((queryInstance, _ref) => {
       (pollingWhenOffline || isOnline())
     );
   };
-  const polling = (pollingFunc) => {
+  const polling = pollingFunc => {
     if (queryInstance.error.value && errorRetryCountRef.value !== 0) return;
     let timerId;
     if (!isNil(pollingIntervalRef.value) && pollingIntervalRef.value >= 0) {
@@ -1052,16 +1070,20 @@ var usePollingPlugin = definePlugin((queryInstance, _ref) => {
     addUnsubscribeList(subscriber("RECONNECT_LISTENER", rePolling));
   }
   onUnmounted(() => {
-    unsubscribeList.forEach((unsubscribe) => unsubscribe());
+    unsubscribeList.forEach(unsubscribe => unsubscribe());
   });
   return {
     onBefore() {
       var _pollingTimer$value;
-      (_pollingTimer$value = pollingTimer.value) === null || _pollingTimer$value === void 0 ? void 0 : _pollingTimer$value.call(pollingTimer);
+      (_pollingTimer$value = pollingTimer.value) === null || _pollingTimer$value === void 0
+        ? void 0
+        : _pollingTimer$value.call(pollingTimer);
     },
     onCancel() {
       var _pollingTimer$value2;
-      (_pollingTimer$value2 = pollingTimer.value) === null || _pollingTimer$value2 === void 0 ? void 0 : _pollingTimer$value2.call(pollingTimer);
+      (_pollingTimer$value2 = pollingTimer.value) === null || _pollingTimer$value2 === void 0
+        ? void 0
+        : _pollingTimer$value2.call(pollingTimer);
     },
     onAfter() {
       pollingTimer.value = polling(() => queryInstance.context.refresh());
@@ -1070,7 +1092,7 @@ var usePollingPlugin = definePlugin((queryInstance, _ref) => {
 });
 var limitTrigger = (fn, timeInterval) => {
   let running = false;
-  return function() {
+  return function () {
     if (running) return;
     running = true;
     fn(...arguments);
@@ -1080,18 +1102,15 @@ var limitTrigger = (fn, timeInterval) => {
   };
 };
 var useRefreshOnWindowFocus = definePlugin((queryInstance, _ref) => {
-  let {
-    refreshOnWindowFocus = false,
-    refocusTimespan = 5e3
-  } = _ref;
+  let { refreshOnWindowFocus = false, refocusTimespan = 5e3 } = _ref;
   const refreshOnWindowFocusRef = computed(() => refToRaw(refreshOnWindowFocus));
   const refocusTimespanRef = computed(() => refToRaw(refocusTimespan));
   const unsubscribeList = [];
-  const addUnsubscribeList = (event) => {
+  const addUnsubscribeList = event => {
     event && unsubscribeList.push(event);
   };
   const unsubscribe = () => {
-    unsubscribeList.forEach((fn) => fn());
+    unsubscribeList.forEach(fn => fn());
   };
   watchEffect(() => {
     unsubscribe();
@@ -1107,7 +1126,18 @@ var useRefreshOnWindowFocus = definePlugin((queryInstance, _ref) => {
   return {};
 });
 function useRequest(service, options, plugins) {
-  return useQuery(service, options, [...plugins || [], useLoadingDelayPlugin, useErrorRetryPlugin, useDebouncePlugin, usePollingPlugin, useThrottlePlugin, useRefreshOnWindowFocus, useRefreshDepsPlugin, useReadyPlugin, useCachePlugin]);
+  return useQuery(service, options, [
+    ...(plugins || []),
+    useLoadingDelayPlugin,
+    useErrorRetryPlugin,
+    useDebouncePlugin,
+    usePollingPlugin,
+    useThrottlePlugin,
+    useRefreshOnWindowFocus,
+    useRefreshDepsPlugin,
+    useReadyPlugin,
+    useCachePlugin
+  ]);
 }
 function usePagination(service) {
   let options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
@@ -1118,29 +1148,26 @@ function usePagination(service) {
     totalPageKey: "totalPage"
   };
   const injectedGlobalOptions = inject(GLOBAL_OPTIONS_PROVIDE_KEY, {});
-  const {
-    pagination,
-    ...restOptions
-  } = options;
-  const {
-    currentKey,
-    pageSizeKey,
-    totalKey,
-    totalPageKey
-  } = merge(defaultPaginationOptions, getGlobalOptions().pagination || {}, injectedGlobalOptions.pagination || {}, pagination || {});
-  const finallyOptions = merge({
-    defaultParams: [{
-      [currentKey]: 1,
-      [pageSizeKey]: 10
-    }]
-  }, restOptions);
-  const {
-    data,
-    params,
-    run,
-    ...rest
-  } = useRequest(service, finallyOptions);
-  const paging = (paginationParams) => {
+  const { pagination, ...restOptions } = options;
+  const { currentKey, pageSizeKey, totalKey, totalPageKey } = merge(
+    defaultPaginationOptions,
+    getGlobalOptions().pagination || {},
+    injectedGlobalOptions.pagination || {},
+    pagination || {}
+  );
+  const finallyOptions = merge(
+    {
+      defaultParams: [
+        {
+          [currentKey]: 1,
+          [pageSizeKey]: 10
+        }
+      ]
+    },
+    restOptions
+  );
+  const { data, params, run, ...rest } = useRequest(service, finallyOptions);
+  const paging = paginationParams => {
     const [oldPaginationParams, ...restParams] = params.value || [];
     const newPaginationParams = {
       ...oldPaginationParams,
@@ -1149,12 +1176,12 @@ function usePagination(service) {
     const mergerParams = [newPaginationParams, ...restParams];
     run(...mergerParams);
   };
-  const changeCurrent = (current2) => {
+  const changeCurrent = current2 => {
     paging({
       [currentKey]: current2
     });
   };
-  const changePageSize = (pageSize2) => {
+  const changePageSize = pageSize2 => {
     paging({
       [pageSizeKey]: pageSize2
     });
@@ -1171,10 +1198,17 @@ function usePagination(service) {
       var _params$value$0$curre, _params$value, _params$value$;
       return (
         // @ts-ignore
-        (_params$value$0$curre = (_params$value = params.value) === null || _params$value === void 0 ? void 0 : (_params$value$ = _params$value[0]) === null || _params$value$ === void 0 ? void 0 : _params$value$[currentKey]) !== null && _params$value$0$curre !== void 0 ? _params$value$0$curre : finallyOptions.defaultParams[0][currentKey]
+        (_params$value$0$curre =
+          (_params$value = params.value) === null || _params$value === void 0
+            ? void 0
+            : (_params$value$ = _params$value[0]) === null || _params$value$ === void 0
+              ? void 0
+              : _params$value$[currentKey]) !== null && _params$value$0$curre !== void 0
+          ? _params$value$0$curre
+          : finallyOptions.defaultParams[0][currentKey]
       );
     },
-    set: (val) => {
+    set: val => {
       changeCurrent(val);
     }
   });
@@ -1183,10 +1217,17 @@ function usePagination(service) {
       var _params$value$0$pageS, _params$value2, _params$value2$;
       return (
         // @ts-ignore
-        (_params$value$0$pageS = (_params$value2 = params.value) === null || _params$value2 === void 0 ? void 0 : (_params$value2$ = _params$value2[0]) === null || _params$value2$ === void 0 ? void 0 : _params$value2$[pageSizeKey]) !== null && _params$value$0$pageS !== void 0 ? _params$value$0$pageS : finallyOptions.defaultParams[0][pageSizeKey]
+        (_params$value$0$pageS =
+          (_params$value2 = params.value) === null || _params$value2 === void 0
+            ? void 0
+            : (_params$value2$ = _params$value2[0]) === null || _params$value2$ === void 0
+              ? void 0
+              : _params$value2$[pageSizeKey]) !== null && _params$value$0$pageS !== void 0
+          ? _params$value$0$pageS
+          : finallyOptions.defaultParams[0][pageSizeKey]
       );
     },
-    set: (val) => {
+    set: val => {
       changePageSize(val);
     }
   });
@@ -1205,16 +1246,8 @@ function usePagination(service) {
     ...rest
   };
 }
-var useRequestProvider = (config) => {
+var useRequestProvider = config => {
   provide(GLOBAL_OPTIONS_PROVIDE_KEY, config);
 };
-export {
-  clearCache,
-  definePlugin,
-  setGlobalOptions,
-  useLoadMore,
-  usePagination,
-  useRequest,
-  useRequestProvider
-};
+export { clearCache, definePlugin, setGlobalOptions, useLoadMore, usePagination, useRequest, useRequestProvider };
 //# sourceMappingURL=vue-request.js.map

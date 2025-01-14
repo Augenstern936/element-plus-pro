@@ -6,18 +6,18 @@
 import { ProjectManifest } from "@pnpm/types";
 
 export const getPackageManifest = (pkgPath: string) => {
-	return require(pkgPath) as ProjectManifest;
+  return require(pkgPath) as ProjectManifest;
 };
 
 export const getPackageDependencies = (
-	pkgPath: string
+  pkgPath: string
 ): Record<"dependencies" | "devDependencies" | "peerDependencies", string[]> => {
-	const manifest = getPackageManifest(pkgPath);
-	const { dependencies = {}, devDependencies = {}, peerDependencies = {} } = manifest;
+  const manifest = getPackageManifest(pkgPath);
+  const { dependencies = {}, devDependencies = {}, peerDependencies = {} } = manifest;
 
-	return {
-		dependencies: Object.keys(dependencies),
-		devDependencies: Object.keys(devDependencies),
-		peerDependencies: Object.keys(peerDependencies),
-	};
+  return {
+    dependencies: Object.keys(dependencies),
+    devDependencies: Object.keys(devDependencies),
+    peerDependencies: Object.keys(peerDependencies)
+  };
 };

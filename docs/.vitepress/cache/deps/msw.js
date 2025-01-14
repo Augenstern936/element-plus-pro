@@ -22,9 +22,7 @@ import {
   stringToHeaders,
   toPublicUrl
 } from "./chunk-ZKOHFDJZ.js";
-import {
-  __publicField
-} from "./chunk-MTI3AIJG.js";
+import { __publicField } from "./chunk-MTI3AIJG.js";
 
 // ../node_modules/.pnpm/msw@2.7.0_@types+node@20.17.10_typescript@5.7.2/node_modules/msw/lib/core/utils/internal/checkGlobals.mjs
 function checkGlobals() {
@@ -42,7 +40,7 @@ function isStringEqual(actual, expected) {
 }
 
 // ../node_modules/.pnpm/msw@2.7.0_@types+node@20.17.10_typescript@5.7.2/node_modules/msw/lib/core/utils/logging/getStatusCodeColor.mjs
-var StatusCodeColor = ((StatusCodeColor2) => {
+var StatusCodeColor = (StatusCodeColor2 => {
   StatusCodeColor2["Success"] = "#69AB32";
   StatusCodeColor2["Warning"] = "#F0BB4B";
   StatusCodeColor2["Danger"] = "#E95F5D";
@@ -92,25 +90,29 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
+var __commonJS = (cb, mod) =>
+  function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
 var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
+  if ((from && typeof from === "object") || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
         __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
+var __toESM = (mod, isNodeMode, target) => (
+  (target = mod != null ? __create(__getProtoOf(mod)) : {}),
+  __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  )
+);
 var require_cookie = __commonJS({
   "node_modules/cookie/index.js"(exports) {
     "use strict";
@@ -129,7 +131,7 @@ var require_cookie = __commonJS({
       var obj = {};
       var len = str.length;
       if (len < 2) return obj;
-      var dec = opt && opt.decode || decode;
+      var dec = (opt && opt.decode) || decode;
       var index = 0;
       var eqIdx = 0;
       var endIdx = 0;
@@ -175,7 +177,7 @@ var require_cookie = __commonJS({
       return min;
     }
     function serialize(name, val, opt) {
-      var enc = opt && opt.encode || encodeURIComponent;
+      var enc = (opt && opt.encode) || encodeURIComponent;
       if (typeof enc !== "function") {
         throw new TypeError("option encode is invalid");
       }
@@ -314,15 +316,10 @@ function getAllRequestCookies(request) {
   const cookiesFromHeaders = requestCookieHeader ? parseCookies(requestCookieHeader) : {};
   const cookiesFromDocument = getDocumentCookies(request);
   for (const name in cookiesFromDocument) {
-    request.headers.append(
-      "cookie",
-      source_default2.serialize(name, cookiesFromDocument[name])
-    );
+    request.headers.append("cookie", source_default2.serialize(name, cookiesFromDocument[name]));
   }
   const cookiesFromStore = cookieStore.getCookiesSync(request.url);
-  const storedCookiesObject = Object.fromEntries(
-    cookiesFromStore.map((cookie) => [cookie.key, cookie.value])
-  );
+  const storedCookiesObject = Object.fromEntries(cookiesFromStore.map(cookie => [cookie.key, cookie.value]));
   for (const cookie of cookiesFromStore) {
     request.headers.append("cookie", cookie.toString());
   }
@@ -334,7 +331,7 @@ function getAllRequestCookies(request) {
 }
 
 // ../node_modules/.pnpm/msw@2.7.0_@types+node@20.17.10_typescript@5.7.2/node_modules/msw/lib/core/handlers/HttpHandler.mjs
-var HttpMethods = ((HttpMethods2) => {
+var HttpMethods = (HttpMethods2 => {
   HttpMethods2["HEAD"] = "HEAD";
   HttpMethods2["GET"] = "GET";
   HttpMethods2["POST"] = "POST";
@@ -378,11 +375,7 @@ var HttpHandler = class extends RequestHandler {
   async parse(args) {
     var _a;
     const url = new URL(args.request.url);
-    const match = matchRequestUrl(
-      url,
-      this.info.path,
-      (_a = args.resolutionContext) == null ? void 0 : _a.baseUrl
-    );
+    const match = matchRequestUrl(url, this.info.path, (_a = args.resolutionContext) == null ? void 0 : _a.baseUrl);
     const cookies = getAllRequestCookies(args.request);
     return {
       match,
@@ -395,7 +388,9 @@ var HttpHandler = class extends RequestHandler {
     return hasMatchingMethod && hasMatchingUrl;
   }
   matchMethod(actualMethod) {
-    return this.info.method instanceof RegExp ? this.info.method.test(actualMethod) : isStringEqual(this.info.method, actualMethod);
+    return this.info.method instanceof RegExp
+      ? this.info.method.test(actualMethod)
+      : isStringEqual(this.info.method, actualMethod);
   }
   extendResolverArgs(args) {
     var _a;
@@ -477,12 +472,15 @@ function parseMultipartData(data, headers) {
     return void 0;
   }
   const [, ...directives] = contentType.split(/; */);
-  const boundary = directives.filter((d) => d.startsWith("boundary=")).map((s) => s.replace(/^boundary=/, ""))[0];
+  const boundary = directives.filter(d => d.startsWith("boundary=")).map(s => s.replace(/^boundary=/, ""))[0];
   if (!boundary) {
     return void 0;
   }
   const boundaryRegExp = new RegExp(`--+${boundary}`);
-  const fields = data.split(boundaryRegExp).filter((chunk) => chunk.startsWith("\r\n") && chunk.endsWith("\r\n")).map((chunk) => chunk.trimStart().replace(/\r\n$/, ""));
+  const fields = data
+    .split(boundaryRegExp)
+    .filter(chunk => chunk.startsWith("\r\n") && chunk.endsWith("\r\n"))
+    .map(chunk => chunk.trimStart().replace(/\r\n$/, ""));
   if (!fields.length) {
     return void 0;
   }
@@ -511,7 +509,7 @@ function parseMultipartData(data, headers) {
 // ../node_modules/.pnpm/msw@2.7.0_@types+node@20.17.10_typescript@5.7.2/node_modules/msw/lib/core/utils/internal/parseGraphQLRequest.mjs
 function parseDocumentNode(node) {
   var _a;
-  const operationDef = node.definitions.find((definition) => {
+  const operationDef = node.definitions.find(definition => {
     return definition.kind === "OperationDefinition";
   });
   return {
@@ -520,8 +518,10 @@ function parseDocumentNode(node) {
   };
 }
 async function parseQuery(query) {
-  const { parse } = await import("./graphql-UFZAITJZ.js").catch((error) => {
-    console.error('[MSW] Failed to parse a GraphQL query: cannot import the "graphql" module. Please make sure you install it if you wish to intercept GraphQL requests. See the original import error below.');
+  const { parse } = await import("./graphql-UFZAITJZ.js").catch(error => {
+    console.error(
+      '[MSW] Failed to parse a GraphQL query: cannot import the "graphql" module. Please make sure you install it if you wish to intercept GraphQL requests. See the original import error below.'
+    );
     throw error;
   });
   try {
@@ -567,26 +567,19 @@ async function getGraphQLInput(request) {
     case "POST": {
       const requestClone = request.clone();
       if ((_a = request.headers.get("content-type")) == null ? void 0 : _a.includes("multipart/form-data")) {
-        const responseJson = parseMultipartData(
-          await requestClone.text(),
-          request.headers
-        );
+        const responseJson = parseMultipartData(await requestClone.text(), request.headers);
         if (!responseJson) {
           return null;
         }
         const { operations, map, ...files } = responseJson;
-        const parsedOperations = jsonParse(
-          operations
-        ) || {};
+        const parsedOperations = jsonParse(operations) || {};
         if (!parsedOperations.query) {
           return null;
         }
         const parsedMap = jsonParse(map || "") || {};
-        const variables = parsedOperations.variables ? extractMultipartVariables(
-          parsedOperations.variables,
-          parsedMap,
-          files
-        ) : {};
+        const variables = parsedOperations.variables
+          ? extractMultipartVariables(parsedOperations.variables, parsedMap, files)
+          : {};
         return {
           query: parsedOperations.query,
           variables
@@ -649,13 +642,14 @@ var _GraphQLHandler = class _GraphQLHandler extends RequestHandler {
         );
       }
       if (!parsedNode.operationName) {
-        throw new Error(
-          `Failed to create a GraphQL handler: provided a DocumentNode with no operation name.`
-        );
+        throw new Error(`Failed to create a GraphQL handler: provided a DocumentNode with no operation name.`);
       }
       resolvedOperationName = parsedNode.operationName;
     }
-    const header = operationType === "all" ? `${operationType} (origin: ${endpoint.toString()})` : `${operationType} ${resolvedOperationName} (origin: ${endpoint.toString()})`;
+    const header =
+      operationType === "all"
+        ? `${operationType} (origin: ${endpoint.toString()})`
+        : `${operationType} ${resolvedOperationName} (origin: ${endpoint.toString()})`;
     super({
       info: {
         header,
@@ -677,7 +671,7 @@ var _GraphQLHandler = class _GraphQLHandler extends RequestHandler {
     if (!_GraphQLHandler.parsedRequestCache.has(request)) {
       _GraphQLHandler.parsedRequestCache.set(
         request,
-        await parseGraphQLRequest(request).catch((error) => {
+        await parseGraphQLRequest(request).catch(error => {
           console.error(error);
           return void 0;
         })
@@ -691,9 +685,7 @@ var _GraphQLHandler = class _GraphQLHandler extends RequestHandler {
     if (!match.matches) {
       return { match, cookies };
     }
-    const parsedResult = await this.parseGraphQLRequestOrGetFromCache(
-      args.request
-    );
+    const parsedResult = await this.parseGraphQLRequestOrGetFromCache(args.request);
     if (typeof parsedResult === "undefined") {
       return { match, cookies };
     }
@@ -717,8 +709,12 @@ var _GraphQLHandler = class _GraphQLHandler extends RequestHandler {
 Consider naming this operation or using "graphql.operation()" request handler to intercept GraphQL requests regardless of their operation name/type. Read more: https://mswjs.io/docs/api/graphql/#graphqloperationresolver`);
       return false;
     }
-    const hasMatchingOperationType = this.info.operationType === "all" || args.parsedResult.operationType === this.info.operationType;
-    const hasMatchingOperationName = this.info.operationName instanceof RegExp ? this.info.operationName.test(args.parsedResult.operationName || "") : args.parsedResult.operationName === this.info.operationName;
+    const hasMatchingOperationType =
+      this.info.operationType === "all" || args.parsedResult.operationType === this.info.operationType;
+    const hasMatchingOperationName =
+      this.info.operationName instanceof RegExp
+        ? this.info.operationName.test(args.parsedResult.operationName || "")
+        : args.parsedResult.operationName === this.info.operationName;
     return args.parsedResult.match.matches && hasMatchingOperationType && hasMatchingOperationName;
   }
   extendResolverArgs(args) {
@@ -733,11 +729,11 @@ Consider naming this operation or using "graphql.operation()" request handler to
     const loggedRequest = await serializeRequest(args.request);
     const loggedResponse = await serializeResponse(args.response);
     const statusColor = getStatusCodeColor(loggedResponse.status);
-    const requestInfo = args.parsedResult.operationName ? `${args.parsedResult.operationType} ${args.parsedResult.operationName}` : `anonymous ${args.parsedResult.operationType}`;
+    const requestInfo = args.parsedResult.operationName
+      ? `${args.parsedResult.operationType} ${args.parsedResult.operationName}`
+      : `anonymous ${args.parsedResult.operationType}`;
     console.groupCollapsed(
-      devUtils.formatMessage(
-        `${getTimestamp()} ${requestInfo} (%c${loggedResponse.status} ${loggedResponse.statusText}%c)`
-      ),
+      devUtils.formatMessage(`${getTimestamp()} ${requestInfo} (%c${loggedResponse.status} ${loggedResponse.statusText}%c)`),
       `color:${statusColor}`,
       "color:inherit"
     );
@@ -753,17 +749,11 @@ var GraphQLHandler = _GraphQLHandler;
 // ../node_modules/.pnpm/msw@2.7.0_@types+node@20.17.10_typescript@5.7.2/node_modules/msw/lib/core/graphql.mjs
 function createScopedGraphQLHandler(operationType, url) {
   return (operationName, resolver, options = {}) => {
-    return new GraphQLHandler(
-      operationType,
-      operationName,
-      url,
-      resolver,
-      options
-    );
+    return new GraphQLHandler(operationType, operationName, url, resolver, options);
   };
 }
 function createGraphQLOperationHandler(url) {
-  return (resolver) => {
+  return resolver => {
     return new GraphQLHandler("all", new RegExp(".*"), url, resolver);
   };
 }
@@ -863,11 +853,7 @@ var WebSocketIndexedDBClientStore = class {
     };
     request.onerror = () => {
       console.error(request.error);
-      promise.reject(
-        new Error(
-          `Failed to add WebSocket client "${client.id}". There is likely an additional output above.`
-        )
-      );
+      promise.reject(new Error(`Failed to add WebSocket client "${client.id}". There is likely an additional output above.`));
     };
     return promise;
   }
@@ -880,11 +866,7 @@ var WebSocketIndexedDBClientStore = class {
     };
     request.onerror = () => {
       console.log(request.error);
-      promise.reject(
-        new Error(
-          `Failed to get all WebSocket clients. There is likely an additional output above.`
-        )
-      );
+      promise.reject(new Error(`Failed to get all WebSocket clients. There is likely an additional output above.`));
     };
     return promise;
   }
@@ -900,9 +882,7 @@ var WebSocketIndexedDBClientStore = class {
     store.transaction.onerror = () => {
       console.error(store.transaction.error);
       promise.reject(
-        new Error(
-          `Failed to delete WebSocket clients [${clientIds.join(", ")}]. There is likely an additional output above.`
-        )
+        new Error(`Failed to delete WebSocket clients [${clientIds.join(", ")}]. There is likely an additional output above.`)
       );
     };
     return promise;
@@ -927,20 +907,12 @@ var WebSocketIndexedDBClientStore = class {
       };
       store.transaction.onerror = () => {
         console.error(store.transaction.error);
-        promise.reject(
-          new Error(
-            "Failed to create WebSocket client store. There is likely an additional output above."
-          )
-        );
+        promise.reject(new Error("Failed to create WebSocket client store. There is likely an additional output above."));
       };
     };
     request.onerror = () => {
       console.error(request.error);
-      promise.reject(
-        new Error(
-          "Failed to open an IndexedDB database. There is likely an additional output above."
-        )
-      );
+      promise.reject(new Error("Failed to open an IndexedDB database. There is likely an additional output above."));
     };
     return promise;
   }
@@ -960,14 +932,14 @@ var WebSocketClientManager = class {
     this.store = typeof indexedDB !== "undefined" ? new WebSocketIndexedDBClientStore() : new WebSocketMemoryClientStore();
     this.runtimeClients = /* @__PURE__ */ new Map();
     this.allClients = /* @__PURE__ */ new Set();
-    this.channel.addEventListener("message", (message2) => {
+    this.channel.addEventListener("message", message2 => {
       var _a;
       if (((_a = message2.data) == null ? void 0 : _a.type) === "db:update") {
         this.flushDatabaseToMemory();
       }
     });
     if (typeof window !== "undefined") {
-      window.addEventListener("message", async (message2) => {
+      window.addEventListener("message", async message2 => {
         var _a;
         if (((_a = message2.data) == null ? void 0 : _a.type) === "msw/worker:stop") {
           await this.removeRuntimeClients();
@@ -978,16 +950,12 @@ var WebSocketClientManager = class {
   async flushDatabaseToMemory() {
     const storedClients = await this.store.getAll();
     this.allClients = new Set(
-      storedClients.map((client) => {
+      storedClients.map(client => {
         const runtimeClient = this.runtimeClients.get(client.id);
         if (runtimeClient) {
           return runtimeClient;
         }
-        return new WebSocketRemoteClientConnection(
-          client.id,
-          new URL(client.url),
-          this.channel
-        );
+        return new WebSocketRemoteClientConnection(client.id, new URL(client.url), this.channel);
       })
     );
   }
@@ -1024,7 +992,7 @@ var WebSocketClientManager = class {
   async addConnection(client) {
     this.runtimeClients.set(client.id, client);
     await this.addClient(client);
-    const handleExtraneousMessage = (message2) => {
+    const handleExtraneousMessage = message2 => {
       const { type, payload } = message2.data;
       if (typeof payload === "object" && "clientId" in payload && payload.clientId !== client.id) {
         return;
@@ -1086,11 +1054,7 @@ if (isBroadcastChannelWithUnref(webSocketChannel)) {
 }
 function createWebSocketLinkHandler(url) {
   invariant(url, "Expected a WebSocket server URL but got undefined");
-  invariant(
-    isPath(url),
-    "Expected a WebSocket server URL to be a valid path but got %s",
-    typeof url
-  );
+  invariant(isPath(url), "Expected a WebSocket server URL to be a valid path but got %s", typeof url);
   const clientManager = new WebSocketClientManager(webSocketChannel);
   return {
     get clients() {
@@ -1108,8 +1072,8 @@ function createWebSocketLinkHandler(url) {
       this.broadcastExcept([], data);
     },
     broadcastExcept(clients, data) {
-      const ignoreClients = Array.prototype.concat(clients).map((client) => client.id);
-      clientManager.clients.forEach((otherClient) => {
+      const ignoreClients = Array.prototype.concat(clients).map(client => client.id);
+      clientManager.clients.forEach(otherClient => {
         if (!ignoreClients.includes(otherClient.id)) {
           otherClient.send(data);
         }
@@ -1150,10 +1114,7 @@ var HttpResponse = class _HttpResponse extends Response {
       responseInit.headers.set("Content-Type", "text/plain");
     }
     if (!responseInit.headers.has("Content-Length")) {
-      responseInit.headers.set(
-        "Content-Length",
-        body ? new Blob([body]).size.toString() : "0"
-      );
+      responseInit.headers.set("Content-Length", body ? new Blob([body]).size.toString() : "0");
     }
     return new _HttpResponse(body, responseInit);
   }
@@ -1170,15 +1131,9 @@ var HttpResponse = class _HttpResponse extends Response {
     }
     const responseText = JSON.stringify(body);
     if (!responseInit.headers.has("Content-Length")) {
-      responseInit.headers.set(
-        "Content-Length",
-        responseText ? new Blob([responseText]).size.toString() : "0"
-      );
+      responseInit.headers.set("Content-Length", responseText ? new Blob([responseText]).size.toString() : "0");
     }
-    return new _HttpResponse(
-      responseText,
-      responseInit
-    );
+    return new _HttpResponse(responseText, responseInit);
   }
   /**
    * Create a `Response` with a `Content-Type: "application/xml"` body.
@@ -1247,9 +1202,7 @@ function getRealisticResponseTime() {
   if (isNodeProcess()) {
     return NODE_SERVER_RESPONSE_TIME;
   }
-  return Math.floor(
-    Math.random() * (MAX_SERVER_RESPONSE_TIME - MIN_SERVER_RESPONSE_TIME) + MIN_SERVER_RESPONSE_TIME
-  );
+  return Math.floor(Math.random() * (MAX_SERVER_RESPONSE_TIME - MIN_SERVER_RESPONSE_TIME) + MIN_SERVER_RESPONSE_TIME);
 }
 async function delay(durationOrMode) {
   let delayTime;
@@ -1279,7 +1232,7 @@ async function delay(durationOrMode) {
     }
     delayTime = durationOrMode;
   }
-  return new Promise((resolve) => setTimeout(resolve, delayTime));
+  return new Promise(resolve => setTimeout(resolve, delayTime));
 }
 
 // ../node_modules/.pnpm/msw@2.7.0_@types+node@20.17.10_typescript@5.7.2/node_modules/msw/lib/core/bypass.mjs

@@ -1,22 +1,22 @@
 {
-	"compilerOptions": {
-		"outDir": "dist",
-		"target": "ES2018",
-		"module": "ESNext",
-		"baseUrl": "../",
-		"rootDir": "../",
-		"sourceMap": false,
-		"moduleResolution": "node",
-		"allowJs": false,
-		"strict": true,
-		"noUnusedLocals": true,
-		"resolveJsonModule": true,
-		"allowSyntheticDefaultImports": true,
-		"esModuleInterop": true,
-		"removeComments": false,
-		"types": [],
-		"paths": {
-			"@element-plus/*": ["../packages/*"]
-		}
-	}
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "ES2018",
+    "module": "ESNext",
+    "baseUrl": "../",
+    "rootDir": "../",
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "allowJs": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "types": [],
+    "paths": {
+      "@element-plus/*": ["../packages/*"]
+    }
+  }
 }

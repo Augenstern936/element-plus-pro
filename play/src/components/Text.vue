@@ -1,10 +1,3 @@
-<!--
- * @Description: 
- * @Author: <Haidu w936926@outlook.com>
- * @Date: 2024-07-16 21:57:06
- * @LastEditTime: 2025-01-06 14:03:39
- * 
--->
 <template>
   <el-card>
     <pro-text

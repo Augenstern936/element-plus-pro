@@ -1,8 +1,4 @@
-import {
-  h,
-  inject,
-  provide
-} from "./chunk-FNEGEEL4.js";
+import { h, inject, provide } from "./chunk-FNEGEEL4.js";
 import "./chunk-JVSYCCQQ.js";
 import "./chunk-MTI3AIJG.js";
 
@@ -12,10 +8,13 @@ var generateAlphabeticName = function generateAlphabeticName2(code) {
   var lastDigit = chars[code % chars.length];
   return code > chars.length ? "".concat(generateAlphabeticName2(Math.floor(code / chars.length))).concat(lastDigit) : lastDigit;
 };
-var interleave = function(strings, interpolations) {
-  return interpolations.reduce(function(array, interp, i) {
-    return array.concat(interp, strings[i + 1]);
-  }, [strings[0]]);
+var interleave = function (strings, interpolations) {
+  return interpolations.reduce(
+    function (array, interp, i) {
+      return array.concat(interp, strings[i + 1]);
+    },
+    [strings[0]]
+  );
 };
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -53,9 +52,10 @@ function ownKeys(object, enumerableOnly) {
   var keys = Object.keys(object);
   if (Object.getOwnPropertySymbols) {
     var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function(sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
+    if (enumerableOnly)
+      symbols = symbols.filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+      });
     keys.push.apply(keys, symbols);
   }
   return keys;
@@ -64,13 +64,13 @@ function _objectSpread2(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? arguments[i] : {};
     if (i % 2) {
-      ownKeys(Object(source), true).forEach(function(key) {
+      ownKeys(Object(source), true).forEach(function (key) {
         _defineProperty(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
     } else {
-      ownKeys(Object(source)).forEach(function(key) {
+      ownKeys(Object(source)).forEach(function (key) {
         Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
       });
     }
@@ -129,10 +129,14 @@ function _arrayLikeToArray(arr, len) {
   return arr2;
 }
 function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  throw new TypeError(
+    "Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+  );
 }
 function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  throw new TypeError(
+    "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+  );
 }
 var objectTag = "[object Object]";
 function isHostObject(value) {
@@ -140,13 +144,12 @@ function isHostObject(value) {
   if (value != null && typeof value.toString != "function") {
     try {
       result = !!(value + "");
-    } catch (e) {
-    }
+    } catch (e) {}
   }
   return result;
 }
 function overArg(func, transform) {
-  return function(arg) {
+  return function (arg) {
     return func(transform(arg));
   };
 }
@@ -182,23 +185,28 @@ function hyphenateStyleName(string) {
 }
 var hyphenateStyleName_1 = hyphenateStyleName;
 var objToCss = function objToCss2(obj, prevKey) {
-  var css2 = Object.keys(obj).map(function(key) {
-    if (lodash_isplainobject(obj[key])) return objToCss2(obj[key], key);
-    return "".concat(hyphenateStyleName_1(key), ": ").concat(obj[key], ";");
-  }).join(" ");
+  var css2 = Object.keys(obj)
+    .map(function (key) {
+      if (lodash_isplainobject(obj[key])) return objToCss2(obj[key], key);
+      return "".concat(hyphenateStyleName_1(key), ": ").concat(obj[key], ";");
+    })
+    .join(" ");
   return prevKey ? "".concat(prevKey, " {\n  ").concat(css2, "\n}") : css2;
 };
 var flatten = function flatten2(chunks, executionContext) {
-  return chunks.reduce(function(ruleSet, chunk) {
+  return chunks.reduce(function (ruleSet, chunk) {
     if (chunk === void 0 || chunk === null || chunk === false || chunk === "") return ruleSet;
-    if (Array.isArray(chunk)) return [].concat(_toConsumableArray(ruleSet), _toConsumableArray(flatten2(chunk, executionContext)));
+    if (Array.isArray(chunk))
+      return [].concat(_toConsumableArray(ruleSet), _toConsumableArray(flatten2(chunk, executionContext)));
     if (typeof chunk === "function") {
-      return executionContext ? ruleSet.concat.apply(ruleSet, _toConsumableArray(flatten2([chunk(executionContext)], executionContext))) : ruleSet.concat(chunk);
+      return executionContext
+        ? ruleSet.concat.apply(ruleSet, _toConsumableArray(flatten2([chunk(executionContext)], executionContext)))
+        : ruleSet.concat(chunk);
     }
     return ruleSet.concat(lodash_isplainobject(chunk) ? objToCss(chunk) : chunk.toString());
   }, []);
 };
-var css = function(rules) {
+var css = function (rules) {
   for (var _len = arguments.length, interpolations = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     interpolations[_key - 1] = arguments[_key];
   }
@@ -214,18 +222,18 @@ function sheetForTag(tag) {
     }
   }
 }
-var isDev = /* @__PURE__ */ function(x) {
+var isDev = /* @__PURE__ */ (function (x) {
   return x === "development" || !x;
-}("development");
+})("development");
 var isTest = false;
 var isBrowser = typeof document !== "undefined" && !isTest;
-var oldIE = function() {
+var oldIE = (function () {
   if (isBrowser) {
     var div = document.createElement("div");
     div.innerHTML = "<!--[if lt IE 10]><i></i><![endif]-->";
     return div.getElementsByTagName("i").length === 1;
   }
-}();
+})();
 function makeStyleTag() {
   var tag = document.createElement("style");
   tag.type = "text/css";
@@ -233,9 +241,13 @@ function makeStyleTag() {
   (document.head || document.getElementsByTagName("head")[0]).appendChild(tag);
   return tag;
 }
-var StyleSheet = function() {
+var StyleSheet = (function () {
   function StyleSheet2() {
-    var _ref = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}, _ref$speedy = _ref.speedy, speedy = _ref$speedy === void 0 ? !isDev && !isTest : _ref$speedy, _ref$maxLength = _ref.maxLength, maxLength = _ref$maxLength === void 0 ? isBrowser && oldIE ? 4e3 : 65e3 : _ref$maxLength;
+    var _ref = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {},
+      _ref$speedy = _ref.speedy,
+      speedy = _ref$speedy === void 0 ? !isDev && !isTest : _ref$speedy,
+      _ref$maxLength = _ref.maxLength,
+      maxLength = _ref$maxLength === void 0 ? (isBrowser && oldIE ? 4e3 : 65e3) : _ref$maxLength;
     _classCallCheck(this, StyleSheet2);
     this.isSpeedy = speedy;
     this.sheet = void 0;
@@ -243,115 +255,126 @@ var StyleSheet = function() {
     this.maxLength = maxLength;
     this.ctr = 0;
   }
-  _createClass(StyleSheet2, [{
-    key: "inject",
-    value: function inject2() {
-      var _this = this;
-      if (this.injected) {
-        throw new Error("already injected stylesheet!");
-      }
-      if (isBrowser) {
-        this.tags[0] = makeStyleTag();
-        this.sheet = sheetForTag(this.tags[0]);
-      } else {
-        this.sheet = {
-          cssRules: [],
-          insertRule: function insertRule(rule) {
-            var serverRule = {
-              cssText: rule
-            };
-            _this.sheet.cssRules.push(serverRule);
-            return {
-              serverRule,
-              appendRule: function appendRule(newCss) {
-                return serverRule.cssText += newCss;
-              }
-            };
-          }
-        };
-      }
-      this.injected = true;
-    }
-  }, {
-    key: "speedy",
-    value: function speedy(bool) {
-      if (this.ctr !== 0) {
-        throw new Error("cannot change speedy mode after inserting any rule to sheet. Either call speedy(".concat(bool, ") earlier in your app, or call flush() before speedy(").concat(bool, ")"));
-      }
-      this.isSpeedy = !!bool;
-    }
-  }, {
-    key: "_insert",
-    value: function _insert(rule) {
-      try {
-        this.sheet.insertRule(rule, this.sheet.cssRules.length);
-      } catch (e) {
-        if (isDev) {
-          console.warn("whoops, illegal rule inserted", rule);
+  _createClass(StyleSheet2, [
+    {
+      key: "inject",
+      value: function inject2() {
+        var _this = this;
+        if (this.injected) {
+          throw new Error("already injected stylesheet!");
         }
-      }
-    }
-  }, {
-    key: "insert",
-    value: function insert(rule) {
-      var insertedRule;
-      if (isBrowser) {
-        if (this.isSpeedy && this.sheet.insertRule) {
-          this._insert(rule);
+        if (isBrowser) {
+          this.tags[0] = makeStyleTag();
+          this.sheet = sheetForTag(this.tags[0]);
         } else {
-          var textNode = document.createTextNode(rule);
-          last(this.tags).appendChild(textNode);
-          insertedRule = {
-            textNode,
-            appendRule: function appendRule(newCss) {
-              return textNode.appendData(newCss);
+          this.sheet = {
+            cssRules: [],
+            insertRule: function insertRule(rule) {
+              var serverRule = {
+                cssText: rule
+              };
+              _this.sheet.cssRules.push(serverRule);
+              return {
+                serverRule,
+                appendRule: function appendRule(newCss) {
+                  return (serverRule.cssText += newCss);
+                }
+              };
             }
           };
-          if (!this.isSpeedy) {
-            this.sheet = sheetForTag(last(this.tags));
+        }
+        this.injected = true;
+      }
+    },
+    {
+      key: "speedy",
+      value: function speedy(bool) {
+        if (this.ctr !== 0) {
+          throw new Error(
+            "cannot change speedy mode after inserting any rule to sheet. Either call speedy("
+              .concat(bool, ") earlier in your app, or call flush() before speedy(")
+              .concat(bool, ")")
+          );
+        }
+        this.isSpeedy = !!bool;
+      }
+    },
+    {
+      key: "_insert",
+      value: function _insert(rule) {
+        try {
+          this.sheet.insertRule(rule, this.sheet.cssRules.length);
+        } catch (e) {
+          if (isDev) {
+            console.warn("whoops, illegal rule inserted", rule);
           }
         }
-      } else {
-        insertedRule = this.sheet.insertRule(rule);
       }
-      this.ctr++;
-      if (isBrowser && this.ctr % this.maxLength === 0) {
-        this.tags.push(makeStyleTag());
-        this.sheet = sheetForTag(last(this.tags));
+    },
+    {
+      key: "insert",
+      value: function insert(rule) {
+        var insertedRule;
+        if (isBrowser) {
+          if (this.isSpeedy && this.sheet.insertRule) {
+            this._insert(rule);
+          } else {
+            var textNode = document.createTextNode(rule);
+            last(this.tags).appendChild(textNode);
+            insertedRule = {
+              textNode,
+              appendRule: function appendRule(newCss) {
+                return textNode.appendData(newCss);
+              }
+            };
+            if (!this.isSpeedy) {
+              this.sheet = sheetForTag(last(this.tags));
+            }
+          }
+        } else {
+          insertedRule = this.sheet.insertRule(rule);
+        }
+        this.ctr++;
+        if (isBrowser && this.ctr % this.maxLength === 0) {
+          this.tags.push(makeStyleTag());
+          this.sheet = sheetForTag(last(this.tags));
+        }
+        return insertedRule;
       }
-      return insertedRule;
-    }
-  }, {
-    key: "flush",
-    value: function flush() {
-      if (isBrowser) {
-        this.tags.forEach(function(tag) {
-          return tag.parentNode.removeChild(tag);
+    },
+    {
+      key: "flush",
+      value: function flush() {
+        if (isBrowser) {
+          this.tags.forEach(function (tag) {
+            return tag.parentNode.removeChild(tag);
+          });
+          this.tags = [];
+          this.sheet = null;
+          this.ctr = 0;
+        } else {
+          this.sheet.cssRules = [];
+        }
+        this.injected = false;
+      }
+    },
+    {
+      key: "rules",
+      value: function rules() {
+        if (!isBrowser) {
+          return this.sheet.cssRules;
+        }
+        var arr = [];
+        this.tags.forEach(function (tag) {
+          return arr.splice.apply(arr, [arr.length, 0].concat(_toConsumableArray(Array.from(sheetForTag(tag).cssRules))));
         });
-        this.tags = [];
-        this.sheet = null;
-        this.ctr = 0;
-      } else {
-        this.sheet.cssRules = [];
+        return arr;
       }
-      this.injected = false;
     }
-  }, {
-    key: "rules",
-    value: function rules() {
-      if (!isBrowser) {
-        return this.sheet.cssRules;
-      }
-      var arr = [];
-      this.tags.forEach(function(tag) {
-        return arr.splice.apply(arr, [arr.length, 0].concat(_toConsumableArray(Array.from(sheetForTag(tag).cssRules))));
-      });
-      return arr;
-    }
-  }]);
+  ]);
   return StyleSheet2;
-}();
-var StyleSheet$1 = function() {
+})();
+var StyleSheet$1 = (function () {
   function StyleSheet$12() {
     _classCallCheck(this, StyleSheet$12);
     this.globalStyleSheet = new StyleSheet({
@@ -362,48 +385,57 @@ var StyleSheet$1 = function() {
       maxLength: 40
     });
   }
-  _createClass(StyleSheet$12, [{
-    key: "inject",
-    value: function inject2() {
-      this.globalStyleSheet.inject();
-      this.componentStyleSheet.inject();
+  _createClass(StyleSheet$12, [
+    {
+      key: "inject",
+      value: function inject2() {
+        this.globalStyleSheet.inject();
+        this.componentStyleSheet.inject();
+      }
+    },
+    {
+      key: "flush",
+      value: function flush() {
+        if (this.globalStyleSheet.sheet) this.globalStyleSheet.flush();
+        if (this.componentStyleSheet.sheet) this.componentStyleSheet.flush();
+      }
+    },
+    {
+      key: "insert",
+      value: function insert(rule) {
+        var opts =
+          arguments.length > 1 && arguments[1] !== void 0
+            ? arguments[1]
+            : {
+                global: false
+              };
+        var sheet = opts.global ? this.globalStyleSheet : this.componentStyleSheet;
+        return sheet.insert(rule);
+      }
+    },
+    {
+      key: "rules",
+      value: function rules() {
+        return this.globalStyleSheet.rules().concat(this.componentStyleSheet.rules());
+      }
+    },
+    {
+      key: "injected",
+      get: function get() {
+        return this.globalStyleSheet.injected && this.componentStyleSheet.injected;
+      }
     }
-  }, {
-    key: "flush",
-    value: function flush() {
-      if (this.globalStyleSheet.sheet) this.globalStyleSheet.flush();
-      if (this.componentStyleSheet.sheet) this.componentStyleSheet.flush();
-    }
-  }, {
-    key: "insert",
-    value: function insert(rule) {
-      var opts = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {
-        global: false
-      };
-      var sheet = opts.global ? this.globalStyleSheet : this.componentStyleSheet;
-      return sheet.insert(rule);
-    }
-  }, {
-    key: "rules",
-    value: function rules() {
-      return this.globalStyleSheet.rules().concat(this.componentStyleSheet.rules());
-    }
-  }, {
-    key: "injected",
-    get: function get() {
-      return this.globalStyleSheet.injected && this.componentStyleSheet.injected;
-    }
-  }]);
+  ]);
   return StyleSheet$12;
-}();
+})();
 var styleSheet = new StyleSheet$1();
 function unwrapExports(x) {
   return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
 }
 function createCommonjsModule(fn, module) {
-  return module = { exports: {} }, fn(module, module.exports), module.exports;
+  return (module = { exports: {} }), fn(module, module.exports), module.exports;
 }
-var hash = createCommonjsModule(function(module, exports) {
+var hash = createCommonjsModule(function (module, exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
@@ -455,7 +487,7 @@ var hash = createCommonjsModule(function(module, exports) {
     m = m | 0;
     var nlo = n & 65535;
     var nhi = n >>> 16;
-    var res = nlo * m + ((nhi * m & 65535) << 16) | 0;
+    var res = (nlo * m + (((nhi * m) & 65535) << 16)) | 0;
     return res;
   }
 });
@@ -466,15 +498,15 @@ var replaceWhitespace = function replaceWhitespace2(str) {
 var makeAnimation = function makeAnimation2(name, css2) {
   return "\n@keyframes ".concat(name, " {\n   ").concat(css2, "\n}\n");
 };
-var keyframes = function(css2) {
+var keyframes = function (css2) {
   var name = generateAlphabeticName(hashStr(replaceWhitespace(JSON.stringify(css2))));
   var animation = makeAnimation(name, css2);
   if (!styleSheet.injected) styleSheet.inject();
   styleSheet.insert(animation);
   return name;
 };
-var stylis = createCommonjsModule(function(module, exports) {
-  (function(factory) {
+var stylis = createCommonjsModule(function (module, exports) {
+  (function (factory) {
     module["exports"] = factory(null);
   })(
     /** @param {*=} options */
@@ -687,7 +719,7 @@ var stylis = createCommonjsModule(function(module, exports) {
                 counter = 1;
                 length = ++caret;
                 while (caret < eof) {
-                  switch (code = body.charCodeAt(caret)) {
+                  switch ((code = body.charCodeAt(caret))) {
                     case OPENBRACES: {
                       counter++;
                       break;
@@ -697,7 +729,7 @@ var stylis = createCommonjsModule(function(module, exports) {
                       break;
                     }
                     case FOWARDSLASH: {
-                      switch (second = body.charCodeAt(caret + 1)) {
+                      switch ((second = body.charCodeAt(caret + 1))) {
                         case STAR:
                         case FOWARDSLASH: {
                           caret = delimited(second, caret, eol, body);
@@ -777,7 +809,7 @@ var stylis = createCommonjsModule(function(module, exports) {
                         case KEYFRAME: {
                           chars2 = chars2.replace(keyframeptn, "$1 $2" + (keyed > 0 ? key : ""));
                           child = chars2 + "{" + child + "}";
-                          if (prefix === 1 || prefix === 2 && vendor("@" + child, 3)) {
+                          if (prefix === 1 || (prefix === 2 && vendor("@" + child, 3))) {
                             child = "@" + webkit + child + "@" + child;
                           } else {
                             child = "@" + child;
@@ -787,7 +819,7 @@ var stylis = createCommonjsModule(function(module, exports) {
                         default: {
                           child = chars2 + child;
                           if (id === PAGE) {
-                            child = (out += child, "");
+                            child = ((out += child), "");
                           }
                         }
                       }
@@ -818,7 +850,7 @@ var stylis = createCommonjsModule(function(module, exports) {
                 if ((length = chars2.length) > 1) {
                   if (pseudo === 0) {
                     first = chars2.charCodeAt(0);
-                    if (first === DASH || first > 96 && first < 123) {
+                    if (first === DASH || (first > 96 && first < 123)) {
                       length = (chars2 = chars2.replace(" ", ":")).length;
                     }
                   }
@@ -1144,8 +1176,8 @@ var stylis = createCommonjsModule(function(module, exports) {
         }
         length = out.length;
         if (preserve > 0) {
-          if (length === 0 && children.length === 0 && current[0].length === 0 === false) {
-            if (id !== MEDIA || current.length === 1 && (cascade > 0 ? nscopealt : nscope) === current[0]) {
+          if (length === 0 && children.length === 0 && (current[0].length === 0) === false) {
+            if (id !== MEDIA || (current.length === 1 && (cascade > 0 ? nscopealt : nscope) === current[0])) {
               length = current.join(",").length + 2;
             }
           }
@@ -1167,7 +1199,11 @@ var stylis = createCommonjsModule(function(module, exports) {
                 break;
               }
               case PLACEHOLDER: {
-                out = out.replace(plcholdrptn, "::" + webkit + "input-$1") + out.replace(plcholdrptn, "::" + moz + "$1") + out.replace(plcholdrptn, ":" + ms + "input-$1") + out;
+                out =
+                  out.replace(plcholdrptn, "::" + webkit + "input-$1") +
+                  out.replace(plcholdrptn, "::" + moz + "$1") +
+                  out.replace(plcholdrptn, ":" + ms + "input-$1") +
+                  out;
                 break;
               }
             }
@@ -1248,7 +1284,7 @@ var stylis = createCommonjsModule(function(module, exports) {
         var cache;
         if (hash2 === 944) {
           return animation(out);
-        } else if (prefix === 0 || prefix === 2 && !vendor(out, 1)) {
+        } else if (prefix === 0 || (prefix === 2 && !vendor(out, 1))) {
           return out;
         }
         switch (hash2) {
@@ -1345,7 +1381,7 @@ var stylis = createCommonjsModule(function(module, exports) {
           case 975: {
             index = (out = input).length - 10;
             cache = (out.charCodeAt(index) === 33 ? out.substring(0, index) : out).substring(input.indexOf(":", 7) + 1).trim();
-            switch (hash2 = cache.charCodeAt(0) + (cache.charCodeAt(7) | 0)) {
+            switch ((hash2 = cache.charCodeAt(0) + (cache.charCodeAt(7) | 0))) {
               case 203: {
                 if (cache.charCodeAt(8) < 111) {
                   break;
@@ -1357,7 +1393,14 @@ var stylis = createCommonjsModule(function(module, exports) {
               }
               case 207:
               case 102: {
-                out = out.replace(cache, webkit + (hash2 > 102 ? "inline-" : "") + "box") + ";" + out.replace(cache, webkit + cache) + ";" + out.replace(cache, ms + cache + "box") + ";" + out;
+                out =
+                  out.replace(cache, webkit + (hash2 > 102 ? "inline-" : "") + "box") +
+                  ";" +
+                  out.replace(cache, webkit + cache) +
+                  ";" +
+                  out.replace(cache, ms + cache + "box") +
+                  ";" +
+                  out;
               }
             }
             return out + ";";
@@ -1388,7 +1431,11 @@ var stylis = createCommonjsModule(function(module, exports) {
           case 931:
           case 953: {
             if (dimensionptn.test(input) === true) {
-              if ((cache = input.substring(input.indexOf(":") + 1)).charCodeAt(0) === 115) return property(input.replace("stretch", "fill-available"), first, second, third).replace(":fill-available", ":stretch");
+              if ((cache = input.substring(input.indexOf(":") + 1)).charCodeAt(0) === 115)
+                return property(input.replace("stretch", "fill-available"), first, second, third).replace(
+                  ":fill-available",
+                  ":stretch"
+                );
               else return out.replace(cache, webkit + cache) + out.replace(cache, moz + cache.replace("fill-", "")) + out;
             }
             break;
@@ -1428,15 +1475,19 @@ var stylis = createCommonjsModule(function(module, exports) {
             }
           }
           default: {
-            var list = out.split((out = "", animationptn));
+            var list = out.split(((out = ""), animationptn));
             for (var i = 0, index = 0, length = list.length; i < length; index = 0, ++i) {
               var value = list[i];
               var items = value.split(propertiesptn);
-              while (value = items[index]) {
+              while ((value = items[index])) {
                 var peak = value.charCodeAt(0);
-                if (keyed === 1 && // letters
-                (peak > AT && peak < 90 || peak > 96 && peak < 123 || peak === UNDERSCORE || // dash but not in sequence i.e --
-                peak === DASH && value.charCodeAt(1) !== DASH)) {
+                if (
+                  keyed === 1 && // letters
+                  ((peak > AT && peak < 90) ||
+                    (peak > 96 && peak < 123) ||
+                    peak === UNDERSCORE || // dash but not in sequence i.e --
+                    (peak === DASH && value.charCodeAt(1) !== DASH))
+                ) {
                   switch (isNaN(parseFloat(value)) + (value.indexOf("(") !== -1)) {
                     case 1: {
                       switch (value) {
@@ -1477,7 +1528,7 @@ var stylis = createCommonjsModule(function(module, exports) {
           }
         }
         out = declare + out + ";";
-        if (prefix === 1 || prefix === 2 && vendor(out, 1)) return webkit + out + out;
+        if (prefix === 1 || (prefix === 2 && vendor(out, 1))) return webkit + out + out;
         return out;
       }
       function isolate(current) {
@@ -1557,7 +1608,7 @@ var stylis = createCommonjsModule(function(module, exports) {
       }
       function proxy(context, content, selectors, parents, line2, column2, length, id, depth, at) {
         for (var i = 0, out = content, next; i < plugged; ++i) {
-          switch (next = plugins[i].call(stylis2, context, out, selectors, parents, line2, column2, length, id, depth, at)) {
+          switch ((next = plugins[i].call(stylis2, context, out, selectors, parents, line2, column2, length, id, depth, at))) {
             case void 0:
             case false:
             case true:
@@ -1594,7 +1645,12 @@ var stylis = createCommonjsModule(function(module, exports) {
         return i;
       }
       function minify(output) {
-        return output.replace(formatptn, "").replace(beforeptn, "").replace(afterptn, "$1").replace(tailptn, "$1").replace(whiteptn, " ");
+        return output
+          .replace(formatptn, "")
+          .replace(beforeptn, "")
+          .replace(afterptn, "$1")
+          .replace(tailptn, "$1")
+          .replace(whiteptn, " ");
       }
       function use(plugin) {
         switch (plugin) {
@@ -1703,26 +1759,28 @@ var stylis = createCommonjsModule(function(module, exports) {
     }
   );
 });
-var ComponentStyle = function() {
+var ComponentStyle = (function () {
   function ComponentStyle2(rules, selector) {
     _classCallCheck(this, ComponentStyle2);
     this.rules = rules;
     this.selector = selector;
   }
-  _createClass(ComponentStyle2, [{
-    key: "generateAndInject",
-    value: function generateAndInject() {
-      if (!styleSheet.injected) styleSheet.inject();
-      var flatCSS = flatten(this.rules).join("");
-      var cssString = this.selector ? "".concat(this.selector, " { ").concat(flatCSS, " }") : flatCSS;
-      var css2 = stylis("", cssString, false, false);
-      styleSheet.insert(css2, {
-        global: true
-      });
+  _createClass(ComponentStyle2, [
+    {
+      key: "generateAndInject",
+      value: function generateAndInject() {
+        if (!styleSheet.injected) styleSheet.inject();
+        var flatCSS = flatten(this.rules).join("");
+        var cssString = this.selector ? "".concat(this.selector, " { ").concat(flatCSS, " }") : flatCSS;
+        var css2 = stylis("", cssString, false, false);
+        styleSheet.insert(css2, {
+          global: true
+        });
+      }
     }
-  }]);
+  ]);
   return ComponentStyle2;
-}();
+})();
 var injectGlobal = function injectGlobal2(strings) {
   for (var _len = arguments.length, interpolations = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     interpolations[_key - 1] = arguments[_key];
@@ -1743,18 +1801,23 @@ var ThemeProvider = {
   }
 };
 function isVueComponent(target) {
-  return target && (typeof target.setup === "function" || typeof target.render === "function" || typeof target.template === "string");
+  return (
+    target && (typeof target.setup === "function" || typeof target.render === "function" || typeof target.template === "string")
+  );
 }
 var objectProto$1 = Object.prototype;
 var hasOwnProperty$1 = objectProto$1.hasOwnProperty;
 function assignValue(object, key, value) {
   var objValue = object[key];
-  if (!(hasOwnProperty$1.call(object, key) && eq(objValue, value)) || value === void 0 && !(key in object)) {
+  if (!(hasOwnProperty$1.call(object, key) && eq(objValue, value)) || (value === void 0 && !(key in object))) {
     object[key] = value;
   }
 }
 function baseZipObject(props, values, assignFunc) {
-  var index = -1, length = props.length, valsLength = values.length, result = {};
+  var index = -1,
+    length = props.length,
+    valsLength = values.length,
+    result = {};
   while (++index < length) {
     var value = index < valsLength ? values[index] : void 0;
     assignFunc(result, props[index], value);
@@ -1765,7 +1828,7 @@ function zipObject(props, values) {
   return baseZipObject(props || [], values || [], assignValue);
 }
 function eq(value, other) {
-  return value === other || value !== value && other !== other;
+  return value === other || (value !== value && other !== other);
 }
 var lodash_zipobject = zipObject;
 function normalizeProps() {
@@ -1777,26 +1840,40 @@ function normalizeProps() {
   }
 }
 var commonHtmlAttributes = ["value", "name", "type", "id", "href"];
-var _styledComponent = function(ComponentStyle2) {
+var _styledComponent = function (ComponentStyle2) {
   var createStyledComponent = function createStyledComponent2(tagOrComponent, rules, propDefinitions) {
     var componentStyle = new ComponentStyle2(rules);
     var targetPropDefinitions = normalizeProps(tagOrComponent.props);
     var ownPropDefinitions = normalizeProps(propDefinitions);
     var targetPropDefinitionKeys = tagOrComponent.props ? Object.keys(targetPropDefinitions) : commonHtmlAttributes;
-    var combinedPropDefinition = tagOrComponent.props ? _objectSpread2({}, ownPropDefinitions, {}, targetPropDefinitions) : ownPropDefinitions;
+    var combinedPropDefinition = tagOrComponent.props
+      ? _objectSpread2({}, ownPropDefinitions, {}, targetPropDefinitions)
+      : ownPropDefinitions;
     return {
-      props: _objectSpread2({
-        as: [String, Object],
-        modelValue: null
-      }, combinedPropDefinition),
+      props: _objectSpread2(
+        {
+          as: [String, Object],
+          modelValue: null
+        },
+        combinedPropDefinition
+      ),
       emits: ["input", "update:modelValue"],
       setup: function setup2(props, _ref) {
-        var slots = _ref.slots, attrs = _ref.attrs, emit = _ref.emit;
+        var slots = _ref.slots,
+          attrs = _ref.attrs,
+          emit = _ref.emit;
         var theme = inject("theme");
-        return function() {
-          var styleClass = componentStyle.generateAndInjectStyles(_objectSpread2({
-            theme
-          }, props, {}, attrs));
+        return function () {
+          var styleClass = componentStyle.generateAndInjectStyles(
+            _objectSpread2(
+              {
+                theme
+              },
+              props,
+              {},
+              attrs
+            )
+          );
           var classes = [styleClass];
           if (attrs["class"]) {
             classes.push(attrs["class"]);
@@ -1804,21 +1881,33 @@ var _styledComponent = function(ComponentStyle2) {
           var targetProps = {};
           if (targetPropDefinitionKeys.length) {
             for (var _i = 0, _Object$entries = Object.entries(props); _i < _Object$entries.length; _i++) {
-              var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2), key = _Object$entries$_i[0], value = _Object$entries$_i[1];
+              var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+                key = _Object$entries$_i[0],
+                value = _Object$entries$_i[1];
               if (targetPropDefinitionKeys.includes(key)) {
                 targetProps[key] = value;
               }
             }
           }
-          return h(isVueComponent(tagOrComponent) ? tagOrComponent : props.as || tagOrComponent, _objectSpread2({
-            value: props.modelValue
-          }, attrs, {}, targetProps, {
-            "class": classes,
-            onInput: function onInput(e) {
-              emit("update:modelValue", e.target.value);
-              emit("input", e);
-            }
-          }), slots);
+          return h(
+            isVueComponent(tagOrComponent) ? tagOrComponent : props.as || tagOrComponent,
+            _objectSpread2(
+              {
+                value: props.modelValue
+              },
+              attrs,
+              {},
+              targetProps,
+              {
+                class: classes,
+                onInput: function onInput(e) {
+                  emit("update:modelValue", e.target.value);
+                  emit("input", e);
+                }
+              }
+            ),
+            slots
+          );
         };
       },
       extend: function extend(cssRules) {
@@ -1835,9 +1924,9 @@ var _styledComponent = function(ComponentStyle2) {
   };
   return createStyledComponent;
 };
-var _componentStyle = function(nameGenerator) {
+var _componentStyle = function (nameGenerator) {
   var inserted = {};
-  var ComponentStyle2 = function() {
+  var ComponentStyle2 = (function () {
     function ComponentStyle3(rules) {
       _classCallCheck(this, ComponentStyle3);
       this.rules = rules;
@@ -1847,25 +1936,162 @@ var _componentStyle = function(nameGenerator) {
       if (!styleSheet.injected) styleSheet.inject();
       this.insertedRule = styleSheet.insert("");
     }
-    _createClass(ComponentStyle3, [{
-      key: "generateAndInjectStyles",
-      value: function generateAndInjectStyles(executionContext) {
-        var flatCSS = flatten(this.rules, executionContext).join("").replace(/^\s*\/\/.*$/gm, "");
-        var hash2 = hashStr(flatCSS);
-        if (!inserted[hash2]) {
-          var selector = nameGenerator(hash2);
-          inserted[hash2] = selector;
-          var css2 = stylis(".".concat(selector), flatCSS);
-          this.insertedRule.appendRule(css2);
+    _createClass(ComponentStyle3, [
+      {
+        key: "generateAndInjectStyles",
+        value: function generateAndInjectStyles(executionContext) {
+          var flatCSS = flatten(this.rules, executionContext)
+            .join("")
+            .replace(/^\s*\/\/.*$/gm, "");
+          var hash2 = hashStr(flatCSS);
+          if (!inserted[hash2]) {
+            var selector = nameGenerator(hash2);
+            inserted[hash2] = selector;
+            var css2 = stylis(".".concat(selector), flatCSS);
+            this.insertedRule.appendRule(css2);
+          }
+          return inserted[hash2];
         }
-        return inserted[hash2];
       }
-    }]);
+    ]);
     return ComponentStyle3;
-  }();
+  })();
   return ComponentStyle2;
 };
-var domElements = ["a", "abbr", "address", "area", "article", "aside", "audio", "b", "base", "bdi", "bdo", "big", "blockquote", "body", "br", "button", "canvas", "caption", "cite", "code", "col", "colgroup", "data", "datalist", "dd", "del", "details", "dfn", "dialog", "div", "dl", "dt", "em", "embed", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hgroup", "hr", "html", "i", "iframe", "img", "input", "ins", "kbd", "keygen", "label", "legend", "li", "link", "main", "map", "mark", "menu", "menuitem", "meta", "meter", "nav", "noscript", "object", "ol", "optgroup", "option", "output", "p", "param", "picture", "pre", "progress", "q", "rp", "rt", "ruby", "s", "samp", "script", "section", "select", "small", "source", "span", "strong", "style", "sub", "summary", "sup", "table", "tbody", "td", "textarea", "tfoot", "th", "thead", "time", "title", "tr", "track", "u", "ul", "var", "video", "wbr", "circle", "clipPath", "defs", "ellipse", "g", "image", "line", "linearGradient", "mask", "path", "pattern", "polygon", "polyline", "radialGradient", "rect", "stop", "svg", "text", "tspan"];
+var domElements = [
+  "a",
+  "abbr",
+  "address",
+  "area",
+  "article",
+  "aside",
+  "audio",
+  "b",
+  "base",
+  "bdi",
+  "bdo",
+  "big",
+  "blockquote",
+  "body",
+  "br",
+  "button",
+  "canvas",
+  "caption",
+  "cite",
+  "code",
+  "col",
+  "colgroup",
+  "data",
+  "datalist",
+  "dd",
+  "del",
+  "details",
+  "dfn",
+  "dialog",
+  "div",
+  "dl",
+  "dt",
+  "em",
+  "embed",
+  "fieldset",
+  "figcaption",
+  "figure",
+  "footer",
+  "form",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "head",
+  "header",
+  "hgroup",
+  "hr",
+  "html",
+  "i",
+  "iframe",
+  "img",
+  "input",
+  "ins",
+  "kbd",
+  "keygen",
+  "label",
+  "legend",
+  "li",
+  "link",
+  "main",
+  "map",
+  "mark",
+  "menu",
+  "menuitem",
+  "meta",
+  "meter",
+  "nav",
+  "noscript",
+  "object",
+  "ol",
+  "optgroup",
+  "option",
+  "output",
+  "p",
+  "param",
+  "picture",
+  "pre",
+  "progress",
+  "q",
+  "rp",
+  "rt",
+  "ruby",
+  "s",
+  "samp",
+  "script",
+  "section",
+  "select",
+  "small",
+  "source",
+  "span",
+  "strong",
+  "style",
+  "sub",
+  "summary",
+  "sup",
+  "table",
+  "tbody",
+  "td",
+  "textarea",
+  "tfoot",
+  "th",
+  "thead",
+  "time",
+  "title",
+  "tr",
+  "track",
+  "u",
+  "ul",
+  "var",
+  "video",
+  "wbr",
+  "circle",
+  "clipPath",
+  "defs",
+  "ellipse",
+  "g",
+  "image",
+  "line",
+  "linearGradient",
+  "mask",
+  "path",
+  "pattern",
+  "polygon",
+  "polyline",
+  "radialGradient",
+  "rect",
+  "stop",
+  "svg",
+  "text",
+  "tspan"
+];
 function isTag(target) {
   if (typeof target === "string") {
     return domElements.indexOf(target) !== -1;
@@ -1877,31 +2103,25 @@ function isStyledComponent(target) {
 function isValidElementType(target) {
   return isStyledComponent(target) || isVueComponent(target) || isTag(target);
 }
-var _styled = function(createStyledComponent) {
+var _styled = function (createStyledComponent) {
   var styled2 = function styled3(tagName) {
     var props = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
     if (!isValidElementType(tagName)) {
       throw new Error(tagName + " is not allowed for styled tag type.");
     }
-    return function(cssRules) {
+    return function (cssRules) {
       for (var _len = arguments.length, interpolations = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         interpolations[_key - 1] = arguments[_key];
       }
       return createStyledComponent(tagName, css.apply(void 0, [cssRules].concat(interpolations)), props);
     };
   };
-  domElements.forEach(function(domElement) {
+  domElements.forEach(function (domElement) {
     styled2[domElement] = styled2(domElement);
   });
   return styled2;
 };
 var styled = _styled(_styledComponent(_componentStyle(generateAlphabeticName)));
 var vue_styled_components_es_default = styled;
-export {
-  ThemeProvider,
-  css,
-  vue_styled_components_es_default as default,
-  injectGlobal,
-  keyframes
-};
+export { ThemeProvider, css, vue_styled_components_es_default as default, injectGlobal, keyframes };
 //# sourceMappingURL=vue3-styled-components.js.map

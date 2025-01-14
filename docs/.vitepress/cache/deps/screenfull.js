@@ -2,14 +2,7 @@ import "./chunk-MTI3AIJG.js";
 
 // ../node_modules/.pnpm/screenfull@6.0.2/node_modules/screenfull/index.js
 var methodMap = [
-  [
-    "requestFullscreen",
-    "exitFullscreen",
-    "fullscreenElement",
-    "fullscreenEnabled",
-    "fullscreenchange",
-    "fullscreenerror"
-  ],
+  ["requestFullscreen", "exitFullscreen", "fullscreenElement", "fullscreenEnabled", "fullscreenchange", "fullscreenerror"],
   // New WebKit
   [
     "webkitRequestFullscreen",
@@ -139,7 +132,5 @@ if (!nativeAPI) {
   screenfull = { isEnabled: false };
 }
 var screenfull_default = screenfull;
-export {
-  screenfull_default as default
-};
+export { screenfull_default as default };
 //# sourceMappingURL=screenfull.js.map

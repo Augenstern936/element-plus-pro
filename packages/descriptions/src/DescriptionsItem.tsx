@@ -6,7 +6,7 @@
 import { defineComponent } from "vue-demi";
 
 const DescriptionsItem = defineComponent(() => {
-	return () => <div>11</div>;
+  return () => <div>11</div>;
 });
 
 export default DescriptionsItem;

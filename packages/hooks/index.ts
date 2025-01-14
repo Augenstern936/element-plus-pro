@@ -1,3 +1,3 @@
-export * from './useProps';
+export * from "./useProps";
 
-export * from './useFetchData';
+export * from "./useFetchData";

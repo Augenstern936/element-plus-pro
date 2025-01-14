@@ -1,6 +1,6 @@
-import ProCenterContainer from './CenterContainer';
+import ProCenterContainer from "./CenterContainer";
 
-export * from './typing';
+export * from "./typing";
 
 export { ProCenterContainer };
 

@@ -1,33 +1,33 @@
-@use 'element-plus/theme-chalk/src/space.scss';
-@use 'element-plus/theme-chalk/src/descriptions.scss';
-@use 'element-plus/theme-chalk/src/descriptions-item.scss';
+@use "element-plus/theme-chalk/src/space.scss";
+@use "element-plus/theme-chalk/src/descriptions.scss";
+@use "element-plus/theme-chalk/src/descriptions-item.scss";
 
 .pro-descriptions {
-	.el-descriptions__title {
-		.title-mark-shape-bar {
-			position: relative;
-			display: flex;
-			align-items: center;
-			white-space: nowrap;
-			padding-left: calc(5.5% + 8px);
-			font-size: 16px;
-			font-weight: bold;
-		}
-		.title-mark-shape-bar::before {
-			display: flex;
-			position: absolute;
-			left: 0;
-			top: 0.3px;
-			width: 5.5%;
-			height: 100%;
-			content: '';
-			background-color: var(--mark-color);
-		}
-		ul > li {
-			list-style-position: inside;
-		}
-		ul > li::marker {
-			color: var(--mark-color);
-		}
-	}
+  .el-descriptions__title {
+    .title-mark-shape-bar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      padding-left: calc(5.5% + 8px);
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .title-mark-shape-bar::before {
+      display: flex;
+      position: absolute;
+      left: 0;
+      top: 0.3px;
+      width: 5.5%;
+      height: 100%;
+      content: "";
+      background-color: var(--mark-color);
+    }
+    ul > li {
+      list-style-position: inside;
+    }
+    ul > li::marker {
+      color: var(--mark-color);
+    }
+  }
 }

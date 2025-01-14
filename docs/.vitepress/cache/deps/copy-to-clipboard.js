@@ -1,15 +1,12 @@
-import {
-  __commonJS
-} from "./chunk-MTI3AIJG.js";
+import { __commonJS } from "./chunk-MTI3AIJG.js";
 
 // ../node_modules/.pnpm/toggle-selection@1.0.6/node_modules/toggle-selection/index.js
 var require_toggle_selection = __commonJS({
   "../node_modules/.pnpm/toggle-selection@1.0.6/node_modules/toggle-selection/index.js"(exports, module) {
-    module.exports = function() {
+    module.exports = function () {
       var selection = document.getSelection();
       if (!selection.rangeCount) {
-        return function() {
-        };
+        return function () {};
       }
       var active = document.activeElement;
       var ranges = [];
@@ -26,10 +23,10 @@ var require_toggle_selection = __commonJS({
           break;
       }
       selection.removeAllRanges();
-      return function() {
+      return function () {
         selection.type === "Caret" && selection.removeAllRanges();
         if (!selection.rangeCount) {
-          ranges.forEach(function(range) {
+          ranges.forEach(function (range) {
             selection.addRange(range);
           });
         }
@@ -46,7 +43,7 @@ var require_copy_to_clipboard = __commonJS({
     var clipboardToIE11Formatting = {
       "text/plain": "Text",
       "text/html": "Url",
-      "default": "Text"
+      default: "Text"
     };
     var defaultMessage = "Copy to clipboard: #{key}, Enter";
     function format(message) {
@@ -54,7 +51,13 @@ var require_copy_to_clipboard = __commonJS({
       return message.replace(/#{\s*key\s*}/g, copyKey);
     }
     function copy(text, options) {
-      var debug, message, reselectPrevious, range, selection, mark, success = false;
+      var debug,
+        message,
+        reselectPrevious,
+        range,
+        selection,
+        mark,
+        success = false;
       if (!options) {
         options = {};
       }
@@ -75,7 +78,7 @@ var require_copy_to_clipboard = __commonJS({
         mark.style.MozUserSelect = "text";
         mark.style.msUserSelect = "text";
         mark.style.userSelect = "text";
-        mark.addEventListener("copy", function(e) {
+        mark.addEventListener("copy", function (e) {
           e.stopPropagation();
           if (options.format) {
             e.preventDefault();

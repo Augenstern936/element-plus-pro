@@ -1,9 +1,9 @@
 {
-	"files": [],
-	"references": [
-		{ "path": "./tsconfigs/web.json" },
-		{ "path": "./tsconfigs/node.json" },
-		{ "path": "./tsconfigs/play.json" },
-		{ "path": "./tsconfigs/vite-config.json" }
-	]
+  "files": [],
+  "references": [
+    { "path": "./tsconfigs/web.json" },
+    { "path": "./tsconfigs/node.json" },
+    { "path": "./tsconfigs/play.json" },
+    { "path": "./tsconfigs/vite-config.json" }
+  ]
 }

@@ -12,13 +12,7 @@ import {
   onUnhandledRequest,
   toPublicUrl
 } from "./chunk-ZKOHFDJZ.js";
-import {
-  __privateAdd,
-  __privateGet,
-  __privateMethod,
-  __privateSet,
-  __publicField
-} from "./chunk-MTI3AIJG.js";
+import { __privateAdd, __privateGet, __privateMethod, __privateSet, __publicField } from "./chunk-MTI3AIJG.js";
 
 // ../node_modules/.pnpm/msw@2.7.0_@types+node@20.17.10_typescript@5.7.2/node_modules/msw/lib/core/utils/toResponseInit.mjs
 function toResponseInit(response) {
@@ -31,7 +25,7 @@ function toResponseInit(response) {
 
 // ../node_modules/.pnpm/msw@2.7.0_@types+node@20.17.10_typescript@5.7.2/node_modules/msw/lib/core/utils/internal/isHandlerKind.mjs
 function isHandlerKind(kind) {
-  return (input) => {
+  return input => {
     return input != null && typeof input === "object" && "__kind" in input && input.__kind === kind;
   };
 }
@@ -165,7 +159,7 @@ var WebSocketClientConnection = class {
     this.id = createRequestId();
     this.url = new URL(socket.url);
     this[kEmitter] = new EventTarget();
-    this.transport.addEventListener("outgoing", (event) => {
+    this.transport.addEventListener("outgoing", event => {
       const message = bindEvent(
         this.socket,
         new CancelableMessageEvent("message", {
@@ -179,10 +173,8 @@ var WebSocketClientConnection = class {
         event.preventDefault();
       }
     });
-    this.transport.addEventListener("close", (event) => {
-      this[kEmitter].dispatchEvent(
-        bindEvent(this.socket, new CloseEvent("close", event))
-      );
+    this.transport.addEventListener("close", event => {
+      this[kEmitter].dispatchEvent(bindEvent(this.socket, new CloseEvent("close", event)));
     });
   }
   /**
@@ -197,21 +189,13 @@ var WebSocketClientConnection = class {
         configurable: false
       });
     }
-    this[kEmitter].addEventListener(
-      type,
-      Reflect.get(listener, kBoundListener),
-      options
-    );
+    this[kEmitter].addEventListener(type, Reflect.get(listener, kBoundListener), options);
   }
   /**
    * Removes the listener for the given event.
    */
   removeEventListener(event, listener, options) {
-    this[kEmitter].removeEventListener(
-      event,
-      Reflect.get(listener, kBoundListener),
-      options
-    );
+    this[kEmitter].removeEventListener(event, Reflect.get(listener, kBoundListener), options);
   }
   /**
    * Send data to the connected client.
@@ -254,7 +238,8 @@ var WebSocketOverride = class extends EventTarget {
       if (await this[kPassthroughPromise]) {
         return;
       }
-      this.protocol = typeof protocols === "string" ? protocols : Array.isArray(protocols) && protocols.length > 0 ? protocols[0] : "";
+      this.protocol =
+        typeof protocols === "string" ? protocols : Array.isArray(protocols) && protocols.length > 0 ? protocols[0] : "";
       if (this.readyState === this.CONNECTING) {
         this.readyState = this.OPEN;
         this.dispatchEvent(bindEvent(this, new Event("open")));
@@ -272,10 +257,7 @@ var WebSocketOverride = class extends EventTarget {
     return this._onopen;
   }
   set onmessage(listener) {
-    this.removeEventListener(
-      "message",
-      this._onmessage
-    );
+    this.removeEventListener("message", this._onmessage);
     this._onmessage = listener;
     if (listener !== null) {
       this.addEventListener("message", listener);
@@ -324,10 +306,7 @@ var WebSocketOverride = class extends EventTarget {
   }
   close(code = 1e3, reason) {
     invariant(code, WEBSOCKET_CLOSE_CODE_RANGE_ERROR);
-    invariant(
-      code === 1e3 || code >= 3e3 && code <= 4999,
-      WEBSOCKET_CLOSE_CODE_RANGE_ERROR
-    );
+    invariant(code === 1e3 || (code >= 3e3 && code <= 4999), WEBSOCKET_CLOSE_CODE_RANGE_ERROR);
     this[kClose](code, reason);
   }
   [(kPassthroughPromise, kOnSend, kClose)](code = 1e3, reason, wasClean = true) {
@@ -354,11 +333,7 @@ var WebSocketOverride = class extends EventTarget {
     });
   }
   addEventListener(type, listener, options) {
-    return super.addEventListener(
-      type,
-      listener,
-      options
-    );
+    return super.addEventListener(type, listener, options);
   }
   removeEventListener(type, callback, options) {
     return super.removeEventListener(type, callback, options);
@@ -388,7 +363,7 @@ var WebSocketServerConnection = class {
     this[kEmitter2] = new EventTarget();
     this.mockCloseController = new AbortController();
     this.realCloseController = new AbortController();
-    this.transport.addEventListener("outgoing", (event) => {
+    this.transport.addEventListener("outgoing", event => {
       if (typeof this.realWebSocket === "undefined") {
         return;
       }
@@ -398,10 +373,7 @@ var WebSocketServerConnection = class {
         }
       });
     });
-    this.transport.addEventListener(
-      "incoming",
-      this.handleIncomingMessage.bind(this)
-    );
+    this.transport.addEventListener("incoming", this.handleIncomingMessage.bind(this));
   }
   /**
    * The `WebSocket` instance connected to the original server.
@@ -426,14 +398,12 @@ var WebSocketServerConnection = class {
     realWebSocket.binaryType = this.client.binaryType;
     realWebSocket.addEventListener(
       "open",
-      (event) => {
-        this[kEmitter2].dispatchEvent(
-          bindEvent(this.realWebSocket, new Event("open", event))
-        );
+      event => {
+        this[kEmitter2].dispatchEvent(bindEvent(this.realWebSocket, new Event("open", event)));
       },
       { once: true }
     );
-    realWebSocket.addEventListener("message", (event) => {
+    realWebSocket.addEventListener("message", event => {
       this.transport.dispatchEvent(
         bindEvent(
           this.realWebSocket,
@@ -446,7 +416,7 @@ var WebSocketServerConnection = class {
     });
     this.client.addEventListener(
       "close",
-      (event) => {
+      event => {
         this.handleMockClose(event);
       },
       {
@@ -455,7 +425,7 @@ var WebSocketServerConnection = class {
     );
     realWebSocket.addEventListener(
       "close",
-      (event) => {
+      event => {
         this.handleRealClose(event);
       },
       {
@@ -463,10 +433,7 @@ var WebSocketServerConnection = class {
       }
     );
     realWebSocket.addEventListener("error", () => {
-      const errorEvent = bindEvent(
-        realWebSocket,
-        new Event("error", { cancelable: true })
-      );
+      const errorEvent = bindEvent(realWebSocket, new Event("error", { cancelable: true }));
       this[kEmitter2].dispatchEvent(errorEvent);
       if (!errorEvent.defaultPrevented) {
         this.client.dispatchEvent(bindEvent(this.client, new Event("error")));
@@ -485,21 +452,13 @@ var WebSocketServerConnection = class {
         enumerable: false
       });
     }
-    this[kEmitter2].addEventListener(
-      event,
-      Reflect.get(listener, kBoundListener2),
-      options
-    );
+    this[kEmitter2].addEventListener(event, Reflect.get(listener, kBoundListener2), options);
   }
   /**
    * Remove the listener for the given event.
    */
   removeEventListener(event, listener, options) {
-    this[kEmitter2].removeEventListener(
-      event,
-      Reflect.get(listener, kBoundListener2),
-      options
-    );
+    this[kEmitter2].removeEventListener(event, Reflect.get(listener, kBoundListener2), options);
   }
   /**
    * Send data to the original WebSocket server.
@@ -619,10 +578,10 @@ var WebSocketClassTransport = class extends EventTarget {
   constructor(socket) {
     super();
     this.socket = socket;
-    this.socket.addEventListener("close", (event) => {
+    this.socket.addEventListener("close", event => {
       this.dispatchEvent(bindEvent(this.socket, new CloseEvent("close", event)));
     });
-    this.socket[kOnSend] = (data) => {
+    this.socket[kOnSend] = data => {
       this.dispatchEvent(
         bindEvent(
           this.socket,
@@ -692,10 +651,7 @@ var _WebSocketInterceptor = class extends Interceptor {
     return hasConfigurableGlobal("WebSocket");
   }
   setup() {
-    const originalWebSocketDescriptor = Object.getOwnPropertyDescriptor(
-      globalThis,
-      "WebSocket"
-    );
+    const originalWebSocketDescriptor = Object.getOwnPropertyDescriptor(globalThis, "WebSocket");
     const WebSocketProxy = new Proxy(globalThis.WebSocket, {
       construct: (target, args, newTarget) => {
         const [url, protocols] = args;
@@ -706,11 +662,7 @@ var _WebSocketInterceptor = class extends Interceptor {
         const transport = new WebSocketClassTransport(socket);
         queueMicrotask(() => {
           try {
-            const server = new WebSocketServerConnection(
-              socket,
-              transport,
-              createConnection
-            );
+            const server = new WebSocketServerConnection(socket, transport, createConnection);
             const hasConnectionListeners = this.emitter.emit("connection", {
               client: new WebSocketClientConnection(socket, transport),
               server,
@@ -748,11 +700,7 @@ var _WebSocketInterceptor = class extends Interceptor {
       configurable: true
     });
     this.subscriptions.push(() => {
-      Object.defineProperty(
-        globalThis,
-        "WebSocket",
-        originalWebSocketDescriptor
-      );
+      Object.defineProperty(globalThis, "WebSocket", originalWebSocketDescriptor);
     });
   }
 };
@@ -764,19 +712,22 @@ var webSocketInterceptor = new WebSocketInterceptor();
 
 // ../node_modules/.pnpm/msw@2.7.0_@types+node@20.17.10_typescript@5.7.2/node_modules/msw/lib/core/ws/handleWebSocketEvent.mjs
 function handleWebSocketEvent(options) {
-  webSocketInterceptor.on("connection", async (connection) => {
+  webSocketInterceptor.on("connection", async connection => {
     const handlers = options.getHandlers();
     const connectionEvent = new MessageEvent("connection", {
       data: connection
     });
     const matchingHandlers = [];
     for (const handler of handlers) {
-      if (isHandlerKind("EventHandler")(handler) && handler.predicate({
-        event: connectionEvent,
-        parsedResult: handler.parse({
-          event: connectionEvent
+      if (
+        isHandlerKind("EventHandler")(handler) &&
+        handler.predicate({
+          event: connectionEvent,
+          parsedResult: handler.parse({
+            event: connectionEvent
+          })
         })
-      })) {
+      ) {
         matchingHandlers.push(handler);
       }
     }
@@ -792,10 +743,7 @@ function handleWebSocketEvent(options) {
           connection: "upgrade"
         }
       });
-      await onUnhandledRequest(
-        request,
-        options.getUnhandledRequestStrategy()
-      ).catch((error2) => {
+      await onUnhandledRequest(request, options.getUnhandledRequestStrategy()).catch(error2 => {
         const errorEvent = new Event("error");
         Object.defineProperty(errorEvent, "cause", {
           enumerable: true,
@@ -853,13 +801,13 @@ var colors = {
 function attachWebSocketLogger(connection) {
   const { client, server } = connection;
   logConnectionOpen(client);
-  client.addEventListener("message", (event) => {
+  client.addEventListener("message", event => {
     logOutgoingClientMessage(event);
   });
-  client.addEventListener("close", (event) => {
+  client.addEventListener("close", event => {
     logConnectionClose(event);
   });
-  client.socket.addEventListener("error", (event) => {
+  client.socket.addEventListener("error", event => {
     logClientError(event);
   });
   client.send = new Proxy(client.send, {
@@ -887,7 +835,7 @@ function attachWebSocketLogger(connection) {
   server.addEventListener(
     "open",
     () => {
-      server.addEventListener("message", (event) => {
+      server.addEventListener("message", event => {
         logIncomingServerMessage(event);
       });
     },
@@ -928,9 +876,7 @@ function logConnectionClose(event) {
   const target = event.target;
   const publicUrl = toPublicUrl(target.url);
   console.groupCollapsed(
-    devUtils.formatMessage(
-      `${getTimestamp({ milliseconds: true })} %c■%c ${publicUrl}`
-    ),
+    devUtils.formatMessage(`${getTimestamp({ milliseconds: true })} %c■%c ${publicUrl}`),
     `color:${colors.system}`,
     "color:inherit"
   );
@@ -941,9 +887,7 @@ function logClientError(event) {
   const socket = event.target;
   const publicUrl = toPublicUrl(socket.url);
   console.groupCollapsed(
-    devUtils.formatMessage(
-      `${getTimestamp({ milliseconds: true })} %c×%c ${publicUrl}`
-    ),
+    devUtils.formatMessage(`${getTimestamp({ milliseconds: true })} %c×%c ${publicUrl}`),
     `color:${colors.system}`,
     "color:inherit"
   );
@@ -955,9 +899,7 @@ async function logOutgoingClientMessage(event) {
   const publicData = await getPublicData(event.data);
   const arrow = event.defaultPrevented ? "⇡" : "⬆";
   console.groupCollapsed(
-    devUtils.formatMessage(
-      `${getTimestamp({ milliseconds: true })} %c${arrow}%c ${publicData} %c${byteLength}%c`
-    ),
+    devUtils.formatMessage(`${getTimestamp({ milliseconds: true })} %c${arrow}%c ${publicData} %c${byteLength}%c`),
     `color:${colors.outgoing}`,
     "color:inherit",
     "color:gray;font-weight:normal",
@@ -970,9 +912,7 @@ async function logOutgoingMockedClientMessage(event) {
   const byteLength = getMessageLength(event.data);
   const publicData = await getPublicData(event.data);
   console.groupCollapsed(
-    devUtils.formatMessage(
-      `${getTimestamp({ milliseconds: true })} %c⬆%c ${publicData} %c${byteLength}%c`
-    ),
+    devUtils.formatMessage(`${getTimestamp({ milliseconds: true })} %c⬆%c ${publicData} %c${byteLength}%c`),
     `color:${colors.mocked}`,
     "color:inherit",
     "color:gray;font-weight:normal",
@@ -985,9 +925,7 @@ async function logIncomingMockedClientMessage(event) {
   const byteLength = getMessageLength(event.data);
   const publicData = await getPublicData(event.data);
   console.groupCollapsed(
-    devUtils.formatMessage(
-      `${getTimestamp({ milliseconds: true })} %c⬇%c ${publicData} %c${byteLength}%c`
-    ),
+    devUtils.formatMessage(`${getTimestamp({ milliseconds: true })} %c⬇%c ${publicData} %c${byteLength}%c`),
     `color:${colors.mocked}`,
     "color:inherit",
     "color:gray;font-weight:normal",
@@ -1001,9 +939,7 @@ async function logIncomingServerMessage(event) {
   const publicData = await getPublicData(event.data);
   const arrow = event.defaultPrevented ? "⇣" : "⬇";
   console.groupCollapsed(
-    devUtils.formatMessage(
-      `${getTimestamp({ milliseconds: true })} %c${arrow}%c ${publicData} %c${byteLength}%c`
-    ),
+    devUtils.formatMessage(`${getTimestamp({ milliseconds: true })} %c${arrow}%c ${publicData} %c${byteLength}%c`),
     `color:${colors.incoming}`,
     "color:inherit",
     "color:gray;font-weight:normal",
@@ -1041,18 +977,15 @@ function format(message, ...positionals) {
     return message;
   }
   let positionalIndex = 0;
-  let formattedMessage = message.replace(
-    POSITIONALS_EXP,
-    (match, isEscaped, _, flag) => {
-      const positional = positionals[positionalIndex];
-      const value = serializePositional(positional, flag);
-      if (!isEscaped) {
-        positionalIndex++;
-        return value;
-      }
-      return match;
+  let formattedMessage = message.replace(POSITIONALS_EXP, (match, isEscaped, _, flag) => {
+    const positional = positionals[positionalIndex];
+    const value = serializePositional(positional, flag);
+    if (!isEscaped) {
+      positionalIndex++;
+      return value;
     }
-  );
+    return match;
+  });
   if (positionalIndex < positionals.length) {
     formattedMessage += ` ${positionals.slice(positionalIndex).join(" ")}`;
   }
@@ -1087,9 +1020,7 @@ invariant2.as = (ErrorConstructor, predicate, message, ...positionals) => {
     const formatMessage = positionals.length === 0 ? message : format(message, ...positionals);
     let error2;
     try {
-      error2 = Reflect.construct(ErrorConstructor, [
-        formatMessage
-      ]);
+      error2 = Reflect.construct(ErrorConstructor, [formatMessage]);
     } catch (err) {
       error2 = ErrorConstructor(formatMessage);
     }
@@ -1109,9 +1040,9 @@ function isNodeProcess() {
   }
   return false;
 }
-var until = async (promise) => {
+var until = async promise => {
   try {
-    const data = await promise().catch((error2) => {
+    const data = await promise().catch(error2 => {
       throw error2;
     });
     return { error: null, data };
@@ -1123,52 +1054,39 @@ function getAbsoluteWorkerUrl(workerUrl) {
   return new URL(workerUrl, location.href).href;
 }
 function getWorkerByRegistration(registration, absoluteWorkerUrl, findWorker) {
-  const allStates = [
-    registration.active,
-    registration.installing,
-    registration.waiting
-  ];
-  const relevantStates = allStates.filter((state) => {
+  const allStates = [registration.active, registration.installing, registration.waiting];
+  const relevantStates = allStates.filter(state => {
     return state != null;
   });
-  const worker = relevantStates.find((worker2) => {
+  const worker = relevantStates.find(worker2 => {
     return findWorker(worker2.scriptURL, absoluteWorkerUrl);
   });
   return worker || null;
 }
 var getWorkerInstance = async (url, options = {}, findWorker) => {
   const absoluteWorkerUrl = getAbsoluteWorkerUrl(url);
-  const mockRegistrations = await navigator.serviceWorker.getRegistrations().then(
-    (registrations) => registrations.filter(
-      (registration) => getWorkerByRegistration(registration, absoluteWorkerUrl, findWorker)
-    )
-  );
+  const mockRegistrations = await navigator.serviceWorker
+    .getRegistrations()
+    .then(registrations =>
+      registrations.filter(registration => getWorkerByRegistration(registration, absoluteWorkerUrl, findWorker))
+    );
   if (!navigator.serviceWorker.controller && mockRegistrations.length > 0) {
     location.reload();
   }
   const [existingRegistration] = mockRegistrations;
   if (existingRegistration) {
     existingRegistration.update();
-    return [
-      getWorkerByRegistration(
-        existingRegistration,
-        absoluteWorkerUrl,
-        findWorker
-      ),
-      existingRegistration
-    ];
+    return [getWorkerByRegistration(existingRegistration, absoluteWorkerUrl, findWorker), existingRegistration];
   }
-  const registrationResult = await until(
-    async () => {
-      const registration = await navigator.serviceWorker.register(url, options);
-      return [
-        // Compare existing worker registration by its worker URL,
-        // to prevent irrelevant workers to resolve here (such as Codesandbox worker).
-        getWorkerByRegistration(registration, absoluteWorkerUrl, findWorker),
-        registration
-      ];
-    }
-  );
+  const registrationResult = await until(async () => {
+    const registration = await navigator.serviceWorker.register(url, options);
+    return [
+      // Compare existing worker registration by its worker URL,
+      // to prevent irrelevant workers to resolve here (such as Codesandbox worker).
+      getWorkerByRegistration(registration, absoluteWorkerUrl, findWorker),
+      registration
+    ];
+  });
   if (registrationResult.error) {
     const isWorkerMissing = registrationResult.error.message.includes("(404)");
     if (isWorkerMissing) {
@@ -1181,12 +1099,7 @@ Did you forget to run "npx msw init <PUBLIC_DIR>"?
 Learn more about creating the Service Worker script: https://mswjs.io/docs/cli/init`)
       );
     }
-    throw new Error(
-      devUtils.formatMessage(
-        "Failed to register the Service Worker:\n\n%s",
-        registrationResult.error.message
-      )
-    );
+    throw new Error(devUtils.formatMessage("Failed to register the Service Worker:\n\n%s", registrationResult.error.message));
   }
   return registrationResult.data;
 };
@@ -1195,15 +1108,8 @@ function printStartMessage(args = {}) {
     return;
   }
   const message = args.message || "Mocking enabled.";
-  console.groupCollapsed(
-    `%c${devUtils.formatMessage(message)}`,
-    "color:orangered;font-weight:bold;"
-  );
-  console.log(
-    "%cDocumentation: %chttps://mswjs.io/docs",
-    "font-weight:bold",
-    "font-weight:normal"
-  );
+  console.groupCollapsed(`%c${devUtils.formatMessage(message)}`, "color:orangered;font-weight:bold;");
+  console.log("%cDocumentation: %chttps://mswjs.io/docs", "font-weight:bold", "font-weight:normal");
   console.log("Found an issue? https://github.com/mswjs/msw/issues");
   if (args.workerUrl) {
     console.log("Worker script URL:", args.workerUrl);
@@ -1360,10 +1266,7 @@ function decodeBuffer(buffer, encoding) {
   return decoder.decode(buffer);
 }
 function toArrayBuffer(array) {
-  return array.buffer.slice(
-    array.byteOffset,
-    array.byteOffset + array.byteLength
-  );
+  return array.buffer.slice(array.byteOffset, array.byteOffset + array.byteLength);
 }
 var IS_PATCHED_MODULE = Symbol("isPatchedModule");
 var _FetchResponse = class extends Response {
@@ -1404,9 +1307,7 @@ var _FetchResponse = class extends Response {
       status: safeStatus
     });
     if (status !== safeStatus) {
-      const stateSymbol = Object.getOwnPropertySymbols(this).find(
-        (symbol) => symbol.description === "state"
-      );
+      const stateSymbol = Object.getOwnPropertySymbols(this).find(symbol => symbol.description === "state");
       if (stateSymbol) {
         const state = Reflect.get(this, stateSymbol);
         Reflect.set(state, "status", status);
@@ -1427,8 +1328,7 @@ FetchResponse.STATUS_CODES_WITHOUT_BODY = [101, 103, 204, 205, 304];
 FetchResponse.STATUS_CODES_WITH_REDIRECT = [301, 302, 303, 307, 308];
 var __defProp = Object.defineProperty;
 var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
+  for (var name in all) __defProp(target, name, { get: all[name], enumerable: true });
 };
 var colors_exports = {};
 __export(colors_exports, {
@@ -1461,7 +1361,8 @@ var Logger = class {
     this.prefix = `[${this.name}]`;
     const LOGGER_NAME = getVariable("DEBUG");
     const LOGGER_LEVEL = getVariable("LOG_LEVEL");
-    const isLoggingEnabled = LOGGER_NAME === "1" || LOGGER_NAME === "true" || typeof LOGGER_NAME !== "undefined" && this.name.startsWith(LOGGER_NAME);
+    const isLoggingEnabled =
+      LOGGER_NAME === "1" || LOGGER_NAME === "true" || (typeof LOGGER_NAME !== "undefined" && this.name.startsWith(LOGGER_NAME));
     if (isLoggingEnabled) {
       this.debug = isDefinedAndNotEquals(LOGGER_LEVEL, "debug") ? noop : this.debug;
       this.info = isDefinedAndNotEquals(LOGGER_LEVEL, "info") ? noop : this.info;
@@ -1595,13 +1496,7 @@ var Logger = class {
     };
   }
   logEntry(args) {
-    const {
-      level,
-      message,
-      prefix,
-      colors: customColors,
-      positionals = []
-    } = args;
+    const { level, message, prefix, colors: customColors, positionals = [] } = args;
     const entry = this.createEntry(level, message);
     const timestampColor = (customColors == null ? void 0 : customColors.timestamp) || "gray";
     const prefixColor = (customColors == null ? void 0 : customColors.prefix) || "gray";
@@ -1611,14 +1506,15 @@ var Logger = class {
     };
     const write = this.getWriter(level);
     write(
-      [colorize.timestamp(this.formatTimestamp(entry.timestamp))].concat(prefix != null ? colorize.prefix(prefix) : []).concat(serializeInput(message)).join(" "),
+      [colorize.timestamp(this.formatTimestamp(entry.timestamp))]
+        .concat(prefix != null ? colorize.prefix(prefix) : [])
+        .concat(serializeInput(message))
+        .join(" "),
       ...positionals.map(serializeInput)
     );
   }
   formatTimestamp(timestamp) {
-    return `${timestamp.toLocaleTimeString(
-      "en-GB"
-    )}:${timestamp.getMilliseconds()}`;
+    return `${timestamp.toLocaleTimeString("en-GB")}:${timestamp.getMilliseconds()}`;
   }
   getWriter(level) {
     switch (level) {
@@ -1717,10 +1613,7 @@ var _Emitter = class {
     this.hasWarnedAboutPotentialMemoryLeak = false;
   }
   _emitInternalEvent(internalEventName, eventName, listener) {
-    this.emit(
-      internalEventName,
-      ...[eventName, listener]
-    );
+    this.emit(internalEventName, ...[eventName, listener]);
   }
   _getListeners(eventName) {
     return Array.prototype.concat.apply([], this.events.get(eventName)) || [];
@@ -1770,7 +1663,7 @@ var _Emitter = class {
    */
   emit(eventName, ...data) {
     const listeners = this._getListeners(eventName);
-    listeners.forEach((listener) => {
+    listeners.forEach(listener => {
       listener.apply(this, data);
     });
     return listeners.length > 0;
@@ -1781,11 +1674,7 @@ var _Emitter = class {
     this.events.set(eventName, nextListeners);
     if (this.maxListeners > 0 && this.listenerCount(eventName) > this.maxListeners && !this.hasWarnedAboutPotentialMemoryLeak) {
       this.hasWarnedAboutPotentialMemoryLeak = true;
-      const memoryLeakWarning = new MemoryLeakError(
-        this,
-        eventName,
-        this.listenerCount(eventName)
-      );
+      const memoryLeakWarning = new MemoryLeakError(this, eventName, this.listenerCount(eventName));
       console.warn(memoryLeakWarning);
     }
     return this;
@@ -1794,10 +1683,7 @@ var _Emitter = class {
     return this.addListener(eventName, listener);
   }
   once(eventName, listener) {
-    return this.addListener(
-      eventName,
-      this._wrapOnceListener(eventName, listener)
-    );
+    return this.addListener(eventName, this._wrapOnceListener(eventName, listener));
   }
   prependListener(eventName, listener) {
     const listeners = this._getListeners(eventName);
@@ -1810,10 +1696,7 @@ var _Emitter = class {
     return this;
   }
   prependOnceListener(eventName, listener) {
-    return this.prependListener(
-      eventName,
-      this._wrapOnceListener(eventName, listener)
-    );
+    return this.prependListener(eventName, this._wrapOnceListener(eventName, listener));
   }
   removeListener(eventName, listener) {
     const listeners = this._getListeners(eventName);
@@ -1931,8 +1814,7 @@ var Interceptor2 = class {
    * This method is not run if there's a running interceptor instance
    * to prevent instantiating an interceptor multiple times.
    */
-  setup() {
-  }
+  setup() {}
   /**
    * Listen to the interceptor's public events.
    */
@@ -1990,7 +1872,10 @@ var Interceptor2 = class {
   getInstance() {
     var _a2;
     const instance = getGlobalSymbol(this.symbol);
-    this.logger.info("retrieved global instance:", (_a2 = instance == null ? void 0 : instance.constructor) == null ? void 0 : _a2.name);
+    this.logger.info(
+      "retrieved global instance:",
+      (_a2 = instance == null ? void 0 : instance.constructor) == null ? void 0 : _a2.name
+    );
     return instance;
   }
   setInstance() {
@@ -2056,32 +1941,32 @@ function createResponseListener(context) {
     if ((_a2 = responseJson.type) == null ? void 0 : _a2.includes("opaque")) {
       return;
     }
-    const response = responseJson.status === 0 ? Response.error() : new FetchResponse(
-      /**
-       * Responses may be streams here, but when we create a response object
-       * with null-body status codes, like 204, 205, 304 Response will
-       * throw when passed a non-null body, so ensure it's null here
-       * for those codes
-       */
-      FetchResponse.isResponseWithBody(responseJson.status) ? responseJson.body : null,
-      {
-        ...responseJson,
-        /**
-         * Set response URL if it's not set already.
-         * @see https://github.com/mswjs/msw/issues/2030
-         * @see https://developer.mozilla.org/en-US/docs/Web/API/Response/url
-         */
-        url: request.url
-      }
-    );
-    context.emitter.emit(
-      responseJson.isMockedResponse ? "response:mocked" : "response:bypass",
-      {
-        response,
-        request,
-        requestId: responseJson.requestId
-      }
-    );
+    const response =
+      responseJson.status === 0
+        ? Response.error()
+        : new FetchResponse(
+            /**
+             * Responses may be streams here, but when we create a response object
+             * with null-body status codes, like 204, 205, 304 Response will
+             * throw when passed a non-null body, so ensure it's null here
+             * for those codes
+             */
+            FetchResponse.isResponseWithBody(responseJson.status) ? responseJson.body : null,
+            {
+              ...responseJson,
+              /**
+               * Set response URL if it's not set already.
+               * @see https://github.com/mswjs/msw/issues/2030
+               * @see https://developer.mozilla.org/en-US/docs/Web/API/Response/url
+               */
+              url: request.url
+            }
+          );
+    context.emitter.emit(responseJson.isMockedResponse ? "response:mocked" : "response:bypass", {
+      response,
+      request,
+      requestId: responseJson.requestId
+    });
   };
 }
 function validateWorkerScope(registration, options) {
@@ -2094,38 +1979,33 @@ function validateWorkerScope(registration, options) {
     );
   }
 }
-var createStartHandler = (context) => {
+var createStartHandler = context => {
   return function start(options, customOptions) {
     const startWorkerInstance = async () => {
       context.events.removeAllListeners();
-      context.workerChannel.on(
-        "REQUEST",
-        createRequestListener(context, options)
-      );
+      context.workerChannel.on("REQUEST", createRequestListener(context, options));
       context.workerChannel.on("RESPONSE", createResponseListener(context));
-      const instance = await getWorkerInstance(
-        options.serviceWorker.url,
-        options.serviceWorker.options,
-        options.findWorker
-      );
+      const instance = await getWorkerInstance(options.serviceWorker.url, options.serviceWorker.options, options.findWorker);
       const [worker, registration] = instance;
       if (!worker) {
-        const missingWorkerMessage = (customOptions == null ? void 0 : customOptions.findWorker) ? devUtils.formatMessage(
-          `Failed to locate the Service Worker registration using a custom "findWorker" predicate.
+        const missingWorkerMessage = (customOptions == null ? void 0 : customOptions.findWorker)
+          ? devUtils.formatMessage(
+              `Failed to locate the Service Worker registration using a custom "findWorker" predicate.
 
 Please ensure that the custom predicate properly locates the Service Worker registration at "%s".
 More details: https://mswjs.io/docs/api/setup-worker/start#findworker
 `,
-          options.serviceWorker.url
-        ) : devUtils.formatMessage(
-          `Failed to locate the Service Worker registration.
+              options.serviceWorker.url
+            )
+          : devUtils.formatMessage(
+              `Failed to locate the Service Worker registration.
 
 This most likely means that the worker script URL "%s" cannot resolve against the actual public hostname (%s). This may happen if your application runs behind a proxy, or has a dynamic hostname.
 
 Please consider using a custom "serviceWorker.url" option to point to the actual worker script location, or a custom "findWorker" option to resolve the Service Worker registration manually. More details: https://mswjs.io/docs/api/setup-worker/start`,
-          options.serviceWorker.url,
-          location.host
-        );
+              options.serviceWorker.url,
+              location.host
+            );
         throw new Error(missingWorkerMessage);
       }
       context.worker = worker;
@@ -2137,37 +2017,32 @@ Please consider using a custom "serviceWorker.url" option to point to the actual
         window.clearInterval(context.keepAliveInterval);
         window.postMessage({ type: "msw/worker:stop" });
       });
-      await checkWorkerIntegrity(context).catch((error2) => {
+      await checkWorkerIntegrity(context).catch(error2 => {
         devUtils.error(
           "Error while checking the worker script integrity. Please report this on GitHub (https://github.com/mswjs/msw/issues), including the original error below."
         );
         console.error(error2);
       });
-      context.keepAliveInterval = window.setInterval(
-        () => context.workerChannel.send("KEEPALIVE_REQUEST"),
-        5e3
-      );
+      context.keepAliveInterval = window.setInterval(() => context.workerChannel.send("KEEPALIVE_REQUEST"), 5e3);
       validateWorkerScope(registration, context.startOptions);
       return registration;
     };
-    const workerRegistration = startWorkerInstance().then(
-      async (registration) => {
-        const pendingInstance = registration.installing || registration.waiting;
-        if (pendingInstance) {
-          await new Promise((resolve) => {
-            pendingInstance.addEventListener("statechange", () => {
-              if (pendingInstance.state === "activated") {
-                return resolve();
-              }
-            });
+    const workerRegistration = startWorkerInstance().then(async registration => {
+      const pendingInstance = registration.installing || registration.waiting;
+      if (pendingInstance) {
+        await new Promise(resolve => {
+          pendingInstance.addEventListener("statechange", () => {
+            if (pendingInstance.state === "activated") {
+              return resolve();
+            }
           });
-        }
-        await enableMocking(context, options).catch((error2) => {
-          throw new Error(`Failed to enable mocking: ${error2 == null ? void 0 : error2.message}`);
         });
-        return registration;
       }
-    );
+      await enableMocking(context, options).catch(error2 => {
+        throw new Error(`Failed to enable mocking: ${error2 == null ? void 0 : error2.message}`);
+      });
+      return registration;
+    });
     return workerRegistration;
   };
 };
@@ -2175,12 +2050,9 @@ function printStopMessage(args = {}) {
   if (args.quiet) {
     return;
   }
-  console.log(
-    `%c${devUtils.formatMessage("Mocking disabled.")}`,
-    "color:orangered;font-weight:bold;"
-  );
+  console.log(`%c${devUtils.formatMessage("Mocking disabled.")}`, "color:orangered;font-weight:bold;");
 }
-var createStop = (context) => {
+var createStop = context => {
   return function stop() {
     var _a2;
     if (!context.isMockingEnabled) {
@@ -2211,68 +2083,71 @@ var DEFAULT_START_OPTIONS = {
 function createDeferredExecutor() {
   const executor = (resolve, reject) => {
     executor.state = "pending";
-    executor.resolve = (data) => {
+    executor.resolve = data => {
       if (executor.state !== "pending") {
         return;
       }
       executor.result = data;
-      const onFulfilled = (value) => {
+      const onFulfilled = value => {
         executor.state = "fulfilled";
         return value;
       };
-      return resolve(
-        data instanceof Promise ? data : Promise.resolve(data).then(onFulfilled)
-      );
+      return resolve(data instanceof Promise ? data : Promise.resolve(data).then(onFulfilled));
     };
-    executor.reject = (reason) => {
+    executor.reject = reason => {
       if (executor.state !== "pending") {
         return;
       }
       queueMicrotask(() => {
         executor.state = "rejected";
       });
-      return reject(executor.rejectionReason = reason);
+      return reject((executor.rejectionReason = reason));
     };
   };
   return executor;
 }
 var _executor, _DeferredPromise_instances, decorate_fn, _a;
-var DeferredPromise2 = (_a = class extends Promise {
-  constructor(executor = null) {
-    const deferredExecutor = createDeferredExecutor();
-    super((originalResolve, originalReject) => {
-      deferredExecutor(originalResolve, originalReject);
-      executor == null ? void 0 : executor(deferredExecutor.resolve, deferredExecutor.reject);
+var DeferredPromise2 =
+  ((_a = class extends Promise {
+    constructor(executor = null) {
+      const deferredExecutor = createDeferredExecutor();
+      super((originalResolve, originalReject) => {
+        deferredExecutor(originalResolve, originalReject);
+        executor == null ? void 0 : executor(deferredExecutor.resolve, deferredExecutor.reject);
+      });
+      __privateAdd(this, _DeferredPromise_instances);
+      __privateAdd(this, _executor);
+      __publicField(this, "resolve");
+      __publicField(this, "reject");
+      __privateSet(this, _executor, deferredExecutor);
+      this.resolve = __privateGet(this, _executor).resolve;
+      this.reject = __privateGet(this, _executor).reject;
+    }
+    get state() {
+      return __privateGet(this, _executor).state;
+    }
+    get rejectionReason() {
+      return __privateGet(this, _executor).rejectionReason;
+    }
+    then(onFulfilled, onRejected) {
+      return __privateMethod(this, _DeferredPromise_instances, decorate_fn).call(this, super.then(onFulfilled, onRejected));
+    }
+    catch(onRejected) {
+      return __privateMethod(this, _DeferredPromise_instances, decorate_fn).call(this, super.catch(onRejected));
+    }
+    finally(onfinally) {
+      return __privateMethod(this, _DeferredPromise_instances, decorate_fn).call(this, super.finally(onfinally));
+    }
+  }),
+  (_executor = new WeakMap()),
+  (_DeferredPromise_instances = new WeakSet()),
+  (decorate_fn = function (promise) {
+    return Object.defineProperties(promise, {
+      resolve: { configurable: true, value: this.resolve },
+      reject: { configurable: true, value: this.reject }
     });
-    __privateAdd(this, _DeferredPromise_instances);
-    __privateAdd(this, _executor);
-    __publicField(this, "resolve");
-    __publicField(this, "reject");
-    __privateSet(this, _executor, deferredExecutor);
-    this.resolve = __privateGet(this, _executor).resolve;
-    this.reject = __privateGet(this, _executor).reject;
-  }
-  get state() {
-    return __privateGet(this, _executor).state;
-  }
-  get rejectionReason() {
-    return __privateGet(this, _executor).rejectionReason;
-  }
-  then(onFulfilled, onRejected) {
-    return __privateMethod(this, _DeferredPromise_instances, decorate_fn).call(this, super.then(onFulfilled, onRejected));
-  }
-  catch(onRejected) {
-    return __privateMethod(this, _DeferredPromise_instances, decorate_fn).call(this, super.catch(onRejected));
-  }
-  finally(onfinally) {
-    return __privateMethod(this, _DeferredPromise_instances, decorate_fn).call(this, super.finally(onfinally));
-  }
-}, _executor = new WeakMap(), _DeferredPromise_instances = new WeakSet(), decorate_fn = function(promise) {
-  return Object.defineProperties(promise, {
-    resolve: { configurable: true, value: this.resolve },
-    reject: { configurable: true, value: this.reject }
-  });
-}, _a);
+  }),
+  _a);
 var InterceptorError = class extends Error {
   constructor(message) {
     super(message);
@@ -2344,11 +2219,13 @@ function isPropertyAccessible(obj, key) {
 function createServerErrorResponse(body) {
   return new Response(
     JSON.stringify(
-      body instanceof Error ? {
-        name: body.name,
-        message: body.message,
-        stack: body.stack
-      } : body
+      body instanceof Error
+        ? {
+            name: body.name,
+            message: body.message,
+            stack: body.stack
+          }
+        : body
     ),
     {
       status: 500,
@@ -2372,7 +2249,7 @@ function isNodeLikeError(error2) {
   return "code" in error2 && "errno" in error2;
 }
 async function handleRequest2(options) {
-  const handleResponse = async (response) => {
+  const handleResponse = async response => {
     if (response instanceof Error) {
       options.onError(response);
     } else if (isResponseError(response)) {
@@ -2382,7 +2259,7 @@ async function handleRequest2(options) {
     }
     return true;
   };
-  const handleResponseError = async (error2) => {
+  const handleResponseError = async error2 => {
     if (error2 instanceof InterceptorError) {
       throw result.error;
     }
@@ -2441,9 +2318,7 @@ async function handleRequest2(options) {
       return true;
     }
     if (options.emitter.listenerCount("unhandledException") > 0) {
-      const unhandledExceptionController = new RequestController(
-        options.request
-      );
+      const unhandledExceptionController = new RequestController(options.request);
       await emitAsync(options.emitter, "unhandledException", {
         error: result.error,
         request: options.request,
@@ -2454,9 +2329,7 @@ async function handleRequest2(options) {
           unhandledExceptionController[kResponsePromise].resolve(void 0);
         }
       });
-      const nextResult = await until(
-        () => unhandledExceptionController[kResponsePromise]
-      );
+      const nextResult = await until(() => unhandledExceptionController[kResponsePromise]);
       if (nextResult.error) {
         return handleResponseError(nextResult.error);
       }
@@ -2504,13 +2377,7 @@ function createNetworkError(cause) {
     cause
   });
 }
-var REQUEST_BODY_HEADERS = [
-  "content-encoding",
-  "content-language",
-  "content-location",
-  "content-type",
-  "content-length"
-];
+var REQUEST_BODY_HEADERS = ["content-encoding", "content-language", "content-location", "content-type", "content-length"];
 var kRedirectCount = Symbol("kRedirectCount");
 async function followFetchRedirect(request, response) {
   if (response.status !== 303 && request.body != null) {
@@ -2524,9 +2391,7 @@ async function followFetchRedirect(request, response) {
     return Promise.reject(createNetworkError(error2));
   }
   if (!(locationUrl.protocol === "http:" || locationUrl.protocol === "https:")) {
-    return Promise.reject(
-      createNetworkError("URL scheme must be a HTTP(S) scheme")
-    );
+    return Promise.reject(createNetworkError("URL scheme must be a HTTP(S) scheme"));
   }
   if (Reflect.get(request, kRedirectCount) > 20) {
     return Promise.reject(createNetworkError("redirect count exceeded"));
@@ -2535,15 +2400,16 @@ async function followFetchRedirect(request, response) {
     value: (Reflect.get(request, kRedirectCount) || 0) + 1
   });
   if (request.mode === "cors" && (locationUrl.username || locationUrl.password) && !sameOrigin(requestUrl, locationUrl)) {
-    return Promise.reject(
-      createNetworkError('cross origin not allowed for request mode "cors"')
-    );
+    return Promise.reject(createNetworkError('cross origin not allowed for request mode "cors"'));
   }
   const requestInit = {};
-  if ([301, 302].includes(response.status) && request.method === "POST" || response.status === 303 && !["HEAD", "GET"].includes(request.method)) {
+  if (
+    ([301, 302].includes(response.status) && request.method === "POST") ||
+    (response.status === 303 && !["HEAD", "GET"].includes(request.method))
+  ) {
     requestInit.method = "GET";
     requestInit.body = null;
-    REQUEST_BODY_HEADERS.forEach((headerName) => {
+    REQUEST_BODY_HEADERS.forEach(headerName => {
       request.headers.delete(headerName);
     });
   }
@@ -2567,9 +2433,7 @@ function sameOrigin(left, right) {
 }
 var BrotliDecompressionStream = class extends TransformStream {
   constructor() {
-    console.warn(
-      "[Interceptors]: Brotli decompression of response streams is not supported in the browser"
-    );
+    console.warn("[Interceptors]: Brotli decompression of response streams is not supported in the browser");
     super({
       transform(chunk, controller) {
         controller.enqueue(chunk);
@@ -2580,9 +2444,7 @@ var BrotliDecompressionStream = class extends TransformStream {
 var PipelineStream = class extends TransformStream {
   constructor(transformStreams, ...strategies) {
     super({}, ...strategies);
-    const readable = [super.readable, ...transformStreams].reduce(
-      (readable2, transform) => readable2.pipeThrough(transform)
-    );
+    const readable = [super.readable, ...transformStreams].reduce((readable2, transform) => readable2.pipeThrough(transform));
     Object.defineProperty(this, "readable", {
       get() {
         return readable;
@@ -2591,7 +2453,10 @@ var PipelineStream = class extends TransformStream {
   }
 };
 function parseContentEncoding(contentEncoding) {
-  return contentEncoding.toLowerCase().split(",").map((coding) => coding.trim());
+  return contentEncoding
+    .toLowerCase()
+    .split(",")
+    .map(coding => coding.trim());
 }
 function createDecompressionStream(contentEncoding) {
   if (contentEncoding === "") {
@@ -2601,30 +2466,25 @@ function createDecompressionStream(contentEncoding) {
   if (codings.length === 0) {
     return null;
   }
-  const transformers = codings.reduceRight(
-    (transformers2, coding) => {
-      if (coding === "gzip" || coding === "x-gzip") {
-        return transformers2.concat(new DecompressionStream("gzip"));
-      } else if (coding === "deflate") {
-        return transformers2.concat(new DecompressionStream("deflate"));
-      } else if (coding === "br") {
-        return transformers2.concat(new BrotliDecompressionStream());
-      } else {
-        transformers2.length = 0;
-      }
-      return transformers2;
-    },
-    []
-  );
+  const transformers = codings.reduceRight((transformers2, coding) => {
+    if (coding === "gzip" || coding === "x-gzip") {
+      return transformers2.concat(new DecompressionStream("gzip"));
+    } else if (coding === "deflate") {
+      return transformers2.concat(new DecompressionStream("deflate"));
+    } else if (coding === "br") {
+      return transformers2.concat(new BrotliDecompressionStream());
+    } else {
+      transformers2.length = 0;
+    }
+    return transformers2;
+  }, []);
   return new PipelineStream(transformers);
 }
 function decompressResponse(response) {
   if (response.body === null) {
     return null;
   }
-  const decompressionStream = createDecompressionStream(
-    response.headers.get("content-encoding") || ""
-  );
+  const decompressionStream = createDecompressionStream(response.headers.get("content-encoding") || "");
   if (!decompressionStream) {
     return null;
   }
@@ -2640,28 +2500,25 @@ var _FetchInterceptor = class extends Interceptor2 {
   }
   async setup() {
     const pureFetch = globalThis.fetch;
-    invariant2(
-      !pureFetch[IS_PATCHED_MODULE],
-      'Failed to patch the "fetch" module: already patched.'
-    );
+    invariant2(!pureFetch[IS_PATCHED_MODULE], 'Failed to patch the "fetch" module: already patched.');
     globalThis.fetch = async (input, init) => {
       const requestId = createRequestId2();
-      const resolvedInput = typeof input === "string" && typeof location !== "undefined" && !canParseUrl(input) ? new URL(input, location.origin) : input;
+      const resolvedInput =
+        typeof input === "string" && typeof location !== "undefined" && !canParseUrl(input)
+          ? new URL(input, location.origin)
+          : input;
       const request = new Request(resolvedInput, init);
       const responsePromise = new DeferredPromise2();
       const controller = new RequestController(request);
       this.logger.info("[%s] %s", request.method, request.url);
       this.logger.info("awaiting for the mocked response...");
-      this.logger.info(
-        'emitting the "request" event for %s listener(s)...',
-        this.emitter.listenerCount("request")
-      );
+      this.logger.info('emitting the "request" event for %s listener(s)...', this.emitter.listenerCount("request"));
       const isRequestHandled = await handleRequest2({
         request,
         requestId,
         emitter: this.emitter,
         controller,
-        onResponse: async (rawResponse) => {
+        onResponse: async rawResponse => {
           this.logger.info("received mocked response!", {
             rawResponse
           });
@@ -2675,10 +2532,10 @@ var _FetchInterceptor = class extends Interceptor2 {
             }
             if (request.redirect === "follow") {
               followFetchRedirect(request, response).then(
-                (response2) => {
+                response2 => {
                   responsePromise.resolve(response2);
                 },
-                (reason) => {
+                reason => {
                   responsePromise.reject(reason);
                 }
               );
@@ -2699,11 +2556,11 @@ var _FetchInterceptor = class extends Interceptor2 {
           }
           responsePromise.resolve(response);
         },
-        onRequestError: (response) => {
+        onRequestError: response => {
           this.logger.info("request has errored!", { response });
           responsePromise.reject(createNetworkError(response));
         },
-        onError: (error2) => {
+        onError: error2 => {
           this.logger.info("request has been aborted!", { error: error2 });
           responsePromise.reject(error2);
         }
@@ -2712,10 +2569,8 @@ var _FetchInterceptor = class extends Interceptor2 {
         this.logger.info("request has been handled, returning mock promise...");
         return responsePromise;
       }
-      this.logger.info(
-        "no mocked response received, performing request as-is..."
-      );
-      return pureFetch(request).then(async (response) => {
+      this.logger.info("no mocked response received, performing request as-is...");
+      return pureFetch(request).then(async response => {
         this.logger.info("original fetch performed", response);
         if (this.emitter.listenerCount("response") > 0) {
           this.logger.info('emitting the "response" event...');
@@ -2740,10 +2595,7 @@ var _FetchInterceptor = class extends Interceptor2 {
         value: void 0
       });
       globalThis.fetch = pureFetch;
-      this.logger.info(
-        'restored native "globalThis.fetch"!',
-        globalThis.fetch.name
-      );
+      this.logger.info('restored native "globalThis.fetch"!', globalThis.fetch.name);
     });
   }
 };
@@ -2791,10 +2643,8 @@ var EventPolyfill = class {
   preventDefault() {
     this.defaultPrevented = true;
   }
-  stopPropagation() {
-  }
-  stopImmediatePropagation() {
-  }
+  stopPropagation() {}
+  stopImmediatePropagation() {}
 };
 var ProgressEventPolyfill = class extends EventPolyfill {
   constructor(type, init) {
@@ -2807,24 +2657,18 @@ var ProgressEventPolyfill = class extends EventPolyfill {
 };
 var SUPPORTS_PROGRESS_EVENT = typeof ProgressEvent !== "undefined";
 function createEvent(target, type, init) {
-  const progressEvents = [
-    "error",
-    "progress",
-    "loadstart",
-    "loadend",
-    "load",
-    "timeout",
-    "abort"
-  ];
+  const progressEvents = ["error", "progress", "loadstart", "loadend", "load", "timeout", "abort"];
   const ProgressEventClass = SUPPORTS_PROGRESS_EVENT ? ProgressEvent : ProgressEventPolyfill;
-  const event = progressEvents.includes(type) ? new ProgressEventClass(type, {
-    lengthComputable: true,
-    loaded: (init == null ? void 0 : init.loaded) || 0,
-    total: (init == null ? void 0 : init.total) || 0
-  }) : new EventPolyfill(type, {
-    target,
-    currentTarget: target
-  });
+  const event = progressEvents.includes(type)
+    ? new ProgressEventClass(type, {
+        lengthComputable: true,
+        loaded: (init == null ? void 0 : init.loaded) || 0,
+        total: (init == null ? void 0 : init.total) || 0
+      })
+    : new EventPolyfill(type, {
+        target,
+        currentTarget: target
+      });
   return event;
 }
 function findPropertySource(target, propertyName) {
@@ -2846,18 +2690,15 @@ function optionsToProxyHandler(options) {
   const { constructorCall, methodCall, getProperty, setProperty } = options;
   const handler = {};
   if (typeof constructorCall !== "undefined") {
-    handler.construct = function(target, args, newTarget) {
+    handler.construct = function (target, args, newTarget) {
       const next = Reflect.construct.bind(null, target, args, newTarget);
       return constructorCall.call(newTarget, args, next);
     };
   }
-  handler.set = function(target, propertyName, nextValue) {
+  handler.set = function (target, propertyName, nextValue) {
     const next = () => {
       const propertySource = findPropertySource(target, propertyName) || target;
-      const ownDescriptors = Reflect.getOwnPropertyDescriptor(
-        propertySource,
-        propertyName
-      );
+      const ownDescriptors = Reflect.getOwnPropertyDescriptor(propertySource, propertyName);
       if (typeof (ownDescriptors == null ? void 0 : ownDescriptors.set) !== "undefined") {
         ownDescriptors.set.apply(target, [nextValue]);
         return true;
@@ -2874,7 +2715,7 @@ function optionsToProxyHandler(options) {
     }
     return next();
   };
-  handler.get = function(target, propertyName, receiver) {
+  handler.get = function (target, propertyName, receiver) {
     const next = () => target[propertyName];
     const value = typeof getProperty !== "undefined" ? getProperty.call(target, [propertyName, receiver], next) : next();
     if (typeof value === "function") {
@@ -2891,14 +2732,8 @@ function optionsToProxyHandler(options) {
   return handler;
 }
 function isDomParserSupportedType(type) {
-  const supportedTypes = [
-    "application/xhtml+xml",
-    "application/xml",
-    "image/svg+xml",
-    "text/html",
-    "text/xml"
-  ];
-  return supportedTypes.some((supportedType) => {
+  const supportedTypes = ["application/xhtml+xml", "application/xml", "image/svg+xml", "text/html", "text/xml"];
+  return supportedTypes.some(supportedType => {
     return type.startsWith(supportedType);
   });
 }
@@ -2916,9 +2751,7 @@ function createResponse(request, body) {
     url: request.responseURL,
     status: request.status,
     statusText: request.statusText,
-    headers: createHeadersFromXMLHttpReqestHeaders(
-      request.getAllResponseHeaders()
-    )
+    headers: createHeadersFromXMLHttpReqestHeaders(request.getAllResponseHeaders())
   });
 }
 function createHeadersFromXMLHttpReqestHeaders(headersString) {
@@ -2961,9 +2794,7 @@ var XMLHttpRequestController = class {
       setProperty: ([propertyName, nextValue], invoke) => {
         switch (propertyName) {
           case "ontimeout": {
-            const eventName = propertyName.slice(
-              2
-            );
+            const eventName = propertyName.slice(2);
             this.request.addEventListener(eventName, nextValue);
             return invoke();
           }
@@ -3024,10 +2855,13 @@ var XMLHttpRequestController = class {
             const requestBody = typeof body === "string" ? encodeBuffer(body) : body;
             const fetchRequest = this.toFetchApiRequest(requestBody);
             this[kFetchRequest] = fetchRequest.clone();
-            const onceRequestSettled = ((_a2 = this.onRequest) == null ? void 0 : _a2.call(this, {
-              request: fetchRequest,
-              requestId: this.requestId
-            })) || Promise.resolve();
+            const onceRequestSettled =
+              ((_a2 = this.onRequest) == null
+                ? void 0
+                : _a2.call(this, {
+                    request: fetchRequest,
+                    requestId: this.requestId
+                  })) || Promise.resolve();
             onceRequestSettled.finally(() => {
               if (!this[kIsRequestHandled]) {
                 this.logger.info(
@@ -3035,10 +2869,7 @@ var XMLHttpRequestController = class {
                   this.request.readyState
                 );
                 if (IS_NODE2) {
-                  this.request.setRequestHeader(
-                    INTERNAL_REQUEST_ID_HEADER_NAME,
-                    this.requestId
-                  );
+                  this.request.setRequestHeader(INTERNAL_REQUEST_ID_HEADER_NAME, this.requestId);
                 }
                 return invoke();
               }
@@ -3064,9 +2895,7 @@ var XMLHttpRequestController = class {
             case "onload":
             case "ontimeout":
             case "onloadend": {
-              const eventName = propertyName.slice(
-                2
-              );
+              const eventName = propertyName.slice(2);
               this.registerUploadEvent(eventName, nextValue);
             }
           }
@@ -3104,9 +2933,7 @@ var XMLHttpRequestController = class {
   async respondWith(response) {
     this[kIsRequestHandled] = true;
     if (this[kFetchRequest]) {
-      const totalRequestBodyLength = await getBodyByteLength(
-        this[kFetchRequest]
-      );
+      const totalRequestBodyLength = await getBodyByteLength(this[kFetchRequest]);
       this.trigger("loadstart", this.request.upload, {
         loaded: 0,
         total: totalRequestBodyLength
@@ -3124,11 +2951,7 @@ var XMLHttpRequestController = class {
         total: totalRequestBodyLength
       });
     }
-    this.logger.info(
-      "responding with a mocked response: %d %s",
-      response.status,
-      response.statusText
-    );
+    this.logger.info("responding with a mocked response: %d %s", response.status, response.statusText);
     define(this.request, "status", response.status);
     define(this.request, "statusText", response.statusText);
     define(this.request, "responseURL", this.url.href);
@@ -3140,32 +2963,27 @@ var XMLHttpRequestController = class {
           return null;
         }
         const headerValue = response.headers.get(args[0]);
-        this.logger.info(
-          'resolved response header "%s" to',
-          args[0],
-          headerValue
-        );
+        this.logger.info('resolved response header "%s" to', args[0], headerValue);
         return headerValue;
       }
     });
-    this.request.getAllResponseHeaders = new Proxy(
-      this.request.getAllResponseHeaders,
-      {
-        apply: () => {
-          this.logger.info("getAllResponseHeaders");
-          if (this.request.readyState < this.request.HEADERS_RECEIVED) {
-            this.logger.info("headers not received yet, returning empty string");
-            return "";
-          }
-          const headersList = Array.from(response.headers.entries());
-          const allHeaders = headersList.map(([headerName, headerValue]) => {
-            return `${headerName}: ${headerValue}`;
-          }).join("\r\n");
-          this.logger.info("resolved all response headers to", allHeaders);
-          return allHeaders;
+    this.request.getAllResponseHeaders = new Proxy(this.request.getAllResponseHeaders, {
+      apply: () => {
+        this.logger.info("getAllResponseHeaders");
+        if (this.request.readyState < this.request.HEADERS_RECEIVED) {
+          this.logger.info("headers not received yet, returning empty string");
+          return "";
         }
+        const headersList = Array.from(response.headers.entries());
+        const allHeaders = headersList
+          .map(([headerName, headerValue]) => {
+            return `${headerName}: ${headerValue}`;
+          })
+          .join("\r\n");
+        this.logger.info("resolved all response headers to", allHeaders);
+        return allHeaders;
       }
-    );
+    });
     Object.defineProperties(this.request, {
       response: {
         enumerable: true,
@@ -3232,10 +3050,7 @@ var XMLHttpRequestController = class {
     return decodeBuffer(this.responseBuffer);
   }
   get response() {
-    this.logger.info(
-      "getResponse (responseType: %s)",
-      this.request.responseType
-    );
+    this.logger.info("getResponse (responseType: %s)", this.request.responseType);
     if (this.request.readyState !== this.request.DONE) {
       return null;
     }
@@ -3255,20 +3070,12 @@ var XMLHttpRequestController = class {
         const responseBlob = new Blob([this.responseBufferToText()], {
           type: mimeType
         });
-        this.logger.info(
-          "resolved response Blob (mime type: %s)",
-          responseBlob,
-          mimeType
-        );
+        this.logger.info("resolved response Blob (mime type: %s)", responseBlob, mimeType);
         return responseBlob;
       }
       default: {
         const responseText = this.responseBufferToText();
-        this.logger.info(
-          'resolving "%s" response type as text',
-          this.request.responseType,
-          responseText
-        );
+        this.logger.info('resolving "%s" response type as text', this.request.responseType, responseText);
         return responseText;
       }
     }
@@ -3301,10 +3108,7 @@ var XMLHttpRequestController = class {
       return null;
     }
     if (isDomParserSupportedType(contentType)) {
-      return new DOMParser().parseFromString(
-        this.responseBufferToText(),
-        contentType
-      );
+      return new DOMParser().parseFromString(this.responseBufferToText(), contentType);
     }
     return null;
   }
@@ -3319,11 +3123,7 @@ var XMLHttpRequestController = class {
    * Transitions this request's `readyState` to the given one.
    */
   setReadyState(nextReadyState) {
-    this.logger.info(
-      "setReadyState: %d -> %d",
-      this.request.readyState,
-      nextReadyState
-    );
+    this.logger.info("setReadyState: %d -> %d", this.request.readyState, nextReadyState);
     if (this.request.readyState === nextReadyState) {
       this.logger.info("ready state identical, skipping transition...");
       return;
@@ -3349,12 +3149,8 @@ var XMLHttpRequestController = class {
     const events = target instanceof XMLHttpRequestUpload ? this.uploadEvents : this.events;
     for (const [registeredEventName, listeners] of events) {
       if (registeredEventName === eventName) {
-        this.logger.info(
-          'found %d listener(s) for "%s" event, calling...',
-          listeners.length,
-          eventName
-        );
-        listeners.forEach((listener) => listener.call(target, event));
+        this.logger.info('found %d listener(s) for "%s" event, calling...', listeners.length, eventName);
+        listeners.forEach(listener => listener.call(target, event));
       }
     }
   }
@@ -3412,51 +3208,32 @@ function define(target, property, value) {
     value
   });
 }
-function createXMLHttpRequestProxy({
-  emitter,
-  logger
-}) {
+function createXMLHttpRequestProxy({ emitter, logger }) {
   const XMLHttpRequestProxy = new Proxy(globalThis.XMLHttpRequest, {
     construct(target, args, newTarget) {
       logger.info("constructed new XMLHttpRequest");
-      const originalRequest = Reflect.construct(
-        target,
-        args,
-        newTarget
-      );
-      const prototypeDescriptors = Object.getOwnPropertyDescriptors(
-        target.prototype
-      );
+      const originalRequest = Reflect.construct(target, args, newTarget);
+      const prototypeDescriptors = Object.getOwnPropertyDescriptors(target.prototype);
       for (const propertyName in prototypeDescriptors) {
-        Reflect.defineProperty(
-          originalRequest,
-          propertyName,
-          prototypeDescriptors[propertyName]
-        );
+        Reflect.defineProperty(originalRequest, propertyName, prototypeDescriptors[propertyName]);
       }
-      const xhrRequestController = new XMLHttpRequestController(
-        originalRequest,
-        logger
-      );
-      xhrRequestController.onRequest = async function({ request, requestId }) {
+      const xhrRequestController = new XMLHttpRequestController(originalRequest, logger);
+      xhrRequestController.onRequest = async function ({ request, requestId }) {
         const controller = new RequestController(request);
         this.logger.info("awaiting mocked response...");
-        this.logger.info(
-          'emitting the "request" event for %s listener(s)...',
-          emitter.listenerCount("request")
-        );
+        this.logger.info('emitting the "request" event for %s listener(s)...', emitter.listenerCount("request"));
         const isRequestHandled = await handleRequest2({
           request,
           requestId,
           controller,
           emitter,
-          onResponse: async (response) => {
+          onResponse: async response => {
             await this.respondWith(response);
           },
           onRequestError: () => {
             this.errorWith(new TypeError("Network error"));
           },
-          onError: (error2) => {
+          onError: error2 => {
             this.logger.info("request errored!", { error: error2 });
             if (error2 instanceof Error) {
               this.errorWith(error2);
@@ -3464,21 +3241,11 @@ function createXMLHttpRequestProxy({
           }
         });
         if (!isRequestHandled) {
-          this.logger.info(
-            "no mocked response received, performing request as-is..."
-          );
+          this.logger.info("no mocked response received, performing request as-is...");
         }
       };
-      xhrRequestController.onResponse = async function({
-        response,
-        isMockedResponse,
-        request,
-        requestId
-      }) {
-        this.logger.info(
-          'emitting the "response" event for %s listener(s)...',
-          emitter.listenerCount("response")
-        );
+      xhrRequestController.onResponse = async function ({ response, isMockedResponse, request, requestId }) {
+        this.logger.info('emitting the "response" event for %s listener(s)...', emitter.listenerCount("response"));
         emitter.emit("response", {
           response,
           isMockedResponse,
@@ -3502,18 +3269,12 @@ var _XMLHttpRequestInterceptor = class extends Interceptor2 {
     const logger = this.logger.extend("setup");
     logger.info('patching "XMLHttpRequest" module...');
     const PureXMLHttpRequest = globalThis.XMLHttpRequest;
-    invariant2(
-      !PureXMLHttpRequest[IS_PATCHED_MODULE],
-      'Failed to patch the "XMLHttpRequest" module: already patched.'
-    );
+    invariant2(!PureXMLHttpRequest[IS_PATCHED_MODULE], 'Failed to patch the "XMLHttpRequest" module: already patched.');
     globalThis.XMLHttpRequest = createXMLHttpRequestProxy({
       emitter: this.emitter,
       logger: this.logger
     });
-    logger.info(
-      'native "XMLHttpRequest" module patched!',
-      globalThis.XMLHttpRequest.name
-    );
+    logger.info('native "XMLHttpRequest" module patched!', globalThis.XMLHttpRequest.name);
     Object.defineProperty(globalThis.XMLHttpRequest, IS_PATCHED_MODULE, {
       enumerable: true,
       configurable: true,
@@ -3524,10 +3285,7 @@ var _XMLHttpRequestInterceptor = class extends Interceptor2 {
         value: void 0
       });
       globalThis.XMLHttpRequest = PureXMLHttpRequest;
-      logger.info(
-        'native "XMLHttpRequest" module restored!',
-        globalThis.XMLHttpRequest.name
-      );
+      logger.info('native "XMLHttpRequest" module restored!', globalThis.XMLHttpRequest.name);
     });
   }
 };
@@ -3564,28 +3322,19 @@ function createFallbackRequestListener(context, options) {
       controller.respondWith(response);
     }
   });
-  interceptor.on(
-    "response",
-    ({ response, isMockedResponse, request, requestId }) => {
-      context.emitter.emit(
-        isMockedResponse ? "response:mocked" : "response:bypass",
-        {
-          response,
-          request,
-          requestId
-        }
-      );
-    }
-  );
+  interceptor.on("response", ({ response, isMockedResponse, request, requestId }) => {
+    context.emitter.emit(isMockedResponse ? "response:mocked" : "response:bypass", {
+      response,
+      request,
+      requestId
+    });
+  });
   interceptor.apply();
   return interceptor;
 }
 function createFallbackStart(context) {
   return async function start(options) {
-    context.fallbackInterceptor = createFallbackRequestListener(
-      context,
-      options
-    );
+    context.fallbackInterceptor = createFallbackRequestListener(context, options);
     printStartMessage({
       message: "Mocking enabled (fallback mode).",
       quiet: options.quiet
@@ -3603,7 +3352,7 @@ function createFallbackStop(context) {
 function supportsReadableStreamTransfer() {
   try {
     const stream = new ReadableStream({
-      start: (controller) => controller.close()
+      start: controller => controller.close()
     });
     const message = new MessageChannel();
     message.port1.postMessage(stream, [stream]);
@@ -3643,7 +3392,7 @@ var SetupWorkerApi = class extends SetupApi {
       emitter: this.emitter,
       workerChannel: {
         on: (eventType, callback) => {
-          this.context.events.addListener(navigator.serviceWorker, "message", (event) => {
+          this.context.events.addListener(navigator.serviceWorker, "message", event => {
             if (event.source !== this.context.worker) {
               return;
             }
@@ -3656,7 +3405,7 @@ var SetupWorkerApi = class extends SetupApi {
             }
           });
         },
-        send: (type) => {
+        send: type => {
           var _a2;
           (_a2 = this.context.worker) == null ? void 0 : _a2.postMessage(type);
         }
@@ -3679,10 +3428,10 @@ var SetupWorkerApi = class extends SetupApi {
           }
           this.listeners = [];
         },
-        once: (eventType) => {
+        once: eventType => {
           const bindings = [];
           return new Promise((resolve, reject) => {
-            const handleIncomingMessage = (event) => {
+            const handleIncomingMessage = event => {
               try {
                 const message = event.data;
                 if (message.type === eventType) {
@@ -3693,19 +3442,11 @@ var SetupWorkerApi = class extends SetupApi {
               }
             };
             bindings.push(
-              this.context.events.addListener(
-                navigator.serviceWorker,
-                "message",
-                handleIncomingMessage
-              ),
-              this.context.events.addListener(
-                navigator.serviceWorker,
-                "messageerror",
-                reject
-              )
+              this.context.events.addListener(navigator.serviceWorker, "message", handleIncomingMessage),
+              this.context.events.addListener(navigator.serviceWorker, "messageerror", reject)
             );
           }).finally(() => {
-            bindings.forEach((unbind) => unbind());
+            bindings.forEach(unbind => unbind());
           });
         }
       },
@@ -3724,10 +3465,7 @@ var SetupWorkerApi = class extends SetupApi {
         'The "waitUntilReady" option has been deprecated. Please remove it from this "worker.start()" call. Follow the recommended Browser integration (https://mswjs.io/docs/integrations/browser) to eliminate any race conditions between the Service Worker registration and any requests made by your application on initial render.'
       );
     }
-    this.context.startOptions = mergeRight(
-      DEFAULT_START_OPTIONS,
-      options
-    );
+    this.context.startOptions = mergeRight(DEFAULT_START_OPTIONS, options);
     handleWebSocketEvent({
       getUnhandledRequestStrategy: () => {
         return this.context.startOptions.onUnhandledRequest;
@@ -3735,13 +3473,12 @@ var SetupWorkerApi = class extends SetupApi {
       getHandlers: () => {
         return this.handlersController.currentHandlers();
       },
-      onMockedConnection: (connection) => {
+      onMockedConnection: connection => {
         if (!this.context.startOptions.quiet) {
           attachWebSocketLogger(connection);
         }
       },
-      onPassthroughConnection() {
-      }
+      onPassthroughConnection() {}
     });
     webSocketInterceptor.apply();
     this.subscriptions.push(() => {
@@ -3759,8 +3496,5 @@ var SetupWorkerApi = class extends SetupApi {
 function setupWorker(...handlers) {
   return new SetupWorkerApi(...handlers);
 }
-export {
-  SetupWorkerApi,
-  setupWorker
-};
+export { SetupWorkerApi, setupWorker };
 //# sourceMappingURL=msw_browser.js.map

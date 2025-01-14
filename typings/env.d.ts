@@ -8,33 +8,33 @@ import type { Component, vShow } from "vue";
 import { JSX as VueJsx } from "vue/jsx-runtime";
 
 declare global {
-	const process: {
-		env: {
-			NODE_ENV: string;
-		};
-	};
+  const process: {
+    env: {
+      NODE_ENV: string;
+    };
+  };
 
-	namespace JSX {
-		interface Element extends VueJsx.Element {}
-		interface ElementClass extends VueJsx.ElementClass {}
-		interface IntrinsicElements extends VueJsx.IntrinsicElements {}
-		interface IntrinsicAttributes extends VueJsx.IntrinsicAttributes {}
-		interface ElementAttributesProperty extends VueJsx.ElementAttributesProperty {}
-	}
+  namespace JSX {
+    interface Element extends VueJsx.Element {}
+    interface ElementClass extends VueJsx.ElementClass {}
+    interface IntrinsicElements extends VueJsx.IntrinsicElements {}
+    interface IntrinsicAttributes extends VueJsx.IntrinsicAttributes {}
+    interface ElementAttributesProperty extends VueJsx.ElementAttributesProperty {}
+  }
 }
 
 declare module "@vue/runtime-core" {
-	export interface App {
-		[INSTALLED_KEY]?: boolean;
-	}
+  export interface App {
+    [INSTALLED_KEY]?: boolean;
+  }
 
-	export interface GlobalComponents {
-		Component: (props: { is: Component | string }) => void;
-	}
+  export interface GlobalComponents {
+    Component: (props: { is: Component | string }) => void;
+  }
 
-	export interface ComponentCustomProperties {
-		vShow: typeof vShow;
-	}
+  export interface ComponentCustomProperties {
+    vShow: typeof vShow;
+  }
 }
 
 export {};

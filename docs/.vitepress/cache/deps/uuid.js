@@ -14,7 +14,8 @@ function rng() {
 }
 
 // ../node_modules/.pnpm/uuid@9.0.1/node_modules/uuid/dist/esm-browser/regex.js
-var regex_default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
+var regex_default =
+  /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
 
 // ../node_modules/.pnpm/uuid@9.0.1/node_modules/uuid/dist/esm-browser/validate.js
 function validate(uuid) {
@@ -28,7 +29,28 @@ for (let i = 0; i < 256; ++i) {
   byteToHex.push((i + 256).toString(16).slice(1));
 }
 function unsafeStringify(arr, offset = 0) {
-  return byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]];
+  return (
+    byteToHex[arr[offset + 0]] +
+    byteToHex[arr[offset + 1]] +
+    byteToHex[arr[offset + 2]] +
+    byteToHex[arr[offset + 3]] +
+    "-" +
+    byteToHex[arr[offset + 4]] +
+    byteToHex[arr[offset + 5]] +
+    "-" +
+    byteToHex[arr[offset + 6]] +
+    byteToHex[arr[offset + 7]] +
+    "-" +
+    byteToHex[arr[offset + 8]] +
+    byteToHex[arr[offset + 9]] +
+    "-" +
+    byteToHex[arr[offset + 10]] +
+    byteToHex[arr[offset + 11]] +
+    byteToHex[arr[offset + 12]] +
+    byteToHex[arr[offset + 13]] +
+    byteToHex[arr[offset + 14]] +
+    byteToHex[arr[offset + 15]]
+  );
 }
 function stringify(arr, offset = 0) {
   const uuid = unsafeStringify(arr, offset);
@@ -45,7 +67,7 @@ var _clockseq;
 var _lastMSecs = 0;
 var _lastNSecs = 0;
 function v1(options, buf, offset) {
-  let i = buf && offset || 0;
+  let i = (buf && offset) || 0;
   const b = buf || new Array(16);
   options = options || {};
   let node = options.node || _nodeId;
@@ -56,14 +78,14 @@ function v1(options, buf, offset) {
       node = _nodeId = [seedBytes[0] | 1, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]];
     }
     if (clockseq == null) {
-      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 16383;
+      clockseq = _clockseq = ((seedBytes[6] << 8) | seedBytes[7]) & 16383;
     }
   }
   let msecs = options.msecs !== void 0 ? options.msecs : Date.now();
   let nsecs = options.nsecs !== void 0 ? options.nsecs : _lastNSecs + 1;
   const dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 1e4;
   if (dt < 0 && options.clockseq === void 0) {
-    clockseq = clockseq + 1 & 16383;
+    clockseq = (clockseq + 1) & 16383;
   }
   if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === void 0) {
     nsecs = 0;
@@ -76,16 +98,16 @@ function v1(options, buf, offset) {
   _clockseq = clockseq;
   msecs += 122192928e5;
   const tl = ((msecs & 268435455) * 1e4 + nsecs) % 4294967296;
-  b[i++] = tl >>> 24 & 255;
-  b[i++] = tl >>> 16 & 255;
-  b[i++] = tl >>> 8 & 255;
+  b[i++] = (tl >>> 24) & 255;
+  b[i++] = (tl >>> 16) & 255;
+  b[i++] = (tl >>> 8) & 255;
   b[i++] = tl & 255;
-  const tmh = msecs / 4294967296 * 1e4 & 268435455;
-  b[i++] = tmh >>> 8 & 255;
+  const tmh = ((msecs / 4294967296) * 1e4) & 268435455;
+  b[i++] = (tmh >>> 8) & 255;
   b[i++] = tmh & 255;
-  b[i++] = tmh >>> 24 & 15 | 16;
-  b[i++] = tmh >>> 16 & 255;
-  b[i++] = clockseq >>> 8 | 128;
+  b[i++] = ((tmh >>> 24) & 15) | 16;
+  b[i++] = (tmh >>> 16) & 255;
+  b[i++] = (clockseq >>> 8) | 128;
   b[i++] = clockseq & 255;
   for (let n = 0; n < 6; ++n) {
     b[i + n] = node[n];
@@ -102,8 +124,8 @@ function parse(uuid) {
   let v;
   const arr = new Uint8Array(16);
   arr[0] = (v = parseInt(uuid.slice(0, 8), 16)) >>> 24;
-  arr[1] = v >>> 16 & 255;
-  arr[2] = v >>> 8 & 255;
+  arr[1] = (v >>> 16) & 255;
+  arr[2] = (v >>> 8) & 255;
   arr[3] = v & 255;
   arr[4] = (v = parseInt(uuid.slice(9, 13), 16)) >>> 8;
   arr[5] = v & 255;
@@ -111,11 +133,11 @@ function parse(uuid) {
   arr[7] = v & 255;
   arr[8] = (v = parseInt(uuid.slice(19, 23), 16)) >>> 8;
   arr[9] = v & 255;
-  arr[10] = (v = parseInt(uuid.slice(24, 36), 16)) / 1099511627776 & 255;
-  arr[11] = v / 4294967296 & 255;
-  arr[12] = v >>> 24 & 255;
-  arr[13] = v >>> 16 & 255;
-  arr[14] = v >>> 8 & 255;
+  arr[10] = ((v = parseInt(uuid.slice(24, 36), 16)) / 1099511627776) & 255;
+  arr[11] = (v / 4294967296) & 255;
+  arr[12] = (v >>> 24) & 255;
+  arr[13] = (v >>> 16) & 255;
+  arr[14] = (v >>> 8) & 255;
   arr[15] = v & 255;
   return arr;
 }
@@ -148,8 +170,8 @@ function v35(name, version2, hashfunc) {
     bytes.set(namespace);
     bytes.set(value, namespace.length);
     bytes = hashfunc(bytes);
-    bytes[6] = bytes[6] & 15 | version2;
-    bytes[8] = bytes[8] & 63 | 128;
+    bytes[6] = (bytes[6] & 15) | version2;
+    bytes[8] = (bytes[8] & 63) | 128;
     if (buf) {
       offset = offset || 0;
       for (let i = 0; i < 16; ++i) {
@@ -161,8 +183,7 @@ function v35(name, version2, hashfunc) {
   }
   try {
     generateUUID.name = name;
-  } catch (err) {
-  }
+  } catch (err) {}
   generateUUID.DNS = DNS;
   generateUUID.URL = URL;
   return generateUUID;
@@ -184,14 +205,14 @@ function md5ToHexEncodedArray(input) {
   const length32 = input.length * 32;
   const hexTab = "0123456789abcdef";
   for (let i = 0; i < length32; i += 8) {
-    const x = input[i >> 5] >>> i % 32 & 255;
-    const hex = parseInt(hexTab.charAt(x >>> 4 & 15) + hexTab.charAt(x & 15), 16);
+    const x = (input[i >> 5] >>> i % 32) & 255;
+    const hex = parseInt(hexTab.charAt((x >>> 4) & 15) + hexTab.charAt(x & 15), 16);
     output.push(hex);
   }
   return output;
 }
 function getOutputLength(inputLength8) {
-  return (inputLength8 + 64 >>> 9 << 4) + 14 + 1;
+  return (((inputLength8 + 64) >>> 9) << 4) + 14 + 1;
 }
 function wordsToMd5(x, len) {
   x[len >> 5] |= 128 << len % 32;
@@ -290,19 +311,19 @@ function bytesToWords(input) {
 function safeAdd(x, y) {
   const lsw = (x & 65535) + (y & 65535);
   const msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-  return msw << 16 | lsw & 65535;
+  return (msw << 16) | (lsw & 65535);
 }
 function bitRotateLeft(num, cnt) {
-  return num << cnt | num >>> 32 - cnt;
+  return (num << cnt) | (num >>> (32 - cnt));
 }
 function md5cmn(q, a, b, x, s, t) {
   return safeAdd(bitRotateLeft(safeAdd(safeAdd(a, q), safeAdd(x, t)), s), b);
 }
 function md5ff(a, b, c, d, x, s, t) {
-  return md5cmn(b & c | ~b & d, a, b, x, s, t);
+  return md5cmn((b & c) | (~b & d), a, b, x, s, t);
 }
 function md5gg(a, b, c, d, x, s, t) {
-  return md5cmn(b & d | c & ~d, a, b, x, s, t);
+  return md5cmn((b & d) | (c & ~d), a, b, x, s, t);
 }
 function md5hh(a, b, c, d, x, s, t) {
   return md5cmn(b ^ c ^ d, a, b, x, s, t);
@@ -329,8 +350,8 @@ function v4(options, buf, offset) {
   }
   options = options || {};
   const rnds = options.random || (options.rng || rng)();
-  rnds[6] = rnds[6] & 15 | 64;
-  rnds[8] = rnds[8] & 63 | 128;
+  rnds[6] = (rnds[6] & 15) | 64;
+  rnds[8] = (rnds[8] & 63) | 128;
   if (buf) {
     offset = offset || 0;
     for (let i = 0; i < 16; ++i) {
@@ -346,17 +367,17 @@ var v4_default = v4;
 function f(s, x, y, z) {
   switch (s) {
     case 0:
-      return x & y ^ ~x & z;
+      return (x & y) ^ (~x & z);
     case 1:
       return x ^ y ^ z;
     case 2:
-      return x & y ^ x & z ^ y & z;
+      return (x & y) ^ (x & z) ^ (y & z);
     case 3:
       return x ^ y ^ z;
   }
 }
 function ROTL(x, n) {
-  return x << n | x >>> 32 - n;
+  return (x << n) | (x >>> (32 - n));
 }
 function sha1(bytes) {
   const K = [1518500249, 1859775393, 2400959708, 3395469782];
@@ -377,13 +398,17 @@ function sha1(bytes) {
   for (let i = 0; i < N; ++i) {
     const arr = new Uint32Array(16);
     for (let j = 0; j < 16; ++j) {
-      arr[j] = bytes[i * 64 + j * 4] << 24 | bytes[i * 64 + j * 4 + 1] << 16 | bytes[i * 64 + j * 4 + 2] << 8 | bytes[i * 64 + j * 4 + 3];
+      arr[j] =
+        (bytes[i * 64 + j * 4] << 24) |
+        (bytes[i * 64 + j * 4 + 1] << 16) |
+        (bytes[i * 64 + j * 4 + 2] << 8) |
+        bytes[i * 64 + j * 4 + 3];
     }
     M[i] = arr;
   }
-  M[N - 1][14] = (bytes.length - 1) * 8 / Math.pow(2, 32);
+  M[N - 1][14] = ((bytes.length - 1) * 8) / Math.pow(2, 32);
   M[N - 1][14] = Math.floor(M[N - 1][14]);
-  M[N - 1][15] = (bytes.length - 1) * 8 & 4294967295;
+  M[N - 1][15] = ((bytes.length - 1) * 8) & 4294967295;
   for (let i = 0; i < N; ++i) {
     const W = new Uint32Array(80);
     for (let t = 0; t < 16; ++t) {
@@ -399,20 +424,41 @@ function sha1(bytes) {
     let e = H[4];
     for (let t = 0; t < 80; ++t) {
       const s = Math.floor(t / 20);
-      const T = ROTL(a, 5) + f(s, b, c, d) + e + K[s] + W[t] >>> 0;
+      const T = (ROTL(a, 5) + f(s, b, c, d) + e + K[s] + W[t]) >>> 0;
       e = d;
       d = c;
       c = ROTL(b, 30) >>> 0;
       b = a;
       a = T;
     }
-    H[0] = H[0] + a >>> 0;
-    H[1] = H[1] + b >>> 0;
-    H[2] = H[2] + c >>> 0;
-    H[3] = H[3] + d >>> 0;
-    H[4] = H[4] + e >>> 0;
+    H[0] = (H[0] + a) >>> 0;
+    H[1] = (H[1] + b) >>> 0;
+    H[2] = (H[2] + c) >>> 0;
+    H[3] = (H[3] + d) >>> 0;
+    H[4] = (H[4] + e) >>> 0;
   }
-  return [H[0] >> 24 & 255, H[0] >> 16 & 255, H[0] >> 8 & 255, H[0] & 255, H[1] >> 24 & 255, H[1] >> 16 & 255, H[1] >> 8 & 255, H[1] & 255, H[2] >> 24 & 255, H[2] >> 16 & 255, H[2] >> 8 & 255, H[2] & 255, H[3] >> 24 & 255, H[3] >> 16 & 255, H[3] >> 8 & 255, H[3] & 255, H[4] >> 24 & 255, H[4] >> 16 & 255, H[4] >> 8 & 255, H[4] & 255];
+  return [
+    (H[0] >> 24) & 255,
+    (H[0] >> 16) & 255,
+    (H[0] >> 8) & 255,
+    H[0] & 255,
+    (H[1] >> 24) & 255,
+    (H[1] >> 16) & 255,
+    (H[1] >> 8) & 255,
+    H[1] & 255,
+    (H[2] >> 24) & 255,
+    (H[2] >> 16) & 255,
+    (H[2] >> 8) & 255,
+    H[2] & 255,
+    (H[3] >> 24) & 255,
+    (H[3] >> 16) & 255,
+    (H[3] >> 8) & 255,
+    H[3] & 255,
+    (H[4] >> 24) & 255,
+    (H[4] >> 16) & 255,
+    (H[4] >> 8) & 255,
+    H[4] & 255
+  ];
 }
 var sha1_default = sha1;
 

@@ -5,7 +5,11 @@ function getDevtoolsGlobalHook() {
   return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
 }
 function getTarget() {
-  return typeof navigator !== "undefined" && typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : {};
+  return typeof navigator !== "undefined" && typeof window !== "undefined"
+    ? window
+    : typeof globalThis !== "undefined"
+      ? globalThis
+      : {};
 }
 var isProxyAvailable = typeof Proxy === "function";
 
@@ -24,7 +28,10 @@ function isPerformanceSupported() {
   if (typeof window !== "undefined" && window.performance) {
     supported = true;
     perf = window.performance;
-  } else if (typeof globalThis !== "undefined" && ((_a = globalThis.perf_hooks) === null || _a === void 0 ? void 0 : _a.performance)) {
+  } else if (
+    typeof globalThis !== "undefined" &&
+    ((_a = globalThis.perf_hooks) === null || _a === void 0 ? void 0 : _a.performance)
+  ) {
     supported = true;
     perf = globalThis.perf_hooks.performance;
   } else {
@@ -57,8 +64,7 @@ var ApiProxy = class {
       const raw = localStorage.getItem(localSettingsSaveId);
       const data = JSON.parse(raw);
       Object.assign(currentSettings, data);
-    } catch (e) {
-    }
+    } catch (e) {}
     this.fallbacks = {
       getSettings() {
         return currentSettings;
@@ -66,8 +72,7 @@ var ApiProxy = class {
       setSettings(value) {
         try {
           localStorage.setItem(localSettingsSaveId, JSON.stringify(value));
-        } catch (e) {
-        }
+        } catch (e) {}
         currentSettings = value;
       },
       now() {
@@ -81,49 +86,54 @@ var ApiProxy = class {
         }
       });
     }
-    this.proxiedOn = new Proxy({}, {
-      get: (_target, prop) => {
-        if (this.target) {
-          return this.target.on[prop];
-        } else {
-          return (...args) => {
-            this.onQueue.push({
-              method: prop,
-              args
-            });
-          };
+    this.proxiedOn = new Proxy(
+      {},
+      {
+        get: (_target, prop) => {
+          if (this.target) {
+            return this.target.on[prop];
+          } else {
+            return (...args) => {
+              this.onQueue.push({
+                method: prop,
+                args
+              });
+            };
+          }
         }
       }
-    });
-    this.proxiedTarget = new Proxy({}, {
-      get: (_target, prop) => {
-        if (this.target) {
-          return this.target[prop];
-        } else if (prop === "on") {
-          return this.proxiedOn;
-        } else if (Object.keys(this.fallbacks).includes(prop)) {
-          return (...args) => {
-            this.targetQueue.push({
-              method: prop,
-              args,
-              resolve: () => {
-              }
-            });
-            return this.fallbacks[prop](...args);
-          };
-        } else {
-          return (...args) => {
-            return new Promise((resolve) => {
+    );
+    this.proxiedTarget = new Proxy(
+      {},
+      {
+        get: (_target, prop) => {
+          if (this.target) {
+            return this.target[prop];
+          } else if (prop === "on") {
+            return this.proxiedOn;
+          } else if (Object.keys(this.fallbacks).includes(prop)) {
+            return (...args) => {
               this.targetQueue.push({
                 method: prop,
                 args,
-                resolve
+                resolve: () => {}
               });
-            });
-          };
+              return this.fallbacks[prop](...args);
+            };
+          } else {
+            return (...args) => {
+              return new Promise(resolve => {
+                this.targetQueue.push({
+                  method: prop,
+                  args,
+                  resolve
+                });
+              });
+            };
+          }
         }
       }
-    });
+    );
   }
   async setRealTarget(target) {
     this.target = target;
@@ -146,7 +156,7 @@ function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
     hook.emit(HOOK_SETUP, pluginDescriptor, setupFn);
   } else {
     const proxy = enableProxy ? new ApiProxy(descriptor, hook) : null;
-    const list = target.__VUE_DEVTOOLS_PLUGINS__ = target.__VUE_DEVTOOLS_PLUGINS__ || [];
+    const list = (target.__VUE_DEVTOOLS_PLUGINS__ = target.__VUE_DEVTOOLS_PLUGINS__ || []);
     list.push({
       pluginDescriptor: descriptor,
       setupFn,
@@ -157,9 +167,5 @@ function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
     }
   }
 }
-export {
-  isPerformanceSupported,
-  now,
-  setupDevtoolsPlugin
-};
+export { isPerformanceSupported, now, setupDevtoolsPlugin };
 //# sourceMappingURL=vitepress___@vue_devtools-api.js.map

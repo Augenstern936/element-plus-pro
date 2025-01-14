@@ -2,8 +2,7 @@
 var isVue2 = false;
 var isVue3 = true;
 var Vue2 = void 0;
-function install() {
-}
+function install() {}
 function set(target, key, val) {
   if (Array.isArray(target)) {
     target.length = Math.max(target.length, key);
@@ -21,12 +20,5 @@ function del(target, key) {
   delete target[key];
 }
 
-export {
-  isVue2,
-  isVue3,
-  Vue2,
-  install,
-  set,
-  del
-};
+export { isVue2, isVue3, Vue2, install, set, del };
 //# sourceMappingURL=chunk-V6ZDW5E6.js.map

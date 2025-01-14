@@ -1,11 +1,4 @@
-import {
-  Vue2,
-  del,
-  install,
-  isVue2,
-  isVue3,
-  set
-} from "./chunk-V6ZDW5E6.js";
+import { Vue2, del, install, isVue2, isVue3, set } from "./chunk-V6ZDW5E6.js";
 import {
   BaseTransition,
   BaseTransitionPropsValidators,
